@@ -16,7 +16,6 @@ const resumeValidatorsMode = (mode) => {
         .notEmpty().withMessage("Resume data is required.")
         .custom((val) => typeof val === 'object' && val !== null && !Array.isArray(val))
         .withMessage("Resume data must be a valid object.")
-        // [OPTIONAL] Defensive: check for excessively large resume
         .custom(val => Object.keys(val).length <= 1000)
         .withMessage("Resume data is too large.")
     );
@@ -26,7 +25,6 @@ const resumeValidatorsMode = (mode) => {
         .optional()
         .custom((val) => typeof val === 'object' && val !== null && !Array.isArray(val))
         .withMessage('Resume data must be a valid object.')
-        // [OPTIONAL] Defensive: check for large update
         .custom(val => !val || Object.keys(val).length <= 1000)
         .withMessage("Resume data is too large.")
     );
@@ -35,11 +33,19 @@ const resumeValidatorsMode = (mode) => {
       body('resumeData')
         .isObject()
         .withMessage('Resume data must be a valid object.')
-        // [OPTIONAL] Defensive: check for large update
         .custom(val => !val || Object.keys(val).length <= 1000)
         .withMessage("Resume data is too large.")
     );
+  } else if (mode === 'generateCoverLetter') {
+    validators.push(
+      body('userName').notEmpty().withMessage('User name is required.').trim(),
+      body('companyName').notEmpty().withMessage('Company name is required.').trim(),
+      body('jobTitle').notEmpty().withMessage('Job title is required.').trim(),
+      body('jobDescription').notEmpty().withMessage('Job description is required.').trim(),
+      body('userSkills').notEmpty().withMessage('Please provide some key skills.').trim()
+    );
   }
+
 
   validators.push(
     body('resumeName')
@@ -47,7 +53,6 @@ const resumeValidatorsMode = (mode) => {
       .isString().withMessage("Resume name must be a string.")
       .trim()
       .isLength({ max: 100 }).withMessage('Resume name cannot exceed 100 characters.')
-    // .escape() // [OPTIONAL] Only if used in HTML output, not needed for backend storage
   );
 
   if (['getById', 'update', 'delete'].includes(mode)) {

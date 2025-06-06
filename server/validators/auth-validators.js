@@ -1,4 +1,4 @@
-import { body, validationResult } from 'express-validator'
+import { body, param, validationResult } from 'express-validator'
 import logger from '../config/logger.js'
 
 // ===== User SignUp Validators =====
@@ -9,7 +9,6 @@ const userSignUpValidators = [
     .isAlphanumeric().withMessage('User name should contain only Alphabets and Numbers')
     .isLength({ min: 2, max: 30 }).withMessage('User name must be min of 2 characters and max of 30 characters')
     .trim()
-    // [OPTIONAL] Ban dangerous usernames
     .custom(value => !['admin', 'root', 'superuser'].includes(value.toLowerCase()))
     .withMessage('That username is not allowed.'),
 
@@ -27,7 +26,6 @@ const userSignUpValidators = [
     .matches(/[a-z]/).withMessage('User Password must contain at least one LowerCase')
     .matches(/[0-9]/).withMessage('User password must contain at least one numeric value')
     .matches(/[\W_]/).withMessage('User password must contain at least one special symbol')
-    // .blacklist('<>\'"') // [NOT NEEDED: password is never rendered, just stored hash]
 ];
 
 // ===== User SignUp Validation Middleware =====
@@ -63,6 +61,34 @@ const userSignInValidators = [
     .isString().withMessage("User password must be a string")
 ];
 
+// ===== Forgot Password Validator =====
+const forgotPasswordValidator = [
+    body('userEmail')
+        .isEmail().withMessage('A valid email is required.')
+        .normalizeEmail()
+];
+
+// ===== Reset Password Validator =====
+const resetPasswordValidator = [
+    param('token').notEmpty().withMessage('Token is required.'),
+    body('userPassword')
+        .isString().withMessage('User password must be a string')
+        .notEmpty().withMessage('User Password should not be empty')
+        .isLength({ min: 8 }).withMessage('User password must be at least 8 characters long')
+        .matches(/[A-Z]/).withMessage('User password must contain at least one UpperCase')
+        .matches(/[a-z]/).withMessage('User Password must contain at least one LowerCase')
+        .matches(/[0-9]/).withMessage('User password must contain at least one numeric value')
+        .matches(/[\W_]/).withMessage('User password must contain at least one special symbol')
+];
+
+// ===== Resend Verification Link Validator =====
+const resendVerificationValidator = [
+    body('userEmail')
+        .isEmail().withMessage('A valid email is required.')
+        .normalizeEmail()
+];
+
+
 // ===== User SignIn Validation Middleware =====
 const userSignInValidation = async (req, res, next) => {
   const error = validationResult(req);
@@ -86,5 +112,8 @@ export {
   userSignUpValidators,
   userSignUpValidation,
   userSignInValidators,
-  userSignInValidation
+  userSignInValidation,
+  forgotPasswordValidator,
+  resetPasswordValidator,
+  resendVerificationValidator
 }

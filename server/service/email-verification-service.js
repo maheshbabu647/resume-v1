@@ -10,45 +10,38 @@ const escapeHTML = (str) =>
 
 const sendVerificationMail = async (userId, userName, userEmail) => {
   try {
-    const SERVER_BASE_URL = process.env.SERVER_BASE_URL || 'http://localhost:4000';
+    const CLIENT_BASE_URL = process.env.CLIENT_BASE_URL || 'http://localhost:5173';
     const token = await createToken({ userId });
-    const verificationLink = `${SERVER_BASE_URL}/task-manager/api/v1/user/verify/${token}`;
+    
+    // This link should point to your FRONTEND route that will handle the verification
+    const verificationLink = `${CLIENT_BASE_URL}/verify-email/${token}`;
 
-    // [SECURITY] Sanitize userName before using in HTML!
     const safeUserName = escapeHTML(userName);
 
-    const mailBody = `<h2>Dear ${safeUserName}</h2>
-      <p>Thank you for registering with us.
-      To complete your account setup, please verify your email address by clicking the link below:</P>
-      <a href="${verificationLink}" style="text-decoration : none; font-size : 24px;">Verify Your Email</a>
-      <p>If you did not request this verification, please ignore this email. This link will expire in 24hrs.
-      If you have any questions, feel free to reach out to our support team.</P>
-      <h3>Best regards</h3>`;
+    const mailBody = `<h2>Dear ${safeUserName},</h2>
+      <p>Thank you for registering with CareerForge. To complete your account setup, please verify your email address by clicking the link below:</p>
+      <a href="${verificationLink}" style="text-decoration: none; font-size: 18px; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px;">Verify Your Email</a>
+      <p>If you did not request this verification, please ignore this email. This link will expire in 24 hours.</p>
+      <p>Best regards,<br/>The CareerForge Team</p>`;
 
     const mailOptions = {
-      from: process.env.EMAIL_FROM || 'no-reply@careerforge.pro', // [SECURITY] Use environment variable!
+      from: process.env.EMAIL_FROM || 'no-reply@careerforge.pro',
       to: userEmail,
-      replyTo: process.env.SUPPORT_EMAIL || 'support@careerforge.pro', // [PROFESSIONAL] Set reply-to
-      subject: 'Email Verification',
+      replyTo: process.env.SUPPORT_EMAIL || 'support@careerforge.pro',
+      subject: 'CareerForge: Please Verify Your Email Address',
       html: mailBody,
     };
 
-    // [SECURITY] Defend against email header injection (very rare with nodemailer, but safe!)
     if (/[^\w@.\-+]/.test(userEmail)) {
       throw new Error('Invalid characters in email address');
     }
 
-    const response = await mailTransporter.sendMail(mailOptions);
+    await mailTransporter.sendMail(mailOptions);
 
     logger.info(`[Email][Verification][Success] Sent to: ${userEmail}, userId: ${userId}`);
-    return response;
   } catch (error) {
-    // [SECURITY] Never leak sensitive info in logs
     logger.error(`[Email][Verification][Error] userId: ${userId}, userEmail: ${userEmail}, Reason: ${error.message}`);
-    const err = new Error('VERIFICATION MAIL NOT SENT');
-    err.name = 'VERIFICATION_MAIL_NOT_SENT';
-    err.message = error.message;
-    throw err;
+    // Do not re-throw here to avoid crashing the sign-up process if email fails
   }
 };
 

@@ -164,7 +164,7 @@ const updateTemplate = async (req, res, next) => {
       templateImageId: updatedImageId,
       templateFieldDefinition: parsedTemplateFieldDefinition || template.templateFieldDefinition
     };
-
+    console.log(templateNewData)
     const updatedTemplate = await templateModel.findOneAndUpdate(
       { _id: templateId },
       { $set: templateNewData },

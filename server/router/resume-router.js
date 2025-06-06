@@ -9,7 +9,7 @@ import {
   getAllResumes,
   getResumeById,
   updateResume,
-  generateResumeSummary // <-- [NEW] AI summary generation controller
+  generateResumeSummary,
 } from '../controller/resume-controller.js'
 import { resumeValidatorsMode, resumeValidation } from '../validators/resume-validators.js'
 
@@ -55,7 +55,7 @@ const resumeMutationLimiter = rateLimit({
   }
 })
 
-// [NEW] AI Summary generation limiter
+// [5] AI Summary generation limiter
 const summaryLimiter = rateLimit({
   windowMs: 60 * 1000, // 1 min
   max: 5,
@@ -65,7 +65,8 @@ const summaryLimiter = rateLimit({
   }
 })
 
-// [5] Routes (defense-in-depth: Auth → RateLimit → Validate → Handler)
+
+// [7] Routes (defense-in-depth: Auth → RateLimit → Validate → Handler)
 resumeRouter.post('/add',
   userAuthorization,
   resumeMutationLimiter,
@@ -101,23 +102,23 @@ resumeRouter.delete('/delete/:resumeId',
   resumeValidation,
   deleteResume
 )
-// [PRO LEVEL] Always require auth for download, and validate input!
+
 resumeRouter.post('/download',
-  userAuthorization,         // [ADDED]
+  userAuthorization,
   downloadLimiter,
-  resumeValidatorsMode('download'), // [OPTIONAL: if you want to validate download body]
-  resumeValidation,                // [OPTIONAL: if above]
+  resumeValidatorsMode('download'),
+  resumeValidation,
   downlaodResume
 )
 
-// [NEW] Resume Summary Generation via Gemini AI
 resumeRouter.post(
   '/generate-summary',
   userAuthorization,
   summaryLimiter,
-  // resumeValidatorsMode('generateSummary'),
+  resumeValidatorsMode('generateSummary'),
   resumeValidation,
   generateResumeSummary
 )
+
 
 export default resumeRouter

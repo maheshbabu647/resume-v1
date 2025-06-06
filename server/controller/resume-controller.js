@@ -2,7 +2,6 @@ import resumeModel from "../model/resume-model.js";
 import puppeteer from 'puppeteer';
 import logger from '../config/logger.js';
 import { logAnalyticsEvent } from '../service/analytics-logger.js';
-import { generateAISummary } from '../service/ai-summary-service.js'; // [NEW]
 
 // [SECURITY] Max allowed HTML size for PDF generation
 const MAX_HTML_SIZE = 100_000; // 100 KB
@@ -10,7 +9,7 @@ const MAX_HTML_SIZE = 100_000; // 100 KB
 // [SECURITY] Max resumes per user
 const MAX_RESUMES_PER_USER = 100;
 
-const createResume = async (req, res, next) => {
+export const createResume = async (req, res, next) => {
   try {
     const { templateId, resumeData, resumeName } = req.body;
     const userId = req.user.userId;
@@ -58,7 +57,7 @@ const createResume = async (req, res, next) => {
   }
 };
 
-const getResumeById = async (req, res, next) => {
+export const getResumeById = async (req, res, next) => {
   try {
     const { resumeId } = req.params;
     const userId = req.user.userId;
@@ -98,7 +97,7 @@ const getResumeById = async (req, res, next) => {
   }
 };
 
-const updateResume = async (req, res, next) => {
+export const updateResume = async (req, res, next) => {
   try {
     const { resumeId } = req.params;
     const { resumeData, resumeName } = req.body;
@@ -152,7 +151,7 @@ const updateResume = async (req, res, next) => {
   }
 };
 
-const getAllResumes = async (req, res, next) => {
+export const getAllResumes = async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const resumes = await resumeModel.find({ userId })
@@ -178,7 +177,7 @@ const getAllResumes = async (req, res, next) => {
   }
 };
 
-const deleteResume = async (req, res, next) => {
+export const deleteResume = async (req, res, next) => {
   try {
     const { resumeId } = req.params;
     const userId = req.user.userId;
@@ -219,8 +218,7 @@ const deleteResume = async (req, res, next) => {
   }
 };
 
-// Download resume as PDF: Accepts HTML code from frontend (use with care!)
-const downlaodResume = async (req, res, next) => {
+export const downlaodResume = async (req, res, next) => {
   try {
     const { html } = req.body;
     const userId = req.user ? req.user.userId : 'unknown';
@@ -246,7 +244,6 @@ const downlaodResume = async (req, res, next) => {
     });
     await browser.close();
 
-    // === Analytics Logging ===
     await logAnalyticsEvent({
       eventType: 'resume_download',
       userId,
@@ -269,23 +266,19 @@ const downlaodResume = async (req, res, next) => {
   }
 };
 
-// [NEW] Generate Resume Summary with Gemini AI
-const generateResumeSummary = async (req, res, next) => {
+export const generateResumeSummary = async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const resumeData = req.body;
 
-    // === Analytics Logging (attempt) ===
     await logAnalyticsEvent({
       eventType: 'resume_generate_summary_attempt',
       userId,
       meta: { ip: req.ip }
     });
 
-    // Generate summary using Gemini AI service
     const summary = await generateAISummary(resumeData);
 
-    // === Analytics Logging (success) ===
     await logAnalyticsEvent({
       eventType: 'resume_generate_summary_success',
       userId,
@@ -303,14 +296,4 @@ const generateResumeSummary = async (req, res, next) => {
     err.status = 500;
     next(err);
   }
-};
-
-export {
-  createResume,
-  getResumeById,
-  updateResume,
-  getAllResumes,
-  deleteResume,
-  downlaodResume,
-  generateResumeSummary // [NEW EXPORT]
 };

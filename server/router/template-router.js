@@ -14,6 +14,7 @@ import { templateValidatorsMode, templateValidation } from '../validators/templa
 import upload from '../middleware/upload-middleware.js'
 
 const templateRouter = express.Router()
+const adminTemplateRouter = express.Router()
 
 // [1] GET limiter
 const fetchTemplatesLimiter = rateLimit({
@@ -40,8 +41,8 @@ templateRouter.get('/getAll', userAuthorization, fetchTemplatesLimiter, getAllTe
 templateRouter.get('/:templateId', userAuthorization, fetchTemplatesLimiter, templateValidatorsMode('getById'), templateValidation, getTemplateById)
 
 // [4] Admin mutations (rate-limited)
-templateRouter.post('/add', userAuthorization, isAdmin, mutationLimiter, upload.single('templateImageFile'), templateValidatorsMode('create'), templateValidation, createTemplate)
-templateRouter.put('/:templateId', userAuthorization, isAdmin, mutationLimiter, templateValidatorsMode('update'), templateValidation, updateTemplate)
-templateRouter.delete('/:templateId', userAuthorization, isAdmin, mutationLimiter, templateValidatorsMode('delete'), templateValidation, deleteTemplate)
+adminTemplateRouter.post('/add', userAuthorization, isAdmin, mutationLimiter, upload.single('templateImageFile'), templateValidatorsMode('create'), templateValidation, createTemplate)
+adminTemplateRouter.put('/update/:templateId', userAuthorization, isAdmin, mutationLimiter, templateValidatorsMode('update'), templateValidation, updateTemplate)
+adminTemplateRouter.delete('/delete/:templateId', userAuthorization, isAdmin, mutationLimiter, templateValidatorsMode('delete'), templateValidation, deleteTemplate)
 
-export default templateRouter
+export{ templateRouter, adminTemplateRouter }

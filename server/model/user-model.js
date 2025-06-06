@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
 
 const userSchema = new mongoose.Schema({
-    userName : {
-        type :  String,
-        required : true
+    userName: {
+        type: String,
+        required: true
     },
     userEmail: {
         type: String,
@@ -21,6 +21,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['user', 'admin'],
         default: 'user',
+    },
+    verified: {
+        type: Boolean,
+        default: false
+    },
+    resetPasswordToken: {
+        type: String,
+        default: undefined
+    },
+    resetPasswordExpires: {
+        type: Date,
+        default: undefined
     },
     createdAt: {
         type: Date,

@@ -1,0 +1,688 @@
+2025-06-06T18:31:08.309Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/verify-email/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQzMmJlYzk2Y2RkODU5NDI5Yjg3MGYiLCJpYXQiOjE3NDkyMzI2MjAsImV4cCI6MTc0OTMxOTAyMCwiYXVkIjoiNjg0MzJiZWM5NmNkZDg1OTQyOWI4NzBmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTczIn0.altVwzr9MCVUhyMoSfiC-cehl8CLpDs6dskiXfti4ZU, Method: POST, IP: ::1
+2025-06-06T18:31:08.311Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:600:14)
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:610:14)
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:664:3)
+2025-06-06T18:31:08.316Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/verify-email/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQzMmJlYzk2Y2RkODU5NDI5Yjg3MGYiLCJpYXQiOjE3NDkyMzI2MjAsImV4cCI6MTc0OTMxOTAyMCwiYXVkIjoiNjg0MzJiZWM5NmNkZDg1OTQyOWI4NzBmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTczIn0.altVwzr9MCVUhyMoSfiC-cehl8CLpDs6dskiXfti4ZU, Method: POST, IP: ::1
+2025-06-06T18:31:08.316Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:600:14)
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:610:14)
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:664:3)
+2025-06-06T18:31:25.989Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/verify-email/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQzMmJlYzk2Y2RkODU5NDI5Yjg3MGYiLCJpYXQiOjE3NDkyMzI2MjAsImV4cCI6MTc0OTMxOTAyMCwiYXVkIjoiNjg0MzJiZWM5NmNkZDg1OTQyOWI4NzBmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTczIn0.altVwzr9MCVUhyMoSfiC-cehl8CLpDs6dskiXfti4ZU, Method: POST, IP: ::1
+2025-06-06T18:31:25.989Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:600:14)
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:610:14)
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:664:3)
+2025-06-06T18:31:25.993Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/verify-email/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQzMmJlYzk2Y2RkODU5NDI5Yjg3MGYiLCJpYXQiOjE3NDkyMzI2MjAsImV4cCI6MTc0OTMxOTAyMCwiYXVkIjoiNjg0MzJiZWM5NmNkZDg1OTQyOWI4NzBmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTczIn0.altVwzr9MCVUhyMoSfiC-cehl8CLpDs6dskiXfti4ZU, Method: POST, IP: ::1
+2025-06-06T18:31:25.993Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:600:14)
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:610:14)
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:664:3)
+2025-06-06T18:31:25.997Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T18:31:25.997Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T18:31:26.003Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T18:31:26.003Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T18:39:48.259Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T18:39:48.260Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T18:39:48.265Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T18:39:48.266Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T18:52:40.298Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/verify-email/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQzMmJlYzk2Y2RkODU5NDI5Yjg3MGYiLCJpYXQiOjE3NDkyMzI2MjAsImV4cCI6MTc0OTMxOTAyMCwiYXVkIjoiNjg0MzJiZWM5NmNkZDg1OTQyOWI4NzBmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTczIn0.altVwzr9MCVUhyMoSfiC-cehl8CLpDs6dskiXfti4ZU, Method: POST, IP: ::1
+2025-06-06T18:52:40.298Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:600:14)
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:610:14)
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:664:3)
+2025-06-06T18:52:40.305Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/verify-email/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQzMmJlYzk2Y2RkODU5NDI5Yjg3MGYiLCJpYXQiOjE3NDkyMzI2MjAsImV4cCI6MTc0OTMxOTAyMCwiYXVkIjoiNjg0MzJiZWM5NmNkZDg1OTQyOWI4NzBmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTczIn0.altVwzr9MCVUhyMoSfiC-cehl8CLpDs6dskiXfti4ZU, Method: POST, IP: ::1
+2025-06-06T18:52:40.305Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:600:14)
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:610:14)
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:664:3)
+2025-06-06T18:52:40.311Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T18:52:40.311Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T18:52:40.316Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T18:52:40.316Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T18:54:14.706Z [ERROR]: Status: 401, Name: Error, Message: Verification link is invalid or has expired., URL: /api/auth/verify-email/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQzMmJlYzk2Y2RkODU5NDI5Yjg3MGYiLCJpYXQiOjE3NDkyMzI2MjAsImV4cCI6MTc0OTMxOTAyMCwiYXVkIjoiNjg0MzJiZWM5NmNkZDg1OTQyOWI4NzBmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTczIn0.altVwzr9MCVUhyMoSfiC-cehl8CLpDs6dskiXfti4ZU, Method: POST, IP: ::1
+2025-06-06T18:54:14.706Z [ERROR]: Stack: Error: Verification link is invalid or has expired.
+    at verifyEmail (file:///D:/careerpro-rr/server/controller/auth-controller.js:129:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:600:14)
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:610:14)
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:664:3)
+2025-06-06T18:54:14.726Z [ERROR]: Status: 401, Name: Error, Message: Verification link is invalid or has expired., URL: /api/auth/verify-email/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQzMmJlYzk2Y2RkODU5NDI5Yjg3MGYiLCJpYXQiOjE3NDkyMzI2MjAsImV4cCI6MTc0OTMxOTAyMCwiYXVkIjoiNjg0MzJiZWM5NmNkZDg1OTQyOWI4NzBmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTczIn0.altVwzr9MCVUhyMoSfiC-cehl8CLpDs6dskiXfti4ZU, Method: POST, IP: ::1
+2025-06-06T18:54:14.726Z [ERROR]: Stack: Error: Verification link is invalid or has expired.
+    at verifyEmail (file:///D:/careerpro-rr/server/controller/auth-controller.js:129:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:600:14)
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:610:14)
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:664:3)
+2025-06-06T18:54:14.731Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T18:54:14.731Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T18:54:14.736Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T18:54:14.736Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T18:56:11.033Z [ERROR]: Status: 401, Name: Error, Message: Verification link is invalid or has expired., URL: /api/auth/verify-email/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQzMmJlYzk2Y2RkODU5NDI5Yjg3MGYiLCJpYXQiOjE3NDkyMzI2MjAsImV4cCI6MTc0OTMxOTAyMCwiYXVkIjoiNjg0MzJiZWM5NmNkZDg1OTQyOWI4NzBmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTczIn0.altVwzr9MCVUhyMoSfiC-cehl8CLpDs6dskiXfti4ZU, Method: POST, IP: ::1
+2025-06-06T18:56:11.033Z [ERROR]: Stack: Error: Verification link is invalid or has expired.
+    at verifyEmail (file:///D:/careerpro-rr/server/controller/auth-controller.js:130:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:600:14)
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:610:14)
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:664:3)
+2025-06-06T18:56:11.064Z [ERROR]: Status: 401, Name: Error, Message: Verification link is invalid or has expired., URL: /api/auth/verify-email/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQzMmJlYzk2Y2RkODU5NDI5Yjg3MGYiLCJpYXQiOjE3NDkyMzI2MjAsImV4cCI6MTc0OTMxOTAyMCwiYXVkIjoiNjg0MzJiZWM5NmNkZDg1OTQyOWI4NzBmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTczIn0.altVwzr9MCVUhyMoSfiC-cehl8CLpDs6dskiXfti4ZU, Method: POST, IP: ::1
+2025-06-06T18:56:11.065Z [ERROR]: Stack: Error: Verification link is invalid or has expired.
+    at verifyEmail (file:///D:/careerpro-rr/server/controller/auth-controller.js:130:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:600:14)
+    at param (D:\careerpro-rr\server\node_modules\router\index.js:610:14)
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:664:3)
+2025-06-06T18:57:07.849Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/auth/signup, Method: POST, IP: ::1
+2025-06-06T18:57:07.850Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at userSignUpValidation (file:///D:/careerpro-rr/server/validators/auth-validators.js:42:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T18:57:14.938Z [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: An account with this email address already exists., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-06-06T18:57:14.938Z [ERROR]: Stack: USER ALREADY EXISTS: An account with this email address already exists.
+    at userSignUp (file:///D:/careerpro-rr/server/controller/auth-controller.js:18:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:04:53.312Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T19:04:53.313Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T19:04:53.328Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T19:04:53.329Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T19:06:34.862Z [ERROR]: Status: 403, Name: EMAIL_NOT_VERIFIED, Message: Please verify your email address before signing in., URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-06T19:06:34.863Z [ERROR]: Stack: EMAIL_NOT_VERIFIED: Please verify your email address before signing in.
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:94:19)
+2025-06-06T19:24:26.058Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T19:24:26.059Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T19:24:26.077Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T19:24:26.077Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T19:24:39.308Z [ERROR]: Status: 500, Name: ReferenceError, Message: An unexpected error occurred during signin., URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-06T19:24:39.308Z [ERROR]: Stack: ReferenceError: An unexpected error occurred during signin.
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:123:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:24:50.355Z [ERROR]: Status: 500, Name: ReferenceError, Message: An unexpected error occurred during signin., URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-06T19:24:50.355Z [ERROR]: Stack: ReferenceError: An unexpected error occurred during signin.
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:123:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:27:53.177Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-06T19:27:53.177Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:28:04.412Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T19:28:04.412Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T19:28:04.415Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T19:28:04.415Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T19:33:19.511Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/timeseries?eventType=user_signup&days=30, Method: GET, IP: ::1
+2025-06-06T19:33:19.511Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:19.515Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/timeseries?eventType=user_signup&days=30, Method: GET, IP: ::1
+2025-06-06T19:33:19.515Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:21.981Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/funnel?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:21.981Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:21.985Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/funnel?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:21.985Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:25.681Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/funnel?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:25.681Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:26.599Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/funnel?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:26.599Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:26.774Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/funnel?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:26.774Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:26.964Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/funnel?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:26.964Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:27.147Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/funnel?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:27.147Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:27.337Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/funnel?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:27.338Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:27.566Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/funnel?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:27.566Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:30.299Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/funnel?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:30.300Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:30.303Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/funnel?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:30.303Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:31.545Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/retention?days=14, Method: GET, IP: ::1
+2025-06-06T19:33:31.545Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:31.548Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/retention?days=14, Method: GET, IP: ::1
+2025-06-06T19:33:31.548Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:32.967Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/security?days=7, Method: GET, IP: ::1
+2025-06-06T19:33:32.968Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:32.971Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/security?days=7, Method: GET, IP: ::1
+2025-06-06T19:33:32.971Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:33.917Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/device?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:33.917Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:33.920Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/device?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:33.921Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:34.698Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/performance?days=7, Method: GET, IP: ::1
+2025-06-06T19:33:34.699Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:34.702Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/performance?days=7, Method: GET, IP: ::1
+2025-06-06T19:33:34.703Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:44.644Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/timeseries?eventType=user_signup&days=30, Method: GET, IP: ::1
+2025-06-06T19:33:44.644Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:44.648Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/timeseries?eventType=user_signup&days=30, Method: GET, IP: ::1
+2025-06-06T19:33:44.648Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:46.131Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/funnel?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:46.131Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:46.134Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/funnel?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:46.135Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:33:48.285Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/funnel?days=30, Method: GET, IP: ::1
+2025-06-06T19:33:48.285Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///D:/careerpro-rr/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T19:36:08.304Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T19:36:08.304Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T19:36:08.307Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T19:36:08.307Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T19:36:28.181Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T19:36:28.182Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T19:36:28.184Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-06T19:36:28.184Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-06T21:06:12.378Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-06T21:06:12.380Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:86:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T21:06:25.314Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-06T21:06:25.316Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:86:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T21:28:31.222Z [ERROR]: Status: 400, Name: SyntaxError, Message: Unexpected token '"', ""683981a84"... is not valid JSON, URL: /api/template/udpate/[object%20FormData], Method: PUT, IP: ::1
+2025-06-06T21:28:31.223Z [ERROR]: Stack: SyntaxError: Unexpected token '"', ""683981a84"... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at createStrictSyntaxError (D:\careerpro-rr\server\node_modules\body-parser\lib\types\json.js:156:10)
+    at parse (D:\careerpro-rr\server\node_modules\body-parser\lib\types\json.js:71:15)
+    at D:\careerpro-rr\server\node_modules\body-parser\lib\read.js:123:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+    at invokeCallback (D:\careerpro-rr\server\node_modules\raw-body\index.js:238:16)
+    at done (D:\careerpro-rr\server\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (D:\careerpro-rr\server\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+2025-06-06T21:42:07.854Z [ERROR]: Status: 400, Name: Error, Message: Template image file is required for creation., URL: /api/admin/template/add, Method: POST, IP: ::1
+2025-06-06T21:42:07.859Z [ERROR]: Stack: Error: Template image file is required for creation.
+    at createTemplate (file:///D:/careerpro-rr/server/controller/template-controller.js:71:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at templateValidation (file:///D:/careerpro-rr/server/validators/template-validators.js:61:3)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T21:42:28.454Z [ERROR]: Status: 400, Name: Error, Message: Template image file is required for creation., URL: /api/admin/template/add, Method: POST, IP: ::1
+2025-06-06T21:42:28.455Z [ERROR]: Stack: Error: Template image file is required for creation.
+    at createTemplate (file:///D:/careerpro-rr/server/controller/template-controller.js:71:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at templateValidation (file:///D:/careerpro-rr/server/validators/template-validators.js:61:3)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T21:42:35.605Z [ERROR]: Status: 400, Name: Error, Message: Template image file is required for creation., URL: /api/admin/template/add, Method: POST, IP: ::1
+2025-06-06T21:42:35.606Z [ERROR]: Stack: Error: Template image file is required for creation.
+    at createTemplate (file:///D:/careerpro-rr/server/controller/template-controller.js:71:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at templateValidation (file:///D:/careerpro-rr/server/validators/template-validators.js:61:3)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T21:48:09.102Z [ERROR]: Status: 400, Name: Error, Message: Template image file is required for creation., URL: /api/admin/template/add, Method: POST, IP: ::1
+2025-06-06T21:48:09.103Z [ERROR]: Stack: Error: Template image file is required for creation.
+    at createTemplate (file:///D:/careerpro-rr/server/controller/template-controller.js:71:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at templateValidation (file:///D:/careerpro-rr/server/validators/template-validators.js:61:3)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T22:10:35.370Z [ERROR]: Status: 400, Name: Error, Message: Template image file is required for creation., URL: /api/admin/template/add, Method: POST, IP: ::1
+2025-06-06T22:10:35.372Z [ERROR]: Stack: Error: Template image file is required for creation.
+    at createTemplate (file:///D:/careerpro-rr/server/controller/template-controller.js:71:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at templateValidation (file:///D:/careerpro-rr/server/validators/template-validators.js:61:3)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T22:10:53.249Z [ERROR]: Status: 400, Name: Error, Message: Template image file is required for creation., URL: /api/admin/template/add, Method: POST, IP: ::1
+2025-06-06T22:10:53.250Z [ERROR]: Stack: Error: Template image file is required for creation.
+    at createTemplate (file:///D:/careerpro-rr/server/controller/template-controller.js:71:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at templateValidation (file:///D:/careerpro-rr/server/validators/template-validators.js:61:3)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T22:11:03.668Z [ERROR]: Status: 400, Name: Error, Message: Template image file is required for creation., URL: /api/admin/template/add, Method: POST, IP: ::1
+2025-06-06T22:11:03.669Z [ERROR]: Stack: Error: Template image file is required for creation.
+    at createTemplate (file:///D:/careerpro-rr/server/controller/template-controller.js:71:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at templateValidation (file:///D:/careerpro-rr/server/validators/template-validators.js:61:3)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T22:21:07.160Z [ERROR]: Status: 400, Name: Error, Message: Template image file is required for creation., URL: /api/admin/template/add, Method: POST, IP: ::1
+2025-06-06T22:21:07.161Z [ERROR]: Stack: Error: Template image file is required for creation.
+    at createTemplate (file:///D:/careerpro-rr/server/controller/template-controller.js:71:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at templateValidation (file:///D:/careerpro-rr/server/validators/template-validators.js:61:3)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T22:31:05.463Z [ERROR]: [Template][Update][Error] ID: 683981a843e6c5bbc156bd4a - Cannot destructure property 'templateName' of 'req.body' as it is undefined.
+2025-06-06T22:31:05.466Z [ERROR]: Status: 500, Name: TypeError, Message: Cannot destructure property 'templateName' of 'req.body' as it is undefined., URL: /api/admin/template/update/683981a843e6c5bbc156bd4a, Method: PUT, IP: ::1
+2025-06-06T22:31:05.467Z [ERROR]: Stack: TypeError: Cannot destructure property 'templateName' of 'req.body' as it is undefined.
+    at updateTemplate (file:///D:/careerpro-rr/server/controller/template-controller.js:188:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at templateValidation (file:///D:/careerpro-rr/server/validators/template-validators.js:61:3)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T22:31:28.815Z [ERROR]: [Template][Update][Error] ID: 683981a843e6c5bbc156bd4a - Cannot destructure property 'templateName' of 'req.body' as it is undefined.
+2025-06-06T22:31:28.817Z [ERROR]: Status: 500, Name: TypeError, Message: Cannot destructure property 'templateName' of 'req.body' as it is undefined., URL: /api/admin/template/update/683981a843e6c5bbc156bd4a, Method: PUT, IP: ::1
+2025-06-06T22:31:28.818Z [ERROR]: Stack: TypeError: Cannot destructure property 'templateName' of 'req.body' as it is undefined.
+    at updateTemplate (file:///D:/careerpro-rr/server/controller/template-controller.js:188:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at templateValidation (file:///D:/careerpro-rr/server/validators/template-validators.js:61:3)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T22:32:17.501Z [ERROR]: [Template][Update][Error] ID: 683981a843e6c5bbc156bd4a - Cannot destructure property 'templateName' of 'req.body' as it is undefined.
+2025-06-06T22:32:17.502Z [ERROR]: Status: 500, Name: TypeError, Message: Cannot destructure property 'templateName' of 'req.body' as it is undefined., URL: /api/admin/template/update/683981a843e6c5bbc156bd4a, Method: PUT, IP: ::1
+2025-06-06T22:32:17.502Z [ERROR]: Stack: TypeError: Cannot destructure property 'templateName' of 'req.body' as it is undefined.
+    at updateTemplate (file:///D:/careerpro-rr/server/controller/template-controller.js:188:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at templateValidation (file:///D:/careerpro-rr/server/validators/template-validators.js:61:3)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-06T22:33:59.517Z [ERROR]: [Template][Update][Error] ID: 683981a843e6c5bbc156bd4a - Cannot destructure property 'templateName' of 'req.body' as it is undefined.
+2025-06-06T22:33:59.522Z [ERROR]: Status: 500, Name: TypeError, Message: Cannot destructure property 'templateName' of 'req.body' as it is undefined., URL: /api/admin/template/update/683981a843e6c5bbc156bd4a, Method: PUT, IP: ::1
+2025-06-06T22:33:59.524Z [ERROR]: Stack: TypeError: Cannot destructure property 'templateName' of 'req.body' as it is undefined.
+    at updateTemplate (file:///D:/careerpro-rr/server/controller/template-controller.js:188:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at templateValidation (file:///D:/careerpro-rr/server/validators/template-validators.js:61:3)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
