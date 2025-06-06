@@ -1,0 +1,1062 @@
+2025-06-03T05:37:42.736Z [INFO]: Connected to DataBase
+2025-06-03T05:37:42.740Z [INFO]: Server is running on port 3000
+2025-06-03T05:39:41.552Z [INFO]: Connected to DataBase
+2025-06-03T05:39:41.555Z [INFO]: Server is running on port 3000
+2025-06-03T05:41:32.935Z [INFO]: Connected to DataBase
+2025-06-03T05:41:32.939Z [INFO]: Server is running on port 3000
+2025-06-03T05:43:26.291Z [INFO]: Connected to DataBase
+2025-06-03T05:43:26.295Z [INFO]: Server is running on port 3000
+2025-06-03T05:43:28.592Z [INFO]: Connected to DataBase
+2025-06-03T05:43:28.595Z [INFO]: Server is running on port 3000
+2025-06-03T05:48:57.127Z [INFO]: Connected to DataBase
+2025-06-03T05:48:57.130Z [INFO]: Server is running on port 3000
+2025-06-03T05:49:56.391Z [INFO]: Connected to DataBase
+2025-06-03T05:49:56.395Z [INFO]: Server is running on port 3000
+2025-06-03T05:50:31.107Z [INFO]: Connected to DataBase
+2025-06-03T05:50:31.110Z [INFO]: Server is running on port 3000
+2025-06-03T05:50:46.052Z [INFO]: Connected to DataBase
+2025-06-03T05:50:46.055Z [INFO]: Server is running on port 3000
+2025-06-03T05:56:01.074Z [INFO]: Connected to DataBase
+2025-06-03T05:56:01.077Z [INFO]: Server is running on port 3000
+2025-06-03T05:59:49.400Z [INFO]: Connected to DataBase
+2025-06-03T05:59:49.403Z [INFO]: Server is running on port 3000
+2025-06-03T06:00:59.209Z [INFO]: Connected to DataBase
+2025-06-03T06:00:59.212Z [INFO]: Server is running on port 3000
+2025-06-03T06:01:16.062Z [INFO]: Connected to DataBase
+2025-06-03T06:01:16.066Z [INFO]: Server is running on port 3000
+2025-06-03T06:04:26.133Z [INFO]: Connected to DataBase
+2025-06-03T06:04:26.141Z [INFO]: Server is running on port 3000
+2025-06-03T06:05:01.944Z [INFO]: Connected to DataBase
+2025-06-03T06:05:01.952Z [INFO]: Server is running on port 3000
+2025-06-03T06:05:43.076Z [INFO]: Connected to DataBase
+2025-06-03T06:05:43.084Z [INFO]: Server is running on port 3000
+2025-06-03T06:07:04.683Z [INFO]: Connected to DataBase
+2025-06-03T06:07:04.693Z [INFO]: Server is running on port 3000
+2025-06-03T06:07:08.965Z [INFO]: Connected to DataBase
+2025-06-03T06:07:08.973Z [INFO]: Server is running on port 3000
+2025-06-03T06:08:40.899Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:08:40.907Z [INFO]: Server is running on port 3000
+2025-06-03T06:09:37.164Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:09:37.173Z [INFO]: Server is running on port 3000
+2025-06-03T06:10:08.111Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:10:08.119Z [INFO]: Server is running on port 3000
+2025-06-03T06:13:07.826Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:13:07.835Z [INFO]: Server is running on port 3000
+2025-06-03T06:14:01.939Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:14:01.947Z [INFO]: Server is running on port 3000
+2025-06-03T06:16:41.354Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:16:41.363Z [INFO]: Server is running on port 3000
+2025-06-03T06:18:09.750Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:18:09.758Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:23:00.313Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:23:00.320Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:28:29.000Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:28:29.007Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:28:32.684Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:28:32.692Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:28:55.050Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:28:55.058Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:30:33.623Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:30:33.632Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:31:33.040Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:31:33.048Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:34:26.064Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:34:26.072Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:35:36.036Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:35:36.045Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:37:24.242Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:37:24.251Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:38:47.718Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:38:47.726Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:41:35.121Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:41:35.129Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:42:56.568Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:42:56.579Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:44:16.652Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:44:16.661Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:45:16.640Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:45:16.650Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:50:48.890Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:50:48.899Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:52:12.072Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:52:12.080Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:53:36.474Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:53:36.483Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:55:12.105Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:55:12.115Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T06:55:56.562Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T06:55:56.573Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:00:18.456Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:00:18.465Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:00:30.474Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:00:30.482Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:01:14.727Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:01:14.736Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:03:15.561Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:03:15.570Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:04:38.666Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:04:38.674Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:06:24.694Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:06:24.704Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:08:39.543Z [ERROR]: Status: 500, Name: TypeError, Message: Cannot set property query of #<IncomingMessage> which has only a getter, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:08:39.545Z [ERROR]: Stack: TypeError: Cannot set property query of #<IncomingMessage> which has only a getter
+    at E:\pro-res\server\node_modules\xss-clean\lib\index.js:8:30
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\pro-res\server\node_modules\router\index.js:342:13)
+    at E:\pro-res\server\node_modules\router\index.js:297:9
+    at processParams (E:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (E:\pro-res\server\node_modules\router\index.js:291:5)
+    at internalNext (file:///E:/pro-res/server/node_modules/helmet/index.mjs:527:6)
+    at xXssProtectionMiddleware (file:///E:/pro-res/server/node_modules/helmet/index.mjs:307:3)
+    at internalNext (file:///E:/pro-res/server/node_modules/helmet/index.mjs:525:6)
+    at xPoweredByMiddleware (file:///E:/pro-res/server/node_modules/helmet/index.mjs:300:3)
+2025-06-03T07:08:39.555Z [ERROR]: Status: 500, Name: TypeError, Message: Cannot set property query of #<IncomingMessage> which has only a getter, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:08:39.556Z [ERROR]: Stack: TypeError: Cannot set property query of #<IncomingMessage> which has only a getter
+    at E:\pro-res\server\node_modules\xss-clean\lib\index.js:8:30
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\pro-res\server\node_modules\router\index.js:342:13)
+    at E:\pro-res\server\node_modules\router\index.js:297:9
+    at processParams (E:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (E:\pro-res\server\node_modules\router\index.js:291:5)
+    at internalNext (file:///E:/pro-res/server/node_modules/helmet/index.mjs:527:6)
+    at xXssProtectionMiddleware (file:///E:/pro-res/server/node_modules/helmet/index.mjs:307:3)
+    at internalNext (file:///E:/pro-res/server/node_modules/helmet/index.mjs:525:6)
+    at xPoweredByMiddleware (file:///E:/pro-res/server/node_modules/helmet/index.mjs:300:3)
+2025-06-03T07:08:39.562Z [ERROR]: Status: 500, Name: TypeError, Message: Cannot set property query of #<IncomingMessage> which has only a getter, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:08:39.563Z [ERROR]: Stack: TypeError: Cannot set property query of #<IncomingMessage> which has only a getter
+    at E:\pro-res\server\node_modules\xss-clean\lib\index.js:8:30
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\pro-res\server\node_modules\router\index.js:342:13)
+    at E:\pro-res\server\node_modules\router\index.js:297:9
+    at processParams (E:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (E:\pro-res\server\node_modules\router\index.js:291:5)
+    at internalNext (file:///E:/pro-res/server/node_modules/helmet/index.mjs:527:6)
+    at xXssProtectionMiddleware (file:///E:/pro-res/server/node_modules/helmet/index.mjs:307:3)
+    at internalNext (file:///E:/pro-res/server/node_modules/helmet/index.mjs:525:6)
+    at xPoweredByMiddleware (file:///E:/pro-res/server/node_modules/helmet/index.mjs:300:3)
+2025-06-03T07:11:39.537Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:11:39.545Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:11:44.323Z [ERROR]: Status: 500, Name: TypeError, Message: Cannot set property query of #<IncomingMessage> which has only a getter, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:11:44.324Z [ERROR]: Stack: TypeError: Cannot set property query of #<IncomingMessage> which has only a getter
+    at E:\pro-res\server\node_modules\express-mongo-sanitize\index.js:113:18
+    at Array.forEach (<anonymous>)
+    at E:\pro-res\server\node_modules\express-mongo-sanitize\index.js:110:44
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\pro-res\server\node_modules\router\index.js:342:13)
+    at E:\pro-res\server\node_modules\router\index.js:297:9
+    at processParams (E:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (E:\pro-res\server\node_modules\router\index.js:291:5)
+    at internalNext (file:///E:/pro-res/server/node_modules/helmet/index.mjs:527:6)
+    at xXssProtectionMiddleware (file:///E:/pro-res/server/node_modules/helmet/index.mjs:307:3)
+2025-06-03T07:11:44.335Z [ERROR]: Status: 500, Name: TypeError, Message: Cannot set property query of #<IncomingMessage> which has only a getter, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:11:44.336Z [ERROR]: Stack: TypeError: Cannot set property query of #<IncomingMessage> which has only a getter
+    at E:\pro-res\server\node_modules\express-mongo-sanitize\index.js:113:18
+    at Array.forEach (<anonymous>)
+    at E:\pro-res\server\node_modules\express-mongo-sanitize\index.js:110:44
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\pro-res\server\node_modules\router\index.js:342:13)
+    at E:\pro-res\server\node_modules\router\index.js:297:9
+    at processParams (E:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (E:\pro-res\server\node_modules\router\index.js:291:5)
+    at internalNext (file:///E:/pro-res/server/node_modules/helmet/index.mjs:527:6)
+    at xXssProtectionMiddleware (file:///E:/pro-res/server/node_modules/helmet/index.mjs:307:3)
+2025-06-03T07:11:44.341Z [ERROR]: Status: 500, Name: TypeError, Message: Cannot set property query of #<IncomingMessage> which has only a getter, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:11:44.342Z [ERROR]: Stack: TypeError: Cannot set property query of #<IncomingMessage> which has only a getter
+    at E:\pro-res\server\node_modules\express-mongo-sanitize\index.js:113:18
+    at Array.forEach (<anonymous>)
+    at E:\pro-res\server\node_modules\express-mongo-sanitize\index.js:110:44
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\pro-res\server\node_modules\router\index.js:342:13)
+    at E:\pro-res\server\node_modules\router\index.js:297:9
+    at processParams (E:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (E:\pro-res\server\node_modules\router\index.js:291:5)
+    at internalNext (file:///E:/pro-res/server/node_modules/helmet/index.mjs:527:6)
+    at xXssProtectionMiddleware (file:///E:/pro-res/server/node_modules/helmet/index.mjs:307:3)
+2025-06-03T07:13:47.150Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:13:47.161Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:13:53.785Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:13:53.793Z [WARN]: [JWT][Verify][Error] Invalid or expired token. Reason: jwt issuer invalid. expected: careerforge.pro
+2025-06-03T07:13:53.794Z [WARN]: [Auth] Token invalid or expired for ::1: jwt issuer invalid. expected: careerforge.pro
+2025-06-03T07:13:53.796Z [ERROR]: Status: 401, Name: TOKEN_VERIFICATION_FAILED, Message: jwt issuer invalid. expected: careerforge.pro, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:13:53.797Z [ERROR]: Stack: TOKEN_VERIFICATION_FAILED: jwt issuer invalid. expected: careerforge.pro
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:21:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:13:53.813Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:13:53.818Z [WARN]: [JWT][Verify][Error] Invalid or expired token. Reason: jwt issuer invalid. expected: careerforge.pro
+2025-06-03T07:13:53.820Z [WARN]: [Auth] Token invalid or expired for ::1: jwt issuer invalid. expected: careerforge.pro
+2025-06-03T07:13:53.822Z [ERROR]: Status: 401, Name: TOKEN_VERIFICATION_FAILED, Message: jwt issuer invalid. expected: careerforge.pro, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:13:53.823Z [ERROR]: Stack: TOKEN_VERIFICATION_FAILED: jwt issuer invalid. expected: careerforge.pro
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:21:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:16:41.977Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:16:41.982Z [WARN]: [JWT][Verify][Error] Invalid or expired token. Reason: jwt issuer invalid. expected: careerforge.pro
+2025-06-03T07:16:41.983Z [WARN]: [Auth] Token invalid or expired for ::1: jwt issuer invalid. expected: careerforge.pro
+2025-06-03T07:16:41.984Z [ERROR]: Status: 401, Name: TOKEN_VERIFICATION_FAILED, Message: jwt issuer invalid. expected: careerforge.pro, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:16:41.985Z [ERROR]: Stack: TOKEN_VERIFICATION_FAILED: jwt issuer invalid. expected: careerforge.pro
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:21:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:16:41.991Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:16:41.993Z [WARN]: [JWT][Verify][Error] Invalid or expired token. Reason: jwt issuer invalid. expected: careerforge.pro
+2025-06-03T07:16:41.994Z [WARN]: [Auth] Token invalid or expired for ::1: jwt issuer invalid. expected: careerforge.pro
+2025-06-03T07:16:41.995Z [ERROR]: Status: 401, Name: TOKEN_VERIFICATION_FAILED, Message: jwt issuer invalid. expected: careerforge.pro, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:16:41.996Z [ERROR]: Stack: TOKEN_VERIFICATION_FAILED: jwt issuer invalid. expected: careerforge.pro
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:21:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:17:52.057Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-03T07:17:52.222Z [WARN]: [SignIn][Fail] Email: gmbtnk10aug@gmail.com from IP: ::1
+2025-06-03T07:17:52.223Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-03T07:17:52.224Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/pro-res/server/controller/auth-controller.js:71:19)
+2025-06-03T07:18:00.943Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-03T07:18:01.092Z [INFO]: [JWT][Create][Success] Token issued for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:18:01.094Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-06-03T07:18:01.095Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-06-04T07:18:01.094Z
+2025-06-03T07:18:01.095Z [INFO]: [SignIn][Success] User: gmbtnk10aug@gmail.com (ID: 68185d9924a8943910eda3e5) from IP: ::1
+2025-06-03T07:18:01.213Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-03T07:18:01.217Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:18:01.218Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:18:01.262Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-03T07:18:01.285Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-03T07:18:01.290Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:18:01.291Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:18:01.315Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-03T07:19:23.381Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:19:23.383Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:19:23.384Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:19:23.391Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-03T07:19:23.398Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:19:23.400Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:19:23.401Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:19:23.407Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-03T07:19:29.250Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:19:29.254Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:19:29.255Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:19:29.261Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-03T07:19:29.268Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:19:29.273Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:19:29.273Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:19:29.279Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-03T07:19:41.492Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-03T07:19:41.496Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:19:41.497Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:19:41.525Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-03T07:19:41.540Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-03T07:19:41.544Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:19:41.546Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:19:41.567Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-03T07:20:31.884Z [INFO]: [Startup] Incoming request: POST /api/resume/download
+2025-06-03T07:20:31.889Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:20:31.889Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:20:31.892Z [WARN]: [Resume][Download][ValidationFail] Missing resumeId by user: 68185d9924a8943910eda3e5
+2025-06-03T07:20:31.893Z [ERROR]: Status: 400, Name: Error, Message: resumeId is required for download., URL: /api/resume/download, Method: POST, IP: ::1
+2025-06-03T07:20:31.899Z [ERROR]: Stack: Error: resumeId is required for download.
+    at downlaodResume (file:///E:/pro-res/server/controller/resume-controller.js:193:19)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at resumeValidation (file:///E:/pro-res/server/validators/resume-validators.js:70:3)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at middleware (E:\pro-res\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:21:24.264Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:21:24.267Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:21:24.268Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:21:24.305Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-03T07:21:24.313Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:21:24.318Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:21:24.319Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:21:24.341Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-03T07:21:51.334Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:21:51.338Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:21:51.339Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:21:51.359Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:21:51.366Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:21:51.369Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:21:51.370Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:21:51.387Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:21:54.402Z [INFO]: [Startup] Incoming request: POST /api/resume/download
+2025-06-03T07:21:54.406Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:21:54.406Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:21:54.408Z [WARN]: [Resume][Download][ValidationFail] Missing resumeId by user: 68185d9924a8943910eda3e5
+2025-06-03T07:21:54.408Z [ERROR]: Status: 400, Name: Error, Message: resumeId is required for download., URL: /api/resume/download, Method: POST, IP: ::1
+2025-06-03T07:21:54.409Z [ERROR]: Stack: Error: resumeId is required for download.
+    at downlaodResume (file:///E:/pro-res/server/controller/resume-controller.js:193:19)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at resumeValidation (file:///E:/pro-res/server/validators/resume-validators.js:70:3)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at middleware (E:\pro-res\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:23:57.882Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:23:57.889Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:23:58.831Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:23:58.840Z [WARN]: [JWT][Verify][Error] Invalid or expired token. Reason: jwt issuer invalid. expected: http://localhost:5173
+2025-06-03T07:23:58.842Z [WARN]: [Auth] Token invalid or expired for ::1: jwt issuer invalid. expected: http://localhost:5173
+2025-06-03T07:23:58.843Z [ERROR]: Status: 401, Name: TOKEN_VERIFICATION_FAILED, Message: jwt issuer invalid. expected: http://localhost:5173, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:23:58.844Z [ERROR]: Stack: TOKEN_VERIFICATION_FAILED: jwt issuer invalid. expected: http://localhost:5173
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:21:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:23:58.857Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:23:58.860Z [WARN]: [JWT][Verify][Error] Invalid or expired token. Reason: jwt issuer invalid. expected: http://localhost:5173
+2025-06-03T07:23:58.861Z [WARN]: [Auth] Token invalid or expired for ::1: jwt issuer invalid. expected: http://localhost:5173
+2025-06-03T07:23:58.862Z [ERROR]: Status: 401, Name: TOKEN_VERIFICATION_FAILED, Message: jwt issuer invalid. expected: http://localhost:5173, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:23:58.863Z [ERROR]: Stack: TOKEN_VERIFICATION_FAILED: jwt issuer invalid. expected: http://localhost:5173
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:21:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:24:02.767Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:24:02.771Z [WARN]: [JWT][Verify][Error] Invalid or expired token. Reason: jwt issuer invalid. expected: http://localhost:5173
+2025-06-03T07:24:02.772Z [WARN]: [Auth] Token invalid or expired for ::1: jwt issuer invalid. expected: http://localhost:5173
+2025-06-03T07:24:02.773Z [ERROR]: Status: 401, Name: TOKEN_VERIFICATION_FAILED, Message: jwt issuer invalid. expected: http://localhost:5173, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:24:02.774Z [ERROR]: Stack: TOKEN_VERIFICATION_FAILED: jwt issuer invalid. expected: http://localhost:5173
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:21:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:24:02.780Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:24:02.783Z [WARN]: [JWT][Verify][Error] Invalid or expired token. Reason: jwt issuer invalid. expected: http://localhost:5173
+2025-06-03T07:24:02.784Z [WARN]: [Auth] Token invalid or expired for ::1: jwt issuer invalid. expected: http://localhost:5173
+2025-06-03T07:24:02.785Z [ERROR]: Status: 401, Name: TOKEN_VERIFICATION_FAILED, Message: jwt issuer invalid. expected: http://localhost:5173, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:24:02.786Z [ERROR]: Stack: TOKEN_VERIFICATION_FAILED: jwt issuer invalid. expected: http://localhost:5173
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:21:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:24:11.458Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:24:11.463Z [WARN]: [JWT][Verify][Error] Invalid or expired token. Reason: jwt issuer invalid. expected: http://localhost:5173
+2025-06-03T07:24:11.464Z [WARN]: [Auth] Token invalid or expired for ::1: jwt issuer invalid. expected: http://localhost:5173
+2025-06-03T07:24:11.464Z [ERROR]: Status: 401, Name: TOKEN_VERIFICATION_FAILED, Message: jwt issuer invalid. expected: http://localhost:5173, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:24:11.466Z [ERROR]: Stack: TOKEN_VERIFICATION_FAILED: jwt issuer invalid. expected: http://localhost:5173
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:21:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:24:11.471Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:24:11.475Z [WARN]: [JWT][Verify][Error] Invalid or expired token. Reason: jwt issuer invalid. expected: http://localhost:5173
+2025-06-03T07:24:11.476Z [WARN]: [Auth] Token invalid or expired for ::1: jwt issuer invalid. expected: http://localhost:5173
+2025-06-03T07:24:11.477Z [ERROR]: Status: 401, Name: TOKEN_VERIFICATION_FAILED, Message: jwt issuer invalid. expected: http://localhost:5173, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:24:11.478Z [ERROR]: Stack: TOKEN_VERIFICATION_FAILED: jwt issuer invalid. expected: http://localhost:5173
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:21:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:24:27.489Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-03T07:24:27.650Z [WARN]: [SignIn][Fail] Email: gmbtnk10aug@gmail.com from IP: ::1
+2025-06-03T07:24:27.651Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-03T07:24:27.652Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/pro-res/server/controller/auth-controller.js:71:19)
+2025-06-03T07:24:37.207Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-03T07:24:37.362Z [INFO]: [JWT][Create][Success] Token issued for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:24:37.364Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-06-03T07:24:37.365Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-06-04T07:24:37.365Z
+2025-06-03T07:24:37.366Z [INFO]: [SignIn][Success] User: gmbtnk10aug@gmail.com (ID: 68185d9924a8943910eda3e5) from IP: ::1
+2025-06-03T07:24:37.421Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:24:37.424Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:24:37.425Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:24:37.462Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:24:37.472Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:24:37.475Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:24:37.476Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:24:37.491Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:24:41.564Z [INFO]: [Startup] Incoming request: POST /api/resume/download
+2025-06-03T07:24:41.571Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:24:41.572Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:24:41.577Z [WARN]: [Resume][Download][ValidationFail] Missing resumeId by user: 68185d9924a8943910eda3e5
+2025-06-03T07:24:41.579Z [ERROR]: Status: 400, Name: Error, Message: resumeId is required for download., URL: /api/resume/download, Method: POST, IP: ::1
+2025-06-03T07:24:41.582Z [ERROR]: Stack: Error: resumeId is required for download.
+    at downlaodResume (file:///E:/pro-res/server/controller/resume-controller.js:194:19)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at resumeValidation (file:///E:/pro-res/server/validators/resume-validators.js:70:3)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at middleware (E:\pro-res\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:25:27.216Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:25:27.224Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:25:29.793Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:25:29.800Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:25:29.801Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:25:29.824Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-03T07:25:29.842Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:25:29.845Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:25:29.846Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:25:29.852Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-03T07:25:29.881Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:25:29.886Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:25:29.887Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:25:29.923Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:25:29.929Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:25:29.932Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:25:29.933Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:25:29.945Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:25:29.951Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:25:29.954Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:25:29.955Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:25:29.967Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:25:32.514Z [INFO]: [Startup] Incoming request: POST /api/resume/download
+2025-06-03T07:25:32.519Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:25:32.520Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:25:32.524Z [WARN]: [Resume][Download][ValidationFail] Missing resumeId by user: 68185d9924a8943910eda3e5
+2025-06-03T07:25:32.526Z [ERROR]: Status: 400, Name: Error, Message: resumeId is required for download., URL: /api/resume/download, Method: POST, IP: ::1
+2025-06-03T07:25:32.527Z [ERROR]: Stack: Error: resumeId is required for download.
+    at downlaodResume (file:///E:/pro-res/server/controller/resume-controller.js:194:19)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at resumeValidation (file:///E:/pro-res/server/validators/resume-validators.js:70:3)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at middleware (E:\pro-res\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:26:06.157Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:26:06.166Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:26:31.874Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:26:31.884Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:26:35.851Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:26:35.861Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:26:35.862Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:26:35.890Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-03T07:26:35.904Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:26:35.908Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:26:35.909Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:26:35.915Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-03T07:26:35.947Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:26:35.950Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:26:35.951Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:26:35.985Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:26:35.992Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:26:35.996Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:26:35.996Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:26:36.011Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:26:36.017Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:26:36.021Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:26:36.021Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:26:36.034Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:26:38.459Z [INFO]: [Startup] Incoming request: POST /api/resume/download
+2025-06-03T07:26:38.462Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:26:38.463Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:26:38.468Z [ERROR]: [Resume][Download][Error] User: 68185d9924a8943910eda3e5 - Cannot destructure property 'resumeId' of 'req.body.params' as it is undefined.
+2025-06-03T07:26:38.471Z [ERROR]: Status: 500, Name: Error, Message: Cannot destructure property 'resumeId' of 'req.body.params' as it is undefined., URL: /api/resume/download, Method: POST, IP: ::1
+2025-06-03T07:26:38.472Z [ERROR]: Stack: Error: Cannot destructure property 'resumeId' of 'req.body.params' as it is undefined.
+    at downlaodResume (file:///E:/pro-res/server/controller/resume-controller.js:250:17)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at resumeValidation (file:///E:/pro-res/server/validators/resume-validators.js:70:3)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at middleware (E:\pro-res\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:27:16.815Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:27:16.823Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:35:35.961Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:35:35.970Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:36:00.217Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:36:00.228Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:36:00.230Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:36:00.261Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-03T07:36:00.279Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:36:00.283Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:36:00.284Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:36:00.290Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-03T07:36:00.425Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:36:00.430Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:36:00.431Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:36:00.474Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:36:00.482Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:36:00.486Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:36:00.487Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:36:00.505Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:36:05.402Z [INFO]: [Startup] Incoming request: POST /api/resume/download
+2025-06-03T07:36:05.406Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:36:05.408Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:36:05.410Z [INFO]: [Resume][Download][Request] User: 68185d9924a8943910eda3e5
+2025-06-03T07:36:07.844Z [INFO]: [Resume][Download][Success] Resume PDF generated for user: 68185d9924a8943910eda3e5
+2025-06-03T07:40:11.634Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:40:11.637Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:40:11.638Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:40:11.652Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:40:11.658Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:40:11.661Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:40:11.662Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:40:11.678Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:40:14.337Z [INFO]: [Startup] Incoming request: PUT /api/resume/update/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:40:14.341Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:40:14.343Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:40:14.391Z [INFO]: [Resume][Update][Success] Resume: 68398e2e43e6c5bbc156bd7d updated by user: 68185d9924a8943910eda3e5
+2025-06-03T07:47:48.125Z [INFO]: [Server][Shutdown] Received SIGINT. Closing app gracefully...
+2025-06-03T07:48:19.954Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T07:48:19.961Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T07:48:31.691Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-06-03T07:48:31.705Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:48:31.710Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:48:31.715Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-06-03T07:48:31.717Z [INFO]: [SignOut][Success] User: 68185d9924a8943910eda3e5 from IP: ::1
+2025-06-03T07:48:32.331Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:48:32.333Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-03T07:48:32.335Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:48:32.336Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\pro-res\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\pro-res\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at E:\pro-res\server\node_modules\router\index.js:295:15
+    at processParams (E:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (E:\pro-res\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\pro-res\server\node_modules\router\index.js:186:3)
+2025-06-03T07:48:32.342Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:48:32.344Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-03T07:48:32.345Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:48:32.346Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\pro-res\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\pro-res\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at E:\pro-res\server\node_modules\router\index.js:295:15
+    at processParams (E:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (E:\pro-res\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\pro-res\server\node_modules\router\index.js:186:3)
+2025-06-03T07:48:52.026Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-03T07:48:52.192Z [INFO]: [JWT][Create][Success] Token issued for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:48:52.194Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-06-03T07:48:52.195Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-06-04T07:48:52.195Z
+2025-06-03T07:48:52.195Z [INFO]: [SignIn][Success] User: gmbtnk10aug@gmail.com (ID: 68185d9924a8943910eda3e5) from IP: ::1
+2025-06-03T07:48:52.302Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:48:52.306Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:48:52.307Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:48:52.344Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-03T07:48:52.356Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:48:52.359Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:48:52.360Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:48:52.381Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-03T07:49:01.582Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:49:01.586Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:49:01.597Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:49:01.620Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:49:01.629Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:49:01.632Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:49:01.633Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:49:01.650Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:49:14.784Z [INFO]: [Startup] Incoming request: PUT /api/resume/update/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:49:14.787Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:49:14.787Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:49:14.825Z [INFO]: [Resume][Update][Success] Resume: 68398e2e43e6c5bbc156bd7d updated by user: 68185d9924a8943910eda3e5
+2025-06-03T07:49:19.740Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:49:19.743Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:49:19.744Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:49:19.750Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-03T07:49:19.755Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:49:19.758Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:49:19.759Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:49:19.765Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-03T07:49:19.840Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:49:19.844Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:49:19.844Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:49:19.859Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:49:19.868Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-03T07:49:19.871Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:49:19.872Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:49:19.884Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-03T07:49:23.299Z [INFO]: [Startup] Incoming request: POST /api/resume/download
+2025-06-03T07:49:23.302Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:49:23.303Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:49:23.304Z [INFO]: [Resume][Download][Request] User: 68185d9924a8943910eda3e5
+2025-06-03T07:49:25.382Z [INFO]: [Resume][Download][Success] Resume PDF generated for user: 68185d9924a8943910eda3e5
+2025-06-03T07:49:33.701Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:49:33.715Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:49:33.716Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:49:33.730Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-03T07:49:33.738Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:49:33.742Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:49:33.743Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:49:33.757Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-03T07:49:42.713Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-03T07:49:42.716Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:49:42.717Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:49:42.737Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-03T07:49:42.757Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-03T07:49:42.761Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:49:42.762Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:49:42.784Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-03T07:50:01.504Z [INFO]: [Startup] Incoming request: POST /api/resume/download
+2025-06-03T07:50:01.507Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:50:01.508Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:50:01.509Z [INFO]: [Resume][Download][Request] User: 68185d9924a8943910eda3e5
+2025-06-03T07:50:03.455Z [INFO]: [Resume][Download][Success] Resume PDF generated for user: 68185d9924a8943910eda3e5
+2025-06-03T07:50:15.759Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:50:15.761Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:50:15.762Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:50:15.776Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-03T07:50:15.787Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:50:15.791Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:50:15.793Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:50:15.809Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-03T07:50:26.068Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-06-03T07:50:26.071Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T07:50:26.072Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T07:50:26.072Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-06-03T07:50:26.072Z [INFO]: [SignOut][Success] User: 68185d9924a8943910eda3e5 from IP: ::1
+2025-06-03T07:50:26.543Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:50:26.544Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-03T07:50:26.545Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:50:26.545Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\pro-res\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\pro-res\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at E:\pro-res\server\node_modules\router\index.js:295:15
+    at processParams (E:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (E:\pro-res\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\pro-res\server\node_modules\router\index.js:186:3)
+2025-06-03T07:50:26.550Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:50:26.551Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-03T07:50:26.551Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:50:26.552Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\pro-res\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\pro-res\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at E:\pro-res\server\node_modules\router\index.js:295:15
+    at processParams (E:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (E:\pro-res\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\pro-res\server\node_modules\router\index.js:186:3)
+2025-06-03T07:51:05.382Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-06-03T07:51:05.387Z [WARN]: [Validation][SignUp][Fail] IP: ::1, Errors: [{"field":"userPassword","message":"User password must contain at least one numeric value"},{"field":"userPassword","message":"User password must contain at least one special symbol"}]
+2025-06-03T07:51:05.388Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object],[object Object], URL: /api/auth/signup, Method: POST, IP: ::1
+2025-06-03T07:51:05.388Z [ERROR]: Stack: VALIDATION_ERROR: [object Object],[object Object]
+    at userSignUpValidation (file:///E:/pro-res/server/validators/auth-validators.js:44:17)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at middleware (E:\pro-res\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:51:16.407Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-06-03T07:51:16.572Z [INFO]: [JWT][Create][Success] Token issued for userId: 683ea9744d24fb40ab3a0ecf
+2025-06-03T07:51:19.711Z [INFO]: [Email][Verification][Success] Sent to: someone@gmail.com, userId: 683ea9744d24fb40ab3a0ecf
+2025-06-03T07:51:19.713Z [INFO]: [JWT][Create][Success] Token issued for userId: 683ea9744d24fb40ab3a0ecf
+2025-06-03T07:51:19.714Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-06-04T07:51:19.714Z
+2025-06-03T07:51:19.714Z [INFO]: [SignUp][Success] New user: someone@gmail.com (ID: 683ea9744d24fb40ab3a0ecf)
+2025-06-03T07:51:19.865Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:51:19.874Z [INFO]: [JWT][Verify][Success] Token verified for userId: 683ea9744d24fb40ab3a0ecf
+2025-06-03T07:51:19.876Z [INFO]: [Auth] Auth success for user 683ea9744d24fb40ab3a0ecf, role user, from IP: ::1
+2025-06-03T07:51:19.885Z [INFO]: [Resume][GetAll][Success] User: 683ea9744d24fb40ab3a0ecf fetched all resumes (0)
+2025-06-03T07:51:19.903Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:51:19.910Z [INFO]: [JWT][Verify][Success] Token verified for userId: 683ea9744d24fb40ab3a0ecf
+2025-06-03T07:51:19.911Z [INFO]: [Auth] Auth success for user 683ea9744d24fb40ab3a0ecf, role user, from IP: ::1
+2025-06-03T07:51:19.931Z [INFO]: [Resume][GetAll][Success] User: 683ea9744d24fb40ab3a0ecf fetched all resumes (0)
+2025-06-03T07:51:29.350Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-03T07:51:29.353Z [INFO]: [JWT][Verify][Success] Token verified for userId: 683ea9744d24fb40ab3a0ecf
+2025-06-03T07:51:29.354Z [INFO]: [Auth] Auth success for user 683ea9744d24fb40ab3a0ecf, role user, from IP: ::1
+2025-06-03T07:51:29.374Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-03T07:51:29.393Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-03T07:51:29.397Z [INFO]: [JWT][Verify][Success] Token verified for userId: 683ea9744d24fb40ab3a0ecf
+2025-06-03T07:51:29.397Z [INFO]: [Auth] Auth success for user 683ea9744d24fb40ab3a0ecf, role user, from IP: ::1
+2025-06-03T07:51:29.413Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-03T07:51:32.885Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:51:32.889Z [INFO]: [JWT][Verify][Success] Token verified for userId: 683ea9744d24fb40ab3a0ecf
+2025-06-03T07:51:32.890Z [INFO]: [Auth] Auth success for user 683ea9744d24fb40ab3a0ecf, role user, from IP: ::1
+2025-06-03T07:51:32.898Z [INFO]: [Resume][GetAll][Success] User: 683ea9744d24fb40ab3a0ecf fetched all resumes (0)
+2025-06-03T07:51:32.903Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:51:32.905Z [INFO]: [JWT][Verify][Success] Token verified for userId: 683ea9744d24fb40ab3a0ecf
+2025-06-03T07:51:32.906Z [INFO]: [Auth] Auth success for user 683ea9744d24fb40ab3a0ecf, role user, from IP: ::1
+2025-06-03T07:51:32.911Z [INFO]: [Resume][GetAll][Success] User: 683ea9744d24fb40ab3a0ecf fetched all resumes (0)
+2025-06-03T07:51:35.907Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:51:35.910Z [INFO]: [JWT][Verify][Success] Token verified for userId: 683ea9744d24fb40ab3a0ecf
+2025-06-03T07:51:35.911Z [INFO]: [Auth] Auth success for user 683ea9744d24fb40ab3a0ecf, role user, from IP: ::1
+2025-06-03T07:51:35.917Z [INFO]: [Resume][GetAll][Success] User: 683ea9744d24fb40ab3a0ecf fetched all resumes (0)
+2025-06-03T07:51:35.921Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:51:35.924Z [INFO]: [JWT][Verify][Success] Token verified for userId: 683ea9744d24fb40ab3a0ecf
+2025-06-03T07:51:35.925Z [INFO]: [Auth] Auth success for user 683ea9744d24fb40ab3a0ecf, role user, from IP: ::1
+2025-06-03T07:51:35.930Z [INFO]: [Resume][GetAll][Success] User: 683ea9744d24fb40ab3a0ecf fetched all resumes (0)
+2025-06-03T07:51:37.357Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:51:37.359Z [INFO]: [JWT][Verify][Success] Token verified for userId: 683ea9744d24fb40ab3a0ecf
+2025-06-03T07:51:37.360Z [INFO]: [Auth] Auth success for user 683ea9744d24fb40ab3a0ecf, role user, from IP: ::1
+2025-06-03T07:51:37.364Z [INFO]: [Resume][GetAll][Success] User: 683ea9744d24fb40ab3a0ecf fetched all resumes (0)
+2025-06-03T07:51:37.367Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-03T07:51:37.370Z [INFO]: [JWT][Verify][Success] Token verified for userId: 683ea9744d24fb40ab3a0ecf
+2025-06-03T07:51:37.370Z [INFO]: [Auth] Auth success for user 683ea9744d24fb40ab3a0ecf, role user, from IP: ::1
+2025-06-03T07:51:37.374Z [INFO]: [Resume][GetAll][Success] User: 683ea9744d24fb40ab3a0ecf fetched all resumes (0)
+2025-06-03T07:51:41.228Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-06-03T07:51:41.231Z [INFO]: [JWT][Verify][Success] Token verified for userId: 683ea9744d24fb40ab3a0ecf
+2025-06-03T07:51:41.232Z [INFO]: [Auth] Auth success for user 683ea9744d24fb40ab3a0ecf, role user, from IP: ::1
+2025-06-03T07:51:41.233Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-06-03T07:51:41.234Z [INFO]: [SignOut][Success] User: 683ea9744d24fb40ab3a0ecf from IP: ::1
+2025-06-03T07:51:41.587Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:51:41.588Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-03T07:51:41.589Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:51:41.590Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\pro-res\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\pro-res\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at E:\pro-res\server\node_modules\router\index.js:295:15
+    at processParams (E:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (E:\pro-res\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\pro-res\server\node_modules\router\index.js:186:3)
+2025-06-03T07:51:41.596Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-03T07:51:41.597Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-03T07:51:41.598Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-03T07:51:41.599Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/pro-res/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\pro-res\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\pro-res\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at E:\pro-res\server\node_modules\router\index.js:295:15
+    at processParams (E:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (E:\pro-res\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\pro-res\server\node_modules\router\index.js:186:3)
+2025-06-03T07:51:48.759Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-03T07:51:48.762Z [WARN]: [Validation][SignIn][Fail] IP: ::1, Errors: [{"field":"userEmail","message":"User email must be in correct format"}]
+2025-06-03T07:51:48.763Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-03T07:51:48.764Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at userSignInValidation (file:///E:/pro-res/server/validators/auth-validators.js:76:17)
+    at Layer.handleRequest (E:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at middleware (E:\pro-res\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:51:54.644Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-03T07:51:54.653Z [WARN]: [SignIn][Fail] Email: sdf@gmail.com from IP: ::1
+2025-06-03T07:51:54.654Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-03T07:51:54.655Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/pro-res/server/controller/auth-controller.js:71:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T07:52:10.687Z [INFO]: [Server][Shutdown] Received SIGINT. Closing app gracefully...
+2025-06-03T08:54:34.936Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T08:54:34.945Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T08:55:05.339Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T08:55:05.347Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T08:55:11.064Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T08:55:11.072Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T08:57:11.293Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T08:57:11.302Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T08:57:18.955Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T08:57:18.963Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:02:02.517Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:02:02.520Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:04:19.562Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:04:19.565Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:06:26.734Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:06:26.738Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:07:26.856Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:07:26.859Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:08:07.198Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:08:07.201Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:09:29.587Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:09:29.591Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:09:35.360Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:09:35.363Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:10:37.033Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:10:37.036Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:11:01.097Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:11:01.100Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:11:11.617Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:11:11.620Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:12:16.006Z [INFO]: [Startup] Incoming request: POST /api/admin/analytics/overview
+2025-06-03T09:12:21.856Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-03T09:12:21.856Z [WARN]: [AdminAuth] Access denied to user: unknown from IP: ::1
+2025-06-03T09:12:21.857Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/overview, Method: GET, IP: ::1
+2025-06-03T09:12:21.857Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///G:/pro-res/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (G:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (G:\pro-res\server\node_modules\router\lib\route.js:117:3)
+    at handle (G:\pro-res\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at G:\pro-res\server\node_modules\router\index.js:295:15
+    at processParams (G:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (G:\pro-res\server\node_modules\router\index.js:291:5)
+    at Function.handle (G:\pro-res\server\node_modules\router\index.js:186:3)
+2025-06-03T09:12:57.585Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-03T09:12:57.668Z [INFO]: [JWT][Create][Success] Token issued for userId: 68185d9924a8943910eda3e5
+2025-06-03T09:12:57.669Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-06-03T09:12:57.669Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-06-04T09:12:57.669Z
+2025-06-03T09:12:57.681Z [INFO]: [SignIn][Success] User: gmbtnk10aug@gmail.com (ID: 68185d9924a8943910eda3e5) from IP: ::1
+2025-06-03T09:13:07.008Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-03T09:13:07.008Z [WARN]: [AdminAuth] Access denied to user: unknown from IP: ::1
+2025-06-03T09:13:07.009Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/overview, Method: GET, IP: ::1
+2025-06-03T09:13:07.009Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///G:/pro-res/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (G:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (G:\pro-res\server\node_modules\router\lib\route.js:117:3)
+    at handle (G:\pro-res\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at G:\pro-res\server\node_modules\router\index.js:295:15
+    at processParams (G:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (G:\pro-res\server\node_modules\router\index.js:291:5)
+    at Function.handle (G:\pro-res\server\node_modules\router\index.js:186:3)
+2025-06-03T09:15:46.721Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:15:46.724Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:15:49.321Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-03T09:15:49.323Z [WARN]: [AdminAuth] Access denied to user: unknown from IP: ::1
+2025-06-03T09:15:49.323Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/overview, Method: GET, IP: ::1
+2025-06-03T09:15:49.324Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///G:/pro-res/server/middleware/admin-auth-middleware.js:9:17)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (G:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (G:\pro-res\server\node_modules\router\lib\route.js:117:3)
+    at handle (G:\pro-res\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at G:\pro-res\server\node_modules\router\index.js:295:15
+    at processParams (G:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (G:\pro-res\server\node_modules\router\index.js:291:5)
+    at Function.handle (G:\pro-res\server\node_modules\router\index.js:186:3)
+2025-06-03T09:16:42.359Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:16:42.363Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:16:46.919Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-03T09:16:46.920Z [WARN]: [AdminAuth] Access denied to user: unknown from IP: ::1
+2025-06-03T09:16:46.921Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/overview, Method: GET, IP: ::1
+2025-06-03T09:16:46.922Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///G:/pro-res/server/middleware/admin-auth-middleware.js:9:17)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (G:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (G:\pro-res\server\node_modules\router\lib\route.js:117:3)
+    at handle (G:\pro-res\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at G:\pro-res\server\node_modules\router\index.js:295:15
+    at processParams (G:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (G:\pro-res\server\node_modules\router\index.js:291:5)
+    at Function.handle (G:\pro-res\server\node_modules\router\index.js:186:3)
+2025-06-03T09:17:55.128Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:17:55.131Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:18:40.219Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:18:40.222Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:18:42.502Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-03T09:18:42.504Z [WARN]: [AdminAuth] Access denied to user: unknown from IP: ::1
+2025-06-03T09:18:42.505Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/overview, Method: GET, IP: ::1
+2025-06-03T09:18:42.505Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///G:/pro-res/server/middleware/admin-auth-middleware.js:9:17)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (G:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (G:\pro-res\server\node_modules\router\lib\route.js:117:3)
+    at handle (G:\pro-res\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at G:\pro-res\server\node_modules\router\index.js:295:15
+    at processParams (G:\pro-res\server\node_modules\router\index.js:582:12)
+    at next (G:\pro-res\server\node_modules\router\index.js:291:5)
+    at Function.handle (G:\pro-res\server\node_modules\router\index.js:186:3)
+2025-06-03T09:19:53.245Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:19:53.249Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:20:02.420Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-03T09:20:02.424Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T09:20:02.424Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T09:20:29.689Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:20:29.693Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:20:36.339Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:20:36.342Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:20:59.780Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:20:59.783Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:27:52.143Z [INFO]: [Startup] Incoming request: POST /api/v1/auth/signup
+2025-06-03T09:29:52.668Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-03T09:29:52.735Z [WARN]: [SignIn][Fail] Email: gmbtnk10aug@gmail.com from IP: ::1
+2025-06-03T09:29:52.736Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-03T09:29:52.737Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///G:/pro-res/server/controller/auth-controller.js:69:19)
+2025-06-03T09:30:23.538Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-06-03T09:30:23.543Z [WARN]: [SignUp][Conflict] Email exists: gmbtnk10aug@gmail.com from IP: ::1
+2025-06-03T09:30:23.544Z [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: Signup failed, URL: /api/auth/signup, Method: POST, IP: ::1
+2025-06-03T09:30:23.544Z [ERROR]: Stack: USER ALREADY EXISTS: Signup failed
+    at userSignUp (file:///G:/pro-res/server/controller/auth-controller.js:16:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T09:31:00.117Z [INFO]: [Startup] Incoming request: POST /api/auth/signup/
+2025-06-03T09:31:00.185Z [INFO]: [JWT][Create][Success] Token issued for userId: 683ec0d49c4aa3025b0c5c3a
+2025-06-03T09:31:03.540Z [INFO]: [Email][Verification][Success] Sent to: mahesh@gmail.com, userId: 683ec0d49c4aa3025b0c5c3a
+2025-06-03T09:31:03.541Z [INFO]: [JWT][Create][Success] Token issued for userId: 683ec0d49c4aa3025b0c5c3a
+2025-06-03T09:31:03.542Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-06-04T09:31:03.542Z
+2025-06-03T09:31:03.545Z [INFO]: [SignUp][Success] New user: mahesh@gmail.com (ID: 683ec0d49c4aa3025b0c5c3a)
+2025-06-03T09:31:09.543Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-03T09:31:09.546Z [INFO]: [JWT][Verify][Success] Token verified for userId: 683ec0d49c4aa3025b0c5c3a
+2025-06-03T09:31:09.546Z [INFO]: [Auth] Auth success for user 683ec0d49c4aa3025b0c5c3a, role user, from IP: ::1
+2025-06-03T09:31:09.546Z [WARN]: [AdminAuth] Access denied to user: 683ec0d49c4aa3025b0c5c3a from IP: ::1
+2025-06-03T09:31:09.547Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/analytics/overview, Method: GET, IP: ::1
+2025-06-03T09:31:09.547Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///G:/pro-res/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (G:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///G:/pro-res/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T09:31:28.651Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-03T09:31:28.708Z [INFO]: [JWT][Create][Success] Token issued for userId: 68185d9924a8943910eda3e5
+2025-06-03T09:31:28.709Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-06-03T09:31:28.709Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-06-04T09:31:28.709Z
+2025-06-03T09:31:28.711Z [INFO]: [SignIn][Success] User: gmbtnk10aug@gmail.com (ID: 68185d9924a8943910eda3e5) from IP: ::1
+2025-06-03T09:31:35.978Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-03T09:31:35.979Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T09:31:35.979Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T09:45:07.321Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:45:07.330Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:45:53.380Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:45:53.389Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:47:27.745Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/timeseries?eventType=user_signup&days=30
+2025-06-03T09:47:27.754Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T09:47:27.755Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T09:49:34.793Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:49:34.801Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:50:14.698Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:50:14.706Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:51:14.210Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/funnel?days=30
+2025-06-03T09:51:14.219Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T09:51:14.220Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T09:51:31.872Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/funnel?days=10
+2025-06-03T09:51:31.876Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T09:51:31.877Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T09:54:02.932Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:54:02.943Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:55:17.405Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:55:17.416Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:57:22.871Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/retention?days=14
+2025-06-03T09:57:22.923Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T09:57:22.924Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T09:58:51.903Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:58:51.912Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T09:59:10.161Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T09:59:10.169Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:02:03.207Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:02:03.215Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:15:28.457Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:15:28.465Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:20:43.517Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:20:43.525Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:20:47.269Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:20:47.279Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:24:34.027Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:24:34.034Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:27:02.539Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/security?days=7
+2025-06-03T10:27:49.728Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:27:49.736Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:27:55.821Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/security?days=7
+2025-06-03T10:27:55.831Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T10:27:55.832Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T10:32:02.477Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:32:02.493Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:33:25.624Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:33:25.632Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:33:51.284Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:33:51.293Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:35:11.867Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:35:11.875Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:36:47.788Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/device?days=30
+2025-06-03T10:36:47.799Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T10:36:47.801Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T10:46:05.776Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:46:05.784Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:46:18.143Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:46:18.152Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:48:35.243Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:48:35.257Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:50:48.927Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:50:48.934Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:52:30.842Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T10:52:30.851Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T10:52:48.730Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/performance?days=7
+2025-06-03T10:52:48.741Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T10:52:48.742Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T12:51:30.474Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T12:51:30.482Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T13:09:03.875Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T13:09:03.883Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T13:15:17.415Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T13:15:17.423Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T13:15:56.803Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T13:15:56.811Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T13:20:31.355Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T13:20:31.364Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T13:47:46.927Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T13:47:46.937Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T13:48:06.719Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-03T13:48:06.729Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T13:48:06.730Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T13:48:06.742Z [WARN]: [Validation][Resume][Fail] IP: ::1, Errors: [{"type":"field","value":{"resumeFields":"{\n  \"resumeName\": \"John Doe - Software Engineer\",\n  \"title\": \"Software Engineer\",\n  \"fullName\": \"John Doe\",\n  \"email\": \"john.doe@email.com\",\n  \"phone\": \"+1-123-456-7890\",\n  \"location\": \"Bangalore, India\",\n  \"summary\": \"\",\n  \"education\": [\n    {\n      \"degree\": \"B.Tech Computer Science\",\n      \"institution\": \"IIT Delhi\",\n      \"year\": \"2023\"\n    }\n  ],\n  \"experience\": [\n    {\n      \"position\": \"Backend Developer\",\n      \"company\": \"TechNova\",\n      \"duration\": \"2023 - Present\",\n      \"responsibilities\": [\n        \"Developed REST APIs using Node.js and MongoDB\",\n        \"Improved API response time by 30%\"\n      ]\n    },\n    {\n      \"position\": \"Intern\",\n      \"company\": \"InnovateX\",\n      \"duration\": \"2022\",\n      \"responsibilities\": [\n        \"Built automation scripts in Python\",\n        \"Worked on data cleaning for ML pipelines\"\n      ]\n    }\n  ],\n  \"skills\": [\"Node.js\", \"MongoDB\", \"Python\", \"REST API\", \"Problem Solving\"]\n}\n"},"msg":"Resume data must include at least a title or summary field.","path":"","location":"body"}]
+2025-06-03T13:48:06.746Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-03T13:48:06.748Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///G:/pro-res/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (G:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at middleware (G:\pro-res\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T13:50:17.089Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T13:50:17.098Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T13:51:01.193Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T13:51:01.202Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T13:51:18.663Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T13:51:18.674Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T13:51:25.492Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T13:51:25.501Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T13:53:19.437Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T13:53:19.447Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T13:53:30.092Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T13:53:30.100Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T13:53:37.230Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-03T13:53:37.239Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T13:53:37.240Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T13:53:37.254Z [WARN]: [Validation][Resume][Fail] IP: ::1, Errors: [{"type":"field","value":"{\n  \"resumeName\": \"John Doe - Software Engineer\",\n  \"title\": \"Software Engineer\",\n  \"fullName\": \"John Doe\",\n  \"email\": \"john.doe@email.com\",\n  \"phone\": \"+1-123-456-7890\",\n  \"location\": \"Bangalore, India\",\n  \"summary\": \"\",\n  \"education\": [\n    {\n      \"degree\": \"B.Tech Computer Science\",\n      \"institution\": \"IIT Delhi\",\n      \"year\": \"2023\"\n    }\n  ],\n  \"experience\": [\n    {\n      \"position\": \"Backend Developer\",\n      \"company\": \"TechNova\",\n      \"duration\": \"2023 - Present\",\n      \"responsibilities\": [\n        \"Developed REST APIs using Node.js and MongoDB\",\n        \"Improved API response time by 30%\"\n      ]\n    },\n    {\n      \"position\": \"Intern\",\n      \"company\": \"InnovateX\",\n      \"duration\": \"2022\",\n      \"responsibilities\": [\n        \"Built automation scripts in Python\",\n        \"Worked on data cleaning for ML pipelines\"\n      ]\n    }\n  ],\n  \"skills\": [\"Node.js\", \"MongoDB\", \"Python\", \"REST API\", \"Problem Solving\"]\n}\n","msg":"Resume data must not be empty.","path":"resumeData","location":"body"},{"type":"field","value":"{\n  \"resumeName\": \"John Doe - Software Engineer\",\n  \"title\": \"Software Engineer\",\n  \"fullName\": \"John Doe\",\n  \"email\": \"john.doe@email.com\",\n  \"phone\": \"+1-123-456-7890\",\n  \"location\": \"Bangalore, India\",\n  \"summary\": \"\",\n  \"education\": [\n    {\n      \"degree\": \"B.Tech Computer Science\",\n      \"institution\": \"IIT Delhi\",\n      \"year\": \"2023\"\n    }\n  ],\n  \"experience\": [\n    {\n      \"position\": \"Backend Developer\",\n      \"company\": \"TechNova\",\n      \"duration\": \"2023 - Present\",\n      \"responsibilities\": [\n        \"Developed REST APIs using Node.js and MongoDB\",\n        \"Improved API response time by 30%\"\n      ]\n    },\n    {\n      \"position\": \"Intern\",\n      \"company\": \"InnovateX\",\n      \"duration\": \"2022\",\n      \"responsibilities\": [\n        \"Built automation scripts in Python\",\n        \"Worked on data cleaning for ML pipelines\"\n      ]\n    }\n  ],\n  \"skills\": [\"Node.js\", \"MongoDB\", \"Python\", \"REST API\", \"Problem Solving\"]\n}\n","msg":"Resume data must be a valid object.","path":"resumeData","location":"body"}]
+2025-06-03T13:53:37.257Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object],[object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-03T13:53:37.258Z [ERROR]: Stack: VALIDATION_ERROR: [object Object],[object Object]
+    at resumeValidation (file:///G:/pro-res/server/validators/resume-validators.js:74:17)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (G:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at middleware (G:\pro-res\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T13:55:38.474Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-03T13:55:38.479Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T13:55:38.480Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T13:55:38.483Z [WARN]: [Validation][Resume][Fail] IP: ::1, Errors: [{"type":"field","value":"{\n  \"resumeName\": \"John Doe - Software Engineer\",\n  \"title\": \"Software Engineer\",\n  \"fullName\": \"John Doe\",\n  \"email\": \"john.doe@email.com\",\n  \"phone\": \"+1-123-456-7890\",\n  \"location\": \"Bangalore, India\",\n  \"summary\": \"\",\n  \"education\": [\n    {\n      \"degree\": \"B.Tech Computer Science\",\n      \"institution\": \"IIT Delhi\",\n      \"year\": \"2023\"\n    }\n  ],\n  \"experience\": [\n    {\n      \"position\": \"Backend Developer\",\n      \"company\": \"TechNova\",\n      \"duration\": \"2023 - Present\",\n      \"responsibilities\": [\n        \"Developed REST APIs using Node.js and MongoDB\",\n        \"Improved API response time by 30%\"\n      ]\n    },\n    {\n      \"position\": \"Intern\",\n      \"company\": \"InnovateX\",\n      \"duration\": \"2022\",\n      \"responsibilities\": [\n        \"Built automation scripts in Python\",\n        \"Worked on data cleaning for ML pipelines\"\n      ]\n    }\n  ],\n  \"skills\": [\"Node.js\", \"MongoDB\", \"Python\", \"REST API\", \"Problem Solving\"]\n}\n","msg":"Resume data must not be empty.","path":"resumeData","location":"body"},{"type":"field","value":"{\n  \"resumeName\": \"John Doe - Software Engineer\",\n  \"title\": \"Software Engineer\",\n  \"fullName\": \"John Doe\",\n  \"email\": \"john.doe@email.com\",\n  \"phone\": \"+1-123-456-7890\",\n  \"location\": \"Bangalore, India\",\n  \"summary\": \"\",\n  \"education\": [\n    {\n      \"degree\": \"B.Tech Computer Science\",\n      \"institution\": \"IIT Delhi\",\n      \"year\": \"2023\"\n    }\n  ],\n  \"experience\": [\n    {\n      \"position\": \"Backend Developer\",\n      \"company\": \"TechNova\",\n      \"duration\": \"2023 - Present\",\n      \"responsibilities\": [\n        \"Developed REST APIs using Node.js and MongoDB\",\n        \"Improved API response time by 30%\"\n      ]\n    },\n    {\n      \"position\": \"Intern\",\n      \"company\": \"InnovateX\",\n      \"duration\": \"2022\",\n      \"responsibilities\": [\n        \"Built automation scripts in Python\",\n        \"Worked on data cleaning for ML pipelines\"\n      ]\n    }\n  ],\n  \"skills\": [\"Node.js\", \"MongoDB\", \"Python\", \"REST API\", \"Problem Solving\"]\n}\n","msg":"Resume data must be a valid object.","path":"resumeData","location":"body"}]
+2025-06-03T13:55:38.485Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object],[object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-03T13:55:38.487Z [ERROR]: Stack: VALIDATION_ERROR: [object Object],[object Object]
+    at resumeValidation (file:///G:/pro-res/server/validators/resume-validators.js:74:17)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (G:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at middleware (G:\pro-res\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T13:56:32.968Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-03T13:56:32.971Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T13:56:32.972Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T13:56:32.974Z [WARN]: [Validation][Resume][Fail] IP: ::1, Errors: [{"type":"field","value":{"resumeName":"John Doe - Software Engineer","title":"Software Engineer","fullName":"John Doe","email":"john.doe@email.com","phone":"+1-123-456-7890","location":"Bangalore, India","summary":"","education":[{"degree":"B.Tech Computer Science","institution":"IIT Delhi","year":"2023"}],"experience":[{"position":"Backend Developer","company":"TechNova","duration":"2023 - Present","responsibilities":["Developed REST APIs using Node.js and MongoDB","Improved API response time by 30%"]},{"position":"Intern","company":"InnovateX","duration":"2022","responsibilities":["Built automation scripts in Python","Worked on data cleaning for ML pipelines"]}],"skills":["Node.js","MongoDB","Python","REST API","Problem Solving"]},"msg":"Resume data must not be empty.","path":"resumeData","location":"body"}]
+2025-06-03T13:56:32.975Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-03T13:56:32.976Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///G:/pro-res/server/validators/resume-validators.js:74:17)
+    at Layer.handleRequest (G:\pro-res\server\node_modules\router\lib\layer.js:152:17)
+    at next (G:\pro-res\server\node_modules\router\lib\route.js:157:13)
+    at middleware (G:\pro-res\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T13:56:50.729Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T13:56:50.738Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T13:57:01.511Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-03T13:57:01.520Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T13:57:01.522Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T13:57:03.218Z [ERROR]: Gemini API error:
+2025-06-03T13:57:03.220Z [ERROR]: [Resume][Summary][Error] User: 68185d9924a8943910eda3e5 - got status: 404 Not Found. {"error":{"code":404,"message":"models/gemini-2.0-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+2025-06-03T13:57:03.224Z [ERROR]: Status: 500, Name: Error, Message: got status: 404 Not Found. {"error":{"code":404,"message":"models/gemini-2.0-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}, URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-03T13:57:03.225Z [ERROR]: Stack: Error: got status: 404 Not Found. {"error":{"code":404,"message":"models/gemini-2.0-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.","status":"NOT_FOUND"}}
+    at generateResumeSummary (file:///G:/pro-res/server/controller/resume-controller.js:303:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T13:59:35.475Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T13:59:35.483Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T13:59:39.048Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-03T13:59:39.056Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T13:59:39.058Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T13:59:39.747Z [ERROR]: Gemini API error:
+2025-06-03T13:59:39.748Z [ERROR]: [Resume][Summary][Error] User: 68185d9924a8943910eda3e5 - got status: 503 Service Unavailable. {"error":{"code":503,"message":"The model is overloaded. Please try again later.","status":"UNAVAILABLE"}}
+2025-06-03T13:59:39.752Z [ERROR]: Status: 500, Name: Error, Message: got status: 503 Service Unavailable. {"error":{"code":503,"message":"The model is overloaded. Please try again later.","status":"UNAVAILABLE"}}, URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-03T13:59:39.753Z [ERROR]: Stack: Error: got status: 503 Service Unavailable. {"error":{"code":503,"message":"The model is overloaded. Please try again later.","status":"UNAVAILABLE"}}
+    at generateResumeSummary (file:///G:/pro-res/server/controller/resume-controller.js:303:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T14:00:46.266Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T14:00:46.275Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T14:00:50.717Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-03T14:00:50.727Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-03T14:00:50.728Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-03T14:00:51.284Z [ERROR]: Gemini API error:
+2025-06-03T14:00:51.285Z [ERROR]: [Resume][Summary][Error] User: 68185d9924a8943910eda3e5 - got status: 429 Too Many Requests. {"error":{"code":429,"message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.","status":"RESOURCE_EXHAUSTED","details":[{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count","quotaId":"GenerateContentInputTokensPerModelPerMinute-FreeTier","quotaDimensions":{"location":"global","model":"gemini-1.5-pro"}},{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerMinutePerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-1.5-pro"}},{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-1.5-pro"}}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"9s"}]}}
+2025-06-03T14:00:51.289Z [ERROR]: Status: 500, Name: Error, Message: got status: 429 Too Many Requests. {"error":{"code":429,"message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.","status":"RESOURCE_EXHAUSTED","details":[{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count","quotaId":"GenerateContentInputTokensPerModelPerMinute-FreeTier","quotaDimensions":{"location":"global","model":"gemini-1.5-pro"}},{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerMinutePerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-1.5-pro"}},{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-1.5-pro"}}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"9s"}]}}, URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-03T14:00:51.290Z [ERROR]: Stack: Error: got status: 429 Too Many Requests. {"error":{"code":429,"message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.","status":"RESOURCE_EXHAUSTED","details":[{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count","quotaId":"GenerateContentInputTokensPerModelPerMinute-FreeTier","quotaDimensions":{"location":"global","model":"gemini-1.5-pro"}},{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerMinutePerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-1.5-pro"}},{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-1.5-pro"}}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"9s"}]}}
+    at generateResumeSummary (file:///G:/pro-res/server/controller/resume-controller.js:303:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-03T16:27:38.664Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T16:27:38.672Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T17:35:00.131Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T17:35:00.140Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-03T17:46:47.204Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-03T17:46:47.213Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]

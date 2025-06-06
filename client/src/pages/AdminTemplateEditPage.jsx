@@ -1,0 +1,342 @@
+import React, { useState, useEffect, useCallback, useMemo, Suspense } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useParams, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { get, set, cloneDeep } from 'lodash';
+import { getTemplateById, createTemplate, updateTemplate } from '@/api/templateServiceApi';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from '@/components/ui/label';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
+import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner';
+import { ArrowLeft, Save, Loader2, AlertCircle, RefreshCw, CheckCircle2, FileJson, Code2, Eye, X } from 'lucide-react';
+import { cn } from "@/lib/utils";
+
+// Lazy load the preview component
+const ResumePreview = React.lazy(() => import('@/components/Resume/ResumePreview'));
+
+const defaultTemplateCode = `
+<div style="font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background-color: #fff; padding: 40px; width: 794px; min-height:1123px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+  <!-- Header Section -->
+  <header style="text-align: center; border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px;">
+    <h1 style="font-size: 2.5em; margin: 0 0 5px 0; color: #2c3e50;">{{personalDetails.fullName}}</h1>
+    <p style="font-size: 1.1em; margin: 0; color: #555;">{{personalDetails.jobTitle}}</p>
+    <div style="font-size: 0.9em; color: #777; margin-top: 10px;">
+      <span>{{personalDetails.email}}</span> | <span>{{personalDetails.phone}}</span> | <span>{{personalDetails.linkedin}}</span>
+    </div>
+  </header>
+  {{#if professionalProfile.summary}}
+  <section style="margin-bottom: 30px;">
+    <h2 style="font-size: 1.4em; color: #3498db; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-bottom: 15px;">Professional Summary</h2>
+    <p style="font-size: 1em; color: #555; white-space: pre-wrap;">{{professionalProfile.summary}}</p>
+  </section>
+  {{/if}}
+  {{#if experience}}
+  <section style="margin-bottom: 30px;">
+    <h2 style="font-size: 1.4em; color: #3498db; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-bottom: 15px;">Work Experience</h2>
+    {{#each experience}}
+    <div style="margin-bottom: 20px;">
+      <h3 style="font-size: 1.2em; color: #2c3e50; margin:0 0 3px 0;">{{this.jobTitle}} <span style="font-size: 0.9em; color: #777; font-weight:normal;">at {{this.companyName}}</span></h3>
+      <p style="font-size: 0.9em; color: #777; margin:0 0 8px 0;">{{this.startDate}} – {{this.endDate}} | {{this.location}}</p>
+      <ul style="font-size: 1em; color: #555; padding-left: 20px; margin:0;">
+        {{#each this.responsibilities}}
+        <li style="margin-bottom: 5px;">{{this.description}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    {{/each}}
+  </section>
+  {{/if}}
+</div>
+`;
+
+const defaultFieldDefinition = JSON.stringify([
+  { "name": "personalDetails.fullName", "label": "Full Name", "type": "text", "section": "Personal Info", "placeholder": "e.g. Jane Doe" },
+  { "name": "personalDetails.jobTitle", "label": "Job Title", "type": "text", "section": "Personal Info", "placeholder": "e.g. Senior Product Manager" },
+  { "name": "personalDetails.email", "label": "Email", "type": "email", "section": "Personal Info", "placeholder": "e.g. jane.doe@email.com" },
+  { "name": "personalDetails.phone", "label": "Phone", "type": "tel", "section": "Personal Info", "placeholder": "e.g. (555) 123-4567" },
+  { "name": "personalDetails.linkedin", "label": "LinkedIn", "type": "url", "section": "Personal Info", "placeholder": "linkedin.com/in/janedoe" },
+  { "name": "professionalProfile.summary", "label": "Summary", "type": "textarea", "section": "Summary", "placeholder": "Dynamic and results-oriented professional..." },
+  { 
+    "name": "experience", "label": "Experience", "type": "group", "repeatable": true, "defaultItem": { "jobTitle": "Lead Developer", "companyName": "TechCorp", "startDate": "Jan 2022", "endDate": "Present", "location": "San Francisco, CA", "responsibilities": [{"description": "Led a team in developing scalable web applications."}] } 
+  },
+], null, 2);
+
+const generateMockData = (definitions) => {
+    const mockData = {};
+    if (!Array.isArray(definitions)) return mockData;
+
+    definitions.forEach(field => {
+        let value;
+        if (field.type === 'group' && field.repeatable) {
+            value = field.defaultItem ? [cloneDeep(field.defaultItem)] : [];
+        } else {
+            value = field.placeholder || `[${field.label}]`;
+        }
+        set(mockData, field.name, value);
+    });
+    return mockData;
+};
+
+
+const AdminTemplateEditPage = () => {
+  const { templateId } = useParams();
+  const navigate = useNavigate();
+  const mode = templateId ? 'edit' : 'create';
+
+  const [templateData, setTemplateData] = useState({
+    templateName: '',
+    templateCode: '',
+    templateFieldDefinition: '',
+  });
+  const [templateImageFile, setTemplateImageFile] = useState(null);
+  const [currentImageUrl, setCurrentImageUrl] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
+  const [pageLoadError, setPageLoadError] = useState(null);
+  const [fieldDefError, setFieldDefError] = useState('');
+  const [showFeedbackDialog, setShowFeedbackDialog] = useState(false);
+  const [feedbackDetails, setFeedbackDetails] = useState({ title: '', message: '', type: 'success' });
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+
+  const mockDataForPreview = useMemo(() => {
+    if (fieldDefError) return {};
+    try {
+        const parsedDefs = JSON.parse(templateData.templateFieldDefinition);
+        return generateMockData(parsedDefs);
+    } catch (e) {
+        return {};
+    }
+  }, [templateData.templateFieldDefinition, fieldDefError]);
+
+  const fetchAndSetTemplate = useCallback(async () => {
+    setIsLoading(true);
+    setPageLoadError(null);
+    try {
+        if (mode === 'edit') {
+            const data = await getTemplateById(templateId);
+            if (!data) throw new Error("Template not found.");
+            setTemplateData({
+                templateName: data.templateName || '',
+                templateCode: data.templateCode || defaultTemplateCode,
+                templateFieldDefinition: data.templateFieldDefinition ? JSON.stringify(data.templateFieldDefinition, null, 2) : defaultFieldDefinition,
+            });
+            setCurrentImageUrl(data.templateImage || null);
+        } else {
+            setTemplateData({
+                templateName: '',
+                templateCode: defaultTemplateCode,
+                templateFieldDefinition: defaultFieldDefinition,
+            });
+            setCurrentImageUrl(null);
+        }
+    } catch (err) {
+        setPageLoadError(err.message || 'Failed to load template data.');
+    } finally {
+        setIsLoading(false);
+    }
+  }, [mode, templateId]);
+
+  useEffect(() => {
+    fetchAndSetTemplate();
+  }, [fetchAndSetTemplate]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setTemplateData(prev => ({ ...prev, [name]: value }));
+    if (name === 'templateFieldDefinition') {
+        try { 
+            const parsed = JSON.parse(value);
+            if (!Array.isArray(parsed)) setFieldDefError('Field Definitions must be a valid JSON array.');
+            else setFieldDefError('');
+        }
+        catch (jsonError) { 
+            setFieldDefError('Invalid JSON format.'); 
+        }
+    }
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        setTemplateImageFile(file);
+        setImagePreview(URL.createObjectURL(file));
+    } else {
+        setTemplateImageFile(null);
+        setImagePreview(null);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSaving(true);
+    setPageLoadError(null);
+    if (fieldDefError) {
+        setIsSaving(false);
+        return;
+    }
+    let parsedFieldDefs;
+    try {
+      parsedFieldDefs = JSON.parse(templateData.templateFieldDefinition);
+    } catch (jsonError) {
+      setFieldDefError('Invalid JSON format for Field Definitions.');
+      setIsSaving(false);
+      return;
+    }
+    const formDataPayload = new FormData();
+    formDataPayload.append('templateName', templateData.templateName);
+    formDataPayload.append('templateCode', templateData.templateCode);
+    formDataPayload.append('templateFieldDefinition', JSON.stringify(parsedFieldDefs));
+    if (templateImageFile) {
+        formDataPayload.append('templateImageFile', templateImageFile);
+    }
+    try {
+      let response;
+      if (mode === 'create') {
+        if (!templateImageFile) {
+            setFeedbackDetails({ title: 'Validation Error', message: "A template preview image is required for new templates.", type: 'error' });
+            setShowFeedbackDialog(true);
+            setIsSaving(false);
+            return;
+        }
+        response = await createTemplate(formDataPayload);
+      } else {
+        response = await updateTemplate(templateId, formDataPayload);
+      }
+      setFeedbackDetails({ title: 'Success!', message: response.message || `Template successfully ${mode}d!`, type: 'success' });
+      setShowFeedbackDialog(true);
+    } catch (err) {
+      const apiErrorMessage = err.message || (err.errors && Array.isArray(err.errors) ? err.errors.map(e => e.msg || e.message).join(', ') : `Failed to ${mode} template.`);
+      setFeedbackDetails({ title: 'Operation Failed', message: apiErrorMessage, type: 'error' });
+      setShowFeedbackDialog(true);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleDialogClose = (isOpen) => {
+    if (!isOpen) {
+        setShowFeedbackDialog(false);
+        if (feedbackDetails.type === 'success') {
+            setTimeout(() => navigate('/admin/templates'), 300);
+        }
+    }
+  };
+
+  if (isLoading) {
+    return <div className="flex items-center justify-center min-h-[calc(100vh-150px)] bg-background"><LoadingSpinner size="large" label="Loading Template Editor..." /></div>;
+  }
+  
+  if (pageLoadError) {
+    return (
+      <div className="container mx-auto px-4 py-8 text-center">
+        <Alert variant="destructive" className="max-w-lg mx-auto"><AlertCircle className="h-5 w-5" /><AlertTitle>Error Loading Data</AlertTitle><AlertDescription>{pageLoadError}</AlertDescription></Alert>
+        <Button variant="outline" onClick={fetchAndSetTemplate} className="mt-6"><RefreshCw className="mr-2 h-4 w-4" /> Try Again</Button>
+      </div>
+    );
+  }
+  
+  return (
+    <>
+      <Helmet><title>{mode === 'create' ? 'Add Template' : `Edit: ${templateData.templateName || 'Template'}`}</title></Helmet>
+      <div className="flex flex-col min-h-screen bg-muted/20 dark:bg-background">
+        <header className="sticky top-0 z-30 bg-card/95 backdrop-blur-md border-b border-border shadow-sm px-4 py-3">
+            <div className="container mx-auto flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                    <Button variant="outline" size="icon" onClick={() => navigate('/admin/templates')} aria-label="Back to templates"><ArrowLeft size={18} /></Button>
+                    <h1 className="text-xl font-bold text-primary tracking-tight">{mode === 'create' ? 'Create New Template' : 'Edit Template'}</h1>
+                </div>
+                <div className="flex items-center gap-2">
+                    <Button variant="outline" onClick={() => setIsPreviewOpen(true)} className="hidden sm:inline-flex">
+                        <Eye className="mr-2 h-4 w-4" /> Full Preview
+                    </Button>
+                    <Button onClick={handleSubmit} disabled={isSaving || !!fieldDefError} className="bg-primary text-primary-foreground hover:bg-primary/90">
+                        {isSaving ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Saving...</> : <><Save size={16} className="mr-2" />{mode === 'create' ? 'Save' : 'Update'}</>}
+                    </Button>
+                </div>
+            </div>
+        </header>
+
+        <main className="flex-grow container mx-auto px-4 py-6">
+            <div className="grid grid-cols-1 gap-6 items-start max-w-4xl mx-auto">
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        <Card>
+                            <CardHeader><CardTitle>Configuration</CardTitle></CardHeader>
+                            <CardContent className="space-y-4">
+                                <div>
+                                    <Label htmlFor="templateName">Template Name</Label>
+                                    <Input id="templateName" name="templateName" value={templateData.templateName} onChange={handleChange} required />
+                                </div>
+                                <div>
+                                    <Label htmlFor="templateImageFile">Preview Image</Label>
+                                    <Input id="templateImageFile" name="templateImageFile" type="file" onChange={handleImageChange} accept="image/*" />
+                                    {(imagePreview || currentImageUrl) && <img src={imagePreview || currentImageUrl} alt="Preview" className="mt-2 rounded-md border p-1 max-h-40" />}
+                                </div>
+                            </CardContent>
+                        </Card>
+                        <Card>
+                            <CardHeader><CardTitle className="flex items-center"><Code2 size={16} className="mr-2"/>Template Code</CardTitle></CardHeader>
+                            <CardContent>
+                                <Textarea id="templateCode" name="templateCode" value={templateData.templateCode} onChange={handleChange} required rows={20} className="font-mono text-xs"/>
+                            </CardContent>
+                        </Card>
+                        <Card>
+                            <CardHeader><CardTitle className="flex items-center"><FileJson size={16} className="mr-2"/>Field Definitions (JSON)</CardTitle></CardHeader>
+                            <CardContent>
+                                <Textarea id="templateFieldDefinition" name="templateFieldDefinition" value={templateData.templateFieldDefinition} onChange={handleChange} required rows={20} className={`font-mono text-xs ${fieldDefError ? 'border-destructive' : ''}`}/>
+                                {fieldDefError && <p className="text-xs text-destructive mt-1.5">{fieldDefError}</p>}
+                            </CardContent>
+                        </Card>
+                    </form>
+                </motion.div>
+            </div>
+        </main>
+      </div>
+      
+      <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
+        <DialogContent className="max-w-[95vw] w-full h-[95vh] p-2 sm:p-4 bg-muted/80 backdrop-blur-sm border-0 flex items-start justify-center overflow-y-auto">
+            <DialogHeader className="sr-only">
+              <DialogTitle>Template Live Preview</DialogTitle>
+              <DialogDescription>
+                This is a live preview of the template you are editing, populated with mock data.
+              </DialogDescription>
+            </DialogHeader>
+            <Suspense fallback={<div className="h-full w-full flex items-center justify-center"><LoadingSpinner size="xlarge" label="Loading Preview..."/></div>}>
+                <ResumePreview
+                    templateCode={templateData.templateCode}
+                    currentFormData={mockDataForPreview}
+                />
+            </Suspense>
+            {/* The default DialogContent from shadcn/ui already includes a close button, which we can rely on. */}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={showFeedbackDialog} onOpenChange={handleDialogClose}>
+        <DialogContent className="sm:max-w-md bg-card">
+          <DialogHeader><DialogTitle className={cn("flex items-center text-lg font-semibold", feedbackDetails.type === 'success' ? "text-green-600" : "text-destructive")}>
+              {feedbackDetails.type === 'success' ? <CheckCircle2 className="h-5 w-5 mr-2" /> : <AlertCircle className="h-5 w-5 mr-2" />}
+              {feedbackDetails.title}
+          </DialogTitle></DialogHeader>
+          <DialogDescription className="py-4 text-muted-foreground">{feedbackDetails.message}</DialogDescription>
+          <DialogFooter className="sm:justify-end"><DialogClose asChild><Button type="button">Close</Button></DialogClose></DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+};
+
+export default AdminTemplateEditPage;

@@ -1,0 +1,1748 @@
+2025-06-04T18:48:53.101Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T18:48:53.113Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:48:53.114Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:48:53.122Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T18:48:53.131Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T18:48:53.134Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:48:53.134Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:48:53.141Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T18:48:53.232Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T18:48:53.234Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:48:53.235Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:48:53.260Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T18:48:53.278Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T18:48:53.281Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:48:53.281Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:48:53.301Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T18:49:25.498Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T18:49:25.502Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:49:25.507Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:49:25.513Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T18:49:25.520Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T18:49:25.522Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:49:25.523Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:49:25.527Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T18:49:25.608Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T18:49:25.612Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:49:25.613Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:49:25.637Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T18:49:25.654Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T18:49:25.657Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:49:25.658Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:49:25.676Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T18:50:44.160Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T18:50:44.163Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:50:44.164Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:50:44.215Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T18:50:44.224Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T18:50:44.227Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:50:44.227Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:50:44.240Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T18:57:16.333Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-04T18:57:16.341Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-04T18:57:40.639Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-04T18:57:40.648Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-04T18:58:20.445Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-04T18:58:20.453Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-04T18:59:22.721Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-04T18:59:22.732Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-04T18:59:22.949Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T18:59:22.961Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:59:22.962Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:59:22.989Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T18:59:22.992Z [WARN]: [AuthStatus][Error] userRole is not defined
+2025-06-04T18:59:22.994Z [ERROR]: Status: 500, Name: ReferenceError, Message: userRole is not defined, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-04T18:59:22.995Z [ERROR]: Stack: ReferenceError: userRole is not defined
+    at authStatus (file:///D:/pro-res/server/controller/auth-controller.js:146:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04T18:59:23.044Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T18:59:23.049Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:59:23.049Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::ffff:127.0.0.1
+2025-06-04T18:59:23.056Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T18:59:23.057Z [WARN]: [AuthStatus][Error] userRole is not defined
+2025-06-04T18:59:23.058Z [ERROR]: Status: 500, Name: ReferenceError, Message: userRole is not defined, URL: /api/auth/status, Method: GET, IP: ::ffff:127.0.0.1
+2025-06-04T18:59:23.059Z [ERROR]: Stack: ReferenceError: userRole is not defined
+    at authStatus (file:///D:/pro-res/server/controller/auth-controller.js:146:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04T18:59:46.433Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-04T18:59:46.442Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-04T18:59:46.588Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T18:59:46.596Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:59:46.598Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:59:46.619Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T18:59:46.661Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T18:59:46.669Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:59:46.671Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:59:46.679Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T18:59:46.717Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T18:59:46.721Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:59:46.722Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:59:46.767Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T18:59:46.777Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T18:59:46.780Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:59:46.781Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:59:46.798Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T18:59:50.018Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T18:59:50.021Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:59:50.022Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:59:50.058Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T18:59:50.071Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T18:59:50.075Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T18:59:50.075Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T18:59:50.098Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:07:25.034Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T19:07:25.039Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:07:25.040Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:07:25.064Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T19:07:25.072Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T19:07:25.075Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:07:25.076Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:07:25.092Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T19:07:28.409Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:07:28.416Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:07:28.417Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:07:28.439Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:07:28.456Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:07:28.460Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:07:28.461Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:07:28.482Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:07:41.293Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-04T19:07:41.296Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:07:41.297Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:07:41.358Z [ERROR]: AI API error:
+2025-06-04T19:07:41.359Z [ERROR]: [Resume][Summary][Error] User: 68185d9924a8943910eda3e5 - AI Summary generation failed
+2025-06-04T19:07:41.360Z [ERROR]: Status: 500, Name: Error, Message: AI Summary generation failed, URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-04T19:07:41.361Z [ERROR]: Stack: Error: AI Summary generation failed
+    at generateResumeSummary (file:///D:/pro-res/server/controller/resume-controller.js:302:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04T19:07:56.208Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-04T19:07:56.218Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:07:56.218Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:07:56.231Z [ERROR]: AI API error:
+2025-06-04T19:07:56.232Z [ERROR]: [Resume][Summary][Error] User: 68185d9924a8943910eda3e5 - AI Summary generation failed
+2025-06-04T19:07:56.233Z [ERROR]: Status: 500, Name: Error, Message: AI Summary generation failed, URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-04T19:07:56.234Z [ERROR]: Stack: Error: AI Summary generation failed
+    at generateResumeSummary (file:///D:/pro-res/server/controller/resume-controller.js:302:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04T19:08:13.837Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-04T19:08:13.841Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:08:13.842Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:08:13.862Z [ERROR]: AI API error:
+2025-06-04T19:08:13.863Z [ERROR]: [Resume][Summary][Error] User: 68185d9924a8943910eda3e5 - AI Summary generation failed
+2025-06-04T19:08:13.864Z [ERROR]: Status: 500, Name: Error, Message: AI Summary generation failed, URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-04T19:08:13.866Z [ERROR]: Stack: Error: AI Summary generation failed
+    at generateResumeSummary (file:///D:/pro-res/server/controller/resume-controller.js:302:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04T19:08:15.126Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-04T19:08:15.129Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:08:15.130Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:08:15.148Z [ERROR]: AI API error:
+2025-06-04T19:08:15.150Z [ERROR]: [Resume][Summary][Error] User: 68185d9924a8943910eda3e5 - AI Summary generation failed
+2025-06-04T19:08:15.151Z [ERROR]: Status: 500, Name: Error, Message: AI Summary generation failed, URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-04T19:08:15.154Z [ERROR]: Stack: Error: AI Summary generation failed
+    at generateResumeSummary (file:///D:/pro-res/server/controller/resume-controller.js:302:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04T19:08:16.070Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-04T19:08:16.077Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:08:16.078Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:08:16.095Z [ERROR]: AI API error:
+2025-06-04T19:08:16.096Z [ERROR]: [Resume][Summary][Error] User: 68185d9924a8943910eda3e5 - AI Summary generation failed
+2025-06-04T19:08:16.097Z [ERROR]: Status: 500, Name: Error, Message: AI Summary generation failed, URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-04T19:08:16.098Z [ERROR]: Stack: Error: AI Summary generation failed
+    at generateResumeSummary (file:///D:/pro-res/server/controller/resume-controller.js:302:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04T19:09:24.118Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-04T19:09:24.122Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:09:24.122Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:09:24.136Z [ERROR]: AI API error:
+2025-06-04T19:09:24.138Z [ERROR]: [Resume][Summary][Error] User: 68185d9924a8943910eda3e5 - AI Summary generation failed
+2025-06-04T19:09:24.139Z [ERROR]: Status: 500, Name: Error, Message: AI Summary generation failed, URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-04T19:09:24.139Z [ERROR]: Stack: Error: AI Summary generation failed
+    at generateResumeSummary (file:///D:/pro-res/server/controller/resume-controller.js:302:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04T19:10:20.449Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:10:20.451Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:10:20.452Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:10:20.465Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:10:26.783Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-04T19:10:26.787Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:10:26.788Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:10:26.799Z [ERROR]: AI API error:
+2025-06-04T19:10:26.800Z [ERROR]: [Resume][Summary][Error] User: 68185d9924a8943910eda3e5 - AI Summary generation failed
+2025-06-04T19:10:26.800Z [ERROR]: Status: 500, Name: Error, Message: AI Summary generation failed, URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-04T19:10:26.801Z [ERROR]: Stack: Error: AI Summary generation failed
+    at generateResumeSummary (file:///D:/pro-res/server/controller/resume-controller.js:302:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-06-04T19:11:35.664Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-04T19:11:35.672Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-04T19:11:40.284Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-04T19:11:40.293Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:11:40.294Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:11:40.343Z [INFO]: [Resume][Summary][Success] User: 68185d9924a8943910eda3e5 generated resume summary
+2025-06-04T19:12:50.459Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:12:50.463Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:12:50.464Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:12:50.516Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:12:59.708Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-04T19:12:59.712Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:12:59.713Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:12:59.722Z [INFO]: [Resume][Summary][Success] User: 68185d9924a8943910eda3e5 generated resume summary
+2025-06-04T19:19:12.989Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:19:12.992Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:19:12.992Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:19:13.001Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.011Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:19:13.015Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.017Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:19:13.023Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.043Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:19:13.046Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.047Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:19:13.051Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.060Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:19:13.063Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.065Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:19:13.071Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.119Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:19:13.121Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.122Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:19:13.145Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:19:13.163Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:19:13.166Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.167Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:19:13.194Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:19:13.198Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.199Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:19:13.205Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:19:13.238Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.247Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:19:13.250Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.251Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:19:13.268Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.277Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:19:13.280Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.280Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:19:13.295Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.303Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:19:13.306Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:19:13.307Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:19:13.323Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:21:33.426Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:21:33.429Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:21:33.430Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:21:33.444Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:21:33.450Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:21:33.454Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:21:33.454Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:21:33.469Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:24:20.639Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:24:20.642Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:24:20.643Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:24:20.646Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:24:20.653Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:24:20.656Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:24:20.657Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:24:20.662Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:24:20.746Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:24:20.748Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:24:20.749Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:24:20.774Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:24:20.791Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:24:20.794Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:24:20.794Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:24:20.811Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:24:26.878Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T19:24:26.881Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:24:26.881Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:24:26.901Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T19:24:26.910Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T19:24:26.916Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:24:26.916Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:24:26.935Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T19:24:30.114Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/6838312e1ab6d97dc0cf0466
+2025-06-04T19:24:30.117Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:24:30.118Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:24:30.133Z [INFO]: [Resume][GetById][Success] Resume: 6838312e1ab6d97dc0cf0466 by user: 68185d9924a8943910eda3e5
+2025-06-04T19:24:30.142Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/6838312e1ab6d97dc0cf0466
+2025-06-04T19:24:30.145Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:24:30.146Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:24:30.160Z [INFO]: [Resume][GetById][Success] Resume: 6838312e1ab6d97dc0cf0466 by user: 68185d9924a8943910eda3e5
+2025-06-04T19:24:39.511Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T19:24:39.514Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:24:39.515Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:24:39.532Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T19:24:39.539Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T19:24:39.542Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:24:39.543Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:24:39.564Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T19:24:44.429Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:24:44.433Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:24:44.434Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:24:44.450Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:24:44.460Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:24:44.465Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:24:44.465Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:24:44.478Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:32:43.277Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:32:43.280Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:32:43.281Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:32:43.284Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:32:43.292Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:32:43.295Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:32:43.296Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:32:43.301Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:32:43.351Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:32:43.354Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:32:43.355Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:32:43.368Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:32:43.377Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:32:43.380Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:32:43.381Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:32:43.396Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:32:43.433Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:32:43.437Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:32:43.438Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:32:43.453Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:32:43.461Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:32:43.465Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:32:43.466Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:32:43.480Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:34:27.426Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:34:27.429Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:34:27.429Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:34:27.441Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:34:27.447Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:34:27.450Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:34:27.451Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:34:27.464Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:34:27.471Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:34:27.474Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:34:27.475Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:34:27.487Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:34:27.495Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:34:27.499Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:34:27.499Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:34:27.512Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:35:06.079Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:35:06.082Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:35:06.083Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:35:06.102Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:35:06.116Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:35:06.118Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:35:06.119Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:35:06.134Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:36:23.614Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:36:23.618Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:36:23.619Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:36:23.627Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:36:23.638Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:36:23.645Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:36:23.645Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:36:23.652Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:36:23.711Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:36:23.713Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:36:23.714Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:36:23.731Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:36:23.742Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:36:23.744Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:36:23.745Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:36:23.759Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:36:46.885Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:36:46.888Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:36:46.889Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:36:46.893Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:36:46.902Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:36:46.905Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:36:46.905Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:36:46.909Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:36:46.969Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:36:46.972Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:36:46.972Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:36:46.990Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:36:47.006Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:36:47.008Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:36:47.008Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:36:47.021Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:36:52.578Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:36:52.580Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:36:52.581Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:36:52.593Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:36:52.609Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:36:52.612Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:36:52.612Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:36:52.629Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:37:44.655Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:37:44.658Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:37:44.658Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:37:44.661Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:37:44.666Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:37:44.668Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:37:44.668Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:37:44.671Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:37:44.994Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:37:44.996Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:37:44.996Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:37:44.999Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.006Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:37:45.008Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.008Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:37:45.013Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.018Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:37:45.020Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.021Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:37:45.024Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.030Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:37:45.032Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.033Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:37:45.036Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.096Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:37:45.098Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.099Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:37:45.104Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:37:45.106Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.107Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:37:45.113Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.124Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:37:45.126Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.126Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:37:45.130Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.137Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.142Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:37:45.145Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.146Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:37:45.158Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.166Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:37:45.168Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.169Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:37:45.178Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.185Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T19:37:45.187Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.188Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:37:45.198Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.214Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:37:45.216Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.217Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:37:45.231Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:37:45.242Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:37:45.244Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:37:45.245Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:37:45.255Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:38:10.722Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:38:10.725Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:38:10.726Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:38:10.731Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:38:10.738Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:38:10.741Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:38:10.742Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:38:10.746Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:38:10.804Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:38:10.808Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:38:10.808Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:38:10.823Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:38:10.835Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:38:10.838Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:38:10.838Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:38:10.852Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:38:18.169Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:38:18.171Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:38:18.172Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:38:18.175Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:38:18.183Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:38:18.186Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:38:18.187Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:38:18.191Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:40:23.941Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:40:23.943Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:40:23.944Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:40:23.969Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:40:23.986Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:40:23.989Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:40:23.989Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:40:24.006Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:43:18.779Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T19:43:18.781Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:43:18.782Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:43:18.801Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T19:43:18.810Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T19:43:18.813Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:43:18.814Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:43:18.835Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T19:44:28.953Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T19:44:28.956Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:44:28.958Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:44:28.970Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T19:44:28.980Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T19:44:28.983Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:44:28.984Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:44:29.000Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T19:50:58.275Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:50:58.278Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:50:58.279Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:50:58.285Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:50:58.296Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:50:58.299Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:50:58.299Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:50:58.304Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:51:04.709Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:51:04.713Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:51:04.714Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:51:04.721Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:51:04.730Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:51:04.733Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:51:04.734Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:51:04.738Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:51:08.545Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:51:08.549Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:51:08.552Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:51:08.557Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:51:08.565Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:51:08.568Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:51:08.569Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:51:08.573Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:52:44.472Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:52:44.475Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:52:44.476Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:52:44.480Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:52:44.494Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:52:44.497Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:52:44.498Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:52:44.503Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:52:48.455Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:52:48.458Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:52:48.458Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:52:48.462Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:52:48.470Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:52:48.474Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:52:48.475Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:52:48.480Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:52:57.137Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:52:57.140Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:52:57.141Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:52:57.170Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:52:57.189Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T19:52:57.192Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:52:57.193Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:52:57.218Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T19:52:58.619Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T19:52:58.623Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:52:58.623Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:52:58.651Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T19:52:58.666Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T19:52:58.669Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:52:58.670Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:52:58.688Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T19:54:49.670Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:54:49.673Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:54:49.673Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:54:49.677Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:54:49.684Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T19:54:49.686Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:54:49.688Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:54:49.692Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T19:54:49.736Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-04T19:54:49.738Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:54:49.739Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:54:49.790Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-04T19:54:49.792Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:54:49.793Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:55:41.418Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-04T19:55:41.421Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:55:41.421Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:55:41.443Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-04T19:55:41.445Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:55:41.446Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:59:13.445Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-04T19:59:13.448Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:59:13.449Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T19:59:54.437Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-04T19:59:54.440Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T19:59:54.440Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:00:14.432Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/overview
+2025-06-04T20:00:14.435Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:00:14.435Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:03:31.092Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:03:31.094Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:03:31.094Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:03:31.102Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:03:31.107Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:03:31.109Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:03:31.109Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:03:31.116Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:03:38.154Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:03:38.155Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:03:38.156Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:03:38.161Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:03:38.165Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:03:38.166Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:03:38.166Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:03:38.173Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:03:48.296Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/6838312e1ab6d97dc0cf0466
+2025-06-04T20:03:48.297Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:03:48.298Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:03:48.302Z [INFO]: [Resume][GetById][Success] Resume: 6838312e1ab6d97dc0cf0466 by user: 68185d9924a8943910eda3e5
+2025-06-04T20:03:48.305Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/6838312e1ab6d97dc0cf0466
+2025-06-04T20:03:48.306Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:03:48.307Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:03:48.310Z [INFO]: [Resume][GetById][Success] Resume: 6838312e1ab6d97dc0cf0466 by user: 68185d9924a8943910eda3e5
+2025-06-04T20:04:00.286Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:04:00.287Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:04:00.287Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:04:00.292Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:04:00.294Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:04:00.296Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:04:00.296Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:04:00.302Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:04:03.629Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T20:04:03.630Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:04:03.631Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:04:03.635Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T20:04:03.638Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T20:04:03.639Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:04:03.639Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:04:03.642Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T20:04:34.151Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:04:34.152Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:04:34.152Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:04:34.157Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:04:34.160Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:04:34.160Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:04:34.161Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:04:34.168Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:07:36.576Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:07:36.577Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:07:36.577Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:07:36.582Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:07:36.586Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:07:36.587Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:07:36.587Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:07:36.592Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:10:32.654Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:10:32.655Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:10:32.656Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:10:32.660Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:10:32.664Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:10:32.666Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:10:32.666Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:10:32.671Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:22:52.554Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:22:52.555Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:22:52.555Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:22:52.557Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:22:52.560Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:22:52.562Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:22:52.562Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:22:52.564Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:22:52.592Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:22:52.593Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:22:52.594Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:22:52.600Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:22:52.606Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:22:52.607Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:22:52.607Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:22:52.615Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:22:57.866Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:22:57.868Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:22:57.868Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:22:57.870Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:22:57.873Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:22:57.874Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:22:57.874Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:22:57.876Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:22:57.898Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:22:57.899Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:22:57.899Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:22:57.905Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:22:57.911Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:22:57.912Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:22:57.913Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:22:57.919Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:23:08.704Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:23:08.705Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:23:08.706Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:23:08.708Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:23:08.712Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:23:08.714Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:23:08.714Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:23:08.717Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:23:08.763Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:23:08.765Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:23:08.765Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:23:08.772Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:23:08.781Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:23:08.782Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:23:08.782Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:23:08.793Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:23:30.674Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:23:30.675Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:23:30.675Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:23:30.681Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:23:30.684Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:23:30.685Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:23:30.685Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:23:30.689Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:24:30.324Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:24:30.325Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:30.326Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:30.327Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:24:30.330Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:24:30.332Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:30.332Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:30.334Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:24:30.356Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:24:30.357Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:30.357Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:30.365Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:24:30.372Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:24:30.374Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:30.374Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:30.382Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:24:31.652Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:24:31.653Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:31.654Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:31.655Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:24:31.658Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:24:31.660Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:31.660Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:31.662Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:24:31.683Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:24:31.684Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:31.684Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:31.692Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:24:31.698Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:24:31.700Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:31.700Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:31.709Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:24:32.900Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:24:32.902Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:32.902Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:32.904Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:24:32.908Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:24:32.910Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:32.910Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:32.912Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:24:32.930Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:24:32.931Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:32.932Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:32.941Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:24:32.946Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:24:32.948Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:32.948Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:32.952Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:24:34.030Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:24:34.031Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:34.032Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:34.033Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:24:34.036Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:24:34.037Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:34.038Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:34.039Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:24:34.056Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:24:34.057Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:34.057Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:34.064Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:24:34.071Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:24:34.072Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:34.072Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:34.078Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:24:35.458Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:24:35.459Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:35.459Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:35.461Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:24:35.463Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:24:35.465Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:35.465Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:35.467Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:24:35.484Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:24:35.485Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:35.485Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:35.493Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:24:35.499Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:24:35.500Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:35.500Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:35.505Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:24:36.793Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:24:36.794Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:36.794Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:36.796Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:24:36.798Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:24:36.800Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:36.801Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:36.803Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:24:36.819Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:24:36.821Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:36.821Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:36.831Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:24:36.837Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:24:36.838Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:36.839Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:36.844Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:24:47.088Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:24:47.089Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:47.090Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:47.091Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:24:47.094Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:24:47.095Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:47.096Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:47.098Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:24:47.115Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:24:47.116Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:47.116Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:47.122Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:24:47.128Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:24:47.129Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:24:47.130Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:24:47.137Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:25:15.348Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:25:15.349Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:25:15.350Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:25:15.355Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:25:15.357Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:25:15.358Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:25:15.358Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:25:15.362Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:25:17.604Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/6838312e1ab6d97dc0cf0466
+2025-06-04T20:25:17.605Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:25:17.605Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:25:17.609Z [INFO]: [Resume][GetById][Success] Resume: 6838312e1ab6d97dc0cf0466 by user: 68185d9924a8943910eda3e5
+2025-06-04T20:25:17.612Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/6838312e1ab6d97dc0cf0466
+2025-06-04T20:25:17.613Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:25:17.613Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:25:17.617Z [INFO]: [Resume][GetById][Success] Resume: 6838312e1ab6d97dc0cf0466 by user: 68185d9924a8943910eda3e5
+2025-06-04T20:25:24.547Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:25:24.548Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:25:24.548Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:25:24.553Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:25:24.556Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:25:24.557Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:25:24.557Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:25:24.563Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:25:26.438Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T20:25:26.440Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:25:26.440Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:25:26.445Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T20:25:26.448Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T20:25:26.449Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:25:26.449Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:25:26.454Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T20:25:30.401Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:25:30.402Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:25:30.402Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:25:30.407Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:25:30.409Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:25:30.410Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:25:30.410Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:25:30.414Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:25:50.202Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T20:25:50.203Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:25:50.203Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:25:50.207Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T20:25:50.224Z [INFO]: [Startup] Incoming request: POST /api/resume/download
+2025-06-04T20:25:50.225Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:25:50.226Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:25:50.226Z [INFO]: [Resume][Download][Request] User: 68185d9924a8943910eda3e5
+2025-06-04T20:25:51.833Z [INFO]: [Resume][Download][Success] Resume PDF generated for user: 68185d9924a8943910eda3e5
+2025-06-04T20:27:11.867Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:27:11.868Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:11.868Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:11.872Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:27:11.875Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:27:11.875Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:11.876Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:11.881Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:27:15.082Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68382d73f9e67e099434270c
+2025-06-04T20:27:15.083Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:15.083Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:15.087Z [INFO]: [Resume][GetById][Success] Resume: 68382d73f9e67e099434270c by user: 68185d9924a8943910eda3e5
+2025-06-04T20:27:15.090Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68382d73f9e67e099434270c
+2025-06-04T20:27:15.092Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:15.092Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:15.095Z [INFO]: [Resume][GetById][Success] Resume: 68382d73f9e67e099434270c by user: 68185d9924a8943910eda3e5
+2025-06-04T20:27:18.618Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:27:18.619Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:18.619Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:18.625Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:27:18.628Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:27:18.629Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:18.629Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:18.634Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:27:20.383Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T20:27:20.385Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:20.385Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:20.390Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T20:27:20.393Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T20:27:20.394Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:20.394Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:20.399Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T20:27:28.850Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:27:28.851Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:28.851Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:28.856Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:27:28.858Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:27:28.859Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:28.859Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:28.864Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:27:32.814Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T20:27:32.815Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:32.815Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:32.820Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T20:27:32.823Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T20:27:32.824Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:32.824Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:32.828Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T20:27:41.989Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:27:41.990Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:41.991Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:41.995Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:27:41.998Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:27:41.999Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:41.999Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:42.006Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:27:44.902Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T20:27:44.904Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:44.904Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:44.909Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T20:27:44.912Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T20:27:44.913Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:44.913Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:44.917Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T20:27:50.605Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:27:50.606Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:50.606Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:50.611Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:27:50.613Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-04T20:27:50.614Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:50.615Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:50.619Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-04T20:27:54.374Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T20:27:54.375Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:54.376Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:54.380Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T20:27:54.383Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-04T20:27:54.384Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:27:54.384Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:27:54.387Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-04T20:28:03.142Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-04T20:28:03.144Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:28:03.144Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:28:03.146Z [INFO]: [Resume][Summary][Success] User: 68185d9924a8943910eda3e5 generated resume summary
+2025-06-04T20:31:24.760Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:31:24.762Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:31:24.762Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:31:24.764Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:31:24.766Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:31:24.767Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:31:24.767Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:31:24.769Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:31:41.531Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:31:41.533Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:31:41.533Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:31:41.535Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:31:41.537Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:31:41.539Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:31:41.539Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:31:41.542Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:31:57.358Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:31:57.359Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:31:57.360Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:31:57.361Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:31:57.364Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:31:57.365Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:31:57.366Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:31:57.367Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:31:57.406Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/timeseries?eventType=user_signup&days=30
+2025-06-04T20:31:57.407Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:31:57.407Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:31:57.419Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/timeseries?eventType=user_signup&days=30
+2025-06-04T20:31:57.421Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:31:57.421Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:32:09.517Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/timeseries?eventType=template_create&days=30
+2025-06-04T20:32:09.518Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:32:09.518Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:32:13.522Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:32:13.523Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:32:13.523Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:32:13.525Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:32:13.529Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:32:13.530Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:32:13.531Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:32:13.532Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:32:13.559Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/timeseries?eventType=user_signup&days=30
+2025-06-04T20:32:13.561Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:32:13.561Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:32:13.566Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/timeseries?eventType=user_signup&days=30
+2025-06-04T20:32:13.567Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:32:13.567Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:32:16.672Z [INFO]: [Startup] Incoming request: GET /api/admin/analytics/timeseries?eventType=api_error&days=30
+2025-06-04T20:32:16.673Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:32:16.673Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:34:08.021Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:34:08.023Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.023Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:34:08.027Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.032Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:34:08.034Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.034Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:34:08.036Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.202Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:34:08.204Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.205Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:34:08.207Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.211Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:34:08.212Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.213Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:34:08.214Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.246Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:34:08.249Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.249Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:34:08.253Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.258Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:34:08.261Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.261Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:34:08.264Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.271Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:34:08.273Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.273Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:34:08.277Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.283Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:34:08.285Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:34:08.286Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:34:08.289Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:35:14.712Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:35:14.713Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:35:14.713Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:35:14.715Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:35:14.717Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:35:14.718Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:35:14.719Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:35:14.722Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:35:41.217Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:35:41.218Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:35:41.218Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:35:41.219Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:45:38.991Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:45:38.992Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:45:38.993Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:45:38.995Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:45:38.998Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T20:45:38.999Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:45:38.999Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:45:39.001Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T20:45:39.098Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:45:39.099Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:45:39.099Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:45:39.107Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T20:45:39.114Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T20:45:39.116Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T20:45:39.116Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T20:45:39.126Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T21:14:21.509Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T21:14:21.513Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T21:14:21.513Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T21:14:21.520Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T21:14:21.526Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T21:14:21.528Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T21:14:21.528Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T21:14:21.532Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T21:14:29.215Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T21:14:29.219Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T21:14:29.220Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T21:14:29.225Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T21:14:29.231Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T21:14:29.233Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T21:14:29.233Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T21:14:29.237Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T21:14:30.759Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T21:14:30.762Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T21:14:30.763Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T21:14:30.766Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T21:14:30.772Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T21:14:30.775Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T21:14:30.775Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T21:14:30.779Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T21:23:46.731Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T21:23:46.733Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T21:23:46.734Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T21:23:46.737Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T21:23:46.743Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T21:23:46.746Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T21:23:46.746Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T21:23:46.750Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T21:23:49.983Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T21:23:49.986Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T21:23:49.986Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T21:23:49.989Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T21:23:49.994Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-04T21:23:49.996Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T21:23:49.997Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T21:23:50.002Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-04T21:23:50.291Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T21:23:50.293Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T21:23:50.294Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T21:23:50.314Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-04T21:23:50.327Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-04T21:23:50.329Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-04T21:23:50.330Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-04T21:23:50.349Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T05:52:11.361Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-05T05:52:11.370Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-05T05:52:45.184Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T05:52:45.194Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T05:52:45.196Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T05:52:45.222Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T05:52:45.254Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T05:52:45.258Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T05:52:45.259Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T05:52:45.266Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T05:53:00.657Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T05:53:00.662Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T05:53:00.664Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T05:53:00.720Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T05:53:00.744Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T05:53:00.747Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T05:53:00.748Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T05:53:00.780Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T05:53:06.980Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T05:53:06.985Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T05:53:06.986Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T05:53:07.052Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T05:53:07.069Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T05:53:07.083Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T05:53:07.087Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T05:53:07.154Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T05:53:24.742Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T05:53:24.746Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T05:53:24.747Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T05:53:24.770Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T05:53:24.781Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T05:53:24.784Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T05:53:24.785Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T05:53:24.809Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T05:56:03.730Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-05T05:56:03.739Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-05T05:57:50.127Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-05T05:57:50.143Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-05T05:58:03.940Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T05:58:03.950Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T05:58:03.952Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T05:58:03.976Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T05:58:04.006Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T05:58:04.009Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T05:58:04.010Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T05:58:04.017Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T05:58:10.176Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T05:58:10.181Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T05:58:10.182Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T05:58:10.234Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T05:58:10.258Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T05:58:10.262Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T05:58:10.263Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T05:58:10.294Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T05:58:14.016Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T05:58:14.020Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T05:58:14.020Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T05:58:14.068Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T05:58:14.077Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T05:58:14.083Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T05:58:14.084Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T05:58:14.109Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T06:05:06.392Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:05:06.396Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:05:06.397Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:05:06.404Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:05:06.414Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:05:06.417Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:05:06.419Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:05:06.425Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:07:31.907Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:07:31.911Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:07:31.912Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:07:31.950Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:07:31.970Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:07:31.973Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:07:31.974Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:07:31.997Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:09:51.920Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:09:51.922Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:09:51.923Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:09:51.927Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:09:51.935Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:09:51.938Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:09:51.939Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:09:51.944Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:09:52.049Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:09:52.052Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:09:52.052Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:09:52.073Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:09:52.092Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:09:52.095Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:09:52.095Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:09:52.119Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:12:35.868Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:12:35.872Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:12:35.873Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:12:35.879Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:12:35.888Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:12:35.891Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:12:35.892Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:12:35.897Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:12:36.127Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:12:36.129Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:12:36.130Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:12:36.154Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:12:36.170Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:12:36.174Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:12:36.178Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:12:36.210Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:12:41.885Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T06:12:41.887Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:12:41.888Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:12:41.912Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T06:12:41.948Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T06:12:41.954Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:12:41.957Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:12:41.996Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T06:12:55.022Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:12:55.026Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:12:55.026Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:12:55.031Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:12:55.039Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:12:55.041Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:12:55.042Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:12:55.049Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:13:09.723Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:13:09.726Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:13:09.727Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:13:09.731Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:13:09.737Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:13:09.740Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:13:09.741Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:13:09.745Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.516Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:45:37.520Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.520Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:45:37.525Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.531Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:45:37.534Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.534Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:45:37.537Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.591Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:45:37.594Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.595Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:45:37.598Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.603Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:45:37.605Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.606Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:45:37.610Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.662Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:45:37.665Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.666Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:45:37.669Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.674Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:45:37.677Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.678Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:45:37.682Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.761Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:45:37.763Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.764Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:45:37.781Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:45:37.801Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:45:37.805Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:45:37.805Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:45:37.828Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:56:43.553Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:56:43.555Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:56:43.556Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:56:43.559Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:56:43.566Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:56:43.570Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:56:43.572Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:56:43.580Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:56:43.816Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:56:43.819Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:56:43.820Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:56:43.824Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:56:43.832Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:56:43.835Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:56:43.836Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:56:43.839Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:56:43.891Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:56:43.894Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:56:43.895Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:56:43.898Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:56:43.904Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:56:43.908Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:56:43.909Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:56:43.913Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:56:43.963Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:56:43.966Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:56:43.966Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:56:43.985Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:56:44.000Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:56:44.003Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:56:44.004Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:56:44.021Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:56:54.060Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:56:54.062Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:56:54.063Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:56:54.083Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:56:54.101Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:56:54.104Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:56:54.106Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:56:54.123Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:57:05.781Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:57:05.784Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:57:05.785Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:57:05.790Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:57:05.797Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:57:05.800Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:57:05.800Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:57:05.804Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:57:06.187Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:57:06.189Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:57:06.190Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:57:06.204Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:57:06.219Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:57:06.222Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:57:06.222Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:57:06.237Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:57:06.341Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:57:06.343Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:57:06.344Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:57:06.347Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:57:06.353Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:57:06.356Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:57:06.356Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:57:06.360Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:57:06.425Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:57:06.428Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:57:06.428Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:57:06.432Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:57:06.438Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T06:57:06.441Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:57:06.442Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:57:06.446Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T06:57:06.508Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:57:06.510Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:57:06.511Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:57:06.524Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:57:06.536Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T06:57:06.538Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T06:57:06.539Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T06:57:06.550Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T06:57:15.802Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-05T06:57:15.811Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-05T17:21:35.291Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-05T17:21:35.294Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-05T17:21:45.936Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:21:45.937Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-05T17:21:45.938Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-05T17:21:45.938Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/pro-res-v2/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\pro-res-v2\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\pro-res-v2\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\pro-res-v2\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\pro-res-v2\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\pro-res-v2\server\node_modules\router\lib\layer.js:152:17)
+    at D:\pro-res-v2\server\node_modules\router\index.js:295:15
+    at processParams (D:\pro-res-v2\server\node_modules\router\index.js:582:12)
+    at next (D:\pro-res-v2\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\pro-res-v2\server\node_modules\router\index.js:186:3)
+2025-06-05T17:21:45.958Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:21:45.959Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-05T17:21:45.960Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-05T17:21:45.960Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/pro-res-v2/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\pro-res-v2\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\pro-res-v2\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\pro-res-v2\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\pro-res-v2\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\pro-res-v2\server\node_modules\router\lib\layer.js:152:17)
+    at D:\pro-res-v2\server\node_modules\router\index.js:295:15
+    at processParams (D:\pro-res-v2\server\node_modules\router\index.js:582:12)
+    at next (D:\pro-res-v2\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\pro-res-v2\server\node_modules\router\index.js:186:3)
+2025-06-05T17:23:00.168Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-05T17:23:00.237Z [INFO]: [JWT][Create][Success] Token issued for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:23:00.238Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-06-05T17:23:00.238Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-06-06T17:23:00.238Z
+2025-06-05T17:23:00.240Z [INFO]: [SignIn][Success] User: gmbtnk10aug@gmail.com (ID: 68185d9924a8943910eda3e5) from IP: ::1
+2025-06-05T17:23:00.272Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:23:00.274Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:23:00.274Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:23:00.291Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:23:00.297Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:23:00.299Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:23:00.300Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:23:00.311Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:23:04.212Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-05T17:23:04.213Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:23:04.213Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:23:04.222Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-05T17:23:04.226Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-05T17:23:04.227Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:23:04.227Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:23:04.234Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-05T17:24:02.426Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:24:02.428Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:02.429Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:02.431Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:24:02.436Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:24:02.437Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:02.437Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:02.440Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:24:02.524Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-05T17:24:02.525Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:02.525Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:02.534Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-05T17:24:02.539Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-05T17:24:02.541Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:02.542Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:02.549Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-05T17:24:04.968Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:24:04.970Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:04.970Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:04.973Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:24:04.978Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:24:04.979Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:04.980Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:04.982Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:24:05.009Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-05T17:24:05.011Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:05.011Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:05.022Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-05T17:24:05.026Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-05T17:24:05.027Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:05.027Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:05.035Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-05T17:24:21.510Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-05T17:24:21.512Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:21.512Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:21.522Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-05T17:24:21.526Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-05T17:24:21.527Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:21.528Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:21.535Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-05T17:24:21.539Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68398e2e43e6c5bbc156bd7d
+2025-06-05T17:24:21.540Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:21.541Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:21.546Z [INFO]: [Resume][GetById][Success] Resume: 68398e2e43e6c5bbc156bd7d by user: 68185d9924a8943910eda3e5
+2025-06-05T17:24:28.518Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:24:28.520Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:28.520Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:28.527Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:24:28.531Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:24:28.532Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:28.533Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:28.542Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:24:33.110Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:24:33.111Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:33.111Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:33.121Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:24:33.129Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:24:33.131Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:33.131Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:33.141Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:24:35.137Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:24:35.138Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:35.138Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:35.144Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:24:35.147Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:24:35.148Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:24:35.148Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:24:35.153Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:26:16.472Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:26:16.473Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:26:16.474Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:26:16.479Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:26:16.482Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:26:16.483Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:26:16.483Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:26:16.490Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:27:10.843Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:27:10.844Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:27:10.845Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:27:10.846Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:27:10.848Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:27:10.849Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:27:10.849Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:27:10.851Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:27:10.953Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:27:10.954Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:27:10.954Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:27:10.965Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:27:10.973Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:27:10.975Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:27:10.975Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:27:10.986Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:28:55.212Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:28:55.214Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:28:55.214Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:28:55.216Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:28:55.220Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:28:55.221Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:28:55.222Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:28:55.223Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:28:55.258Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:28:55.259Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:28:55.259Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:28:55.269Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:28:55.275Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:28:55.277Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:28:55.278Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:28:55.287Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:29:13.445Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:29:13.447Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:29:13.447Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:29:13.450Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:29:13.453Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:29:13.454Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:29:13.455Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:29:13.457Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:29:13.504Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:29:13.505Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:29:13.505Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:29:13.514Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:29:13.521Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:29:13.523Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:29:13.523Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:29:13.530Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:30:35.767Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:30:35.769Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:30:35.770Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:30:35.782Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:30:35.787Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:30:35.789Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:30:35.789Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:30:35.800Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:30:49.658Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:30:49.659Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:30:49.659Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:30:49.662Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:30:49.666Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:30:49.667Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:30:49.667Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:30:49.669Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:30:49.756Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:30:49.757Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:30:49.758Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:30:49.763Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:30:49.766Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:30:49.767Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:30:49.768Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:30:49.774Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:34:01.908Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:34:01.910Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:34:01.910Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:34:01.912Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:34:01.915Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:34:01.916Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:34:01.916Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:34:01.917Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:34:02.029Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:34:02.030Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:34:02.030Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:34:02.037Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:34:02.040Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:34:02.041Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:34:02.042Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:34:02.049Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:48:12.835Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:48:12.836Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:48:12.836Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:48:12.838Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:48:12.840Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:48:12.841Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:48:12.841Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:48:12.843Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:48:12.932Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:48:12.933Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:48:12.933Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:48:12.939Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:48:12.942Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:48:12.944Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:48:12.944Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:48:12.951Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:48:39.433Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:48:39.434Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:48:39.434Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:48:39.436Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:48:39.438Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:48:39.440Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:48:39.440Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:48:39.443Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:48:39.485Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:48:39.486Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:48:39.487Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:48:39.492Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:48:39.495Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-05T17:48:39.496Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:48:39.496Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:48:39.503Z [INFO]: [Resume][GetAll][Success] User: 68185d9924a8943910eda3e5 fetched all resumes (6)
+2025-06-05T17:48:46.595Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:48:46.596Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:48:46.596Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:48:46.604Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:48:46.613Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:48:46.614Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:48:46.614Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:48:46.621Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:55:13.684Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:55:13.685Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:13.685Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:13.686Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:55:13.689Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:55:13.690Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:13.690Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:13.692Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:55:13.800Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:55:13.801Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:13.802Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:13.808Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:55:13.813Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:55:13.814Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:13.815Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:13.820Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:55:16.633Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:55:16.634Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:16.634Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:16.636Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:55:16.640Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:55:16.641Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:16.642Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:16.643Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:55:16.677Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:55:16.678Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:16.679Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:16.685Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:55:16.693Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:55:16.694Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:16.695Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:16.701Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:55:28.030Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:55:28.031Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:28.032Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:28.034Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:55:28.037Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:55:28.038Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:28.039Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:28.042Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:55:28.079Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:55:28.080Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:28.080Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:28.087Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:55:28.093Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:55:28.094Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:28.094Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:28.101Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:55:34.502Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:55:34.503Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:34.503Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:34.506Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:55:34.509Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:55:34.510Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:34.511Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:34.512Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:55:34.556Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:55:34.557Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:34.557Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:34.564Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:55:34.570Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:55:34.572Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:55:34.572Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:55:34.578Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:59:09.316Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:59:09.317Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:59:09.317Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:59:09.319Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:59:09.322Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:59:09.323Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:59:09.323Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:59:09.325Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:59:09.433Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:59:09.434Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:59:09.434Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:59:09.440Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:59:09.445Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:59:09.446Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:59:09.446Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:59:09.452Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:59:18.925Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:59:18.926Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:59:18.927Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:59:18.928Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:59:18.932Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T17:59:18.933Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:59:18.933Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:59:18.935Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T17:59:18.996Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:59:18.997Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:59:18.997Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:59:19.004Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T17:59:19.009Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-05T17:59:19.010Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T17:59:19.010Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T17:59:19.016Z [INFO]: [Template][GetAll][Success] Returned 19 templates
+2025-06-05T18:00:54.892Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:00:54.893Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:00:54.893Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:00:54.895Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:00:54.897Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:00:54.898Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:00:54.899Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:00:54.901Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:01:20.546Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:01:20.548Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:01:20.548Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:01:20.549Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:01:20.552Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:01:20.553Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:01:20.554Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:01:20.556Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:02:21.138Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:02:21.139Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:02:21.140Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:02:21.142Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:02:21.144Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:02:21.145Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:02:21.146Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:02:21.148Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:02:32.413Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:02:32.414Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:02:32.415Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:02:32.416Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:02:32.419Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:02:32.420Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:02:32.420Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:02:32.423Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:02:53.697Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:02:53.698Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:02:53.698Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:02:53.699Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:02:53.702Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:02:53.703Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:02:53.704Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:02:53.705Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:02:57.284Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:02:57.286Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:02:57.286Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:02:57.288Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:02:57.290Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:02:57.291Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:02:57.291Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:02:57.292Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:03:02.274Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:03:02.275Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:03:02.275Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:03:02.277Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:03:02.279Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:03:02.280Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:03:02.280Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:03:02.282Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:05:14.360Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:05:14.362Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:05:14.362Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:05:14.364Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
+2025-06-05T18:05:14.366Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-05T18:05:14.367Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68185d9924a8943910eda3e5
+2025-06-05T18:05:14.367Z [INFO]: [Auth] Auth success for user 68185d9924a8943910eda3e5, role admin, from IP: ::1
+2025-06-05T18:05:14.368Z [INFO]: [AuthStatus][Checked] User: 68185d9924a8943910eda3e5
