@@ -89,14 +89,6 @@ const userSignIn = async (req, res, next) => {
       return next(err);
     }
 
-    if (!userExisted.verified) {
-      logger.warn(`[SignIn][Fail] Email not verified: ${userEmail} from IP: ${req.ip}`);
-      const err = new Error('Please verify your email address before signing in.');
-      err.name = 'EMAIL_NOT_VERIFIED';
-      err.status = 403;
-      return next(err);
-    }
-
     const authToken = await createToken({ userId: userExisted._id, userRole: userExisted.userRole })
     await clearAuthCookie(res)
     await createAuthCookie(res, authToken)
