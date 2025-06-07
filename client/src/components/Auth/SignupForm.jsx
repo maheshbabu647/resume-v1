@@ -6,6 +6,39 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
+/**
+ * A robust helper function to extract a displayable error message from various
+ * API error formats (string, object, or array of objects).
+ * @param {*} error - The error object or string from the API.
+ * @returns {string} A user-friendly error message string.
+ */
+const getErrorMessage = (error) => {
+  if (!error) return '';
+  if (typeof error === 'string') return error;
+
+  // Handle errors that have a 'message' property
+  if (error.message) {
+    // If the message is a simple string, return it
+    if (typeof error.message === 'string') {
+      return error.message;
+    }
+    // If the message is an array (common for validation errors)
+    if (Array.isArray(error.message)) {
+      return error.message
+        .map(err => err.message || JSON.stringify(err)) // Extract message from each error object
+        .join('; '); // Join multiple error messages
+    }
+    // If the message is an object (single validation error)
+    if (typeof error.message === 'object' && error.message !== null) {
+      return error.message.message || JSON.stringify(error.message);
+    }
+  }
+
+  // Fallback for any other unexpected error structure
+  return 'An unexpected error occurred. Please check your input and try again.';
+};
+
+
 const SignupForm = ({ onSubmit, isLoading, apiError }) => {
   const [formData, setFormData] = useState({
     userName: '',
@@ -13,11 +46,11 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
     userPassword: '',
     userConfirmPassword: '',
   });
-  const [formError, setFormError] = useState(''); // For client-side validation errors
+  const [formError, setFormError] = useState('');
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setFormError(''); // Clear client-side error on change
+    setFormError('');
   };
 
   const handleSubmit = (e) => {
@@ -31,10 +64,8 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
       setFormError('Please fill in all fields.');
       return;
     }
-    // Client-side password length check (API has stricter rules: 8 chars, uppercase, lowercase, number, symbol)
-    // It's good to provide a basic hint here, but rely on API for full validation.
-    if (formData.userPassword.length < 6) { // Original client check was 6
-      setFormError('Password must be at least 6 characters. For security, aim for 8+ with mixed characters.');
+    if (formData.userPassword.length < 8) {
+      setFormError('Password must be at least 8 characters.');
       return;
     }
     if (formData.userPassword !== formData.userConfirmPassword) {
@@ -42,28 +73,16 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
       return;
     }
     
-    setFormError(''); // Clear client-side error before submitting
+    setFormError('');
     onSubmit({
       userName: formData.userName,
       userEmail: formData.userEmail,
       userPassword: formData.userPassword
-      // userConfirmPassword is not sent to API
     });
   };
 
-  // Determine the error message to display
-  let displayError = formError; // Prioritize client-side form errors
-  if (!displayError && apiError) {
-    // apiError could be an object { message: "...", name: "..." } or string
-    if (typeof apiError === 'string') {
-        displayError = apiError;
-    } else if (apiError.name === "VALIDATION_ERROR" && Array.isArray(apiError.message)) {
-        // Flatten API validation errors for display
-        displayError = apiError.message.map(err => `${err.field}: ${err.message}`).join('; ');
-    } else {
-        displayError = apiError.message || apiError.msg || 'Signup failed. Please try again.';
-    }
-  }
+  // FIX: Use the robust error message helper to ensure we always have a string.
+  const displayError = formError || getErrorMessage(apiError);
 
   return (
     <motion.form
@@ -75,7 +94,6 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
       aria-label="Signup Form"
       noValidate
     >
-      {/* Full Name Field */}
       <div className="space-y-1.5">
         <Label htmlFor="signup-name" className="text-sm font-medium text-muted-foreground">
           Full Name
@@ -95,12 +113,9 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
             className="pl-10 w-full bg-background border-input focus:border-primary focus:ring-primary"
             required
             autoComplete="name"
-            aria-describedby={displayError && formData.userName === '' ? "error-message" : undefined}
           />
         </div>
       </div>
-
-      {/* Email Field */}
       <div className="space-y-1.5">
         <Label htmlFor="signup-email" className="text-sm font-medium text-muted-foreground">
           Email Address
@@ -120,12 +135,9 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
             className="pl-10 w-full bg-background border-input focus:border-primary focus:ring-primary"
             required
             autoComplete="email"
-            aria-describedby={displayError && formData.userEmail === '' ? "error-message" : undefined}
           />
         </div>
       </div>
-
-      {/* Password Field */}
       <div className="space-y-1.5">
         <Label htmlFor="signup-password" className="text-sm font-medium text-muted-foreground">
           Password
@@ -139,20 +151,17 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
             id="signup-password"
             type="password"
             name="userPassword"
-            placeholder="•••••••• (min. 8, complex)"
+            placeholder="••••••••"
             value={formData.userPassword}
             onChange={handleChange}
             className="pl-10 w-full bg-background border-input focus:border-primary focus:ring-primary"
             required
-            minLength={6} // HTML5 validation, API is stricter
+            minLength={8}
             autoComplete="new-password"
-            aria-describedby={displayError && formData.userPassword === '' ? "error-message" : undefined}
           />
         </div>
-         <p className="text-xs text-muted-foreground/80 pt-1">Min. 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 symbol.</p>
+         <p className="text-xs text-muted-foreground/80 pt-1">Min. 8 characters, with uppercase, lowercase, number, & symbol.</p>
       </div>
-
-      {/* Confirm Password Field */}
       <div className="space-y-1.5">
         <Label htmlFor="signup-confirm-password" className="text-sm font-medium text-muted-foreground">
           Confirm Password
@@ -171,14 +180,12 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
             onChange={handleChange}
             className="pl-10 w-full bg-background border-input focus:border-primary focus:ring-primary"
             required
-            minLength={6}
+            minLength={8}
             autoComplete="new-password"
-            aria-describedby={displayError && formData.userConfirmPassword === '' ? "error-message" : undefined}
           />
         </div>
       </div>
       
-      {/* Error Message Display */}
       {displayError && (
         <motion.div
           id="error-message"
@@ -196,13 +203,12 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
         </motion.div>
       )}
 
-      {/* Submit Button */}
       <Button
         type="submit"
         disabled={isLoading}
         className="w-full bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background shadow-md hover:shadow-lg transition-all duration-150 ease-in-out py-3 text-base"
         aria-busy={isLoading}
-        aria-label={isLoading ? "Creating Account..." : "Create your account"}
+        aria-label="Create your account"
       >
         {isLoading ? (
           <>

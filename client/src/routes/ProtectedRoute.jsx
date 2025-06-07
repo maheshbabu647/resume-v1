@@ -11,30 +11,31 @@ const ProtectedRoute = ({ roles }) => {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-background text-foreground p-4">
         <LoadingSpinner size="large" label="Verifying access..." />
-        <p className="mt-4 text-muted-foreground">Verifying access...</p>
       </div>
     );
   }
 
   if (!isAuthenticated) {
-    // Redirect unauthenticated users to the login page
+    // If not authenticated, redirect to the login page.
     return <Navigate to='/login' state={{ from: location }} replace />;
   }
 
-  // If the route requires specific roles, check the user's role.
+  // If the user is authenticated but not verified, redirect them to the verification prompt page.
+  // We don't need to check the path anymore because the verification page is now public.
+  if (userData && !userData.isVerified) {
+    return <Navigate to='/verification-required' replace />;
+  }
+
+  // If the route requires specific roles, check for them.
   if (roles && roles.length > 0) {
     const userRole = userData?.userRole;
     if (!userRole || !roles.includes(userRole)) {
-      // User is authenticated but does not have the required role.
-      console.warn(
-        `Access Denied: User role "${userRole}" is not in required roles (${roles.join(', ')}) for ${location.pathname}`
-      );
-      // *** FIX: Redirect to a dedicated unauthorized page instead of dashboard ***
+      // If the user does not have the required role, redirect to the unauthorized page.
       return <Navigate to='/unauthorized' state={{ from: location }} replace />;
     }
   }
 
-  // If authenticated and (no roles are required OR user has the required role), render the child routes.
+  // If all checks pass, render the protected content.
   return <Outlet />;
 };
 

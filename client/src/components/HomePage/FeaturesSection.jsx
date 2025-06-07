@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
 const FeatureCard = React.lazy(() => import('@/components/Common/Card/FeatureCard'));
-import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner'; // For a more generic card skeleton
+import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner';
 
 const featuresData = [
   {
@@ -16,7 +16,9 @@ const featuresData = [
     title: "AI Cover Letter Generator",
     description: "Generate compelling, personalized cover letters that complement your resume and highlight your unique qualifications for each application.",
     icon: "cover",
-    status: "coming",
+    status: "available", // Changed to available
+    linkTo: "/cover-letter",
+    actionText: "Generate Letter"
   },
   {
     title: "AI Mock Interview",
@@ -68,7 +70,7 @@ const FeaturesSection = () => {
 
   return (
     <section
-      className="w-full py-20 md:py-28 lg:py-32 bg-gradient-to-b from-background via-muted/30 to-background text-foreground" // Subtle gradient
+      className="w-full py-20 md:py-28 lg:py-32 bg-gradient-to-b from-background via-muted/30 to-background text-foreground"
       aria-labelledby="features-heading"
     >
       <div className="container mx-auto max-w-7xl px-6 md:px-12 lg:px-8 text-center">
@@ -90,8 +92,8 @@ const FeaturesSection = () => {
         <motion.div
           variants={listVariants}
           initial="hidden"
-          whileInView="visible" // Animate when section comes into view
-          viewport={{ once: true, amount: 0.1 }} // Trigger animation when 10% of the grid is visible
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12"
         >
           <Suspense fallback={
@@ -105,7 +107,7 @@ const FeaturesSection = () => {
               <motion.div
                 key={feature.title}
                 variants={itemVariants}
-                className="h-full" // Ensure motion div allows card to be h-full
+                className="h-full"
               >
                 <FeatureCard
                   title={feature.title}

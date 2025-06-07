@@ -5,6 +5,7 @@ import { AuthContextProvider } from './context/AuthContext.jsx';
 import { TemplateContextProvider } from './context/TemplateContext.jsx';
 import { ResumeContextProvider } from './context/ResumeContext.jsx';
 import { ThemeProvider } from './context/ThemeContext.jsx'; // Import ThemeProvider
+import { CoverLetterContextProvider } from './context/CoverLetterContext.jsx';
 
 const App = () => {
   return (
@@ -12,7 +13,9 @@ const App = () => {
       <AuthContextProvider>
         <TemplateContextProvider>
           <ResumeContextProvider>
-            <AppRouter />
+            <CoverLetterContextProvider>
+              <AppRouter />
+            </CoverLetterContextProvider>
           </ResumeContextProvider>
         </TemplateContextProvider>
       </AuthContextProvider>

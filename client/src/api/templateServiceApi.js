@@ -1,84 +1,57 @@
-import apiSever from "./index.js";
+import apiServer from './index.js';
 
-const createTemplate = async (templateData) => {
-
-    try{
-
-        const response = await apiSever.post('/template/create', templateData)
-        return response.data
-
+export const createTemplate = async (formData) => {
+    try {
+        // When sending FormData, the browser automatically sets the correct
+        // 'multipart/form-data' header with the boundary. Do not set it manually.
+        const response = await apiServer.post('/admin/template/add', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || { message: 'Failed to create template.' };
     }
-    catch (error) {
+};
 
-        throw error.response?.data || { message : 'Failed to create Template' }
-
+export const updateTemplate = async (templateId, formData) => {
+    try {
+        // The same principle applies to updates with file uploads.
+        const response = await apiServer.put(`/admin/template/update/${templateId}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || { message: `Failed to update template ${templateId}.` };
     }
-}
+};
 
-const updateTemplate = async (templateData, templateId) => {
-
-    try{
-
-        const response = await apiSever.put(`/template/udpate/${templateId}`, templateData)
-        return response.data
-
+export const getAllTemplates = async () => {
+    try {
+        const response = await apiServer.get('/template/getAll');
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || { message: 'Failed to fetch templates.' };
     }
-    catch (error) {
+};
 
-        throw error.response?.data || { message : 'Failed to update Template' }
-
+export const getTemplateById = async (templateId) => {
+    try {
+        const response = await apiServer.get(`/template/${templateId}`);
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || { message: 'Failed to fetch template.' };
     }
-}
+};
 
-const getTemplateById = async (templateId) => {
-
-    try{
-
-        const response = await apiSever.get(`/template/${templateId}`)
-        return response.data
-
+export const deleteTemplate = async (templateId) => {
+    try {
+        const response = await apiServer.delete(`/admin/template/delete/${templateId}`);
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || { message: 'Failed to delete template.' };
     }
-    catch (error) {
-
-        throw error.response?.data || { message : 'Failed to get the Template' }
-
-    }
-}
-
-const getAllTemplates = async () => {
-
-    try{
-
-        const response = await apiSever.get('/template/getAll')
-        return response.data
-
-    }
-    catch (error) {
-
-        throw error.response?.data || { message : 'Failed to get the Templates' }
-
-    }
-}
-
-const deleteTemplate = async (templateId) => {
-
-    try{
-
-        const response = await apiSever.delete(`/template/${templateId}`)
-        return response.data
-
-    }
-    catch (error) {
-
-        throw error.response?.data || { message : 'Failed to delete the Template' }
-
-    }
-}
-
-
-export { createTemplate,
-         updateTemplate,
-         getTemplateById,
-         getAllTemplates,
-         deleteTemplate
-}
+};

@@ -2,18 +2,24 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import MainLayout from '../components/Layout/MainLayout.jsx';
-import AdminLayout from '@/components/Layout/AdminLayout.jsx'; // Assuming you have an AdminLayout
+import AdminLayout from '@/components/Layout/AdminLayout.jsx';
 
 // Page Imports
 import LoginPage from '../pages/LoginPage.jsx';
 import SignupPage from '../pages/SignupPage.jsx';
+import ForgotPasswordPage from '../pages/ForgotPasswordPage.jsx';
+import ResetPasswordPage from '../pages/ResetPasswordPage.jsx';
+import VerifyEmailPage from '../pages/VerifyEmailPage.jsx';
+import VerificationRequiredPage from '../pages/VerificationRequiredPage.jsx';
+import DashboardPage from '../pages/DashboardPage.jsx';
+import CoverLetterGeneratorPage from '../pages/CoverLetterGeneratorPage.jsx';
+import CoverLetterEditPage from '../pages/CoverLetterEditPage.jsx';
 import HomePage from '@/pages/HomePage.jsx';
-import ResumePage from '../pages/ResumePage.jsx';
 import TemplatesPage from '../pages/TemplatesPage.jsx';
 import ResumeEditorPage from '../pages/ResumeEditorPage.jsx';
 import ResumeViewerPage from '../pages/ResumeViewerPage.jsx';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
-import UnauthorizedPage from '../pages/UnauthorizedPage.jsx'; // New Import
+import UnauthorizedPage from '../pages/UnauthorizedPage.jsx';
 
 // Admin Page Imports
 import AdminDashboardPage from '@/pages/AdminDashboardPage.jsx';
@@ -30,35 +36,39 @@ import AdminAnalyticsPerformancePage from '@/pages/AdminAnalyticsPerformancePage
 // Protected Route Wrapper
 import ProtectedRoute from './ProtectedRoute.jsx';
 
-
 const AppRouter = () => {
   return (
     <Router>
       <Routes>
-        {/* Standalone Auth Pages */}
+        {/* Standalone Auth & Info Pages (No Main Navbar/Footer) */}
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage />} />
-
-        {/* Main Application Layout */}
+        <Route path='/forgot-password' element={<ForgotPasswordPage />} />
+        <Route path='/reset-password/:token' element={<ResetPasswordPage />} />
+        <Route path='/verification-required' element={<VerificationRequiredPage />} />
+        <Route path='/verify-email/:token' element={<VerifyEmailPage />} />
+        
+        {/* Main Application Layout (Includes Navbar/Footer) */}
         <Route path="/" element={<MainLayout />}>
-          {/* Public Routes */}
           <Route index element={<HomePage />} />
           <Route path='home' element={<HomePage />} />
           <Route path='unauthorized' element={<UnauthorizedPage />} />
           
-          {/* User Authenticated Routes */}
+          {/* Routes protected by authentication */}
           <Route element={<ProtectedRoute roles={['user', 'admin']} />}>
-            <Route path='dashboard' element={<ResumePage />} />
+            <Route path='dashboard' element={<DashboardPage />} />
             <Route path='templates' element={<TemplatesPage />} />
+            <Route path='cover-letter/generate' element={<CoverLetterGeneratorPage />} />
+            <Route path='cover-letter/edit/:coverLetterId' element={<CoverLetterEditPage />} />
             <Route path='resume/new/:newResumeTemplateId' element={<ResumeEditorPage />} />
             <Route path='resume/edit/:existingResumeId' element={<ResumeEditorPage />} />
             <Route path='resume/saved/view/:resumeId' element={<ResumeViewerPage />} />
             <Route path='resume/view/:templateId' element={<ResumeViewerPage />} />
           </Route>
 
-          {/* Admin Only Routes - Nested inside a protected admin path */}
+          {/* Admin Routes - nested under its own protected layout */}
           <Route path="admin" element={<ProtectedRoute roles={['admin']} />}>
-             <Route element={<AdminLayout />}> {/* Use a nested layout for admin sidebar */}
+             <Route element={<AdminLayout />}>
                 <Route index element={<AdminDashboardPage />} />
                 <Route path="dashboard" element={<AdminDashboardPage />} />
                 <Route path="templates" element={<AdminTemplatesPage />} />
@@ -74,7 +84,7 @@ const AppRouter = () => {
             </Route>
           </Route>
 
-          {/* Catch-all Not Found Route */}
+          {/* Catch-all Not Found Route must be last */}
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

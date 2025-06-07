@@ -8,22 +8,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from '@/components/ui/label';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner';
 import { ArrowLeft, Save, Loader2, AlertCircle, RefreshCw, CheckCircle2, FileJson, Code2, Eye, X } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
-// Lazy load the preview component
 const ResumePreview = React.lazy(() => import('@/components/Resume/ResumePreview'));
 
 const defaultTemplateCode = `
@@ -62,10 +53,10 @@ const defaultTemplateCode = `
 `;
 
 const defaultFieldDefinition = JSON.stringify([
-  { "name": "personalDetails.fullName", "label": "Full Name", "type": "text", "section": "Personal Info", "placeholder": "e.g. Jane Doe" },
-  { "name": "personalDetails.jobTitle", "label": "Job Title", "type": "text", "section": "Personal Info", "placeholder": "e.g. Senior Product Manager" },
-  { "name": "personalDetails.email", "label": "Email", "type": "email", "section": "Personal Info", "placeholder": "e.g. jane.doe@email.com" },
-  { "name": "personalDetails.phone", "label": "Phone", "type": "tel", "section": "Personal Info", "placeholder": "e.g. (555) 123-4567" },
+  { "name": "personalDetails.fullName", "label": "Full Name", "type": "text", "section": "Personal Info", "placeholder": "e.g., Jane Doe" },
+  { "name": "personalDetails.jobTitle", "label": "Job Title", "type": "text", "section": "Personal Info", "placeholder": "e.g., Senior Product Manager" },
+  { "name": "personalDetails.email", "label": "Email", "type": "email", "section": "Personal Info", "placeholder": "e.g., jane.doe@email.com" },
+  { "name": "personalDetails.phone", "label": "Phone", "type": "tel", "section": "Personal Info", "placeholder": "e.g., (555) 123-4567" },
   { "name": "personalDetails.linkedin", "label": "LinkedIn", "type": "url", "section": "Personal Info", "placeholder": "linkedin.com/in/janedoe" },
   { "name": "professionalProfile.summary", "label": "Summary", "type": "textarea", "section": "Summary", "placeholder": "Dynamic and results-oriented professional..." },
   { 
@@ -88,7 +79,6 @@ const generateMockData = (definitions) => {
     });
     return mockData;
 };
-
 
 const AdminTemplateEditPage = () => {
   const { templateId } = useParams();
@@ -188,35 +178,40 @@ const AdminTemplateEditPage = () => {
         setIsSaving(false);
         return;
     }
-    let parsedFieldDefs;
+
+    const formDataPayload = new FormData();
+    formDataPayload.append('templateName', templateData.templateName);
+    formDataPayload.append('templateCode', templateData.templateCode);
+    
     try {
-      parsedFieldDefs = JSON.parse(templateData.templateFieldDefinition);
+      const parsedFieldDefs = JSON.parse(templateData.templateFieldDefinition);
+      formDataPayload.append('templateFieldDefinition', JSON.stringify(parsedFieldDefs));
     } catch (jsonError) {
       setFieldDefError('Invalid JSON format for Field Definitions.');
       setIsSaving(false);
       return;
     }
-    const formDataPayload = new FormData();
-    formDataPayload.append('templateName', templateData.templateName);
-    formDataPayload.append('templateCode', templateData.templateCode);
-    formDataPayload.append('templateFieldDefinition', JSON.stringify(parsedFieldDefs));
+
     if (templateImageFile) {
+        // FIX: The field name must match the backend router: 'templateImageFile'
         formDataPayload.append('templateImageFile', templateImageFile);
     }
+    
+    if (mode === 'create' && !templateImageFile) {
+        setFeedbackDetails({ title: 'Validation Error', message: "A template preview image is required for new templates.", type: 'error' });
+        setShowFeedbackDialog(true);
+        setIsSaving(false);
+        return;
+    }
+
     try {
       let response;
       if (mode === 'create') {
-        if (!templateImageFile) {
-            setFeedbackDetails({ title: 'Validation Error', message: "A template preview image is required for new templates.", type: 'error' });
-            setShowFeedbackDialog(true);
-            setIsSaving(false);
-            return;
-        }
         response = await createTemplate(formDataPayload);
       } else {
         response = await updateTemplate(templateId, formDataPayload);
       }
-      setFeedbackDetails({ title: 'Success!', message: response.message || `Template successfully ${mode}d!`, type: 'success' });
+      setFeedbackDetails({ title: 'Success!', message: response.message || `Template successfully ${mode === 'create' ? 'created' : 'updated'}!`, type: 'success' });
       setShowFeedbackDialog(true);
     } catch (err) {
       const apiErrorMessage = err.message || (err.errors && Array.isArray(err.errors) ? err.errors.map(e => e.msg || e.message).join(', ') : `Failed to ${mode} template.`);
@@ -226,7 +221,7 @@ const AdminTemplateEditPage = () => {
       setIsSaving(false);
     }
   };
-
+  
   const handleDialogClose = (isOpen) => {
     if (!isOpen) {
         setShowFeedbackDialog(false);
@@ -235,7 +230,7 @@ const AdminTemplateEditPage = () => {
         }
     }
   };
-
+  
   if (isLoading) {
     return <div className="flex items-center justify-center min-h-[calc(100vh-150px)] bg-background"><LoadingSpinner size="large" label="Loading Template Editor..." /></div>;
   }
@@ -243,30 +238,36 @@ const AdminTemplateEditPage = () => {
   if (pageLoadError) {
     return (
       <div className="container mx-auto px-4 py-8 text-center">
-        <Alert variant="destructive" className="max-w-lg mx-auto"><AlertCircle className="h-5 w-5" /><AlertTitle>Error Loading Data</AlertTitle><AlertDescription>{pageLoadError}</AlertDescription></Alert>
-        <Button variant="outline" onClick={fetchAndSetTemplate} className="mt-6"><RefreshCw className="mr-2 h-4 w-4" /> Try Again</Button>
+        <Alert variant="destructive" className="max-w-lg mx-auto">
+          <AlertCircle className="h-5 w-5" />
+          <AlertTitle>Error Loading Data</AlertTitle>
+          <AlertDescription>{pageLoadError}</AlertDescription>
+        </Alert>
+        <Button variant="outline" onClick={fetchAndSetTemplate} className="mt-6">
+            <RefreshCw className="mr-2 h-4 w-4" /> Try Again
+        </Button>
       </div>
     );
   }
-  
+
   return (
     <>
-      <Helmet><title>{mode === 'create' ? 'Add Template' : `Edit: ${templateData.templateName || 'Template'}`}</title></Helmet>
+      <Helmet><title>{mode === 'create' ? 'Add New Template' : `Edit: ${templateData.templateName || 'Template'}`} | Admin</title></Helmet>
       <div className="flex flex-col min-h-screen bg-muted/20 dark:bg-background">
         <header className="sticky top-0 z-30 bg-card/95 backdrop-blur-md border-b border-border shadow-sm px-4 py-3">
             <div className="container mx-auto flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
+                 <div className="flex items-center gap-3">
                     <Button variant="outline" size="icon" onClick={() => navigate('/admin/templates')} aria-label="Back to templates"><ArrowLeft size={18} /></Button>
                     <h1 className="text-xl font-bold text-primary tracking-tight">{mode === 'create' ? 'Create New Template' : 'Edit Template'}</h1>
-                </div>
-                <div className="flex items-center gap-2">
+                 </div>
+                 <div className="flex items-center gap-2">
                     <Button variant="outline" onClick={() => setIsPreviewOpen(true)} className="hidden sm:inline-flex">
                         <Eye className="mr-2 h-4 w-4" /> Full Preview
                     </Button>
                     <Button onClick={handleSubmit} disabled={isSaving || !!fieldDefError} className="bg-primary text-primary-foreground hover:bg-primary/90">
                         {isSaving ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Saving...</> : <><Save size={16} className="mr-2" />{mode === 'create' ? 'Save' : 'Update'}</>}
                     </Button>
-                </div>
+                 </div>
             </div>
         </header>
 
@@ -275,7 +276,10 @@ const AdminTemplateEditPage = () => {
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <Card>
-                            <CardHeader><CardTitle>Configuration</CardTitle></CardHeader>
+                            <CardHeader>
+                                <CardTitle>Configuration</CardTitle>
+                                <CardDescription>Basic details and preview image.</CardDescription>
+                            </CardHeader>
                             <CardContent className="space-y-4">
                                 <div>
                                     <Label htmlFor="templateName">Template Name</Label>
@@ -289,13 +293,19 @@ const AdminTemplateEditPage = () => {
                             </CardContent>
                         </Card>
                         <Card>
-                            <CardHeader><CardTitle className="flex items-center"><Code2 size={16} className="mr-2"/>Template Code</CardTitle></CardHeader>
+                            <CardHeader>
+                                <CardTitle className="flex items-center"><Code2 size={16} className="mr-2"/>Template Code</CardTitle>
+                                <CardDescription>The HTML and Handlebars-style markup for the template.</CardDescription>
+                            </CardHeader>
                             <CardContent>
                                 <Textarea id="templateCode" name="templateCode" value={templateData.templateCode} onChange={handleChange} required rows={20} className="font-mono text-xs"/>
                             </CardContent>
                         </Card>
-                        <Card>
-                            <CardHeader><CardTitle className="flex items-center"><FileJson size={16} className="mr-2"/>Field Definitions (JSON)</CardTitle></CardHeader>
+                         <Card>
+                            <CardHeader>
+                                <CardTitle className="flex items-center"><FileJson size={16} className="mr-2"/>Field Definitions (JSON)</CardTitle>
+                                <CardDescription>The JSON array that defines the form fields for this template.</CardDescription>
+                            </CardHeader>
                             <CardContent>
                                 <Textarea id="templateFieldDefinition" name="templateFieldDefinition" value={templateData.templateFieldDefinition} onChange={handleChange} required rows={20} className={`font-mono text-xs ${fieldDefError ? 'border-destructive' : ''}`}/>
                                 {fieldDefError && <p className="text-xs text-destructive mt-1.5">{fieldDefError}</p>}
@@ -307,24 +317,6 @@ const AdminTemplateEditPage = () => {
         </main>
       </div>
       
-      <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
-        <DialogContent className="max-w-[95vw] w-full h-[95vh] p-2 sm:p-4 bg-muted/80 backdrop-blur-sm border-0 flex items-start justify-center overflow-y-auto">
-            <DialogHeader className="sr-only">
-              <DialogTitle>Template Live Preview</DialogTitle>
-              <DialogDescription>
-                This is a live preview of the template you are editing, populated with mock data.
-              </DialogDescription>
-            </DialogHeader>
-            <Suspense fallback={<div className="h-full w-full flex items-center justify-center"><LoadingSpinner size="xlarge" label="Loading Preview..."/></div>}>
-                <ResumePreview
-                    templateCode={templateData.templateCode}
-                    currentFormData={mockDataForPreview}
-                />
-            </Suspense>
-            {/* The default DialogContent from shadcn/ui already includes a close button, which we can rely on. */}
-        </DialogContent>
-      </Dialog>
-
       <Dialog open={showFeedbackDialog} onOpenChange={handleDialogClose}>
         <DialogContent className="sm:max-w-md bg-card">
           <DialogHeader><DialogTitle className={cn("flex items-center text-lg font-semibold", feedbackDetails.type === 'success' ? "text-green-600" : "text-destructive")}>
@@ -333,6 +325,27 @@ const AdminTemplateEditPage = () => {
           </DialogTitle></DialogHeader>
           <DialogDescription className="py-4 text-muted-foreground">{feedbackDetails.message}</DialogDescription>
           <DialogFooter className="sm:justify-end"><DialogClose asChild><Button type="button">Close</Button></DialogClose></DialogFooter>
+        </DialogContent>
+      </Dialog>
+      
+      <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
+        <DialogContent className="max-w-[95vw] w-full h-[95vh] p-2 sm:p-4 bg-muted/80 backdrop-blur-sm border-0 flex items-start justify-center overflow-y-auto">
+            <DialogHeader className="sr-only">
+              <DialogTitle>Template Live Preview</DialogTitle>
+              <DialogDescription>
+                This is a live preview of the template.
+              </DialogDescription>
+            </DialogHeader>
+            <Suspense fallback={<div className="h-full w-full flex items-center justify-center"><LoadingSpinner size="xlarge" label="Loading Preview..."/></div>}>
+                <ResumePreview
+                    templateCode={templateData.templateCode}
+                    currentFormData={mockDataForPreview}
+                />
+            </Suspense>
+            <DialogClose className="absolute right-4 top-4 rounded-full p-2 bg-card/50 hover:bg-card/80 text-foreground transition-opacity z-10">
+                <X className="h-5 w-5" />
+                <span className="sr-only">Close</span>
+            </DialogClose>
         </DialogContent>
       </Dialog>
     </>
