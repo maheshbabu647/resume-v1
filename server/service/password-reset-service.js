@@ -9,7 +9,7 @@ const escapeHTML = (str) =>
 
 const sendPasswordResetEmail = async (userEmail, userName, token) => {
     try {
-        const CLIENT_BASE_URL = process.env.CLIENT_BASE_URL || 'http://localhost:5173';
+        const CLIENT_BASE_URL = process.env.CLIENT_ORIGIN || 'http://localhost:5173';
         // This link should point to your FRONTEND route that will handle the reset
         const resetLink = `${CLIENT_BASE_URL}/reset-password/${token}`;
 

@@ -10,7 +10,7 @@ const escapeHTML = (str) =>
 
 const sendVerificationMail = async (userId, userName, userEmail) => {
   try {
-    const CLIENT_BASE_URL = process.env.CLIENT_BASE_URL || 'http://localhost:5173';
+    const CLIENT_BASE_URL = process.env.CLIENT_ORIGIN || 'http://localhost:5173';
     const token = await createToken({ userId });
     
     // This link should point to your FRONTEND route that will handle the verification
