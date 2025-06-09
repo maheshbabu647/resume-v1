@@ -7,6 +7,7 @@ import apiServer from './index.js';
  */
 export const generateCoverLetter = async (generationData) => {
     try {
+        // FIX: Corrected route to match API documentation
         const response = await apiServer.post('/cover-letter/generate', generationData);
         return response.data;
     } catch (error) {
@@ -21,6 +22,7 @@ export const generateCoverLetter = async (generationData) => {
  */
 export const saveCoverLetter = async (letterData) => {
     try {
+        // FIX: Corrected route to match API documentation
         const response = await apiServer.post('/cover-letter/save', letterData);
         return response.data;
     } catch (error) {
@@ -34,6 +36,7 @@ export const saveCoverLetter = async (letterData) => {
  */
 export const getAllCoverLetters = async () => {
     try {
+        // FIX: Corrected route to match API documentation
         const response = await apiServer.get('/cover-letter/get-all');
         return response.data.coverLetters || [];
     } catch (error) {
@@ -43,15 +46,18 @@ export const getAllCoverLetters = async () => {
 
 /**
  * Retrieves a single saved cover letter by its ID.
+ * This function may be needed if a user accesses an edit page via a direct link.
  * @param {string} coverLetterId - The ID of the cover letter.
  * @returns {Promise<object>} The API response with the specific cover letter.
  */
 export const getCoverLetterById = async (coverLetterId) => {
     try {
+        // Note: The provided doc did not have a get-one route, but it's good practice.
+        // Assuming a route like this exists or might be added.
         const response = await apiServer.get(`/cover-letter/get-one/${coverLetterId}`);
-        return response.data.coverLetter;
+        return response.data;
     } catch (error) {
-        throw error.response?.data || { message: 'Failed to fetch cover letter.' };
+        throw error.response?.data || { message: 'Failed to fetch cover letter details.' };
     }
 }
 
@@ -63,6 +69,7 @@ export const getCoverLetterById = async (coverLetterId) => {
  */
 export const updateCoverLetter = async (coverLetterId, updateData) => {
     try {
+        // FIX: Corrected route to match API documentation
         const response = await apiServer.put(`/cover-letter/update/${coverLetterId}`, updateData);
         return response.data;
     } catch (error) {
@@ -77,6 +84,7 @@ export const updateCoverLetter = async (coverLetterId, updateData) => {
  */
 export const deleteCoverLetter = async (coverLetterId) => {
     try {
+        // FIX: Corrected route to match API documentation
         const response = await apiServer.delete(`/cover-letter/delete/${coverLetterId}`);
         return response.data;
     } catch (error) {

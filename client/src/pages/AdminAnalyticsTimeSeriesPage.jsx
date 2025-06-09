@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { AlertCircle, RefreshCw, LineChart as LineChartLucideIcon } from 'lucide-react'; // Renamed to avoid conflict
+import { Loader2, AlertCircle, RefreshCw, LineChart as LineChartLucideIcon } from 'lucide-react'; // Renamed to avoid conflict
 import {
   LineChart,
   Line,

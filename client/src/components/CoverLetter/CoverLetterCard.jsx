@@ -10,17 +10,20 @@ const CoverLetterCard = ({ letter, onDelete }) => {
 
     if (!letter) return null;
 
-    const handleEdit = () => {
-        navigate(`/cover-letter/edit/${letter._id}`);
+    // Navigate to the preview page, passing the letter data in the state
+    const handleCardClick = () => {
+        navigate(`/cover-letter/preview/${letter._id}`, { state: { letter } });
+    };
+    
+    // Navigate to the edit page, also passing the letter data
+    const handleEdit = (e) => {
+        e.stopPropagation(); // Prevent the card's click event from firing
+        navigate(`/cover-letter/edit/${letter._id}`, { state: { letter } });
     };
 
     const handleDelete = (e) => {
-        e.stopPropagation(); // Prevent card click event
+        e.stopPropagation(); // Prevent card click
         onDelete(letter._id);
-    };
-    
-    const handleCardClick = () => {
-        handleEdit(); // Clicking anywhere on the card will navigate to edit
     };
 
     const formattedDate = new Date(letter.createdAt).toLocaleDateString('en-US', {

@@ -1,0 +1,68 @@
+2025-06-09T13:24:29.854Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-09T13:24:29.856Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-09T13:24:29.900Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-09T13:24:29.901Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-09T13:54:45.141Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-09T13:54:45.142Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-09T13:54:53.671Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-09T13:54:53.672Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-09T13:55:08.006Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-09T13:55:08.008Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-09T13:55:13.620Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-09T13:55:13.621Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-09T13:56:49.149Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-09T13:56:49.149Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-09T13:58:35.570Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-09T13:58:35.571Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-09T13:58:35.586Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-09T13:58:35.587Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)

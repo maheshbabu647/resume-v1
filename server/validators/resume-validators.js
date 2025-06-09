@@ -31,8 +31,8 @@ const resumeValidatorsMode = (mode) => {
   } else if (mode === 'generateSummary') {
     validators.push(
       body('resumeData')
-        .isObject()
-        .withMessage('Resume data must be a valid object.')
+        // .isObject()
+        // .withMessage('Resume data must be a valid object.')
         .custom(val => !val || Object.keys(val).length <= 1000)
         .withMessage("Resume data is too large.")
     );

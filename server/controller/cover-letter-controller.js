@@ -95,8 +95,7 @@ const updateCoverLetter = async (req, res, next) => {
         return res.status(403).json({ success: false, message: 'Unauthorized.' });
     }
 
-    letter.coverLetterContent = coverLetterContent;
-    const updatedLetter = await letter.save();
+    const updatedLetter = await coverLetterModel.findByIdAndUpdate(coverLetterId, {coverLetterContent}, {new : true});
     
     logger.info(`[CoverLetter][Update][Success] User: ${userId} updated cover letter: ${coverLetterId}`);
     res.status(200).json({ success: true, message: 'Cover letter updated successfully.', coverLetter: updatedLetter });

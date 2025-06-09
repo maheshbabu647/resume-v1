@@ -686,3 +686,187 @@
     at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
     at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T07:14:58.996Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T07:14:58.996Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T07:14:59.013Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T07:14:59.014Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T07:15:30.231Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-07T07:15:30.232Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T07:42:52.365Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-07T07:42:52.365Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T07:43:01.532Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-07T07:43:01.532Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T07:44:57.768Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-07T07:44:57.768Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T07:45:05.743Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-07T07:45:05.744Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T07:46:10.612Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T07:46:10.612Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T07:46:10.615Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T07:46:10.615Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T09:04:37.044Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:04:37.045Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:05:31.330Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:05:31.331Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:16:17.325Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T09:16:17.325Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T09:16:17.334Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T09:16:17.335Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T09:16:36.446Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:16:36.447Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:17:06.595Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:17:06.595Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:18:16.827Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:18:16.828Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:28:18.888Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T09:28:18.889Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T09:28:18.897Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T09:28:18.897Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T09:40:05.197Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:40:05.201Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:42:57.445Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:42:57.448Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:45:53.869Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:45:53.870Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:50:03.823Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:50:03.824Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:52:52.048Z [ERROR]: [Resume][Summary][Error] User: 681994cb0a11f441dd676b2a - generateAISummary is not defined
+2025-06-07T09:52:52.050Z [ERROR]: Status: 500, Name: Error, Message: generateAISummary is not defined, URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:52:52.051Z [ERROR]: Stack: Error: generateAISummary is not defined
+    at generateResumeSummary (file:///D:/careerpro-rr/server/controller/resume-controller.js:295:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)

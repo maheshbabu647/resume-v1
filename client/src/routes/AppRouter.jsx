@@ -14,6 +14,7 @@ import VerificationRequiredPage from '../pages/VerificationRequiredPage.jsx';
 import DashboardPage from '../pages/DashboardPage.jsx';
 import CoverLetterGeneratorPage from '../pages/CoverLetterGeneratorPage.jsx';
 import CoverLetterEditPage from '../pages/CoverLetterEditPage.jsx';
+import CoverLetterPreviewPage from '../pages/CoverLetterPreviewPage.jsx';
 import HomePage from '@/pages/HomePage.jsx';
 import TemplatesPage from '../pages/TemplatesPage.jsx';
 import ResumeEditorPage from '../pages/ResumeEditorPage.jsx';
@@ -60,6 +61,7 @@ const AppRouter = () => {
             <Route path='templates' element={<TemplatesPage />} />
             <Route path='cover-letter/generate' element={<CoverLetterGeneratorPage />} />
             <Route path='cover-letter/edit/:coverLetterId' element={<CoverLetterEditPage />} />
+            <Route path='cover-letter/preview/:coverLetterId' element={<CoverLetterPreviewPage />} />
             <Route path='resume/new/:newResumeTemplateId' element={<ResumeEditorPage />} />
             <Route path='resume/edit/:existingResumeId' element={<ResumeEditorPage />} />
             <Route path='resume/saved/view/:resumeId' element={<ResumeViewerPage />} />

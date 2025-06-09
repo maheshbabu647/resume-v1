@@ -94,6 +94,7 @@ export const deleteResume = async (resumeId) => {
 export const generateAISummary = async (resumeData) => {
     try {
         // The API documentation expects the resumeData object directly as the payload
+        console.log(resumeData)
         const response = await apiServer.post('/resume/generate-summary', resumeData);
         if (response.data && response.data.success && typeof response.data.summary === 'string') {
             return response.data.summary;

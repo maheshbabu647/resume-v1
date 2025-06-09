@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Loader2, Save, ArrowLeft, AlertCircle, RefreshCw } from 'lucide-react';
@@ -14,12 +13,19 @@ import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner';
 const CoverLetterEditPage = () => {
     const { coverLetterId } = useParams();
     const navigate = useNavigate();
-    const [letterData, setLetterData] = useState(null);
-    const [content, setContent] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
+    const location = useLocation();
+
+    // FIX: Prioritize data passed via state from the preview page.
+    // This instantly loads the data without an extra API call.
+    const [letterData, setLetterData] = useState(location.state?.letter || null);
+    const [content, setContent] = useState(location.state?.letter?.coverLetterContent || '');
+    
+    // Only show the main loading spinner if we have to fetch the data (e.g., page refresh).
+    const [isLoading, setIsLoading] = useState(!location.state?.letter);
     const [isSaving, setIsSaving] = useState(false);
     const [error, setError] = useState(null);
 
+    // This function now serves as a fallback if the page is accessed directly via URL.
     const fetchLetter = useCallback(async () => {
         setIsLoading(true);
         setError(null);
@@ -38,16 +44,18 @@ const CoverLetterEditPage = () => {
         }
     }, [coverLetterId]);
 
+    // If the component loads without letter data from the state, it will call the API.
     useEffect(() => {
-        fetchLetter();
-    }, [fetchLetter]);
+    if (!letterData) {
+            fetchLetter();
+        }
+    }, [letterData, fetchLetter]);
 
     const handleSave = async () => {
         setIsSaving(true);
         setError(null);
         try {
             await updateCoverLetter(coverLetterId, { coverLetterContent: content });
-            navigate('/dashboard'); // Navigate back to the dashboard after saving
         } catch (err) {
             setError(err.message);
         } finally {
@@ -83,7 +91,7 @@ const CoverLetterEditPage = () => {
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center gap-4 mb-8"
           >
-            <Button variant="outline" size="icon" onClick={() => navigate('/dashboard')} aria-label="Back to Dashboard">
+            <Button variant="outline" size="icon" onClick={() => navigate(`/cover-letter/preview/${coverLetterId}`, { state: { letter: letterData }})} aria-label="Back to Preview">
                 <ArrowLeft />
             </Button>
             <div>
@@ -94,7 +102,7 @@ const CoverLetterEditPage = () => {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <Card>
                 <CardContent className="p-6">
-                    <Label htmlFor="coverLetterContent" className="sr-only">Cover Letter Content</Label>
+                    <label htmlFor="coverLetterContent" className="sr-only">Cover Letter Content</label>
                     <Textarea 
                         id="coverLetterContent"
                         value={content} 

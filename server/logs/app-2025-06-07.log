@@ -3073,3 +3073,1323 @@
     at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
 2025-06-06T22:37:30.348Z [INFO]: [Server][Shutdown] Received SIGINT. Closing app gracefully...
+2025-06-07T07:14:40.788Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T07:14:40.791Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T07:14:58.994Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T07:14:58.995Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-07T07:14:58.996Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T07:14:58.996Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T07:14:59.012Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T07:14:59.013Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-07T07:14:59.013Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T07:14:59.014Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T07:15:30.215Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-07T07:15:30.231Z [WARN]: [SignIn][Fail] Email not found: mguttula@student.gitam.edu from IP: ::1
+2025-06-07T07:15:30.231Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-07T07:15:30.232Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T07:16:10.521Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-06-07T07:16:10.585Z [INFO]: [JWT][Create][Success] Token issued for userId: 6843e73a37c8812d3bff36e9
+2025-06-07T07:16:10.586Z [INFO]: [JWT][Create][Success] Token issued for userId: 6843e73a37c8812d3bff36e9
+2025-06-07T07:16:10.589Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-06-08T07:16:10.589Z
+2025-06-07T07:16:10.596Z [INFO]: [SignUp][Success] New user: mguttula@student.gitam.edu (ID: 6843e73a37c8812d3bff36e9)
+2025-06-07T07:16:10.623Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T07:16:10.625Z [INFO]: [JWT][Verify][Success] Token verified for userId: 6843e73a37c8812d3bff36e9
+2025-06-07T07:16:10.625Z [INFO]: [Auth] Auth success for user 6843e73a37c8812d3bff36e9, role user, from IP: ::1
+2025-06-07T07:16:10.629Z [INFO]: [AuthStatus][Checked] User: 6843e73a37c8812d3bff36e9
+2025-06-07T07:16:13.817Z [INFO]: [Email][Verification][Success] Sent to: mguttula@student.gitam.edu, userId: 6843e73a37c8812d3bff36e9
+2025-06-07T07:42:44.511Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-06-07T07:42:44.512Z [INFO]: [JWT][Verify][Success] Token verified for userId: 6843e73a37c8812d3bff36e9
+2025-06-07T07:42:44.513Z [INFO]: [Auth] Auth success for user 6843e73a37c8812d3bff36e9, role user, from IP: ::1
+2025-06-07T07:42:44.513Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-06-07T07:42:44.515Z [INFO]: [SignOut][Success] User: 6843e73a37c8812d3bff36e9 from IP: ::1
+2025-06-07T07:42:52.362Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-07T07:42:52.365Z [WARN]: [SignIn][Fail] Email not found: gmbtnk10aug@gmail.com from IP: ::1
+2025-06-07T07:42:52.365Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-07T07:42:52.365Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T07:43:01.528Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-07T07:43:01.531Z [WARN]: [SignIn][Fail] Email not found: gmbtnk10aug@gmail.com from IP: ::1
+2025-06-07T07:43:01.532Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-07T07:43:01.532Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T07:43:10.843Z [INFO]: [Startup] Incoming request: POST /api/auth/forgot-password
+2025-06-07T07:43:10.845Z [WARN]: [ForgotPassword][NotFound] Attempt for non-existent email: gmbtnk10aug@gmail.com
+2025-06-07T07:44:57.765Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-07T07:44:57.768Z [WARN]: [SignIn][Fail] Email not found: gmbtnk10aug@gmail.com from IP: ::1
+2025-06-07T07:44:57.768Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-07T07:44:57.768Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T07:45:05.740Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-07T07:45:05.743Z [WARN]: [SignIn][Fail] Email not found: gmbtnk10aug@gmail.com from IP: ::1
+2025-06-07T07:45:05.743Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-06-07T07:45:05.744Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///D:/careerpro-rr/server/controller/auth-controller.js:68:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T07:45:15.284Z [INFO]: [Startup] Incoming request: POST /api/auth/forgot-password
+2025-06-07T07:45:15.289Z [WARN]: [ForgotPassword][NotFound] Attempt for non-existent email: gmbtnk10aug@gmail.com
+2025-06-07T07:45:43.688Z [INFO]: [Startup] Incoming request: POST /api/auth/forgot-password
+2025-06-07T07:45:47.173Z [INFO]: [Email][PasswordReset][Success] Sent to: itisgetlost@gmail.com
+2025-06-07T07:46:10.612Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T07:46:10.612Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-07T07:46:10.612Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T07:46:10.612Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T07:46:10.615Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T07:46:10.615Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-07T07:46:10.615Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T07:46:10.615Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T07:46:20.705Z [INFO]: [Startup] Incoming request: PUT /api/auth/reset-password/30d8a82efde61aed9790ef77d1b8980fad59938ad26962c7d80a3300ad5618a6
+2025-06-07T07:46:20.765Z [INFO]: [JWT][Create][Success] Token issued for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:46:20.766Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-06-08T07:46:20.766Z
+2025-06-07T07:46:20.766Z [INFO]: [ResetPassword][Success] User password reset for: itisgetlost@gmail.com
+2025-06-07T07:46:32.966Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-07T07:46:33.021Z [INFO]: [JWT][Create][Success] Token issued for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:46:33.022Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-06-07T07:46:33.022Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-06-08T07:46:33.022Z
+2025-06-07T07:46:33.023Z [INFO]: [SignIn][Success] User: itisgetlost@gmail.com (ID: 681994cb0a11f441dd676b2a) from IP: ::1
+2025-06-07T07:46:33.027Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T07:46:33.028Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:46:33.029Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:46:33.030Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T07:46:59.474Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-06-07T07:46:59.475Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:46:59.475Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:46:59.475Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-06-07T07:46:59.477Z [INFO]: [SignOut][Success] User: 681994cb0a11f441dd676b2a from IP: ::1
+2025-06-07T07:47:13.174Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-06-07T07:47:13.230Z [INFO]: [JWT][Create][Success] Token issued for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:13.230Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-06-07T07:47:13.231Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-06-08T07:47:13.231Z
+2025-06-07T07:47:13.232Z [INFO]: [SignIn][Success] User: itisgetlost@gmail.com (ID: 681994cb0a11f441dd676b2a) from IP: ::1
+2025-06-07T07:47:13.235Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T07:47:13.237Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:13.238Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:47:13.239Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:29.688Z [INFO]: [Startup] Incoming request: POST /api/auth/resend-verification
+2025-06-07T07:47:29.692Z [INFO]: [JWT][Create][Success] Token issued for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:29.692Z [INFO]: [ResendVerification][Success] New verification link sent to: itisgetlost@gmail.com
+2025-06-07T07:47:32.040Z [INFO]: [Email][Verification][Success] Sent to: itisgetlost@gmail.com, userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:38.680Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T07:47:38.681Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:38.681Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:47:38.683Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:38.685Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T07:47:38.686Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:38.686Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:47:38.690Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:38.744Z [INFO]: [Startup] Incoming request: POST /api/auth/verify-email/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODE5OTRjYjBhMTFmNDQxZGQ2NzZiMmEiLCJpYXQiOjE3NDkyODI0NDksImV4cCI6MTc0OTM2ODg0OSwiYXVkIjoiNjgxOTk0Y2IwYTExZjQ0MWRkNjc2YjJhIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MTczIn0.MB0b5U0SqT0EXr4wMVsXyQJoeI6zAWwcgDoC_QdysTc
+2025-06-07T07:47:38.746Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:38.751Z [INFO]: [MailVerification][Success] User verified: 681994cb0a11f441dd676b2a, IP: ::1
+2025-06-07T07:47:38.755Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T07:47:38.756Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:38.757Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:47:38.759Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:40.333Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:47:40.335Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:40.335Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:47:40.341Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T07:47:40.344Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:47:40.345Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:40.345Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:47:40.349Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T07:47:42.676Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T07:47:42.677Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:47:42.678Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:47:42.680Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 0 cover letters.
+2025-06-07T07:48:11.435Z [INFO]: [Startup] Incoming request: POST /api/cover-letter/generate
+2025-06-07T07:48:11.436Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:48:11.436Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:48:11.440Z [INFO]: [CoverLetter][Generate][Success] User: 681994cb0a11f441dd676b2a generated a cover letter text.
+2025-06-07T07:48:14.536Z [INFO]: [Startup] Incoming request: POST /api/cover-letter/save
+2025-06-07T07:48:14.537Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:48:14.537Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:48:14.544Z [INFO]: [CoverLetter][Save][Success] User: 681994cb0a11f441dd676b2a saved cover letter: 6843eebe37c8812d3bff374b
+2025-06-07T07:48:14.584Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:48:14.585Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:48:14.586Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:48:14.588Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T07:48:14.590Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:48:14.591Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:48:14.592Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:48:14.595Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T07:48:17.616Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T07:48:17.618Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:48:17.619Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:48:17.622Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T07:48:26.942Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-one/6843eebe37c8812d3bff374b
+2025-06-07T07:48:26.949Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-one/6843eebe37c8812d3bff374b
+2025-06-07T07:48:29.674Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:48:29.676Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:48:29.676Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:48:29.680Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T07:48:29.683Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:48:29.684Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:48:29.684Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:48:29.688Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T07:48:30.703Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T07:48:30.704Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:48:30.704Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:48:30.706Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T07:48:32.192Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-one/6843eebe37c8812d3bff374b
+2025-06-07T07:48:32.196Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-one/6843eebe37c8812d3bff374b
+2025-06-07T07:49:15.238Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:49:15.240Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:49:15.240Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:49:15.245Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T07:49:15.248Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:49:15.249Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:49:15.250Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:49:15.256Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T07:49:20.189Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T07:49:20.190Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:49:20.190Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:49:20.192Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T07:49:21.795Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:49:21.796Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:49:21.796Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:49:21.799Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T07:49:23.135Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T07:49:23.136Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:49:23.136Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:49:23.138Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T07:49:27.678Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:49:27.679Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:49:27.679Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:49:27.685Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T07:49:27.688Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:49:27.689Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:49:27.689Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:49:27.692Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T07:49:29.719Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T07:49:29.721Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:49:29.721Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:49:29.723Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T07:49:32.184Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-one/6843eebe37c8812d3bff374b
+2025-06-07T07:49:32.188Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-one/6843eebe37c8812d3bff374b
+2025-06-07T07:50:06.175Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:50:06.177Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:50:06.178Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:50:06.185Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T07:50:06.189Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:50:06.190Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:50:06.190Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:50:06.194Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T07:50:10.263Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T07:50:10.265Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:50:10.265Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:50:10.267Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T07:51:24.386Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-one/6843eebe37c8812d3bff374b
+2025-06-07T07:51:24.391Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-one/6843eebe37c8812d3bff374b
+2025-06-07T07:52:37.188Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:52:37.190Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:52:37.190Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:52:37.197Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T07:52:37.201Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T07:52:37.202Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T07:52:37.203Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T07:52:37.206Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T09:02:11.730Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:02:11.734Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:02:11.734Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:02:11.739Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:02:11.746Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:02:11.749Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:02:11.750Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:02:11.754Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:02:11.929Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T09:02:11.931Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:02:11.932Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:02:11.939Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T09:02:11.945Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T09:02:11.948Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:02:11.949Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:02:11.959Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T09:02:27.611Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T09:02:27.615Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:02:27.615Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:02:27.621Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T09:02:43.810Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/6843eebe37c8812d3bff374b
+2025-06-07T09:02:43.814Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:02:43.815Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:02:43.831Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 6843eebe37c8812d3bff374b
+2025-06-07T09:02:43.898Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T09:02:43.901Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:02:43.901Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:02:43.912Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T09:02:43.918Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T09:02:43.920Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:02:43.921Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:02:43.929Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T09:02:45.916Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T09:02:45.920Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:02:45.920Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:02:45.927Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T09:02:55.864Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T09:02:55.867Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:02:55.868Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:02:55.886Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T09:02:56.781Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T09:02:56.789Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:02:56.790Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:02:56.801Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T09:03:30.526Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T09:03:30.530Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:03:30.531Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:03:30.538Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T09:03:32.715Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T09:03:32.720Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:03:32.721Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:03:32.726Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T09:03:34.180Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T09:03:34.183Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:03:34.184Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:03:34.191Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T09:03:36.089Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:03:36.122Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:03:36.123Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:03:36.161Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:03:36.180Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:03:36.185Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:03:36.186Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:03:36.223Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:04:37.035Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-07T09:04:37.040Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:04:37.040Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:04:37.043Z [WARN]: [Validation][Resume][Fail] IP: ::1, Errors: [{"type":"field","msg":"Resume data must be a valid object.","path":"resumeData","location":"body"}]
+2025-06-07T09:04:37.044Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:04:37.045Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:05:07.868Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:05:07.871Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:05:07.871Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:05:07.877Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:05:07.884Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:05:07.886Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:05:07.887Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:05:07.891Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:05:08.060Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:05:08.063Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:05:08.064Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:05:08.081Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:05:08.118Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:05:08.122Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:05:08.128Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:05:08.143Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:05:21.843Z [INFO]: [Startup] Incoming request: POST /api/resume/add
+2025-06-07T09:05:21.846Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:05:21.846Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:05:21.935Z [INFO]: [Resume][Create] User: 681994cb0a11f441dd676b2a created resume: 684400d137c8812d3bff380a
+2025-06-07T09:05:22.121Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:05:22.124Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:05:22.125Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:05:22.136Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:05:31.324Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-07T09:05:31.328Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:05:31.328Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:05:31.329Z [WARN]: [Validation][Resume][Fail] IP: ::1, Errors: [{"type":"field","msg":"Resume data must be a valid object.","path":"resumeData","location":"body"}]
+2025-06-07T09:05:31.330Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:05:31.331Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:15:55.780Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:15:55.787Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:15:55.791Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:15:55.797Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:15:55.804Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:15:55.809Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:15:55.812Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:15:55.818Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:15:55.858Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:15:55.860Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:15:55.861Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:15:55.870Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:15:55.877Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:15:55.880Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:15:55.880Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:15:55.892Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:16:00.858Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:16:00.861Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:16:00.861Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:16:00.865Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:16:00.874Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:16:00.878Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:16:00.880Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:16:00.886Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:16:04.130Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:16:04.133Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:16:04.133Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:16:04.137Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:16:04.143Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:16:04.146Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:16:04.146Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:16:04.149Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:16:17.323Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:16:17.324Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-07T09:16:17.325Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T09:16:17.325Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T09:16:17.333Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:16:17.334Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-07T09:16:17.334Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T09:16:17.335Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T09:16:36.440Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-07T09:16:36.444Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:16:36.444Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:16:36.445Z [WARN]: [Validation][Resume][Fail] IP: ::1, Errors: [{"type":"field","msg":"Resume data must be a valid object.","path":"resumeData","location":"body"}]
+2025-06-07T09:16:36.446Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:16:36.447Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:17:04.177Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:17:04.179Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:17:04.180Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:17:04.192Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:17:06.587Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-07T09:17:06.591Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:17:06.593Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:17:06.594Z [WARN]: [Validation][Resume][Fail] IP: ::1, Errors: [{"type":"field","msg":"Resume data must be a valid object.","path":"resumeData","location":"body"}]
+2025-06-07T09:17:06.595Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:17:06.595Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:18:13.757Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:18:13.760Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:13.761Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:18:13.764Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:13.771Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:18:13.773Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:13.774Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:18:13.778Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:13.850Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:18:13.852Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:13.853Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:18:13.861Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:13.866Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:18:13.868Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:13.869Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:18:13.877Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:16.822Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-07T09:18:16.825Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:16.826Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:18:16.827Z [WARN]: [Validation][Resume][Fail] IP: ::1, Errors: [{"type":"field","msg":"Resume data must be a valid object.","path":"resumeData","location":"body"}]
+2025-06-07T09:18:16.827Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:18:16.828Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:18:59.739Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:18:59.742Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:59.742Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:18:59.746Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:59.752Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:18:59.756Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:59.756Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:18:59.760Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:59.808Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:18:59.810Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:59.811Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:18:59.820Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:59.825Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:18:59.828Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:18:59.828Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:18:59.839Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:22:17.026Z [INFO]: [Startup] Incoming request: POST /api/resume/download
+2025-06-07T09:22:17.029Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:22:17.029Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:22:17.031Z [INFO]: [Resume][Download][Request] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:22:33.411Z [INFO]: [Resume][Download][Success] Resume PDF generated for user: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:18.887Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:28:18.888Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-07T09:28:18.888Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T09:28:18.889Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T09:28:18.896Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:28:18.896Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-06-07T09:28:18.897Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-06-07T09:28:18.897Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///D:/careerpro-rr/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (D:\careerpro-rr\server\node_modules\router\lib\route.js:117:3)
+    at handle (D:\careerpro-rr\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at D:\careerpro-rr\server\node_modules\router\index.js:295:15
+    at processParams (D:\careerpro-rr\server\node_modules\router\index.js:582:12)
+    at next (D:\careerpro-rr\server\node_modules\router\index.js:291:5)
+    at Function.handle (D:\careerpro-rr\server\node_modules\router\index.js:186:3)
+2025-06-07T09:28:18.992Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:28:18.995Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:18.995Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:28:18.999Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:19.005Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:28:19.008Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:19.009Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:28:19.012Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:19.101Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:28:19.102Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:19.103Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:28:19.105Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:19.108Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:28:19.110Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:19.110Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:28:19.113Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:19.304Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:28:19.306Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:19.307Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:28:19.315Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:19.319Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:28:19.322Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:19.322Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:28:19.330Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:42.912Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:28:42.916Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:42.916Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:28:42.929Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:42.935Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:28:42.939Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:42.940Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:28:42.953Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:58.471Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:28:58.475Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:58.475Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:28:58.487Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:58.499Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:28:58.503Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:28:58.505Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:28:58.518Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:07.299Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:29:07.302Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:07.303Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:29:07.315Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:07.323Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:29:07.326Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:07.327Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:29:07.340Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:16.556Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:29:16.560Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:16.561Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:29:16.571Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:23.068Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:29:23.071Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:23.072Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:29:23.089Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:23.097Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:29:23.102Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:23.102Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:29:23.113Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:30.605Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:29:30.611Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:30.612Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:29:30.626Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:30.633Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:29:30.644Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:30.646Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:29:30.664Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:44.925Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:29:44.928Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:44.929Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:29:44.942Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:44.952Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:29:44.955Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:44.955Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:29:44.967Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:48.342Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:29:48.347Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:48.347Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:29:48.361Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:48.367Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684400d137c8812d3bff380a
+2025-06-07T09:29:48.371Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:48.372Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:29:48.383Z [INFO]: [Resume][GetById][Success] Resume: 684400d137c8812d3bff380a by user: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:51.570Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:29:51.574Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:51.574Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:29:51.599Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:29:51.681Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:29:51.687Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:29:51.693Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:29:51.722Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:30:03.945Z [INFO]: [Startup] Incoming request: GET /api/template/683981a843e6c5bbc156bd4a
+2025-06-07T09:30:03.949Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:30:03.951Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:30:03.970Z [INFO]: [Template][GetById][Success] ID: 683981a843e6c5bbc156bd4a
+2025-06-07T09:30:03.983Z [INFO]: [Startup] Incoming request: GET /api/template/683981a843e6c5bbc156bd4a
+2025-06-07T09:30:03.989Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:30:03.990Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:30:04.000Z [INFO]: [Template][GetById][Success] ID: 683981a843e6c5bbc156bd4a
+2025-06-07T09:30:22.094Z [INFO]: [Startup] Incoming request: GET /api/template/683981a843e6c5bbc156bd4a
+2025-06-07T09:30:22.101Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:30:22.102Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:30:22.116Z [INFO]: [Template][GetById][Success] ID: 683981a843e6c5bbc156bd4a
+2025-06-07T09:30:22.125Z [INFO]: [Startup] Incoming request: GET /api/template/683981a843e6c5bbc156bd4a
+2025-06-07T09:30:22.129Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:30:22.130Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:30:22.138Z [INFO]: [Template][GetById][Success] ID: 683981a843e6c5bbc156bd4a
+2025-06-07T09:39:45.073Z [INFO]: [Startup] Incoming request: GET /api/template/683981a843e6c5bbc156bd4a
+2025-06-07T09:39:45.083Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:39:45.085Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:39:45.096Z [INFO]: [Template][GetById][Success] ID: 683981a843e6c5bbc156bd4a
+2025-06-07T09:39:45.104Z [INFO]: [Startup] Incoming request: GET /api/template/683981a843e6c5bbc156bd4a
+2025-06-07T09:39:45.108Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:39:45.109Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:39:45.118Z [INFO]: [Template][GetById][Success] ID: 683981a843e6c5bbc156bd4a
+2025-06-07T09:40:05.177Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-07T09:40:05.191Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:40:05.193Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:40:05.195Z [WARN]: [Validation][Resume][Fail] IP: ::1, Errors: [{"type":"field","msg":"Resume data must be a valid object.","path":"resumeData","location":"body"}]
+2025-06-07T09:40:05.197Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:40:05.201Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:40:09.556Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:40:09.561Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:40:09.568Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:40:09.581Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:40:09.590Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:40:09.593Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:40:09.593Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:40:09.596Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:40:09.752Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:40:09.754Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:40:09.755Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:40:09.767Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:40:09.779Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:40:09.783Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:40:09.784Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:40:09.802Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:42:39.258Z [INFO]: [Startup] Incoming request: GET /api/template/683981a843e6c5bbc156bd4a
+2025-06-07T09:42:39.261Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:42:39.262Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:42:39.275Z [INFO]: [Template][GetById][Success] ID: 683981a843e6c5bbc156bd4a
+2025-06-07T09:42:39.282Z [INFO]: [Startup] Incoming request: GET /api/template/683981a843e6c5bbc156bd4a
+2025-06-07T09:42:39.284Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:42:39.285Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:42:39.291Z [INFO]: [Template][GetById][Success] ID: 683981a843e6c5bbc156bd4a
+2025-06-07T09:42:57.428Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-07T09:42:57.434Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:42:57.436Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:42:57.442Z [WARN]: [Validation][Resume][Fail] IP: ::1, Errors: [{"type":"field","msg":"Resume data must be a valid object.","path":"resumeData","location":"body"}]
+2025-06-07T09:42:57.445Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:42:57.448Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:45:27.753Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:45:27.755Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:45:27.756Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:45:27.761Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:45:27.767Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:45:27.769Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:45:27.770Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:45:27.773Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:45:27.867Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:45:27.869Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:45:27.870Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:45:27.889Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:45:27.904Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:45:27.906Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:45:27.907Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:45:27.928Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:45:40.346Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:45:40.349Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:45:40.349Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:45:40.354Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:45:40.359Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:45:40.362Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:45:40.362Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:45:40.366Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:45:40.603Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:45:40.605Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:45:40.606Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:45:40.623Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:45:40.641Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:45:40.646Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:45:40.646Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:45:40.664Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:45:53.836Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-07T09:45:53.841Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:45:53.861Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:45:53.863Z [WARN]: [Validation][Resume][Fail] IP: ::1, Errors: [{"type":"field","msg":"Resume data must be a valid object.","path":"resumeData","location":"body"}]
+2025-06-07T09:45:53.869Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:45:53.870Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:48:45.759Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:48:45.762Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:48:45.762Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:48:45.766Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:48:45.771Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:48:45.773Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:48:45.773Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:48:45.776Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:48:45.853Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:48:45.855Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:48:45.856Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:48:45.869Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:48:45.880Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:48:45.882Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:48:45.882Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:48:45.898Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:49:10.171Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:49:10.176Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:49:10.177Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:49:10.184Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:49:10.192Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:49:10.194Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:49:10.195Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:49:10.200Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:49:10.427Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:49:10.429Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:49:10.430Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:49:10.443Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:49:10.454Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:49:10.456Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:49:10.457Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:49:10.472Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:50:03.816Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-07T09:50:03.820Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:50:03.820Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:50:03.822Z [WARN]: [Validation][Resume][Fail] IP: ::1, Errors: [{"type":"field","msg":"Resume data must be a valid object.","path":"resumeData","location":"body"}]
+2025-06-07T09:50:03.823Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:50:03.824Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at resumeValidation (file:///D:/careerpro-rr/server/validators/resume-validators.js:78:17)
+    at Layer.handleRequest (D:\careerpro-rr\server\node_modules\router\lib\layer.js:152:17)
+    at next (D:\careerpro-rr\server\node_modules\router\lib\route.js:157:13)
+    at middleware (D:\careerpro-rr\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:52:44.950Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T09:52:44.959Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T09:52:45.148Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:52:45.157Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:52:45.158Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:52:45.182Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:52:45.224Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T09:52:45.228Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:52:45.230Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:52:45.240Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T09:52:45.248Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:52:45.252Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:52:45.253Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::ffff:127.0.0.1
+2025-06-07T09:52:45.289Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:52:45.305Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T09:52:45.308Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:52:45.308Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::ffff:127.0.0.1
+2025-06-07T09:52:45.328Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T09:52:52.020Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-07T09:52:52.025Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:52:52.026Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:52:52.048Z [ERROR]: [Resume][Summary][Error] User: 681994cb0a11f441dd676b2a - generateAISummary is not defined
+2025-06-07T09:52:52.050Z [ERROR]: Status: 500, Name: Error, Message: generateAISummary is not defined, URL: /api/resume/generate-summary, Method: POST, IP: ::1
+2025-06-07T09:52:52.051Z [ERROR]: Stack: Error: generateAISummary is not defined
+    at generateResumeSummary (file:///D:/careerpro-rr/server/controller/resume-controller.js:295:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-06-07T09:54:56.018Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T09:54:56.027Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T09:55:01.343Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-07T09:55:01.353Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:55:01.354Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:55:01.421Z [INFO]: [Resume][Summary][Success] User: 681994cb0a11f441dd676b2a generated resume summary
+2025-06-07T09:55:38.315Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-07T09:55:38.322Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T09:55:38.325Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T09:55:38.347Z [INFO]: [Resume][Summary][Success] User: 681994cb0a11f441dd676b2a generated resume summary
+2025-06-07T10:24:01.128Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T10:24:01.133Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T10:24:45.944Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T10:24:45.954Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:24:45.956Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:24:45.990Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T10:24:46.021Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T10:24:46.025Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:24:46.026Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:24:46.033Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T10:24:55.678Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T10:24:55.682Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:24:55.683Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:24:55.720Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T10:24:55.740Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T10:24:55.743Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:24:55.744Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:24:55.771Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T10:24:58.798Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:24:58.801Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:24:58.801Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:24:58.849Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (1)
+2025-06-07T10:24:58.857Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:24:58.861Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:24:58.862Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:24:58.880Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (1)
+2025-06-07T10:25:02.891Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:25:02.895Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:25:02.898Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:25:02.915Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T10:25:17.377Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/6843eebe37c8812d3bff374b
+2025-06-07T10:25:17.380Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:25:17.380Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:25:17.407Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 6843eebe37c8812d3bff374b
+2025-06-07T10:25:33.149Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/6843eebe37c8812d3bff374b
+2025-06-07T10:25:33.153Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:25:33.154Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:25:33.164Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 6843eebe37c8812d3bff374b
+2025-06-07T10:26:16.870Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-07T10:26:16.876Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:16.877Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:26:16.894Z [INFO]: [Resume][Summary][Success] User: 681994cb0a11f441dd676b2a generated resume summary
+2025-06-07T10:26:24.858Z [INFO]: [Startup] Incoming request: GET /api/template/683981a843e6c5bbc156bd4a
+2025-06-07T10:26:24.862Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:24.863Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:26:24.871Z [INFO]: [Template][GetById][Success] ID: 683981a843e6c5bbc156bd4a
+2025-06-07T10:26:24.882Z [INFO]: [Startup] Incoming request: GET /api/template/683981a843e6c5bbc156bd4a
+2025-06-07T10:26:24.885Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:24.886Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:26:24.894Z [INFO]: [Template][GetById][Success] ID: 683981a843e6c5bbc156bd4a
+2025-06-07T10:26:30.573Z [INFO]: [Startup] Incoming request: POST /api/resume/add
+2025-06-07T10:26:30.576Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:30.577Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:26:30.650Z [INFO]: [Resume][Create] User: 681994cb0a11f441dd676b2a created resume: 684413d63c558f9f7d057bb0
+2025-06-07T10:26:30.784Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684413d63c558f9f7d057bb0
+2025-06-07T10:26:30.787Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:30.787Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:26:30.801Z [INFO]: [Resume][GetById][Success] Resume: 684413d63c558f9f7d057bb0 by user: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:43.161Z [INFO]: [Startup] Incoming request: PUT /api/resume/update/684413d63c558f9f7d057bb0
+2025-06-07T10:26:43.165Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:43.166Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:26:43.207Z [INFO]: [Resume][Update][Success] Resume: 684413d63c558f9f7d057bb0 updated by user: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:49.558Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684413d63c558f9f7d057bb0
+2025-06-07T10:26:49.563Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:49.567Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:26:49.584Z [INFO]: [Resume][GetById][Success] Resume: 684413d63c558f9f7d057bb0 by user: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:49.592Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684413d63c558f9f7d057bb0
+2025-06-07T10:26:49.595Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:49.595Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:26:49.607Z [INFO]: [Resume][GetById][Success] Resume: 684413d63c558f9f7d057bb0 by user: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:51.697Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684413d63c558f9f7d057bb0
+2025-06-07T10:26:51.700Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:51.704Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:26:51.719Z [INFO]: [Resume][GetById][Success] Resume: 684413d63c558f9f7d057bb0 by user: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:51.727Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/684413d63c558f9f7d057bb0
+2025-06-07T10:26:51.732Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:51.733Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:26:51.749Z [INFO]: [Resume][GetById][Success] Resume: 684413d63c558f9f7d057bb0 by user: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:54.373Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:26:54.376Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:54.377Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:26:54.390Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (2)
+2025-06-07T10:26:54.404Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:26:54.407Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:26:54.413Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:26:54.429Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (2)
+2025-06-07T10:27:01.265Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:27:01.268Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:27:01.268Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:27:01.282Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (2)
+2025-06-07T10:27:01.319Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:27:01.322Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:27:01.323Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:27:01.335Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (2)
+2025-06-07T10:27:05.373Z [INFO]: [Startup] Incoming request: DELETE /api/resume/delete/684400d137c8812d3bff380a
+2025-06-07T10:27:05.376Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:27:05.378Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:27:05.396Z [INFO]: [Resume][Delete][Success] Resume: 684400d137c8812d3bff380a deleted by user: 681994cb0a11f441dd676b2a
+2025-06-07T10:27:08.266Z [INFO]: [Startup] Incoming request: DELETE /api/resume/delete/684413d63c558f9f7d057bb0
+2025-06-07T10:27:08.270Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:27:08.271Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:27:08.291Z [INFO]: [Resume][Delete][Success] Resume: 684413d63c558f9f7d057bb0 deleted by user: 681994cb0a11f441dd676b2a
+2025-06-07T10:27:10.309Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:27:10.313Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:27:10.314Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:27:10.321Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T10:27:13.172Z [INFO]: [Startup] Incoming request: DELETE /api/cover-letter/delete/6843eebe37c8812d3bff374b
+2025-06-07T10:27:13.175Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:27:13.176Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:27:13.184Z [INFO]: [CoverLetter][Delete][Success] User: 681994cb0a11f441dd676b2a deleted cover letter: 6843eebe37c8812d3bff374b
+2025-06-07T10:27:13.194Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:27:13.201Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:27:13.202Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:27:13.208Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 0 cover letters.
+2025-06-07T10:28:02.864Z [INFO]: [Startup] Incoming request: POST /api/cover-letter/generate
+2025-06-07T10:28:02.869Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:28:02.872Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:28:02.888Z [INFO]: [CoverLetter][Generate][Success] User: 681994cb0a11f441dd676b2a generated a cover letter text.
+2025-06-07T10:28:08.638Z [INFO]: [Startup] Incoming request: POST /api/cover-letter/save
+2025-06-07T10:28:08.642Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:28:08.642Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:28:08.655Z [INFO]: [CoverLetter][Save][Success] User: 681994cb0a11f441dd676b2a saved cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:28:08.756Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:28:08.760Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:28:08.761Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:28:08.773Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:28:08.781Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:28:08.784Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:28:08.785Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:28:08.794Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:28:10.894Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:28:10.899Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:28:10.900Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:28:10.921Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T10:28:14.585Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:28:14.588Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:28:14.589Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:28:14.602Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:28:14.610Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:28:14.614Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:28:14.615Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:28:14.627Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:28:20.387Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:28:20.391Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:28:20.391Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:28:20.396Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T10:28:26.933Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:28:26.938Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:28:26.946Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:28:26.960Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:28:26.971Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:28:26.975Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:28:26.978Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:28:26.992Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:28:27.852Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:28:27.856Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:28:27.857Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:28:27.862Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T10:33:50.708Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:33:50.712Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:33:50.713Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:33:50.722Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:33:50.728Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:33:50.735Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:33:50.736Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:33:50.745Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:33:51.950Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:33:51.953Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:33:51.953Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:33:51.957Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T10:33:58.096Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/684414383c558f9f7d057c12
+2025-06-07T10:33:58.099Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:33:58.100Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:33:58.107Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:34:54.644Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/684414383c558f9f7d057c12
+2025-06-07T10:34:54.647Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:34:54.648Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:34:54.659Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:36:31.067Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T10:36:31.070Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:36:31.071Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:36:31.075Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T10:36:31.083Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T10:36:31.087Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:36:31.088Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:36:31.091Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T10:36:38.333Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/684414383c558f9f7d057c12
+2025-06-07T10:36:38.339Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:36:38.340Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:36:38.348Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:38:10.833Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T10:38:10.840Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T10:38:14.283Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/684414383c558f9f7d057c12
+2025-06-07T10:38:14.295Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:38:14.296Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:38:14.362Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:39:04.071Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T10:39:04.079Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T10:39:20.115Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/684414383c558f9f7d057c12
+2025-06-07T10:39:20.124Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:39:20.125Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:39:20.194Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:41:42.783Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T10:41:42.800Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T10:41:59.762Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/684414383c558f9f7d057c12
+2025-06-07T10:41:59.771Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:41:59.772Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:41:59.836Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:43:46.682Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T10:43:46.693Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T10:43:55.356Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/684414383c558f9f7d057c12
+2025-06-07T10:43:55.368Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:43:55.369Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:43:55.466Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:44:33.878Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/684414383c558f9f7d057c12
+2025-06-07T10:44:33.885Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:44:33.887Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:44:33.932Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:45:13.452Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T10:45:13.461Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T10:45:16.406Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/684414383c558f9f7d057c12
+2025-06-07T10:45:16.418Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:45:16.422Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:45:16.512Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:45:41.494Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T10:45:41.501Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T10:45:41.705Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/684414383c558f9f7d057c12
+2025-06-07T10:45:41.714Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:45:41.714Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:45:41.790Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:46:05.044Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/684414383c558f9f7d057c12
+2025-06-07T10:46:05.048Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:46:05.050Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:46:05.102Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:46:48.209Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T10:46:48.219Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T10:47:02.004Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/684414383c558f9f7d057c12
+2025-06-07T10:47:02.013Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:47:02.014Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:47:02.105Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:48:04.281Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T10:48:04.289Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T10:48:09.391Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/684414383c558f9f7d057c12
+2025-06-07T10:48:09.408Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:48:09.410Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:48:09.513Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:49:26.085Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:49:26.091Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:49:26.093Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:49:26.130Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:49:26.155Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:49:26.160Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:49:26.161Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:49:26.174Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:49:29.025Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:49:29.028Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:49:29.029Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:49:29.036Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T10:50:30.068Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T10:50:30.076Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T10:50:46.306Z [INFO]: [Startup] Incoming request: PUT /api/cover-letter/update/684414383c558f9f7d057c12
+2025-06-07T10:50:46.316Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:50:46.317Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:50:46.380Z [INFO]: [CoverLetter][Update][Success] User: 681994cb0a11f441dd676b2a updated cover letter: 684414383c558f9f7d057c12
+2025-06-07T10:51:03.187Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:51:03.212Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:51:03.220Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:51:03.246Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:51:03.261Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:51:03.266Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:51:03.267Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:51:03.285Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:51:05.505Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:51:05.509Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:51:05.510Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:51:05.521Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T10:51:08.924Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:51:08.935Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:51:08.936Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:51:08.962Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:51:08.979Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:51:08.984Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:51:08.985Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:51:08.999Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:51:10.667Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:51:10.674Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:51:10.681Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:51:10.699Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T10:51:23.163Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:51:23.165Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:51:23.167Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:51:23.201Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:51:23.219Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:51:23.226Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:51:23.227Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:51:23.241Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:51:40.091Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T10:51:40.098Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T10:52:15.171Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:52:15.181Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:52:15.182Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:52:15.240Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:52:15.261Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:52:15.265Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:52:15.267Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:52:15.284Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:53:07.575Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:53:07.578Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:53:07.580Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:53:07.595Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:53:07.608Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:53:07.612Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:53:07.613Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:53:07.625Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:53:10.368Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:53:10.383Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:53:10.393Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:53:10.406Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T10:53:14.507Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:53:14.511Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:53:14.512Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:53:14.526Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:53:14.555Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:53:14.559Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:53:14.560Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:53:14.573Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:53:16.748Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T10:53:16.752Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:53:16.754Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:53:16.793Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T10:53:16.817Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T10:53:16.822Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:53:16.823Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:53:16.864Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T10:53:21.261Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:53:21.265Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:53:21.266Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:53:21.275Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:53:21.284Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:53:21.287Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:53:21.288Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:53:21.300Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:53:24.565Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:53:24.568Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:53:24.569Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:53:24.574Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T10:53:35.274Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:53:35.276Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:53:35.277Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:53:35.283Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:53:35.297Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:53:35.301Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:53:35.302Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:53:35.309Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:53:44.642Z [INFO]: [Startup] Incoming request: POST /api/resume/generate-summary
+2025-06-07T10:53:44.644Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:53:44.645Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:53:44.653Z [INFO]: [Resume][Summary][Success] User: 681994cb0a11f441dd676b2a generated resume summary
+2025-06-07T10:54:11.427Z [INFO]: [Startup] Incoming request: GET /api/template/683981a843e6c5bbc156bd4a
+2025-06-07T10:54:11.431Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:54:11.432Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:54:11.455Z [INFO]: [Template][GetById][Success] ID: 683981a843e6c5bbc156bd4a
+2025-06-07T10:54:11.461Z [INFO]: [Startup] Incoming request: GET /api/template/683981a843e6c5bbc156bd4a
+2025-06-07T10:54:11.466Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:54:11.467Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:54:11.477Z [INFO]: [Template][GetById][Success] ID: 683981a843e6c5bbc156bd4a
+2025-06-07T10:54:19.965Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:54:19.968Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:54:19.968Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:54:19.979Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:54:19.999Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:54:20.002Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:54:20.004Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:54:20.014Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:54:22.508Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:54:22.512Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:54:22.513Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:54:22.520Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T10:54:30.685Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:54:30.689Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:54:30.690Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:54:30.737Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:54:30.756Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:54:30.761Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:54:30.763Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:54:30.772Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:54:49.104Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:54:49.107Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:54:49.109Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:54:49.118Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:54:49.135Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:54:49.139Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:54:49.141Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:54:49.151Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:54:52.521Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:54:52.524Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:54:52.525Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:54:52.531Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T10:54:54.961Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:54:54.968Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:54:54.970Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:54:54.983Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:54:55.977Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T10:54:55.980Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:54:55.980Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:54:55.988Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T10:56:31.145Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:56:31.149Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:56:31.149Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:56:31.157Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:56:31.177Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:56:31.184Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:56:31.185Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:56:31.205Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:56:38.597Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:56:38.601Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:56:38.602Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:56:38.617Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:56:38.631Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T10:56:38.635Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T10:56:38.635Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T10:56:38.644Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T10:57:39.749Z [INFO]: [Server][Shutdown] Received SIGINT. Closing app gracefully...
+2025-06-07T13:22:52.852Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-07T13:22:52.856Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-06-07T13:23:08.595Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T13:23:08.600Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:23:08.601Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:23:08.618Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T13:23:08.638Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T13:23:08.642Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:23:08.643Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:23:08.647Z [INFO]: [AuthStatus][Checked] User: 681994cb0a11f441dd676b2a
+2025-06-07T13:23:44.695Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T13:23:44.704Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:23:44.729Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:23:44.780Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T13:23:44.805Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-06-07T13:23:44.809Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:23:44.811Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:23:44.844Z [INFO]: [Template][GetAll][Success] Returned 20 templates
+2025-06-07T13:24:10.482Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T13:24:10.485Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:24:10.486Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:24:10.502Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T13:24:10.510Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T13:24:10.515Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:24:10.516Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:24:10.531Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T13:24:14.406Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T13:24:14.412Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:24:14.413Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:24:14.421Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 1 cover letters.
+2025-06-07T13:24:18.543Z [INFO]: [Startup] Incoming request: DELETE /api/cover-letter/delete/684414383c558f9f7d057c12
+2025-06-07T13:24:18.547Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:24:18.547Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:24:18.568Z [INFO]: [CoverLetter][Delete][Success] User: 681994cb0a11f441dd676b2a deleted cover letter: 684414383c558f9f7d057c12
+2025-06-07T13:24:18.582Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T13:24:18.587Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:24:18.588Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:24:18.595Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 0 cover letters.
+2025-06-07T13:24:22.080Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T13:24:22.084Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:24:22.085Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:24:22.101Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T13:25:00.638Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T13:25:00.642Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:25:00.642Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:25:00.652Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T13:25:00.672Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T13:25:00.676Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:25:00.676Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:25:00.685Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T13:25:03.207Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T13:25:03.210Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:25:03.212Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:25:03.217Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 0 cover letters.
+2025-06-07T13:25:41.562Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T13:25:41.565Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:25:41.566Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:25:41.575Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T13:25:41.593Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T13:25:41.603Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:25:41.604Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:25:41.625Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T13:30:00.720Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T13:30:00.723Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:30:00.724Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:30:00.732Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T13:30:00.737Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-06-07T13:30:00.739Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:30:00.740Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:30:00.750Z [INFO]: [Resume][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched all resumes (0)
+2025-06-07T13:30:20.089Z [INFO]: [Startup] Incoming request: GET /api/cover-letter/get-all
+2025-06-07T13:30:20.092Z [INFO]: [JWT][Verify][Success] Token verified for userId: 681994cb0a11f441dd676b2a
+2025-06-07T13:30:20.093Z [INFO]: [Auth] Auth success for user 681994cb0a11f441dd676b2a, role user, from IP: ::1
+2025-06-07T13:30:20.097Z [INFO]: [CoverLetter][GetAll][Success] User: 681994cb0a11f441dd676b2a fetched 0 cover letters.
+2025-06-07T14:38:26.202Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T14:38:26.211Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68434155e417f84312694456
+2025-06-07T14:38:26.211Z [INFO]: [Auth] Auth success for user 68434155e417f84312694456, role admin, from IP: ::1
+2025-06-07T14:38:26.240Z [INFO]: [AuthStatus][Checked] User: 68434155e417f84312694456
+2025-06-07T14:38:26.245Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-06-07T14:38:26.247Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68434155e417f84312694456
+2025-06-07T14:38:26.247Z [INFO]: [Auth] Auth success for user 68434155e417f84312694456, role admin, from IP: ::1
+2025-06-07T14:38:26.249Z [INFO]: [AuthStatus][Checked] User: 68434155e417f84312694456

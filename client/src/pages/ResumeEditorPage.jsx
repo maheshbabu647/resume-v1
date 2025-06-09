@@ -346,7 +346,8 @@ const ResumeEditorPage = () => {
                 Using Template: <span className="font-medium text-foreground">{currentTemplateForEditor?.templateName || 'Loading...'}</span>
             </div>
             <div className="flex items-center gap-1 sm:gap-1.5 flex-shrink-0">
-              <Button variant="outline" size="sm" onClick={handleGenerateAISummary} disabled={isGeneratingSummary || isSavingResume} className="border-border text-xs sm:text-sm text-primary hover:bg-primary/10 hover:border-primary h-8 px-2 sm:px-3">
+              {/* <Button variant="outline" size="sm" onClick={handleGenerateAISummary} disabled= {isGeneratingSummary || isSavingResume} className="border-border text-xs sm:text-sm text-primary hover:bg-primary/10 hover:border-primary h-8 px-2 sm:px-3"> */}
+              <Button variant="outline" size="sm" onClick={handleGenerateAISummary} disabled="true" className="border-border text-xs sm:text-sm text-primary hover:bg-primary/10 hover:border-primary h-8 px-2 sm:px-3">
                 {isGeneratingSummary ? <Loader2 size={14} className="animate-spin sm:mr-1.5" /> : <Sparkles size={14} className="sm:mr-1.5" />} <span className="hidden sm:inline">{isGeneratingSummary ? 'AI...' : 'AI Summary'}</span>
               </Button>
               <Button variant="outline" size="sm" onClick={handlePreviewPage} className="border-border text-xs sm:text-sm h-8 px-2 sm:px-3"><Eye size={14} className="sm:mr-1.5" /> <span className="hidden sm:inline">Preview</span></Button>

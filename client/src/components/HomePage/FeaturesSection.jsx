@@ -17,7 +17,7 @@ const featuresData = [
     description: "Generate compelling, personalized cover letters that complement your resume and highlight your unique qualifications for each application.",
     icon: "cover",
     status: "available", // Changed to available
-    linkTo: "/cover-letter",
+    linkTo: "/cover-letter/generate",
     actionText: "Generate Letter"
   },
   {

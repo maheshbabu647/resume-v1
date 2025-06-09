@@ -2,6 +2,7 @@ import resumeModel from "../model/resume-model.js";
 import puppeteer from 'puppeteer';
 import logger from '../config/logger.js';
 import { logAnalyticsEvent } from '../service/analytics-logger.js';
+import { generateAISummary } from "../service/ai-summary-service.js";
 
 // [SECURITY] Max allowed HTML size for PDF generation
 const MAX_HTML_SIZE = 100_000; // 100 KB
