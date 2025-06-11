@@ -11,7 +11,7 @@ const LoginForm = React.lazy(() => import('../components/Auth/LoginForm.jsx'));
 const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { signin, isLoading, error: authError, isAuthenticated } = useAuthContext();
+  const { userData, signin, isLoading, error: authError, isAuthenticated } = useAuthContext();
 
   const from = location.state?.from?.pathname || '/dashboard';
 
@@ -22,17 +22,21 @@ const LoginPage = () => {
   }, [isAuthenticated, navigate, from]);
 
   const handleLogin = async (credentials) => {
-    const success = await signin(credentials);
-    if (success) {
-      // FIX: After successful login, check if the user was trying to verify their email.
-      // If the `from` path includes '/verify-email/', redirect them back there to complete the process.
+    const user = await signin(credentials); // returns fresh userData
+    console.log("Login returned user:", user);
+
+    if (user) {
       if (from.includes('/verify-email/')) {
         navigate(from, { replace: true });
+      }
+      else if (!user.isVerified) {
+        navigate('/verify-email', { replace: true });
       } else {
-        navigate('/dashboard', { replace: true }); // Default redirect to dashboard
+        navigate('/dashboard', { replace: true });
       }
     }
   };
+
 
   if (isAuthenticated) {
     return (

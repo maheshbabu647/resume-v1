@@ -66,26 +66,26 @@ app.use(performanceLogger)
 app.use(SWAGGER_ROUTE, swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 // === [Custom Rate Limit Handler with Analytics Logging] ===
-const customRateLimitHandler = async (req, res, next) => {
-  try {
-    await logAnalyticsEvent({
-      eventType: 'rate_limit_hit',
-      meta: { route: req.originalUrl, ip: req.ip }
-    })
-  } catch (err) {
-    logger.warn(`[Analytics][Log][Fail] rate_limit_hit: ${err.message}`)
-  }
-  res.status(429).json({ status: 429, error: 'Too many requests. Please try again later.' })
-}
+// const customRateLimitHandler = async (req, res, next) => {
+//   try {
+//     await logAnalyticsEvent({
+//       eventType: 'rate_limit_hit',
+//       meta: { route: req.originalUrl, ip: req.ip }
+//     })
+//   } catch (err) {
+//     logger.warn(`[Analytics][Log][Fail] rate_limit_hit: ${err.message}`)
+//   }
+//   res.status(429).json({ status: 429, error: 'Too many requests. Please try again later.' })
+// }
 
 // === [Global Rate Limiting] ===
-const globalLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  handler: customRateLimitHandler
-})
+// const globalLimiter = rateLimit({
+//   windowMs: 15 * 60 * 1000,
+//   max: 100,
+//   handler: customRateLimitHandler
+// })
 
-app.use('/api', globalLimiter)
+// app.use('/api', globalLimiter)
 
 app.get('/health', (req, res) => {
   logger.info(`[Health] Check by ${req.ip}`)

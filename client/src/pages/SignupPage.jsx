@@ -17,9 +17,11 @@ const SignupPage = () => {
 
   const [pageError, setPageError] = useState(null); // For page-level errors if any
 
+  // --- START: No changes in this block ---
   const from = location.state?.from?.pathname || '/dashboard';
 
   useEffect(() => {
+    console.log("you are the culprit")
     if (isAuthenticated) {
       navigate(from, { replace: true });
     }
@@ -32,17 +34,28 @@ const SignupPage = () => {
       setPageError(null);
     }
   }, [authError]);
+  // --- END: No changes in this block ---
+
 
   const handleSignup = async (credentials) => {
     setPageError(null);
     const success = await signup(credentials);
     if (success) {
-      navigate(from, { replace: true });
+      // --- MODIFICATION START ---
+      // Instead of navigating to the dashboard, we now redirect to the
+      // email verification page and pass the user's email for pre-filling the form.
+      console.log("hey signup")
+      navigate('/verify-email', { 
+        replace: true,
+        state: { userEmail: credentials.userEmail } 
+      });
+      // --- MODIFICATION END ---
     }
     // If signup fails, authError in context will be updated.
     // SignupForm also receives authError directly via apiError prop.
   };
 
+  // --- START: No changes in the return block ---
   if (isAuthenticated) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-background p-4 text-foreground" aria-busy="true" aria-live="polite">
@@ -112,6 +125,7 @@ const SignupPage = () => {
       </main>
     </>
   );
+  // --- END: No changes in the return block ---
 };
 
 export default SignupPage;

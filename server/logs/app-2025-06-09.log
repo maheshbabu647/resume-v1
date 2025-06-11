@@ -265,3 +265,5 @@
 2025-06-09T14:32:32.652Z [INFO]: [JWT][Verify][Success] Token verified for userId: 683ec0d49c4aa3025b0c5c3a
 2025-06-09T14:32:32.653Z [INFO]: [Auth] Auth success for user 683ec0d49c4aa3025b0c5c3a, role user, from IP: ::1
 2025-06-09T14:32:32.667Z [INFO]: [Resume][GetAll][Success] User: 683ec0d49c4aa3025b0c5c3a fetched all resumes (0)
+2025-06-09T14:33:21.647Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/users
+2025-06-09T14:33:21.654Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]

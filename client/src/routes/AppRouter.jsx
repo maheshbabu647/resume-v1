@@ -47,25 +47,28 @@ const AppRouter = () => {
         <Route path='/forgot-password' element={<ForgotPasswordPage />} />
         <Route path='/reset-password/:token' element={<ResetPasswordPage />} />
         <Route path='/verification-required' element={<VerificationRequiredPage />} />
-        <Route path='/verify-email/:token' element={<VerifyEmailPage />} />
+        {/* --- MODIFICATION START --- */}
+        {/* Changed path from '/verify-email/:token' to '/verify-email' */}
+        <Route path='/verify-email' element={<VerifyEmailPage />} />
+        {/* --- MODIFICATION END --- */}
         
         {/* Main Application Layout (Includes Navbar/Footer) */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path='home' element={<HomePage />} />
           <Route path='unauthorized' element={<UnauthorizedPage />} />
-          
+          <Route path='templates' element={<TemplatesPage />} />
+          <Route path='resume/new/:newResumeTemplateId' element={<ResumeEditorPage />} />
+          <Route path='resume/view/:templateId' element={<ResumeViewerPage />} />
+          <Route path='cover-letter/generate' element={<CoverLetterGeneratorPage />} />   
+
           {/* Routes protected by authentication */}
           <Route element={<ProtectedRoute roles={['user', 'admin']} />}>
             <Route path='dashboard' element={<DashboardPage />} />
-            <Route path='templates' element={<TemplatesPage />} />
-            <Route path='cover-letter/generate' element={<CoverLetterGeneratorPage />} />
             <Route path='cover-letter/edit/:coverLetterId' element={<CoverLetterEditPage />} />
             <Route path='cover-letter/preview/:coverLetterId' element={<CoverLetterPreviewPage />} />
-            <Route path='resume/new/:newResumeTemplateId' element={<ResumeEditorPage />} />
             <Route path='resume/edit/:existingResumeId' element={<ResumeEditorPage />} />
             <Route path='resume/saved/view/:resumeId' element={<ResumeViewerPage />} />
-            <Route path='resume/view/:templateId' element={<ResumeViewerPage />} />
           </Route>
 
           {/* Admin Routes - nested under its own protected layout */}

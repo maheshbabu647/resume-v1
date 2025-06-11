@@ -7,24 +7,27 @@ const AuthContextProvider = ({ children }) => {
     const [authState, setAuthState] = useState({
         userData: null,
         isAuthenticated: false,
-        isLoading: true, // Start true for initial status check
+        isLoading: true,
         error: null
     });
 
-    // This function is now the single source of truth for setting user data
     const checkStatus = useCallback(async () => {
+        setAuthState(prev => ({ ...prev, isLoading: true }));
         try {
             const response = await authStatus();
             if (response.success && response.data) {
                 const { userName, userEmail, userRole, isVerified } = response.data;
                 const userData = { userName, userEmail, userRole, isVerified };
-                setAuthState({ userData, isAuthenticated: true, isLoading: false, error: null });
+                setAuthState({ userData, isAuthenticated: true, isLoading: false, error: null, isVerified: userData.isVerified });
+                return response.data; // Return data for immediate use
             } else {
                 setAuthState({ userData: null, isAuthenticated: false, isLoading: false, error: null });
+                return null;
             }
         } catch (error) {
             console.error("Auth status check failed:", error);
             setAuthState({ userData: null, isAuthenticated: false, isLoading: false, error: null });
+            return null;
         }
     }, []);
 
@@ -33,45 +36,34 @@ const AuthContextProvider = ({ children }) => {
     }, [checkStatus]);
 
     const signin = useCallback(async (signinCredentials) => {
-        setAuthState(prev => ({ ...prev, isLoading: true, error: null }));
         try {
-            const response = await userSignin(signinCredentials);
-            if (response.success) {
-                // FIX: Instead of setting state from the login response,
-                // call checkStatus() to get the freshest, most complete user profile.
-                // This ensures the isVerified flag is correctly populated before navigation.
-                await checkStatus(); 
-                return true;
-            } else {
-                throw new Error(response.message || 'Login failed.');
-            }
+            await userSignin(signinCredentials);
+            // --- MODIFICATION START ---
+            // After a successful API login, call checkStatus to get the latest
+            // user data (including the isVerified flag) and return it.
+            const userData = await checkStatus();
+            return userData;
+            // --- MODIFICATION END ---
         } catch (error) {
-            const errorMessage = error.response?.data || { message: error.message || 'An unknown error occurred during login.' };
-            setAuthState({ userData: null, isAuthenticated: false, isLoading: false, error: errorMessage });
-            return false;
+            const errorMessage = error.response?.data || { message: error.message || 'An unknown error occurred.' };
+            setAuthState(prev => ({ ...prev, error: errorMessage }));
+            return null; // Return null on failure
         }
-    }, [checkStatus]); // Add checkStatus as a dependency
+    }, [checkStatus]);
 
     const signup = useCallback(async (signupCredentials) => {
-        setAuthState((prev) => ({ ...prev, isLoading: true, error: null }));
         try {
-            const response = await userSignup(signupCredentials);
-            if (response.success) {
-                // After signup, immediately get the full user status
-                await checkStatus();
-                return true;
-            } else {
-                throw new Error(response.message || "Something went wrong during signup.");
-            }
+            await userSignup(signupCredentials);
+            return true;
         } catch (error) {
-            const errorMessage = error.response?.data || { message: error.message || 'An unknown error occurred during signup.' };
-            setAuthState({ userData: null, isAuthenticated: false, isLoading: false, error: errorMessage });
+            const errorMessage = error.response?.data || { message: error.message || 'An unknown error occurred.' };
+            setAuthState(prev => ({...prev, error: errorMessage}));
             return false;
         }
-    }, [checkStatus]); // Add checkStatus as a dependency
+    }, []);
 
     const signout = useCallback(async () => {
-        setAuthState((prev) => ({ ...prev, isLoading: true, error: null }));
+        setAuthState((prev) => ({ ...prev, isLoading: true }));
         try {
             await userSignout();
         } catch (error) {
@@ -80,8 +72,12 @@ const AuthContextProvider = ({ children }) => {
             setAuthState({ userData: null, isAuthenticated: false, isLoading: false, error: null });
         }
     }, []);
+    
+    const clearAuthError = useCallback(() => {
+        setAuthState((prev) => ({ ...prev, error: null }));
+    }, []);
 
-    const value = { ...authState, signin, signup, signout, checkStatus };
+    const value = { ...authState, signin, signup, signout, checkStatus, clearAuthError };
 
     return <AuthContext.Provider value={value}>
         {children}

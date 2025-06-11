@@ -61,6 +61,25 @@ const userSignInValidators = [
     .isString().withMessage("User password must be a string")
 ];
 
+// ===== Email Verification Code Validator =====
+const verifyEmailCodeValidator = [
+    body('userEmail')
+        .trim()
+        .notEmpty()
+        .withMessage('Email address is required')
+        .isEmail()
+        .withMessage('Invalid email address')
+        .normalizeEmail(),
+    body('verificationCode')
+        .trim()
+        .notEmpty()
+        .withMessage('Verification code is required')
+        .isLength({ min: 6, max: 6 })
+        .withMessage('Verification code must be 6 digits long')
+        .isNumeric() // Ensures it's a numeric 6-digit code
+        .withMessage('Verification code must be a number'),
+];
+
 // ===== Forgot Password Validator =====
 const forgotPasswordValidator = [
     body('userEmail')
@@ -115,5 +134,6 @@ export {
   userSignInValidation,
   forgotPasswordValidator,
   resetPasswordValidator,
+  verifyEmailCodeValidator,
   resendVerificationValidator
 }

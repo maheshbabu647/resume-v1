@@ -34,6 +34,8 @@ import useResumeContext from "@/hooks/useResume";
 import { downloadResume as apiDownloadResume, generateAISummary } from "@/api/resumeServiceApi";
 import { cn } from "@/lib/utils";
 
+import AuthDialog from '@/components/Auth/AuthDialog.jsx';
+
 // Helper function to initialize form data
 const initializeFormDataFromDefinitions = (definitions) => {
   const initialData = {};
@@ -106,14 +108,13 @@ const ResumeEditorPage = () => {
   const [showFeedbackDialog, setShowFeedbackDialog] = useState(false);
   const [feedbackDetailsForDialog, setFeedbackDetailsForDialog] = useState({ title: '', message: '', type: 'success' });
 
+   // State for controlling the Authentication Dialog
+  const [showAuthDialog, setShowAuthDialog] = useState(false);
+
   // This one useEffect handles all initial page setup and state preservation logic.
   useEffect(() => {
     const setupPage = async () => {
       if (isAuthLoading) return;
-      if (!isAuthenticated) {
-        navigate('/login', { state: { from: location }, replace: true });
-        return;
-      }
 
       setPageIsLoading(true);
       setPageError(null);
@@ -222,6 +223,10 @@ const ResumeEditorPage = () => {
   const handleResumeNameChange = (e) => setEditableResumeName(e.target.value);
 
   const handleSaveResume = async () => {
+        if (!isAuthenticated) {
+        setShowAuthDialog(true);
+        return;
+    }
     if ((mode === 'create' && !currentTemplateForEditor?._id) || (mode === 'edit' && !currentResumeDetail?._id)) {
       setFeedbackDetailsForDialog({ title: 'Save Error', message: 'Essential details are missing.', type: 'error' });
       setShowFeedbackDialog(true); return;
@@ -244,6 +249,10 @@ const ResumeEditorPage = () => {
   };
 
   const handleDownloadPdf = async () => {
+    if (!isAuthenticated) {
+    setShowAuthDialog(true);
+    return;
+    }
     if (!resumePreviewRef.current) return;
     setIsDownloadingPdf(true);
     try {
@@ -346,8 +355,10 @@ const ResumeEditorPage = () => {
                 Using Template: <span className="font-medium text-foreground">{currentTemplateForEditor?.templateName || 'Loading...'}</span>
             </div>
             <div className="flex items-center gap-1 sm:gap-1.5 flex-shrink-0">
-              {/* <Button variant="outline" size="sm" onClick={handleGenerateAISummary} disabled= {isGeneratingSummary || isSavingResume} className="border-border text-xs sm:text-sm text-primary hover:bg-primary/10 hover:border-primary h-8 px-2 sm:px-3"> */}
-              <Button variant="outline" size="sm" onClick={handleGenerateAISummary} disabled="true" className="border-border text-xs sm:text-sm text-primary hover:bg-primary/10 hover:border-primary h-8 px-2 sm:px-3">
+              {/* --- FIX #1 START --- */}
+              {/* Changed disabled="true" to disabled={true} to pass a proper boolean */}
+              <Button variant="outline" size="sm" onClick={handleGenerateAISummary} disabled={true} className="border-border text-xs sm:text-sm text-primary hover:bg-primary/10 hover:border-primary h-8 px-2 sm:px-3">
+              {/* --- FIX #1 END --- */}
                 {isGeneratingSummary ? <Loader2 size={14} className="animate-spin sm:mr-1.5" /> : <Sparkles size={14} className="sm:mr-1.5" />} <span className="hidden sm:inline">{isGeneratingSummary ? 'AI...' : 'AI Summary'}</span>
               </Button>
               <Button variant="outline" size="sm" onClick={handlePreviewPage} className="border-border text-xs sm:text-sm h-8 px-2 sm:px-3"><Eye size={14} className="sm:mr-1.5" /> <span className="hidden sm:inline">Preview</span></Button>
@@ -414,6 +425,15 @@ const ResumeEditorPage = () => {
           <DialogFooter className="sm:justify-end"><DialogClose asChild><Button type="button">Close</Button></DialogClose></DialogFooter>
         </DialogContent>
       </Dialog>
+      
+      {/* --- FIX #2 START --- */}
+      {/* Updated props from 'isOpen' and 'onClose' to 'open' and 'onOpenChange' */}
+      <AuthDialog 
+        open={showAuthDialog} 
+        onOpenChange={setShowAuthDialog}
+        // The dialog now handles its own state, so no onAuthSuccess callback is needed
+      />
+      {/* --- FIX #2 END --- */}
     </>
   );
 };

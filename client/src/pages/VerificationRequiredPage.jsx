@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { MailCheck, LogOut, Send, Loader2, CheckCircle2 } from 'lucide-react';
 import useAuthContext from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
@@ -17,25 +17,35 @@ const VerificationRequiredPage = () => {
 
     const handleLogout = async () => {
         await signout();
-        navigate('/login');
+        navigate('/');
     };
 
     const handleResend = async () => {
-        if (!userData?.userEmail) {
-            setFeedback({ message: "Could not find user email to resend verification.", type: 'error' });
-            return;
-        }
-        setIsLoading(true);
-        setFeedback({ message: '', type: '' });
-        try {
-            const response = await apiResendVerification({ userEmail: userData.userEmail });
-            setFeedback({ message: response.message, type: 'success' });
-        } catch (error) {
-            setFeedback({ message: error.message || 'An error occurred while resending the link.', type: 'error' });
-        } finally {
-            setIsLoading(false);
-        }
+    if (!userData?.userEmail) {
+        setFeedback({ message: "Could not find user email to resend verification.", type: 'error' });
+        return;
+    }
+    setIsLoading(true);
+    setFeedback({ message: '', type: '' });
+
+    try {
+        const response = await apiResendVerification({ userEmail: userData.userEmail });
+        setFeedback({ message: response.message + ' Redirecting to verify page...', type: 'success' });
+
+        // 🧠 Wait 2 seconds, then navigate to verify-email page
+        setTimeout(() => {
+        navigate('/verify-email');
+        }, 2000);
+    } catch (error) {
+        setFeedback({
+        message: error.message || 'An error occurred while resending the verification email.',
+        type: 'error'
+        });
+    } finally {
+        setIsLoading(false);
+    }
     };
+
 
     return (
         <>
@@ -62,9 +72,12 @@ const VerificationRequiredPage = () => {
                                 <MailCheck className="h-16 w-16" />
                             </motion.div>
                             <CardTitle className="text-2xl sm:text-3xl font-bold tracking-tight">Check Your Inbox</CardTitle>
+                            {/* --- MODIFICATION START --- */}
+                            {/* Updated description to refer to a code/link generically. */}
                             <CardDescription className="text-muted-foreground pt-2 max-w-sm mx-auto">
-                                We've sent a verification link to <strong>{userData?.userEmail || 'your email address'}</strong>. Please click the link to activate your account.
+                                We've sent a verification email to <strong>{userData?.userEmail || 'your email address'}</strong>. Please follow the instructions to activate your account.
                             </CardDescription>
+                            {/* --- MODIFICATION END --- */}
                         </CardHeader>
                         <CardContent className="p-6 sm:p-8 pt-0 text-center">
                             {feedback.message && (
@@ -77,10 +90,13 @@ const VerificationRequiredPage = () => {
                                 <Button onClick={handleLogout} variant="outline">
                                     <LogOut className="mr-2 h-4 w-4" /> Go Back to Login
                                 </Button>
+                                {/* --- MODIFICATION START --- */}
+                                {/* Updated Button text from "Resend Link" to "Resend Email" */}
                                 <Button onClick={handleResend} disabled={isLoading}>
                                     {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
-                                    Resend Link
+                                    Resend Email
                                 </Button>
+                                {/* --- MODIFICATION END --- */}
                             </div>
                         </CardContent>
                     </Card>

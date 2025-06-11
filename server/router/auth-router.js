@@ -8,7 +8,8 @@ import {
   userSignInValidation,
   forgotPasswordValidator,
   resetPasswordValidator,
-  resendVerificationValidator
+  resendVerificationValidator,
+  verifyEmailCodeValidator,
 } from '../validators/auth-validators.js'
 
 import userAuthorization from '../middleware/user-authorization.js'
@@ -58,7 +59,7 @@ const emailLimiter = rateLimit({
 
 // [4] Auth routes, with security-first ordering
 authRouter.post('/signup',
-  signupLimiter,
+  // signupLimiter,
   userSignUpValidators,
   userSignUpValidation,
   userSignUp
@@ -80,11 +81,11 @@ authRouter.get('/status',
 
 // The user clicks the link in their email, which takes them to a frontend page.
 // That frontend page then makes this API call.
-authRouter.post('/verify-email/:token', verifyEmail);
+authRouter.post('/verify-email', verifyEmailCodeValidator, verifyEmail);
 
 // [NEW] Resend Verification Link Route
 authRouter.post('/resend-verification',
-    emailLimiter,
+    // emailLimiter,
     resendVerificationValidator,
     userSignUpValidation, // Can reuse the same validation result handler
     resendVerificationLink

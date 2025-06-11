@@ -3,7 +3,7 @@ import { createWriteStream } from 'fs';
 import { resolve } from 'path';
 
 // Define the output path relative to the script location
-const sitemapPath = resolve(process.cwd(), './public/sitemap.xml');
+const sitemapPath = resolve(process.cwd(), '../public/sitemap.xml');
 
 const generateSitemap = async () => {
     const sitemap = new SitemapStream({ hostname: 'https://careerforge.pro' }); // Replace with your actual domain
@@ -16,11 +16,10 @@ const generateSitemap = async () => {
         { url: '/signup', changefreq: 'monthly', priority: 0.7 },
         { url: '/templates', changefreq: 'weekly', priority: 0.9 }, // Templates page is important for acquisition
 
-        // Static informational pages (add as needed)
-        // { url: '/about', changefreq: 'yearly', priority: 0.5 },
-        // { url: '/contact', changefreq: 'yearly', priority: 0.4 },
-        // { url: '/privacy-policy', changefreq: 'yearly', priority: 0.3 },
-        // { url: '/terms-of-service', changefreq: 'yearly', priority: 0.3 },
+        { url: '/about', changefreq: 'yearly', priority: 0.5 },
+        { url: '/contact', changefreq: 'yearly', priority: 0.4 },
+        { url: '/privacy-policy', changefreq: 'yearly', priority: 0.3 },
+        { url: '/terms-of-service', changefreq: 'yearly', priority: 0.3 },
     ];
 
     // NOTE: Do not include dynamic, user-specific, or admin-only routes like:

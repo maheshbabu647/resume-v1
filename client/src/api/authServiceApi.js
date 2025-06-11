@@ -44,6 +44,7 @@ export const userSignout = async () => {
     }
 }
 
+
 export const forgotPassword = async (emailData) => {
     try {
         const response = await apiServer.post('/auth/forgot-password', emailData);
@@ -62,9 +63,9 @@ export const resetPassword = async (token, passwordData) => {
     }
 };
 
-export const verifyEmail = async (token) => {
+export const verifyEmail = async (userEmail, verificationCode) => {
     try {
-        const response = await apiServer.post(`/auth/verify-email/${token}`);
+        const response = await apiServer.post(`/auth/verify-email`, {userEmail, verificationCode});
         return response.data;
     } catch (error) {
         throw error.response?.data || { message: 'Failed to verify email.' };
@@ -80,8 +81,9 @@ export const verifyEmail = async (token) => {
 export const resendVerification = async (emailData) => {
     try {
         const response = await apiServer.post('/auth/resend-verification', emailData);
+        console.log(response)
         return response.data;
     } catch (error) {
-        throw error.response?.data || { message: 'Failed to resend verification link.' };
+        throw error.response?.data || { message: 'Failed to resend verification code.' };
     }
 };

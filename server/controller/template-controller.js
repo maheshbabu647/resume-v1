@@ -10,6 +10,7 @@ const MAX_TEMPLATES_RETURNED = 1000;
 // Get all templates
 const getAllTemplates = async (req, res, next) => {
   try {
+    console.log("hello is this the end.")
     const templates = await templateModel.find({}).sort({ createdAt: -1 }).limit(MAX_TEMPLATES_RETURNED);
 
     // === Analytics Logging ===

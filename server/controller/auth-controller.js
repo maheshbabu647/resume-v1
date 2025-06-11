@@ -3,7 +3,7 @@ import crypto from 'crypto'
 import userModel from '../model/user-model.js'
 import sendVerificationMail from '../service/email-verification-service.js'
 import sendPasswordResetEmail from '../service/password-reset-service.js'
-import { createToken, verifyToken } from '../util/jwt.js'
+import { createToken } from '../util/jwt.js' // Still needed for auth token
 import { createAuthCookie, clearAuthCookie } from '../util/auth-cookie.js'
 import logger from '../config/logger.js'
 import { logAnalyticsEvent } from '../service/analytics-logger.js'
@@ -25,11 +25,19 @@ const userSignUp = async (req, res, next) => {
     const userData = { userName, userEmail, userPassword: hashedPassword }
     const createdData = await userModel.create(userData)
 
-    // Asynchronously send verification email, don't make the user wait
-    sendVerificationMail(createdData._id, userName, userEmail);
+    // Generate and send verification code
+    const verificationCode = await sendVerificationMail(createdData._id, userName, userEmail);
 
-    const authToken = await createToken({ userId: createdData._id, userRole: createdData.userRole })
-    await createAuthCookie(res, authToken)
+    if (verificationCode) {
+      // Hash the verification code before storing it
+      createdData.verificationCode = crypto.createHash('sha256').update(verificationCode).digest('hex');
+      createdData.verificationCodeExpires = Date.now() + 15 * 60 * 1000; // Code valid for 15 minutes
+      await createdData.save(); // Save the user with the verification code
+    } else {
+      logger.error(`[SignUp][EmailError] Failed to send verification email for user: ${userEmail}`);
+      // Decide how to handle this: either allow signup without email or throw an error.
+      // For now, we proceed with signup but log the email sending failure.
+    }
 
     await logAnalyticsEvent({
       eventType: 'user_signup',
@@ -41,7 +49,7 @@ const userSignUp = async (req, res, next) => {
     logger.info(`[SignUp][Success] New user: ${userEmail} (ID: ${createdData._id})`)
     res.status(201).json({
       success: true,
-      message: "Signup successful. Please check your email to verify your account.",
+      message: "Signup successful. Please check your email for the verification code.",
       data: {
         _id: createdData._id,
         userName: createdData.userName,
@@ -93,6 +101,7 @@ const userSignIn = async (req, res, next) => {
     await clearAuthCookie(res)
     await createAuthCookie(res, authToken)
 
+
     await logAnalyticsEvent({
       eventType: 'user_signin',
       userId: userExisted._id,
@@ -107,7 +116,7 @@ const userSignIn = async (req, res, next) => {
         userName: userExisted.userName,
         userEmail: userExisted.userEmail,
         userRole: userExisted.userRole,
-        isVerified: userExisted.verified  
+        isVerified: userExisted.verified
       }
     })
   } catch (error) {
@@ -119,42 +128,55 @@ const userSignIn = async (req, res, next) => {
   }
 }
 
+// Renamed and modified from verifyEmail to verifyEmailCode
 const verifyEmail = async (req, res, next) => {
   try {
-    const { token } = req.params;
-    let payload;
+    const { userEmail, verificationCode } = req.body;
 
-    try {
-      payload = await verifyToken(token);
-    } catch (error) {
-      logger.warn(`[MailVerification][TokenInvalid] Invalid/expired token from IP: ${req.ip}`);
-      const err = new Error('Verification link is invalid or has expired.');
-      err.status = 401;
+    // Validate the input code format (e.g., 6 digits)
+    if (!verificationCode || !/^\d{6}$/.test(verificationCode)) { // Changed to validate 6 digits
+      const err = new Error('Invalid verification code format. Must be a 6-digit number.');
+      err.status = 400;
       return next(err);
     }
 
-    const { userId } = payload;
-    const user = await userModel.findById(userId);
+    const user = await userModel.findOne({ userEmail });
 
     if (!user) {
-      logger.warn(`[MailVerification][NotFound] User not found for token: ${userId}`);
-      const err = new Error('Verification link is invalid or has expired.');
-      err.status = 401;
+      logger.warn(`[MailVerification][NotFound] User not found for email: ${userEmail}`);
+      const err = new Error('Invalid email or verification code.');
+      err.status = 400;
       return next(err);
     }
 
     if (user.verified) {
-      logger.info(`[MailVerification][AlreadyVerified] User already verified: ${userId}`);
+      logger.info(`[MailVerification][AlreadyVerified] User already verified: ${user.userEmail}`);
       return res.status(200).json({ success: true, message: 'This email address has already been verified.' });
     }
 
+    // Hash the provided code to compare with the stored hashed code
+    const hashedCode = crypto.createHash('sha256').update(verificationCode).digest('hex');
+
+    // Check if the provided code matches and is not expired
+    if (user.verificationCode !== hashedCode || user.verificationCodeExpires < Date.now()) {
+      logger.warn(`[MailVerification][InvalidCodeOrExpired] Invalid or expired code for email: ${userEmail}`);
+      const err = new Error('Verification code is invalid or has expired.');
+      err.status = 400;
+      return next(err);
+    }
+
     user.verified = true;
+    user.verificationCode = undefined; // Clear the code after successful verification
+    user.verificationCodeExpires = undefined; // Clear the expiration
     await user.save();
 
-    logger.info(`[MailVerification][Success] User verified: ${userId}, IP: ${req.ip}`);
+    const authToken = await createToken({ userId: user._id, userRole: user.userRole })
+    await createAuthCookie(res, authToken)
+
+    logger.info(`[MailVerification][Success] User verified: ${user.userEmail}, ID: ${user._id}, IP: ${req.ip}`);
     res.status(200).json({ success: true, message: 'Email successfully verified. You can now log in.' });
   } catch (error) {
-    logger.error(`[MailVerification][Error] IP: ${req.ip}, Reason: ${error.message}`);
+    logger.error(`[MailVerification][Error] Email: ${req.body.userEmail}, Reason: ${error.message}`);
     const err = new Error('An error occurred during email verification.');
     err.status = 500;
     next(err);
@@ -168,23 +190,33 @@ const resendVerificationLink = async (req, res, next) => {
 
     if (!user) {
       logger.warn(`[ResendVerification][NotFound] Attempt for non-existent email: ${userEmail}`);
-      return res.status(200).json({ success: true, message: 'If an account with that email address exists, a new verification link has been sent.' });
+      // Respond vaguely to prevent email enumeration
+      return res.status(200).json({ success: true, message: 'If an account with that email address exists, a new verification code has been sent.' });
     }
 
     if (user.verified) {
       logger.warn(`[ResendVerification][AlreadyVerified] Attempt for already verified email: ${userEmail}`);
       return res.status(200).json({ success: true, message: 'This account has already been verified.' });
     }
-    
-    // Asynchronously send a new verification email
-    sendVerificationMail(user._id, user.userName, user.userEmail);
 
-    logger.info(`[ResendVerification][Success] New verification link sent to: ${userEmail}`);
-    res.status(200).json({ success: true, message: 'A new verification link has been sent to your email address.' });
+    // Asynchronously send a new verification email with a code
+    const newVerificationCode = await sendVerificationMail(user._id, user.userName, user.userEmail);
 
+    if (newVerificationCode) {
+      // Hash the new code and update the user document
+      user.verificationCode = crypto.createHash('sha256').update(newVerificationCode).digest('hex');
+      user.verificationCodeExpires = Date.now() + 15 * 60 * 1000; // New code valid for 15 minutes
+      await user.save();
+      logger.info(`[ResendVerification][Success] New verification code sent to: ${userEmail}`);
+      res.status(200).json({ success: true, message: 'A new verification code has been sent to your email address.' });
+    } else {
+      logger.error(`[ResendVerification][EmailError] Failed to send new verification email for user: ${userEmail}`);
+      // Respond with a success message even if email sending fails to avoid leaking info
+      res.status(500).json({ success: false, message: 'Failed to send new verification code. Please try again later.' });
+    }
   } catch (error) {
     logger.error(`[ResendVerification][Error] ${error.message}`);
-    next(new Error('Error resending verification link.'));
+    next(new Error('Error resending verification code.'));
   }
 };
 
@@ -198,7 +230,7 @@ const authStatus = async (req, res, next) => {
       err.status = 404
       return next(err)
     }
-    
+
     logger.info(`[AuthStatus][Checked] User: ${userId}`)
     res.status(200).json({
       success: true,
@@ -207,7 +239,7 @@ const authStatus = async (req, res, next) => {
         userName: userData.userName,
         userEmail: userData.userEmail,
         userRole: userData.userRole,
-        isVerified: userData.verified 
+        isVerified: userData.verified
       }
     })
   } catch (error) {
@@ -255,7 +287,7 @@ const forgotPassword = async (req, res, next) => {
         user.resetPasswordExpires = Date.now() + 3600000; // Token is valid for 1 hour
 
         await user.save();
-        
+
         sendPasswordResetEmail(user.userEmail, user.userName, resetToken);
 
         res.status(200).json({ success: true, message: 'If an account with that email exists, a password reset link has been sent.' });
@@ -288,7 +320,7 @@ const resetPassword = async (req, res, next) => {
 
         const authToken = await createToken({ userId: user._id, userRole: user.userRole });
         await createAuthCookie(res, authToken);
-        
+
         logger.info(`[ResetPassword][Success] User password reset for: ${user.userEmail}`);
         res.status(200).json({ success: true, message: 'Password has been successfully reset.' });
 
@@ -298,13 +330,13 @@ const resetPassword = async (req, res, next) => {
     }
 };
 
-export { 
-    userSignIn, 
-    userSignUp, 
-    userSignout, 
-    authStatus, 
-    forgotPassword, 
-    resetPassword, 
-    verifyEmail,
+export {
+    userSignIn,
+    userSignUp,
+    userSignout,
+    authStatus,
+    forgotPassword,
+    resetPassword,
+    verifyEmail, // Export the new function
     resendVerificationLink
 }

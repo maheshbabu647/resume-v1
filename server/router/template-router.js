@@ -37,8 +37,8 @@ const mutationLimiter = rateLimit({
 })
 
 // [3] Public GET (rate-limited)
-templateRouter.get('/getAll', userAuthorization, fetchTemplatesLimiter, getAllTemplates)
-templateRouter.get('/:templateId', userAuthorization, fetchTemplatesLimiter, templateValidatorsMode('getById'), templateValidation, getTemplateById)
+templateRouter.get('/getAll', fetchTemplatesLimiter, getAllTemplates)
+templateRouter.get('/:templateId', fetchTemplatesLimiter, templateValidatorsMode('getById'), templateValidation, getTemplateById)
 
 // [4] Admin mutations (rate-limited)
 adminTemplateRouter.post('/add', userAuthorization, isAdmin, mutationLimiter, upload.single('templateImageFile'), templateValidatorsMode('create'), templateValidation, createTemplate)

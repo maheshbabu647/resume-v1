@@ -14,11 +14,6 @@ const TemplateContextProvider = ({ children }) => {
     // This ensures that the function itself doesn't get recreated on every render,
     // which prevents infinite loops in components that depend on it (like TemplatesPage).
     const getAllTemplates = useCallback(async () => {
-        // Do not attempt to fetch if the user is not authenticated.
-        if (!isAuthenticated) {
-            setTemplates([]);
-            return [];
-        }
 
         setIsLoadingTemplates(true);
         setTemplatesError(null);

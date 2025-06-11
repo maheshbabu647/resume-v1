@@ -1,6 +1,6 @@
 import mailTransporter from "../config/email-config.js";
-import { createToken } from "../util/jwt.js";
 import logger from "../config/logger.js";
+import crypto from 'crypto'; // Import crypto for generating random bytes
 
 // [SECURITY] Helper to escape HTML in user-provided names (defend against HTML injection)
 const escapeHTML = (str) =>
@@ -8,27 +8,33 @@ const escapeHTML = (str) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
   );
 
+/**
+ * Sends a verification email with a 6-digit code to the user.
+ * @param {string} userId - The ID of the user.
+ * @param {string} userName - The name of the user.
+ * @param {string} userEmail - The email address of the user.
+ * @returns {string|null} The generated verification code if successful, otherwise null.
+ */
 const sendVerificationMail = async (userId, userName, userEmail) => {
   try {
-    const CLIENT_BASE_URL = process.env.CLIENT_ORIGIN || 'http://localhost:5173';
-    const token = await createToken({ userId });
-    
-    // This link should point to your FRONTEND route that will handle the verification
-    const verificationLink = `${CLIENT_BASE_URL}/verify-email/${token}`;
+    const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
 
     const safeUserName = escapeHTML(userName);
 
     const mailBody = `<h2>Dear ${safeUserName},</h2>
-      <p>Thank you for registering with CareerForge. To complete your account setup, please verify your email address by clicking the link below:</p>
-      <a href="${verificationLink}" style="text-decoration: none; font-size: 18px; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px;">Verify Your Email</a>
-      <p>If you did not request this verification, please ignore this email. This link will expire in 24 hours.</p>
+      <p>Thank you for registering with CareerForge. To complete your account setup, please verify your email address using the code below:</p>
+      <div style="font-family: monospace; font-size: 24px; font-weight: bold; text-align: center; background-color: #f0f0f0; padding: 15px; border-radius: 8px; margin: 20px 0;">
+        ${verificationCode}
+      </div>
+      <p>Please enter this code on the verification page within 15 minutes to activate your account.</p>
+      <p>If you did not request this verification, please ignore this email. This code will expire shortly.</p>
       <p>Best regards,<br/>The CareerForge Team</p>`;
 
     const mailOptions = {
       from: process.env.EMAIL_FROM || 'no-reply@careerforge.pro',
       to: userEmail,
       replyTo: process.env.SUPPORT_EMAIL || 'support@careerforge.pro',
-      subject: 'CareerForge: Please Verify Your Email Address',
+      subject: 'CareerForge: Your Email Verification Code',
       html: mailBody,
     };
 
@@ -38,10 +44,12 @@ const sendVerificationMail = async (userId, userName, userEmail) => {
 
     await mailTransporter.sendMail(mailOptions);
 
-    logger.info(`[Email][Verification][Success] Sent to: ${userEmail}, userId: ${userId}`);
+    logger.info(`[Email][Verification][Success] Sent code to: ${userEmail}, userId: ${userId}`);
+    return verificationCode; // Return the raw code to be hashed and stored
   } catch (error) {
     logger.error(`[Email][Verification][Error] userId: ${userId}, userEmail: ${userEmail}, Reason: ${error.message}`);
     // Do not re-throw here to avoid crashing the sign-up process if email fails
+    return null;
   }
 };
 

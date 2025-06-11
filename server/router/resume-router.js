@@ -76,7 +76,7 @@ resumeRouter.post('/add',
 )
 resumeRouter.get('/getById/:resumeId',
   userAuthorization,
-  fetchResumeByIdLimiter,
+  // fetchResumeByIdLimiter,
   resumeValidatorsMode('getById'),
   resumeValidation,
   getResumeById

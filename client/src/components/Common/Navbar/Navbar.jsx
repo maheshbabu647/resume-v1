@@ -21,7 +21,7 @@ const Navbar = () => {
     closeMobileMenu();
     await signout();
     // Navigate to login page after signout logic is complete
-    navigate('/login'); 
+    navigate('/'); 
   };
 
   useEffect(() => {
@@ -91,9 +91,10 @@ const Navbar = () => {
 
           <div className="hidden md:flex md:items-center md:space-x-2 lg:space-x-4">
             <NavLink to="/home" className={getNavLinkClasses}><HomeIcon size={16} className="mr-1.5" />Home</NavLink>
+            <NavLink to="/templates" className={getNavLinkClasses}><LayoutTemplate size={16} className="mr-1.5" />Templates</NavLink>
+
             {isAuthenticated && (
               <>
-                <NavLink to="/templates" className={getNavLinkClasses}><LayoutTemplate size={16} className="mr-1.5" />Templates</NavLink>
                 <NavLink to="/dashboard" className={getNavLinkClasses}><User size={16} className="mr-1.5" />Dashboard</NavLink>
                 {userData?.userRole === 'admin' && (
                   <NavLink to="/admin/dashboard" className={getNavLinkClasses}><ShieldCheck size={16} className="mr-1.5" />Admin</NavLink>

@@ -26,6 +26,15 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    // New fields for email verification code
+    verificationCode: {
+        type: String,
+        default: undefined
+    },
+    verificationCodeExpires: {
+        type: Date,
+        default: undefined
+    },
     resetPasswordToken: {
         type: String,
         default: undefined
