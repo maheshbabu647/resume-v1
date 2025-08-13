@@ -23,6 +23,12 @@ const resumeSchema = new mongoose.Schema({
     required: [true, "Resume data is required"],
     default: {}
   },
+  spacingMultiplier: {
+    type: Number,
+    default: 1,
+    min: 0.5,
+    max: 2.0
+  },
   },
   {
     timestamps : true,

@@ -1,14 +1,15 @@
-import React, { forwardRef, useMemo } from "react";
+import React, { forwardRef, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import generateResumeHtml from "@/utils/generateResumeHtml";
 
-const ResumePreview = forwardRef(({ templateCode, currentFormData }, resumeRef) => {
+const ResumePreview = forwardRef(({ templateCode, currentFormData, spacingMultiplier }, resumeRef) => {
+
   const previewHtmlContent = useMemo(() => {
     if (!templateCode) {
       return '<div style="display: flex; justify-content: center; align-items: center; height: 100%; color: hsl(var(--muted-foreground)); font-family: Inter, sans-serif;">Template code not available.</div>';
     }
-    return generateResumeHtml(templateCode, currentFormData);
-  }, [templateCode, currentFormData]);
+    return generateResumeHtml(templateCode, currentFormData, spacingMultiplier);
+  }, [templateCode, currentFormData, spacingMultiplier]);
 
   return (
     <section

@@ -12,7 +12,7 @@ const MAX_RESUMES_PER_USER = 100;
 
 export const createResume = async (req, res, next) => {
   try {
-    const { templateId, resumeData, resumeName } = req.body;
+    const { templateId, resumeData, resumeName, spacingMultiplier } = req.body;
     const userId = req.user.userId;
 
     // [SECURITY] Prevent spam by limiting resumes per user
@@ -28,7 +28,8 @@ export const createResume = async (req, res, next) => {
       userId,
       templateId,
       resumeData,
-      resumeName: resumeName || undefined
+      resumeName: resumeName || undefined,
+      spacingMultiplier
     };
 
     const savedResume = await resumeModel.create(resume);
@@ -101,7 +102,7 @@ export const getResumeById = async (req, res, next) => {
 export const updateResume = async (req, res, next) => {
   try {
     const { resumeId } = req.params;
-    const { resumeData, resumeName } = req.body;
+    const { resumeData, resumeName, spacingMultiplier } = req.body;
     const userId = req.user.userId;
 
     const resume = await resumeModel.findById(resumeId);
@@ -122,7 +123,8 @@ export const updateResume = async (req, res, next) => {
 
     const updateResume = {
       resumeName: resumeName || resume.resumeName,
-      resumeData: resumeData || resume.resumeData
+      resumeData: resumeData || resume.resumeData,
+      spacingMultiplier: spacingMultiplier || resume.spacingMultiplier
     };
 
     await resumeModel.findByIdAndUpdate(resumeId, updateResume);

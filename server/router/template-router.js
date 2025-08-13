@@ -42,7 +42,7 @@ templateRouter.get('/:templateId', fetchTemplatesLimiter, templateValidatorsMode
 
 // [4] Admin mutations (rate-limited)
 adminTemplateRouter.post('/add', userAuthorization, isAdmin, mutationLimiter, upload.single('templateImageFile'), templateValidatorsMode('create'), templateValidation, createTemplate)
-adminTemplateRouter.put('/update/:templateId', userAuthorization, isAdmin, mutationLimiter, templateValidatorsMode('update'), templateValidation, updateTemplate)
+adminTemplateRouter.put('/update/:templateId', userAuthorization, isAdmin, mutationLimiter, upload.any(), templateValidatorsMode('update'), templateValidation, updateTemplate)
 adminTemplateRouter.delete('/delete/:templateId', userAuthorization, isAdmin, mutationLimiter, templateValidatorsMode('delete'), templateValidation, deleteTemplate)
 
 export{ templateRouter, adminTemplateRouter }
