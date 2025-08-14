@@ -2,7 +2,7 @@ import resumeModel from "../model/resume-model.js";
 import puppeteer from 'puppeteer';
 import logger from '../config/logger.js';
 import { logAnalyticsEvent } from '../service/analytics-logger.js';
-import { generateAISummary } from "../service/ai-summary-service.js";
+import { enhanceResumeText } from "../service/ai-summary-service.js";
 
 // [SECURITY] Max allowed HTML size for PDF generation
 const MAX_HTML_SIZE = 100_000; // 100 KB
@@ -297,6 +297,50 @@ export const generateResumeSummary = async (req, res, next) => {
     logger.error(`[Resume][Summary][Error] User: ${req.user?.userId || 'unknown'} - ${error.message}`);
     const err = new Error(error.message || 'Error generating resume summary.');
     err.status = 500;
+    next(err);
+  }
+};
+
+
+export const enhanceResumeField = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const { textToEnhance, jobContext } = req.body;
+    // [SECURITY & VALIDATION] Ensure required fields are present
+    if (!textToEnhance) {
+      logger.warn(`[Resume][Enhance][ValidationFail] No textToEnhance provided by user: ${userId}`);
+      const err = new Error('No text was provided to enhance.');
+      err.status = 400;
+      return next(err);
+    }
+
+    // === Analytics Logging: Attempt ===
+    await logAnalyticsEvent({
+      eventType: 'resume_enhance_field_attempt',
+      userId,
+      meta: { context: jobContext || 'general', ip: req.ip }
+    });
+
+    const suggestions = await enhanceResumeText(textToEnhance, jobContext);
+
+    // === Analytics Logging: Success ===
+    await logAnalyticsEvent({
+      eventType: 'resume_enhance_field_success',
+      userId,
+      meta: { context: jobContext || 'general', ip: req.ip }
+    });
+
+    logger.info(`[Resume][Enhance][Success] User: ${userId} enhanced a resume field.`);
+    res.status(200).json({
+      success: true,
+      suggestions: suggestions
+    });
+    
+  } catch (error) {
+    logger.error(`[Resume][Enhance][Error] User: ${req.user?.userId || 'unknown'} - ${error.message}`);
+    const err = new Error(error.message || 'Error enhancing resume field.');
+    // Keep the original status if the service threw a specific one
+    err.status = error.status || 500; 
     next(err);
   }
 };

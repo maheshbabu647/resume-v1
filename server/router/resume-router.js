@@ -10,6 +10,7 @@ import {
   getResumeById,
   updateResume,
   generateResumeSummary,
+  enhanceResumeField,
 } from '../controller/resume-controller.js'
 import { resumeValidatorsMode, resumeValidation } from '../validators/resume-validators.js'
 
@@ -66,6 +67,16 @@ const summaryLimiter = rateLimit({
 })
 
 
+// [6] AI Field Enhancement limiter
+const enhanceLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 15, // A bit more generous than summary, for enhancing multiple fields
+  message: {
+    status: 429,
+    error: 'Too many field enhancement requests. Please try again later.'
+  }
+});
+
 // [7] Routes (defense-in-depth: Auth → RateLimit → Validate → Handler)
 resumeRouter.post('/add',
   userAuthorization,
@@ -120,5 +131,13 @@ resumeRouter.post(
   generateResumeSummary
 )
 
+resumeRouter.post(
+  '/ai/enhance-field',
+  userAuthorization,
+  enhanceLimiter,
+  // resumeValidatorsMode('enhanceField'), 
+  // resumeValidation,
+  enhanceResumeField
+);
 
 export default resumeRouter

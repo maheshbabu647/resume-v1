@@ -112,3 +112,35 @@ export const generateAISummary = async (resumeData) => {
         throw { message: errorMessage };
     }
 };
+
+
+
+// Add this new function to your resumeServiceApi.js file
+
+/**
+ * Sends text to the AI for enhancement and receives structured suggestions.
+ * @param {string} textToEnhance - The text the user wants to improve.
+ * @param {string} jobContext - The related context (e.g., job title) to make suggestions more relevant.
+ * @returns {Promise<object>} A promise that resolves to the structured object of AI suggestions.
+ * @throws {Error} If the API request fails or the suggestions are not returned.
+ */
+export const enhanceResumeField = async (textToEnhance, jobContext) => {
+    try {
+        // The API expects an object with textToEnhance and jobContext keys
+        const payload = { textToEnhance, jobContext };
+        console.log(payload)
+        const response = await apiServer.post('/resume/ai/enhance-field', payload);
+        console.log(response)
+
+        if (response.data && response.data.success && typeof response.data.suggestions === 'object') {
+            return response.data.suggestions;
+        } else {
+            throw new Error(response.data.message || 'Failed to get suggestions or suggestions not found in response.');
+        }
+    } catch (error) {
+        console.error('Error enhancing resume field:', error.response?.data || error.message);
+        const errorMessage = error.response?.data?.message ||
+            'Failed to get AI suggestions. The server might be busy, or the request was invalid.';
+        throw { message: errorMessage };
+    }
+};
