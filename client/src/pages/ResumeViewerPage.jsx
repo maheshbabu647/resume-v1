@@ -10,6 +10,7 @@ import { getById as apiGetResumeById } from '@/api/resumeServiceApi';
 import { getTemplateById as apiGetTemplateById } from '@/api/templateServiceApi';
 import { downloadResume as apiDownloadResume } from "@/api/resumeServiceApi";
 import generateResumeHtml from '@/utils/generateResumeHtml';
+import { Loader2 } from "lucide-react";
 
 // Lazy load ResumePreview
 const ResumePreview = React.lazy(() => import('@/components/Resume/ResumePreview'));
@@ -24,6 +25,7 @@ const ResumeViewerPage = () => {
     templateCode: null,
     formData: null,
     resumeName: 'Resume',
+    spacingMultiplier: 1,
   });
   const [pageLoading, setPageLoading] = useState(true);
   const [pageError, setPageError] = useState(null);
@@ -36,7 +38,7 @@ const ResumeViewerPage = () => {
 
     const loadData = async () => {
       try {
-        let finalTemplateCode, finalFormData, finalResumeName;
+        let finalTemplateCode, finalFormData, finalResumeName, finalSpacingMultiplier;
 
         if (resumeId) {
           // --- Viewing a SAVED resume ---
@@ -47,6 +49,7 @@ const ResumeViewerPage = () => {
           finalTemplateCode = savedResume.templateId.templateCode;
           finalFormData = savedResume.resumeData;
           finalResumeName = savedResume.resumeName || 'Untitled Resume';
+          finalSpacingMultiplier = savedResume.spacingMultiplier || 1; 
         } else if (templateId) {
           // --- Previewing a NEW resume ---
           const template = await apiGetTemplateById(templateId);
@@ -58,6 +61,7 @@ const ResumeViewerPage = () => {
           // *** FIX: Use data from location state if available, otherwise use empty object ***
           finalFormData = location.state?.formData || {}; 
           finalResumeName = location.state?.resumeName || `${template.templateName || 'Template'} Preview`;
+          finalSpacingMultiplier = location.state?.spacingMultiplier || 1;
         } else {
           throw new Error('No resume or template specified for viewing.');
         }
@@ -67,6 +71,7 @@ const ResumeViewerPage = () => {
             templateCode: finalTemplateCode,
             formData: finalFormData,
             resumeName: finalResumeName,
+            spacingMultiplier: finalSpacingMultiplier,
           });
         }
       } catch (err) {
@@ -166,6 +171,7 @@ const ResumeViewerPage = () => {
               ref={resumePreviewRef}
               templateCode={displayData.templateCode}
               currentFormData={displayData.formData}
+              spacingMultiplier={displayData.spacingMultiplier}
             />
           </Suspense>
         </main>

@@ -12,14 +12,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner';
-import { ArrowLeft, Save, Loader2, AlertCircle, RefreshCw, CheckCircle2, FileJson, Code2, Eye, X } from 'lucide-react';
+import { ArrowLeft, Save, Loader2, AlertCircle, RefreshCw, CheckCircle2, FileJson, Code2, Eye, X, Tags } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
 const ResumePreview = React.lazy(() => import('@/components/Resume/ResumePreview'));
 
 const defaultTemplateCode = `
 <div style="font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background-color: #fff; padding: 40px; width: 794px; min-height:1123px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-  <!-- Header Section -->
   <header style="text-align: center; border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px;">
     <h1 style="font-size: 2.5em; margin: 0 0 5px 0; color: #2c3e50;">{{personalDetails.fullName}}</h1>
     <p style="font-size: 1.1em; margin: 0; color: #555;">{{personalDetails.jobTitle}}</p>
@@ -89,6 +88,11 @@ const AdminTemplateEditPage = () => {
     templateName: '',
     templateCode: '',
     templateFieldDefinition: '',
+    tags: {
+        style: '',
+        level: '',
+        industry: ''
+    }
   });
   const [templateImageFile, setTemplateImageFile] = useState(null);
   const [currentImageUrl, setCurrentImageUrl] = useState(null);
@@ -123,6 +127,11 @@ const AdminTemplateEditPage = () => {
                 templateName: data.templateName || '',
                 templateCode: data.templateCode || defaultTemplateCode,
                 templateFieldDefinition: data.templateFieldDefinition ? JSON.stringify(data.templateFieldDefinition, null, 2) : defaultFieldDefinition,
+                tags: {
+                    style: data.tags?.style || '',
+                    level: Array.isArray(data.tags?.level) ? data.tags.level.join(', ') : '',
+                    industry: Array.isArray(data.tags?.industry) ? data.tags.industry.join(', ') : ''
+                }
             });
             setCurrentImageUrl(data.templateImage || null);
         } else {
@@ -130,6 +139,7 @@ const AdminTemplateEditPage = () => {
                 templateName: '',
                 templateCode: defaultTemplateCode,
                 templateFieldDefinition: defaultFieldDefinition,
+                tags: { style: '', level: '', industry: '' }
             });
             setCurrentImageUrl(null);
         }
@@ -146,7 +156,18 @@ const AdminTemplateEditPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name.startsWith('tags.')) {
+        const tagName = name.split('.')[1];
+        setTemplateData(prev => ({
+            ...prev,
+            tags: { ...prev.tags, [tagName]: value }
+        }));
+        return;
+    }
+
     setTemplateData(prev => ({ ...prev, [name]: value }));
+
     if (name === 'templateFieldDefinition') {
         try { 
             const parsed = JSON.parse(value);
@@ -192,8 +213,15 @@ const AdminTemplateEditPage = () => {
       return;
     }
 
+    // Process and append tags
+    const processedTags = {
+        style: templateData.tags.style || '',
+        level: templateData.tags.level ? templateData.tags.level.split(',').map(item => item.trim()).filter(Boolean) : [],
+        industry: templateData.tags.industry ? templateData.tags.industry.split(',').map(item => item.trim()).filter(Boolean) : [],
+    };
+    formDataPayload.append('tags', JSON.stringify(processedTags));
+
     if (templateImageFile) {
-        // FIX: The field name must match the backend router: 'templateImageFile'
         formDataPayload.append('templateImageFile', templateImageFile);
     }
     
@@ -289,6 +317,28 @@ const AdminTemplateEditPage = () => {
                                     <Label htmlFor="templateImageFile">Preview Image</Label>
                                     <Input id="templateImageFile" name="templateImageFile" type="file" onChange={handleImageChange} accept="image/*" />
                                     {(imagePreview || currentImageUrl) && <img src={imagePreview || currentImageUrl} alt="Preview" className="mt-2 rounded-md border p-1 max-h-40" />}
+                                </div>
+                            </CardContent>
+                        </Card>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle className="flex items-center"><Tags size={16} className="mr-2"/>Tags & Metadata</CardTitle>
+                                <CardDescription>Categorize the template for better filtering and discovery.</CardDescription>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                <div>
+                                    <Label htmlFor="tags.style">Style</Label>
+                                    <Input id="tags.style" name="tags.style" value={templateData.tags.style} onChange={handleChange} placeholder="e.g., Modern, Minimalist, Classic" />
+                                </div>
+                                <div>
+                                    <Label htmlFor="tags.level">Experience Level</Label>
+                                    <Input id="tags.level" name="tags.level" value={templateData.tags.level} onChange={handleChange} placeholder="e.g., Entry-Level, Mid-Career, Senior" />
+                                    <p className="text-xs text-muted-foreground mt-1">Enter comma-separated values.</p>
+                                </div>
+                                <div>
+                                    <Label htmlFor="tags.industry">Industry</Label>
+                                    <Input id="tags.industry" name="tags.industry" value={templateData.tags.industry} onChange={handleChange} placeholder="e.g., Tech, Healthcare, Finance" />
+                                    <p className="text-xs text-muted-foreground mt-1">Enter comma-separated values.</p>
                                 </div>
                             </CardContent>
                         </Card>

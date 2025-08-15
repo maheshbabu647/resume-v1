@@ -20,7 +20,7 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
-import { Eye, Download, Save, ArrowLeft, Loader2, AlertCircle, RefreshCw, Edit2, Sparkles, CheckCircle2 } from "lucide-react";
+import { Eye, Download, Save, ArrowLeft, Loader2, AlertCircle, RefreshCw, Edit2, CheckCircle2 } from "lucide-react";
 import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner';
 import EnhancementDialog from '@/components/Resume/EnhancementDialog'
 
@@ -34,52 +34,78 @@ import useTemplateContext from "@/hooks/useTemplate";
 import useResumeContext from "@/hooks/useResume";
 
 // API & Utilities
-import { downloadResume as apiDownloadResume, generateAISummary, enhanceResumeField } from "@/api/resumeServiceApi";
+import { downloadResume as apiDownloadResume, enhanceResumeField } from "@/api/resumeServiceApi";
 import { cn } from "@/lib/utils";
 import AuthDialog from '@/components/Auth/AuthDialog.jsx';
 
-
-// --- NEW HELPER FUNCTION ---
-// Initializes the complete form data structure with content and section configs.
-const initializeFormDataFromDefinitions = (definitions) => {
+// Helper function to initialize form data based on template definitions
+const initializeFormDataFromDefinitions = (definitions, selectedIndustry) => {
   const content = {};
   const sectionsConfig = {};
 
-  if (Array.isArray(definitions)) {
-    definitions.forEach(fieldDef => {
-      // Logic for populating the 'content' object
-      const keys = fieldDef.name.split('.');
-      let currentLevel = content;
-      keys.forEach((key, index) => {
-        if (index === keys.length - 1) {
-          if (fieldDef.type === 'group' && fieldDef.repeatable) {
-            currentLevel[key] = fieldDef.startWithEmpty === false && fieldDef.defaultItem
-                ? [cloneDeep(fieldDef.defaultItem)]
-                : [];
-          } else if (fieldDef.type === 'group' && !fieldDef.repeatable) {
-            currentLevel[key] = {};
-            if (Array.isArray(fieldDef.subFields)) {
-              fieldDef.subFields.forEach(subField => {
-                currentLevel[key][subField.name] = subField.defaultValue ?? '';
-              });
-            }
-          } else {
-            currentLevel[key] = fieldDef.defaultValue ?? '';
-          }
-        } else {
-          currentLevel[key] = currentLevel[key] || {};
-          currentLevel = currentLevel[key];
-        }
-      });
-
-      // NEW logic: If a field is a repeatable group, it's a section we can toggle.
-      if (fieldDef.type === 'group' && fieldDef.repeatable) {
-        sectionsConfig[fieldDef.name] = { enabled: true }; // Enable by default
-      }
-    });
+  if (!Array.isArray(definitions)) {
+    return { content, sectionsConfig };
   }
 
-  // Return the complete object with both content and config
+  // 1. Group fields and find metadata for each unique section
+  const uniqueSections = definitions.reduce((acc, field) => {
+    if (field.section && !acc[field.section]) {
+      const sectionDef = definitions.find(def => def.section === field.section && (def.isCore !== undefined || def.recommendedFor));
+      acc[field.section] = {
+        isCore: sectionDef?.isCore || false,
+        recommendedFor: sectionDef?.recommendedFor || null,
+        isToggleable: definitions.some(def => def.section === field.section && def.type === 'group' && def.repeatable)
+      };
+    }
+    return acc;
+  }, {});
+
+  // 2. Build the sectionsConfig with the corrected logic
+  for (const sectionKey in uniqueSections) {
+    const { isCore, recommendedFor, isToggleable } = uniqueSections[sectionKey];
+    
+    if (isToggleable) {
+      // Default to disabled and enable only if a condition is met
+      let isEnabled = false; 
+
+      if (isCore) {
+        // Condition 1: Core sections are always enabled.
+        isEnabled = true;
+      } else if (!selectedIndustry) {
+        // Condition 2: If NO industry is selected, enable all toggleable sections by default.
+        isEnabled = true;
+      } else {
+        // Condition 3: An industry IS selected.
+        if (!recommendedFor) {
+          // It's a generic, non-core section (like 'Interests'), so enable it.
+          isEnabled = true;
+        } else {
+          // It has industry recommendations. Enable ONLY if it's a match.
+          isEnabled = recommendedFor.includes(selectedIndustry);
+        }
+      }
+      sectionsConfig[sectionKey] = { enabled: isEnabled };
+    }
+  }
+
+  // 3. Populate the 'content' object with default values
+  definitions.forEach(fieldDef => {
+    const keys = fieldDef.name.split('.');
+    let currentLevel = content;
+    keys.forEach((key, index) => {
+      if (index === keys.length - 1) {
+        if (fieldDef.type === 'group' && fieldDef.repeatable) {
+          currentLevel[key] = [];
+        } else {
+          currentLevel[key] = fieldDef.defaultValue ?? '';
+        }
+      } else {
+        currentLevel[key] = currentLevel[key] || {};
+        currentLevel = currentLevel[key];
+      }
+    });
+  });
+
   return { content, sectionsConfig };
 };
 
@@ -116,8 +142,6 @@ const ResumeEditorPage = () => {
   const [currentTemplateForEditor, setCurrentTemplateForEditor] = useState(null);
   const [editableResumeName, setEditableResumeName] = useState('');
   const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
-  const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
-  const [aiSummaryError, setAiSummaryError] = useState(null);
   const [showFeedbackDialog, setShowFeedbackDialog] = useState(false);
   const [feedbackDetailsForDialog, setFeedbackDetailsForDialog] = useState({ title: '', message: '', type: 'success' });
   const [spacingMultiplier, setSpacingMultiplier] = useState(1);
@@ -126,8 +150,6 @@ const ResumeEditorPage = () => {
   const [enhancementSuggestions, setEnhancementSuggestions] = useState(null);
   const [activeEnhancementInfo, setActiveEnhancementInfo] = useState({ path: null, originalText: '' });
   
-  
-
   useEffect(() => {
     const setupPage = async () => {
       if (isAuthLoading) return;
@@ -140,25 +162,26 @@ const ResumeEditorPage = () => {
           const loadedResume = await loadResumeForEditor(existingResumeId);
           if (!loadedResume) throw new Error("Failed to load your resume.");
           
-          // Ensure loaded data has the new structure
           if (!loadedResume.resumeData.content || !loadedResume.resumeData.sectionsConfig) {
-             console.warn("Older data format detected. Consider migrating.");
-             // For now, we can wrap it, but a migration script would be better
-             const migratedData = {
-                content: loadedResume.resumeData,
-                sectionsConfig: initializeFormDataFromDefinitions(loadedResume.templateId.templateFieldDefinition).sectionsConfig
-             };
-             setEditorFormData(migratedData);
+              console.warn("Older data format detected. Migrating to new structure.");
+              const migratedData = {
+                  content: loadedResume.resumeData,
+                  sectionsConfig: initializeFormDataFromDefinitions(loadedResume.templateId.templateFieldDefinition, null).sectionsConfig
+              };
+              setEditorFormData(migratedData);
+          } else {
+              setEditorFormData(loadedResume.resumeData);
           }
           
           setCurrentTemplateForEditor(loadedResume.templateId);
           setEditableResumeName(loadedResume.resumeName || 'Untitled Resume');
-
           setSpacingMultiplier(loadedResume.spacingMultiplier || 1);
           
         } else if (newResumeTemplateId) {
-          // Check if data is already in context from a preview navigation
-          const isReturningFromPreview = currentResumeDetail?.templateId?._id === newResumeTemplateId && editorFormData?.content && editorFormData?.sectionsConfig;
+          const queryParams = new URLSearchParams(location.search);
+          const selectedIndustry = queryParams.get('industry');
+
+          const isReturningFromPreview = currentResumeDetail?.templateId?._id === newResumeTemplateId && editorFormData?.content;
 
           if (!isReturningFromPreview) {
             setMode('create');
@@ -167,16 +190,22 @@ const ResumeEditorPage = () => {
             if (!targetTemplate) throw new Error(`Template with ID ${newResumeTemplateId} not found.`);
             
             setCurrentTemplateForEditor(targetTemplate);
-            prepareNewResumeForEditor(targetTemplate); // This might need adjustment in your context
             
-            // --- MODIFIED: Use the new initializer ---
-            const initialData = initializeFormDataFromDefinitions(targetTemplate.templateFieldDefinition);
+            // --- FIX: Re-added the missing call to prepare the context ---
+            // This function likely sets up essential details in your resume context,
+            // such as the template ID, which are needed for the save operation to succeed when creating a new resume.
+            prepareNewResumeForEditor(targetTemplate); 
+            
+            const initialData = initializeFormDataFromDefinitions(targetTemplate.templateFieldDefinition, selectedIndustry);
             setEditorFormData(initialData);
-            setEditableResumeName(`My New ${targetTemplate.templateName || 'Resume'}`);
+
+            const nameSuffix = selectedIndustry ? `${targetTemplate.templateName} - ${selectedIndustry}` : (targetTemplate.templateName || 'Resume');
+            setEditableResumeName(`My New ${nameSuffix}`);
+
           } else {
-             setMode('create');
-             setCurrentTemplateForEditor(currentResumeDetail.templateId);
-             setEditableResumeName(editableResumeName || `My New ${currentResumeDetail.templateId.templateName || 'Resume'}`);
+              setMode('create');
+              setCurrentTemplateForEditor(currentResumeDetail.templateId);
+              setEditableResumeName(editableResumeName || `My New ${currentResumeDetail.templateId.templateName || 'Resume'}`);
           }
         } else {
           throw new Error("Invalid page access.");
@@ -190,7 +219,7 @@ const ResumeEditorPage = () => {
     
     setupPage();
     
-  }, [existingResumeId, newResumeTemplateId, isAuthenticated, isAuthLoading]);
+  }, [existingResumeId, newResumeTemplateId, isAuthenticated, isAuthLoading, location.search]);
 
   useEffect(() => {
     return () => {
@@ -207,7 +236,6 @@ const ResumeEditorPage = () => {
     }
   }, [resumeError, isSavingResume]);
 
-  // --- MODIFIED: All handlers now target the `content` sub-object ---
   const handleSimpleChange = useCallback((fieldPath, value) => {
     setEditorFormData(prevData => {
         const newData = cloneDeep(prevData);
@@ -245,7 +273,6 @@ const ResumeEditorPage = () => {
     });
   }, [setEditorFormData]);
 
-  // --- NEW: Handler for toggling sections on and off ---
   const handleSectionToggle = useCallback((sectionKey) => {
     setEditorFormData(prevData => {
         const newData = cloneDeep(prevData);
@@ -298,52 +325,23 @@ const ResumeEditorPage = () => {
     navigate(targetPath, {
         state: { 
             formData: editorFormData, 
-            resumeName: editableResumeName
+            resumeName: editableResumeName,
+            spacingMultiplier: spacingMultiplier
         } 
     });
   };
   
-  // const handleGenerateAISummary = async () => {
-  //   if (!editorFormData?.content || Object.keys(editorFormData.content).length === 0) {
-  //     setAiSummaryError("Please fill in some resume details first."); return;
-  //   }
-  //   setIsGeneratingSummary(true);
-  //   setAiSummaryError(null);
-  //   try {
-  //     const summary = await generateAISummary(editorFormData.content); // Pass only content to AI
-      
-  //     // --- MODIFIED: Set the summary within the `content` object ---
-  //     const summaryFieldPath = 'content.summary'; // Assuming summary is at the top level of content
-  //     setEditorFormData(prevData => {
-  //       const newData = cloneDeep(prevData);
-  //       set(newData, summaryFieldPath, summary);
-  //       return newData;
-  //     });
-
-  //     setFeedbackDetailsForDialog({ title: 'AI Summary Generated!', message: 'The summary has been updated.', type: 'success' });
-  //     setShowFeedbackDialog(true);
-  //   } catch (error) {
-  //     setAiSummaryError(error.message || "Failed to generate AI summary.");
-  //   } finally {
-  //     setIsGeneratingSummary(false);
-  //   }
-  // };
-
-
   const handleEnhanceField = async (fieldPath, textToEnhance, jobContext) => {
-      // Prevent calling with empty text
       if (!textToEnhance || textToEnhance.trim() === '') {
           setFeedbackDetailsForDialog({ title: 'Cannot Enhance', message: 'Please enter some text before using AI enhancement.', type: 'error' });
           setShowFeedbackDialog(true);
           return;
       }
-
       setIsEnhancing(true);
-      setActiveEnhancementInfo({ path: fieldPath, originalText: textToEnhance }); // Store path and text
-
+      setActiveEnhancementInfo({ path: fieldPath, originalText: textToEnhance });
       try {
           const suggestions = await enhanceResumeField(textToEnhance, jobContext);
-          setEnhancementSuggestions(suggestions); // This will open the dialog
+          setEnhancementSuggestions(suggestions);
       } catch (error) {
           setFeedbackDetailsForDialog({ title: 'AI Enhancement Failed', message: error.message, type: 'error' });
           setShowFeedbackDialog(true);
@@ -354,20 +352,14 @@ const ResumeEditorPage = () => {
 
   const handleAcceptSuggestion = (suggestionText) => {
     if (activeEnhancementInfo.path) {
-        // This regex checks if the path is for an array item, e.g., "workExperience[0].description"
         const arrayMatch = activeEnhancementInfo.path.match(/^(.*)\[(\d+)\]\.(.*)$/);
-
         if (arrayMatch) {
-            // It's an array item! Call the correct handler.
             const [, arrayName, itemIndex, fieldName] = arrayMatch;
             handleArrayItemChange(arrayName, parseInt(itemIndex, 10), fieldName, suggestionText);
         } else {
-            // It's a simple, top-level field.
             handleSimpleChange(activeEnhancementInfo.path, suggestionText);
         }
     }
-    
-    // This part remains the same
     setEnhancementSuggestions(null);
     setActiveEnhancementInfo({ path: null, originalText: '' });
   };
@@ -387,7 +379,7 @@ const ResumeEditorPage = () => {
             <AlertCircle className="h-5 w-5" /><AlertTitle>Error Loading Editor</AlertTitle><AlertDescription>{pageError}</AlertDescription>
             </Alert>
             <Button variant="outline" onClick={() => window.location.reload()} className="mt-6"><RefreshCw className="mr-2 h-4 w-4" /> Try Again</Button>
-      </div>
+    </div>
     );
   }
 
@@ -397,7 +389,6 @@ const ResumeEditorPage = () => {
     <>
       <Helmet><title>{seoTitle}</title></Helmet>
       <div className="flex flex-col min-h-screen bg-muted/20 dark:bg-background text-foreground">
-        {/* Header remains the same */}
         <header className="sticky top-0 z-30 bg-card/95 backdrop-blur-md border-b border-border shadow-sm px-2 sm:px-4 py-2.5">
           <div className="container mx-auto flex items-center justify-between gap-1 sm:gap-2">
             <div className="flex items-center gap-1 sm:gap-2 flex-shrink min-w-0">
@@ -411,33 +402,24 @@ const ResumeEditorPage = () => {
                     placeholder="Untitled Resume"
                     className="text-sm sm:text-base font-semibold p-1 h-9 border-transparent hover:border-input focus-visible:ring-1 focus-visible:ring-primary focus-visible:bg-muted truncate bg-transparent max-w-[120px] xs:max-w-[150px] sm:max-w-[200px] md:max-w-xs pr-6"
                     aria-label="Resume Name"
-                 />
-                 <Edit2 size={12} className="absolute right-1 top-1/2 -translate-y-1/2 text-muted-foreground/50 group-hover:text-primary transition-colors"/>
+                   />
+                   <Edit2 size={12} className="absolute right-1 top-1/2 -translate-y-1/2 text-muted-foreground/50 group-hover:text-primary transition-colors"/>
               </div>
             </div>
             <div className="text-xs text-muted-foreground truncate hidden lg:block mx-4 flex-grow text-center">
                 Using Template: <span className="font-medium text-foreground">{currentTemplateForEditor?.templateName || 'Loading...'}</span>
             </div>
             <div className="flex items-center gap-1 sm:gap-1.5 flex-shrink-0">
-              {/* <Button variant="outline" size="sm" onClick={handleGenerateAISummary} disabled={isGeneratingSummary} className="border-border text-xs sm:text-sm text-primary hover:bg-primary/10 hover:border-primary h-8 px-2 sm:px-3">
-                {isGeneratingSummary ? <Loader2 size={14} className="animate-spin sm:mr-1.5" /> : <Sparkles size={14} className="sm:mr-1.5" />} <span className="hidden sm:inline">{isGeneratingSummary ? 'AI...' : 'AI Summary'}</span>
-              </Button> */}
               <Button variant="outline" size="sm" onClick={handlePreviewPage} className="border-border text-xs sm:text-sm h-8 px-2 sm:px-3"><Eye size={14} className="sm:mr-1.5" /> <span className="hidden sm:inline">Preview</span></Button>
               <Button variant="outline" size="sm" onClick={handleDownloadPdf} disabled={isDownloadingPdf || isSavingResume} className="border-border text-xs sm:text-sm h-8 px-2 sm:px-3">
                 {isDownloadingPdf ? <Loader2 size={14} className="animate-spin sm:mr-1.5" /> : <Download size={14} className="sm:mr-1.5" />} <span className="hidden sm:inline">{isDownloadingPdf ? '...' : 'PDF'}</span>
               </Button>
-              <Button size="sm" onClick={handleSaveResume} disabled={isSavingResume || isLoadingCurrentResume || isGeneratingSummary} className="bg-primary text-primary-foreground hover:bg-primary/90 text-xs sm:text-sm h-8 px-2 sm:px-3">
+              <Button size="sm" onClick={handleSaveResume} disabled={isSavingResume || isLoadingCurrentResume} className="bg-primary text-primary-foreground hover:bg-primary/90 text-xs sm:text-sm h-8 px-2 sm:px-3">
                 {isSavingResume ? <Loader2 size={14} className="animate-spin sm:mr-1.5" /> : <Save size={14} className="sm:mr-1.5" />} <span className="hidden sm:inline">{isSavingResume ? 'Saving...' : (mode === 'create' ? 'Save' : 'Update')}</span>
               </Button>
             </div>
           </div>
         </header>
-
-        {/* {aiSummaryError && (
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-3">
-            <Alert variant="destructive"><AlertCircle className="h-5 w-5" /><AlertTitle>AI Summary Error</AlertTitle><AlertDescription>{aiSummaryError}</AlertDescription></Alert>
-          </div>
-        )} */}
 
         <main className="flex-grow container mx-auto px-1 sm:px-2 md:px-4 py-3 md:py-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 md:gap-4 items-start">
@@ -467,7 +449,7 @@ const ResumeEditorPage = () => {
             <motion.div 
               initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 0.2 }} 
               className="lg:sticky lg:top-[75px] h-fit lg:col-span-7"
-            >       
+            >   
               <div className="bg-card border rounded-b-none rounded-t-xl p-3 flex items-center gap-4 shadow-sm">
                 <Label htmlFor="spacing-slider" className="text-sm font-medium text-muted-foreground whitespace-nowrap">Spacing</Label>
                 <Slider
