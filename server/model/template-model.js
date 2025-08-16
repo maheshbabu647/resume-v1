@@ -23,6 +23,19 @@ const templateSchema = new mongoose.Schema({
     required : [true, 'Field definitions are required.'],
     default: []
   },
+  // Added the tags object here
+  tags: {
+    style: {
+      type: String,
+      trim: true
+    },
+    level: {
+      type: [String]
+    },
+    industry: {
+      type: [String]
+    }
+  },
   createdAt: {
     type: Date,
     default: Date.now,

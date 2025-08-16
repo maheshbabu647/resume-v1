@@ -90,6 +90,7 @@ const initializeFormDataFromDefinitions = (definitions, selectedIndustry) => {
 
   // 3. Populate the 'content' object with default values
   definitions.forEach(fieldDef => {
+    console.log("hello",fieldDef.name)
     const keys = fieldDef.name.split('.');
     let currentLevel = content;
     keys.forEach((key, index) => {

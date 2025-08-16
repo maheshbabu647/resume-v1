@@ -10,7 +10,6 @@ const MAX_TEMPLATES_RETURNED = 1000;
 // Get all templates
 const getAllTemplates = async (req, res, next) => {
   try {
-    console.log("hello is this the end.")
     const templates = await templateModel.find({}).sort({ createdAt: -1 }).limit(MAX_TEMPLATES_RETURNED);
 
     // === Analytics Logging ===
@@ -35,10 +34,13 @@ const getAllTemplates = async (req, res, next) => {
 // Create a new template
 const createTemplate = async (req, res, next) => {
   try {
-    const { templateName, templateCode, templateFieldDefinition } = req.body;
+    // Destructure 'industryImages' from the request body
+    const { templateName, templateCode, templateFieldDefinition, tags, industryImages } = req.body;
     let templateImageUrl = '';
     let templatePublicId = '';
     let parsedTemplateFieldDefinition = [];
+    let parsedTags = {};
+    let parsedIndustryImages = {}; // To hold the parsed industry images map
 
     if (!templateName || !templateCode) {
       logger.warn(`[Template][Create][ValidationFail] Name or code missing`);
@@ -47,7 +49,7 @@ const createTemplate = async (req, res, next) => {
       return next(err);
     }
 
-    // [SECURITY] Only allow field definitions if array
+    // Parse and validate templateFieldDefinition
     if (templateFieldDefinition) {
       try {
         parsedTemplateFieldDefinition = JSON.parse(templateFieldDefinition);
@@ -62,7 +64,38 @@ const createTemplate = async (req, res, next) => {
       }
     }
 
-    // [SECURITY] Only accept image via file upload (never from user body)
+    // Parse and validate tags
+    if (tags) {
+        try {
+            parsedTags = JSON.parse(tags);
+            if (typeof parsedTags !== 'object' || Array.isArray(parsedTags)) {
+                 throw new Error('Tags must be a valid JSON object.');
+            }
+        } catch (error) {
+            logger.warn(`[Template][Create][ValidationFail] Invalid tags format: ${error.message}`);
+            const err = new Error(error.message || 'Invalid format for tags.');
+            err.status = 400;
+            return next(err);
+        }
+    }
+
+    // --- NEW: Parse and validate industryImages ---
+    if (industryImages) {
+        try {
+            parsedIndustryImages = JSON.parse(industryImages);
+            if (typeof parsedIndustryImages !== 'object' || Array.isArray(parsedIndustryImages)) {
+                 throw new Error('Industry Images must be a valid JSON object (a map).');
+            }
+        } catch (error) {
+            logger.warn(`[Template][Create][ValidationFail] Invalid industryImages format: ${error.message}`);
+            const err = new Error(error.message || 'Invalid format for industryImages.');
+            err.status = 400;
+            return next(err);
+        }
+    }
+
+
+    // Handle image upload
     if (req.file) {
       const result = await uploadImageToCloudinary(req.file.buffer, req.file.originalname);
       templateImageUrl = result.secure_url;
@@ -74,12 +107,17 @@ const createTemplate = async (req, res, next) => {
       return next(err);
     }
 
+    // Construct the new template object including new fields
     const newTemplate = {
       templateName,
       templateCode,
       templateImage: templateImageUrl,
       templateImageId: templatePublicId,
-      templateFieldDefinition: parsedTemplateFieldDefinition
+      templateFieldDefinition: parsedTemplateFieldDefinition,
+      tags: parsedTags,
+      industryImages: parsedIndustryImages // Add the parsed industry images map
+      // NOTE: A full implementation for production might also handle multiple file uploads
+      // and populate a corresponding `industryImageIds` map.
     };
 
     const savedTemplate = await templateModel.create(newTemplate);
@@ -110,8 +148,11 @@ const createTemplate = async (req, res, next) => {
 const updateTemplate = async (req, res, next) => {
   try {
     const { templateId } = req.params;
-    const { templateName, templateCode, templateFieldDefinition } = req.body;
+    // Destructure new fields from the request body
+    const { templateName, templateCode, templateFieldDefinition, tags, industryImages } = req.body;
     let parsedTemplateFieldDefinition;
+    let parsedTags;
+    let parsedIndustryImages; // To hold the parsed industry images map
 
     if (!mongoose.Types.ObjectId.isValid(templateId)) {
       logger.warn(`[Template][Update][ValidationFail] Invalid ID: ${templateId}`);
@@ -129,7 +170,7 @@ const updateTemplate = async (req, res, next) => {
       return next(err);
     }
 
-    // [SECURITY] Only allow field definitions if array
+    // Parse and validate templateFieldDefinition if provided
     if (templateFieldDefinition !== undefined) {
       try {
         parsedTemplateFieldDefinition = JSON.parse(templateFieldDefinition);
@@ -144,12 +185,41 @@ const updateTemplate = async (req, res, next) => {
       }
     }
 
+    // Parse and validate tags if provided
+    if (tags !== undefined) {
+      try {
+        parsedTags = JSON.parse(tags);
+        if (typeof parsedTags !== 'object' || Array.isArray(parsedTags)) {
+          throw new Error('Tags must be a valid JSON object.');
+        }
+      } catch (error) {
+        logger.warn(`[Template][Update][ValidationFail] Invalid tags format: ${error.message}`);
+        const err = new Error(error.message || 'Invalid format for tags.');
+        err.status = 400;
+        return next(err);
+      }
+    }
+    
+    // --- NEW: Parse and validate industryImages if provided ---
+    if (industryImages !== undefined) {
+      try {
+        parsedIndustryImages = JSON.parse(industryImages);
+        if (typeof parsedIndustryImages !== 'object' || Array.isArray(parsedIndustryImages)) {
+          throw new Error('Industry Images must be a valid JSON object (a map).');
+        }
+      } catch (error) {
+        logger.warn(`[Template][Update][ValidationFail] Invalid industryImages format: ${error.message}`);
+        const err = new Error(error.message || 'Invalid format for industryImages.');
+        err.status = 400;
+        return next(err);
+      }
+    }
+
     let updatedImageUrl = template.templateImage;
     let updatedImageId = template.templateImageId;
 
-    // [SECURITY] If new file uploaded, replace image & cleanup old image
+    // Handle new image upload
     if (req.file) {
-      // Delete old image from Cloudinary
       if (template.templateImageId) {
         await deleteImageFromCloudinary(template.templateImageId);
       }
@@ -158,14 +228,17 @@ const updateTemplate = async (req, res, next) => {
       updatedImageId = result.public_id;
     }
 
+    // Construct the update object, including new fields
     const templateNewData = {
       templateName: templateName || template.templateName,
       templateCode: templateCode || template.templateCode,
       templateImage: updatedImageUrl,
       templateImageId: updatedImageId,
-      templateFieldDefinition: parsedTemplateFieldDefinition || template.templateFieldDefinition
+      templateFieldDefinition: parsedTemplateFieldDefinition || template.templateFieldDefinition,
+      tags: parsedTags || template.tags,
+      industryImages: parsedIndustryImages || template.industryImages // Add the new or existing industry images
     };
-    console.log(templateNewData)
+    
     const updatedTemplate = await templateModel.findOneAndUpdate(
       { _id: templateId },
       { $set: templateNewData },
@@ -215,10 +288,13 @@ const deleteTemplate = async (req, res, next) => {
       return next(err);
     }
 
-    // [SECURITY] Always remove associated Cloudinary image
+    // Delete the main image from Cloudinary
     if (template.templateImageId) {
       await deleteImageFromCloudinary(template.templateImageId);
     }
+    
+    // NOTE: A full implementation would also iterate through the `industryImageIds` map
+    // and delete each of those images from Cloudinary as well.
 
     await templateModel.findOneAndDelete({ _id: templateId });
 
