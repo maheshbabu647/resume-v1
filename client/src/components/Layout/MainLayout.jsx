@@ -11,7 +11,7 @@ const MainLayout = () => {
       {/* The main content area will now be directly controlled by the page component rendered via Outlet */}
       {/* Added bg-background and text-foreground here to ensure a themed default for pages */}
       <main
-        className="flex-grow bg-background text-foreground"
+        className="pt-16 flex-grow bg-background text-foreground"
         role="main"
         id="main-content"
         aria-label="Main Content Area"
