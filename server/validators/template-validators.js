@@ -1,67 +1,109 @@
-import { body, param, validationResult } from 'express-validator'
-import logger from '../config/logger.js'
+import { body, param, validationResult } from 'express-validator';
+import logger from '../config/logger.js';
 
-// [1] Template field validation & sanitization
+// Custom validator to check if a string is valid JSON
+const isJSONString = (value, { req }) => {
+  try {
+    JSON.parse(value);
+  } catch (e) {
+    return false;
+  }
+  return true;
+};
+
+// Custom validator to check if templateComponents is a valid object with required keys
+const isValidTemplateComponents = (value, { req }) => {
+    try {
+        const components = JSON.parse(value);
+        if (typeof components !== 'object' || components === null || Array.isArray(components)) {
+            throw new Error('Must be a JSON object.');
+        }
+        if (!components.htmlShell || !components.baseCss) {
+            throw new Error('Must contain "htmlShell" and "baseCss" properties.');
+        }
+    } catch (e) {
+        return false;
+    }
+    return true;
+};
+
+
+// Template field validation & sanitization
 const templateValidatorsMode = (mode) => {
-  const validators = []
+  const validators = [];
 
   if (mode === 'create' || mode === 'update') {
+    // --- EXISTING VALIDATORS (MODIFIED) ---
     validators.push(
       body('templateName')
         .if((value, { req }) => mode === 'create' || value !== undefined)
         .notEmpty().withMessage('Template name is required.')
         .trim()
-        // .escape() // [OPTIONAL] Only if displaying in HTML output
-        .blacklist('<>"/\\&') // [ADDED] Prevent HTML/JS injection
-    )
+        .blacklist('<>"/\\&') // Prevent HTML/JS injection
+    );
+
+    // --- REMOVED VALIDATOR for `templateCode` ---
+
+    // --- NEW VALIDATORS for our modular schema ---
     validators.push(
-      body('templateCode')
-        .if((value, { req }) => mode === 'create' || value !== undefined)
-        .notEmpty().withMessage('Template code is required.')
-        .trim()
-    )
+        body('layoutSlots')
+          .if((value, { req }) => mode === 'create' || value !== undefined)
+          .notEmpty().withMessage('layoutSlots is required.')
+          .custom(isJSONString).withMessage('layoutSlots must be a valid JSON array string.')
+    );
+    
     validators.push(
-      body('templateImage')
-        .if((value, { req }) => value !== undefined)
-        .notEmpty().withMessage('Template image URL is required.')
-        .isURL().withMessage('Template image must be a valid URL.')
-        .trim()
-        .blacklist('<>"/\\&') // [ADDED] Defensive
-    )
+        body('templateComponents')
+          .if((value, { req }) => mode === 'create' || value !== undefined)
+          .notEmpty().withMessage('templateComponents is required.')
+          .custom(isValidTemplateComponents).withMessage('templateComponents must be a valid JSON object string with htmlShell and baseCss.')
+    );
+
+    validators.push(
+        body('templateFieldDefinition')
+          .if((value, { req }) => mode === 'create' || value !== undefined)
+          .notEmpty().withMessage('templateFieldDefinition is required.')
+          .custom(isJSONString).withMessage('templateFieldDefinition must be a valid JSON array string.')
+    );
+    
+    validators.push(
+        body('tags')
+          .optional() // Tags are not strictly required
+          .custom(isJSONString).withMessage('tags must be a valid JSON object string.')
+    );
   }
 
   if (['update', 'delete', 'getById'].includes(mode)) {
     validators.push(
       param('templateId')
         .isMongoId().withMessage('Invalid template ID format.')
-    )
+    );
   }
 
-  return validators
-}
+  return validators;
+};
 
-// [2] Error handling: never leak full validation structure, just safe details
+// Error handling middleware (no changes needed here)
 const templateValidation = (req, res, next) => {
-  const errors = validationResult(req)
+  const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    logger.warn(`[Validation][Template][Fail] IP: ${req.ip}, Errors: ${JSON.stringify(errors.array())}`)
+    logger.warn(`[Validation][Template][Fail] IP: ${req.ip}, Errors: ${JSON.stringify(errors.array())}`);
 
-    // Build safe, user-friendly errors (no field values returned)
     const safeErrors = errors.array().map(err => ({
       field: err.path,
       message: err.msg,
-    }))
+    }));
 
-    const err = new Error('Validation Error')
-    err.status = 400
-    err.name = 'VALIDATION_ERROR'
-    err.message = safeErrors
-    return next(err)
+    const err = new Error('Validation Error');
+    err.status = 400;
+    err.name = 'VALIDATION_ERROR';
+    err.message = safeErrors;
+    return next(err);
   }
-  next()
-}
+  next();
+};
 
 export {
   templateValidatorsMode,
   templateValidation
-}
+};

@@ -30,6 +30,7 @@
     "dom-to-image-more": "^3.6.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "framer-motion": "^12.15.0",
+    "handlebars": "^4.7.8",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.3",
     "jspdf": "^3.0.1",

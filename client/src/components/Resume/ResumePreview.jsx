@@ -1,15 +1,43 @@
-import React, { forwardRef, useMemo, useEffect } from "react";
+import React, { forwardRef, useMemo } from "react";
 import { motion } from "framer-motion";
-import generateResumeHtml from "@/utils/generateResumeHtml";
+import generateResumeHtml from "@/utils/generateResumeHtml"; // Update this path if necessary
 
-const ResumePreview = forwardRef(({ templateCode, currentFormData, spacingMultiplier }, resumeRef) => {
+const ResumePreview = forwardRef(({ 
+  // --- NEW PROPS for the modular system ---
+  htmlShell,
+  baseCss,
+  sections,
+  stylePacks,
+  selectedStylePackKey,
+  sectionOrder,
+  
+  // --- Existing props ---
+  currentFormData, 
+  spacingMultiplier 
+}, resumeRef) => {
 
+  // useMemo ensures the resume is only re-assembled when a relevant piece of data changes.
   const previewHtmlContent = useMemo(() => {
-    if (!templateCode) {
-      return '<div style="display: flex; justify-content: center; align-items: center; height: 100%; color: hsl(var(--muted-foreground)); font-family: Inter, sans-serif;">Template code not available.</div>';
-    }
-    return generateResumeHtml(templateCode, currentFormData, spacingMultiplier);
-  }, [templateCode, currentFormData, spacingMultiplier]);
+    return generateResumeHtml(
+      htmlShell,
+      baseCss,
+      sections,
+      stylePacks,
+      selectedStylePackKey,
+      sectionOrder,
+      currentFormData,
+      spacingMultiplier
+    );
+  }, [
+    htmlShell, 
+    baseCss, 
+    sections, 
+    stylePacks, 
+    selectedStylePackKey, 
+    sectionOrder, 
+    currentFormData, 
+    spacingMultiplier
+  ]);
 
   return (
     <section
@@ -17,16 +45,12 @@ const ResumePreview = forwardRef(({ templateCode, currentFormData, spacingMultip
       aria-label="Resume Preview Area"
       role="region"
     >
-      {/* This outer div is now the scaling container.
-        It ensures that the preview scales down responsively while maintaining its aspect ratio.
-        The max-w-full prevents it from overflowing its parent on very small screens.
-        The 'my-auto' helps to vertically center it within the flex container.
-      */}
+      {/* This outer div handles the responsive scaling of the preview. */}
       <div className="transform origin-top scale-[0.4] sm:scale-[0.5] md:scale-[0.6] lg:scale-[0.75] xl:scale-[0.85] 2xl:scale-100 my-auto transition-transform duration-200 ease-in-out max-w-full">
         <motion.div
           ref={resumeRef}
-          className="bg-white shadow-2xl ring-1 ring-black/5" // Removed rounded-md to let inner content's border-radius show if any
-          style={{ width: '794px', height: '1123px' }} // A4 dimensions at 96 DPI
+          className="bg-white shadow-2xl ring-1 ring-black/5"
+          style={{ width: '794px', height: '1123px' }} // A4 dimensions
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}

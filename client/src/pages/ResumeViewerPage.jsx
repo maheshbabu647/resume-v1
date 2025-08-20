@@ -1,106 +1,90 @@
 import React, { useEffect, useRef, useState, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from '@/components/ui/button';
-import { AlertCircle, ArrowLeft, Download, Printer } from 'lucide-react';
+import { AlertCircle, ArrowLeft, Download, Printer, Loader2 } from 'lucide-react';
 import { getById as apiGetResumeById } from '@/api/resumeServiceApi';
-import { getTemplateById as apiGetTemplateById } from '@/api/templateServiceApi';
 import { downloadResume as apiDownloadResume } from "@/api/resumeServiceApi";
-import generateResumeHtml from '@/utils/generateResumeHtml';
-import { Loader2 } from "lucide-react";
 
-// Lazy load ResumePreview
+// Lazy load ResumePreview as it's a large component
 const ResumePreview = React.lazy(() => import('@/components/Resume/ResumePreview'));
 
 const ResumeViewerPage = () => {
-  const { resumeId, templateId } = useParams();
+  const { resumeId } = useParams();
   const navigate = useNavigate();
-  const location = useLocation(); // Use location to get state
+  const location = useLocation();
   const resumePreviewRef = useRef();
 
-  const [displayData, setDisplayData] = useState({
-    templateCode: null,
-    formData: null,
-    resumeName: 'Resume',
-    spacingMultiplier: 1,
-  });
+  // State to hold all the pieces needed to build the resume
+  const [resumeData, setResumeData] = useState(null);
   const [pageLoading, setPageLoading] = useState(true);
   const [pageError, setPageError] = useState(null);
   const [isDownloading, setIsDownloading] = useState(false);
 
   useEffect(() => {
-    let isMounted = true;
-    setPageLoading(true);
-    setPageError(null);
-
-    const loadData = async () => {
+    const loadResumeData = async () => {
+      setPageLoading(true);
       try {
-        let finalTemplateCode, finalFormData, finalResumeName, finalSpacingMultiplier;
-
-        if (resumeId) {
-          // --- Viewing a SAVED resume ---
+        let data;
+        if (location.state?.template) {
+          // --- SCENARIO 1: Previewing a NEW, unsaved resume from the editor ---
+          // All data is passed directly via location.state, no API call needed.
+          data = {
+            formData: location.state.formData,
+            resumeName: location.state.resumeName,
+            spacingMultiplier: location.state.spacingMultiplier,
+            sectionOrder: location.state.sectionOrder,
+            stylePackKey: location.state.stylePackKey,
+            templateComponents: location.state.template.templateComponents,
+          };
+        } else if (resumeId) {
+          // --- SCENARIO 2: Viewing a SAVED resume from the dashboard ---
           const savedResume = await apiGetResumeById(resumeId);
-          if (!savedResume || !savedResume.templateId) {
-            throw new Error('Resume data or associated template is missing.');
+          if (!savedResume || !savedResume.templateId?.templateComponents) {
+            throw new Error('Could not load the saved resume. The template data may be incomplete.');
           }
-          finalTemplateCode = savedResume.templateId.templateCode;
-          finalFormData = savedResume.resumeData;
-          finalResumeName = savedResume.resumeName || 'Untitled Resume';
-          finalSpacingMultiplier = savedResume.spacingMultiplier || 1; 
-        } else if (templateId) {
-          // --- Previewing a NEW resume ---
-          const template = await apiGetTemplateById(templateId);
-          if (!template) {
-            throw new Error(`Template with ID ${templateId} not found.`);
-          }
-          
-          finalTemplateCode = template.templateCode;
-          // *** FIX: Use data from location state if available, otherwise use empty object ***
-          finalFormData = location.state?.formData || {}; 
-          finalResumeName = location.state?.resumeName || `${template.templateName || 'Template'} Preview`;
-          finalSpacingMultiplier = location.state?.spacingMultiplier || 1;
+          data = {
+            formData: savedResume.resumeData,
+            resumeName: savedResume.resumeName,
+            spacingMultiplier: savedResume.spacingMultiplier,
+            sectionOrder: savedResume.sectionOrder,
+            stylePackKey: savedResume.stylePackKey,
+            templateComponents: savedResume.templateId.templateComponents,
+          };
         } else {
-          throw new Error('No resume or template specified for viewing.');
+          throw new Error('No resume information was provided.');
         }
-
-        if (isMounted) {
-          setDisplayData({
-            templateCode: finalTemplateCode,
-            formData: finalFormData,
-            resumeName: finalResumeName,
-            spacingMultiplier: finalSpacingMultiplier,
-          });
-        }
+        setResumeData(data);
       } catch (err) {
-        if (isMounted) {
-          setPageError(err.message || 'Failed to load resume information.');
-          console.error("ResumeViewerPage Error:", err);
-        }
+        console.error("ResumeViewerPage Error:", err);
+        setPageError(err.message || 'An unexpected error occurred.');
       } finally {
-        if (isMounted) {
-          setPageLoading(false);
-        }
+        setPageLoading(false);
       }
     };
 
-    loadData();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [resumeId, templateId, location.state]); // Add location.state to dependency array
+    loadResumeData();
+  }, [resumeId, location.state]);
 
   const handleDownload = async () => {
     if (!resumePreviewRef.current) return;
     setIsDownloading(true);
     try {
-      const htmlContent = resumePreviewRef.current.innerHTML;
-      await apiDownloadResume(htmlContent);
+      // This improved logic correctly grabs the style and content for a clean PDF
+      const previewElement = resumePreviewRef.current;
+      const styleElement = previewElement.querySelector('style');
+      const resumeContainer = previewElement.querySelector('.rt-container');
+
+      if (!styleElement || !resumeContainer) {
+        throw new Error("Could not find style or resume content for PDF generation.");
+      }
+      const cleanHtmlForPdf = styleElement.outerHTML + resumeContainer.outerHTML;
+      await apiDownloadResume(cleanHtmlForPdf);
     } catch (error) {
-      alert('Failed to download PDF.');
+      console.error("Download error:", error);
+      alert('Failed to download PDF. Please try again.');
     } finally {
       setIsDownloading(false);
     }
@@ -112,7 +96,7 @@ const ResumeViewerPage = () => {
 
   if (pageLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-background text-foreground">
+      <div className="flex items-center justify-center min-h-screen">
         <LoadingSpinner size="large" label="Loading Resume..." />
       </div>
     );
@@ -120,40 +104,39 @@ const ResumeViewerPage = () => {
 
   if (pageError) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground p-6">
+      <div className="flex flex-col items-center justify-center min-h-screen p-6">
         <Alert variant="destructive" className="max-w-lg w-full">
           <AlertCircle className="h-5 w-5" />
           <AlertTitle>Error Loading Resume</AlertTitle>
           <AlertDescription>{pageError}</AlertDescription>
         </Alert>
-        <Button variant="outline" onClick={() => navigate(-1)} className="mt-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+        <Button variant="outline" onClick={() => navigate(-1)} className="mt-6">
           <ArrowLeft className="mr-2 h-4 w-4" /> Go Back
         </Button>
       </div>
     );
   }
   
-  const pageTitle = `${displayData.resumeName} | CareerForge Viewer`;
+  const pageTitle = `${resumeData.resumeName || 'Resume'} | CareerForge Viewer`;
   
   return (
     <>
       <Helmet>
         <title>{pageTitle}</title>
-        <meta name="description" content={`View your resume: ${displayData.resumeName}.`} />
       </Helmet>
 
-      <div className="min-h-screen bg-muted/50 text-foreground flex flex-col items-center print:bg-white">
+      <div className="min-h-screen bg-muted/50 flex flex-col items-center print:bg-white">
         <header className="w-full bg-card/80 backdrop-blur-md shadow-sm sticky top-0 z-10 p-3 print:hidden">
           <div className="container mx-auto flex justify-between items-center">
-            <Button variant="ghost" onClick={() => navigate(-1)} className="text-muted-foreground hover:text-primary">
+            <Button variant="ghost" onClick={() => navigate(-1)}>
               <ArrowLeft size={20} className="mr-2" />
               Back
             </Button>
             <div className="flex items-center gap-2">
-                <Button variant="outline" onClick={handlePrint} className="border-border hover:bg-accent hover:text-accent-foreground">
+                <Button variant="outline" onClick={handlePrint}>
                     <Printer size={16} className="mr-2" /> Print
                 </Button>
-                <Button onClick={handleDownload} disabled={isDownloading} className="bg-primary text-primary-foreground hover:bg-primary/90">
+                <Button onClick={handleDownload} disabled={isDownloading}>
                 {isDownloading ? <Loader2 size={16} className="animate-spin mr-2" /> : <Download size={16} className="mr-2" />}
                 {isDownloading ? 'Downloading...' : 'Download PDF'}
                 </Button>
@@ -161,17 +144,23 @@ const ResumeViewerPage = () => {
           </div>
         </header>
 
-        <main className="flex-grow w-full py-6 md:py-8 flex justify-center print:py-0" aria-label="Resume Document View">
+        <main className="flex-grow w-full py-6 md:py-8 flex justify-center print:py-0">
            <Suspense fallback={
             <div className="flex items-center justify-center h-[calc(100vh-150px)]">
                 <LoadingSpinner size="large" label="Loading Preview..." />
             </div>
             }>
+            {/* Pass all the modular pieces to the ResumePreview component */}
             <ResumePreview
               ref={resumePreviewRef}
-              templateCode={displayData.templateCode}
-              currentFormData={displayData.formData}
-              spacingMultiplier={displayData.spacingMultiplier}
+              htmlShell={resumeData.templateComponents.htmlShell}
+              baseCss={resumeData.templateComponents.baseCss}
+              sections={resumeData.templateComponents.sections}
+              stylePacks={resumeData.templateComponents.stylePacks}
+              selectedStylePackKey={resumeData.stylePackKey}
+              sectionOrder={resumeData.sectionOrder}
+              currentFormData={resumeData.formData}
+              spacingMultiplier={resumeData.spacingMultiplier}
             />
           </Suspense>
         </main>

@@ -4,6 +4,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { get, set, cloneDeep } from 'lodash';
 import { getTemplateById, createTemplate, updateTemplate } from '@/api/templateServiceApi';
+
+// UI Components
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from "@/components/ui/textarea";
@@ -12,69 +14,58 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner';
-import { ArrowLeft, Save, Loader2, AlertCircle, RefreshCw, CheckCircle2, FileJson, Code2, Eye, X, Tags } from 'lucide-react';
+import { ArrowLeft, Save, Loader2, AlertCircle, RefreshCw, CheckCircle2, FileJson, Code2, Eye, X, Tags, LayoutTemplate, Palette, Puzzle, FileCode, ListOrdered, PlusCircle } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
 const ResumePreview = React.lazy(() => import('@/components/Resume/ResumePreview'));
 
-const defaultTemplateCode = `
-<div style="font-family: 'Inter', sans-serif; line-height: 1.6; color: #333; background-color: #fff; padding: 40px; width: 794px; min-height:1123px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-  <header style="text-align: center; border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px;">
-    <h1 style="font-size: 2.5em; margin: 0 0 5px 0; color: #2c3e50;">{{personalDetails.fullName}}</h1>
-    <p style="font-size: 1.1em; margin: 0; color: #555;">{{personalDetails.jobTitle}}</p>
-    <div style="font-size: 0.9em; color: #777; margin-top: 10px;">
-      <span>{{personalDetails.email}}</span> | <span>{{personalDetails.phone}}</span> | <span>{{personalDetails.linkedin}}</span>
+// --- Default values for the modular schema ---
+// Now using JS objects directly
+const defaultLayoutSlots = ["main_column"];
+const defaultHtmlShell = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume</title>
+</head>
+<body>
+  <div class="resume__wrapper">
+    <div class="resume__container" id="resume">
+      {{{main_column}}}
     </div>
-  </header>
-  {{#if professionalProfile.summary}}
-  <section style="margin-bottom: 30px;">
-    <h2 style="font-size: 1.4em; color: #3498db; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-bottom: 15px;">Professional Summary</h2>
-    <p style="font-size: 1em; color: #555; white-space: pre-wrap;">{{professionalProfile.summary}}</p>
-  </section>
-  {{/if}}
-  {{#if experience}}
-  <section style="margin-bottom: 30px;">
-    <h2 style="font-size: 1.4em; color: #3498db; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-bottom: 15px;">Work Experience</h2>
-    {{#each experience}}
-    <div style="margin-bottom: 20px;">
-      <h3 style="font-size: 1.2em; color: #2c3e50; margin:0 0 3px 0;">{{this.jobTitle}} <span style="font-size: 0.9em; color: #777; font-weight:normal;">at {{this.companyName}}</span></h3>
-      <p style="font-size: 0.9em; color: #777; margin:0 0 8px 0;">{{this.startDate}} – {{this.endDate}} | {{this.location}}</p>
-      <ul style="font-size: 1em; color: #555; padding-left: 20px; margin:0;">
-        {{#each this.responsibilities}}
-        <li style="margin-bottom: 5px;">{{this.description}}</li>
-        {{/each}}
-      </ul>
-    </div>
-    {{/each}}
-  </section>
-  {{/if}}
-</div>
-`;
+  </div>
+</body>
+</html>`;
+const defaultBaseCss = `html, body { margin: 0; padding: 0; background: transparent; font-family: Inter, sans-serif; }
+.resume__container { width: 794px; height: 1123px; background: #fff; padding: 40px; }
+/* Add more base styles */`;
+const defaultSections = [
+    { key: "experience", name: "Work Experience", html: "<section><h3>Work Experience</h3>{{#each content.experience}}<div><h4>{{this.jobTitle}} at {{this.company}}</h4><p>{{this.description}}</p></div>{{/each}}</section>" }
+];
+const defaultStylePacks = [
+    { key: "default-light", name: "Default Light", css: "body { color: #333; } h3 { color: #1a73e8; }" }
+];
+const defaultSectionPresets = [
+    { key: "default-order", name: "Default Order", order: { main_column: ["experience"] } }
+];
+const defaultFieldDefinition = [
+  { name: "name", label: "Full Name", type: "text", section: "Personal" },
+  { name: "experience", label: "Experience", type: "group", repeatable: true, section: "Experience", subFields: [ { name: "jobTitle", label: "Job Title" }, { name: "company", label: "Company" }, { name: "description", label: "Description" } ], defaultItem: { jobTitle: "Lead Developer", company: "Innovate Inc.", description: "Led a team to build amazing things."} }
+];
 
-const defaultFieldDefinition = JSON.stringify([
-  { "name": "personalDetails.fullName", "label": "Full Name", "type": "text", "section": "Personal Info", "placeholder": "e.g., Jane Doe" },
-  { "name": "personalDetails.jobTitle", "label": "Job Title", "type": "text", "section": "Personal Info", "placeholder": "e.g., Senior Product Manager" },
-  { "name": "personalDetails.email", "label": "Email", "type": "email", "section": "Personal Info", "placeholder": "e.g., jane.doe@email.com" },
-  { "name": "personalDetails.phone", "label": "Phone", "type": "tel", "section": "Personal Info", "placeholder": "e.g., (555) 123-4567" },
-  { "name": "personalDetails.linkedin", "label": "LinkedIn", "type": "url", "section": "Personal Info", "placeholder": "linkedin.com/in/janedoe" },
-  { "name": "professionalProfile.summary", "label": "Summary", "type": "textarea", "section": "Summary", "placeholder": "Dynamic and results-oriented professional..." },
-  { 
-    "name": "experience", "label": "Experience", "type": "group", "repeatable": true, "defaultItem": { "jobTitle": "Lead Developer", "companyName": "TechCorp", "startDate": "Jan 2022", "endDate": "Present", "location": "San Francisco, CA", "responsibilities": [{"description": "Led a team in developing scalable web applications."}] } 
-  },
-], null, 2);
-
+// Helper to generate mock data for the preview
 const generateMockData = (definitions) => {
-    const mockData = {};
+    const mockData = { content: {}, sectionsConfig: {} };
     if (!Array.isArray(definitions)) return mockData;
-
     definitions.forEach(field => {
-        let value;
-        if (field.type === 'group' && field.repeatable) {
-            value = field.defaultItem ? [cloneDeep(field.defaultItem)] : [];
-        } else {
-            value = field.placeholder || `[${field.label}]`;
+        if (field.section) {
+            mockData.sectionsConfig[field.section] = { enabled: true };
         }
-        set(mockData, field.name, value);
+        let value = field.type === 'group' && field.repeatable
+            ? (field.defaultItem ? [cloneDeep(field.defaultItem)] : [])
+            : (field.placeholder || `[${field.label}]`);
+        set(mockData.content, field.name, value);
     });
     return mockData;
 };
@@ -84,16 +75,24 @@ const AdminTemplateEditPage = () => {
   const navigate = useNavigate();
   const mode = templateId ? 'edit' : 'create';
 
+  // State restructured to use objects/arrays directly
   const [templateData, setTemplateData] = useState({
     templateName: '',
-    templateCode: '',
-    templateFieldDefinition: '',
-    tags: {
-        style: '',
-        level: '',
-        industry: ''
-    }
+    layoutSlots: defaultLayoutSlots,
+    htmlShell: defaultHtmlShell,
+    baseCss: defaultBaseCss,
+    sections: cloneDeep(defaultSections),
+    stylePacks: cloneDeep(defaultStylePacks),
+    sectionPresets: cloneDeep(defaultSectionPresets),
+    templateFieldDefinition: cloneDeep(defaultFieldDefinition),
+    tags: { style: '', level: '', industry: '' }
   });
+
+  // Local state for raw string editing of JSON textareas
+  const [sectionPresetsString, setSectionPresetsString] = useState(JSON.stringify(defaultSectionPresets, null, 2));
+  const [fieldDefinitionString, setFieldDefinitionString] = useState(JSON.stringify(defaultFieldDefinition, null, 2));
+  const [jsonErrors, setJsonErrors] = useState({ sectionPresets: null, templateFieldDefinition: null });
+
   const [templateImageFile, setTemplateImageFile] = useState(null);
   const [currentImageUrl, setCurrentImageUrl] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
@@ -101,47 +100,68 @@ const AdminTemplateEditPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [pageLoadError, setPageLoadError] = useState(null);
-  const [fieldDefError, setFieldDefError] = useState('');
   const [showFeedbackDialog, setShowFeedbackDialog] = useState(false);
   const [feedbackDetails, setFeedbackDetails] = useState({ title: '', message: '', type: 'success' });
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   const mockDataForPreview = useMemo(() => {
-    if (fieldDefError) return {};
-    try {
-        const parsedDefs = JSON.parse(templateData.templateFieldDefinition);
-        return generateMockData(parsedDefs);
-    } catch (e) {
-        return {};
-    }
-  }, [templateData.templateFieldDefinition, fieldDefError]);
+    return generateMockData(templateData.templateFieldDefinition);
+  }, [templateData.templateFieldDefinition]);
+
+  const previewData = useMemo(() => {
+    return {
+        htmlShell: templateData.htmlShell,
+        baseCss: templateData.baseCss,
+        sections: templateData.sections,
+        stylePacks: templateData.stylePacks,
+        defaultStyleKey: templateData.stylePacks?.[0]?.key || null,
+        defaultOrder: templateData.sectionPresets?.[0]?.order || null,
+    };
+  }, [templateData.htmlShell, templateData.baseCss, templateData.sections, templateData.stylePacks, templateData.sectionPresets]);
 
   const fetchAndSetTemplate = useCallback(async () => {
     setIsLoading(true);
     setPageLoadError(null);
+    setJsonErrors({ sectionPresets: null, templateFieldDefinition: null });
     try {
         if (mode === 'edit') {
             const data = await getTemplateById(templateId);
             if (!data) throw new Error("Template not found.");
+            
             setTemplateData({
                 templateName: data.templateName || '',
-                templateCode: data.templateCode || defaultTemplateCode,
-                templateFieldDefinition: data.templateFieldDefinition ? JSON.stringify(data.templateFieldDefinition, null, 2) : defaultFieldDefinition,
+                layoutSlots: data.layoutSlots || defaultLayoutSlots,
+                htmlShell: data.templateComponents?.htmlShell || defaultHtmlShell,
+                baseCss: data.templateComponents?.baseCss || defaultBaseCss,
+                sections: data.templateComponents?.sections || cloneDeep(defaultSections),
+                stylePacks: data.templateComponents?.stylePacks || cloneDeep(defaultStylePacks),
+                sectionPresets: data.templateComponents?.sectionPresets || cloneDeep(defaultSectionPresets),
+                templateFieldDefinition: data.templateFieldDefinition || cloneDeep(defaultFieldDefinition),
                 tags: {
                     style: data.tags?.style || '',
                     level: Array.isArray(data.tags?.level) ? data.tags.level.join(', ') : '',
                     industry: Array.isArray(data.tags?.industry) ? data.tags.industry.join(', ') : ''
                 }
             });
+            // Initialize string states from fetched data
+            setSectionPresetsString(JSON.stringify(data.templateComponents?.sectionPresets || defaultSectionPresets, null, 2));
+            setFieldDefinitionString(JSON.stringify(data.templateFieldDefinition || defaultFieldDefinition, null, 2));
             setCurrentImageUrl(data.templateImage || null);
         } else {
-            setTemplateData({
-                templateName: '',
-                templateCode: defaultTemplateCode,
-                templateFieldDefinition: defaultFieldDefinition,
-                tags: { style: '', level: '', industry: '' }
+             setTemplateData({
+              templateName: '',
+              layoutSlots: defaultLayoutSlots,
+              htmlShell: defaultHtmlShell,
+              baseCss: defaultBaseCss,
+              sections: cloneDeep(defaultSections),
+              stylePacks: cloneDeep(defaultStylePacks),
+              sectionPresets: cloneDeep(defaultSectionPresets),
+              templateFieldDefinition: cloneDeep(defaultFieldDefinition),
+              tags: { style: '', level: '', industry: '' }
             });
-            setCurrentImageUrl(null);
+            // Initialize string states with defaults for create mode
+            setSectionPresetsString(JSON.stringify(defaultSectionPresets, null, 2));
+            setFieldDefinitionString(JSON.stringify(defaultFieldDefinition, null, 2));
         }
     } catch (err) {
         setPageLoadError(err.message || 'Failed to load template data.');
@@ -156,27 +176,11 @@ const AdminTemplateEditPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     if (name.startsWith('tags.')) {
         const tagName = name.split('.')[1];
-        setTemplateData(prev => ({
-            ...prev,
-            tags: { ...prev.tags, [tagName]: value }
-        }));
-        return;
-    }
-
-    setTemplateData(prev => ({ ...prev, [name]: value }));
-
-    if (name === 'templateFieldDefinition') {
-        try { 
-            const parsed = JSON.parse(value);
-            if (!Array.isArray(parsed)) setFieldDefError('Field Definitions must be a valid JSON array.');
-            else setFieldDefError('');
-        }
-        catch (jsonError) { 
-            setFieldDefError('Invalid JSON format.'); 
-        }
+        setTemplateData(prev => ({ ...prev, tags: { ...prev.tags, [tagName]: value } }));
+    } else {
+        setTemplateData(prev => ({ ...prev, [name]: value }));
     }
   };
 
@@ -185,35 +189,57 @@ const AdminTemplateEditPage = () => {
     if (file) {
         setTemplateImageFile(file);
         setImagePreview(URL.createObjectURL(file));
-    } else {
-        setTemplateImageFile(null);
-        setImagePreview(null);
     }
+  };
+
+  const handleJsonBlur = (fieldName, stringValue) => {
+    try {
+      const parsedValue = JSON.parse(stringValue);
+      setTemplateData(prev => ({ ...prev, [fieldName]: parsedValue }));
+      setJsonErrors(prev => ({ ...prev, [fieldName]: null }));
+    } catch (err) {
+      setJsonErrors(prev => ({ ...prev, [fieldName]: `Invalid JSON: ${err.message}` }));
+    }
+  };
+
+  // --- Generic handlers for array state management ---
+  const handleArrayItemChange = (arrayName, index, field, value) => {
+    setTemplateData(prev => {
+        const newArray = [...prev[arrayName]];
+        newArray[index] = { ...newArray[index], [field]: value };
+        return { ...prev, [arrayName]: newArray };
+    });
+  };
+
+  const addArrayItem = (arrayName, newItem) => {
+    setTemplateData(prev => ({
+        ...prev,
+        [arrayName]: [...prev[arrayName], newItem]
+    }));
+  };
+
+  const removeArrayItem = (arrayName, index) => {
+    setTemplateData(prev => ({
+        ...prev,
+        [arrayName]: prev[arrayName].filter((_, i) => i !== index)
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSaving(true);
-    setPageLoadError(null);
-    if (fieldDefError) {
+    
+    // Final validation check before submitting
+    if (jsonErrors.sectionPresets || jsonErrors.templateFieldDefinition) {
+        setFeedbackDetails({ title: 'Validation Error', message: "Please fix the invalid JSON fields before saving.", type: 'error' });
+        setShowFeedbackDialog(true);
         setIsSaving(false);
         return;
     }
 
     const formDataPayload = new FormData();
     formDataPayload.append('templateName', templateData.templateName);
-    formDataPayload.append('templateCode', templateData.templateCode);
     
-    try {
-      const parsedFieldDefs = JSON.parse(templateData.templateFieldDefinition);
-      formDataPayload.append('templateFieldDefinition', JSON.stringify(parsedFieldDefs));
-    } catch (jsonError) {
-      setFieldDefError('Invalid JSON format for Field Definitions.');
-      setIsSaving(false);
-      return;
-    }
-
-    // Process and append tags
     const processedTags = {
         style: templateData.tags.style || '',
         level: templateData.tags.level ? templateData.tags.level.split(',').map(item => item.trim()).filter(Boolean) : [],
@@ -221,28 +247,33 @@ const AdminTemplateEditPage = () => {
     };
     formDataPayload.append('tags', JSON.stringify(processedTags));
 
+    formDataPayload.append('layoutSlots', JSON.stringify(templateData.layoutSlots));
+    formDataPayload.append('templateFieldDefinition', JSON.stringify(templateData.templateFieldDefinition));
+    
+    const templateComponents = {
+        htmlShell: templateData.htmlShell,
+        baseCss: templateData.baseCss,
+        sections: templateData.sections,
+        stylePacks: templateData.stylePacks,
+        sectionPresets: templateData.sectionPresets,
+    };
+    formDataPayload.append('templateComponents', JSON.stringify(templateComponents));
+
     if (templateImageFile) {
         formDataPayload.append('templateImageFile', templateImageFile);
     }
     
     if (mode === 'create' && !templateImageFile) {
-        setFeedbackDetails({ title: 'Validation Error', message: "A template preview image is required for new templates.", type: 'error' });
-        setShowFeedbackDialog(true);
-        setIsSaving(false);
-        return;
+        setFeedbackDetails({ title: 'Validation Error', message: "A preview image is required for new templates.", type: 'error' });
+        setShowFeedbackDialog(true); setIsSaving(false); return;
     }
 
     try {
-      let response;
-      if (mode === 'create') {
-        response = await createTemplate(formDataPayload);
-      } else {
-        response = await updateTemplate(templateId, formDataPayload);
-      }
-      setFeedbackDetails({ title: 'Success!', message: response.message || `Template successfully ${mode === 'create' ? 'created' : 'updated'}!`, type: 'success' });
+      const response = mode === 'create' ? await createTemplate(formDataPayload) : await updateTemplate(templateId, formDataPayload);
+      setFeedbackDetails({ title: 'Success!', message: response.message || `Template successfully ${mode}d!`, type: 'success' });
       setShowFeedbackDialog(true);
     } catch (err) {
-      const apiErrorMessage = err.message || (err.errors && Array.isArray(err.errors) ? err.errors.map(e => e.msg || e.message).join(', ') : `Failed to ${mode} template.`);
+      const apiErrorMessage = err.message || `Failed to ${mode} template.`;
       setFeedbackDetails({ title: 'Operation Failed', message: apiErrorMessage, type: 'error' });
       setShowFeedbackDialog(true);
     } finally {
@@ -259,143 +290,184 @@ const AdminTemplateEditPage = () => {
     }
   };
   
-  if (isLoading) {
-    return <div className="flex items-center justify-center min-h-[calc(100vh-150px)] bg-background"><LoadingSpinner size="large" label="Loading Template Editor..." /></div>;
-  }
-  
-  if (pageLoadError) {
-    return (
-      <div className="container mx-auto px-4 py-8 text-center">
-        <Alert variant="destructive" className="max-w-lg mx-auto">
-          <AlertCircle className="h-5 w-5" />
-          <AlertTitle>Error Loading Data</AlertTitle>
-          <AlertDescription>{pageLoadError}</AlertDescription>
-        </Alert>
-        <Button variant="outline" onClick={fetchAndSetTemplate} className="mt-6">
-            <RefreshCw className="mr-2 h-4 w-4" /> Try Again
-        </Button>
-      </div>
-    );
-  }
+  if (isLoading) return <div className="flex items-center justify-center min-h-screen"><LoadingSpinner size="large" label="Loading Editor..." /></div>;
+  if (pageLoadError) return <div className="container mx-auto p-8 text-center"><Alert variant="destructive"><AlertCircle className="h-5 w-5" /><AlertTitle>Error</AlertTitle><AlertDescription>{pageLoadError}</AlertDescription><Button variant="outline" onClick={fetchAndSetTemplate} className="mt-6"><RefreshCw className="mr-2 h-4 w-4" /> Try Again</Button></Alert></div>;
 
   return (
     <>
       <Helmet><title>{mode === 'create' ? 'Add New Template' : `Edit: ${templateData.templateName || 'Template'}`} | Admin</title></Helmet>
-      <div className="flex flex-col min-h-screen bg-muted/20 dark:bg-background">
-        <header className="sticky top-0 z-30 bg-card/95 backdrop-blur-md border-b border-border shadow-sm px-4 py-3">
+      <div className="flex flex-col min-h-screen bg-muted/20">
+        <header className="sticky top-0 z-30 bg-card/95 backdrop-blur-md border-b px-4 py-3">
             <div className="container mx-auto flex items-center justify-between gap-4">
                  <div className="flex items-center gap-3">
-                    <Button variant="outline" size="icon" onClick={() => navigate('/admin/templates')} aria-label="Back to templates"><ArrowLeft size={18} /></Button>
-                    <h1 className="text-xl font-bold text-primary tracking-tight">{mode === 'create' ? 'Create New Template' : 'Edit Template'}</h1>
+                    <Button variant="outline" size="icon" onClick={() => navigate('/admin/templates')} aria-label="Back"><ArrowLeft size={18} /></Button>
+                    <h1 className="text-xl font-bold text-primary">{mode === 'create' ? 'Create New Template' : 'Edit Template'}</h1>
                  </div>
                  <div className="flex items-center gap-2">
-                    <Button variant="outline" onClick={() => setIsPreviewOpen(true)} className="hidden sm:inline-flex">
-                        <Eye className="mr-2 h-4 w-4" /> Full Preview
-                    </Button>
-                    <Button onClick={handleSubmit} disabled={isSaving || !!fieldDefError} className="bg-primary text-primary-foreground hover:bg-primary/90">
-                        {isSaving ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Saving...</> : <><Save size={16} className="mr-2" />{mode === 'create' ? 'Save' : 'Update'}</>}
+                    <Button variant="outline" onClick={() => setIsPreviewOpen(true)} className="hidden sm:inline-flex"><Eye className="mr-2 h-4 w-4" /> Full Preview</Button>
+                    <Button onClick={handleSubmit} disabled={isSaving} className="w-28">
+                        {isSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : <><Save size={16} className="mr-2" />{mode === 'create' ? 'Save' : 'Update'}</>}
                     </Button>
                  </div>
             </div>
         </header>
 
         <main className="flex-grow container mx-auto px-4 py-6">
-            <div className="grid grid-cols-1 gap-6 items-start max-w-4xl mx-auto">
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Configuration</CardTitle>
-                                <CardDescription>Basic details and preview image.</CardDescription>
-                            </CardHeader>
-                            <CardContent className="space-y-4">
-                                <div>
-                                    <Label htmlFor="templateName">Template Name</Label>
-                                    <Input id="templateName" name="templateName" value={templateData.templateName} onChange={handleChange} required />
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+                {/* --- LEFT COLUMN --- */}
+                <div className="space-y-6">
+                    <Card><CardHeader><CardTitle>Configuration</CardTitle><CardDescription>Basic details and preview image.</CardDescription></CardHeader><CardContent className="space-y-4">
+                        <div><Label htmlFor="templateName">Template Name</Label><Input id="templateName" name="templateName" value={templateData.templateName} onChange={handleChange} required /></div>
+                        <div><Label htmlFor="templateImageFile">Preview Image</Label><Input id="templateImageFile" name="templateImageFile" type="file" onChange={handleImageChange} accept="image/*" />
+                        {(imagePreview || currentImageUrl) && <img src={imagePreview || currentImageUrl} alt="Preview" className="mt-2 rounded-md border p-1 max-h-40" />}</div>
+                    </CardContent></Card>
+                    
+                    <Card><CardHeader><CardTitle className="flex items-center"><Tags size={16} className="mr-2"/>Tags & Metadata</CardTitle><CardDescription>Categorize the template for filtering.</CardDescription></CardHeader><CardContent className="space-y-4">
+                        <div><Label htmlFor="tags.style">Style</Label><Input id="tags.style" name="tags.style" value={templateData.tags.style} onChange={handleChange} placeholder="e.g., Modern, Minimalist" /></div>
+                        <div><Label htmlFor="tags.level">Experience Level (comma-separated)</Label><Input id="tags.level" name="tags.level" value={templateData.tags.level} onChange={handleChange} placeholder="e.g., Entry-Level, Senior" /></div>
+                        <div><Label htmlFor="tags.industry">Industry (comma-separated)</Label><Input id="tags.industry" name="tags.industry" value={templateData.tags.industry} onChange={handleChange} placeholder="e.g., Tech, Healthcare" /></div>
+                    </CardContent></Card>
+                    
+                    <Card><CardHeader><CardTitle className="flex items-center"><FileCode size={16} className="mr-2"/>HTML Shell</CardTitle><CardDescription>The main HTML document structure.</CardDescription></CardHeader><CardContent>
+                        <Textarea id="htmlShell" name="htmlShell" value={templateData.htmlShell} onChange={handleChange} required rows={15} className="font-mono text-xs"/>
+                    </CardContent></Card>
+                    
+                    <Card><CardHeader><CardTitle className="flex items-center"><Palette size={16} className="mr-2"/>Base CSS</CardTitle><CardDescription>The core CSS styles for this template.</CardDescription></CardHeader><CardContent>
+                        <Textarea id="baseCss" name="baseCss" value={templateData.baseCss} onChange={handleChange} required rows={15} className="font-mono text-xs"/>
+                    </CardContent></Card>
+
+                    <Card>
+                        <CardHeader><CardTitle className="flex items-center"><LayoutTemplate size={16} className="mr-2"/>Layout Slots</CardTitle><CardDescription>Define injection points (comma-separated).</CardDescription></CardHeader>
+                        <CardContent>
+                            <Input id="layoutSlots" name="layoutSlots" value={Array.isArray(templateData.layoutSlots) ? templateData.layoutSlots.join(', ') : ''} onChange={(e) => setTemplateData(p => ({...p, layoutSlots: e.target.value.split(',').map(s => s.trim())}))} required />
+                        </CardContent>
+                    </Card>
+
+                </div>
+
+                {/* --- RIGHT COLUMN --- */}
+                <div className="space-y-6">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="flex items-center justify-between">
+                                <div className="flex items-center"><Puzzle size={16} className="mr-2"/>Sections</div>
+                                <Button type="button" variant="outline" size="sm" onClick={() => addArrayItem('sections', { key: '', name: '', html: '' })}><PlusCircle size={14} className="mr-2" />Add Section</Button>
+                            </CardTitle>
+                            <CardDescription>The array of modular HTML section components.</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            {templateData.sections.map((section, index) => (
+                                <div key={index} className="space-y-3 rounded-md border p-4 relative">
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <Input value={section.key} onChange={(e) => handleArrayItemChange('sections', index, 'key', e.target.value)} placeholder="Key (e.g., experience)" />
+                                        <Input value={section.name} onChange={(e) => handleArrayItemChange('sections', index, 'name', e.target.value)} placeholder="Name (e.g., Work Experience)" />
+                                    </div>
+                                    <Textarea value={section.html} onChange={(e) => handleArrayItemChange('sections', index, 'html', e.target.value)} placeholder="HTML for this section..." required rows={8} className="font-mono text-xs" />
+                                    <Button type="button" variant="destructive" size="icon" className="absolute -top-3 -right-3 h-7 w-7" onClick={() => removeArrayItem('sections', index)}><X size={14} /></Button>
                                 </div>
-                                <div>
-                                    <Label htmlFor="templateImageFile">Preview Image</Label>
-                                    <Input id="templateImageFile" name="templateImageFile" type="file" onChange={handleImageChange} accept="image/*" />
-                                    {(imagePreview || currentImageUrl) && <img src={imagePreview || currentImageUrl} alt="Preview" className="mt-2 rounded-md border p-1 max-h-40" />}
+                            ))}
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="flex items-center justify-between">
+                                <div className="flex items-center"><Palette size={16} className="mr-2"/>Style Packs</div>
+                                <Button type="button" variant="outline" size="sm" onClick={() => addArrayItem('stylePacks', { key: '', name: '', css: '' })}><PlusCircle size={14} className="mr-2" />Add Style Pack</Button>
+                            </CardTitle>
+                            <CardDescription>The array of CSS override themes.</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                             {templateData.stylePacks.map((pack, index) => (
+                                <div key={index} className="space-y-3 rounded-md border p-4 relative">
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <Input value={pack.key} onChange={(e) => handleArrayItemChange('stylePacks', index, 'key', e.target.value)} placeholder="Key (e.g., modern-dark)" />
+                                        <Input value={pack.name} onChange={(e) => handleArrayItemChange('stylePacks', index, 'name', e.target.value)} placeholder="Name (e.g., Modern Dark)" />
+                                    </div>
+                                    <Textarea value={pack.css} onChange={(e) => handleArrayItemChange('stylePacks', index, 'css', e.target.value)} placeholder="CSS for this style pack..." required rows={8} className="font-mono text-xs" />
+                                    <Button type="button" variant="destructive" size="icon" className="absolute -top-3 -right-3 h-7 w-7" onClick={() => removeArrayItem('stylePacks', index)}><X size={14} /></Button>
                                 </div>
-                            </CardContent>
-                        </Card>
-                        <Card>
-                            <CardHeader>
-                                <CardTitle className="flex items-center"><Tags size={16} className="mr-2"/>Tags & Metadata</CardTitle>
-                                <CardDescription>Categorize the template for better filtering and discovery.</CardDescription>
-                            </CardHeader>
-                            <CardContent className="space-y-4">
-                                <div>
-                                    <Label htmlFor="tags.style">Style</Label>
-                                    <Input id="tags.style" name="tags.style" value={templateData.tags.style} onChange={handleChange} placeholder="e.g., Modern, Minimalist, Classic" />
-                                </div>
-                                <div>
-                                    <Label htmlFor="tags.level">Experience Level</Label>
-                                    <Input id="tags.level" name="tags.level" value={templateData.tags.level} onChange={handleChange} placeholder="e.g., Entry-Level, Mid-Career, Senior" />
-                                    <p className="text-xs text-muted-foreground mt-1">Enter comma-separated values.</p>
-                                </div>
-                                <div>
-                                    <Label htmlFor="tags.industry">Industry</Label>
-                                    <Input id="tags.industry" name="tags.industry" value={templateData.tags.industry} onChange={handleChange} placeholder="e.g., Tech, Healthcare, Finance" />
-                                    <p className="text-xs text-muted-foreground mt-1">Enter comma-separated values.</p>
-                                </div>
-                            </CardContent>
-                        </Card>
-                        <Card>
-                            <CardHeader>
-                                <CardTitle className="flex items-center"><Code2 size={16} className="mr-2"/>Template Code</CardTitle>
-                                <CardDescription>The HTML and Handlebars-style markup for the template.</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <Textarea id="templateCode" name="templateCode" value={templateData.templateCode} onChange={handleChange} required rows={20} className="font-mono text-xs"/>
-                            </CardContent>
-                        </Card>
-                         <Card>
-                            <CardHeader>
-                                <CardTitle className="flex items-center"><FileJson size={16} className="mr-2"/>Field Definitions (JSON)</CardTitle>
-                                <CardDescription>The JSON array that defines the form fields for this template.</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <Textarea id="templateFieldDefinition" name="templateFieldDefinition" value={templateData.templateFieldDefinition} onChange={handleChange} required rows={20} className={`font-mono text-xs ${fieldDefError ? 'border-destructive' : ''}`}/>
-                                {fieldDefError && <p className="text-xs text-destructive mt-1.5">{fieldDefError}</p>}
-                            </CardContent>
-                        </Card>
-                    </form>
-                </motion.div>
-            </div>
+                            ))}
+                        </CardContent>
+                    </Card>
+                    
+                    <Card><CardHeader><CardTitle className="flex items-center"><ListOrdered size={16} className="mr-2"/>Section Order Presets (JSON)</CardTitle><CardDescription>Edit as raw JSON. Data is saved when you click away.</CardDescription></CardHeader><CardContent>
+                        <Textarea 
+                            value={sectionPresetsString} 
+                            onChange={(e) => setSectionPresetsString(e.target.value)} 
+                            onBlur={() => handleJsonBlur('sectionPresets', sectionPresetsString)}
+                            required 
+                            rows={10} 
+                            className={cn("font-mono text-xs", jsonErrors.sectionPresets && "border-destructive focus-visible:ring-destructive")}
+                        />
+                        {jsonErrors.sectionPresets && <p className="text-sm text-destructive mt-2">{jsonErrors.sectionPresets}</p>}
+                    </CardContent></Card>
+
+                    <Card><CardHeader><CardTitle className="flex items-center"><FileJson size={16} className="mr-2"/>Field Definitions (JSON)</CardTitle><CardDescription>Edit as raw JSON. Data is saved when you click away.</CardDescription></CardHeader><CardContent>
+                         <Textarea 
+                            value={fieldDefinitionString} 
+                            onChange={(e) => setFieldDefinitionString(e.target.value)} 
+                            onBlur={() => handleJsonBlur('templateFieldDefinition', fieldDefinitionString)}
+                            required 
+                            rows={20} 
+                            className={cn("font-mono text-xs", jsonErrors.templateFieldDefinition && "border-destructive focus-visible:ring-destructive")}
+                        />
+                         {jsonErrors.templateFieldDefinition && <p className="text-sm text-destructive mt-2">{jsonErrors.templateFieldDefinition}</p>}
+                    </CardContent></Card>
+
+                </div>
+            </form>
         </main>
       </div>
       
       <Dialog open={showFeedbackDialog} onOpenChange={handleDialogClose}>
-        <DialogContent className="sm:max-w-md bg-card">
-          <DialogHeader><DialogTitle className={cn("flex items-center text-lg font-semibold", feedbackDetails.type === 'success' ? "text-green-600" : "text-destructive")}>
-              {feedbackDetails.type === 'success' ? <CheckCircle2 className="h-5 w-5 mr-2" /> : <AlertCircle className="h-5 w-5 mr-2" />}
-              {feedbackDetails.title}
-          </DialogTitle></DialogHeader>
-          <DialogDescription className="py-4 text-muted-foreground">{feedbackDetails.message}</DialogDescription>
-          <DialogFooter className="sm:justify-end"><DialogClose asChild><Button type="button">Close</Button></DialogClose></DialogFooter>
+        <DialogContent>
+            <DialogHeader>
+            <DialogTitle className={cn("flex items-center", feedbackDetails.type === 'success' ? "text-green-600" : "text-destructive")}>
+                {feedbackDetails.type === 'success'
+                ? <CheckCircle2 className="h-5 w-5 mr-2" />
+                : <AlertCircle className="h-5 w-5 mr-2" />}
+                {feedbackDetails.title}
+            </DialogTitle>
+            </DialogHeader>
+
+            <DialogDescription className="py-4">
+            {feedbackDetails.message}
+            </DialogDescription>
+
+            <DialogFooter>
+            <DialogClose asChild>
+                <Button type="button">Close</Button>
+            </DialogClose>
+            </DialogFooter>
         </DialogContent>
       </Dialog>
+
       
       <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
         <DialogContent className="max-w-[95vw] w-full h-[95vh] p-2 sm:p-4 bg-muted/80 backdrop-blur-sm border-0 flex items-start justify-center overflow-y-auto">
-            <DialogHeader className="sr-only">
-              <DialogTitle>Template Live Preview</DialogTitle>
-              <DialogDescription>
-                This is a live preview of the template.
-              </DialogDescription>
-            </DialogHeader>
+            <DialogHeader className="sr-only"><DialogTitle>Template Live Preview</DialogTitle></DialogHeader>
             <Suspense fallback={<div className="h-full w-full flex items-center justify-center"><LoadingSpinner size="xlarge" label="Loading Preview..."/></div>}>
-                <ResumePreview
-                    templateCode={templateData.templateCode}
-                    currentFormData={mockDataForPreview}
-                />
+                {previewData ? (
+                    <ResumePreview
+                        htmlShell={previewData.htmlShell}
+                        baseCss={previewData.baseCss}
+                        sections={previewData.sections}
+                        stylePacks={previewData.stylePacks}
+                        selectedStylePackKey={previewData.defaultStyleKey}
+                        sectionOrder={previewData.defaultOrder}
+                        currentFormData={mockDataForPreview}
+                        spacingMultiplier={1}
+                    />
+                ) : (
+                    <div className="m-auto text-center bg-card p-8 rounded-lg shadow-xl">
+                        <AlertCircle className="mx-auto h-12 w-12 text-destructive" />
+                        <h3 className="mt-4 text-lg font-medium text-destructive">Could not render preview</h3>
+                        <p className="mt-1 text-sm text-muted-foreground">There might be an issue with the template data.</p>
+                    </div>
+                )}
             </Suspense>
-            <DialogClose className="absolute right-4 top-4 rounded-full p-2 bg-card/50 hover:bg-card/80 text-foreground transition-opacity z-10">
-                <X className="h-5 w-5" />
-                <span className="sr-only">Close</span>
-            </DialogClose>
+            <DialogClose className="absolute right-4 top-4 rounded-full p-2 bg-card/50 hover:bg-card/80 transition-opacity z-10"><X className="h-5 w-5" /><span className="sr-only">Close</span></DialogClose>
         </DialogContent>
       </Dialog>
     </>

@@ -79,6 +79,14 @@ const resumeSchema = new mongoose.Schema({
     min: 0.8, 
     max: 1.5, 
   },
+  stylePackKey: {
+    type: String,
+    trim: true,
+  },
+  sectionOrder: {
+    type: mongoose.Schema.Types.Mixed,
+  },
+
 }, {
   timestamps: true,
 });

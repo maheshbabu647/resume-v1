@@ -12,7 +12,7 @@ const MAX_RESUMES_PER_USER = 100;
 
 export const createResume = async (req, res, next) => {
   try {
-    const { templateId, resumeData, resumeName, spacingMultiplier } = req.body;
+    const { templateId, resumeData, resumeName, spacingMultiplier, stylePackKey, sectionOrder } = req.body;
     const userId = req.user.userId;
 
     // [SECURITY] Prevent spam by limiting resumes per user
@@ -29,7 +29,9 @@ export const createResume = async (req, res, next) => {
       templateId,
       resumeData,
       resumeName: resumeName || undefined,
-      spacingMultiplier
+      spacingMultiplier,
+      stylePackKey,
+      sectionOrder
     };
 
     const savedResume = await resumeModel.create(resume);
@@ -65,7 +67,7 @@ export const getResumeById = async (req, res, next) => {
     const userId = req.user.userId;
 
     const resume = await resumeModel.findById(resumeId)
-      .populate('templateId', 'templateName templateImage templateCode templateFieldDefinition');
+      .populate('templateId', 'templateName templateImage templateComponents templateFieldDefinition');
 
     if (!resume) {
       logger.warn(`[Resume][GetById][NotFound] ID: ${resumeId} by user: ${userId}`);
@@ -102,7 +104,7 @@ export const getResumeById = async (req, res, next) => {
 export const updateResume = async (req, res, next) => {
   try {
     const { resumeId } = req.params;
-    const { resumeData, resumeName, spacingMultiplier } = req.body;
+    const { resumeData, resumeName, spacingMultiplier, stylePackKey, sectionOrder } = req.body;
     const userId = req.user.userId;
 
     const resume = await resumeModel.findById(resumeId);
@@ -124,7 +126,9 @@ export const updateResume = async (req, res, next) => {
     const updateResume = {
       resumeName: resumeName || resume.resumeName,
       resumeData: resumeData || resume.resumeData,
-      spacingMultiplier: spacingMultiplier || resume.spacingMultiplier
+      spacingMultiplier: spacingMultiplier || resume.spacingMultiplier,
+      stylePackKey: stylePackKey || resume.stylePackKey,
+      sectionOrder: sectionOrder || resume.sectionOrder
     };
 
     await resumeModel.findByIdAndUpdate(resumeId, updateResume);
@@ -244,6 +248,12 @@ export const downlaodResume = async (req, res, next) => {
     const pdfBuffer = await page.pdf({
       format: 'A4',
       printBackground: true,
+      margin: {
+        top: '0px',
+        right: '0px',
+        left: '0px',
+        bottom: '0px',
+      }
     });
     await browser.close();
 
@@ -257,7 +267,7 @@ export const downlaodResume = async (req, res, next) => {
 
     res.set({
       'Content-Type': 'application/pdf',
-      'Content-Disposition': 'attachment; filename="My_Resume.pdf"',
+      'Content-Disposition': 'attachment; filename="THIS-IS-THE-NEW-CODE.pdf"',
     });
 
     res.status(201).send(pdfBuffer);
