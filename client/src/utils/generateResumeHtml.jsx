@@ -85,6 +85,7 @@ const generateResumeHtml = (
   // 5. Build the Final, Self-Contained HTML Snippet.
   // This is the core of the flicker-free solution. We create a string containing
   // the styles and the resume content together, which can be safely injected into a div.
+
   const finalHtmlSnippet = `
     <style>
       ${finalCssContent}
@@ -96,6 +97,9 @@ const generateResumeHtml = (
     </div>
   `;
 
+  // console.log("final html content",finalHtmlSnippet)
+  // console.log(enabledSectionsConfig)
+console.log("DEBUG: baseCss received by function:", baseCss);
   // 6. Compile with Handlebars: Inject the user's actual data into the fully assembled template.
   try {
     const template = Handlebars.compile(finalHtmlSnippet);
