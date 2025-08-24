@@ -21,7 +21,6 @@ const SignupPage = () => {
   const from = location.state?.from?.pathname || '/dashboard';
 
   useEffect(() => {
-    console.log("you are the culprit")
     if (isAuthenticated) {
       navigate(from, { replace: true });
     }
@@ -44,7 +43,6 @@ const SignupPage = () => {
       // --- MODIFICATION START ---
       // Instead of navigating to the dashboard, we now redirect to the
       // email verification page and pass the user's email for pre-filling the form.
-      console.log("hey signup")
       navigate('/verify-email', { 
         replace: true,
         state: { userEmail: credentials.userEmail } 

@@ -31,7 +31,7 @@ const sendVerificationMail = async (userId, userName, userEmail) => {
       <p>Best regards,<br/>The CareerForge Team</p>`;
 
     const mailOptions = {
-      from: process.env.EMAIL_FROM || 'no-reply@careerforge.pro',
+      from: process.env.EMAIL_FROM || `"CareerForge" <${process.env.SMTP_EMAIL}>`,
       to: userEmail,
       replyTo: process.env.SUPPORT_EMAIL || 'support@careerforge.pro',
       subject: 'CareerForge: Your Email Verification Code',

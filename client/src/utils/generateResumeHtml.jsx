@@ -103,9 +103,6 @@ const generateResumeHtml = (
     </div>
   `;
 
-  console.log("final html content",finalHtmlSnippet)
-  // console.log(enabledSectionsConfig)
-console.log("DEBUG: baseCss received by function:", baseCss);
   // 6. Compile with Handlebars: Inject the user's actual data into the fully assembled template.
   try {
     const template = Handlebars.compile(finalHtmlSnippet);

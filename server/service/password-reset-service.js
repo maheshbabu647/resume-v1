@@ -24,7 +24,7 @@ const sendPasswordResetEmail = async (userEmail, userName, token) => {
         <p>Best regards,<br/>The CareerForge Team</p>`;
 
         const mailOptions = {
-            from: process.env.EMAIL_FROM || 'no-reply@careerforge.pro',
+            from: process.env.EMAIL_FROM || `"CareerForge" <${process.env.SMTP_EMAIL}>`,
             to: userEmail,
             subject: 'CareerForge: Password Reset Request',
             html: mailBody,

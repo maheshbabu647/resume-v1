@@ -1,0 +1,218 @@
+2025-08-24T11:59:29.690Z [ERROR]: [SignUp][Error] Email: itisgetlost@gmail.com - E11000 duplicate key error collection: careerforge-db.users index: email_1 dup key: { email: null }
+2025-08-24T11:59:29.691Z [ERROR]: Status: 500, Name: MongoServerError, Message: An unexpected error occurred during signup., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-24T11:59:29.691Z [ERROR]: Stack: MongoServerError: An unexpected error occurred during signup.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:62:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:04:27.203Z [ERROR]: [SignUp][Error] Email: itisgetlost@gmail.com - E11000 duplicate key error collection: careerforge-db.users index: email_1 dup key: { email: null }
+2025-08-24T12:04:27.204Z [ERROR]: Status: 500, Name: MongoServerError, Message: An unexpected error occurred during signup., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-24T12:04:27.204Z [ERROR]: Stack: MongoServerError: An unexpected error occurred during signup.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:62:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:04:29.170Z [ERROR]: [SignUp][Error] Email: itisgetlost@gmail.com - E11000 duplicate key error collection: careerforge-db.users index: email_1 dup key: { email: null }
+2025-08-24T12:04:29.171Z [ERROR]: Status: 500, Name: MongoServerError, Message: An unexpected error occurred during signup., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-24T12:04:29.171Z [ERROR]: Stack: MongoServerError: An unexpected error occurred during signup.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:62:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:04:36.931Z [ERROR]: [SignUp][Error] Email: itisgetlost@gmail.com - E11000 duplicate key error collection: careerforge-db.users index: email_1 dup key: { email: null }
+2025-08-24T12:04:36.932Z [ERROR]: Status: 500, Name: MongoServerError, Message: An unexpected error occurred during signup., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-24T12:04:36.932Z [ERROR]: Stack: MongoServerError: An unexpected error occurred during signup.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:62:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:04:37.873Z [ERROR]: [SignUp][Error] Email: itisgetlost@gmail.com - E11000 duplicate key error collection: careerforge-db.users index: email_1 dup key: { email: null }
+2025-08-24T12:04:37.874Z [ERROR]: Status: 500, Name: MongoServerError, Message: An unexpected error occurred during signup., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-24T12:04:37.874Z [ERROR]: Stack: MongoServerError: An unexpected error occurred during signup.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:62:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:04:38.763Z [ERROR]: [SignUp][Error] Email: itisgetlost@gmail.com - E11000 duplicate key error collection: careerforge-db.users index: email_1 dup key: { email: null }
+2025-08-24T12:04:38.764Z [ERROR]: Status: 500, Name: MongoServerError, Message: An unexpected error occurred during signup., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-24T12:04:38.764Z [ERROR]: Stack: MongoServerError: An unexpected error occurred during signup.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:62:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:04:45.064Z [ERROR]: [SignUp][Error] Email: gmaheshbabu325@gmail.com - E11000 duplicate key error collection: careerforge-db.users index: email_1 dup key: { email: null }
+2025-08-24T12:04:45.064Z [ERROR]: Status: 500, Name: MongoServerError, Message: An unexpected error occurred during signup., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-24T12:04:45.064Z [ERROR]: Stack: MongoServerError: An unexpected error occurred during signup.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:62:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:09:21.910Z [ERROR]: [SignUp][Error] Email: mguttula@student.gitam.edu - E11000 duplicate key error collection: careerforge-db.users index: email_1 dup key: { email: null }
+2025-08-24T12:09:21.910Z [ERROR]: Status: 500, Name: MongoServerError, Message: An unexpected error occurred during signup., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-24T12:09:21.911Z [ERROR]: Stack: MongoServerError: An unexpected error occurred during signup.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:62:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:09:26.844Z [ERROR]: [SignUp][Error] Email: mguttula@student.gitam.edu - E11000 duplicate key error collection: careerforge-db.users index: email_1 dup key: { email: null }
+2025-08-24T12:09:26.844Z [ERROR]: Status: 500, Name: MongoServerError, Message: An unexpected error occurred during signup., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-24T12:09:26.844Z [ERROR]: Stack: MongoServerError: An unexpected error occurred during signup.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:62:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:09:34.246Z [ERROR]: [SignUp][Error] Email: mguttula@student.gitam.edu - E11000 duplicate key error collection: careerforge-db.users index: email_1 dup key: { email: null }
+2025-08-24T12:09:34.246Z [ERROR]: Status: 500, Name: MongoServerError, Message: An unexpected error occurred during signup., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-24T12:09:34.246Z [ERROR]: Stack: MongoServerError: An unexpected error occurred during signup.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:62:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:14:00.123Z [ERROR]: [Email][Verification][Error] userId: 68ab02084a5e61de4a3b56c8, userEmail: mguttula@student.gitam.edu, Reason: connect ECONNREFUSED 127.0.0.1:465
+2025-08-24T12:14:00.124Z [ERROR]: [SignUp][EmailError] Failed to send verification email for user: mguttula@student.gitam.edu
+2025-08-24T12:17:33.517Z [ERROR]: [Email][Verification][Error] userId: 68ab02084a5e61de4a3b56c8, userEmail: mguttula@student.gitam.edu, Reason: Can't send mail - all recipients were rejected: 553 5.7.1 <no-reply@careerforge.pro>: Sender address rejected: not owned by user accounts@careerforge.pro
+2025-08-24T12:17:33.518Z [ERROR]: [ResendVerification][EmailError] Failed to send new verification email for user: mguttula@student.gitam.edu
+2025-08-24T12:23:45.588Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:23:45.588Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:23:51.745Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:23:51.745Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:23:53.272Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:23:53.272Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:23:54.407Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:23:54.407Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:23:56.982Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:23:56.982Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:23:57.774Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:23:57.774Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:23:57.990Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:23:57.990Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:24:51.854Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-24T12:24:51.854Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-24T12:24:51.857Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-24T12:24:51.858Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-24T12:25:07.902Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-24T12:25:07.903Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-24T12:25:07.905Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-24T12:25:07.906Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-24T12:25:27.126Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:25:27.126Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:25:44.236Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:25:44.236Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:26:14.762Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:26:14.762Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:31:53.060Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-24T12:31:53.061Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-24T12:32:17.043Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-24T12:32:17.043Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-24T12:32:48.485Z [ERROR]: Status: 404, Name: USER NOT FOUND, Message: User not found, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-24T12:32:48.486Z [ERROR]: Stack: USER NOT FOUND: User not found
+    at authStatus (file:///E:/resume-v1/server/controller/auth-controller.js:228:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:32:48.507Z [ERROR]: Status: 404, Name: USER NOT FOUND, Message: User not found, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-24T12:32:48.507Z [ERROR]: Stack: USER NOT FOUND: User not found
+    at authStatus (file:///E:/resume-v1/server/controller/auth-controller.js:228:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:33:01.549Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:33:01.549Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:33:03.292Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:33:03.292Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:33:03.517Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:33:03.517Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:33:03.707Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:33:03.707Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:33:03.923Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-24T12:33:03.923Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:33:11.308Z [ERROR]: Status: 404, Name: USER NOT FOUND, Message: User not found, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-24T12:33:11.308Z [ERROR]: Stack: USER NOT FOUND: User not found
+    at authStatus (file:///E:/resume-v1/server/controller/auth-controller.js:228:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:33:11.316Z [ERROR]: Status: 404, Name: USER NOT FOUND, Message: User not found, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-24T12:33:11.316Z [ERROR]: Stack: USER NOT FOUND: User not found
+    at authStatus (file:///E:/resume-v1/server/controller/auth-controller.js:228:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:33:15.593Z [ERROR]: Status: 404, Name: USER NOT FOUND, Message: User not found, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-24T12:33:15.594Z [ERROR]: Stack: USER NOT FOUND: User not found
+    at authStatus (file:///E:/resume-v1/server/controller/auth-controller.js:228:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:33:15.603Z [ERROR]: Status: 404, Name: USER NOT FOUND, Message: User not found, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-24T12:33:15.603Z [ERROR]: Stack: USER NOT FOUND: User not found
+    at authStatus (file:///E:/resume-v1/server/controller/auth-controller.js:228:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:33:17.772Z [ERROR]: Status: 404, Name: USER NOT FOUND, Message: User not found, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-24T12:33:17.773Z [ERROR]: Stack: USER NOT FOUND: User not found
+    at authStatus (file:///E:/resume-v1/server/controller/auth-controller.js:228:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-24T12:33:17.780Z [ERROR]: Status: 404, Name: USER NOT FOUND, Message: User not found, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-24T12:33:17.780Z [ERROR]: Stack: USER NOT FOUND: User not found
+    at authStatus (file:///E:/resume-v1/server/controller/auth-controller.js:228:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
