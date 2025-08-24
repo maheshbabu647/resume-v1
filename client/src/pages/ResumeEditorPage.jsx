@@ -68,21 +68,34 @@ const initializeFormDataFromDefinitions = (definitions, selectedIndustry) => {
     }
   }
 
-  definitions.forEach(fieldDef => {
-    const keys = fieldDef.name.split('.');
-    let currentLevel = content;
-    keys.forEach((key, index) => {
-      if (index === keys.length - 1) {
-        currentLevel[key] = (fieldDef.type === 'group' && fieldDef.repeatable) ? [] : fieldDef.defaultValue ?? '';
-      } else {
-        currentLevel[key] = currentLevel[key] || {};
-        currentLevel = currentLevel[key];
+  // definitions.forEach(fieldDef => {
+  //   const keys = fieldDef.name.split('.');
+  //   let currentLevel = content;
+  //   keys.forEach((key, index) => {
+  //     if (index === keys.length - 1) {
+  //       currentLevel[key] = (fieldDef.type === 'group' && fieldDef.repeatable) ? [] : fieldDef.defaultValue ?? '';
+  //     } else {
+  //       currentLevel[key] = currentLevel[key] || {};
+  //       currentLevel = currentLevel[key];
+  //     }
+  //   });
+  // });
+   definitions.forEach(fieldDef => {
+    if (fieldDef.type === 'group' && fieldDef.repeatable) {
+      const sampleItem = {};
+      if (Array.isArray(fieldDef.subFields)) {
+        fieldDef.subFields.forEach(subField => {
+          sampleItem[subField.name] = subField.livePreviewPlaceholder || '';
+        });
       }
-    });
+      set(content, fieldDef.name, [sampleItem]); 
+    } else {
+      set(content, fieldDef.name, fieldDef.livePreviewPlaceholder || '');
+    }
   });
-
   return { content, sectionsConfig };
-};
+
+  };
 
 
 const ResumeEditorPage = () => {
@@ -121,6 +134,8 @@ const ResumeEditorPage = () => {
   const [activeEnhancementInfo, setActiveEnhancementInfo] = useState({ path: null, originalText: '' });
   const [isDirty, setIsDirty] = useState(false);
   const [saveStatus, setSaveStatus] = useState('idle');
+  const [showPlaceholderWarning, setShowPlaceholderWarning] = useState(false);
+  const [pendingAction, setPendingAction] = useState(null);
 
   // --- NEW STATE FOR MODULAR TEMPLATES ---
   const [spacingMultiplier, setSpacingMultiplier] = useState(1);
@@ -243,12 +258,23 @@ const ResumeEditorPage = () => {
 
   // --- ACTION HANDLERS ---
   const handleSaveResume = async () => {
-    if (!isAuthenticated) { setShowAuthDialog(true); return; }
+    if (hasUntouchedPlaceholders(editorFormData.content)) {
+      setPendingAction('save');
+      setShowPlaceholderWarning(true);
+      return; 
+    }
+    await executeSaveResume();
+  };
+
+  const executeSaveResume = async () => {
+    if (!isAuthenticated) {
+      setShowAuthDialog(true);
+      return;
+    }
     setSaveStatus('saving');
-    // --- UPDATED: Pass new design state to the save function ---
     const savedResult = await saveOrUpdateCurrentResume(
-      editorFormData, 
-      editableResumeName.trim(), 
+      editorFormData,
+      editableResumeName.trim(),
       spacingMultiplier,
       sectionOrder,
       selectedStylePackKey
@@ -265,16 +291,28 @@ const ResumeEditorPage = () => {
     }
   };
 
+
   const handleDownloadPdf = async () => {
+  // First, check for placeholder text
+  if (hasUntouchedPlaceholders(editorFormData.content)) {
+    setPendingAction('download');
+    setShowPlaceholderWarning(true);
+    return; // Stop and wait for user confirmation
+  }
+  await executeDownloadPdf();
+  };
+
+  // 4. Core DOWNLOAD logic
+  const executeDownloadPdf = async () => {
     if (!isAuthenticated) {
-        setShowAuthDialog(true);
-        return;
+      setShowAuthDialog(true);
+      return;
     }
     if (!resumePreviewRef.current) return;
+
     setIsDownloadingPdf(true);
     try {
       const previewElement = resumePreviewRef.current;
-
       const styleElement = previewElement.querySelector('style');
       const resumeContainer = previewElement.querySelector('.rt-container');
 
@@ -282,7 +320,6 @@ const ResumeEditorPage = () => {
         throw new Error("Could not find style or resume content for PDF generation.");
       }
       const cleanHtmlForPdf = styleElement.outerHTML + resumeContainer.outerHTML;
-      // const htmlContent = resumePreviewRef.current.innerHTML;
       await apiDownloadResume(cleanHtmlForPdf);
     } catch (error) {
       setPageError('Failed to download PDF.');
@@ -328,6 +365,29 @@ const ResumeEditorPage = () => {
       }
   };
 
+  const hasUntouchedPlaceholders = (data) => {
+    if (typeof data === 'string') {
+      return /\[.*\]/.test(data);
+    }
+    if (Array.isArray(data)) {
+      return data.some(item => hasUntouchedPlaceholders(item));
+    }
+    if (typeof data === 'object' && data !== null) {
+      return Object.values(data).some(value => hasUntouchedPlaceholders(value));
+    }
+    return false;
+  };
+
+  const handleConfirmAction = () => {
+    setShowPlaceholderWarning(false);
+    if (pendingAction === 'save') {
+      executeSaveResume();
+    } else if (pendingAction === 'download') {
+      executeDownloadPdf();
+    }
+    setPendingAction(null);
+  };
+
   const handleAcceptSuggestion = (suggestionText) => {
     if (activeEnhancementInfo.path) {
         const arrayMatch = activeEnhancementInfo.path.match(/^(.*)\[(\d+)\]\.(.*)$/);
@@ -368,12 +428,25 @@ const ResumeEditorPage = () => {
       const fields = sections[sectionKey];
       let isSectionCompleted = false;
       for (const field of fields) {
+        const placeholderRegex = /\[.*\]/;
+        
         if (field.type === 'group' && field.repeatable) {
           const items = get(editorFormData.content, field.name, []);
-          if (items.length > 0) { isSectionCompleted = true; break; }
+          if (items.length > 0) {
+              const firstItemIsStillPlaceholder = Object.values(items[0]).every(
+                val => typeof val === 'string' && (val === '' || placeholderRegex.test(val))
+              );
+              if (items.length > 1 || !firstItemIsStillPlaceholder) {
+                  isSectionCompleted = true;
+                  break;
+              }
+          }
         } else {
           const value = get(editorFormData.content, field.name, '');
-          if (typeof value === 'string' && value.trim() !== '') { isSectionCompleted = true; break; }
+          if (typeof value === 'string' && value.trim() !== '' && !placeholderRegex.test(value)) { 
+            isSectionCompleted = true; 
+            break; 
+          }
         }
       }
       if (isSectionCompleted) { completedCount++; }
@@ -566,6 +639,29 @@ const ResumeEditorPage = () => {
       
       <EnhancementDialog {...{suggestions: enhancementSuggestions, originalText: activeEnhancementInfo.originalText, onAccept: handleAcceptSuggestion, onOpenChange: () => setEnhancementSuggestions(null)}} />
       <AuthDialog {...{open: showAuthDialog, onOpenChange: setShowAuthDialog}} />
+      <Dialog open={showPlaceholderWarning} onOpenChange={setShowPlaceholderWarning}>
+        <DialogContent className="sm:max-w-md bg-card">
+          <DialogHeader>
+            <DialogTitle className="flex items-center text-lg font-semibold text-amber-600">
+              <AlertCircle className="h-5 w-5 mr-2" />
+              Placeholder Text Detected
+            </DialogTitle>
+          </DialogHeader>
+          <DialogDescription className="py-4 text-muted-foreground">
+            It looks like you may have left some placeholder text (like "[Your Name]") in your resume. Are you sure you want to continue?
+          </DialogDescription>
+          <DialogFooter className="sm:justify-end gap-2">
+            <DialogClose asChild>
+              <Button type="button" variant="outline" onClick={() => setPendingAction(null)}>
+                Go Back and Edit
+              </Button>
+            </DialogClose>
+            <Button type="button" onClick={handleConfirmAction}>
+              Continue Anyway
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

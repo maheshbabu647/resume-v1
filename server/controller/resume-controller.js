@@ -224,7 +224,6 @@ export const deleteResume = async (req, res, next) => {
     next(err);
   }
 };
-
 export const downlaodResume = async (req, res, next) => {
   try {
     const { html } = req.body;
@@ -239,14 +238,19 @@ export const downlaodResume = async (req, res, next) => {
 
     logger.info(`[Resume][Download][Request] User: ${userId}`);
 
+    const fullHtml = `<style>body { margin: 0; }</style>${html}`;
+
     const browser = await puppeteer.launch({
       headless: 'new',
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     const page = await browser.newPage();
-    await page.setContent(html, { waitUntil: 'networkidle0' });
+
+    await page.setContent(fullHtml, { waitUntil: 'networkidle0' });
+
     const pdfBuffer = await page.pdf({
-      format: 'A4',
+      width: '210mm',
+      height: '297mm',
       printBackground: true,
       margin: {
         top: '0px',
@@ -267,10 +271,10 @@ export const downlaodResume = async (req, res, next) => {
 
     res.set({
       'Content-Type': 'application/pdf',
-      'Content-Disposition': 'attachment; filename="THIS-IS-THE-NEW-CODE.pdf"',
+      'Content-Disposition': 'attachment; filename="resume.pdf"',
     });
 
-    res.status(201).send(pdfBuffer);
+    res.status(200).send(pdfBuffer); // Use 200 OK for a successful file delivery
   } catch (error) {
     logger.error(`[Resume][Download][Error] User: ${req.user ? req.user.userId : 'unknown'} - ${error.message}`);
     const err = new Error(error.message || 'Server error while downloading resume.');

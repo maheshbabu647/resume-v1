@@ -92,12 +92,18 @@ const generateResumeHtml = (
     </style>
     <div class="rt-container" id="resume">
       ${assembledSlots['header'] || ''}
-      ${assembledSlots['main_column'] || ''}
-      ${assembledSlots['sidebar'] || ''}
+      
+      <div class="rt-body">
+        <div class="rt-left-column">${assembledSlots['left_column'] || ''}</div>
+        <div class="rt-right-column">${assembledSlots['right_column'] || ''}</div>
+      </div>
+
+      <div class="rt-main-column">${assembledSlots['main_column'] || ''}</div>
+
     </div>
   `;
 
-  // console.log("final html content",finalHtmlSnippet)
+  console.log("final html content",finalHtmlSnippet)
   // console.log(enabledSectionsConfig)
 console.log("DEBUG: baseCss received by function:", baseCss);
   // 6. Compile with Handlebars: Inject the user's actual data into the fully assembled template.

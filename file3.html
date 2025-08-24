@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Tech Resume Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .resume-container {
+            max-width: 8.5in;
+            width: 100%;
+            height: 11in;
+            background: white;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Left Column */
+        .left-column {
+            background: linear-gradient(180deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 0;
+            position: relative;
+        }
+
+        .left-content {
+            padding: 40px 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Geometric Background Pattern */
+        .left-column::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(74, 107, 138, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(74, 107, 138, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(74, 107, 138, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #4A6B8A, #6B8CAA);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            font-size: 36px;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .name {
+            font-weight: 700;
+            font-size: 22px;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .job-title {
+            font-weight: 400;
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        /* Contact Info */
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #e2e8f0;
+        }
+
+        .contact-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 12px;
+            opacity: 0.8;
+        }
+
+        /* Left Section Headings */
+        .left-heading {
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 35px 0 20px 0;
+            color: #4A6B8A;
+            position: relative;
+        }
+
+        .left-heading:first-of-type {
+            margin-top: 0;
+        }
+
+        .left-heading::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: #4A6B8A;
+        }
+
+        /* Skills with Rating */
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            font-size: 12px;
+            color: #f1f5f9;
+        }
+
+        .skill-rating {
+            display: flex;
+            gap: 3px;
+        }
+
+        .skill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .skill-dot.filled {
+            background: #4A6B8A;
+            box-shadow: 0 0 8px rgba(74, 107, 138, 0.5);
+        }
+
+        /* Education & Other Lists */
+        .left-item {
+            margin-bottom: 20px;
+        }
+
+        .item-title {
+            font-weight: 600;
+            font-size: 12px;
+            color: #f1f5f9;
+            margin-bottom: 4px;
+        }
+
+        .item-subtitle {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-bottom: 2px;
+        }
+
+        .item-date {
+            font-size: 10px;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .simple-list {
+            list-style: none;
+        }
+
+        .simple-list li {
+            font-size: 11px;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .simple-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #4A6B8A;
+            font-weight: bold;
+        }
+
+        /* Right Column */
+        .right-column {
+            padding: 40px;
+            background: white;
+            position: relative;
+        }
+
+        /* Subtle background pattern */
+        .right-column::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(74, 107, 138, 0.03) 0%, transparent 70%);
+            z-index: 1;
+        }
+
+        .right-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Right Section Headings */
+        .section-heading {
+            font-weight: 600;
+            font-size: 14px;
+            color: #1e293b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-heading::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #4A6B8A, transparent);
+        }
+
+        /* Sections */
+        .right-section {
+            margin-bottom: 40px;
+        }
+
+        .summary-text {
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: #374151;
+            text-align: justify;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #4A6B8A, #e2e8f0);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 35px;
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #4A6B8A;
+        }
+
+        .experience-item::before {
+            content: "";
+            position: absolute;
+            left: -32px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            background: #4A6B8A;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #4A6B8A;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .job-info h3 {
+            font-weight: 600;
+            font-size: 12pt;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .company-name {
+            font-weight: 500;
+            font-size: 11pt;
+            color: #4A6B8A;
+        }
+
+        .job-date {
+            font-size: 10.5pt;
+            color: #6b7280;
+            font-weight: 500;
+            background: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .achievements {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .achievements li {
+            font-size: 10.5pt;
+            line-height: 1.5;
+            color: #374151;
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .achievements li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #4A6B8A;
+            font-size: 8px;
+            top: 6px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .resume-container {
+                box-shadow: none;
+                max-width: none;
+                width: 100%;
+                height: auto;
+                border-radius: 0;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .resume-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .left-column {
+                order: 2;
+            }
+            
+            .right-column {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <!-- Left Column -->
+        <div class="left-column">
+            <div class="left-content">
+                <!-- Profile Section -->
+                <div class="profile-section">
+                    <div class="profile-image">👨‍💻</div>
+                    <h1 class="name">ALEX CHEN</h1>
+                    <p class="job-title">Full Stack Developer</p>
+                    
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <span class="contact-icon">✉️</span>
+                            <span>alex.chen@email.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <span>(555) 987-6543</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">🔗</span>
+                            <span>linkedin.com/in/alexchen</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">🌐</span>
+                            <span>github.com/alexchen</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>San Francisco, CA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Skills -->
+                <h2 class="left-heading">Technical Skills</h2>
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">JavaScript/TypeScript</span>
+                        <div class="skill-rating">
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">React/Next.js</span>
+                        <div class="skill-rating">
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Node.js/Express</span>
+                        <div class="skill-rating">
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Python/Django</span>
+                        <div class="skill-rating">
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">AWS/Docker</span>
+                        <div class="skill-rating">
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot filled"></div>
+                            <div class="skill-dot"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <h2 class="left-heading">Education</h2>
+                <div class="left-item">
+                    <div class="item-title">B.S. Computer Science</div>
+                    <div class="item-subtitle">Stanford University</div>
+                    <div class="item-date">2019</div>
+                </div>
+
+                <!-- Certifications -->
+                <h2 class="left-heading">Certifications</h2>
+                <ul class="simple-list">
+                    <li>AWS Solutions Architect</li>
+                    <li>Google Cloud Professional</li>
+                    <li>MongoDB Certified Developer</li>
+                    <li>Kubernetes Administrator</li>
+                </ul>
+
+                <!-- Languages -->
+                <h2 class="left-heading">Languages</h2>
+                <ul class="simple-list">
+                    <li>English (Native)</li>
+                    <li>Mandarin (Fluent)</li>
+                    <li>JavaScript (Expert)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="right-column">
+            <div class="right-content">
+                <!-- Professional Summary -->
+                <div class="right-section">
+                    <h2 class="section-heading">Professional Summary</h2>
+                    <p class="summary-text">
+                        Innovative Full Stack Developer with 6+ years of experience building scalable web applications and leading development teams. Expertise in modern JavaScript frameworks, cloud architecture, and agile methodologies. Proven track record of delivering high-performance solutions that increase user engagement by 40% and reduce system response times by 60%. Passionate about clean code, emerging technologies, and mentoring junior developers.
+                    </p>
+                </div>
+
+                <!-- Professional Experience -->
+                <div class="right-section">
+                    <h2 class="section-heading">Professional Experience</h2>
+                    
+                    <div class="timeline">
+                        <div class="experience-item">
+                            <div class="job-header">
+                                <div class="job-info">
+                                    <h3>Senior Full Stack Developer</h3>
+                                    <div class="company-name">TechStartup Inc.</div>
+                                </div>
+                                <div class="job-date">2022 - Present</div>
+                            </div>
+                            <ul class="achievements">
+                                <li>Architected and developed microservices-based platform serving 100K+ daily active users</li>
+                                <li>Led team of 5 developers using Agile methodologies and modern CI/CD practices</li>
+                                <li>Implemented real-time features using WebSocket and Redis, improving user engagement by 45%</li>
+                                <li>Optimized database queries and caching strategies, reducing API response times by 65%</li>
+                            </ul>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="job-header">
+                                <div class="job-info">
+                                    <h3>Full Stack Developer</h3>
+                                    <div class="company-name">Digital Solutions Co.</div>
+                                </div>
+                                <div class="job-date">2020 - 2022</div>
+                            </div>
+                            <ul class="achievements">
+                                <li>Built responsive web applications using React, Node.js, and PostgreSQL</li>
+                                <li>Developed RESTful APIs handling 1M+ requests daily with 99.9% uptime</li>
+                                <li>Integrated third-party payment systems and authentication services</li>
+                                <li>Collaborated with UX/UI designers to implement pixel-perfect, accessible interfaces</li>
+                            </ul>
+                        </div>
+
+                        <div class="experience-item">
+                            <div class="job-header">
+                                <div class="job-info">
+                                    <h3>Frontend Developer</h3>
+                                    <div class="company-name">Creative Agency Pro</div>
+                                </div>
+                                <div class="job-date">2019 - 2020</div>
+                            </div>
+                            <ul class="achievements">
+                                <li>Created interactive web experiences for Fortune 500 clients using modern JavaScript</li>
+                                <li>Optimized website performance, achieving 95+ Google PageSpeed scores</li>
+                                <li>Implemented responsive designs across multiple browsers and devices</li>
+                                <li>Mentored 2 junior developers in best practices and code review processes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

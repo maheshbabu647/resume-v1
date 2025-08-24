@@ -37,6 +37,10 @@ export default {
           from: { opacity: "1" },
           to: { opacity: "0" },
         },
+        "twinkle": { 
+          '0%, 100%': { transform: 'scale(1) rotate(0deg)', opacity: '0.7' },
+          '50%': { transform: 'scale(1.2) rotate(10deg)', opacity: '1' },
+        },
         "slideInUp": {
           from: { transform: "translateY(20px)", opacity: "0" },
           to: { transform: "translateY(0)", opacity: "1" },
@@ -47,6 +51,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fadeIn": "fadeIn 0.5s ease-in-out",
         "fadeOut": "fadeOut 0.5s ease-in-out",
+        "twinkle": 'twinkle 2s ease-in-out infinite',
         "slideInUp": "slideInUp 0.5s ease-out forwards",
       },
     },

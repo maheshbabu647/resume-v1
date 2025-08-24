@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Column Resume Template</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .resume-container {
+            max-width: 8.5in;
+            width: 100%;
+            height: 11in;
+            background: white;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            overflow: hidden;
+        }
+
+        /* Left Column Styles */
+        .left-column {
+            background: linear-gradient(135deg, #005A5A 0%, #007A7A 100%);
+            color: white;
+            padding: 40px 30px;
+        }
+
+        /* Right Column Styles */
+        .right-column {
+            padding: 40px 40px;
+            background: white;
+        }
+
+        /* Left Column Header */
+        .left-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            font-size: 48px;
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+
+        .name {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .title {
+            font-size: 14px;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            text-align: left;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 12px;
+        }
+
+        .contact-icon {
+            width: 20px;
+            margin-right: 12px;
+            text-align: center;
+        }
+
+        /* Left Column Section Headings */
+        .left-section-heading {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            margin-top: 35px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .left-section-heading:first-of-type {
+            margin-top: 0;
+        }
+
+        /* Skills */
+        .skill-item {
+            margin-bottom: 18px;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background: white;
+            border-radius: 3px;
+        }
+
+        /* Education */
+        .education-item {
+            margin-bottom: 20px;
+        }
+
+        .degree {
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .institution {
+            font-size: 11px;
+            opacity: 0.8;
+            margin-bottom: 2px;
+        }
+
+        .graduation-date {
+            font-size: 10px;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        /* Languages & Certifications */
+        .left-list {
+            list-style: none;
+        }
+
+        .left-list li {
+            font-size: 11px;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .left-list li:before {
+            content: "▸";
+            color: white;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Right Column Section Headings */
+        .section-heading {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #2D2D2D;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #005A5A;
+            display: inline-block;
+        }
+
+        /* Right Column Sections */
+        .right-section {
+            margin-bottom: 35px;
+        }
+
+        .summary {
+            font-size: 11pt;
+            line-height: 1.4;
+            color: #2D2D2D;
+            text-align: justify;
+        }
+
+        .experience-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .experience-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: #005A5A;
+            border-radius: 50%;
+        }
+
+        .experience-item:after {
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: 20px;
+            bottom: -15px;
+            width: 2px;
+            background: #e9ecef;
+        }
+
+        .experience-item:last-child:after {
+            display: none;
+        }
+
+        .job-title {
+            font-weight: 700;
+            font-size: 14px;
+            color: #005A5A;
+            margin-bottom: 4px;
+        }
+
+        .company-info {
+            font-size: 12px;
+            color: #6B6B6B;
+            margin-bottom: 12px;
+        }
+
+        .company-name {
+            font-weight: 600;
+            color: #2D2D2D;
+        }
+
+        .achievements {
+            margin-top: 8px;
+        }
+
+        .achievements li {
+            font-size: 11pt;
+            line-height: 1.4;
+            color: #2D2D2D;
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .achievements li:before {
+            content: "•";
+            color: #005A5A;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .resume-container {
+                box-shadow: none;
+                max-width: none;
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .resume-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .left-column {
+                order: 2;
+            }
+            
+            .right-column {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <!-- Left Column -->
+        <div class="left-column">
+            <!-- Profile Section -->
+            <div class="left-header">
+                <div class="profile-photo">👤</div>
+                <h1 class="name">SARAH JOHNSON</h1>
+                <p class="title">Senior Marketing Manager</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <span>sarah.johnson@email.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <span>(555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🌐</span>
+                        <span>linkedin.com/in/sarahjohnson</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span>New York, NY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <h2 class="left-section-heading">Core Skills</h2>
+            <div class="skill-item">
+                <div class="skill-name">Digital Marketing</div>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 95%;"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Data Analytics</div>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 88%;"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Content Strategy</div>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 92%;"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Team Leadership</div>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 85%;"></div>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-name">Project Management</div>
+                <div class="skill-bar">
+                    <div class="skill-level" style="width: 90%;"></div>
+                </div>
+            </div>
+
+            <!-- Education Section -->
+            <h2 class="left-section-heading">Education</h2>
+            <div class="education-item">
+                <div class="degree">Master of Business Administration</div>
+                <div class="institution">Columbia Business School</div>
+                <div class="graduation-date">2018</div>
+            </div>
+            <div class="education-item">
+                <div class="degree">Bachelor of Arts in Marketing</div>
+                <div class="institution">New York University</div>
+                <div class="graduation-date">2015</div>
+            </div>
+
+            <!-- Certifications Section -->
+            <h2 class="left-section-heading">Certifications</h2>
+            <ul class="left-list">
+                <li>Google Analytics Certified</li>
+                <li>HubSpot Content Marketing</li>
+                <li>Facebook Blueprint Certified</li>
+                <li>PMP Certification</li>
+            </ul>
+
+            <!-- Languages Section -->
+            <h2 class="left-section-heading">Languages</h2>
+            <ul class="left-list">
+                <li>English (Native)</li>
+                <li>Spanish (Fluent)</li>
+                <li>French (Conversational)</li>
+            </ul>
+        </div>
+
+        <!-- Right Column -->
+        <div class="right-column">
+            <!-- Professional Summary -->
+            <div class="right-section">
+                <h2 class="section-heading">Professional Summary</h2>
+                <p class="summary">
+                    Results-driven marketing professional with 8+ years of experience developing and executing comprehensive digital marketing strategies. Proven track record of increasing brand awareness by 150% and generating $2M+ in additional revenue through data-driven campaigns. Expert in leading cross-functional teams and managing multi-million dollar budgets while consistently delivering ROI improvements of 25-40%.
+                </p>
+            </div>
+
+            <!-- Work Experience -->
+            <div class="right-section">
+                <h2 class="section-heading">Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="job-title">Senior Marketing Manager</div>
+                    <div class="company-info">
+                        <span class="company-name">TechCorp Solutions</span> | New York, NY | 2021 - Present
+                    </div>
+                    <ul class="achievements">
+                        <li>Spearhead digital marketing strategy for $50M B2B SaaS company, resulting in 45% increase in qualified leads</li>
+                        <li>Manage cross-functional team of 8 marketing professionals and $3M annual budget</li>
+                        <li>Implemented marketing automation platform that reduced customer acquisition cost by 32%</li>
+                        <li>Launched comprehensive rebranding initiative that improved brand recognition by 60%</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Marketing Manager</div>
+                    <div class="company-info">
+                        <span class="company-name">Digital Innovations Inc.</span> | New York, NY | 2019 - 2021
+                    </div>
+                    <ul class="achievements">
+                        <li>Developed and executed integrated marketing campaigns across 5+ channels, driving 28% revenue growth</li>
+                        <li>Led content marketing strategy that increased organic website traffic by 85%</li>
+                        <li>Collaborated with sales team to improve lead quality, resulting in 22% higher conversion rates</li>
+                        <li>Managed vendor relationships and negotiated contracts, saving company $150K annually</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Digital Marketing Specialist</div>
+                    <div class="company-info">
+                        <span class="company-name">StartupXYZ</span> | Brooklyn, NY | 2018 - 2019
+                    </div>
+                    <ul class="achievements">
+                        <li>Built social media presence from ground up, growing followers by 300% in 12 months</li>
+                        <li>Created and optimized PPC campaigns that achieved 4.2x ROAS across Google and Facebook</li>
+                        <li>Designed email marketing campaigns with average open rate of 35% (15% above industry average)</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-title">Marketing Coordinator</div>
+                    <div class="company-info">
+                        <span class="company-name">Creative Agency Pro</span> | New York, NY | 2016 - 2018
+                    </div>
+                    <ul class="achievements">
+                        <li>Supported marketing campaigns for 20+ client accounts in various industries</li>
+                        <li>Coordinated trade show participation, managing logistics for 12 events annually</li>
+                        <li>Analyzed campaign performance data and created monthly reports for stakeholders</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
