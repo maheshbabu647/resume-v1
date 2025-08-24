@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useEffect, Suspense } from 'react'; // Make sure useEffect is imported
 import { Helmet } from 'react-helmet-async';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -11,7 +11,18 @@ const LoginForm = React.lazy(() => import('../components/Auth/LoginForm.jsx'));
 const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { userData, signin, isLoading, error: authError, isAuthenticated } = useAuthContext();
+  // Destructure the new clearAuthError function from the context
+  const { signin, isLoading, error: authError, isAuthenticated, clearAuthError } = useAuthContext();
+
+  // --- MODIFICATION START ---
+  // Add this useEffect to clear errors when the page loads
+  useEffect(() => {
+    if (authError) {
+      clearAuthError();
+    }
+  }, [clearAuthError]);
+  // --- MODIFICATION END ---
+
 
   const from = location.state?.from?.pathname || '/dashboard';
 
@@ -22,9 +33,8 @@ const LoginPage = () => {
   }, [isAuthenticated, navigate, from]);
 
   const handleLogin = async (credentials) => {
-    const user = await signin(credentials); // returns fresh userData
-    console.log("Login returned user:", user);
-
+    const user = await signin(credentials);
+    
     if (user) {
       if (from.includes('/verify-email/')) {
         navigate(from, { replace: true });

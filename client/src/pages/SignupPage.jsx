@@ -5,19 +5,24 @@ import { motion } from 'framer-motion';
 import useAuthContext from '../hooks/useAuth.js';
 import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from '@/components/ui/button'; // For potential future use
 
-// Lazy load SignupForm
 const SignupForm = React.lazy(() => import('../components/Auth/SignupForm.jsx'));
 
 const SignupPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { signup, isLoading, error: authError, isAuthenticated } = useAuthContext(); // Renamed error
+  // Destructure the new clearAuthError function
+  const { signup, isLoading, error: authError, isAuthenticated, clearAuthError } = useAuthContext();
 
-  const [pageError, setPageError] = useState(null); // For page-level errors if any
+  // --- MODIFICATION START ---
+  // Add this useEffect to clear errors when the page loads
+  useEffect(() => {
+    if (authError) {
+      clearAuthError();
+    }
+  }, [clearAuthError]);
+  // --- MODIFICATION END ---
 
-  // --- START: No changes in this block ---
   const from = location.state?.from?.pathname || '/dashboard';
 
   useEffect(() => {
@@ -26,34 +31,16 @@ const SignupPage = () => {
     }
   }, [isAuthenticated, navigate, from]);
 
-  useEffect(() => {
-    if (authError) {
-      setPageError(authError.message || 'An authentication error occurred during signup.');
-    } else {
-      setPageError(null);
-    }
-  }, [authError]);
-  // --- END: No changes in this block ---
-
-
   const handleSignup = async (credentials) => {
-    setPageError(null);
     const success = await signup(credentials);
     if (success) {
-      // --- MODIFICATION START ---
-      // Instead of navigating to the dashboard, we now redirect to the
-      // email verification page and pass the user's email for pre-filling the form.
       navigate('/verify-email', { 
         replace: true,
         state: { userEmail: credentials.userEmail } 
       });
-      // --- MODIFICATION END ---
     }
-    // If signup fails, authError in context will be updated.
-    // SignupForm also receives authError directly via apiError prop.
   };
 
-  // --- START: No changes in the return block ---
   if (isAuthenticated) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-background p-4 text-foreground" aria-busy="true" aria-live="polite">
@@ -70,7 +57,6 @@ const SignupPage = () => {
         <meta name="description" content="Create your CareerForge account to build professional resumes with AI, generate cover letters, and prepare for interviews." />
         <meta property="og:title" content="Sign Up | CareerForge" />
         <meta property="og:description" content="Join CareerForge and take the next step in your career with our AI-powered tools." />
-        {/* Add other relevant OG/Twitter tags */}
       </Helmet>
 
       <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background via-muted to-background p-4 sm:p-6 lg:p-8" aria-label="Signup Page Main Content">
@@ -99,14 +85,14 @@ const SignupPage = () => {
             </CardHeader>
             <CardContent className="p-6 sm:p-8 pt-0">
               <Suspense fallback={
-                <div className="flex justify-center items-center h-60"> {/* Adjusted height for signup form */}
+                <div className="flex justify-center items-center h-60">
                   <LoadingSpinner label="Loading form..." />
                 </div>
               }>
                 <SignupForm
                   onSubmit={handleSignup}
                   isLoading={isLoading}
-                  apiError={authError} // Pass the error object from context
+                  apiError={authError}
                 />
               </Suspense>
             </CardContent>
@@ -123,7 +109,6 @@ const SignupPage = () => {
       </main>
     </>
   );
-  // --- END: No changes in the return block ---
 };
 
 export default SignupPage;

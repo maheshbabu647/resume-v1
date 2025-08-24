@@ -57,7 +57,7 @@ const VerifyEmailPage = () => {
       
       // Redirect to dashboard after a short delay
       setTimeout(() => {
-        navigate('/dashboard', { replace: true });
+        navigate('/home', { replace: true });
       }, 3000);
 
     } catch (error) {

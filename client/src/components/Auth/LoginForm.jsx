@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Lock, AlertCircle, Loader2 } from 'lucide-react';
+import { Mail, Lock, AlertCircle, Loader2, Eye, EyeOff } from 'lucide-react'; // Import Eye and EyeOff
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -11,11 +11,12 @@ const LoginForm = ({ onSubmit, isLoading, apiError }) => {
     userEmail: '',
     userPassword: '',
   });
-  const [formError, setFormError] = useState(''); // For client-side validation errors
+  const [formError, setFormError] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // State for password visibility
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setFormError(''); // Clear client-side error on change
+    setFormError('');
   };
 
   const handleSubmit = (e) => {
@@ -24,30 +25,25 @@ const LoginForm = ({ onSubmit, isLoading, apiError }) => {
       setFormError('Please enter both email and password.');
       return;
     }
-    // Clear client-side error before submitting
     setFormError('');
     onSubmit(formData);
   };
 
-  // Determine the error message to display
-  let displayError = formError; // Prioritize client-side form errors
+  let displayError = formError;
   if (!displayError && apiError) {
-    // apiError could be an object { message: "..." } or a string
     displayError = typeof apiError === 'string' ? apiError : apiError.message || apiError.msg || 'Login failed. Please try again.';
   }
-
 
   return (
     <motion.form
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.1 }} // Slight delay after page animation
+      transition={{ duration: 0.5, delay: 0.1 }}
       onSubmit={handleSubmit}
-      className="space-y-6" // Increased spacing between elements
+      className="space-y-6"
       aria-label="Login Form"
       noValidate
     >
-      {/* Email Field */}
       <div className="space-y-1.5">
         <Label htmlFor="login-email" className="text-sm font-medium text-muted-foreground">
           Email Address
@@ -61,18 +57,17 @@ const LoginForm = ({ onSubmit, isLoading, apiError }) => {
             id="login-email"
             type="email"
             name="userEmail"
-            autoComplete="email" // Corrected from "username" for email field
+            autoComplete="email"
             placeholder="you@example.com"
             value={formData.userEmail}
             onChange={handleChange}
-            className="pl-10 w-full bg-background border-input focus:border-primary focus:ring-primary" // Theme-aware classes
+            className="pl-10 w-full bg-background border-input focus:border-primary focus:ring-primary placeholder:text-muted-foreground/60"
             required
             aria-describedby={displayError && formData.userEmail === '' ? "error-message" : undefined}
           />
         </div>
       </div>
 
-      {/* Password Field */}
       <div className="space-y-1.5">
         <Label htmlFor="login-password" className="text-sm font-medium text-muted-foreground">
           Password
@@ -84,20 +79,31 @@ const LoginForm = ({ onSubmit, isLoading, apiError }) => {
           />
           <Input
             id="login-password"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             name="userPassword"
             autoComplete="current-password"
             placeholder="••••••••"
             value={formData.userPassword}
             onChange={handleChange}
-            className="pl-10 w-full bg-background border-input focus:border-primary focus:ring-primary" // Theme-aware classes
+            className="pl-10 pr-10 w-full bg-background border-input focus:border-primary focus:ring-primary placeholder:text-muted-foreground/60"
             required
             aria-describedby={displayError && formData.userPassword === '' ? "error-message" : undefined}
           />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            aria-label={showPassword ? 'Hide password' : 'Show password'}
+          >
+            {showPassword ? (
+              <EyeOff className="h-4 w-4" />
+            ) : (
+              <Eye className="h-4 w-4" />
+            )}
+          </button>
         </div>
       </div>
 
-      {/* Error Message Display */}
       {displayError && (
         <motion.div
           id="error-message"
@@ -115,7 +121,6 @@ const LoginForm = ({ onSubmit, isLoading, apiError }) => {
         </motion.div>
       )}
 
-      {/* Submit Button */}
       <Button
         type="submit"
         disabled={isLoading}

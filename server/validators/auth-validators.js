@@ -6,7 +6,6 @@ const userSignUpValidators = [
   body('userName')
     .isString().withMessage('User name must be string')
     .notEmpty().withMessage('User name must not be empty')
-    .isAlphanumeric().withMessage('User name should contain only Alphabets and Numbers')
     .isLength({ min: 2, max: 30 }).withMessage('User name must be min of 2 characters and max of 30 characters')
     .trim()
     .custom(value => !['admin', 'root', 'superuser'].includes(value.toLowerCase()))

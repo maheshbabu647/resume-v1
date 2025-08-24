@@ -3,6 +3,7 @@ import apiServer from "./index.js";
 export const userSignin = async (signinCredentials) => {
     try{
         const response = await apiServer.post('/auth/signin', signinCredentials)
+        console.log("heyllo",response.data)
         return response.data
     }
     catch (error) {

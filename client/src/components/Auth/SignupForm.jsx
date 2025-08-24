@@ -1,40 +1,27 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Mail, Lock, AlertCircle, Loader2 } from 'lucide-react';
+import { User, Mail, Lock, AlertCircle, Loader2, Eye, EyeOff } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
-/**
- * A robust helper function to extract a displayable error message from various
- * API error formats (string, object, or array of objects).
- * @param {*} error - The error object or string from the API.
- * @returns {string} A user-friendly error message string.
- */
 const getErrorMessage = (error) => {
   if (!error) return '';
   if (typeof error === 'string') return error;
-
-  // Handle errors that have a 'message' property
   if (error.message) {
-    // If the message is a simple string, return it
     if (typeof error.message === 'string') {
       return error.message;
     }
-    // If the message is an array (common for validation errors)
     if (Array.isArray(error.message)) {
       return error.message
-        .map(err => err.message || JSON.stringify(err)) // Extract message from each error object
-        .join('; '); // Join multiple error messages
+        .map(err => err.message || JSON.stringify(err))
+        .join('; ');
     }
-    // If the message is an object (single validation error)
     if (typeof error.message === 'object' && error.message !== null) {
       return error.message.message || JSON.stringify(error.message);
     }
   }
-
-  // Fallback for any other unexpected error structure
   return 'An unexpected error occurred. Please check your input and try again.';
 };
 
@@ -47,6 +34,8 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
     userConfirmPassword: '',
   });
   const [formError, setFormError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -64,6 +53,17 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
       setFormError('Please fill in all fields.');
       return;
     }
+
+    // --- MODIFICATION START ---
+    // Added a regex to allow letters and spaces for a more natural full name.
+    // This provides immediate feedback if the name format is incorrect.
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    if (!nameRegex.test(formData.userName)) {
+      setFormError('Full name can only contain letters and spaces.');
+      return;
+    }
+    // --- MODIFICATION END ---
+    
     if (formData.userPassword.length < 8) {
       setFormError('Password must be at least 8 characters.');
       return;
@@ -75,13 +75,13 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
     
     setFormError('');
     onSubmit({
-      userName: formData.userName,
+      // Trim the userName to remove any leading/trailing whitespace before submitting
+      userName: formData.userName.trim(),
       userEmail: formData.userEmail,
       userPassword: formData.userPassword
     });
   };
 
-  // FIX: Use the robust error message helper to ensure we always have a string.
   const displayError = formError || getErrorMessage(apiError);
 
   return (
@@ -110,7 +110,7 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
             placeholder="Your Name"
             value={formData.userName}
             onChange={handleChange}
-            className="pl-10 w-full bg-background border-input focus:border-primary focus:ring-primary"
+            className="pl-10 w-full bg-background border-input focus:border-primary focus:ring-primary placeholder:text-muted-foreground/60"
             required
             autoComplete="name"
           />
@@ -132,7 +132,7 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
             placeholder="you@example.com"
             value={formData.userEmail}
             onChange={handleChange}
-            className="pl-10 w-full bg-background border-input focus:border-primary focus:ring-primary"
+            className="pl-10 w-full bg-background border-input focus:border-primary focus:ring-primary placeholder:text-muted-foreground/60"
             required
             autoComplete="email"
           />
@@ -149,16 +149,28 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
           />
           <Input
             id="signup-password"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             name="userPassword"
             placeholder="••••••••"
             value={formData.userPassword}
             onChange={handleChange}
-            className="pl-10 w-full bg-background border-input focus:border-primary focus:ring-primary"
+            className="pl-10 pr-10 w-full bg-background border-input focus:border-primary focus:ring-primary placeholder:text-muted-foreground/60"
             required
             minLength={8}
             autoComplete="new-password"
           />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            aria-label={showPassword ? 'Hide password' : 'Show password'}
+          >
+            {showPassword ? (
+              <EyeOff className="h-4 w-4" />
+            ) : (
+              <Eye className="h-4 w-4" />
+            )}
+          </button>
         </div>
          <p className="text-xs text-muted-foreground/80 pt-1">Min. 8 characters, with uppercase, lowercase, number, & symbol.</p>
       </div>
@@ -173,16 +185,28 @@ const SignupForm = ({ onSubmit, isLoading, apiError }) => {
           />
           <Input
             id="signup-confirm-password"
-            type="password"
+            type={showConfirmPassword ? 'text' : 'password'}
             name="userConfirmPassword"
             placeholder="••••••••"
             value={formData.userConfirmPassword}
             onChange={handleChange}
-            className="pl-10 w-full bg-background border-input focus:border-primary focus:ring-primary"
+            className="pl-10 pr-10 w-full bg-background border-input focus:border-primary focus:ring-primary placeholder:text-muted-foreground/60"
             required
             minLength={8}
             autoComplete="new-password"
           />
+          <button
+            type="button"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+          >
+            {showConfirmPassword ? (
+              <EyeOff className="h-4 w-4" />
+            ) : (
+              <Eye className="h-4 w-4" />
+            )}
+          </button>
         </div>
       </div>
       
