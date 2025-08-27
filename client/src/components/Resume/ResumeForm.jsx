@@ -879,7 +879,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from "@/components/ui/textarea";
-import { Plus, Trash2, Sparkles, Loader2, User, Briefcase, GraduationCap, Star, Info, CheckCircle2, MessageSquareQuote, Contact, FolderKanban } from 'lucide-react';
+import { Plus, Trash2, Sparkles, Loader2, Wand2, User, Briefcase, GraduationCap, Star, Info, CheckCircle2, MessageSquareQuote, Contact, FolderKanban } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";

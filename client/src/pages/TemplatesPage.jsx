@@ -302,7 +302,7 @@ const TemplatesPage = () => {
       </header>
 
       {/* Filters Section */}
-      <section className="py-4 sticky top-16 bg-card/90 backdrop-blur-lg z-30 border-b border-border">
+      <section className="py-4 sticky top-16 bg-card/90 backdrop-blur-lg z-30 border-b border-border invisible">
         <div className="container mx-auto px-8"> {/* Increased horizontal padding */}
           <div className="flex flex-col sm:flex-row gap-4 items-center">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">

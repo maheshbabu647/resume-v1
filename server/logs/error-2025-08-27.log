@@ -1,0 +1,370 @@
+2025-08-27T02:31:49.202Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T02:31:49.203Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T02:31:49.258Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T02:31:49.259Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T02:31:49.753Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T02:31:49.754Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T02:31:49.766Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T02:31:49.766Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T02:32:04.602Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-27T02:32:04.604Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T02:37:24.456Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T02:37:24.457Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T02:37:24.467Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T02:37:24.468Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T02:37:41.771Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-27T02:37:41.772Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T02:38:02.534Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-27T02:38:02.535Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at userSignUpValidation (file:///E:/resume-v1/server/validators/auth-validators.js:41:17)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at middleware (E:\resume-v1\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T02:44:43.482Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-27T02:44:43.483Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T02:45:10.100Z [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: An account with this email address already exists., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-27T02:45:10.101Z [ERROR]: Stack: USER ALREADY EXISTS: An account with this email address already exists.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:18:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T02:46:28.190Z [ERROR]: Status: 400, Name: Error, Message: Verification code is invalid or has expired., URL: /api/auth/verify-email, Method: POST, IP: ::1
+2025-08-27T02:46:28.190Z [ERROR]: Stack: Error: Verification code is invalid or has expired.
+    at verifyEmail (file:///E:/resume-v1/server/controller/auth-controller.js:164:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T02:46:38.713Z [ERROR]: Status: 400, Name: Error, Message: Verification code is invalid or has expired., URL: /api/auth/verify-email, Method: POST, IP: ::1
+2025-08-27T02:46:38.714Z [ERROR]: Stack: Error: Verification code is invalid or has expired.
+    at verifyEmail (file:///E:/resume-v1/server/controller/auth-controller.js:164:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T02:48:40.872Z [ERROR]: Status: 400, Name: Error, Message: Verification code is invalid or has expired., URL: /api/auth/verify-email, Method: POST, IP: ::1
+2025-08-27T02:48:40.873Z [ERROR]: Stack: Error: Verification code is invalid or has expired.
+    at verifyEmail (file:///E:/resume-v1/server/controller/auth-controller.js:164:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T02:50:35.765Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T02:50:35.765Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T02:50:35.773Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T02:50:35.773Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T02:50:40.345Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T02:50:40.346Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T02:50:40.353Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T02:50:40.354Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T02:50:41.275Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T02:50:41.277Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T02:50:41.284Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T02:50:41.285Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T02:51:26.925Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-27T02:51:26.926Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:77:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T02:59:57.409Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T02:59:57.410Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T02:59:57.417Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T02:59:57.417Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T03:00:49.247Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-27T03:00:49.248Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T03:01:13.158Z [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: An account with this email address already exists., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-27T03:01:13.159Z [ERROR]: Stack: USER ALREADY EXISTS: An account with this email address already exists.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:18:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T04:50:45.217Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T04:50:45.217Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T04:50:45.228Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T04:50:45.228Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T05:03:22.121Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T05:03:22.121Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T05:03:22.124Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T05:03:22.124Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T05:03:43.142Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T05:03:43.143Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T05:03:43.146Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T05:03:43.147Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T05:31:52.692Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T05:31:52.693Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T05:31:52.698Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-27T05:31:52.698Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-27T05:33:38.727Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-27T05:33:38.727Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T05:33:59.494Z [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: An account with this email address already exists., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-27T05:33:59.494Z [ERROR]: Stack: USER ALREADY EXISTS: An account with this email address already exists.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:18:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T05:34:16.487Z [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: An account with this email address already exists., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-27T05:34:16.487Z [ERROR]: Stack: USER ALREADY EXISTS: An account with this email address already exists.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:18:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T05:45:00.086Z [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: An account with this email address already exists., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-27T05:45:00.086Z [ERROR]: Stack: USER ALREADY EXISTS: An account with this email address already exists.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:18:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T05:45:17.984Z [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: An account with this email address already exists., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-27T05:45:17.984Z [ERROR]: Stack: USER ALREADY EXISTS: An account with this email address already exists.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:18:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T14:14:28.308Z [ERROR]: AI API error:
+2025-08-27T14:14:28.308Z [ERROR]: [Resume][Enhance][Error] User: 68ab4a7b46b46afd9f445e5d - AI enhancement generation failed
+2025-08-27T14:14:28.310Z [ERROR]: Status: 500, Name: Error, Message: AI enhancement generation failed, URL: /api/resume/ai/enhance-field, Method: POST, IP: ::1
+2025-08-27T14:14:28.310Z [ERROR]: Stack: Error: AI enhancement generation failed
+    at enhanceResumeField (file:///E:/resume-v1/server/controller/resume-controller.js:355:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T14:33:54.930Z [ERROR]: Status: 403, Name: ACCESS DENIED, Message: Access denied. Admin role required., URL: /api/admin/template/update/68a969637d851543bd00fb5e, Method: PUT, IP: ::1
+2025-08-27T14:33:54.931Z [ERROR]: Stack: ACCESS DENIED: Access denied. Admin role required.
+    at isAdmin (file:///E:/resume-v1/server/middleware/admin-auth-middleware.js:8:17)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:18:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T16:59:16.395Z [ERROR]: AI API error:
+2025-08-27T16:59:16.396Z [ERROR]: [Resume][Enhance][Error] User: 68ab4a7b46b46afd9f445e5d - AI enhancement generation failed
+2025-08-27T16:59:16.398Z [ERROR]: Status: 500, Name: Error, Message: AI enhancement generation failed, URL: /api/resume/ai/enhance-field, Method: POST, IP: ::1
+2025-08-27T16:59:16.399Z [ERROR]: Stack: Error: AI enhancement generation failed
+    at enhanceResumeField (file:///E:/resume-v1/server/controller/resume-controller.js:355:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T17:07:05.067Z [ERROR]: Failed to parse AI JSON response:
+2025-08-27T17:07:05.068Z [ERROR]: AI API error:
+2025-08-27T17:07:05.068Z [ERROR]: [Resume][Enhance][Error] User: 68ab4a7b46b46afd9f445e5d - AI enhancement generation failed
+2025-08-27T17:07:05.068Z [ERROR]: Status: 500, Name: Error, Message: AI enhancement generation failed, URL: /api/resume/ai/enhance-field, Method: POST, IP: ::1
+2025-08-27T17:07:05.068Z [ERROR]: Stack: Error: AI enhancement generation failed
+    at enhanceResumeField (file:///E:/resume-v1/server/controller/resume-controller.js:355:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T17:09:09.857Z [ERROR]: AI API error:
+2025-08-27T17:09:09.857Z [ERROR]: [Resume][Enhance][Error] User: 68ab4a7b46b46afd9f445e5d - AI enhancement generation failed
+2025-08-27T17:09:09.858Z [ERROR]: Status: 500, Name: Error, Message: AI enhancement generation failed, URL: /api/resume/ai/enhance-field, Method: POST, IP: ::1
+2025-08-27T17:09:09.859Z [ERROR]: Stack: Error: AI enhancement generation failed
+    at enhanceResumeField (file:///E:/resume-v1/server/controller/resume-controller.js:355:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-27T17:10:50.130Z [ERROR]: Failed to parse AI JSON response:
+2025-08-27T17:10:50.131Z [ERROR]: AI API error:
+2025-08-27T17:10:50.131Z [ERROR]: [Resume][Enhance][Error] User: 68ab4a7b46b46afd9f445e5d - AI enhancement generation failed
+2025-08-27T17:10:50.132Z [ERROR]: Status: 500, Name: Error, Message: AI enhancement generation failed, URL: /api/resume/ai/enhance-field, Method: POST, IP: ::1
+2025-08-27T17:10:50.132Z [ERROR]: Stack: Error: AI enhancement generation failed
+    at enhanceResumeField (file:///E:/resume-v1/server/controller/resume-controller.js:355:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)

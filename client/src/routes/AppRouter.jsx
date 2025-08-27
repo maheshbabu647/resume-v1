@@ -46,7 +46,7 @@ const AppRouter = () => {
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/forgot-password' element={<ForgotPasswordPage />} />
         <Route path='/reset-password/:token' element={<ResetPasswordPage />} />
-        <Route path='/verification-required' element={<VerificationRequiredPage />} />
+        {/* <Route path='/verification-required' element={<VerificationRequiredPage />} /> */}
         {/* --- MODIFICATION START --- */}
         {/* Changed path from '/verify-email/:token' to '/verify-email' */}
         <Route path='/verify-email' element={<VerifyEmailPage />} />

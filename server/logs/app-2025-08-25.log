@@ -1,0 +1,2 @@
+2025-08-24T18:56:04.524Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/careerforge-db
+2025-08-24T18:56:04.532Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]

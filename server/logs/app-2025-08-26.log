@@ -1,0 +1,957 @@
+2025-08-26T10:33:39.403Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/careerforge-db
+2025-08-26T10:33:39.406Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
+2025-08-26T10:34:35.096Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:34:35.097Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T10:34:35.098Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T10:34:35.098Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T10:34:35.115Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:34:35.116Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T10:34:35.117Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T10:34:35.118Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T10:35:34.549Z [INFO]: [Startup] Incoming request: POST /api/auth/forgot-password
+2025-08-26T10:35:36.925Z [INFO]: [Email][PasswordReset][Success] Sent to: gmbtnk10aug@gmail.com
+2025-08-26T10:35:54.583Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:35:54.584Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T10:35:54.584Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T10:35:54.584Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T10:35:54.587Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:35:54.587Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T10:35:54.587Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T10:35:54.588Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T10:36:00.947Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:36:00.947Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T10:36:00.947Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T10:36:00.948Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T10:36:00.950Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:36:00.950Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T10:36:00.951Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T10:36:00.951Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T10:36:11.621Z [INFO]: [Startup] Incoming request: PUT /api/auth/reset-password/476237efe9521197a175bbf9e5aa6de693d89b502005831a1d1ab59fd5d1114b
+2025-08-26T10:36:11.623Z [WARN]: [Validation][SignUp][Fail] IP: ::1, Errors: [{"field":"userPassword","message":"User password must contain at least one UpperCase"}]
+2025-08-26T10:36:11.624Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/auth/reset-password/476237efe9521197a175bbf9e5aa6de693d89b502005831a1d1ab59fd5d1114b, Method: PUT, IP: ::1
+2025-08-26T10:36:11.624Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at userSignUpValidation (file:///E:/resume-v1/server/validators/auth-validators.js:41:17)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at middleware (E:\resume-v1\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T10:43:18.802Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:43:18.802Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T10:43:18.802Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T10:43:18.803Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T10:43:18.806Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:43:18.806Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T10:43:18.806Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T10:43:18.806Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T10:44:17.463Z [INFO]: [Startup] Incoming request: PUT /api/auth/reset-password/476237efe9521197a175bbf9e5aa6de693d89b502005831a1d1ab59fd5d1114b
+2025-08-26T10:44:17.531Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T10:44:17.531Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T10:44:17.531Z
+2025-08-26T10:44:17.532Z [INFO]: [ResetPassword][Success] User password reset for: gmbtnk10aug@gmail.com
+2025-08-26T10:52:10.122Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:52:10.129Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T10:52:10.130Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T10:52:10.138Z [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-08-26T10:52:10.148Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:52:10.151Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T10:52:10.152Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T10:52:10.157Z [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-08-26T10:52:35.198Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:52:35.199Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T10:52:35.199Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T10:52:35.200Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T10:52:35.208Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:52:35.209Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T10:52:35.209Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T10:52:35.210Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T10:52:44.807Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:52:44.808Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T10:52:44.808Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T10:52:44.809Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T10:52:44.817Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:52:44.818Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T10:52:44.819Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T10:52:44.819Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T10:52:51.969Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T10:52:52.008Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T10:52:52.018Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T10:52:52.035Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T10:54:23.444Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T10:54:23.451Z [WARN]: [SignUp][Conflict] Email exists: gmbtnk10aug@gmail.com from IP: ::1
+2025-08-26T10:54:23.452Z [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: An account with this email address already exists., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-26T10:54:23.455Z [ERROR]: Stack: USER ALREADY EXISTS: An account with this email address already exists.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:18:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T10:54:39.763Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T10:54:39.904Z [WARN]: [SignIn][Fail] Invalid password for email: gmbtnk10aug@gmail.com from IP: ::1
+2025-08-26T10:54:39.909Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T10:54:39.910Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T10:55:08.556Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T10:55:08.564Z [WARN]: [SignIn][Fail] Email not found: itisgetlost@gmail.com from IP: ::1
+2025-08-26T10:55:08.565Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T10:55:08.566Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:77:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T10:56:52.471Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T10:56:52.474Z [WARN]: [Validation][SignUp][Fail] IP: ::1, Errors: [{"field":"userPassword","message":"User password must contain at least one UpperCase"}]
+2025-08-26T10:56:52.475Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-26T10:56:52.475Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at userSignUpValidation (file:///E:/resume-v1/server/validators/auth-validators.js:41:17)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at middleware (E:\resume-v1\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T10:58:48.602Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:58:48.602Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T10:58:48.603Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T10:58:48.604Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T10:58:48.609Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:58:48.610Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T10:58:48.611Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T10:58:48.612Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T10:58:48.632Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T10:58:48.644Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T10:59:18.786Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T10:59:18.925Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T10:59:18.926Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T10:59:18.927Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T10:59:18.927Z
+2025-08-26T10:59:18.930Z [INFO]: [SignIn][Success] User: gmbtnk10aug@gmail.com (ID: 68ab4a7b46b46afd9f445e5d) from IP: ::1
+2025-08-26T10:59:18.940Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T10:59:18.943Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T10:59:18.943Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T10:59:18.949Z [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-08-26T10:59:22.598Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-08-26T10:59:22.601Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T10:59:22.601Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T10:59:22.602Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T10:59:22.606Z [INFO]: [SignOut][Success] User: 68ab4a7b46b46afd9f445e5d from IP: ::1
+2025-08-26T11:00:17.373Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:00:17.516Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T11:00:17.517Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:00:17.517Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T11:00:17.517Z
+2025-08-26T11:00:17.521Z [INFO]: [SignIn][Success] User: gmbtnk10aug@gmail.com (ID: 68ab4a7b46b46afd9f445e5d) from IP: ::1
+2025-08-26T11:00:17.531Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:00:17.533Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T11:00:17.534Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T11:00:17.539Z [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-08-26T11:00:36.789Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-08-26T11:00:36.793Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T11:00:36.794Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T11:00:36.794Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:00:36.798Z [INFO]: [SignOut][Success] User: 68ab4a7b46b46afd9f445e5d from IP: ::1
+2025-08-26T11:01:09.822Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:01:09.956Z [WARN]: [SignIn][Fail] Invalid password for email: gmbtnk10aug@gmail.com from IP: ::1
+2025-08-26T11:01:09.960Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T11:01:09.961Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:02:43.615Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T11:02:43.621Z [WARN]: [SignUp][Conflict] Email exists: gmbtnk10aug@gmail.com from IP: ::1
+2025-08-26T11:02:43.623Z [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: An account with this email address already exists., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-26T11:02:43.624Z [ERROR]: Stack: USER ALREADY EXISTS: An account with this email address already exists.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:18:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:03:12.729Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T11:03:15.519Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68ad94702c5ae96ac691fc39
+2025-08-26T11:03:15.530Z [INFO]: [SignUp][Success] New user: itisgetlost@gmail.com (ID: 68ad94702c5ae96ac691fc39)
+2025-08-26T11:03:34.116Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:03:34.118Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T11:03:34.118Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T11:03:34.119Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T11:03:34.128Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:03:34.129Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T11:03:34.130Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T11:03:34.130Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T11:03:57.442Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:03:57.585Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ad94702c5ae96ac691fc39
+2025-08-26T11:03:57.586Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:03:57.587Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T11:03:57.586Z
+2025-08-26T11:03:57.590Z [INFO]: [SignIn][Success] User: itisgetlost@gmail.com (ID: 68ad94702c5ae96ac691fc39) from IP: ::1
+2025-08-26T11:03:57.600Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:03:57.602Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad94702c5ae96ac691fc39
+2025-08-26T11:03:57.603Z [INFO]: [Auth] Auth success for user 68ad94702c5ae96ac691fc39, role user, from IP: ::1
+2025-08-26T11:03:57.608Z [INFO]: [AuthStatus][Checked] User: 68ad94702c5ae96ac691fc39
+2025-08-26T11:05:14.480Z [INFO]: [Startup] Incoming request: POST /api/auth/resend-verification
+2025-08-26T11:05:16.720Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68ad94702c5ae96ac691fc39
+2025-08-26T11:05:16.727Z [INFO]: [ResendVerification][Success] New verification code sent to: itisgetlost@gmail.com
+2025-08-26T11:08:20.377Z [INFO]: [Startup] Incoming request: POST /api/auth/verify-email
+2025-08-26T11:08:20.386Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ad94702c5ae96ac691fc39
+2025-08-26T11:08:20.387Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T11:08:20.387Z
+2025-08-26T11:08:20.388Z [INFO]: [MailVerification][Success] User verified: itisgetlost@gmail.com, ID: 68ad94702c5ae96ac691fc39, IP: ::1
+2025-08-26T11:08:20.395Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:08:20.398Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad94702c5ae96ac691fc39
+2025-08-26T11:08:20.398Z [INFO]: [Auth] Auth success for user 68ad94702c5ae96ac691fc39, role user, from IP: ::1
+2025-08-26T11:08:20.401Z [INFO]: [AuthStatus][Checked] User: 68ad94702c5ae96ac691fc39
+2025-08-26T11:08:20.447Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-08-26T11:08:20.450Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad94702c5ae96ac691fc39
+2025-08-26T11:08:20.451Z [INFO]: [Auth] Auth success for user 68ad94702c5ae96ac691fc39, role user, from IP: ::1
+2025-08-26T11:08:20.461Z [INFO]: [Resume][GetAll][Success] User: 68ad94702c5ae96ac691fc39 fetched all resumes (0)
+2025-08-26T11:08:20.466Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-08-26T11:08:20.469Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad94702c5ae96ac691fc39
+2025-08-26T11:08:20.470Z [INFO]: [Auth] Auth success for user 68ad94702c5ae96ac691fc39, role user, from IP: ::1
+2025-08-26T11:08:20.477Z [INFO]: [Resume][GetAll][Success] User: 68ad94702c5ae96ac691fc39 fetched all resumes (0)
+2025-08-26T11:08:26.357Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-08-26T11:08:26.359Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad94702c5ae96ac691fc39
+2025-08-26T11:08:26.360Z [INFO]: [Auth] Auth success for user 68ad94702c5ae96ac691fc39, role user, from IP: ::1
+2025-08-26T11:08:26.360Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:08:26.363Z [INFO]: [SignOut][Success] User: 68ad94702c5ae96ac691fc39 from IP: ::1
+2025-08-26T11:09:25.610Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T11:09:25.622Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T11:09:25.632Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T11:09:25.643Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T11:09:59.098Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T11:10:05.429Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68ad96072c5ae96ac691fc70
+2025-08-26T11:10:05.436Z [INFO]: [SignUp][Success] New user: itisgetlost@gmail.com (ID: 68ad96072c5ae96ac691fc70)
+2025-08-26T11:10:34.711Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T11:10:40.598Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:10:40.605Z [INFO]: [SignUp][Success] New user: itisgetlost@gmail.com (ID: 68ad962a2c5ae96ac691fc78)
+2025-08-26T11:10:54.215Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:10:54.350Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:10:54.351Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:10:54.352Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T11:10:54.352Z
+2025-08-26T11:10:54.355Z [INFO]: [SignIn][Success] User: itisgetlost@gmail.com (ID: 68ad962a2c5ae96ac691fc78) from IP: ::1
+2025-08-26T11:10:54.364Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:10:54.367Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:10:54.368Z [INFO]: [Auth] Auth success for user 68ad962a2c5ae96ac691fc78, role user, from IP: ::1
+2025-08-26T11:10:54.372Z [INFO]: [AuthStatus][Checked] User: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:11:01.810Z [INFO]: [Startup] Incoming request: POST /api/resume/add
+2025-08-26T11:11:01.814Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:11:01.814Z [INFO]: [Auth] Auth success for user 68ad962a2c5ae96ac691fc78, role user, from IP: ::1
+2025-08-26T11:11:01.854Z [INFO]: [Resume][Create] User: 68ad962a2c5ae96ac691fc78 created resume: 68ad96452c5ae96ac691fc88
+2025-08-26T11:24:17.213Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:24:17.216Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:24:17.217Z [INFO]: [Auth] Auth success for user 68ad962a2c5ae96ac691fc78, role user, from IP: ::1
+2025-08-26T11:24:17.221Z [INFO]: [AuthStatus][Checked] User: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:24:17.227Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:24:17.230Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:24:17.231Z [INFO]: [Auth] Auth success for user 68ad962a2c5ae96ac691fc78, role user, from IP: ::1
+2025-08-26T11:24:17.235Z [INFO]: [AuthStatus][Checked] User: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:24:21.512Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-08-26T11:24:21.514Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:24:21.515Z [INFO]: [Auth] Auth success for user 68ad962a2c5ae96ac691fc78, role user, from IP: ::1
+2025-08-26T11:24:21.515Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:24:21.519Z [INFO]: [SignOut][Success] User: 68ad962a2c5ae96ac691fc78 from IP: ::1
+2025-08-26T11:24:37.392Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:24:37.526Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:24:37.527Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:24:37.528Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T11:24:37.528Z
+2025-08-26T11:24:37.531Z [INFO]: [SignIn][Success] User: itisgetlost@gmail.com (ID: 68ad962a2c5ae96ac691fc78) from IP: ::1
+2025-08-26T11:24:37.542Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:24:37.544Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:24:37.545Z [INFO]: [Auth] Auth success for user 68ad962a2c5ae96ac691fc78, role user, from IP: ::1
+2025-08-26T11:24:37.549Z [INFO]: [AuthStatus][Checked] User: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:31:56.010Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-08-26T11:31:56.012Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:31:56.013Z [INFO]: [Auth] Auth success for user 68ad962a2c5ae96ac691fc78, role user, from IP: ::1
+2025-08-26T11:31:56.013Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:31:56.016Z [INFO]: [SignOut][Success] User: 68ad962a2c5ae96ac691fc78 from IP: ::1
+2025-08-26T11:32:09.338Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:32:09.343Z [WARN]: [SignIn][Fail] Email not found: it.is.getlost@mgail.com from IP: ::1
+2025-08-26T11:32:09.344Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T11:32:09.345Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:77:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:32:25.214Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:32:25.220Z [WARN]: [SignIn][Fail] Email not found: it.is.getlost@mgail.com from IP: ::1
+2025-08-26T11:32:25.221Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T11:32:25.221Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:77:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:32:37.106Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:32:37.246Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:32:37.248Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:32:37.248Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T11:32:37.248Z
+2025-08-26T11:32:37.252Z [INFO]: [SignIn][Success] User: itisgetlost@gmail.com (ID: 68ad962a2c5ae96ac691fc78) from IP: ::1
+2025-08-26T11:32:37.262Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:32:37.264Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:32:37.265Z [INFO]: [Auth] Auth success for user 68ad962a2c5ae96ac691fc78, role user, from IP: ::1
+2025-08-26T11:32:37.268Z [INFO]: [AuthStatus][Checked] User: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:32:41.185Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T11:32:41.199Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T11:32:41.210Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T11:32:41.225Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T11:36:06.816Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-08-26T11:36:06.818Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad962a2c5ae96ac691fc78
+2025-08-26T11:36:06.819Z [INFO]: [Auth] Auth success for user 68ad962a2c5ae96ac691fc78, role user, from IP: ::1
+2025-08-26T11:36:06.819Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:36:06.823Z [INFO]: [SignOut][Success] User: 68ad962a2c5ae96ac691fc78 from IP: ::1
+2025-08-26T11:36:36.217Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T11:36:40.404Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:36:40.411Z [INFO]: [SignUp][Success] New user: itisgetlost@gmail.com (ID: 68ad9c442c5ae96ac691fcc3)
+2025-08-26T11:36:40.451Z [INFO]: [Startup] Incoming request: POST /api/auth/resend-verification
+2025-08-26T11:36:40.463Z [INFO]: [Startup] Incoming request: POST /api/auth/resend-verification
+2025-08-26T11:36:42.957Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:36:42.962Z [INFO]: [ResendVerification][Success] New verification code sent to: itisgetlost@gmail.com
+2025-08-26T11:36:42.985Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:36:42.990Z [INFO]: [ResendVerification][Success] New verification code sent to: itisgetlost@gmail.com
+2025-08-26T11:37:41.964Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:37:41.965Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T11:37:41.966Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T11:37:41.966Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T11:37:41.972Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:37:41.973Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T11:37:41.973Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T11:37:41.974Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T11:38:03.352Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:38:03.490Z [WARN]: [SignIn][Fail] Invalid password for email: itisgetlost@gmail.com from IP: ::1
+2025-08-26T11:38:03.494Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T11:38:03.495Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:38:07.973Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:38:08.115Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:38:08.116Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:38:08.117Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T11:38:08.117Z
+2025-08-26T11:38:08.120Z [INFO]: [SignIn][Success] User: itisgetlost@gmail.com (ID: 68ad9c442c5ae96ac691fcc3) from IP: ::1
+2025-08-26T11:38:08.128Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:38:08.130Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:38:08.131Z [INFO]: [Auth] Auth success for user 68ad9c442c5ae96ac691fcc3, role user, from IP: ::1
+2025-08-26T11:38:08.134Z [INFO]: [AuthStatus][Checked] User: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:39:22.508Z [INFO]: [Startup] Incoming request: POST /api/auth/resend-verification
+2025-08-26T11:39:22.512Z [INFO]: [Startup] Incoming request: POST /api/auth/resend-verification
+2025-08-26T11:39:25.139Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:39:25.144Z [INFO]: [ResendVerification][Success] New verification code sent to: itisgetlost@gmail.com
+2025-08-26T11:39:25.242Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:39:25.245Z [INFO]: [ResendVerification][Success] New verification code sent to: itisgetlost@gmail.com
+2025-08-26T11:39:48.518Z [INFO]: [Startup] Incoming request: POST /api/auth/verify-email
+2025-08-26T11:39:48.531Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:39:48.532Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T11:39:48.532Z
+2025-08-26T11:39:48.533Z [INFO]: [MailVerification][Success] User verified: itisgetlost@gmail.com, ID: 68ad9c442c5ae96ac691fcc3, IP: ::1
+2025-08-26T11:39:48.543Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:39:48.545Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:39:48.546Z [INFO]: [Auth] Auth success for user 68ad9c442c5ae96ac691fcc3, role user, from IP: ::1
+2025-08-26T11:39:48.550Z [INFO]: [AuthStatus][Checked] User: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:39:48.604Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-08-26T11:39:48.607Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:39:48.608Z [INFO]: [Auth] Auth success for user 68ad9c442c5ae96ac691fcc3, role user, from IP: ::1
+2025-08-26T11:39:48.619Z [INFO]: [Resume][GetAll][Success] User: 68ad9c442c5ae96ac691fcc3 fetched all resumes (0)
+2025-08-26T11:39:48.625Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-08-26T11:39:48.629Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:39:48.629Z [INFO]: [Auth] Auth success for user 68ad9c442c5ae96ac691fcc3, role user, from IP: ::1
+2025-08-26T11:39:48.638Z [INFO]: [Resume][GetAll][Success] User: 68ad9c442c5ae96ac691fcc3 fetched all resumes (0)
+2025-08-26T11:43:09.877Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-08-26T11:43:09.880Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:43:09.880Z [INFO]: [Auth] Auth success for user 68ad9c442c5ae96ac691fcc3, role user, from IP: ::1
+2025-08-26T11:43:09.881Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:43:09.884Z [INFO]: [SignOut][Success] User: 68ad9c442c5ae96ac691fcc3 from IP: ::1
+2025-08-26T11:43:20.336Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:43:20.476Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:43:20.478Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:43:20.478Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T11:43:20.478Z
+2025-08-26T11:43:20.482Z [INFO]: [SignIn][Success] User: itisgetlost@gmail.com (ID: 68ad9c442c5ae96ac691fcc3) from IP: ::1
+2025-08-26T11:43:20.492Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:43:20.496Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:43:20.497Z [INFO]: [Auth] Auth success for user 68ad9c442c5ae96ac691fcc3, role user, from IP: ::1
+2025-08-26T11:43:20.501Z [INFO]: [AuthStatus][Checked] User: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:43:20.537Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-08-26T11:43:20.541Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:43:20.542Z [INFO]: [Auth] Auth success for user 68ad9c442c5ae96ac691fcc3, role user, from IP: ::1
+2025-08-26T11:43:20.553Z [INFO]: [Resume][GetAll][Success] User: 68ad9c442c5ae96ac691fcc3 fetched all resumes (0)
+2025-08-26T11:43:20.560Z [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-08-26T11:43:20.563Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:43:20.564Z [INFO]: [Auth] Auth success for user 68ad9c442c5ae96ac691fcc3, role user, from IP: ::1
+2025-08-26T11:43:20.574Z [INFO]: [Resume][GetAll][Success] User: 68ad9c442c5ae96ac691fcc3 fetched all resumes (0)
+2025-08-26T11:43:26.216Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-08-26T11:43:26.219Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:43:26.219Z [INFO]: [Auth] Auth success for user 68ad9c442c5ae96ac691fcc3, role user, from IP: ::1
+2025-08-26T11:43:26.220Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:43:26.222Z [INFO]: [SignOut][Success] User: 68ad9c442c5ae96ac691fcc3 from IP: ::1
+2025-08-26T11:43:30.646Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:43:30.647Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T11:43:30.648Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T11:43:30.648Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T11:43:30.654Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:43:30.657Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T11:43:30.658Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T11:43:30.658Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T11:43:33.831Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T11:43:33.844Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T11:43:33.853Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T11:43:33.865Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T11:49:48.796Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T11:49:48.808Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T11:49:48.817Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T11:49:48.831Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T11:50:07.870Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:50:07.871Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T11:50:07.872Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T11:50:07.873Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T11:50:07.877Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:50:07.878Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T11:50:07.880Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T11:50:07.881Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T11:50:07.891Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T11:50:07.904Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T11:51:01.558Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T11:51:01.562Z [WARN]: [SignUp][Conflict] Email exists: itisgetlost@gmail.com from IP: ::1
+2025-08-26T11:51:01.563Z [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: An account with this email address already exists., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-26T11:51:01.564Z [ERROR]: Stack: USER ALREADY EXISTS: An account with this email address already exists.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:18:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:51:39.655Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T11:51:39.660Z [WARN]: [SignUp][Conflict] Email exists: itisgetlost@gmail.com from IP: ::1
+2025-08-26T11:51:39.662Z [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: An account with this email address already exists., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-26T11:51:39.662Z [ERROR]: Stack: USER ALREADY EXISTS: An account with this email address already exists.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:18:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:52:33.472Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:52:33.610Z [WARN]: [SignIn][Fail] Invalid password for email: itisgetlost@gmail.com from IP: ::1
+2025-08-26T11:52:33.615Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T11:52:33.616Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:53:00.063Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:53:00.197Z [WARN]: [SignIn][Fail] Invalid password for email: itisgetlost@gmail.com from IP: ::1
+2025-08-26T11:53:00.201Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T11:53:00.202Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:53:08.779Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:53:08.920Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:53:08.921Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:53:08.921Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T11:53:08.921Z
+2025-08-26T11:53:08.925Z [INFO]: [SignIn][Success] User: itisgetlost@gmail.com (ID: 68ad9c442c5ae96ac691fcc3) from IP: ::1
+2025-08-26T11:53:08.934Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:53:08.937Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:53:08.938Z [INFO]: [Auth] Auth success for user 68ad9c442c5ae96ac691fcc3, role user, from IP: ::1
+2025-08-26T11:53:08.942Z [INFO]: [AuthStatus][Checked] User: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:53:22.421Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-08-26T11:53:22.424Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ad9c442c5ae96ac691fcc3
+2025-08-26T11:53:22.425Z [INFO]: [Auth] Auth success for user 68ad9c442c5ae96ac691fcc3, role user, from IP: ::1
+2025-08-26T11:53:22.425Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:53:22.428Z [INFO]: [SignOut][Success] User: 68ad9c442c5ae96ac691fcc3 from IP: ::1
+2025-08-26T11:53:43.712Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:53:43.717Z [WARN]: [SignIn][Fail] Email not found: itisgetlost@gmail.com from IP: ::1
+2025-08-26T11:53:43.717Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T11:53:43.718Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:77:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:54:04.542Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T11:54:04.544Z [WARN]: [Validation][SignUp][Fail] IP: ::1, Errors: [{"field":"userPassword","message":"User password must contain at least one UpperCase"}]
+2025-08-26T11:54:04.544Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-26T11:54:04.545Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at userSignUpValidation (file:///E:/resume-v1/server/validators/auth-validators.js:41:17)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at middleware (E:\resume-v1\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:54:48.707Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T11:54:51.510Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68ada0882c5ae96ac691fd59
+2025-08-26T11:54:51.517Z [INFO]: [SignUp][Success] New user: itisgetlost@gmail.com (ID: 68ada0882c5ae96ac691fd59)
+2025-08-26T11:55:05.410Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:55:05.543Z [WARN]: [SignIn][Fail] Invalid password for email: itisgetlost@gmail.com from IP: ::1
+2025-08-26T11:55:05.547Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T11:55:05.548Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:55:26.952Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T11:55:27.089Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ada0882c5ae96ac691fd59
+2025-08-26T11:55:27.090Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T11:55:27.091Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T11:55:27.090Z
+2025-08-26T11:55:27.094Z [INFO]: [SignIn][Success] User: itisgetlost@gmail.com (ID: 68ada0882c5ae96ac691fd59) from IP: ::1
+2025-08-26T11:55:27.103Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T11:55:27.105Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ada0882c5ae96ac691fd59
+2025-08-26T11:55:27.106Z [INFO]: [Auth] Auth success for user 68ada0882c5ae96ac691fd59, role user, from IP: ::1
+2025-08-26T11:55:27.110Z [INFO]: [AuthStatus][Checked] User: 68ada0882c5ae96ac691fd59
+2025-08-26T11:55:27.204Z [INFO]: [Startup] Incoming request: POST /api/auth/resend-verification
+2025-08-26T11:55:27.209Z [INFO]: [Startup] Incoming request: POST /api/auth/resend-verification
+2025-08-26T11:55:30.004Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68ada0882c5ae96ac691fd59
+2025-08-26T11:55:30.009Z [INFO]: [ResendVerification][Success] New verification code sent to: itisgetlost@gmail.com
+2025-08-26T11:55:30.040Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68ada0882c5ae96ac691fd59
+2025-08-26T11:55:30.044Z [INFO]: [ResendVerification][Success] New verification code sent to: itisgetlost@gmail.com
+2025-08-26T11:55:51.084Z [INFO]: [Startup] Incoming request: POST /api/auth/verify-email
+2025-08-26T11:55:51.090Z [WARN]: [MailVerification][InvalidCodeOrExpired] Invalid or expired code for email: itisgetlost@gmail.com
+2025-08-26T11:55:51.091Z [ERROR]: Status: 400, Name: Error, Message: Verification code is invalid or has expired., URL: /api/auth/verify-email, Method: POST, IP: ::1
+2025-08-26T11:55:51.092Z [ERROR]: Stack: Error: Verification code is invalid or has expired.
+    at verifyEmail (file:///E:/resume-v1/server/controller/auth-controller.js:164:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:56:02.303Z [INFO]: [Startup] Incoming request: POST /api/auth/verify-email
+2025-08-26T11:56:02.308Z [WARN]: [MailVerification][InvalidCodeOrExpired] Invalid or expired code for email: itisgetlost@gmail.com
+2025-08-26T11:56:02.309Z [ERROR]: Status: 400, Name: Error, Message: Verification code is invalid or has expired., URL: /api/auth/verify-email, Method: POST, IP: ::1
+2025-08-26T11:56:02.309Z [ERROR]: Stack: Error: Verification code is invalid or has expired.
+    at verifyEmail (file:///E:/resume-v1/server/controller/auth-controller.js:164:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:56:31.157Z [INFO]: [Startup] Incoming request: POST /api/auth/verify-email
+2025-08-26T11:56:31.164Z [WARN]: [MailVerification][InvalidCodeOrExpired] Invalid or expired code for email: itisgetlost@gmail.com
+2025-08-26T11:56:31.164Z [ERROR]: Status: 400, Name: Error, Message: Verification code is invalid or has expired., URL: /api/auth/verify-email, Method: POST, IP: ::1
+2025-08-26T11:56:31.165Z [ERROR]: Stack: Error: Verification code is invalid or has expired.
+    at verifyEmail (file:///E:/resume-v1/server/controller/auth-controller.js:164:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:56:34.921Z [INFO]: [Startup] Incoming request: POST /api/auth/verify-email
+2025-08-26T11:56:34.926Z [WARN]: [MailVerification][InvalidCodeOrExpired] Invalid or expired code for email: itisgetlost@gmail.com
+2025-08-26T11:56:34.927Z [ERROR]: Status: 400, Name: Error, Message: Verification code is invalid or has expired., URL: /api/auth/verify-email, Method: POST, IP: ::1
+2025-08-26T11:56:34.928Z [ERROR]: Stack: Error: Verification code is invalid or has expired.
+    at verifyEmail (file:///E:/resume-v1/server/controller/auth-controller.js:164:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:56:35.458Z [INFO]: [Startup] Incoming request: POST /api/auth/verify-email
+2025-08-26T11:56:35.463Z [WARN]: [MailVerification][InvalidCodeOrExpired] Invalid or expired code for email: itisgetlost@gmail.com
+2025-08-26T11:56:35.464Z [ERROR]: Status: 400, Name: Error, Message: Verification code is invalid or has expired., URL: /api/auth/verify-email, Method: POST, IP: ::1
+2025-08-26T11:56:35.465Z [ERROR]: Stack: Error: Verification code is invalid or has expired.
+    at verifyEmail (file:///E:/resume-v1/server/controller/auth-controller.js:164:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T11:56:35.654Z [INFO]: [Startup] Incoming request: POST /api/auth/verify-email
+2025-08-26T11:56:35.659Z [WARN]: [MailVerification][InvalidCodeOrExpired] Invalid or expired code for email: itisgetlost@gmail.com
+2025-08-26T11:56:35.660Z [ERROR]: Status: 400, Name: Error, Message: Verification code is invalid or has expired., URL: /api/auth/verify-email, Method: POST, IP: ::1
+2025-08-26T11:56:35.661Z [ERROR]: Stack: Error: Verification code is invalid or has expired.
+    at verifyEmail (file:///E:/resume-v1/server/controller/auth-controller.js:164:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T12:06:32.291Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T12:06:32.293Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ada0882c5ae96ac691fd59
+2025-08-26T12:06:32.293Z [INFO]: [Auth] Auth success for user 68ada0882c5ae96ac691fd59, role user, from IP: ::1
+2025-08-26T12:06:32.297Z [INFO]: [AuthStatus][Checked] User: 68ada0882c5ae96ac691fd59
+2025-08-26T12:06:32.303Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T12:06:32.306Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ada0882c5ae96ac691fd59
+2025-08-26T12:06:32.306Z [INFO]: [Auth] Auth success for user 68ada0882c5ae96ac691fd59, role user, from IP: ::1
+2025-08-26T12:06:32.311Z [INFO]: [AuthStatus][Checked] User: 68ada0882c5ae96ac691fd59
+2025-08-26T12:06:32.346Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T12:06:32.358Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T12:07:55.832Z [INFO]: [Startup] Incoming request: POST /api/resume/download
+2025-08-26T12:07:55.836Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ada0882c5ae96ac691fd59
+2025-08-26T12:07:55.837Z [INFO]: [Auth] Auth success for user 68ada0882c5ae96ac691fd59, role user, from IP: ::1
+2025-08-26T12:07:55.838Z [INFO]: [Resume][Download][Request] User: 68ada0882c5ae96ac691fd59
+2025-08-26T12:07:58.245Z [INFO]: [Resume][Download][Success] Resume PDF generated for user: 68ada0882c5ae96ac691fd59
+2025-08-26T12:08:42.178Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-08-26T12:08:42.181Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ada0882c5ae96ac691fd59
+2025-08-26T12:08:42.181Z [INFO]: [Auth] Auth success for user 68ada0882c5ae96ac691fd59, role user, from IP: ::1
+2025-08-26T12:08:42.182Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T12:08:42.187Z [INFO]: [SignOut][Success] User: 68ada0882c5ae96ac691fd59 from IP: ::1
+2025-08-26T12:08:50.519Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T12:08:50.519Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T12:08:50.520Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T12:08:50.521Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T12:08:50.526Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T12:08:50.526Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T12:08:50.527Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T12:08:50.527Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T12:08:52.575Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T12:08:52.589Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T12:08:52.602Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T12:08:52.615Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T12:09:23.656Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T12:09:23.796Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:09:23.797Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T12:09:23.798Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T12:09:23.798Z
+2025-08-26T12:09:23.802Z [INFO]: [SignIn][Success] User: gmbtnk10aug@gmail.com (ID: 68ab4a7b46b46afd9f445e5d) from IP: ::1
+2025-08-26T12:09:23.812Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T12:09:23.815Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:09:23.816Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T12:09:23.820Z [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:26:09.211Z [INFO]: [Startup] Incoming request: POST /api/resume/add
+2025-08-26T12:26:09.212Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:26:09.213Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T12:26:09.224Z [INFO]: [Resume][Create] User: 68ab4a7b46b46afd9f445e5d created resume: 68ada7e12c5ae96ac691fdb1
+2025-08-26T12:26:09.268Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68ada7e12c5ae96ac691fdb1
+2025-08-26T12:26:09.269Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:26:09.270Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T12:26:09.275Z [INFO]: [Resume][GetById][Success] Resume: 68ada7e12c5ae96ac691fdb1 by user: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:26:09.278Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68ada7e12c5ae96ac691fdb1
+2025-08-26T12:26:09.280Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:26:09.280Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T12:26:09.286Z [INFO]: [Resume][GetById][Success] Resume: 68ada7e12c5ae96ac691fdb1 by user: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:30:00.337Z [INFO]: [Startup] Incoming request: POST /api/resume/download
+2025-08-26T12:30:00.338Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:30:00.338Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T12:30:00.339Z [INFO]: [Resume][Download][Request] User: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:30:01.684Z [INFO]: [Resume][Download][Success] Resume PDF generated for user: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:30:06.858Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68ada7e12c5ae96ac691fdb1
+2025-08-26T12:30:06.860Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:30:06.860Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T12:30:06.867Z [INFO]: [Resume][GetById][Success] Resume: 68ada7e12c5ae96ac691fdb1 by user: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:30:06.871Z [INFO]: [Startup] Incoming request: GET /api/resume/getById/68ada7e12c5ae96ac691fdb1
+2025-08-26T12:30:06.872Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:30:06.873Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T12:30:06.877Z [INFO]: [Resume][GetById][Success] Resume: 68ada7e12c5ae96ac691fdb1 by user: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:37:59.307Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-08-26T12:37:59.308Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:37:59.309Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T12:37:59.309Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T12:37:59.311Z [INFO]: [SignOut][Success] User: 68ab4a7b46b46afd9f445e5d from IP: ::1
+2025-08-26T12:38:02.955Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T12:38:02.955Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T12:38:02.956Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T12:38:02.956Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T12:38:02.960Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T12:38:02.960Z [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-08-26T12:38:02.960Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-08-26T12:38:02.961Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v1/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v1\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v1\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v1\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v1\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v1\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v1\server\node_modules\router\index.js:186:3)
+2025-08-26T12:38:04.616Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T12:38:04.621Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T12:38:04.625Z [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-08-26T12:38:04.630Z [INFO]: [Template][GetAll][Success] Returned 3 templates
+2025-08-26T12:39:23.532Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T12:39:23.535Z [WARN]: [SignUp][Conflict] Email exists: gmbtnk10aug@gmail.com from IP: ::1
+2025-08-26T12:39:23.535Z [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: An account with this email address already exists., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-26T12:39:23.536Z [ERROR]: Stack: USER ALREADY EXISTS: An account with this email address already exists.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:18:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T12:39:49.343Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T12:39:49.344Z [WARN]: [Validation][SignUp][Fail] IP: ::1, Errors: [{"field":"userPassword","message":"User password must contain at least one UpperCase"}]
+2025-08-26T12:39:49.344Z [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-26T12:39:49.345Z [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at userSignUpValidation (file:///E:/resume-v1/server/validators/auth-validators.js:41:17)
+    at Layer.handleRequest (E:\resume-v1\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v1\server\node_modules\router\lib\route.js:157:13)
+    at middleware (E:\resume-v1\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T12:40:46.207Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T12:40:49.890Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68adab4e2c5ae96ac691fded
+2025-08-26T12:40:49.894Z [INFO]: [SignUp][Success] New user: itisgetlost@gmail.com (ID: 68adab4e2c5ae96ac691fded)
+2025-08-26T12:48:24.180Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T12:48:24.237Z [WARN]: [SignIn][Fail] Invalid password for email: gmbtnk10aug@gmail.com from IP: ::1
+2025-08-26T12:48:24.239Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T12:48:24.239Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T12:49:10.788Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T12:49:10.791Z [WARN]: [SignIn][Fail] Email not found: ffsdr@gmail.com from IP: ::1
+2025-08-26T12:49:10.792Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T12:49:10.792Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:77:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T12:49:23.773Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T12:49:23.831Z [INFO]: [JWT][Create][Success] Token issued for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:49:23.831Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T12:49:23.831Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T12:49:23.831Z
+2025-08-26T12:49:23.833Z [INFO]: [SignIn][Success] User: gmbtnk10aug@gmail.com (ID: 68ab4a7b46b46afd9f445e5d) from IP: ::1
+2025-08-26T12:49:23.836Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T12:49:23.837Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:49:23.838Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T12:49:23.839Z [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:49:29.183Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-08-26T12:49:29.184Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-08-26T12:49:29.184Z [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role user, from IP: ::1
+2025-08-26T12:49:29.185Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T12:49:29.186Z [INFO]: [SignOut][Success] User: 68ab4a7b46b46afd9f445e5d from IP: ::1
+2025-08-26T12:49:58.123Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T12:49:58.181Z [INFO]: [JWT][Create][Success] Token issued for userId: 68adab4e2c5ae96ac691fded
+2025-08-26T12:49:58.181Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T12:49:58.181Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T12:49:58.181Z
+2025-08-26T12:49:58.183Z [INFO]: [SignIn][Success] User: itisgetlost@gmail.com (ID: 68adab4e2c5ae96ac691fded) from IP: ::1
+2025-08-26T12:49:58.187Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T12:49:58.188Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68adab4e2c5ae96ac691fded
+2025-08-26T12:49:58.189Z [INFO]: [Auth] Auth success for user 68adab4e2c5ae96ac691fded, role user, from IP: ::1
+2025-08-26T12:49:58.190Z [INFO]: [AuthStatus][Checked] User: 68adab4e2c5ae96ac691fded
+2025-08-26T12:49:58.227Z [INFO]: [Startup] Incoming request: POST /api/auth/resend-verification
+2025-08-26T12:49:58.230Z [INFO]: [Startup] Incoming request: POST /api/auth/resend-verification
+2025-08-26T12:50:00.235Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68adab4e2c5ae96ac691fded
+2025-08-26T12:50:00.237Z [INFO]: [ResendVerification][Success] New verification code sent to: itisgetlost@gmail.com
+2025-08-26T12:50:00.785Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68adab4e2c5ae96ac691fded
+2025-08-26T12:50:00.787Z [INFO]: [ResendVerification][Success] New verification code sent to: itisgetlost@gmail.com
+2025-08-26T12:50:28.703Z [INFO]: [Startup] Incoming request: POST /api/auth/verify-email
+2025-08-26T12:50:28.707Z [INFO]: [JWT][Create][Success] Token issued for userId: 68adab4e2c5ae96ac691fded
+2025-08-26T12:50:28.708Z [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-08-27T12:50:28.708Z
+2025-08-26T12:50:28.708Z [INFO]: [MailVerification][Success] User verified: itisgetlost@gmail.com, ID: 68adab4e2c5ae96ac691fded, IP: ::1
+2025-08-26T12:50:28.712Z [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-08-26T12:50:28.714Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68adab4e2c5ae96ac691fded
+2025-08-26T12:50:28.714Z [INFO]: [Auth] Auth success for user 68adab4e2c5ae96ac691fded, role user, from IP: ::1
+2025-08-26T12:50:28.716Z [INFO]: [AuthStatus][Checked] User: 68adab4e2c5ae96ac691fded
+2025-08-26T12:50:52.530Z [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-08-26T12:50:52.531Z [INFO]: [JWT][Verify][Success] Token verified for userId: 68adab4e2c5ae96ac691fded
+2025-08-26T12:50:52.531Z [INFO]: [Auth] Auth success for user 68adab4e2c5ae96ac691fded, role user, from IP: ::1
+2025-08-26T12:50:52.531Z [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-08-26T12:50:52.533Z [INFO]: [SignOut][Success] User: 68adab4e2c5ae96ac691fded from IP: ::1
+2025-08-26T12:51:32.415Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T12:51:32.417Z [WARN]: [SignIn][Fail] Email not found: itisgetlost@gmail.com from IP: ::1
+2025-08-26T12:51:32.417Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T12:51:32.418Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:77:20)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T12:52:15.801Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T12:52:15.804Z [WARN]: [SignUp][Conflict] Email exists: gmbtnk10aug@gmail.com from IP: ::1
+2025-08-26T12:52:15.804Z [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: An account with this email address already exists., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-08-26T12:52:15.805Z [ERROR]: Stack: USER ALREADY EXISTS: An account with this email address already exists.
+    at userSignUp (file:///E:/resume-v1/server/controller/auth-controller.js:18:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T12:52:40.555Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T12:52:43.077Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68adae182c5ae96ac691fe2a
+2025-08-26T12:52:43.079Z [INFO]: [SignUp][Success] New user: itisgetlost@gmail.com (ID: 68adae182c5ae96ac691fe2a)
+2025-08-26T12:53:44.847Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T12:53:44.904Z [WARN]: [SignIn][Fail] Invalid password for email: itisgetlost@gmail.com from IP: ::1
+2025-08-26T12:53:44.906Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T12:53:44.907Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T13:04:28.232Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T13:04:28.289Z [WARN]: [SignIn][Fail] Invalid password for email: itisgetlost@gmail.com from IP: ::1
+2025-08-26T13:04:28.291Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T13:04:28.291Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T13:12:27.237Z [INFO]: [Startup] Incoming request: POST /api/auth/signup
+2025-08-26T13:12:29.952Z [INFO]: [Email][Verification][Success] Sent code to: itisgetlost@gmail.com, userId: 68adb2bb2c5ae96ac691fe3c
+2025-08-26T13:12:29.955Z [INFO]: [SignUp][Success] New user: itisgetlost@gmail.com (ID: 68adb2bb2c5ae96ac691fe3c)
+2025-08-26T13:21:04.585Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T13:21:04.642Z [WARN]: [SignIn][Fail] Invalid password for email: gmbtnk10aug@gmail.com from IP: ::1
+2025-08-26T13:21:04.643Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T13:21:04.644Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T13:23:28.555Z [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-08-26T13:23:28.611Z [WARN]: [SignIn][Fail] Invalid password for email: gmbtnk10aug@gmail.com from IP: ::1
+2025-08-26T13:23:28.613Z [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-08-26T13:23:28.613Z [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v1/server/controller/auth-controller.js:95:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-08-26T13:23:35.605Z [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/careerforge-db
+2025-08-26T13:23:35.608Z [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]

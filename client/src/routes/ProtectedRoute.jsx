@@ -23,7 +23,7 @@ const ProtectedRoute = ({ roles }) => {
   // If the user is authenticated but not verified, redirect them to the verification prompt page.
   // We don't need to check the path anymore because the verification page is now public.
   if (userData && !userData.isVerified) {
-    return <Navigate to='/verification-required' replace />;
+    return <Navigate to='/verify-email' replace />;
   }
 
   // If the route requires specific roles, check for them.

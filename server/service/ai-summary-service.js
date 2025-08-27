@@ -87,6 +87,94 @@ export const generateAICoverLetter = async (coverLetterData) => {
 };
 
 
+// /**
+//  * Analyzes and enhances a piece of resume text, returning structured JSON.
+//  * @param {string} textToEnhance - The user-submitted resume text.
+//  * @param {string} jobContext - The job title or context for the text (e.g., "Senior Software Engineer").
+//  * @returns {Promise<object>} - A structured object with suggestions.
+//  */
+// export const enhanceResumeText = async (textToEnhance, jobContext) => {
+//   // 1. Define the exact JSON structure you want the AI to return.
+//   const jsonSchema = `{
+//     "enhancements": [
+//       {
+//         "original_text": "string", 
+//         "action_verb_rewrites": [
+//           "string"
+//         ],
+//         "quantification_templates": [
+//           "string"
+//         ],
+//         "conciseness_rewrite": "string",
+//         "grammar_correction": {
+//           "has_errors": "boolean",
+//           "corrected_text": "string"
+//         }
+//       }
+//     ]
+//   }`;
+
+//   // 2. Craft a very strict prompt demanding JSON output.
+//   const prompt = `
+//     You are a resume enhancement API. Your only function is to return a valid JSON object.
+//     Do not provide any explanations, introductory text, or markdown formatting.
+
+//     Analyze the following resume text from a "${jobContext}":
+//     TEXT:
+//     """
+//     ${textToEnhance}
+//     """
+
+//     Important rules:
+//     1. Treat each line of the input text as a separate entry in the "enhancements" array.
+//     2. Do not merge multiple lines together.
+//     3. For each line, create a JSON object containing:
+//       - The original text.
+//       - 2-3 rewrites with stronger action verbs.
+//       - 1-2 quantification templates with placeholders like [Number] or [Percentage].
+//       - A concise rewrite.
+//       - Grammar correction info (boolean + corrected text).
+//     4. Return only the populated JSON object matching the schema below.
+//     5. Absolutely no extra text outside the JSON.
+
+//     JSON SCHEMA:
+//     ${jsonSchema} `;
+
+//   try {
+
+//     const chatCompletion = await client.chatCompletion({
+//       provider: "novita",
+//       model: "deepseek-ai/DeepSeek-R1-0528",
+//       messages: [{ role: "user", content: prompt }],
+//       // Optional: You might want to increase max_tokens if the suggestions are long
+//       // max_tokens: 1024, 
+//     });
+
+//     const output = chatCompletion.choices[0].message.content;
+//     const cleanedOutput = output.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
+
+//     // 3. Parse the string response into a JSON object. This is the crucial step.
+//     try {
+//       const jsonResponse = JSON.parse(cleanedOutput);
+//       console.log(jsonResponse)
+//       return jsonResponse;
+//     } catch (parseError) {
+//       logger.error('Failed to parse AI JSON response:', cleanedOutput);
+//       throw new Error('AI enhancement failed: Invalid JSON format.');
+//     }
+
+//   } catch (error) {
+//     console.log("This is the error", error)
+//     logger.error('AI API error:', error.response?.data || error.message);
+//     const err = new Error('AI enhancement generation failed');
+//     err.status = 500;
+//     throw err;
+//   }
+// };
+
+
+
+
 /**
  * Analyzes and enhances a piece of resume text, returning structured JSON.
  * @param {string} textToEnhance - The user-submitted resume text.
@@ -96,17 +184,22 @@ export const generateAICoverLetter = async (coverLetterData) => {
 export const enhanceResumeText = async (textToEnhance, jobContext) => {
   // 1. Define the exact JSON structure you want the AI to return.
   const jsonSchema = `{
-    "action_verb_rewrites": [
-      "string" // An array of 2-3 suggestions rewritten with strong action verbs.
-    ],
-    "quantification_templates": [
-      "string" // An array of 1-2 suggestions that prompt the user to add metrics. e.g., 'Resolved [Number] of tickets...'
-    ],
-    "conciseness_rewrite": "string", // One suggestion rewritten to be more concise.
-    "grammar_correction": {
-      "has_errors": "boolean",
-      "corrected_text": "string" // The text after fixing any spelling or grammar mistakes.
-    }
+    "enhancements": [
+      {
+        "original_text": "string", 
+        "action_verb_rewrites": [
+          "string"
+        ],
+        "quantification_templates": [
+          "string"
+        ],
+        "conciseness_rewrite": "string",
+        "grammar_correction": {
+          "has_errors": "boolean",
+          "corrected_text": "string"
+        }
+      }
+    ]
   }`;
 
   // 2. Craft a very strict prompt demanding JSON output.
@@ -122,7 +215,7 @@ export const enhanceResumeText = async (textToEnhance, jobContext) => {
     ${jsonSchema}
 
     Your entire response must be ONLY the populated JSON object.
-  `;
+  `; 
 
   try {
 
@@ -140,6 +233,7 @@ export const enhanceResumeText = async (textToEnhance, jobContext) => {
     // 3. Parse the string response into a JSON object. This is the crucial step.
     try {
       const jsonResponse = JSON.parse(cleanedOutput);
+      console.log(jsonResponse)
       return jsonResponse;
     } catch (parseError) {
       logger.error('Failed to parse AI JSON response:', cleanedOutput);
