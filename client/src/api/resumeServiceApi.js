@@ -124,18 +124,46 @@ export const generateAISummary = async (resumeData) => {
  * @returns {Promise<object>} A promise that resolves to the structured object of AI suggestions.
  * @throws {Error} If the API request fails or the suggestions are not returned.
  */
+// export const enhanceResumeField = async (textToEnhance, jobContext) => {
+//     try {
+//         // The API expects an object with textToEnhance and jobContext keys
+//         const payload = { textToEnhance, jobContext };
+//         console.log(payload)
+//         const response = await apiServer.post('/resume/ai/enhance-field', payload);
+//         console.log("respone",response)
+
+//         if (response.data && response.data.success && typeof response.data.suggestions === 'object') {
+//             return response.data.suggestions;
+//         } else {
+//             throw new Error(response.data.message || 'Failed to get suggestions or suggestions not found in response.');
+//         }
+//     } catch (error) {
+//         console.error('Error enhancing resume field:', error.response?.data || error.message);
+//         const errorMessage = error.response?.data?.message ||
+//             'Failed to get AI suggestions. The server might be busy, or the request was invalid.';
+//         throw { message: errorMessage };
+//     }
+// };
+
+// This is your api call function - THIS IS THE ONE TO CHANGE
+
+// Change this function in your API service file
+
 export const enhanceResumeField = async (textToEnhance, jobContext) => {
     try {
-        // The API expects an object with textToEnhance and jobContext keys
         const payload = { textToEnhance, jobContext };
-        console.log(payload)
         const response = await apiServer.post('/resume/ai/enhance-field', payload);
-        console.log(response)
-
-        if (response.data && response.data.success && typeof response.data.suggestions === 'object') {
-            return response.data.suggestions;
+        if (
+            response.data &&
+            response.data.success &&
+            response.data.suggestions && // <-- Check for the suggestions object
+            Array.isArray(response.data.suggestions.enhancements) &&
+            response.data.suggestions.enhancements.length > 0
+        ) {
+            // We return the first object from the correct, deeper path.
+            return response.data.suggestions.enhancements[0];
         } else {
-            throw new Error(response.data.message || 'Failed to get suggestions or suggestions not found in response.');
+            throw new Error('AI suggestions were not found in the server response.');
         }
     } catch (error) {
         console.error('Error enhancing resume field:', error.response?.data || error.message);

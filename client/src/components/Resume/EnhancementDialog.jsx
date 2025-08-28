@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
 
 const EnhancementDialog = ({ suggestions, originalText, onAccept, onOpenChange }) => {
-    console.log(suggestions)
     if (!suggestions) return null;
 
     return (
