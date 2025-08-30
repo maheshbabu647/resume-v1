@@ -1,6 +1,4 @@
-
-
-  import React, { useEffect, useState, useCallback, useRef, Suspense, useMemo } from "react";
+import React, { useEffect, useState, useCallback, useRef, Suspense, useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -148,6 +146,7 @@ const ResumeEditorPage = () => {
 
       setPageIsLoading(true);
       setPageError(null);
+      const { presetKey, virtualPreset } = location.state || {};
       try {
         if (existingResumeId) {
           setMode('edit');
@@ -191,18 +190,55 @@ const ResumeEditorPage = () => {
             
             setCurrentTemplateForEditor(targetTemplate);
             prepareNewResumeForEditor(targetTemplate); 
-            const initialData = initializeFormDataFromDefinitions(targetTemplate.templateFieldDefinition, industryFromQuery);
-            setEditorFormData(initialData);
 
-            const nameSuffix = industryFromQuery ? `${targetTemplate.templateName} - ${industryFromQuery}` : (targetTemplate.templateName || 'Resume');
-            setEditableResumeName(`My New ${nameSuffix}`);
+            // This block determines the initial editor settings based on the user's choice.
+            let initialStyleKey = null;
+            let initialOrder = null;
+            let initialPresetKey = null;
+            let initialIndustry = null;
+
+            if (presetKey) {
+              // Case 1: A curated preset was selected.
+              console.log(`Applying curated preset: ${presetKey}`);
+              const preset = targetTemplate.presets.find(p => p.key === presetKey);
+              if (preset) {
+                initialStyleKey = preset.stylePackKey;
+                const sectionPreset = targetTemplate.templateComponents.sectionPresets.find(sp => sp.key === preset.sectionPresetKey);
+                initialOrder = sectionPreset?.order;
+                initialPresetKey = sectionPreset?.key; // Set the key for the dropdown
+                initialIndustry = preset.industry;
+              }
+            } else if (virtualPreset) {
+              // Case 2: A custom combination was built.
+              console.log('Applying virtual preset (combination)', virtualPreset);
+              initialStyleKey = virtualPreset.stylePackKey;
+              const sectionPreset = targetTemplate.templateComponents.sectionPresets.find(sp => sp.key === virtualPreset.sectionPresetKey);
+              initialOrder = sectionPreset?.order;
+              initialPresetKey = sectionPreset?.key;
+              initialIndustry = virtualPreset.industry;
+            }
+
+            // Case 3: User skipped or no valid preset was found. Fallback to template defaults.
+            if (!initialOrder) {
+              console.log('No preset found or skipped. Applying template defaults.');
+              const defaultPreset = targetTemplate.templateComponents.sectionPresets?.[0];
+              const defaultStyleKey = targetTemplate.templateComponents.stylePacks?.[0]?.key;
+              initialOrder = defaultPreset?.order || null;
+              initialPresetKey = defaultPreset?.key || null;
+              initialStyleKey = defaultStyleKey || null;
+            }
             
-            const defaultStyleKey = targetTemplate.templateComponents.stylePacks?.[0]?.key || null;
-            const defaultPreset = targetTemplate.templateComponents.sectionPresets?.[0];
-            setSelectedStylePackKey(defaultStyleKey);
-            setSectionOrder(defaultPreset?.order || null);
-            setSelectedPresetKey(defaultPreset?.key || null);
-            
+            // Apply the determined settings to the component's state.
+            setSelectedStylePackKey(initialStyleKey);
+            setSectionOrder(initialOrder);
+            setSelectedPresetKey(initialPresetKey);
+            setSelectedIndustry(initialIndustry);
+
+            // Initialize the form data with the chosen industry to toggle sections correctly.
+            const initialData = initializeFormDataFromDefinitions(targetTemplate.templateFieldDefinition, initialIndustry);
+            setEditorFormData(initialData);
+            setEditableResumeName(initialIndustry ? `My ${initialIndustry} Resume` : `My New ${targetTemplate.templateName || 'Resume'}`);
+              
           } else {
               setMode('create');
               const returningTemplate = currentResumeDetail.templateId;

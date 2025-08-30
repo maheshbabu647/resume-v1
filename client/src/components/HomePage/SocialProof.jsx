@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 // Using a logo service like clearbit is great for placeholders.
 // For production, it's best to host these logos yourself.
 const logos = [
-  { name: 'Google', src: 'https://logo.clearbit.com/google.com' },
-  { name: 'Microsoft', src: 'https://logo.clearbit.com/microsoft.com' },
-  { name: 'Amazon', src: 'https://logo.clearbit.com/amazon.com' },
-  { name: 'Deloitte', src: 'https://logo.clearbit.com/deloitte.com' },
-  { name: 'Spotify', src: 'https://logo.clearbit.com/spotify.com' },
+  { name: 'Google', src: 'public/company-logos/google-icn.svg' },
+  { name: 'Microsoft', src: 'public/company-logos/microsoft-icn.svg' },
+  { name: 'Amazon', src: 'public/company-logos/amazon-icn.svg' },
+  { name: 'Deloitte', src: 'public/company-logos/deloitte-icn.svg' },
+  { name: 'Spotify', src: 'public/company-logos/spotify-icn.svg' },
 ];
 
 const SocialProof = () => {
@@ -30,7 +30,7 @@ const SocialProof = () => {
                 key={index}
                 src={logo.src}
                 alt={logo.name}
-                className="h-7 transition-transform duration-300 hover:scale-110"
+                className="h-5 transition-transform duration-300 hover:scale-110"
                 // Fallback in case the logo API fails
                 onError={(e) => {
                   e.currentTarget.onerror = null;

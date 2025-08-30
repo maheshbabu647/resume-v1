@@ -14,6 +14,24 @@ const templateSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Template image public id is required'],
   },
+  
+  // ++ NEW FIELD: For identifying ATS-friendly templates ++
+  isAtsRecommended: {
+    type: Boolean,
+    default: false,
+  },
+
+  // ++ NEW FIELD: Defines the curated preset combinations for the UI ++
+  presets: [{
+      _id: false,
+      key: { type: String, required: true }, // e.g., 'tech-graduate-onyx'
+      name: { type: String, required: true }, // e.g., 'For recent IT Graduate'
+      industry: { type: String, required: true }, // e.g., 'Technology'
+      sectionPresetKey: { type: String, required: true }, // Pointer to a key in templateComponents.sectionPresets
+      stylePackKey: { type: String, required: true }, // Pointer to a key in templateComponents.stylePacks
+      isPrimary: { type: Boolean, default: false } // For the progressive disclosure feature
+  }],
+
   layoutSlots: {
     type: [String],
     required: [true, 'Layout slots must be defined.'],
@@ -29,21 +47,21 @@ const templateSchema = new mongoose.Schema({
       required: [true, 'Base CSS is required'],
     },
     sections: [{
-      _id: false, // Prevents Mongoose from creating an _id for each section object
-      key: { type: String, required: true },  // e.g., 'education', 'experience'
-      name: { type: String, required: true }, // e.g., 'Education', 'Work Experience'
-      html: { type: String, required: true }, // The HTML for this section, specific to this template's design.
+      _id: false, 
+      key: { type: String, required: true },
+      name: { type: String, required: true },
+      html: { type: String, required: true },
     }],
     stylePacks: [{
       _id: false,
-      key: { type: String, required: true },  // e.g., 'classic-blue', 'modern-dark'
-      name: { type: String, required: true }, // e.g., 'Classic Blue', 'Modern Dark'
-      css: { type: String, required: true },  // The specific CSS for this style pack
+      key: { type: String, required: true },
+      name: { type: String, required: true },
+      css: { type: String, required: true },
     }],
-    sectionPresets: [{
+    sectionPresets: [{ // Note: This defines the SECTION ORDER options that presets can use
       _id: false,
-      key: { type: String, required: true },  // e.g., 'entry-level', 'senior-professional'
-      name: { type: String, required: true }, // e.g., 'Entry-Level Focus', 'Experience First'
+      key: { type: String, required: true },
+      name: { type: String, required: true },
       order: { type: mongoose.Schema.Types.Mixed, required: true } 
     }]
   },
