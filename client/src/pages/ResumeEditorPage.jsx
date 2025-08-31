@@ -279,12 +279,18 @@ const ResumeEditorPage = () => {
   useEffect(() => { if (resumeError && saveStatus === 'saving') { setFeedbackDetailsForDialog({ title: 'Operation Failed', message: resumeError.message || 'An unexpected error occurred.', type: 'error' }); setShowFeedbackDialog(true); } }, [resumeError, saveStatus]);
 
   // --- FORM DATA HANDLERS ---
+  // const handleSimpleChange = useCallback((fieldPath, value) => { setIsDirty(true); setEditorFormData(prev => set(cloneDeep(prev), `content.${fieldPath}`, value)); }, [setEditorFormData]);
+  // const handleArrayItemChange = useCallback((arrayPath, idx, field, value) => { setIsDirty(true); setEditorFormData(prev => set(cloneDeep(prev), `content.${arrayPath}[${idx}].${field}`, value)); }, [setEditorFormData]);
+  // const handleAddItemToArray = useCallback((arrayPath, item = {}) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); const a = get(d, `content.${arrayPath}`, []); a.push(item); set(d, `content.${arrayPath}`, a); return d; }); }, [setEditorFormData]);
+  // const handleRemoveItemFromArray = useCallback((arrayPath, idx) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); const a = get(d, `content.${arrayPath}`, []); a.splice(idx, 1); set(d, `content.${arrayPath}`, a); return d; }); }, [setEditorFormData]);
+  // const handleSectionToggle = useCallback((sectionKey) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); const s = get(d, `sectionsConfig.${sectionKey}.enabled`, false); set(d, `sectionsConfig.${sectionKey}.enabled`, !s); return d; }); }, [setEditorFormData]);
+  // --- FORM DATA HANDLERS ---
   const handleSimpleChange = useCallback((fieldPath, value) => { setIsDirty(true); setEditorFormData(prev => set(cloneDeep(prev), `content.${fieldPath}`, value)); }, [setEditorFormData]);
   const handleArrayItemChange = useCallback((arrayPath, idx, field, value) => { setIsDirty(true); setEditorFormData(prev => set(cloneDeep(prev), `content.${arrayPath}[${idx}].${field}`, value)); }, [setEditorFormData]);
-  const handleAddItemToArray = useCallback((arrayPath, item = {}) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); const a = get(d, `content.${arrayPath}`, []); a.push(item); set(d, `content.${arrayPath}`, a); return d; }); }, [setEditorFormData]);
-  const handleRemoveItemFromArray = useCallback((arrayPath, idx) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); const a = get(d, `content.${arrayPath}`, []); a.splice(idx, 1); set(d, `content.${arrayPath}`, a); return d; }); }, [setEditorFormData]);
-  const handleSectionToggle = useCallback((sectionKey) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); const s = get(d, `sectionsConfig.${sectionKey}.enabled`, false); set(d, `sectionsConfig.${sectionKey}.enabled`, !s); return d; }); }, [setEditorFormData]);
-
+  const handleAddItemToArray = useCallback((arrayPath, item = {}) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); const a = get(d, `content.${arrayPath}`); const n = Array.isArray(a) ? [...a] : []; n.push(item); set(d, `content.${arrayPath}`, n); return d; }); }, [setEditorFormData]);
+  const handleRemoveItemFromArray = useCallback((arrayPath, idx) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); const a = get(d, `content.${arrayPath}`); if (!Array.isArray(a)) return d; const n = [...a]; n.splice(idx, 1); set(d, `content.${arrayPath}`, n); return d; }); }, [setEditorFormData]);
+  const handleSectionToggle = useCallback((sectionKey) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); set(d, `sectionsConfig.${sectionKey}.enabled`, !get(d, `sectionsConfig.${sectionKey}.enabled`, false)); return d; }); }, [setEditorFormData]);
+  
   // --- DESIGN & METADATA HANDLERS ---
   const handleStylePackChange = useCallback((key) => { setIsDirty(true); setSelectedStylePackKey(key); }, []);
   const handlePresetChange = useCallback((key) => {

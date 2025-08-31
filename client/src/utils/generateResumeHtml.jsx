@@ -11,6 +11,19 @@ Handlebars.registerHelper('if', function(conditional, options) {
   }
 });
 
+/// --- Add the new 'any' helper here ---
+Handlebars.registerHelper('any', function (...args) {
+  args.pop();
+  return args.some(conditional => {
+    return (Array.isArray(conditional) && conditional.length > 0) || (!Array.isArray(conditional) && conditional);
+  });
+});
+
+Handlebars.registerHelper('is_array', function (value) {
+  return Array.isArray(value);
+});
+
+
 /**
  * Assembles a complete, self-contained HTML resume snippet from modular pieces and user data.
  * This version is designed to be injected into a div to prevent iframe flickering.
