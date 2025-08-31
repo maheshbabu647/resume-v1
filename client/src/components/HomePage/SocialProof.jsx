@@ -1,14 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import googlelogo from '../../assets/company-logos/google-icn.svg'
+import microsoftlogo from '../../assets/company-logos/microsoft-icn.svg'
+import amazonlogo from '../../assets/company-logos/amazon-icn.svg'
+import deloittelogo from '../../assets/company-logos/deloitte-icn.svg'
+import spotifylogo from '../../assets/company-logos/spotify-icn.svg'
+
 
 // Using a logo service like clearbit is great for placeholders.
 // For production, it's best to host these logos yourself.
 const logos = [
-  { name: 'Google', src: 'src/assets/company-logos/google-icn.svg' },
-  { name: 'Microsoft', src: 'src/assets/company-logos/microsoft-icn.svg' },
-  { name: 'Amazon', src: 'src/assets/company-logos/amazon-icn.svg' },
-  { name: 'Deloitte', src: 'src/assets/company-logos/deloitte-icn.svg' },
-  { name: 'Spotify', src: 'src/assets/company-logos/spotify-icn.svg' },
+  { name: 'Google', src: googlelogo },
+  { name: 'Microsoft', src: microsoftlogo },
+  { name: 'Amazon', src: amazonlogo },
+  { name: 'Deloitte', src: deloittelogo },
+  { name: 'Spotify', src: spotifylogo },
 ];
 
 const SocialProof = () => {
