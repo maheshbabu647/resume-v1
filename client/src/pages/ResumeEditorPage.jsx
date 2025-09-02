@@ -56,6 +56,42 @@ const getSectionProperties = (definitions) => {
 };
 
 // Helper function to initialize form data based on template definitions
+// const initializeFormDataFromDefinitions = (definitions, selectedIndustry) => {
+//   const content = {};
+//   const sectionsConfig = {};
+
+//   if (!Array.isArray(definitions)) {
+//     return { content, sectionsConfig };
+//   }
+
+//   const uniqueSections = getSectionProperties(definitions);
+
+//   for (const sectionKey in uniqueSections) {
+//     const { isCore, recommendedFor, isToggleable } = uniqueSections[sectionKey];
+//     if (isToggleable) {
+//       let isEnabled = !selectedIndustry || isCore || !recommendedFor || recommendedFor.includes(selectedIndustry);
+//       sectionsConfig[sectionKey] = { enabled: isEnabled };
+//     }
+//   }
+
+//   definitions.forEach(fieldDef => {
+//     if (fieldDef.type === 'group' && fieldDef.repeatable) {
+//       const sampleItem = {};
+//       if (Array.isArray(fieldDef.subFields)) {
+//         fieldDef.subFields.forEach(subField => {
+//           sampleItem[subField.name] = subField.livePreviewPlaceholder || '';
+//         });
+//       }
+//       set(content, fieldDef.name, [sampleItem]); 
+//     } else {
+//       set(content, fieldDef.name, fieldDef.livePreviewPlaceholder || '');
+//     }
+//   });
+//   return { content, sectionsConfig };
+// };
+
+// REPLACE the old function at the top of ResumeEditorPage.jsx with this one:
+
 const initializeFormDataFromDefinitions = (definitions, selectedIndustry) => {
   const content = {};
   const sectionsConfig = {};
@@ -75,21 +111,31 @@ const initializeFormDataFromDefinitions = (definitions, selectedIndustry) => {
   }
 
   definitions.forEach(fieldDef => {
-    if (fieldDef.type === 'group' && fieldDef.repeatable) {
+    // Priority 1: Use the specific defaultValue if it exists.
+    if (fieldDef.defaultValue !== undefined) {
+      set(content, fieldDef.name, fieldDef.defaultValue);
+    } 
+    // Priority 2: For repeatable groups without a default, create one sample item using placeholders.
+    else if (fieldDef.type === 'group' && fieldDef.repeatable) {
       const sampleItem = {};
       if (Array.isArray(fieldDef.subFields)) {
         fieldDef.subFields.forEach(subField => {
-          sampleItem[subField.name] = subField.livePreviewPlaceholder || '';
+          // Check for defaults even in sub-fields (like for the 'links' inside a project)
+          sampleItem[subField.name] = subField.defaultValue !== undefined 
+            ? subField.defaultValue 
+            : subField.livePreviewPlaceholder || '';
         });
       }
       set(content, fieldDef.name, [sampleItem]); 
-    } else {
+    } 
+    // Priority 3: For all other simple fields, use their placeholder text.
+    else {
       set(content, fieldDef.name, fieldDef.livePreviewPlaceholder || '');
     }
   });
+
   return { content, sectionsConfig };
 };
-
 
 const ResumeEditorPage = () => {
   const { newResumeTemplateId, existingResumeId } = useParams();
@@ -341,6 +387,7 @@ const ResumeEditorPage = () => {
       return;
     }
     setSaveStatus('saving');
+    console.log(selectedIndustry)
     const savedResult = await saveOrUpdateCurrentResume(
       editorFormData,
       editableResumeName.trim(),

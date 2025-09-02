@@ -1,10 +1,12 @@
+
+
 // import React, { useState, useMemo, useEffect } from 'react';
 // import { get } from 'lodash';
 // import { Button } from '@/components/ui/button';
 // import { Input } from '@/components/ui/input';
 // import { Label } from '@/components/ui/label';
 // import { Textarea } from "@/components/ui/textarea";
-// import { Plus, Trash2, Sparkles, Loader2, Wand2, User, Briefcase, GraduationCap, Star, Info, CheckCircle2, MessageSquareQuote, Contact, FolderKanban } from 'lucide-react';
+// import { Plus, Trash2, Sparkles, Loader2, User, Briefcase, GraduationCap, Star, Info, CheckCircle2, MessageSquareQuote, Contact, FolderKanban } from 'lucide-react';
 // import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 // import { Switch } from "@/components/ui/switch";
 // import { cn } from "@/lib/utils";
@@ -13,6 +15,122 @@
 // const getValueFromPath = (dataObject, pathString) => {
 //   return get(dataObject, pathString, '');
 // };
+
+
+// // <<< RECURSIVE COMPONENT TO RENDER ANY FIELD DEFINITION >>>
+// const FieldRenderer = ({ 
+//   fieldDef, 
+//   basePath, 
+//   content, 
+//   onFormChange, 
+//   onArrayChange, 
+//   onAddItem, 
+//   onRemoveItem, 
+//   onEnhanceField,
+//   isEnhancing,
+//   formData // Pass full formData down for context
+// }) => {
+//   const fieldKey = `${basePath}-${fieldDef.name}`;
+//   const currentPath = basePath ? `${basePath}.${fieldDef.name}` : fieldDef.name;
+
+//   // --- Renders a REPEATABLE GROUP ---
+//   if (fieldDef.type === 'group' && fieldDef.repeatable) {
+//     // FIX: Safely handle non-array data
+//     const retrievedItems = get(content, fieldDef.name);
+//     const itemsArray = Array.isArray(retrievedItems) ? retrievedItems : [];
+
+//     return (
+//       <fieldset key={fieldKey} className="space-y-5 pt-2" aria-labelledby={`legend-${fieldDef.name}`}>
+//         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+//           <legend id={`legend-${fieldDef.name}`} className="text-lg font-semibold text-primary">
+//             {fieldDef.label || fieldDef.name}
+//           </legend>
+//           <Button onClick={() => onAddItem(currentPath, fieldDef.subFields.reduce((acc, f) => ({...acc, [f.name]: ''}), {}))} type="button" variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full sm:w-auto">
+//             <Plus className="w-4 h-4 mr-2" /> Add {fieldDef.singularLabel || 'Item'}
+//           </Button>
+//         </div>
+//         {itemsArray.length === 0 && <p className="text-sm text-muted-foreground italic pl-1">No {fieldDef.pluralLabel || 'items'} added yet.</p>}
+//         <div className="space-y-4">
+//           {itemsArray.map((item, itemIndex) => (
+//             <Card key={`${currentPath}-item-${itemIndex}`} className="bg-muted/30 dark:bg-muted/20 border-border shadow-sm relative group p-4">
+//               <CardContent className="p-0 space-y-4">
+//                 <div className="grid grid-cols-1 md:grid-cols-1 gap-y-4">
+//                   {/* RECURSIVE CALL: Render sub-fields using this same component */}
+//                   {Array.isArray(fieldDef.subFields) && fieldDef.subFields.map((subFieldDef) => (
+//                     <FieldRenderer
+//                       key={`${currentPath}-${itemIndex}-${subFieldDef.name}`}
+//                       fieldDef={subFieldDef}
+//                       basePath={`${currentPath}.${itemIndex}`}
+//                       content={item}
+//                       onFormChange={onArrayChange}
+//                       onArrayChange={onArrayChange}
+//                       onAddItem={onAddItem}
+//                       onRemoveItem={onRemoveItem}
+//                       onEnhanceField={onEnhanceField}
+//                       isEnhancing={isEnhancing}
+//                       formData={formData}
+//                     />
+//                   ))}
+//                 </div>
+//               </CardContent>
+//               <Button onClick={() => onRemoveItem(currentPath, itemIndex)} type="button" variant="ghost" size="icon" className="absolute top-2 right-2 text-muted-foreground hover:text-destructive opacity-60 group-hover:opacity-100 transition-opacity h-7 w-7" aria-label={`Remove ${fieldDef.singularLabel || 'Item'} ${itemIndex + 1}`}><Trash2 className="w-4 h-4" /></Button>
+//             </Card>
+//           ))}
+//         </div>
+//       </fieldset>
+//     );
+//   }
+
+//   // --- Renders a SIMPLE INPUT (text, textarea, etc.) ---
+//   if (['text', 'email', 'tel', 'url', 'textarea', 'date', 'number'].includes(fieldDef.type)) {
+//     const value = content[fieldDef.name] || '';
+//     const inputId = currentPath.replace(/\./g, '-');
+//     const InputComponent = fieldDef.type === 'textarea' ? Textarea : Input;
+    
+//     const handleChange = (e) => {
+//         const pathParts = basePath.split('.');
+//         const lastPartIsIndex = !isNaN(parseInt(pathParts[pathParts.length - 1], 10));
+
+//         if (lastPartIsIndex) {
+//             const arrayPath = pathParts.slice(0, -1).join('.');
+//             const index = parseInt(pathParts[pathParts.length - 1], 10);
+//             onArrayChange(arrayPath, index, fieldDef.name, e.target.value);
+//         } else {
+//              onFormChange(currentPath, e.target.value);
+//         }
+//     };
+
+//     return (
+//       <div key={fieldKey} className="space-y-1.5 pt-2 relative">
+//         <Label htmlFor={inputId} className="text-sm font-medium text-foreground">{fieldDef.label || fieldDef.name}{fieldDef.required && <span className="text-destructive ml-1">*</span>}</Label>
+//         <InputComponent 
+//           id={inputId} 
+//           placeholder={fieldDef.placeholder || `Enter your ${fieldDef.label.toLowerCase()}`} 
+//           type={fieldDef.type === 'textarea' ? undefined : fieldDef.type} 
+//           name={currentPath} 
+//           value={value} 
+//           onChange={handleChange} 
+//           required={fieldDef.required || false} 
+//           className="bg-background border-input focus:border-primary focus:ring-primary" 
+//           rows={fieldDef.type === 'textarea' ? (fieldDef.rows || 4) : undefined} 
+//           {...(fieldDef.props || {})} 
+//         />
+//         {fieldDef.type === 'textarea' && onEnhanceField && (
+//             <Button type="button" variant="ghost" size="icon" className="absolute bottom-2 right-2 h-7 w-7 text-primary hover:bg-primary/10 hover:text-primary" onClick={() => {
+//                 const jobContext = get(formData, 'content.experience[0].roles[0].jobTitle', get(formData, 'content.profile.title', 'this role'));
+//                 onEnhanceField(currentPath, value, jobContext);
+//             }} disabled={isEnhancing} aria-label="Enhance with AI">
+//                 {isEnhancing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4 animate-pulse" />}
+//             </Button>
+//         )}
+//         {fieldDef.helperText && <p className="text-xs text-muted-foreground/80 pt-0.5">{fieldDef.helperText}</p>}
+//       </div>
+//     );
+//   }
+  
+//   return <div key={fieldKey} className="text-sm text-muted-foreground pt-2">Unsupported field: "{fieldDef.label || fieldDef.name}"</div>;
+// };
+
 
 // const ResumeForm = ({
 //   templateFieldDefinition,
@@ -25,7 +143,6 @@
 //   onEnhanceField,
 //   isEnhancing,
 //   selectedIndustry,
-//   sectionProperties,
 // }) => {
 //   const content = formData?.content || {};
 //   const sectionsConfig = formData?.sectionsConfig || {};
@@ -57,6 +174,8 @@
 //         description: fieldDef.sectionDescription || null,
 //         fields: [],
 //         icon: iconMap[sectionName] || <Info className="h-4 w-4" />,
+//         isCore: fieldDef.isCore,
+//         recommendedFor: fieldDef.recommendedFor,
 //       };
 //     }
 //     acc[sectionName].fields.push(fieldDef);
@@ -66,15 +185,14 @@
 //   const allSectionKeys = useMemo(() => Object.keys(sections), [sections]);
 
 //   const visibleSectionKeys = useMemo(() => {
-//     if (!selectedIndustry) {
+//     if (!selectedIndustry || selectedIndustry === 'All') {
 //       return allSectionKeys;
 //     }
 //     return allSectionKeys.filter(key => {
-//       const props = sectionProperties[key];
-//       if (!props) return true;
+//       const props = sections[key];
 //       return props.isCore || props.recommendedFor?.includes(selectedIndustry);
 //     });
-//   }, [allSectionKeys, selectedIndustry, sectionProperties]);
+//   }, [allSectionKeys, selectedIndustry, sections]);
 
 //   const [activeSection, setActiveSection] = useState(
 //     visibleSectionKeys.length > 0 ? visibleSectionKeys[0] : null
@@ -83,12 +201,13 @@
 //   useEffect(() => {
 //     if (visibleSectionKeys.length > 0 && !visibleSectionKeys.includes(activeSection)) {
 //       setActiveSection(visibleSectionKeys[0]);
+//     } else if (visibleSectionKeys.length > 0 && activeSection === null) {
+//       setActiveSection(visibleSectionKeys[0]);
 //     }
 //   }, [visibleSectionKeys, activeSection]);
 
 //   return (
 //     <div className="w-full p-1 md:p-2 flex flex-col lg:flex-row lg:gap-6">
-//       {/* <<< MODIFICATION: Added hover events to the nav, removed TooltipProvider */}
 //       <nav 
 //           onMouseEnter={() => setIsNavCollapsed(false)}
 //           onMouseLeave={() => setIsNavCollapsed(true)}
@@ -97,7 +216,6 @@
 //             isNavCollapsed ? "lg:w-20" : "lg:w-56"
 //       )}>
 //           <div className="flex-grow">
-//               {/* <<< MODIFICATION: Simplified the header, removed chevron button */}
 //               <div className="flex items-center pb-2 border-b border-border h-9">
 //                   <h3 className={cn(
 //                       "px-3 text-sm font-semibold text-foreground whitespace-nowrap",
@@ -106,14 +224,13 @@
 //                       Resume Sections
 //                   </h3>
 //               </div>
-
 //               <div className="mt-2 space-y-1">
-//                   {/* <<< MODIFICATION: Simplified back to just rendering a button, no tooltips */}
 //                   {visibleSectionKeys.map((sectionKey) => {
 //                       const isCompleted = sections[sectionKey].fields.some(field => {
 //                          const value = get(content, field.name);
 //                          const hasRealValue = (val) => {
-//                              if (typeof val !== 'string') return false;
+//                              if (typeof val !== 'string' && !Array.isArray(val)) return false;
+//                              if(Array.isArray(val)) return val.length > 0;
 //                              const cleanedText = val.replace(/<[^>]*>?/gm, '').trim();
 //                              if (cleanedText === '') return false;
 //                              const isPlaceholder = cleanedText.startsWith('[') && cleanedText.endsWith(']');
@@ -193,81 +310,21 @@
                 
 //                 {isEnabled && (
 //                   <CardContent className="p-5 sm:p-6 space-y-6">
-//                     {sections[sectionKey].fields.map((fieldDef) => {
-//                       const fieldKey = `${sectionKey}-${fieldDef.name}`;
-
-//                       if (fieldDef.type === 'group' && fieldDef.repeatable) {
-//                         const itemsArray = get(content, fieldDef.name, []);
-//                         return (
-//                           <fieldset key={fieldKey} className="space-y-5 pt-2" aria-labelledby={`legend-${fieldDef.name}`}>
-//                             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
-//                               <legend id={`legend-${fieldDef.name}`} className="text-lg font-semibold text-primary">
-//                                 {fieldDef.label || fieldDef.name}
-//                               </legend>
-//                               <Button onClick={() => onAddItem(fieldDef.name, fieldDef.defaultItem || {})} type="button" variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full sm:w-auto">
-//                                 <Plus className="w-4 h-4 mr-2" /> Add {fieldDef.singularLabel || 'Item'}
-//                               </Button>
-//                             </div>
-//                             {itemsArray.length === 0 && <p className="text-sm text-muted-foreground italic pl-1">No {fieldDef.pluralLabel || 'items'} added yet.</p>}
-//                             <div className="space-y-4">
-//                               {itemsArray.map((item, itemIndex) => (
-//                                 <Card key={`${fieldDef.name}-item-${itemIndex}`} className="bg-muted/30 dark:bg-muted/20 border-border shadow-sm relative group p-4">
-//                                   <CardContent className="p-0 space-y-4">
-//                                     <div className="grid grid-cols-1 md:grid-cols-1 gap-y-4">
-//                                       {Array.isArray(fieldDef.subFields) && fieldDef.subFields.map((subFieldDef) => {
-//                                         const subId = `${fieldDef.name}-${itemIndex}-${subFieldDef.name}`.replace(/\./g, '-');
-//                                         const InputComponent = subFieldDef.type === 'textarea' ? Textarea : Input;
-//                                         return (
-//                                           <div key={subId} className={`space-y-1.5 relative`}>
-//                                             <Label htmlFor={subId} className="text-sm font-medium text-foreground">{subFieldDef.label || subFieldDef.name}{subFieldDef.required && <span className="text-destructive ml-1">*</span>}</Label>
-//                                             <InputComponent id={subId} placeholder={subFieldDef.placeholder || `Enter ${subFieldDef.label.toLowerCase()}`} type={subFieldDef.type === 'textarea' ? undefined : subFieldDef.type} name={`${fieldDef.name}.${itemIndex}.${subFieldDef.name}`} value={item[subFieldDef.name] || ''} onChange={(e) => onArrayChange(fieldDef.name, itemIndex, subFieldDef.name, e.target.value)} required={subFieldDef.required || false} className="bg-background border-input focus:border-primary focus:ring-primary" rows={subFieldDef.type === 'textarea' ? (subFieldDef.rows || 3) : undefined} {...(subFieldDef.props || {})} />
-//                                             {subFieldDef.type === 'textarea' && onEnhanceField && (
-//                                               <Button type="button" variant="ghost" size="icon" className="absolute bottom-2 right-2 h-7 w-7 text-primary hover:bg-primary/10 hover:text-primary" onClick={() => {
-//                                                   const fieldPath = `${fieldDef.name}[${itemIndex}].${subFieldDef.name}`;
-//                                                   const textToEnhance = item[subFieldDef.name] || '';
-//                                                   const jobContext = item.jobTitle || item.title || 'this role';
-//                                                   onEnhanceField(fieldPath, textToEnhance, jobContext);
-//                                               }} disabled={isEnhancing} aria-label="Enhance with AI">
-//                                                   {isEnhancing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4 animate-pulse" />}
-//                                               </Button>
-//                                             )}
-//                                             {subFieldDef.helperText && <p className="text-xs text-muted-foreground/80 pt-0.5">{subFieldDef.helperText}</p>}
-//                                           </div>
-//                                         );
-//                                       })}
-//                                     </div>
-//                                   </CardContent>
-//                                   <Button onClick={() => onRemoveItem(fieldDef.name, itemIndex)} type="button" variant="ghost" size="icon" className="absolute top-2 right-2 text-muted-foreground hover:text-destructive opacity-60 group-hover:opacity-100 transition-opacity h-7 w-7" aria-label={`Remove ${fieldDef.singularLabel || 'Item'} ${itemIndex + 1}`}><Trash2 className="w-4 h-4" /></Button>
-//                                 </Card>
-//                               ))}
-//                             </div>
-//                           </fieldset>
-//                         );
-//                       }
-
-//                       if (['text', 'email', 'tel', 'url', 'textarea', 'date', 'number'].includes(fieldDef.type)) {
-//                         const fieldPath = fieldDef.name;
-//                         const value = getValueFromPath(content, fieldPath);
-//                         const inputId = fieldPath.replace(/\./g, '-');
-//                         const InputComponent = fieldDef.type === 'textarea' ? Textarea : Input;
-//                         return (
-//                           <div key={fieldKey} className="space-y-1.5 pt-2 relative">
-//                             <Label htmlFor={inputId} className="text-sm font-medium text-foreground">{fieldDef.label || fieldDef.name}{fieldDef.required && <span className="text-destructive ml-1">*</span>}</Label>
-//                             <InputComponent id={inputId} placeholder={fieldDef.placeholder || `Enter your ${fieldDef.label.toLowerCase()}`} type={fieldDef.type === 'textarea' ? undefined : fieldDef.type} name={fieldPath} value={value} onChange={(e) => onFormChange(fieldPath, e.target.value)} required={fieldDef.required || false} className="bg-background border-input focus:border-primary focus:ring-primary" rows={fieldDef.type === 'textarea' ? (fieldDef.rows || 4) : undefined} {...(fieldDef.props || {})} />
-//                             {fieldDef.type === 'textarea' && onEnhanceField && (
-//                               <Button type="button" variant="ghost" size="icon" className="absolute bottom-2 right-2 h-7 w-7 text-primary hover:bg-primary/10 hover:text-primary" onClick={() => {
-//                                   const jobContext = get(content, 'profile.title', 'Professional');
-//                                   onEnhanceField(fieldPath, value, jobContext);
-//                               }} disabled={isEnhancing} aria-label="Enhance with AI">
-//                                   {isEnhancing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4 animate-pulse" />}
-//                               </Button>
-//                             )}
-//                             {fieldDef.helperText && <p className="text-xs text-muted-foreground/80 pt-0.5">{fieldDef.helperText}</p>}
-//                           </div>
-//                         );
-//                       }
-//                       return <div key={fieldKey} className="text-sm text-muted-foreground pt-2">Unsupported field: "{fieldDef.label || fieldDef.name}"</div>;
-//                     })}
+//                     {sections[sectionKey].fields.map((fieldDef) => (
+//                       <FieldRenderer
+//                         key={fieldDef.name}
+//                         fieldDef={fieldDef}
+//                         basePath="" // Start with an empty base path for top-level fields
+//                         content={content}
+//                         onFormChange={onFormChange}
+//                         onArrayChange={onArrayChange}
+//                         onAddItem={onAddItem}
+//                         onRemoveItem={onRemoveItem}
+//                         onEnhanceField={onEnhanceField}
+//                         isEnhancing={isEnhancing}
+//                         formData={formData}
+//                       />
+//                     ))}
 //                   </CardContent>
 //                 )}
 
@@ -288,24 +345,19 @@
 
 // export default ResumeForm;
 
+
 import React, { useState, useMemo, useEffect } from 'react';
 import { get } from 'lodash';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from "@/components/ui/textarea";
-import { Plus, Trash2, Sparkles, Loader2, User, Briefcase, GraduationCap, Star, Info, CheckCircle2, MessageSquareQuote, Contact, FolderKanban } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Plus, Trash2, Sparkles, Loader2, User, Briefcase, GraduationCap, Star, Info, CheckCircle2, MessageSquareQuote, Contact, FolderKanban, X } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 
-// Helper function to safely get nested values
-const getValueFromPath = (dataObject, pathString) => {
-  return get(dataObject, pathString, '');
-};
-
-
-// <<< RECURSIVE COMPONENT TO RENDER ANY FIELD DEFINITION >>>
 const FieldRenderer = ({ 
   fieldDef, 
   basePath, 
@@ -316,16 +368,41 @@ const FieldRenderer = ({
   onRemoveItem, 
   onEnhanceField,
   isEnhancing,
-  formData // Pass full formData down for context
+  formData
 }) => {
   const fieldKey = `${basePath}-${fieldDef.name}`;
   const currentPath = basePath ? `${basePath}.${fieldDef.name}` : fieldDef.name;
+  
+  const handleChange = (e, customValue) => {
+      const value = customValue !== undefined ? customValue : e.target.value;
+      const pathParts = basePath.split('.');
+      const lastPartIsIndex = !isNaN(parseInt(pathParts[pathParts.length - 1], 10));
 
-  // --- Renders a REPEATABLE GROUP ---
+      if (lastPartIsIndex) {
+          const arrayPath = pathParts.slice(0, -1).join('.');
+          const index = parseInt(pathParts[pathParts.length - 1], 10);
+          onArrayChange(arrayPath, index, fieldDef.name, value);
+      } else {
+           onFormChange(currentPath, value);
+      }
+  };
+
   if (fieldDef.type === 'group' && fieldDef.repeatable) {
-    // FIX: Safely handle non-array data
     const retrievedItems = get(content, fieldDef.name);
     const itemsArray = Array.isArray(retrievedItems) ? retrievedItems : [];
+    
+    const createNewItem = () => {
+        return fieldDef.subFields.reduce((acc, f) => {
+            if (f.defaultValue) {
+                acc[f.name] = f.defaultValue;
+            } else if (f.type === 'group' && f.repeatable) {
+                acc[f.name] = [];
+            } else {
+                acc[f.name] = f.livePreviewPlaceholder || '';
+            }
+            return acc;
+        }, {});
+    };
 
     return (
       <fieldset key={fieldKey} className="space-y-5 pt-2" aria-labelledby={`legend-${fieldDef.name}`}>
@@ -333,7 +410,7 @@ const FieldRenderer = ({
           <legend id={`legend-${fieldDef.name}`} className="text-lg font-semibold text-primary">
             {fieldDef.label || fieldDef.name}
           </legend>
-          <Button onClick={() => onAddItem(currentPath, fieldDef.subFields.reduce((acc, f) => ({...acc, [f.name]: ''}), {}))} type="button" variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full sm:w-auto">
+          <Button onClick={() => onAddItem(currentPath, createNewItem())} type="button" variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full sm:w-auto">
             <Plus className="w-4 h-4 mr-2" /> Add {fieldDef.singularLabel || 'Item'}
           </Button>
         </div>
@@ -343,14 +420,13 @@ const FieldRenderer = ({
             <Card key={`${currentPath}-item-${itemIndex}`} className="bg-muted/30 dark:bg-muted/20 border-border shadow-sm relative group p-4">
               <CardContent className="p-0 space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-1 gap-y-4">
-                  {/* RECURSIVE CALL: Render sub-fields using this same component */}
                   {Array.isArray(fieldDef.subFields) && fieldDef.subFields.map((subFieldDef) => (
                     <FieldRenderer
                       key={`${currentPath}-${itemIndex}-${subFieldDef.name}`}
                       fieldDef={subFieldDef}
                       basePath={`${currentPath}.${itemIndex}`}
                       content={item}
-                      onFormChange={onArrayChange}
+                      onFormChange={onFormChange}
                       onArrayChange={onArrayChange}
                       onAddItem={onAddItem}
                       onRemoveItem={onRemoveItem}
@@ -369,24 +445,10 @@ const FieldRenderer = ({
     );
   }
 
-  // --- Renders a SIMPLE INPUT (text, textarea, etc.) ---
   if (['text', 'email', 'tel', 'url', 'textarea', 'date', 'number'].includes(fieldDef.type)) {
-    const value = content[fieldDef.name] || '';
+    const value = get(content, fieldDef.name, '');
     const inputId = currentPath.replace(/\./g, '-');
     const InputComponent = fieldDef.type === 'textarea' ? Textarea : Input;
-    
-    const handleChange = (e) => {
-        const pathParts = basePath.split('.');
-        const lastPartIsIndex = !isNaN(parseInt(pathParts[pathParts.length - 1], 10));
-
-        if (lastPartIsIndex) {
-            const arrayPath = pathParts.slice(0, -1).join('.');
-            const index = parseInt(pathParts[pathParts.length - 1], 10);
-            onArrayChange(arrayPath, index, fieldDef.name, e.target.value);
-        } else {
-             onFormChange(currentPath, e.target.value);
-        }
-    };
 
     return (
       <div key={fieldKey} className="space-y-1.5 pt-2 relative">
@@ -397,7 +459,7 @@ const FieldRenderer = ({
           type={fieldDef.type === 'textarea' ? undefined : fieldDef.type} 
           name={currentPath} 
           value={value} 
-          onChange={handleChange} 
+          onChange={handleChange}
           required={fieldDef.required || false} 
           className="bg-background border-input focus:border-primary focus:ring-primary" 
           rows={fieldDef.type === 'textarea' ? (fieldDef.rows || 4) : undefined} 
@@ -416,9 +478,76 @@ const FieldRenderer = ({
     );
   }
   
+  if (fieldDef.type === 'select') {
+    const value = get(content, fieldDef.name, '');
+    const inputId = currentPath.replace(/\./g, '-');
+    return (
+        <div key={fieldKey} className="space-y-1.5 pt-2">
+            <Label htmlFor={inputId} className="text-sm font-medium text-foreground">{fieldDef.label}</Label>
+            <Select value={value} onValueChange={(selectValue) => handleChange(null, selectValue)}>
+                <SelectTrigger id={inputId} className="w-full bg-background border-input focus:border-primary focus:ring-primary">
+                    <SelectValue placeholder={fieldDef.placeholder || "Select an option"} />
+                </SelectTrigger>
+                <SelectContent>
+                    {(fieldDef.options || []).filter(Boolean).map(option => (
+                        <SelectItem key={option} value={option}>{option}</SelectItem>
+                    ))}
+                </SelectContent>
+            </Select>
+        </div>
+    );
+  }
+
+   if (fieldDef.type === 'tags') {
+    const value = get(content, fieldDef.name, '');
+    const tags = value ? value.split(',').map(t => t.trim()).filter(Boolean) : [];
+    const [inputValue, setInputValue] = useState('');
+    const inputId = currentPath.replace(/\./g, '-');
+
+    const addTag = () => {
+        if (inputValue && !tags.includes(inputValue)) {
+            const newTags = [...tags, inputValue.trim()];
+            handleChange(null, newTags.join(', '));
+        }
+        setInputValue('');
+    };
+
+    const removeTag = (tagToRemove) => {
+        const newTags = tags.filter(tag => tag !== tagToRemove);
+        handleChange(null, newTags.join(', '));
+    };
+
+    return (
+      <div key={fieldKey} className="space-y-1.5 pt-2">
+        <Label htmlFor={inputId} className="text-sm font-medium text-foreground">{fieldDef.label}</Label>
+        <div className="flex flex-wrap items-center gap-2 p-2 border rounded-md bg-background border-input min-h-[40px]">
+          {tags.map(tag => (
+            <div key={tag} className="flex items-center gap-1 bg-primary text-primary-foreground text-xs font-semibold px-2 py-1 rounded-full">
+              <span>{tag}</span>
+              <button onClick={() => removeTag(tag)} type="button" className="hover:opacity-75"><X className="w-3 h-3" /></button>
+            </div>
+          ))}
+          <Input
+            id={inputId}
+            type="text"
+            value={inputValue}
+            placeholder={fieldDef.placeholder}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                addTag();
+              }
+            }}
+            className="flex-1 bg-transparent border-none focus:ring-0 h-auto p-0"
+          />
+        </div>
+      </div>
+    );
+  }
+  
   return <div key={fieldKey} className="text-sm text-muted-foreground pt-2">Unsupported field: "{fieldDef.label || fieldDef.name}"</div>;
 };
-
 
 const ResumeForm = ({
   templateFieldDefinition,
@@ -602,7 +731,7 @@ const ResumeForm = ({
                       <FieldRenderer
                         key={fieldDef.name}
                         fieldDef={fieldDef}
-                        basePath="" // Start with an empty base path for top-level fields
+                        basePath="" // <-- This is the corrected line
                         content={content}
                         onFormChange={onFormChange}
                         onArrayChange={onArrayChange}

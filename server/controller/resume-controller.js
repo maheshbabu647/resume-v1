@@ -12,7 +12,7 @@ const MAX_RESUMES_PER_USER = 100;
 
 export const createResume = async (req, res, next) => {
   try {
-    const { templateId, resumeData, resumeName, spacingMultiplier, stylePackKey, sectionOrder } = req.body;
+    const { templateId, resumeData, resumeName, spacingMultiplier, stylePackKey, sectionOrder, selectedIndustry } = req.body;
     const userId = req.user.userId;
 
     // [SECURITY] Prevent spam by limiting resumes per user
@@ -31,7 +31,8 @@ export const createResume = async (req, res, next) => {
       resumeName: resumeName || undefined,
       spacingMultiplier,
       stylePackKey,
-      sectionOrder
+      sectionOrder,
+      selectedIndustry
     };
 
     const savedResume = await resumeModel.create(resume);
@@ -104,7 +105,7 @@ export const getResumeById = async (req, res, next) => {
 export const updateResume = async (req, res, next) => {
   try {
     const { resumeId } = req.params;
-    const { resumeData, resumeName, spacingMultiplier, stylePackKey, sectionOrder } = req.body;
+    const { resumeData, resumeName, spacingMultiplier, stylePackKey, sectionOrder, selectedIndustry } = req.body;
     const userId = req.user.userId;
 
     const resume = await resumeModel.findById(resumeId);
@@ -128,7 +129,8 @@ export const updateResume = async (req, res, next) => {
       resumeData: resumeData || resume.resumeData,
       spacingMultiplier: spacingMultiplier || resume.spacingMultiplier,
       stylePackKey: stylePackKey || resume.stylePackKey,
-      sectionOrder: sectionOrder || resume.sectionOrder
+      sectionOrder: sectionOrder || resume.sectionOrder,
+      selectedIndustry: selectedIndustry || resume.selectedIndustry
     };
 
     await resumeModel.findByIdAndUpdate(resumeId, updateResume);

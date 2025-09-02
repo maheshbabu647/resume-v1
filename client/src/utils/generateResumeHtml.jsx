@@ -24,6 +24,33 @@ Handlebars.registerHelper('is_array', function (value) {
 });
 
 
+Handlebars.registerHelper('formatAsList', function(text) {
+  if (!text || typeof text !== 'string') {
+    return '';
+  }
+  const items = text.split('\n')
+                    .filter(line => line.trim() !== '')
+                    .map(line => `<li>${Handlebars.escapeExpression(line.trim())}</li>`)
+                    .join('');
+  
+  if (items) {
+    return new Handlebars.SafeString(`<ul>${items}</ul>`);
+  }
+  return '';
+});
+
+Handlebars.registerHelper('eq', function (a, b) {
+  return a === b;
+});
+
+Handlebars.registerHelper('sanitizeUrl', function(url) {
+  if (!url || typeof url !== 'string') {
+    return '#'; 
+  }
+  const cleanedUrl = url.replace(/^https?:\/\//, '');
+  return `https://${cleanedUrl}`;
+});
+
 /**
  * Assembles a complete, self-contained HTML resume snippet from modular pieces and user data.
  * This version is designed to be injected into a div to prevent iframe flickering.

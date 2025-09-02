@@ -790,7 +790,7 @@ const ResumeContextProvider = ({ children }) => {
         setIsLoadingCurrentResume(false);
     }, [userData]);
 
-    const saveOrUpdateCurrentResume = useCallback(async (formDataToSave, newResumeName, spacingMultiplier, sectionOrder, stylePackKey) => {
+    const saveOrUpdateCurrentResume = useCallback(async (formDataToSave, newResumeName, spacingMultiplier, sectionOrder, stylePackKey, selectedIndustry) => {
         if (!isAuthenticated || !currentResumeDetail || !currentResumeDetail.templateId) {
             setResumeError("Cannot save: User not authenticated or essential resume/template details are missing.");
             return null;
@@ -814,7 +814,8 @@ const ResumeContextProvider = ({ children }) => {
             resumeName: newResumeName || currentResumeDetail.resumeName || `My Resume ${new Date().toLocaleDateString()}`,
             spacingMultiplier: spacingMultiplier,
             sectionOrder: sectionOrder,
-            stylePackKey: stylePackKey
+            stylePackKey: stylePackKey,
+            selectedIndustry: selectedIndustry,
         };
 
         try {
