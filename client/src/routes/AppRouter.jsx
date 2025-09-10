@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import RouteChangeTracker from '@/components/Analytics/RouteChangeTracker.js';
 
 import MainLayout from '../components/Layout/MainLayout.jsx';
 import AdminLayout from '@/components/Layout/AdminLayout.jsx';
@@ -33,6 +34,7 @@ import AdminAnalyticsRetentionPage from '@/pages/AdminAnalyticsRetentionPage.jsx
 import AdminAnalyticsSecurityPage from '@/pages/AdminAnalyticsSecurityPage.jsx';
 import AdminAnalyticsDevicePage from '@/pages/AdminAnalyticsDevicePage.jsx';
 import AdminAnalyticsPerformancePage from '@/pages/AdminAnalyticsPerformancePage.jsx';
+import MonarchDashboardPage from '@/pages/MonarchDashboardPage.jsx';
 
 // Protected Route Wrapper
 import ProtectedRoute from './ProtectedRoute.jsx';
@@ -40,6 +42,7 @@ import ProtectedRoute from './ProtectedRoute.jsx';
 const AppRouter = () => {
   return (
     <Router>
+      <RouteChangeTracker />
       <Routes>
         {/* Standalone Auth & Info Pages (No Main Navbar/Footer) */}
         <Route path='/login' element={<LoginPage />} />
@@ -75,6 +78,7 @@ const AppRouter = () => {
           <Route path="admin" element={<ProtectedRoute roles={['admin']} />}>
              <Route element={<AdminLayout />}>
                 <Route index element={<AdminDashboardPage />} />
+                <Route path="monarch-dashboard" element={<MonarchDashboardPage />} />
                 <Route path="dashboard" element={<AdminDashboardPage />} />
                 <Route path="templates" element={<AdminTemplatesPage />} />
                 <Route path="templates/new" element={<AdminTemplateEditPage />} />

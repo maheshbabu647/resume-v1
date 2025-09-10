@@ -85,7 +85,6 @@ authRouter.post('/verify-email', verifyEmailCodeValidator, verifyEmail);
 
 // [NEW] Resend Verification Link Route
 authRouter.post('/resend-verification',
-    // emailLimiter,
     resendVerificationValidator,
     userSignUpValidation, // Can reuse the same validation result handler
     resendVerificationLink

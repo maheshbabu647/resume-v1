@@ -69,7 +69,6 @@ const userSignUp = async (req, res, next) => {
 const userSignIn = async (req, res, next) => {
   try {
     const { userEmail, userPassword } = req.body
-    console.log("hey", userEmail, userPassword)
     const userExisted = await userModel.findOne({ userEmail })
 
     if (!userExisted) {

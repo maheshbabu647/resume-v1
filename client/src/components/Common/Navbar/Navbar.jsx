@@ -493,6 +493,7 @@ const Navbar = () => {
           <nav className="hidden md:flex md:items-center md:space-x-2 lg:space-x-4">
             <NavLink to="/home" className={getNavLinkClasses}>Home</NavLink>
             <NavLink to="/templates" className={getNavLinkClasses}>Templates</NavLink>
+            <NavLink to="/cover-letter/generate" className={getNavLinkClasses}>Cover Letter</NavLink>
 
             {isAuthenticated && (
               <>
@@ -585,6 +586,8 @@ const Navbar = () => {
             <div className="px-3 pt-3 pb-4 space-y-1.5">
               <NavLink to="/home" className={getMobileNavLinkClasses} onClick={closeMobileMenu}><HomeIcon size={18} className="mr-2.5" />Home</NavLink>
               <NavLink to="/templates" className={getMobileNavLinkClasses} onClick={closeMobileMenu}><LayoutTemplate size={18} className="mr-2.5" />Templates</NavLink>
+              <NavLink to="/cover-letter/generate" className={getMobileNavLinkClasses} onClick={closeMobileMenu}><LayoutTemplate size={18} className="mr-2.5" />Cover Letter</NavLink>
+
               {isAuthenticated && (
                 <>
                   <NavLink to="/dashboard" className={getMobileNavLinkClasses} onClick={closeMobileMenu}><User size={18} className="mr-2.5" />Dashboard</NavLink>

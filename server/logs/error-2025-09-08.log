@@ -1,5 +1,5 @@
-2025-09-01T16:45:11.439Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
-2025-09-01T16:45:11.441Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+2025-09-08 14:26:42 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-09-08 14:26:42 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
     at userAuthorization (file:///E:/resume-v04/server/middleware/user-authorization.js:9:19)
     at Layer.handleRequest (E:\resume-v04\server\node_modules\router\lib\layer.js:152:17)
     at next (E:\resume-v04\server\node_modules\router\lib\route.js:157:13)
@@ -10,8 +10,8 @@
     at processParams (E:\resume-v04\server\node_modules\router\index.js:582:12)
     at next (E:\resume-v04\server\node_modules\router\index.js:291:5)
     at Function.handle (E:\resume-v04\server\node_modules\router\index.js:186:3)
-2025-09-01T16:45:11.459Z [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
-2025-09-01T16:45:11.460Z [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+2025-09-08 14:26:42 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-09-08 14:26:42 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
     at userAuthorization (file:///E:/resume-v04/server/middleware/user-authorization.js:9:19)
     at Layer.handleRequest (E:\resume-v04\server\node_modules\router\lib\layer.js:152:17)
     at next (E:\resume-v04\server\node_modules\router\lib\route.js:157:13)
@@ -22,9 +22,3 @@
     at processParams (E:\resume-v04\server\node_modules\router\index.js:582:12)
     at next (E:\resume-v04\server\node_modules\router\index.js:291:5)
     at Function.handle (E:\resume-v04\server\node_modules\router\index.js:186:3)
-2025-09-01T17:10:05.132Z [ERROR]: Groq API error in enhanceResumeText:
-2025-09-01T17:10:05.133Z [ERROR]: [Resume][Enhance][Error] User: 68ab4a7b46b46afd9f445e5d - AI enhancement generation failed
-2025-09-01T17:10:05.135Z [ERROR]: Status: 500, Name: Error, Message: AI enhancement generation failed, URL: /api/resume/ai/enhance-field, Method: POST, IP: ::1
-2025-09-01T17:10:05.135Z [ERROR]: Stack: Error: AI enhancement generation failed
-    at enhanceResumeField (file:///E:/resume-v04/server/controller/resume-controller.js:355:17)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)

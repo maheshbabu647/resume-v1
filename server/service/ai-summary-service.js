@@ -318,7 +318,7 @@ export const generateAICoverLetter = async (coverLetterData) => {
           content: prompt,
         },
       ],
-      model: "llama3-8b-8192",
+      model: "llama-3.1-8b-instant",
     });
     return chatCompletion.choices[0].message.content;
   } catch (error) {
@@ -372,11 +372,10 @@ export const enhanceResumeText = async (textToEnhance, jobContext) => {
   try {
     const chatCompletion = await groq.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
-      model: "llama3-8b-8192",
+      model: "llama-3.1-8b-instant",
     });
 
     const output = chatCompletion.choices[0].message.content;
-
     try {
       const jsonResponse = JSON.parse(output);
       return jsonResponse;

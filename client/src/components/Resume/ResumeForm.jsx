@@ -353,8 +353,12 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Plus, Trash2, Sparkles, Loader2, User, Briefcase, GraduationCap, Star, Info, CheckCircle2, MessageSquareQuote, Contact, FolderKanban, X } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { 
+  Plus, Trash2, Sparkles, Loader2, User, Briefcase, GraduationCap, 
+  Star, Info, CheckCircle2, MessageSquareQuote, Contact, FolderKanban, X,
+  BadgeCheck, FileText, HandHeart, Trophy, Languages, Users, Gavel, 
+  FileCheck2, Stethoscope, Banknote, Presentation, ShieldCheck, CalendarDays 
+} from 'lucide-react';import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 
@@ -584,7 +588,21 @@ const ResumeForm = ({
         education: <GraduationCap className="h-4 w-4" />,
         skills: <Star className="h-4 w-4" />,
         summary: <MessageSquareQuote className="h-4 w-4" />,
-        projects: <FolderKanban className="h-4 w-4" />
+        projects: <FolderKanban className="h-4 w-4" />,
+        certifications: <BadgeCheck className="h-4 w-4" />,
+        publications: <FileText className="h-4 w-4" />,
+        volunteering: <HandHeart className="h-4 w-4" />,
+        awards: <Trophy className="h-4 w-4" />,
+        languages: <Languages className="h-4 w-4" />,
+        memberships: <Users className="h-4 w-4" />,
+        barAdmissions: <Gavel className="h-4 w-4" />,
+        licensure: <FileCheck2 className="h-4 w-4" />,
+        clinicalExperience: <Stethoscope className="h-4 w-4" />,
+        grants: <Banknote className="h-4 w-4" />,
+        teachingExperience: <Presentation className="h-4 w-4" />,
+        securityClearance: <ShieldCheck className="h-4 w-4" />,
+        events: <CalendarDays className="h-4 w-4" />,
+        custom: <Sparkles className="h-4 w-4" />
       };
       acc[sectionName] = {
         label: fieldDef.sectionLabel || sectionName.charAt(0).toUpperCase() + sectionName.slice(1).replace(/([A-Z])/g, ' $1').trim(),

@@ -15,6 +15,7 @@ import {
   Smartphone as SmartphoneIcon,
   GaugeCircle,
   ArrowRight,
+  Crown,
 } from 'lucide-react';
 
 const adminLinks = [
@@ -65,6 +66,12 @@ const adminLinks = [
     title: 'API Performance',
     description: 'Track API endpoint response times and identify potential bottlenecks or slow requests.',
     icon: GaugeCircle,
+  },
+  {
+    path: '/admin/monarch-dashboard',
+    title: 'The Monarch\'s Dashboard',
+    description: 'Your personal command center. Track core stats, manage daily quests, and strategize your conquest.',
+    icon: Crown,
   },
 ];
 

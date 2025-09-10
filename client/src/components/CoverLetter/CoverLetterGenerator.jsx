@@ -60,7 +60,6 @@ const CoverLetterGenerator = ({ onLetterSaved }) => {
         }
       };
       await saveCoverLetter(payload);
-      // Callback to notify parent (DashboardPage) that a letter was saved
       if(onLetterSaved) {
         onLetterSaved();
       }
