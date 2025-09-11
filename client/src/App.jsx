@@ -35,7 +35,6 @@ Sentry.init({
 });
 
 const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
-console.log("THIS IS MEA", MEASUREMENT_ID)
 ReactGA.initialize(MEASUREMENT_ID);
 
 const App = () => {
