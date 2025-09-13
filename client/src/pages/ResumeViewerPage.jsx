@@ -133,9 +133,6 @@ const ResumeViewerPage = () => {
               Back
             </Button>
             <div className="flex items-center gap-2">
-                <Button variant="outline" onClick={handlePrint}>
-                    <Printer size={16} className="mr-2" /> Print
-                </Button>
                 <Button onClick={handleDownload} disabled={isDownloading}>
                 {isDownloading ? <Loader2 size={16} className="animate-spin mr-2" /> : <Download size={16} className="mr-2" />}
                 {isDownloading ? 'Downloading...' : 'Download PDF'}

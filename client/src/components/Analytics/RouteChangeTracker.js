@@ -13,12 +13,10 @@ const RouteChangeTracker = () => {
     }
 
     ReactGA.initialize(id);
-    console.log("✅ GA initialized with:", id);
   }, []);
 
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
-    console.log("📡 Pageview logged:", location.pathname + location.search);
   }, [location]);
 
   return null;

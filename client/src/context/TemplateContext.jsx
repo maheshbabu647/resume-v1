@@ -20,7 +20,6 @@ const TemplateContextProvider = ({ children }) => {
         try {
             const data = await apiGetAllTemplates();
             // Ensure we always work with an array.
-            console.log(data)
             const templatesArray = Array.isArray(data) ? data : [];
             setTemplates(templatesArray);
             return templatesArray;

@@ -9,12 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-// CHANGED: Added Accordion components for the collapsible panel
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import {
   Dialog,
   DialogContent,
@@ -24,11 +21,9 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
-// CHANGED: Added the Brush icon
-import { Eye, Download, Save, ArrowLeft, PlusCircle, AlertCircle, RefreshCw, Edit2, CheckCircle2, Palette, Layers, Briefcase, Settings2 } from "lucide-react";
+import { Eye, Download, Save, ArrowLeft, Loader2, AlertCircle, RefreshCw, Edit2, CheckCircle2, Palette, Layers, Briefcase } from "lucide-react";
 import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner';
 import EnhancementDialog from '@/components/Resume/EnhancementDialog'
-import EditorHeader from '@/components/Resume/EditorHeader'; 
 
 // Custom Components (Lazy Loaded)
 const ResumePreview = React.lazy(() => import("@/components/Resume/ResumePreview"));
@@ -44,50 +39,58 @@ import { downloadResume as apiDownloadResume, enhanceResumeField } from "@/api/r
 import { cn } from "@/lib/utils";
 import AuthDialog from '@/components/Auth/AuthDialog.jsx';
 
-
 // Helper to get unique section properties from template definitions
-// NEW CODE
 const getSectionProperties = (definitions) => {
   if (!Array.isArray(definitions)) return {};
   return definitions.reduce((acc, field) => {
     if (field.section && !acc[field.section]) {
-      const sectionDef = definitions.find(def => def.section === field.section);
+      const sectionDef = definitions.find(def => def.section === field.section && (def.isCore !== undefined || def.recommendedFor));
       acc[field.section] = {
-        label: sectionDef?.sectionLabel || field.section.charAt(0).toUpperCase() + field.section.slice(1).replace(/([A-Z])/g, ' $1').trim(),
         isCore: sectionDef?.isCore || false,
         recommendedFor: sectionDef?.recommendedFor || null,
-        isToggleable: !sectionDef?.isCore // A section is toggleable if it is NOT core
+        isToggleable: definitions.some(def => def.section === field.section && def.type === 'group' && def.repeatable)
       };
     }
     return acc;
   }, {});
 };
 
-// REPLACE the old function at the top of ResumeEditorPage.jsx with this one:
-
-// NEW CODE
 const initializeFormDataFromDefinitions = (definitions, selectedIndustry) => {
   const content = {};
   const sectionsConfig = {};
-  if (!Array.isArray(definitions)) return { content, sectionsConfig };
+
+  if (!Array.isArray(definitions)) {
+    return { content, sectionsConfig };
+  }
 
   const uniqueSections = getSectionProperties(definitions);
 
   for (const sectionKey in uniqueSections) {
-    const { isCore, recommendedFor } = uniqueSections[sectionKey];
-    let isEnabled = isCore || !selectedIndustry || !recommendedFor || recommendedFor.includes(selectedIndustry);
-    sectionsConfig[sectionKey] = { enabled: isEnabled };
+    const { isCore, recommendedFor, isToggleable } = uniqueSections[sectionKey];
+    if (isToggleable) {
+      let isEnabled = !selectedIndustry || isCore || !recommendedFor || recommendedFor.includes(selectedIndustry);
+      sectionsConfig[sectionKey] = { enabled: isEnabled };
+    }
   }
 
   definitions.forEach(fieldDef => {
-    if (fieldDef.defaultValue !== undefined) { set(content, fieldDef.name, fieldDef.defaultValue); }
+    if (fieldDef.defaultValue !== undefined) {
+      set(content, fieldDef.name, fieldDef.defaultValue);
+    } 
     else if (fieldDef.type === 'group' && fieldDef.repeatable) {
       const sampleItem = {};
       if (Array.isArray(fieldDef.subFields)) {
-        fieldDef.subFields.forEach(subField => { sampleItem[subField.name] = subField.defaultValue !== undefined ? subField.defaultValue : subField.livePreviewPlaceholder || ''; });
+        fieldDef.subFields.forEach(subField => {
+          sampleItem[subField.name] = subField.defaultValue !== undefined 
+            ? subField.defaultValue 
+            : subField.livePreviewPlaceholder || '';
+        });
       }
-      set(content, fieldDef.name, [sampleItem]);
-    } else { set(content, fieldDef.name, fieldDef.livePreviewPlaceholder || ''); }
+      set(content, fieldDef.name, [sampleItem]); 
+    } 
+    else {
+      set(content, fieldDef.name, fieldDef.livePreviewPlaceholder || '');
+    }
   });
 
   return { content, sectionsConfig };
@@ -102,10 +105,17 @@ const ResumeEditorPage = () => {
 
   const { isAuthenticated, isLoading: isAuthLoading } = useAuthContext();
   const { templates: allTemplates, getAllTemplates, isLoadingTemplates } = useTemplateContext();
+  
+  // --- MODIFIED: Pulling all state from the context ---
   const {
     currentResumeDetail,
-    editorFormData,
-    setEditorFormData,
+    editorFormData, setEditorFormData,
+    editableResumeName, setEditableResumeName,
+    spacingMultiplier, setSpacingMultiplier,
+    selectedStylePackKey, setSelectedStylePackKey,
+    sectionOrder, setSectionOrder,
+    selectedPresetKey, setSelectedPresetKey,
+    selectedIndustry, setSelectedIndustry,
     isSavingResume,
     resumeError,
     loadResumeForEditor,
@@ -115,12 +125,11 @@ const ResumeEditorPage = () => {
     isLoadingCurrentResume
   } = useResumeContext();
 
-  // Component State
+  // --- REMOVED Local state that is now in context ---
   const [mode, setMode] = useState(null);
   const [pageIsLoading, setPageIsLoading] = useState(true);
   const [pageError, setPageError] = useState(null);
   const [currentTemplateForEditor, setCurrentTemplateForEditor] = useState(null);
-  const [editableResumeName, setEditableResumeName] = useState('');
   const [isEditingName, setIsEditingName] = useState(false);
   const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
   const [showFeedbackDialog, setShowFeedbackDialog] = useState(false);
@@ -133,17 +142,8 @@ const ResumeEditorPage = () => {
   const [saveStatus, setSaveStatus] = useState('idle');
   const [showPlaceholderWarning, setShowPlaceholderWarning] = useState(false);
   const [pendingAction, setPendingAction] = useState(null);
-  const [isAddSectionDialogOpen, setIsAddSectionDialogOpen] = useState(false);
-
-  // State for modular templates
-  const [spacingMultiplier, setSpacingMultiplier] = useState(1);
-  const [selectedStylePackKey, setSelectedStylePackKey] = useState(null);
-  const [sectionOrder, setSectionOrder] = useState(null);
-  const [selectedPresetKey, setSelectedPresetKey] = useState(null);
-  const [selectedIndustry, setSelectedIndustry] = useState(null);
-  const [zoomLevel, setZoomLevel] = useState(1);
   
-  // --- PAGE SETUP EFFECT ---
+  // --- MODIFIED: Simplified Page Setup Effect ---
   useEffect(() => {
     const setupPage = async () => {
       if (isAuthLoading) return;
@@ -151,110 +151,45 @@ const ResumeEditorPage = () => {
       setPageIsLoading(true);
       setPageError(null);
       const { presetKey, virtualPreset } = location.state || {};
+      
       try {
         if (existingResumeId) {
           setMode('edit');
           const loadedResume = await loadResumeForEditor(existingResumeId);
           if (!loadedResume) throw new Error("Failed to load your resume.");
           
-          const template = loadedResume.templateId;
-          setCurrentTemplateForEditor(template);
-
+          setCurrentTemplateForEditor(loadedResume.templateId);
+          // Data migration logic remains, just in case
           if (!loadedResume.resumeData.content || !loadedResume.resumeData.sectionsConfig) {
-              const migratedData = { content: loadedResume.resumeData, sectionsConfig: initializeFormDataFromDefinitions(template.templateFieldDefinition, loadedResume.selectedIndustry).sectionsConfig };
+              const migratedData = { content: loadedResume.resumeData, sectionsConfig: initializeFormDataFromDefinitions(loadedResume.templateId.templateFieldDefinition, loadedResume.selectedIndustry).sectionsConfig };
               setEditorFormData(migratedData);
-          } else {
-              setEditorFormData(loadedResume.resumeData);
           }
-          
-          setEditableResumeName(loadedResume.resumeName || 'Untitled Resume');
-          setSpacingMultiplier(loadedResume.spacingMultiplier || 1);
-          setSelectedIndustry(loadedResume.selectedIndustry || null);
-          
-          const initialStyleKey = loadedResume.stylePackKey || template.templateComponents.stylePacks?.[0]?.key || null;
-          const initialOrder = loadedResume.sectionOrder || template.templateComponents.sectionPresets?.[0]?.order || null;
-          setSelectedStylePackKey(initialStyleKey);
-          setSectionOrder(initialOrder);
-
-          const initialPreset = template.templateComponents.sectionPresets?.find(p => isEqual(p.order, initialOrder));
-          setSelectedPresetKey(initialPreset?.key || null);
 
         } else if (newResumeTemplateId) {
-          const queryParams = new URLSearchParams(location.search);
-          const industryFromQuery = queryParams.get('industry');
-          setSelectedIndustry(industryFromQuery);
-
+          setMode('create');
           const isReturningFromPreview = currentResumeDetail?.templateId?._id === newResumeTemplateId && editorFormData?.content;
 
+          // Only initialize a new resume if it's the first time on this page.
+          // On return, the context already has the correct "dirty" state.
           if (!isReturningFromPreview) {
-            setMode('create');
             let templates = allTemplates.length > 0 ? allTemplates : await getAllTemplates();
             const targetTemplate = templates.find(t => t._id === newResumeTemplateId);
             if (!targetTemplate) throw new Error(`Template with ID ${newResumeTemplateId} not found.`);
             
             setCurrentTemplateForEditor(targetTemplate);
-            prepareNewResumeForEditor(targetTemplate); 
 
-            // This block determines the initial editor settings based on the user's choice.
-            let initialStyleKey = null;
-            let initialOrder = null;
-            let initialPresetKey = null;
-            let initialIndustry = null;
-
-            if (presetKey) {
-              // Case 1: A curated preset was selected.
-              console.log(`Applying curated preset: ${presetKey}`);
-              const preset = targetTemplate.presets.find(p => p.key === presetKey);
-              if (preset) {
-                initialStyleKey = preset.stylePackKey;
-                const sectionPreset = targetTemplate.templateComponents.sectionPresets.find(sp => sp.key === preset.sectionPresetKey);
-                initialOrder = sectionPreset?.order;
-                initialPresetKey = sectionPreset?.key; // Set the key for the dropdown
-                initialIndustry = preset.industry;
-              }
-            } else if (virtualPreset) {
-              // Case 2: A custom combination was built.
-              console.log('Applying virtual preset (combination)', virtualPreset);
-              initialStyleKey = virtualPreset.stylePackKey;
-              const sectionPreset = targetTemplate.templateComponents.sectionPresets.find(sp => sp.key === virtualPreset.sectionPresetKey);
-              initialOrder = sectionPreset?.order;
-              initialPresetKey = sectionPreset?.key;
-              initialIndustry = virtualPreset.industry;
-            }
-
-            // Case 3: User skipped or no valid preset was found. Fallback to template defaults.
-            if (!initialOrder) {
-              console.log('No preset found or skipped. Applying template defaults.');
-              const defaultPreset = targetTemplate.templateComponents.sectionPresets?.[0];
-              const defaultStyleKey = targetTemplate.templateComponents.stylePacks?.[0]?.key;
-              initialOrder = defaultPreset?.order || null;
-              initialPresetKey = defaultPreset?.key || null;
-              initialStyleKey = defaultStyleKey || null;
-            }
+            // Let context handle setting up the new resume with chosen preset/virtual preset
+            prepareNewResumeForEditor(targetTemplate, { presetKey, virtualPreset });
             
-            // Apply the determined settings to the component's state.
-            setSelectedStylePackKey(initialStyleKey);
-            setSectionOrder(initialOrder);
-            setSelectedPresetKey(initialPresetKey);
-            setSelectedIndustry(initialIndustry);
-
-            // Initialize the form data with the chosen industry to toggle sections correctly.
+            // Initialize form data based on the industry set by prepareNewResumeForEditor
+            const initialIndustry = virtualPreset?.industry || targetTemplate.presets.find(p => p.key === presetKey)?.industry;
             const initialData = initializeFormDataFromDefinitions(targetTemplate.templateFieldDefinition, initialIndustry);
             setEditorFormData(initialData);
-            setEditableResumeName(initialIndustry ? `My ${initialIndustry} Resume` : `My New ${targetTemplate.templateName || 'Resume'}`);
-              
-          } else {
-              setMode('create');
-              const returningTemplate = currentResumeDetail.templateId;
-              setCurrentTemplateForEditor(returningTemplate);              
-              setEditableResumeName(editableResumeName || `My New ${currentResumeDetail.templateId.templateName || 'Resume'}`);
 
-              const defaultStyleKey = returningTemplate.templateComponents.stylePacks?.[0]?.key || null;
-              const defaultPreset = returningTemplate.templateComponents.sectionPresets?.[0];
-              setSelectedStylePackKey(defaultStyleKey);
-              setSectionOrder(defaultPreset?.order || null);
-              setSelectedPresetKey(defaultPreset?.key || null);
-              setSpacingMultiplier(1);
+          } else {
+            // FIX: This block is now safe. It no longer resets state.
+            // On return, just ensure the template is set for rendering. State is already in context.
+            setCurrentTemplateForEditor(currentResumeDetail.templateId);
           }
         } else {
           throw new Error("Invalid page access.");
@@ -268,9 +203,8 @@ const ResumeEditorPage = () => {
     
     setupPage();
     
-  }, [existingResumeId, newResumeTemplateId, isAuthenticated, isAuthLoading, location.search]);
+  }, [existingResumeId, newResumeTemplateId, isAuthenticated, isAuthLoading]);
 
-  // --- EFFECT FOR AUTO-FOCUSING NAME INPUT ---
   useEffect(() => {
     if (isEditingName && nameInputRef.current) {
       nameInputRef.current.focus();
@@ -278,30 +212,18 @@ const ResumeEditorPage = () => {
     }
   }, [isEditingName]);
 
-  // --- CLEANUP & ERROR EFFECTS ---
   useEffect(() => { return () => { if (!window.location.pathname.startsWith('/resume/')) clearCurrentEditorData(); }; }, [location.pathname, clearCurrentEditorData]);
   useEffect(() => { if (resumeError && saveStatus === 'saving') { setFeedbackDetailsForDialog({ title: 'Operation Failed', message: resumeError.message || 'An unexpected error occurred.', type: 'error' }); setShowFeedbackDialog(true); } }, [resumeError, saveStatus]);
 
-  // --- FORM DATA HANDLERS ---
-  // const handleSimpleChange = useCallback((fieldPath, value) => { setIsDirty(true); setEditorFormData(prev => set(cloneDeep(prev), `content.${fieldPath}`, value)); }, [setEditorFormData]);
-  // const handleArrayItemChange = useCallback((arrayPath, idx, field, value) => { setIsDirty(true); setEditorFormData(prev => set(cloneDeep(prev), `content.${arrayPath}[${idx}].${field}`, value)); }, [setEditorFormData]);
-  // const handleAddItemToArray = useCallback((arrayPath, item = {}) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); const a = get(d, `content.${arrayPath}`, []); a.push(item); set(d, `content.${arrayPath}`, a); return d; }); }, [setEditorFormData]);
-  // const handleRemoveItemFromArray = useCallback((arrayPath, idx) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); const a = get(d, `content.${arrayPath}`, []); a.splice(idx, 1); set(d, `content.${arrayPath}`, a); return d; }); }, [setEditorFormData]);
-  // const handleSectionToggle = useCallback((sectionKey) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); const s = get(d, `sectionsConfig.${sectionKey}.enabled`, false); set(d, `sectionsConfig.${sectionKey}.enabled`, !s); return d; }); }, [setEditorFormData]);
-  // --- FORM DATA HANDLERS ---
   const handleSimpleChange = useCallback((fieldPath, value) => { setIsDirty(true); setEditorFormData(prev => set(cloneDeep(prev), `content.${fieldPath}`, value)); }, [setEditorFormData]);
   const handleArrayItemChange = useCallback((arrayPath, idx, field, value) => { setIsDirty(true); setEditorFormData(prev => set(cloneDeep(prev), `content.${arrayPath}[${idx}].${field}`, value)); }, [setEditorFormData]);
   const handleAddItemToArray = useCallback((arrayPath, item = {}) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); const a = get(d, `content.${arrayPath}`); const n = Array.isArray(a) ? [...a] : []; n.push(item); set(d, `content.${arrayPath}`, n); return d; }); }, [setEditorFormData]);
   const handleRemoveItemFromArray = useCallback((arrayPath, idx) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); const a = get(d, `content.${arrayPath}`); if (!Array.isArray(a)) return d; const n = [...a]; n.splice(idx, 1); set(d, `content.${arrayPath}`, n); return d; }); }, [setEditorFormData]);
   const handleSectionToggle = useCallback((sectionKey) => { setIsDirty(true); setEditorFormData(prev => { const d = cloneDeep(prev); set(d, `sectionsConfig.${sectionKey}.enabled`, !get(d, `sectionsConfig.${sectionKey}.enabled`, false)); return d; }); }, [setEditorFormData]);
   
-  const handleAddChosenSection = (sectionKey) => {
-    handleSectionToggle(sectionKey); // Reuses the existing toggle logic
-    setIsAddSectionDialogOpen(false); // Closes the dialog after adding
-  };
+  // --- MODIFIED: Handlers now use setters from context ---
+  const handleStylePackChange = useCallback((key) => { setIsDirty(true); setSelectedStylePackKey(key); }, [setSelectedStylePackKey]);
   
-  // --- DESIGN & METADATA HANDLERS ---
-  const handleStylePackChange = useCallback((key) => { setIsDirty(true); setSelectedStylePackKey(key); }, []);
   const handlePresetChange = useCallback((key) => {
     const preset = currentTemplateForEditor.templateComponents.sectionPresets.find(p => p.key === key);
     if (preset) {
@@ -309,29 +231,32 @@ const ResumeEditorPage = () => {
       setSelectedPresetKey(key);
       setSectionOrder(preset.order);
     }
-  }, [currentTemplateForEditor]);
-  const handleSpacingChange = useCallback((value) => { setIsDirty(true); setSpacingMultiplier(value[0]); }, []);
+  }, [currentTemplateForEditor, setSelectedPresetKey, setSectionOrder]);
+  
+  const handleSpacingChange = useCallback((value) => { setIsDirty(true); setSpacingMultiplier(value[0]); }, [setSpacingMultiplier]);
+  
   const handleResumeNameChange = (e) => { setIsDirty(true); setEditableResumeName(e.target.value); };
   
-  // NEW CODE
-const handleIndustryChange = useCallback((industry) => {
+  const handleIndustryChange = useCallback((industry) => {
     setIsDirty(true);
     setSelectedIndustry(industry);
+
     setEditorFormData(prev => {
         const newFormData = cloneDeep(prev);
         const definitions = currentTemplateForEditor.templateFieldDefinition;
         const sectionProps = getSectionProperties(definitions);
-        for (const sectionKey in sectionProps) {
+
+        for (const sectionKey in newFormData.sectionsConfig) {
             const props = sectionProps[sectionKey];
-            const isEnabled = props.isCore || !industry || !props.recommendedFor || props.recommendedFor.includes(industry);
-            if (!newFormData.sectionsConfig[sectionKey]) newFormData.sectionsConfig[sectionKey] = {};
-            newFormData.sectionsConfig[sectionKey].enabled = isEnabled;
+            if (props && props.isToggleable) {
+                const isEnabled = props.isCore || !props.recommendedFor || props.recommendedFor.includes(industry);
+                newFormData.sectionsConfig[sectionKey].enabled = isEnabled;
+            }
         }
         return newFormData;
     });
-}, [currentTemplateForEditor, setEditorFormData]);
+  }, [currentTemplateForEditor, setEditorFormData, setSelectedIndustry]);
 
-  // --- ACTION HANDLERS ---
   const handleSaveResume = async () => {
     if (hasUntouchedPlaceholders(editorFormData.content)) {
       setPendingAction('save');
@@ -348,15 +273,10 @@ const handleIndustryChange = useCallback((industry) => {
       return;
     }
     setSaveStatus('saving');
-    console.log(selectedIndustry)
-    const savedResult = await saveOrUpdateCurrentResume(
-      editorFormData,
-      editableResumeName.trim(),
-      spacingMultiplier,
-      sectionOrder,
-      selectedStylePackKey,
-      selectedIndustry
-    );
+
+    // --- MODIFIED: `saveOrUpdateCurrentResume` no longer needs arguments ---
+    const savedResult = await saveOrUpdateCurrentResume();
+
     if (savedResult?._id) {
       setFeedbackDetailsForDialog({ title: 'Success!', message: 'Resume saved successfully!', type: 'success' });
       setShowFeedbackDialog(true);
@@ -451,7 +371,6 @@ const handleIndustryChange = useCallback((industry) => {
     setPendingAction(null);
   };
 
-  // --- UTILITY & HELPER FUNCTIONS ---
   const hasUntouchedPlaceholders = (data) => {
     if (typeof data === 'string') {
       return /\[.*\]/.test(data);
@@ -491,7 +410,6 @@ const handleIndustryChange = useCallback((industry) => {
   
   const handleDialogClose = (isOpen) => !isOpen && setShowFeedbackDialog(false);
   
-  // --- MEMOIZED CALCULATIONS ---
   const progressData = useMemo(() => {
     const definitions = currentTemplateForEditor?.templateFieldDefinition;
     if (!definitions || !editorFormData?.content) {
@@ -569,7 +487,6 @@ const handleIndustryChange = useCallback((industry) => {
     return getSectionProperties(currentTemplateForEditor?.templateFieldDefinition || []);
   }, [currentTemplateForEditor]);
 
-  // --- RENDER LOGIC ---
   const isInitiallyLoading = pageIsLoading || isAuthLoading || isLoadingTemplates || (mode === 'edit' && isLoadingCurrentResume);
 
   if (isInitiallyLoading) {
@@ -593,21 +510,77 @@ const handleIndustryChange = useCallback((industry) => {
     <>
       <Helmet><title>{seoTitle}</title></Helmet>
       <div className="flex flex-col min-h-screen bg-muted/20 dark:bg-background text-foreground">
-        <EditorHeader
-        resumeName={editableResumeName}
-        templateName={currentTemplateForEditor?.templateName}
-        progressData={progressData}
-        isDirty={isDirty}
-        saveStatus={saveStatus}
-        isDownloadingPdf={isDownloadingPdf}
-        isEditingName={isEditingName}
-        setIsEditingName={setIsEditingName}
-        onNameChange={handleResumeNameChange}
-        onBack={() => navigate(existingResumeId ? '/dashboard' : '/templates')}
-        onPreview={handlePreviewPage}
-        onDownloadPdf={handleDownloadPdf}
-        onSave={handleSaveResume}
-      />
+        <header className="sticky top-0 z-30 bg-card/95 backdrop-blur-md border-b border-border shadow-sm px-2 sm:px-4 py-2.5">
+          <div className="container mx-auto flex items-center justify-between gap-4">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-1 sm:gap-2">
+                <Button variant="ghost" size="icon" onClick={() => navigate(existingResumeId ? '/dashboard' : '/templates')} aria-label="Go back" className="h-8 w-8 sm:h-9 sm:w-9 text-muted-foreground hover:bg-accent hover:text-accent-foreground flex-shrink-0">
+                  <ArrowLeft size={18} />
+                </Button>
+                <div className="flex items-center gap-1.5 min-w-0 group">
+                  {isEditingName ? (
+                    <Input
+                      ref={nameInputRef}
+                      value={editableResumeName}
+                      onChange={handleResumeNameChange}
+                      placeholder="Untitled Resume"
+                      className="flex-grow min-w-0 text-base sm:text-lg font-semibold p-1 h-9 border-input focus-visible:ring-1 focus-visible:ring-primary truncate bg-transparent"
+                      aria-label="Resume Name"
+                      onBlur={() => setIsEditingName(false)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          setIsEditingName(false);
+                        }
+                      }}
+                    />
+                  ) : (
+                    <h2 
+                      className="flex-grow min-w-0 text-base sm:text-lg font-semibold p-1 h-9 truncate cursor-pointer"
+                      onClick={() => setIsEditingName(true)}
+                    >
+                      {editableResumeName || "Untitled Resume"}
+                    </h2>
+                  )}
+                  <Edit2 
+                    size={14} 
+                    className="text-muted-foreground/60 group-hover:text-primary transition-colors cursor-pointer flex-shrink-0"
+                    onClick={() => setIsEditingName(true)}
+                  />
+                </div>
+              </div>
+              <div className="mt-1.5 pl-10 sm:pl-11 max-w-xs">
+                  <div className="flex justify-between items-center mb-1">
+                      <p className="text-xs font-medium text-muted-foreground">Progress</p>
+                      <p className="text-xs font-semibold text-foreground">{progressData.completed} / {progressData.total}</p>
+                  </div>
+                  <div className="w-full bg-muted rounded-full h-1.5">
+                      <div 
+                          className={cn("h-1.5 rounded-full transition-all duration-300 ease-in-out", progressBarColor)}
+                          style={{ width: `${progressData.progress}%` }}
+                          role="progressbar"
+                      ></div>
+                  </div>
+              </div>
+            </div>
+            <div className="flex flex-col items-end flex-shrink-0">
+                <p className="text-xs text-muted-foreground mb-1.5">Using Template: <span className="font-medium text-foreground">{currentTemplateForEditor?.templateName || '...'}</span></p>
+                <div className="flex items-center gap-1 sm:gap-1.5">
+                    <Button variant="outline" size="sm" onClick={handlePreviewPage} className="border-border text-xs sm:text-sm h-8 px-2 sm:px-3"><Eye size={14} className="sm:mr-1.5" /> <span className="hidden sm:inline">Preview</span></Button>
+                    <Button variant="outline" size="sm" onClick={handleDownloadPdf} disabled={isDownloadingPdf || saveStatus === 'saving'} className="border-border text-xs sm:text-sm h-8 px-2 sm:px-3">
+                      {isDownloadingPdf ? <Loader2 size={14} className="animate-spin sm:mr-1.5" /> : <Download size={14} className="sm:mr-1.5" />} <span className="hidden sm:inline">{isDownloadingPdf ? '...' : 'PDF'}</span>
+                    </Button>
+                    <Button
+                      size="sm"
+                      onClick={handleSaveResume}
+                      disabled={saveStatus === 'saving' || !isDirty}
+                      className={cn("text-xs sm:text-sm h-8 px-2 sm:px-3 w-[88px] transition-all", saveStatus === 'success' && 'bg-green-500 hover:bg-green-600')}
+                    >
+                      {saveStatus === 'saving' ? <Loader2 size={16} className="animate-spin" /> : saveStatus === 'success' ? <span className="flex items-center"><CheckCircle2 size={14} className="mr-1.5" /> Saved!</span> : <span className="flex items-center"><Save size={14} className="mr-1.5" /> {isDirty ? 'Save' : 'Saved'}</span>}
+                    </Button>
+                </div>
+            </div>
+          </div>
+        </header>
 
         <main className="flex-grow container mx-auto px-1 sm:px-2 md:px-4 py-3 md:py-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 md:gap-4 items-start">
@@ -618,19 +591,7 @@ const handleIndustryChange = useCallback((industry) => {
               <Card className="bg-card border-border shadow-xl">
                 <CardContent className="p-0 max-h-[calc(100vh-120px)] overflow-y-auto">
                   <Suspense fallback={<div className="p-6 min-h-[400px] flex items-center justify-center"><LoadingSpinner label="Loading form..." /></div>}>
-<ResumeForm 
-  templateFieldDefinition={currentTemplateForEditor?.templateFieldDefinition || []}
-  formData={editorFormData || {}}
-  onFormChange={handleSimpleChange}
-  onArrayChange={handleArrayItemChange}
-  onAddItem={handleAddItemToArray}
-  onRemoveItem={handleRemoveItemFromArray}
-  onSectionToggle={handleSectionToggle}
-  onEnhanceField={handleEnhanceField}
-  isEnhancing={isEnhancing}
-  onOpenAddSectionDialog={() => setIsAddSectionDialogOpen(true)}
-  sectionProperties={sectionProperties}
-/>
+                    <ResumeForm {...{templateFieldDefinition: currentTemplateForEditor?.templateFieldDefinition || [], formData: editorFormData || {}, onFormChange: handleSimpleChange, onArrayChange: handleArrayItemChange, onAddItem: handleAddItemToArray, onRemoveItem: handleRemoveItemFromArray, onSectionToggle: handleSectionToggle, onEnhanceField: handleEnhanceField, isEnhancing, selectedIndustry, sectionProperties}} />
                   </Suspense>
                 </CardContent>
               </Card>
@@ -640,74 +601,58 @@ const handleIndustryChange = useCallback((industry) => {
               initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 0.2 }} 
               className="lg:sticky lg:top-[75px] h-fit lg:col-span-7"
             >   
-            {/* --- CHANGED: Old controls card replaced with the new Toolbar --- */}
-              <div className="flex items-center justify-between gap-4 p-3 border border-border bg-card rounded-lg shadow-sm mb-3">
-                {/* Spacing Control */}
-                <div className="flex-grow space-y-2">
-                  <div className="flex justify-between items-center">
-                    <Label htmlFor="spacing-slider" className="text-sm font-medium">Spacing</Label>
-                    <span className="text-sm font-mono text-muted-foreground">{spacingMultiplier.toFixed(2)}x</span>
-                  </div>
-                  <Slider id="spacing-slider" min={0.8} max={1.5} step={0.05} value={[spacingMultiplier]} onValueChange={handleSpacingChange} />
-                </div>
+              <Card className="bg-card border-border rounded-xl shadow-sm mb-3">
+                <CardContent className="p-4 space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {/* Style Pack Selector */}
+                      <div className="space-y-2">
+                        <Label htmlFor="style-pack-selector" className="flex items-center text-sm font-medium text-muted-foreground"><Palette size={14} className="mr-2"/> Style / Theme</Label>
+                        <Select value={selectedStylePackKey || ''} onValueChange={handleStylePackChange}>
+                          <SelectTrigger id="style-pack-selector"><SelectValue placeholder="Select a style..." /></SelectTrigger>
+                          <SelectContent>
+                            {currentTemplateForEditor?.templateComponents?.stylePacks?.map(pack => (
+                              <SelectItem key={pack.key} value={pack.key}>{pack.name}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
 
-                {/* Customization Popover */}
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button variant="outline" className="ml-4 flex-shrink-0">
-                      <Settings2 className="mr-2 h-4 w-4" />
-                      Customize
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-80 p-4">
-                    <div className="grid gap-4">
-                      <div className="space-y-1">
-                        <h4 className="font-medium leading-none">Advanced Customization</h4>
-                        <p className="text-sm text-muted-foreground">Tailor your resume's style, layout, and industry focus.</p>
+                      {/* Section Order Preset Selector */}
+                      <div className="space-y-2">
+                        <Label htmlFor="preset-selector" className="flex items-center text-sm font-medium text-muted-foreground"><Layers size={14} className="mr-2"/> Section Order</Label>
+                        <Select value={selectedPresetKey || ''} onValueChange={handlePresetChange}>
+                          <SelectTrigger id="preset-selector"><SelectValue placeholder="Select an order..." /></SelectTrigger>
+                          <SelectContent>
+                            {currentTemplateForEditor?.templateComponents?.sectionPresets?.map(preset => (
+                              <SelectItem key={preset.key} value={preset.key}>{preset.name}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </div>
-                      <div className="grid gap-4 pt-2">
-                        {/* Style Pack Selector */}
-                        <div className="space-y-2">
-                          <Label htmlFor="style-pack-selector" className="flex items-center text-sm font-medium"><Palette size={14} className="mr-2"/> Style / Theme</Label>
-                          <Select value={selectedStylePackKey || ''} onValueChange={handleStylePackChange}>
-                            <SelectTrigger id="style-pack-selector"><SelectValue placeholder="Select a style..." /></SelectTrigger>
-                            <SelectContent>
-                              {currentTemplateForEditor?.templateComponents?.stylePacks?.map(pack => (
-                                <SelectItem key={pack.key} value={pack.key}>{pack.name}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        {/* Section Order Preset Selector */}
-                        <div className="space-y-2">
-                          <Label htmlFor="preset-selector" className="flex items-center text-sm font-medium"><Layers size={14} className="mr-2"/> Section Order</Label>
-                          <Select value={selectedPresetKey || ''} onValueChange={handlePresetChange}>
-                            <SelectTrigger id="preset-selector"><SelectValue placeholder="Select an order..." /></SelectTrigger>
-                            <SelectContent>
-                              {currentTemplateForEditor?.templateComponents?.sectionPresets?.map(preset => (
-                                <SelectItem key={preset.key} value={preset.key}>{preset.name}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        {/* Industry Selector */}
-                        <div className="space-y-2">
-                          <Label htmlFor="industry-selector" className="flex items-center text-sm font-medium"><Briefcase size={14} className="mr-2"/> Industry</Label>
-                          <Select value={selectedIndustry || ''} onValueChange={handleIndustryChange} disabled={industryOptions.length === 0}>
-                            <SelectTrigger id="industry-selector"><SelectValue placeholder="Select industry..." /></SelectTrigger>
-                            <SelectContent>
-                              {industryOptions.length > 0 ? industryOptions.map(industry => (
-                                <SelectItem key={industry} value={industry}>{industry}</SelectItem>
-                              )) : <div className="px-2 py-1.5 text-sm text-muted-foreground">No industries defined</div>}
-                            </SelectContent>
-                          </Select>
-                        </div>
+
+                      {/* Industry Selector */}
+                      <div className="space-y-2">
+                        <Label htmlFor="industry-selector" className="flex items-center text-sm font-medium text-muted-foreground"><Briefcase size={14} className="mr-2"/> Industry</Label>
+                        <Select value={selectedIndustry || ''} onValueChange={handleIndustryChange} disabled={industryOptions.length === 0}>
+                          <SelectTrigger id="industry-selector"><SelectValue placeholder="Select industry..." /></SelectTrigger>
+                          <SelectContent>
+                            {industryOptions.length > 0 ? industryOptions.map(industry => (
+                              <SelectItem key={industry} value={industry}>{industry}</SelectItem>
+                            )) : <div className="px-2 py-1.5 text-sm text-muted-foreground">No industries defined</div>}
+                          </SelectContent>
+                        </Select>
                       </div>
-                    </div>
-                  </PopoverContent>
-                </Popover>
-              </div>
-              {/* --- END OF CHANGE --- */}
+                  </div>
+                  {/* Spacing Slider */}
+                  <div className="space-y-2 pt-2">
+                      <Label htmlFor="spacing-slider" className="text-sm font-medium text-muted-foreground">Spacing</Label>
+                      <div className="flex items-center gap-4">
+                          <Slider id="spacing-slider" min={0.8} max={1.5} step={0.05} value={[spacingMultiplier]} onValueChange={handleSpacingChange} />
+                          <span className="text-sm font-mono text-foreground w-12 text-center">{spacingMultiplier.toFixed(2)}x</span>
+                      </div>
+                  </div>
+                </CardContent>
+              </Card>
 
               <Suspense fallback={<div className="flex justify-center items-center min-h-[calc(100vh-100px)] bg-muted/20 rounded-xl border border-border"><LoadingSpinner label="Loading preview..." /></div>}>
                 <ResumePreview 
@@ -720,8 +665,6 @@ const handleIndustryChange = useCallback((industry) => {
                   stylePacks={currentTemplateForEditor?.templateComponents?.stylePacks}
                   selectedStylePackKey={selectedStylePackKey}
                   sectionOrder={sectionOrder}
-                  zoomLevel={zoomLevel}
-                  setZoomLevel={setZoomLevel}
                 />
               </Suspense>
             </motion.div>
@@ -772,40 +715,6 @@ const handleIndustryChange = useCallback((industry) => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-      <Dialog open={isAddSectionDialogOpen} onOpenChange={setIsAddSectionDialogOpen}>
-  <DialogContent className="sm:max-w-md bg-card">
-    <DialogHeader>
-      <DialogTitle className="flex items-center text-lg font-semibold">
-        <PlusCircle className="h-5 w-5 mr-2 text-primary" />
-        Add New Section
-      </DialogTitle>
-    </DialogHeader>
-    <DialogDescription>
-      Select a section from the list below to add it to your resume.
-    </DialogDescription>
-    <div className="py-4 max-h-80 overflow-y-auto space-y-2 pr-2">
-      {Object.keys(sectionProperties)
-        // Filter to show only sections that can be toggled AND are currently disabled
-        .filter(key => sectionProperties[key].isToggleable && !get(editorFormData, `sectionsConfig.${key}.enabled`, false))
-        .map(key => (
-          <Button 
-            key={key} 
-            variant="outline" 
-            className="w-full justify-start" 
-            onClick={() => handleAddChosenSection(key)}
-          >
-            {sectionProperties[key].label}
-          </Button>
-        ))
-      }
-    </div>
-    <DialogFooter>
-        <DialogClose asChild>
-            <Button type="button" variant="secondary">Cancel</Button>
-        </DialogClose>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>
     </>
   );
 };

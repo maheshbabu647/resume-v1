@@ -78,6 +78,15 @@ const ResumeContextProvider = ({ children }) => {
         }
     }, [isAuthenticated]);
 
+    const updateCurrentResumeUISettings = useCallback((newSettings) => {
+    if (!currentResumeDetail) return;
+
+    setCurrentResumeDetail(prevDetails => ({
+        ...prevDetails,
+        ...newSettings,
+    }));
+    }, [currentResumeDetail]);
+
     const prepareNewResumeForEditor = useCallback((template) => {
         if (!template || !template._id || !template.templateComponents) {
             console.error('ResumeContext: prepareNewResumeForEditor - Invalid or incomplete template object provided.', template);
@@ -92,6 +101,10 @@ const ResumeContextProvider = ({ children }) => {
             templateId: template,
             resumeData: {},
             resumeName: `My New ${template.templateName || 'Resume'}`,
+            spacingMultiplier: 1,
+            sectionOrder: template.templateComponents?.sectionPresets?.[0]?.order || null,
+            stylePackKey: template.templateComponents?.stylePacks?.[0]?.key || null,
+            selectedIndustry: null,
         });
         setEditorFormData({});
         setResumeError(null);
@@ -204,7 +217,8 @@ const ResumeContextProvider = ({ children }) => {
         prepareNewResumeForEditor,
         saveOrUpdateCurrentResume,
         deleteResumeById,
-        clearCurrentEditorData
+        clearCurrentEditorData,
+        updateCurrentResumeUISettings
     };
 
     return (
