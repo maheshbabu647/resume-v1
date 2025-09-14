@@ -201,7 +201,6 @@ const resendVerificationLink = async (req, res, next) => {
 
     // Asynchronously send a new verification email with a code
     const newVerificationCode = await sendVerificationMail(user._id, user.userName, user.userEmail);
-
     if (newVerificationCode) {
       // Hash the new code and update the user document
       user.verificationCode = crypto.createHash('sha256').update(newVerificationCode).digest('hex');
