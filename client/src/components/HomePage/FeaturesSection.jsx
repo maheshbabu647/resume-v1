@@ -57,7 +57,7 @@ const FeaturesSection = () => {
 
           {/* Card 2: Cover Letter Builder */}
           <NavLink
-            to="/cover-letter"
+            to="/cover-letter/generate"
             className="group relative block overflow-hidden p-8 bg-card rounded-xl border border-border shadow-sm transition-all duration-300 hover:border-primary/60 hover:shadow-primary/10"
           >
             {/* Glow Effect */}

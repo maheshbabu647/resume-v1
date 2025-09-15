@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import { authStatus, userSignin, userSignout, userSignup } from '../api/authServiceApi.js';
+import { authStatus, userSignin, userSignout, userSignup, resendVerification } from '../api/authServiceApi.js';
 
 const AuthContext = createContext(null);
 
@@ -45,15 +45,59 @@ const AuthContextProvider = ({ children }) => {
     /**
      * Handles the user sign-in process.
      */
+    // const signin = useCallback(async (signinCredentials) => {
+    //     setAuthState(prev => ({...prev, isLoading: true, error: null}));
+    //     try {
+    //         await userSignin(signinCredentials);
+    //         const freshUserData = await checkStatus();
+    //         return freshUserData;
+    //     } catch (error) {
+    //         // Extracts the string message from the error object before setting state.
+    //         const rawError = error.response?.data;
+    //         let finalMessage = 'An unknown error occurred.';
+
+    //         if (rawError) {
+    //             if (typeof rawError === 'string') {
+    //                 finalMessage = rawError;
+    //             } else if (rawError.message) { // Handles objects like { message: '...' } or { field: '...', message: '...' }
+    //                 finalMessage = rawError.message;
+    //             } else if (rawError.msg) { // Also handles objects with a 'msg' property
+    //                 finalMessage = rawError.msg;
+    //             }
+    //         } else if (error.message) {
+    //             finalMessage = error.message; // Fallback to generic JS error message
+    //         }
+
+    //         setAuthState(prev => ({ ...prev, isLoading: false, error: finalMessage }));
+    //         return null;
+    //     }
+    // }, [checkStatus]);
+
     const signin = useCallback(async (signinCredentials) => {
-        setAuthState(prev => ({...prev, isLoading: true, error: null}));
+        // The context no longer sets its own loading state here.
+        // The component calling this function is responsible for its UI loading state.
         try {
             await userSignin(signinCredentials);
-            const freshUserData = await checkStatus();
+            const freshUserData = await checkStatus(); // checkStatus will update user data and set isLoading: false
             return freshUserData;
         } catch (error) {
-            const errorMessage = error.response?.data || { message: error.message || 'An unknown error occurred.' };
-            setAuthState(prev => ({ ...prev, isLoading: false, error: errorMessage }));
+            // Extracts and sets the error message in the context state.
+            const rawError = error.response?.data;
+            let finalMessage = 'An unknown error occurred.';
+
+            if (rawError) {
+                if (typeof rawError === 'string') {
+                    finalMessage = rawError;
+                } else if (rawError.message) {
+                    finalMessage = rawError.message;
+                } else if (rawError.msg) {
+                    finalMessage = rawError.msg;
+                }
+            } else if (error.message) {
+                finalMessage = error.message;
+            }
+            
+            setAuthState(prev => ({ ...prev, error: finalMessage }));
             return null;
         }
     }, [checkStatus]);
@@ -61,15 +105,75 @@ const AuthContextProvider = ({ children }) => {
     /**
      * Handles the user sign-up process.
      */
+    // const signup = useCallback(async (signupCredentials) => {
+    //     setAuthState(prev => ({...prev, isLoading: true, error: null}));
+    //     try {
+    //         await userSignup(signupCredentials);
+    //         setAuthState(prev => ({...prev, isLoading: false}));
+    //         return true;
+    //     } catch (error) {
+    //         // --- MODIFICATION START ---
+    //         // Extracts the string message from the error object before setting state.
+    //         const rawError = error.response?.data;
+    //         let finalMessage = 'An unknown error occurred.';
+
+    //         if (rawError) {
+    //             if (typeof rawError === 'string') {
+    //                 finalMessage = rawError;
+    //             } else if (rawError.message) {
+    //                 finalMessage = rawError.message;
+    //             } else if (rawError.msg) {
+    //                 finalMessage = rawError.msg;
+    //             }
+    //         } else if (error.message) {
+    //             finalMessage = error.message;
+    //         }
+            
+    //         setAuthState(prev => ({ ...prev, isLoading: false, error: finalMessage }));
+    //         return false;
+    //     }
+    // }, []);
+
     const signup = useCallback(async (signupCredentials) => {
-        setAuthState(prev => ({...prev, isLoading: true, error: null}));
+        // The context no longer sets its own loading state here.
         try {
             await userSignup(signupCredentials);
-            setAuthState(prev => ({...prev, isLoading: false}));
             return true;
         } catch (error) {
-            const errorMessage = error.response?.data || { message: error.message || 'An unknown error occurred.' };
-            setAuthState(prev => ({ ...prev, isLoading: false, error: errorMessage }));
+            // Extracts and sets the error message in the context state.
+            const rawError = error.response?.data;
+            let finalMessage = 'An unknown error occurred.';
+
+            if (rawError) {
+                if (typeof rawError === 'string') {
+                    finalMessage = rawError;
+                } else if (rawError.message) {
+                    finalMessage = rawError.message;
+                } else if (rawError.msg) {
+                    finalMessage = rawError.msg;
+                }
+            } else if (error.message) {
+                finalMessage = error.message;
+            }
+            
+            setAuthState(prev => ({ ...prev, error: finalMessage }));
+            return false;
+        }
+    }, []);
+
+    const resendVerificationEmail = useCallback(async (emailData) => {
+        try {
+            // Set a temporary loading or info state if you want, or just fire and forget.
+            await resendVerification(emailData);
+            // Optionally, you could set a success message in a separate state.
+            // For now, we'll just log success or handle errors.
+            console.log("Verification email resent successfully.");
+            return true;
+        } catch (error) {
+            console.error("Failed to resend verification email:", error);
+            // You can reuse your existing error handling to display a message to the user
+            const errorMessage = error.message || 'Failed to resend verification code.';
+            setAuthState(prev => ({ ...prev, error: errorMessage }));
             return false;
         }
     }, []);
@@ -101,7 +205,8 @@ const AuthContextProvider = ({ children }) => {
         signup, 
         signout, 
         checkStatus, 
-        clearAuthError 
+        clearAuthError,
+        resendVerificationEmail
     };
 
     return (

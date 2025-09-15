@@ -1,415 +1,3 @@
-// import React, { useState, useEffect, Suspense, useCallback } from 'react';
-// import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-// import { Button } from '@/components/ui/button';
-// import { Input } from '@/components/ui/input';
-// import { Label } from "@/components/ui/label";
-// import { Alert, AlertDescription } from "@/components/ui/alert";
-// import { Loader2, KeyRound } from 'lucide-react';
-
-// import useAuthContext from '@/hooks/useAuth.js';
-// import { verifyEmail as apiVerifyEmail, resendVerification as apiResendVerification } from '@/api/authServiceApi';
-
-// const LoginForm = React.lazy(() => import('./LoginForm.jsx'));
-// const SignupForm = React.lazy(() => import('./SignupForm.jsx'));
-
-// const VerificationView = ({ userEmail, onVerify, onResend, isLoading, isResending, feedback }) => {
-//   const [verificationCode, setVerificationCode] = useState('');
-//   useEffect(() => {
-//     // Automatically trigger resend when this view appears for an unverified login
-//     if (userEmail) {
-//         onResend();
-//     }
-//   }, [userEmail, onResend]);
-
-//   const handleCodeChange = (e) => {
-//     const { value } = e.target;
-//     if (!/^\d*$/.test(value) || value.length > 6) return;
-//     setVerificationCode(value);
-//   };
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     onVerify(verificationCode);
-//   };
-//   return (
-//     <>
-//       <DialogHeader>
-//         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-//             <KeyRound className="h-8 w-8" />
-//         </div>
-//         <DialogTitle className="text-2xl text-center">Verify Your Email</DialogTitle>
-//         <DialogDescription className="text-center">
-//           We've sent a new 6-digit code to <strong>{userEmail}</strong>.
-//         </DialogDescription>
-//       </DialogHeader>
-//       <div className="py-4">
-//           <form onSubmit={handleSubmit} className="space-y-4">
-//             <div className="space-y-2">
-//               <Label htmlFor="verificationCode">Verification Code</Label>
-//               <Input id="verificationCode" value={verificationCode} onChange={handleCodeChange} placeholder="_ _ _ _ _ _" required maxLength="6" className="text-center text-lg tracking-[0.5em]" />
-//             </div>
-//             {feedback.message && (
-//               <Alert variant={feedback.type === 'error' ? 'destructive' : 'default'} className={feedback.type === 'success' ? 'bg-green-500/10' : ''}>
-//                 <AlertDescription>{feedback.message}</AlertDescription>
-//               </Alert>
-//             )}
-//             <Button type="submit" className="w-full" disabled={isLoading || isResending}>
-//               {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-//               Verify & Continue
-//             </Button>
-//           </form>
-//       </div>
-//     </>
-//   );
-// };
-
-// const AuthDialog = ({ open, onOpenChange, initialView = 'login' }) => {
-//   const [isSubmitting, setIsSubmitting] = useState(false);
-//   const { signin, signup, error: authError, clearAuthError, checkStatus, isAuthenticated, userData } = useAuthContext();
-//   const [localView, setLocalView] = useState(initialView);
-//   const [emailForSignup, setEmailForSignup] = useState('');
-//   const [isVerifying, setIsVerifying] = useState(false);
-//   const [isResending, setIsResending] = useState(false);
-//   const [feedback, setFeedback] = useState({ message: '', type: '' });
-
-//   // --- THIS IS THE CORE OF THE FINAL FIX ---
-//   // We derive the view based on the single source of truth: the auth context.
-//   let currentView = localView;
-//   if (isAuthenticated && userData && !userData.isVerified) {
-//     // If the user is logged in but not verified, we MUST show the verify form.
-//     // This overrides any local state.
-//     currentView = 'verify';
-//   }
-//   // --- END OF FIX ---
-
-//   useEffect(() => {
-//     if (!open) {
-//       setTimeout(() => {
-//         setLocalView(initialView);
-//         setEmailForSignup('');
-//         setFeedback({ message: '', type: '' });
-//         if(authError) clearAuthError();
-//       }, 300);
-//     } else {
-//         setLocalView(initialView);
-//     }
-//   }, [open, initialView, authError, clearAuthError]);
-
-//   const handleLogin = async (credentials) => {
-//     setIsSubmitting(true);
-//     await signin(credentials);
-//     onOpenChange(false); 
-//     setIsSubmitting(false);
-//   };
-
-//   const handleSignup = async (credentials) => {
-//     setIsSubmitting(true);
-//     clearAuthError();
-//     const success = await signup(credentials);
-//     if (success) {
-//       setEmailForSignup(credentials.userEmail);
-//       setLocalView('verify');
-//     }
-//     setIsSubmitting(false);
-//   };
-  
-//   const handleTabChange = (newView) => {
-//     if(localView !== newView){
-//         if(authError) clearAuthError();
-//         setLocalView(newView);
-//     }
-//   }
-
-//   const handleVerify = async (verificationCode) => {
-//     if (verificationCode.length !== 6) {
-//       setFeedback({ message: 'Code must be 6 digits.', type: 'error' });
-//       return;
-//     }
-//     setIsVerifying(true);
-//     setFeedback({ message: '', type: '' });
-//     const emailToVerify = userData?.userEmail || emailForSignup;
-//     try {
-//       await apiVerifyEmail(emailToVerify, verificationCode);
-//       await checkStatus(); 
-//       onOpenChange(false);// Re-check status. The context will update, and the dialog will close.
-//     } catch (error) {
-//       setFeedback({ message: error.message || 'Verification failed.', type: 'error' });
-//     } finally {
-//       setIsVerifying(false);
-//     }
-//   };
-  
-//   const handleResend = useCallback(async () => {
-//     setIsResending(true);
-//     setFeedback({ message: '', type: '' });
-//     const emailToResend = userData?.userEmail || emailForSignup;
-//     try {
-//       const response = await apiResendVerification({ userEmail: emailToResend });
-//       setFeedback({ message: response.message, type: 'success' });
-//     } catch (error) {
-//       setFeedback({ message: error.message || 'Failed to resend.', type: 'error' });
-//     } finally {
-//       setIsResending(false);
-//     }
-//   }, [userData, emailForSignup]);
-
-//   return (
-//     <Dialog open={!!open} onOpenChange={onOpenChange}>
-//       <DialogContent className="sm:max-w-md">
-//         <Suspense fallback={<div className="flex h-96 items-center justify-center"><Loader2 className="h-8 w-8 animate-spin" /></div>}>
-//           {currentView === 'verify' ? (
-//             <VerificationView
-//               userEmail={userData?.userEmail || emailForSignup}
-//               onVerify={handleVerify}
-//               onResend={handleResend}
-//               isLoading={isVerifying}
-//               isResending={isResending}
-//               feedback={feedback}
-//             />
-//           ) : (
-//             <Tabs value={localView} onValueChange={handleTabChange} className="w-full">
-//               <TabsList className="grid w-full grid-cols-2">
-//                 <TabsTrigger value="login">Login</TabsTrigger>
-//                 <TabsTrigger value="signup">Sign Up</TabsTrigger>
-//               </TabsList>
-//               <TabsContent value="login" className="pt-6">
-//                  <DialogHeader className="mb-4">
-//                     <DialogTitle className="text-2xl font-bold text-center">Welcome Back</DialogTitle>
-//                     <DialogDescription className="text-center">Log in to continue your work.</DialogDescription>
-//                 </DialogHeader>
-//                 <LoginForm onSubmit={handleLogin} isLoading={isSubmitting} apiError={authError} />
-//               </TabsContent>
-//               <TabsContent value="signup" className="pt-6">
-//                 <DialogHeader className="mb-4">
-//                     <DialogTitle className="text-2xl font-bold text-center">Create Your Account</DialogTitle>
-//                     <DialogDescription className="text-center">Sign up to save your work and get started.</DialogDescription>
-//                 </DialogHeader>
-//                 <SignupForm onSubmit={handleSignup} isLoading={isSubmitting} apiError={authError} />
-//               </TabsContent>
-//             </Tabs>
-//           )}
-//         </Suspense>
-//       </DialogContent>
-//     </Dialog>
-//   );
-// };
-
-// export default AuthDialog;
-
-// import React, { useState, useEffect, Suspense, useCallback } from 'react';
-// import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-// import { Button } from '@/components/ui/button';
-// import { Input } from '@/components/ui/input';
-// import { Label } from "@/components/ui/label";
-// import { Alert, AlertDescription } from "@/components/ui/alert";
-// import { Loader2, KeyRound } from 'lucide-react';
-
-// import useAuthContext from '@/hooks/useAuth.js';
-// import { verifyEmail as apiVerifyEmail, resendVerification as apiResendVerification } from '@/api/authServiceApi';
-
-// const LoginForm = React.lazy(() => import('./LoginForm.jsx'));
-// const SignupForm = React.lazy(() => import('./SignupForm.jsx'));
-
-// const VerificationView = ({ userEmail, onVerify, onResend, isLoading, isResending, feedback }) => {
-//   const [verificationCode, setVerificationCode] = useState('');
-  
-//   useEffect(() => {
-//     if (userEmail) {
-//         onResend();
-//     }
-//   }, [userEmail, onResend]);
-
-//   const handleCodeChange = (e) => {
-//     const { value } = e.target;
-//     if (!/^\d*$/.test(value) || value.length > 6) return;
-//     setVerificationCode(value);
-//   };
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     onVerify(verificationCode);
-//   };
-//   return (
-//     <>
-//       <DialogHeader>
-//         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
-//             <KeyRound className="h-8 w-8" />
-//         </div>
-//         <DialogTitle className="text-2xl text-center">Verify Your Email</DialogTitle>
-//         <DialogDescription className="text-center">
-//           We're sending a new 6-digit code to <strong>{userEmail}</strong>. Please check your inbox.
-//         </DialogDescription>
-//       </DialogHeader>
-//       <div className="py-4">
-//           <form onSubmit={handleSubmit} className="space-y-4">
-//             <div className="space-y-2">
-//               <Label htmlFor="verificationCode">Verification Code</Label>
-//               <Input id="verificationCode" value={verificationCode} onChange={handleCodeChange} placeholder="_ _ _ _ _ _" required maxLength="6" className="text-center text-lg tracking-[0.5em]" autoComplete="one-time-code" />
-//             </div>
-//             {feedback.message && (
-//               <Alert variant={feedback.type === 'error' ? 'destructive' : 'default'} className={feedback.type === 'success' ? 'bg-green-500/10' : ''}>
-//                 <AlertDescription>{feedback.message}</AlertDescription>
-//               </Alert>
-//             )}
-//             <Button type="submit" className="w-full" disabled={isLoading || verificationCode.length !== 6}>
-//               {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-//               Verify & Continue
-//             </Button>
-//           </form>
-//       </div>
-//     </>
-//   );
-// };
-
-// const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess }) => {
-//   const [isSubmitting, setIsSubmitting] = useState(false);
-//   const { signin, signup, error: authError, clearAuthError, checkStatus, isAuthenticated, userData } = useAuthContext();
-//   const [localView, setLocalView] = useState(initialView);
-//   const [emailForSignup, setEmailForSignup] = useState('');
-//   const [isVerifying, setIsVerifying] = useState(false);
-//   const [isResending, setIsResending] = useState(false);
-//   const [feedback, setFeedback] = useState({ message: '', type: '' });
-
-//   let currentView = localView;
-//   if (isAuthenticated && userData && !userData.isVerified) {
-//     currentView = 'verify';
-//   }
-
-//   useEffect(() => {
-//     if (open) {
-//       setLocalView(initialView);
-//       clearAuthError();
-//     } else {
-//       setTimeout(() => {
-//         setLocalView(initialView);
-//         setEmailForSignup('');
-//         setFeedback({ message: '', type: '' });
-//       }, 300);
-//     }
-//   }, [open, initialView, clearAuthError]);
-
-//   const handleLogin = async (credentials) => {
-//     setIsSubmitting(true);
-//     clearAuthError();
-//     try {
-//       const loginSuccess = await signin(credentials);
-//       if (loginSuccess && loginSuccess.isVerified) {
-//         if(onSuccess) await onSuccess();
-//         onOpenChange(false);
-//       }
-//     } catch (error) {
-//       // On error, do nothing. The dialog will stay open, and the `authError` from context will be displayed.
-//     } finally {
-//       setIsSubmitting(false);
-//     }
-//   };
-
-//   const handleSignup = async (credentials) => {
-//     setIsSubmitting(true);
-//     clearAuthError();
-//     try {
-//       const success = await signup(credentials);
-//       if (success) {
-//         setEmailForSignup(credentials.userEmail);
-//         // The component will re-render, and the `currentView` logic will automatically switch to 'verify'.
-//       }
-//     } catch(error) {
-//         // On error, do nothing. The dialog stays on the signup form, displaying the error.
-//     } finally {
-//       setIsSubmitting(false);
-//     }
-//   };
-  
-//   const handleTabChange = (newView) => {
-//     if(localView !== newView){
-//         clearAuthError();
-//         setLocalView(newView);
-//     }
-//   }
-
-//   const handleVerify = async (verificationCode) => {
-//     if (verificationCode.length !== 6) {
-//       setFeedback({ message: 'Code must be 6 digits.', type: 'error' });
-//       return;
-//     }
-//     setIsVerifying(true);
-//     setFeedback({ message: '', type: '' });
-//     const emailToVerify = userData?.userEmail || emailForSignup;
-//     try {
-//       await apiVerifyEmail(emailToVerify, verificationCode);
-//       await checkStatus();
-//       setFeedback({ message: 'Verification successful! Continuing...', type: 'success' });
-      
-//       if(onSuccess) await onSuccess();
-
-//       setTimeout(() => {
-//           onOpenChange(false);
-//       }, 1500);
-
-//     } catch (error) {
-//       setFeedback({ message: error.message || 'Verification failed. Code may be invalid or expired.', type: 'error' });
-//     } finally {
-//       setIsVerifying(false);
-//     }
-//   };
-  
-//   const handleResend = useCallback(async () => {
-//     setIsResending(true);
-//     setFeedback({ message: '', type: '' });
-//     const emailToResend = userData?.userEmail || emailForSignup;
-//     try {
-//       const response = await apiResendVerification({ userEmail: emailToResend });
-//       setFeedback({ message: response.message, type: 'success' });
-//     } catch (error) {
-//       setFeedback({ message: error.message || 'Failed to resend code.', type: 'error' });
-//     } finally {
-//       setIsResending(false);
-//     }
-//   }, [userData, emailForSignup]);
-
-//   return (
-//     <Dialog open={!!open} onOpenChange={onOpenChange}>
-//       <DialogContent className="sm:max-w-md">
-//         <Suspense fallback={<div className="flex h-96 items-center justify-center"><Loader2 className="h-8 w-8 animate-spin" /></div>}>
-//           {currentView === 'verify' ? (
-//             <VerificationView
-//               userEmail={userData?.userEmail || emailForSignup}
-//               onVerify={handleVerify}
-//               onResend={handleResend}
-//               isLoading={isVerifying}
-//               isResending={isResending}
-//               feedback={feedback}
-//             />
-//           ) : (
-//             <Tabs value={localView} onValueChange={handleTabChange} className="w-full">
-//               <TabsList className="grid w-full grid-cols-2">
-//                 <TabsTrigger value="login">Login</TabsTrigger>
-//                 <TabsTrigger value="signup">Sign Up</TabsTrigger>
-//               </TabsList>
-//               <TabsContent value="login" className="pt-6">
-//                  <DialogHeader className="mb-4">
-//                     <DialogTitle className="text-2xl font-bold text-center">Welcome Back</DialogTitle>
-//                     <DialogDescription className="text-center">Log in to continue your work.</DialogDescription>
-//                 </DialogHeader>
-//                 <LoginForm onSubmit={handleLogin} isLoading={isSubmitting} apiError={authError} />
-//               </TabsContent>
-//               <TabsContent value="signup" className="pt-6">
-//                 <DialogHeader className="mb-4">
-//                     <DialogTitle className="text-2xl font-bold text-center">Create Your Account</DialogTitle>
-//                     <DialogDescription className="text-center">Sign up to get started.</DialogDescription>
-//                 </DialogHeader>
-//                 <SignupForm onSubmit={handleSignup} isLoading={isSubmitting} apiError={authError} />
-//               </TabsContent>
-//             </Tabs>
-//           )}
-//         </Suspense>
-//       </DialogContent>
-//     </Dialog>
-//   );
-// };
-
-// export default AuthDialog;
-
 import React, { useState, useEffect, Suspense, useCallback } from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -425,12 +13,10 @@ import { verifyEmail as apiVerifyEmail, resendVerification as apiResendVerificat
 const LoginForm = React.lazy(() => import('./LoginForm.jsx'));
 const SignupForm = React.lazy(() => import('./SignupForm.jsx'));
 
-const VerificationView = ({ userEmail, onVerify, onResend, isLoading, isResending, feedback }) => {
+// --- CHANGE 1: Remove the side-effect from the child component ---
+// The VerificationView is now simpler and only handles user input.
+const VerificationView = ({ userEmail, onVerify, onResendClick, isLoading, isResending, feedback }) => {
   const [verificationCode, setVerificationCode] = useState('');
-
-  useEffect(() => {
-    if (userEmail) onResend();
-  }, [userEmail, onResend]);
 
   const handleCodeChange = (e) => {
     const { value } = e.target;
@@ -451,7 +37,7 @@ const VerificationView = ({ userEmail, onVerify, onResend, isLoading, isResendin
         </div>
         <DialogTitle className="text-2xl text-center">Verify Your Email</DialogTitle>
         <DialogDescription className="text-center">
-          We've sent a new 6-digit code to <strong>{userEmail}</strong>.
+          We've sent a 6-digit code to <strong>{userEmail}</strong>. Please enter it below.
         </DialogDescription>
       </DialogHeader>
       <div className="py-4">
@@ -477,68 +63,77 @@ const VerificationView = ({ userEmail, onVerify, onResend, isLoading, isResendin
               <AlertDescription>{feedback.message}</AlertDescription>
             </Alert>
           )}
-          <Button type="submit" className="w-full" disabled={isLoading || verificationCode.length !== 6}>
+          <Button type="submit" className="w-full" disabled={isLoading || isResending || verificationCode.length !== 6}>
             {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
             Verify & Continue
           </Button>
         </form>
+         <div className="mt-4 text-center text-sm">
+          <p className="text-muted-foreground">Didn't receive the code?</p>
+            <Button variant="link" onClick={onResendClick} disabled={isLoading || isResending} className="p-1 h-auto">
+               {isResending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+               Resend Code
+            </Button>
+        </div>
       </div>
     </>
   );
 };
 
-const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess }) => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { signin, signup, error: authError, clearAuthError, checkStatus, isAuthenticated, userData } = useAuthContext();
 
+const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess }) => {
+  const { signin, signup, error: authError, clearAuthError, checkStatus, userData } = useAuthContext();
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [localView, setLocalView] = useState(initialView);
-  const [emailForSignup, setEmailForSignup] = useState('');
+  const [emailForVerification, setEmailForVerification] = useState('');
   const [isVerifying, setIsVerifying] = useState(false);
   const [isResending, setIsResending] = useState(false);
   const [feedback, setFeedback] = useState({ message: '', type: '' });
-  const [lastAction, setLastAction] = useState(null);
 
   useEffect(() => {
     if (!open) {
       setTimeout(() => {
         setLocalView(initialView);
-        setEmailForSignup('');
+        setEmailForVerification('');
         setFeedback({ message: '', type: '' });
-        setLastAction(null);
         clearAuthError();
       }, 300);
     }
   }, [open, initialView, clearAuthError]);
-
-  useEffect(() => {
-    if (authError && lastAction) {
-      setLocalView(lastAction);
+  
+  // --- CHANGE 2: Create a robust, reusable function to send the code ---
+  const sendVerificationCode = useCallback(async (email) => {
+    if (!email) return;
+    setIsResending(true);
+    setFeedback({ message: '', type: '' });
+    try {
+      const response = await apiResendVerification({ userEmail: email });
+      setFeedback({ message: response.message, type: 'success' });
+    } catch (error) {
+      setFeedback({ message: error?.message || 'Failed to send code.', type: 'error' });
+    } finally {
+      setIsResending(false);
     }
-  }, [authError, lastAction]);
+  }, []);
 
-  useEffect(() => {
-    if (open && isAuthenticated && userData && !userData.isVerified) {
-      setLocalView('verify');
-      setEmailForSignup(userData.userEmail || '');
-    }
-  }, [open, isAuthenticated, userData]);
 
   const handleLogin = async (credentials) => {
     setIsSubmitting(true);
-    setLastAction('login');
     clearAuthError();
     try {
       const loginData = await signin(credentials);
-      if (!loginData) {
-        setLocalView('login');
-        return;
-      }
+      if (!loginData) return; // signin failed, error is in context
+
       if (loginData.isVerified) {
         if (onSuccess) await onSuccess();
         onOpenChange(false);
       } else {
+        // --- CHANGE 3: The unverified login flow is now explicit ---
+        const email = loginData.userEmail || credentials.userEmail;
+        setEmailForVerification(email);
         setLocalView('verify');
-        setEmailForSignup(loginData.userEmail || credentials.userEmail || '');
+        await sendVerificationCode(email); // Send the code
       }
     } finally {
       setIsSubmitting(false);
@@ -547,16 +142,16 @@ const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess }) =>
 
   const handleSignup = async (credentials) => {
     setIsSubmitting(true);
-    setLastAction('signup');
     clearAuthError();
     try {
       const success = await signup(credentials);
-      if (!success) {
-        setLocalView('signup');
-        return;
-      }
-      setEmailForSignup(credentials.userEmail);
+      if (!success) return; // signup failed, error is in context
+
+      // --- CHANGE 4: The successful signup flow is now explicit ---
+      setEmailForVerification(credentials.userEmail);
       setLocalView('verify');
+      // The code is already sent from the backend on signup, so no need to call sendVerificationCode here.
+      setFeedback({ message: "We've sent a verification code to your email.", type: 'success' });
     } finally {
       setIsSubmitting(false);
     }
@@ -565,7 +160,6 @@ const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess }) =>
   const handleTabChange = (newView) => {
     if (localView !== newView) {
       clearAuthError();
-      setLastAction(null);
       setLocalView(newView);
     }
   };
@@ -577,13 +171,12 @@ const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess }) =>
     }
     setIsVerifying(true);
     setFeedback({ message: '', type: '' });
-    const emailToVerify = userData?.userEmail || emailForSignup;
     try {
-      await apiVerifyEmail(emailToVerify, verificationCode);
+      await apiVerifyEmail(emailForVerification, verificationCode);
       await checkStatus();
-      setFeedback({ message: 'Verification successful! Continuing...', type: 'success' });
+      setFeedback({ message: 'Verification successful! You can now continue.', type: 'success' });
       if (onSuccess) await onSuccess();
-      setTimeout(() => onOpenChange(false), 1200);
+      setTimeout(() => onOpenChange(false), 1500);
     } catch (error) {
       setFeedback({ message: error?.message || 'Verification failed. Code may be invalid or expired.', type: 'error' });
     } finally {
@@ -591,19 +184,10 @@ const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess }) =>
     }
   };
 
-  const handleResend = useCallback(async () => {
-    setIsResending(true);
-    setFeedback({ message: '', type: '' });
-    const emailToResend = userData?.userEmail || emailForSignup;
-    try {
-      const response = await apiResendVerification({ userEmail: emailToResend });
-      setFeedback({ message: response.message, type: 'success' });
-    } catch (error) {
-      setFeedback({ message: error?.message || 'Failed to resend code.', type: 'error' });
-    } finally {
-      setIsResending(false);
-    }
-  }, [userData, emailForSignup]);
+  // Wrapper for the manual resend button
+  const handleManualResend = () => {
+    sendVerificationCode(emailForVerification);
+  };
 
   return (
     <Dialog open={!!open} onOpenChange={onOpenChange}>
@@ -611,9 +195,9 @@ const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess }) =>
         <Suspense fallback={<div className="flex h-96 items-center justify-center"><Loader2 className="h-8 w-8 animate-spin" /></div>}>
           {localView === 'verify' ? (
             <VerificationView
-              userEmail={userData?.userEmail || emailForSignup}
+              userEmail={emailForVerification}
               onVerify={handleVerify}
-              onResend={handleResend}
+              onResendClick={handleManualResend}
               isLoading={isVerifying}
               isResending={isResending}
               feedback={feedback}
@@ -625,7 +209,7 @@ const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess }) =>
                 <TabsTrigger value="signup">Sign Up</TabsTrigger>
               </TabsList>
               <TabsContent value="login" className="pt-6">
-                <DialogHeader className="mb-4">
+                 <DialogHeader className="mb-4">
                   <DialogTitle className="text-2xl font-bold text-center">Welcome Back</DialogTitle>
                   <DialogDescription className="text-center">Log in to continue your work.</DialogDescription>
                 </DialogHeader>

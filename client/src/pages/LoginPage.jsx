@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense } from 'react'; // Make sure useEffect is imported
+import React, { useEffect, Suspense, useState } from 'react'; // Make sure useEffect is imported
 import { Helmet } from 'react-helmet-async';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -12,7 +12,9 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   // Destructure the new clearAuthError function from the context
-  const { signin, isLoading, error: authError, isAuthenticated, clearAuthError } = useAuthContext();
+  const { signin, error: authError, isAuthenticated, clearAuthError, resendVerificationEmail } = useAuthContext();
+
+   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // --- MODIFICATION START ---
   // Add this useEffect to clear errors when the page loads
@@ -33,17 +35,25 @@ const LoginPage = () => {
   }, [isAuthenticated, navigate, from]);
 
   const handleLogin = async (credentials) => {
-    const user = await signin(credentials);
+    // 4. Implement the try...finally block to manage local loading state
+    setIsSubmitting(true);
+    clearAuthError(); // It's good practice to clear old errors before a new attempt
+    try {
+      const user = await signin(credentials);
     
-    if (user) {
-      if (from.includes('/verify-email/')) {
-        navigate(from, { replace: true });
+      if (user) {
+        if (from.includes('/verify-email/')) {
+          navigate(from, { replace: true });
+        }
+        else if (!user.isVerified) {
+          await resendVerificationEmail({ userEmail: user.userEmail });
+          navigate('/verify-email', { replace: true, state: { userEmail: user.userEmail } });
+        } else {
+          navigate('/dashboard', { replace: true });
+        }
       }
-      else if (!user.isVerified) {
-        navigate('/verify-email', { replace: true });
-      } else {
-        navigate('/dashboard', { replace: true });
-      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -95,7 +105,7 @@ const LoginPage = () => {
               }>
                 <LoginForm
                   onSubmit={handleLogin}
-                  isLoading={isLoading}
+                  isLoading={isSubmitting}
                   apiError={authError}
                 />
               </Suspense>

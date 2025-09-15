@@ -6,7 +6,6 @@ import { TemplateContextProvider } from './context/TemplateContext.jsx';
 import { ResumeContextProvider } from './context/ResumeContext.jsx';
 import { ThemeProvider } from './context/ThemeContext.jsx'; // Import ThemeProvider
 import { CoverLetterContextProvider } from './context/CoverLetterContext.jsx';
-import ReactGA from 'react-ga4';
 import {
   createRoutesFromChildren,
   matchRoutes,
@@ -34,8 +33,6 @@ Sentry.init({
   replaysOnErrorSampleRate: 1.0, 
 });
 
-const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
-ReactGA.initialize(MEASUREMENT_ID);
 
 const App = () => {
   return (

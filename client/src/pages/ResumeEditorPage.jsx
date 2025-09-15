@@ -134,6 +134,8 @@ const ResumeEditorPage = () => {
   const [showPlaceholderWarning, setShowPlaceholderWarning] = useState(false);
   const [pendingAction, setPendingAction] = useState(null);
   const [isAddSectionDialogOpen, setIsAddSectionDialogOpen] = useState(false);
+  const [activeMobileView, setActiveMobileView] = useState('edit'); 
+  const [isCustomizeDialogOpen, setIsCustomizeDialogOpen] = useState(false);
 
   // State for modular templates
   const [spacingMultiplier, setSpacingMultiplier] = useState(1);
@@ -610,123 +612,138 @@ const handleIndustryChange = useCallback((industry) => {
       />
 
         <main className="flex-grow container mx-auto px-1 sm:px-2 md:px-4 py-3 md:py-4">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 md:gap-4 items-start">
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 0.1 }} 
-              className="lg:sticky lg:top-[95px] h-fit lg:col-span-5"
-            >
-              <Card className="bg-card border-border shadow-xl">
-                <CardContent className="p-0 max-h-[calc(100vh-120px)] overflow-y-auto">
-                  <Suspense fallback={<div className="p-6 min-h-[400px] flex items-center justify-center"><LoadingSpinner label="Loading form..." /></div>}>
-<ResumeForm 
-  templateFieldDefinition={currentTemplateForEditor?.templateFieldDefinition || []}
-  formData={editorFormData || {}}
-  onFormChange={handleSimpleChange}
-  onArrayChange={handleArrayItemChange}
-  onAddItem={handleAddItemToArray}
-  onRemoveItem={handleRemoveItemFromArray}
-  onSectionToggle={handleSectionToggle}
-  onEnhanceField={handleEnhanceField}
-  isEnhancing={isEnhancing}
-  onOpenAddSectionDialog={() => setIsAddSectionDialogOpen(true)}
-  sectionProperties={sectionProperties}
-/>
-                  </Suspense>
-                </CardContent>
-              </Card>
-            </motion.div>
+  {/* CHANGED: Added padding-bottom for mobile to avoid overlap with the fixed nav bar */}
+  <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 md:gap-4 items-start pb-20 lg:pb-0">
+    
+    {/* --- FORM COLUMN --- */}
+    <motion.div 
+      initial={{ opacity: 0, x: -20 }} 
+      animate={{ opacity: 1, x: 0 }} 
+      transition={{ duration: 0.4, delay: 0.1 }} 
+      // CHANGED: Added conditional classes to hide/show this column on mobile
+      className={cn(
+        "lg:sticky lg:top-[95px] h-fit lg:col-span-5",
+        { 'hidden lg:block': activeMobileView !== 'edit' }
+      )}
+    >
+      <Card className="bg-card border-border shadow-xl">
+        <CardContent className="p-0 max-h-[calc(100vh-120px)] overflow-y-auto">
+          <Suspense fallback={<div className="p-6 min-h-[400px] flex items-center justify-center"><LoadingSpinner label="Loading form..." /></div>}>
+            <ResumeForm 
+              templateFieldDefinition={currentTemplateForEditor?.templateFieldDefinition || []}
+              formData={editorFormData || {}}
+              onFormChange={handleSimpleChange}
+              onArrayChange={handleArrayItemChange}
+              onAddItem={handleAddItemToArray}
+              onRemoveItem={handleRemoveItemFromArray}
+              onSectionToggle={handleSectionToggle}
+              onEnhanceField={handleEnhanceField}
+              isEnhancing={isEnhancing}
+              onOpenAddSectionDialog={() => setIsAddSectionDialogOpen(true)}
+              sectionProperties={sectionProperties}
+            />
+          </Suspense>
+        </CardContent>
+      </Card>
+    </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 0.2 }} 
-              className="lg:sticky lg:top-[75px] h-fit lg:col-span-7"
-            >   
-            {/* --- CHANGED: Old controls card replaced with the new Toolbar --- */}
-              <div className="flex items-center justify-between gap-4 p-3 border border-border bg-card rounded-lg shadow-sm mb-3">
-                {/* Spacing Control */}
-                <div className="flex-grow space-y-2">
-                  <div className="flex justify-between items-center">
-                    <Label htmlFor="spacing-slider" className="text-sm font-medium">Spacing</Label>
-                    <span className="text-sm font-mono text-muted-foreground">{spacingMultiplier.toFixed(2)}x</span>
-                  </div>
-                  <Slider id="spacing-slider" min={0.8} max={1.5} step={0.05} value={[spacingMultiplier]} onValueChange={handleSpacingChange} />
-                </div>
-
-                {/* Customization Popover */}
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button variant="outline" className="ml-4 flex-shrink-0">
-                      <Settings2 className="mr-2 h-4 w-4" />
-                      Customize
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-80 p-4">
-                    <div className="grid gap-4">
-                      <div className="space-y-1">
-                        <h4 className="font-medium leading-none">Advanced Customization</h4>
-                        <p className="text-sm text-muted-foreground">Tailor your resume's style, layout, and industry focus.</p>
-                      </div>
-                      <div className="grid gap-4 pt-2">
-                        {/* Style Pack Selector */}
-                        <div className="space-y-2">
-                          <Label htmlFor="style-pack-selector" className="flex items-center text-sm font-medium"><Palette size={14} className="mr-2"/> Style / Theme</Label>
-                          <Select value={selectedStylePackKey || ''} onValueChange={handleStylePackChange}>
-                            <SelectTrigger id="style-pack-selector"><SelectValue placeholder="Select a style..." /></SelectTrigger>
-                            <SelectContent>
-                              {currentTemplateForEditor?.templateComponents?.stylePacks?.map(pack => (
-                                <SelectItem key={pack.key} value={pack.key}>{pack.name}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        {/* Section Order Preset Selector */}
-                        <div className="space-y-2">
-                          <Label htmlFor="preset-selector" className="flex items-center text-sm font-medium"><Layers size={14} className="mr-2"/> Section Order</Label>
-                          <Select value={selectedPresetKey || ''} onValueChange={handlePresetChange}>
-                            <SelectTrigger id="preset-selector"><SelectValue placeholder="Select an order..." /></SelectTrigger>
-                            <SelectContent>
-                              {currentTemplateForEditor?.templateComponents?.sectionPresets?.map(preset => (
-                                <SelectItem key={preset.key} value={preset.key}>{preset.name}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        {/* Industry Selector */}
-                        <div className="space-y-2">
-                          <Label htmlFor="industry-selector" className="flex items-center text-sm font-medium"><Briefcase size={14} className="mr-2"/> Industry</Label>
-                          <Select value={selectedIndustry || ''} onValueChange={handleIndustryChange} disabled={industryOptions.length === 0}>
-                            <SelectTrigger id="industry-selector"><SelectValue placeholder="Select industry..." /></SelectTrigger>
-                            <SelectContent>
-                              {industryOptions.length > 0 ? industryOptions.map(industry => (
-                                <SelectItem key={industry} value={industry}>{industry}</SelectItem>
-                              )) : <div className="px-2 py-1.5 text-sm text-muted-foreground">No industries defined</div>}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-                    </div>
-                  </PopoverContent>
-                </Popover>
-              </div>
-              {/* --- END OF CHANGE --- */}
-
-              <Suspense fallback={<div className="flex justify-center items-center min-h-[calc(100vh-100px)] bg-muted/20 rounded-xl border border-border"><LoadingSpinner label="Loading preview..." /></div>}>
-                <ResumePreview 
-                  ref={resumePreviewRef}
-                  currentFormData={editorFormData || {}}
-                  spacingMultiplier={spacingMultiplier}
-                  htmlShell={currentTemplateForEditor?.templateComponents?.htmlShell}
-                  baseCss={currentTemplateForEditor?.templateComponents?.baseCss}
-                  sections={currentTemplateForEditor?.templateComponents?.sections}
-                  stylePacks={currentTemplateForEditor?.templateComponents?.stylePacks}
-                  selectedStylePackKey={selectedStylePackKey}
-                  sectionOrder={sectionOrder}
-                  zoomLevel={zoomLevel}
-                  setZoomLevel={setZoomLevel}
-                />
-              </Suspense>
-            </motion.div>
+    {/* --- PREVIEW COLUMN --- */}
+    <motion.div 
+      initial={{ opacity: 0, x: 20 }} 
+      animate={{ opacity: 1, x: 0 }} 
+      transition={{ duration: 0.4, delay: 0.2 }} 
+      // CHANGED: Added conditional classes to hide/show this column on mobile
+      className={cn(
+        "lg:sticky lg:top-[75px] h-fit lg:col-span-7",
+        { 'hidden lg:block': activeMobileView !== 'preview' }
+      )}
+    >   
+      {/* CHANGED: This entire toolbar is now hidden on mobile screens */}
+      <div className="hidden lg:flex items-center justify-between gap-4 p-3 border border-border bg-card rounded-lg shadow-sm mb-3">
+        {/* Spacing Control */}
+        <div className="flex-grow space-y-2">
+          <div className="flex justify-between items-center">
+            <Label htmlFor="spacing-slider" className="text-sm font-medium">Spacing</Label>
+            <span className="text-sm font-mono text-muted-foreground">{spacingMultiplier.toFixed(2)}x</span>
           </div>
-        </main>
+          <Slider id="spacing-slider" min={0.8} max={1.5} step={0.05} value={[spacingMultiplier]} onValueChange={handleSpacingChange} />
+        </div>
+
+        {/* Customization Popover */}
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="outline" className="ml-4 flex-shrink-0">
+              <Settings2 className="mr-2 h-4 w-4" />
+              Customize
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-80 p-4">
+            <div className="grid gap-4">
+              <div className="space-y-1">
+                <h4 className="font-medium leading-none">Advanced Customization</h4>
+                <p className="text-sm text-muted-foreground">Tailor your resume's style, layout, and industry focus.</p>
+              </div>
+              <div className="grid gap-4 pt-2">
+                {/* Style Pack Selector */}
+                <div className="space-y-2">
+                  <Label htmlFor="style-pack-selector" className="flex items-center text-sm font-medium"><Palette size={14} className="mr-2"/> Style / Theme</Label>
+                  <Select value={selectedStylePackKey || ''} onValueChange={handleStylePackChange}>
+                    <SelectTrigger id="style-pack-selector"><SelectValue placeholder="Select a style..." /></SelectTrigger>
+                    <SelectContent>
+                      {currentTemplateForEditor?.templateComponents?.stylePacks?.map(pack => (
+                        <SelectItem key={pack.key} value={pack.key}>{pack.name}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                {/* Section Order Preset Selector */}
+                <div className="space-y-2">
+                  <Label htmlFor="preset-selector" className="flex items-center text-sm font-medium"><Layers size={14} className="mr-2"/> Section Order</Label>
+                  <Select value={selectedPresetKey || ''} onValueChange={handlePresetChange}>
+                    <SelectTrigger id="preset-selector"><SelectValue placeholder="Select an order..." /></SelectTrigger>
+                    <SelectContent>
+                      {currentTemplateForEditor?.templateComponents?.sectionPresets?.map(preset => (
+                        <SelectItem key={preset.key} value={preset.key}>{preset.name}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                {/* Industry Selector */}
+                <div className="space-y-2">
+                  <Label htmlFor="industry-selector" className="flex items-center text-sm font-medium"><Briefcase size={14} className="mr-2"/> Industry</Label>
+                  <Select value={selectedIndustry || ''} onValueChange={handleIndustryChange} disabled={industryOptions.length === 0}>
+                    <SelectTrigger id="industry-selector"><SelectValue placeholder="Select industry..." /></SelectTrigger>
+                    <SelectContent>
+                      {industryOptions.length > 0 ? industryOptions.map(industry => (
+                        <SelectItem key={industry} value={industry}>{industry}</SelectItem>
+                      )) : <div className="px-2 py-1.5 text-sm text-muted-foreground">No industries defined</div>}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </div>
+          </PopoverContent>
+        </Popover>
+      </div>
+
+      <Suspense fallback={<div className="flex justify-center items-center min-h-[calc(100vh-100px)] bg-muted/20 rounded-xl border border-border"><LoadingSpinner label="Loading preview..." /></div>}>
+        <ResumePreview 
+          ref={resumePreviewRef}
+          currentFormData={editorFormData || {}}
+          spacingMultiplier={spacingMultiplier}
+          htmlShell={currentTemplateForEditor?.templateComponents?.htmlShell}
+          baseCss={currentTemplateForEditor?.templateComponents?.baseCss}
+          sections={currentTemplateForEditor?.templateComponents?.sections}
+          stylePacks={currentTemplateForEditor?.templateComponents?.stylePacks}
+          selectedStylePackKey={selectedStylePackKey}
+          sectionOrder={sectionOrder}
+          zoomLevel={zoomLevel}
+          setZoomLevel={setZoomLevel}
+        />
+      </Suspense>
+    </motion.div>
+  </div>
+</main>
       </div>
 
       {/* Dialogs */}
@@ -806,6 +823,100 @@ const handleIndustryChange = useCallback((industry) => {
     </DialogFooter>
   </DialogContent>
 </Dialog>
+<div className="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-card border-t border-border shadow-t-lg z-50 flex items-center justify-around">
+        <Button
+          variant={activeMobileView === 'edit' ? 'secondary' : 'ghost'}
+          className="flex flex-col items-center h-full pt-2"
+          onClick={() => setActiveMobileView('edit')}
+        >
+          <Edit2 className="h-5 w-5 mb-1" />
+          <span className="text-xs font-medium">Edit</span>
+        </Button>
+        <Button
+          variant={activeMobileView === 'preview' ? 'secondary' : 'ghost'}
+          className="flex flex-col items-center h-full pt-2"
+          onClick={() => setActiveMobileView('preview')}
+        >
+          <Eye className="h-5 w-5 mb-1" />
+          <span className="text-xs font-medium">Preview</span>
+        </Button>
+        <Button
+          variant="ghost"
+          className="flex flex-col items-center h-full pt-2"
+          onClick={() => setIsCustomizeDialogOpen(true)}
+        >
+          <Settings2 className="h-5 w-5 mb-1" />
+          <span className="text-xs font-medium">Customize</span>
+        </Button>
+      </div>
+
+       <Dialog open={isCustomizeDialogOpen} onOpenChange={setIsCustomizeDialogOpen}>
+        <DialogContent className="sm:max-w-md bg-card">
+          <DialogHeader>
+            <DialogTitle className="flex items-center text-lg font-semibold">
+              <Settings2 className="h-5 w-5 mr-2 text-primary" />
+              Customize Resume
+            </DialogTitle>
+            <DialogDescription>
+              Tailor your resume's style, layout, and industry focus.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 pt-2">
+            {/* Spacing Control */}
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <Label htmlFor="spacing-slider-mobile" className="text-sm font-medium">Spacing</Label>
+                <span className="text-sm font-mono text-muted-foreground">{spacingMultiplier.toFixed(2)}x</span>
+              </div>
+              <Slider id="spacing-slider-mobile" min={0.8} max={1.5} step={0.05} value={[spacingMultiplier]} onValueChange={handleSpacingChange} />
+            </div>
+
+            {/* Style Pack Selector */}
+            <div className="space-y-2">
+              <Label htmlFor="style-pack-selector-mobile" className="flex items-center text-sm font-medium"><Palette size={14} className="mr-2"/> Style / Theme</Label>
+              <Select value={selectedStylePackKey || ''} onValueChange={handleStylePackChange}>
+                <SelectTrigger id="style-pack-selector-mobile"><SelectValue placeholder="Select a style..." /></SelectTrigger>
+                <SelectContent>
+                  {currentTemplateForEditor?.templateComponents?.stylePacks?.map(pack => (
+                    <SelectItem key={pack.key} value={pack.key}>{pack.name}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            
+            {/* Section Order Preset Selector */}
+            <div className="space-y-2">
+              <Label htmlFor="preset-selector-mobile" className="flex items-center text-sm font-medium"><Layers size={14} className="mr-2"/> Section Order</Label>
+              <Select value={selectedPresetKey || ''} onValueChange={handlePresetChange}>
+                <SelectTrigger id="preset-selector-mobile"><SelectValue placeholder="Select an order..." /></SelectTrigger>
+                <SelectContent>
+                  {currentTemplateForEditor?.templateComponents?.sectionPresets?.map(preset => (
+                    <SelectItem key={preset.key} value={preset.key}>{preset.name}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Industry Selector */}
+            <div className="space-y-2">
+              <Label htmlFor="industry-selector-mobile" className="flex items-center text-sm font-medium"><Briefcase size={14} className="mr-2"/> Industry</Label>
+              <Select value={selectedIndustry || ''} onValueChange={handleIndustryChange} disabled={industryOptions.length === 0}>
+                <SelectTrigger id="industry-selector-mobile"><SelectValue placeholder="Select industry..." /></SelectTrigger>
+                <SelectContent>
+                  {industryOptions.length > 0 ? industryOptions.map(industry => (
+                    <SelectItem key={industry} value={industry}>{industry}</SelectItem>
+                  )) : <div className="px-2 py-1.5 text-sm text-muted-foreground">No industries defined</div>}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button type="button" variant="secondary">Done</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

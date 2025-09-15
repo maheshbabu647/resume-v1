@@ -2303,3 +2303,313 @@
 2025-09-14 17:26:33 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
 2025-09-14 17:26:33 [INFO]: [Resume][GetAll][Success] User: 68c6ac00dac6aa38a336bc1e fetched all resumes (0)
 2025-09-14 17:26:33 [HTTP]: ::1 - - [14/Sep/2025:11:56:33 +0000] "GET /api/resume/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 17:41:41 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 17:41:41 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 17:41:41 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 17:41:41 [INFO]: [AuthStatus][Checked] User: 68c6ac00dac6aa38a336bc1e
+2025-09-14 17:41:41 [HTTP]: ::1 - - [14/Sep/2025:12:11:41 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 17:41:41 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 17:41:41 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 17:41:41 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 17:41:41 [INFO]: [AuthStatus][Checked] User: 68c6ac00dac6aa38a336bc1e
+2025-09-14 17:41:41 [HTTP]: ::1 - - [14/Sep/2025:12:11:41 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:05:15 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-09-14 18:05:15 [INFO]: [Template][GetAll][Success] Returned 2 templates
+2025-09-14 18:05:15 [HTTP]: ::1 - - [14/Sep/2025:12:35:15 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:05:15 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-09-14 18:05:15 [INFO]: [Template][GetAll][Success] Returned 2 templates
+2025-09-14 18:05:15 [HTTP]: ::1 - - [14/Sep/2025:12:35:15 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:19:56 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 18:19:56 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:19:56 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:19:56 [INFO]: [AuthStatus][Checked] User: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:19:56 [HTTP]: ::1 - - [14/Sep/2025:12:49:56 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36"
+2025-09-14 18:19:56 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 18:19:56 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:19:56 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:19:56 [INFO]: [AuthStatus][Checked] User: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:19:56 [HTTP]: ::1 - - [14/Sep/2025:12:49:56 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36"
+2025-09-14 18:19:59 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 18:19:59 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:19:59 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:19:59 [INFO]: [AuthStatus][Checked] User: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:19:59 [HTTP]: ::1 - - [14/Sep/2025:12:49:59 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36"
+2025-09-14 18:19:59 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 18:19:59 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:19:59 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:19:59 [INFO]: [AuthStatus][Checked] User: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:19:59 [HTTP]: ::1 - - [14/Sep/2025:12:49:59 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36"
+2025-09-14 18:21:23 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-09-14 18:21:23 [INFO]: [Template][GetAll][Success] Returned 2 templates
+2025-09-14 18:21:23 [HTTP]: ::1 - - [14/Sep/2025:12:51:23 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36"
+2025-09-14 18:23:10 [INFO]: [Startup] Incoming request: POST /api/resume/add
+2025-09-14 18:23:10 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:10 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:23:10 [INFO]: [Resume][Create] User: 68c6ac00dac6aa38a336bc1e created resume: 68c6bab6dac6aa38a336bc98
+2025-09-14 18:23:10 [HTTP]: ::1 - - [14/Sep/2025:12:53:10 +0000] "POST /api/resume/add HTTP/1.1" 201 6344 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:23:10 [INFO]: [Startup] Incoming request: GET /api/resume/getById/68c6bab6dac6aa38a336bc98
+2025-09-14 18:23:10 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:10 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:23:10 [INFO]: [Resume][GetById][Success] Resume: 68c6bab6dac6aa38a336bc98 by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:10 [HTTP]: ::1 - - [14/Sep/2025:12:53:10 +0000] "GET /api/resume/getById/68c6bab6dac6aa38a336bc98 HTTP/1.1" 200 70434 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:23:10 [INFO]: [Startup] Incoming request: GET /api/resume/getById/68c6bab6dac6aa38a336bc98
+2025-09-14 18:23:10 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:10 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:23:10 [INFO]: [Resume][GetById][Success] Resume: 68c6bab6dac6aa38a336bc98 by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:10 [HTTP]: ::1 - - [14/Sep/2025:12:53:10 +0000] "GET /api/resume/getById/68c6bab6dac6aa38a336bc98 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:23:17 [INFO]: [Startup] Incoming request: PUT /api/resume/update/68c6bab6dac6aa38a336bc98
+2025-09-14 18:23:17 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:17 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:23:17 [INFO]: [Resume][Update][Success] Resume: 68c6bab6dac6aa38a336bc98 updated by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:17 [HTTP]: ::1 - - [14/Sep/2025:12:53:17 +0000] "PUT /api/resume/update/68c6bab6dac6aa38a336bc98 HTTP/1.1" 200 6346 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:23:23 [INFO]: [Startup] Incoming request: GET /api/resume/getById/68c6bab6dac6aa38a336bc98
+2025-09-14 18:23:23 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:23 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:23:23 [INFO]: [Resume][GetById][Success] Resume: 68c6bab6dac6aa38a336bc98 by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:23 [HTTP]: ::1 - - [14/Sep/2025:12:53:23 +0000] "GET /api/resume/getById/68c6bab6dac6aa38a336bc98 HTTP/1.1" 200 70436 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:23:23 [INFO]: [Startup] Incoming request: GET /api/resume/getById/68c6bab6dac6aa38a336bc98
+2025-09-14 18:23:23 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:23 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:23:23 [INFO]: [Resume][GetById][Success] Resume: 68c6bab6dac6aa38a336bc98 by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:23 [HTTP]: ::1 - - [14/Sep/2025:12:53:23 +0000] "GET /api/resume/getById/68c6bab6dac6aa38a336bc98 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:23:39 [INFO]: [Startup] Incoming request: PUT /api/resume/update/68c6bab6dac6aa38a336bc98
+2025-09-14 18:23:39 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:39 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:23:39 [INFO]: [Resume][Update][Success] Resume: 68c6bab6dac6aa38a336bc98 updated by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:39 [HTTP]: ::1 - - [14/Sep/2025:12:53:39 +0000] "PUT /api/resume/update/68c6bab6dac6aa38a336bc98 HTTP/1.1" 200 6354 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:23:43 [INFO]: [Startup] Incoming request: GET /api/resume/getById/68c6bab6dac6aa38a336bc98
+2025-09-14 18:23:43 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:43 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:23:43 [INFO]: [Resume][GetById][Success] Resume: 68c6bab6dac6aa38a336bc98 by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:43 [HTTP]: ::1 - - [14/Sep/2025:12:53:43 +0000] "GET /api/resume/getById/68c6bab6dac6aa38a336bc98 HTTP/1.1" 200 70444 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:23:43 [INFO]: [Startup] Incoming request: GET /api/resume/getById/68c6bab6dac6aa38a336bc98
+2025-09-14 18:23:43 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:43 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:23:43 [INFO]: [Resume][GetById][Success] Resume: 68c6bab6dac6aa38a336bc98 by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:43 [HTTP]: ::1 - - [14/Sep/2025:12:53:43 +0000] "GET /api/resume/getById/68c6bab6dac6aa38a336bc98 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:23:58 [INFO]: [Startup] Incoming request: GET /api/resume/getById/68c6bab6dac6aa38a336bc98
+2025-09-14 18:23:58 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:58 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:23:58 [INFO]: [Resume][GetById][Success] Resume: 68c6bab6dac6aa38a336bc98 by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:58 [HTTP]: ::1 - - [14/Sep/2025:12:53:58 +0000] "GET /api/resume/getById/68c6bab6dac6aa38a336bc98 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:23:58 [INFO]: [Startup] Incoming request: GET /api/resume/getById/68c6bab6dac6aa38a336bc98
+2025-09-14 18:23:58 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:58 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:23:58 [INFO]: [Resume][GetById][Success] Resume: 68c6bab6dac6aa38a336bc98 by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:23:58 [HTTP]: ::1 - - [14/Sep/2025:12:53:58 +0000] "GET /api/resume/getById/68c6bab6dac6aa38a336bc98 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:24:21 [INFO]: [Startup] Incoming request: GET /api/resume/getById/68c6bab6dac6aa38a336bc98
+2025-09-14 18:24:21 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:24:21 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:24:21 [INFO]: [Resume][GetById][Success] Resume: 68c6bab6dac6aa38a336bc98 by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:24:21 [HTTP]: ::1 - - [14/Sep/2025:12:54:21 +0000] "GET /api/resume/getById/68c6bab6dac6aa38a336bc98 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:24:21 [INFO]: [Startup] Incoming request: GET /api/resume/getById/68c6bab6dac6aa38a336bc98
+2025-09-14 18:24:21 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:24:21 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:24:21 [INFO]: [Resume][GetById][Success] Resume: 68c6bab6dac6aa38a336bc98 by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:24:21 [HTTP]: ::1 - - [14/Sep/2025:12:54:21 +0000] "GET /api/resume/getById/68c6bab6dac6aa38a336bc98 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:24:25 [INFO]: [Startup] Incoming request: GET /api/resume/getById/68c6bab6dac6aa38a336bc98
+2025-09-14 18:24:25 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:24:25 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:24:25 [INFO]: [Resume][GetById][Success] Resume: 68c6bab6dac6aa38a336bc98 by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:24:25 [HTTP]: ::1 - - [14/Sep/2025:12:54:25 +0000] "GET /api/resume/getById/68c6bab6dac6aa38a336bc98 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:24:25 [INFO]: [Startup] Incoming request: GET /api/resume/getById/68c6bab6dac6aa38a336bc98
+2025-09-14 18:24:25 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:24:25 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:24:25 [INFO]: [Resume][GetById][Success] Resume: 68c6bab6dac6aa38a336bc98 by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:24:25 [HTTP]: ::1 - - [14/Sep/2025:12:54:25 +0000] "GET /api/resume/getById/68c6bab6dac6aa38a336bc98 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:27:42 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 18:27:42 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:27:42 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:27:42 [INFO]: [AuthStatus][Checked] User: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:27:42 [HTTP]: ::1 - - [14/Sep/2025:12:57:42 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:27:42 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 18:27:42 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:27:42 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:27:42 [INFO]: [AuthStatus][Checked] User: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:27:42 [HTTP]: ::1 - - [14/Sep/2025:12:57:42 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:27:42 [INFO]: [Startup] Incoming request: GET /api/resume/getById/68c6bab6dac6aa38a336bc98
+2025-09-14 18:27:42 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:27:42 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:27:42 [INFO]: [Resume][GetById][Success] Resume: 68c6bab6dac6aa38a336bc98 by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:27:42 [HTTP]: ::1 - - [14/Sep/2025:12:57:42 +0000] "GET /api/resume/getById/68c6bab6dac6aa38a336bc98 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:27:42 [INFO]: [Startup] Incoming request: GET /api/resume/getById/68c6bab6dac6aa38a336bc98
+2025-09-14 18:27:42 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:27:42 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:27:42 [INFO]: [Resume][GetById][Success] Resume: 68c6bab6dac6aa38a336bc98 by user: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:27:42 [HTTP]: ::1 - - [14/Sep/2025:12:57:42 +0000] "GET /api/resume/getById/68c6bab6dac6aa38a336bc98 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:30:33 [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-09-14 18:30:33 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:30:33 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:30:33 [INFO]: [Resume][GetAll][Success] User: 68c6ac00dac6aa38a336bc1e fetched all resumes (1)
+2025-09-14 18:30:33 [HTTP]: ::1 - - [14/Sep/2025:13:00:33 +0000] "GET /api/resume/getAll HTTP/1.1" 200 6317 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 18:30:33 [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-09-14 18:30:33 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 18:30:33 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 18:30:33 [INFO]: [Resume][GetAll][Success] User: 68c6ac00dac6aa38a336bc1e fetched all resumes (1)
+2025-09-14 18:30:33 [HTTP]: ::1 - - [14/Sep/2025:13:00:33 +0000] "GET /api/resume/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 19:39:20 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-09-14 19:39:20 [INFO]: [Template][GetAll][Success] Returned 2 templates
+2025-09-14 19:39:20 [HTTP]: ::1 - - [14/Sep/2025:14:09:20 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 19:39:20 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-09-14 19:39:20 [INFO]: [Template][GetAll][Success] Returned 2 templates
+2025-09-14 19:39:20 [HTTP]: ::1 - - [14/Sep/2025:14:09:20 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 19:39:24 [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-09-14 19:39:24 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 19:39:24 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 19:39:24 [INFO]: [Resume][GetAll][Success] User: 68c6ac00dac6aa38a336bc1e fetched all resumes (1)
+2025-09-14 19:39:24 [HTTP]: ::1 - - [14/Sep/2025:14:09:24 +0000] "GET /api/resume/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 19:39:24 [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-09-14 19:39:24 [INFO]: [JWT][Verify][Success] Token verified for userId: 68c6ac00dac6aa38a336bc1e
+2025-09-14 19:39:24 [INFO]: [Auth] Auth success for user 68c6ac00dac6aa38a336bc1e, role user, from IP: ::1
+2025-09-14 19:39:24 [INFO]: [Resume][GetAll][Success] User: 68c6ac00dac6aa38a336bc1e fetched all resumes (1)
+2025-09-14 19:39:24 [HTTP]: ::1 - - [14/Sep/2025:14:09:24 +0000] "GET /api/resume/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 22:35:53 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 22:35:54 [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-09-14 22:35:54 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-09-14 22:35:54 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05\server\node_modules\router\index.js:186:3)
+2025-09-14 22:35:54 [HTTP]: ::1 - - [14/Sep/2025:17:05:54 +0000] "GET /api/auth/status HTTP/1.1" 401 121 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 22:35:54 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 22:35:54 [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-09-14 22:35:54 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-09-14 22:35:54 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05\server\node_modules\router\index.js:186:3)
+2025-09-14 22:35:54 [HTTP]: ::1 - - [14/Sep/2025:17:05:54 +0000] "GET /api/auth/status HTTP/1.1" 401 121 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 22:35:56 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 22:35:56 [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-09-14 22:35:56 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-09-14 22:35:56 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05\server\node_modules\router\index.js:186:3)
+2025-09-14 22:35:56 [HTTP]: ::1 - - [14/Sep/2025:17:05:56 +0000] "GET /api/auth/status HTTP/1.1" 401 121 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 22:35:56 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 22:35:56 [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-09-14 22:35:56 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-09-14 22:35:56 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05\server\node_modules\router\index.js:186:3)
+2025-09-14 22:35:56 [HTTP]: ::1 - - [14/Sep/2025:17:05:56 +0000] "GET /api/auth/status HTTP/1.1" 401 121 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 22:47:32 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 22:47:32 [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-09-14 22:47:32 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-09-14 22:47:32 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05\server\node_modules\router\index.js:186:3)
+2025-09-14 22:47:32 [HTTP]: ::1 - - [14/Sep/2025:17:17:32 +0000] "GET /api/auth/status HTTP/1.1" 401 121 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 22:47:32 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 22:47:32 [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-09-14 22:47:32 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-09-14 22:47:32 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05\server\node_modules\router\index.js:186:3)
+2025-09-14 22:47:32 [HTTP]: ::1 - - [14/Sep/2025:17:17:32 +0000] "GET /api/auth/status HTTP/1.1" 401 121 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 22:49:08 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 22:49:08 [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-09-14 22:49:08 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-09-14 22:49:08 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05\server\node_modules\router\index.js:186:3)
+2025-09-14 22:49:08 [HTTP]: ::1 - - [14/Sep/2025:17:19:08 +0000] "GET /api/auth/status HTTP/1.1" 401 121 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 22:49:08 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 22:49:08 [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-09-14 22:49:08 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-09-14 22:49:08 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05\server\node_modules\router\index.js:186:3)
+2025-09-14 22:49:08 [HTTP]: ::1 - - [14/Sep/2025:17:19:08 +0000] "GET /api/auth/status HTTP/1.1" 401 121 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 23:40:06 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 23:40:06 [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-09-14 23:40:06 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-09-14 23:40:06 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05\server\node_modules\router\index.js:186:3)
+2025-09-14 23:40:06 [HTTP]: ::1 - - [14/Sep/2025:18:10:06 +0000] "GET /api/auth/status HTTP/1.1" 401 121 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"
+2025-09-14 23:40:06 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-09-14 23:40:06 [WARN]: [Auth] Token missing from ::1 for /api/auth/status
+2025-09-14 23:40:06 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-09-14 23:40:06 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05\server\node_modules\router\index.js:186:3)
+2025-09-14 23:40:06 [HTTP]: ::1 - - [14/Sep/2025:18:10:06 +0000] "GET /api/auth/status HTTP/1.1" 401 121 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36"

@@ -376,9 +376,9 @@ const VerifyEmailPage = () => {
   }, [formData.userEmail]);
 
   // FIX: Automatically send the verification code when the page loads.
-  useEffect(() => {
-    handleResend();
-  }, [handleResend]);
+  // useEffect(() => {
+  //   handleResend();
+  // }, [handleResend]);
   
   const handleChange = (e) => {
     const { id, value } = e.target;

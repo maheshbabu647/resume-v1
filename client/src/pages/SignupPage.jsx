@@ -12,7 +12,9 @@ const SignupPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   // Destructure the new clearAuthError function
-  const { signup, isLoading, error: authError, isAuthenticated, clearAuthError } = useAuthContext();
+  const { signup, error: authError, isAuthenticated, clearAuthError } = useAuthContext();
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // --- MODIFICATION START ---
   // Add this useEffect to clear errors when the page loads
@@ -32,12 +34,19 @@ const SignupPage = () => {
   }, [isAuthenticated, navigate, from]);
 
   const handleSignup = async (credentials) => {
-    const success = await signup(credentials);
-    if (success) {
-      navigate('/verify-email', { 
-        replace: true,
-        state: { userEmail: credentials.userEmail } 
-      });
+    // 4. Implement the try...finally block
+    setIsSubmitting(true);
+    clearAuthError();
+    try {
+      const success = await signup(credentials);
+      if (success) {
+        navigate('/verify-email', { 
+          replace: true,
+          state: { userEmail: credentials.userEmail } 
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -91,7 +100,7 @@ const SignupPage = () => {
               }>
                 <SignupForm
                   onSubmit={handleSignup}
-                  isLoading={isLoading}
+                  isLoading={isSubmitting}
                   apiError={authError}
                 />
               </Suspense>

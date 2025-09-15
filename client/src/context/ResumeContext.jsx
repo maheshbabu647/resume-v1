@@ -22,6 +22,12 @@ const ResumeContextProvider = ({ children }) => {
     const [isDeletingResume, setIsDeletingResume] = useState(false);
     const [resumeError, setResumeError] = useState(null);
 
+    const [spacingMultiplier, setSpacingMultiplier] = useState(1);
+    const [selectedStylePackKey, setSelectedStylePackKey] = useState(null);
+    const [sectionOrder, setSectionOrder] = useState(null);
+    const [selectedIndustry, setSelectedIndustry] = useState(null);
+
+
     const loadUserResumes = useCallback(async () => {
         if (!isAuthenticated) {
             setUserResumesList([]);
@@ -66,6 +72,12 @@ const ResumeContextProvider = ({ children }) => {
 
             setCurrentResumeDetail(loadedResume);
             setEditorFormData(loadedResume?.resumeData && typeof loadedResume.resumeData === 'object' ? { ...loadedResume.resumeData } : {});
+            
+            setSpacingMultiplier(loadedResume.spacingMultiplier || 1);
+            setSelectedStylePackKey(loadedResume.stylePackKey || null);
+            setSectionOrder(loadedResume.sectionOrder || null);
+            setSelectedIndustry(loadedResume.selectedIndustry || null);
+
             return loadedResume;
         } catch (error) {
             console.error(`ResumeContext: Error in loadResumeForEditor (ID: ${resumeId}):`, error);
@@ -180,6 +192,10 @@ const ResumeContextProvider = ({ children }) => {
         setCurrentResumeDetail(null);
         setEditorFormData({});
         setResumeError(null);
+        setSpacingMultiplier(1);
+        setSelectedStylePackKey(null);
+        setSectionOrder(null);
+        setSelectedIndustry(null);
     }, []);
 
     const contextValue = {
@@ -198,6 +214,14 @@ const ResumeContextProvider = ({ children }) => {
         isDeletingResume,
         setIsDeletingResume,
         resumeError,
+        spacingMultiplier,
+        setSpacingMultiplier,
+        selectedStylePackKey,
+        setSelectedStylePackKey,
+        sectionOrder,
+        setSectionOrder,
+        selectedIndustry,
+        setSelectedIndustry,
         setResumeError,
         loadUserResumes,
         loadResumeForEditor,

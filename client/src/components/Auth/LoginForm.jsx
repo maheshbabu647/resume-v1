@@ -29,11 +29,18 @@ const LoginForm = ({ onSubmit, isLoading, apiError }) => {
     onSubmit(formData);
   };
 
-  let displayError = formError;
-  if (!displayError && apiError) {
-    displayError = typeof apiError === 'string' ? apiError : apiError.message || apiError.msg || 'Login failed. Please try again.';
-  }
+ const getErrorMessage = (error) => {
+  if (!error) return '';
+  if (typeof error === 'string') return error;
+  if (error.message) return error.message; // Extracts the string
+  if (error.msg) return error.msg;         // Also checks for .msg
+  
+  // Fallback to prevent rendering an object
+  return 'An unexpected error occurred. Please try again.';
+};
 
+// Use the helper function to determine the error message
+const displayError = formError || (apiError ? getErrorMessage(apiError) : '');
   return (
     <motion.form
       initial={{ opacity: 0, y: 20 }}

@@ -108,7 +108,7 @@ const Navbar = () => {
 
             {isAuthenticated && (
               <>
-                <NavLink to="/dashboard" className={getNavLinkClasses}>Dashboard</NavLink>
+                <NavLink to="/dashboard" className={getNavLinkClasses}>My Dashboard</NavLink>
                 {userData?.userRole === 'admin' && (
                   <NavLink to="/admin/dashboard" className={getNavLinkClasses}>Admin</NavLink>
                 )}
@@ -201,7 +201,7 @@ const Navbar = () => {
 
               {isAuthenticated && (
                 <>
-                  <NavLink to="/dashboard" className={getMobileNavLinkClasses} onClick={closeMobileMenu}><User size={18} className="mr-2.5" />Dashboard</NavLink>
+                  <NavLink to="/dashboard" className={getMobileNavLinkClasses} onClick={closeMobileMenu}><User size={18} className="mr-2.5" />My Dashboard</NavLink>
                   {userData?.userRole === 'admin' && (
                     <NavLink to="/admin/dashboard" className={getMobileNavLinkClasses} onClick={closeMobileMenu}><ShieldCheck size={18} className="mr-2.5" />Admin Dashboard</NavLink>
                   )}

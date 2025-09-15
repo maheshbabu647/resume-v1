@@ -1,0 +1,1465 @@
+{
+  "_id": {
+    "$oid": "68a6c2c1e4d86db2f29d35de"
+  },
+  "templateName": "Modern Centered",
+  "templateImage": "https://res.cloudinary.com/draqrqhdg/image/upload/v1756538279/resume_templates_previews/resumeimg_b1811b55-e671-4c1f-9717-bda4c46158fe.jpg",
+  "templateImageId": "resume_templates_previews/resumeimg_b1811b55-e671-4c1f-9717-bda4c46158fe",
+  "layoutSlots": [
+    "header",
+    "main_column"
+  ],
+  "templateComponents": {
+    "htmlShell": "<div class=\"rt-container\" id=\"resume\">{{{ main_column }}}</div>",
+    "baseCss": "/* --- CSS Isolation & Bounding Box --- */\n#resume {\n  /* --- Core Variables (Defaults) --- */\n  --primary-text-color: #2D2D2D;\n  --secondary-text-color: #6B6B6B;\n  --divider-color: #E0E0E0;\n  --accent-color: #005A5A;\n\n  /* --- Typography Variables --- */\n  --font-family-body: 'Lato', sans-serif;\n  --font-family-heading: 'Lato', sans-serif;\n  --font-size-base: 11pt;\n  --font-size-name: 22pt;\n  --font-size-section-title: 15pt;\n  --font-size-entry-title: 12pt;\n  --font-size-meta: 11pt;\n\n  /* --- Spacing System (Based on Cheatsheet) --- */\n  --base-line-height: calc(var(--font-size-base) * 1.4);\n  --space-bullet-list: calc(var(--base-line-height) * 0.35 * var(--rt-spacing));\n  --space-entry-header: calc(var(--base-line-height) * 0.25 * var(--rt-spacing));\n  --space-entry-content-top: calc(var(--base-line-height) * 0.4 * var(--rt-spacing));\n  --space-between-entries: calc(var(--base-line-height) * 1.25 * var(--rt-spacing));\n  --space-after-section-title: calc(var(--base-line-height) * 1.0 * var(--rt-spacing));\n  --space-between-sections: calc(var(--base-line-height) * 1.25 * var(--rt-spacing));\n  --page-margin: calc(var(--base-line-height) * 4.0 * var(--rt-spacing));\n\n  /* --- Document Setup --- */\n  background-color: #fff;\n  color: var(--primary-text-color);\n  font-family: var(--font-family-body);\n  font-size: var(--font-size-base);\n  line-height: 1.4;\n  width: 210mm;\n  min-height: 297mm;\n  box-sizing: border-box;\n  padding: var(--page-margin);\n}\n\n/* --- Global Element Styles (Scoped) --- */\n#resume a {\n  color: var(--secondary-text-color);\n  text-decoration: none;\n}\n#resume a:hover {\n  color: var(--accent-color);\n  text-decoration: underline;\n}\n#resume h1, #resume h2, #resume h3, #resume p, #resume ul, #resume li {\n  margin: 0;\n  padding: 0;\n}\n\n/* --- Layout & Sections (Scoped) --- */\n#resume .rt-section {\n  margin-bottom: var(--space-between-sections);\n}\n#resume .rt-section:last-of-type {\n  margin-bottom: 0;\n}\n#resume .rt-section-title {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-section-title);\n  color: var(--primary-text-color);\n  margin-bottom: var(--space-after-section-title);\n}\n\n/* --- Reusable Entry Component (Scoped) --- */\n#resume .rt-entry {\n  margin-bottom: var(--space-between-entries);\n}\n#resume .rt-entry:last-of-type {\n  margin-bottom: 0;\n}\n#resume .rt-entry-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: flex-start;\n  margin-bottom: var(--space-entry-header);\n}\n#resume .rt-entry-title {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-entry-title);\n  font-weight: 700;\n}\n#resume .rt-entry-subtitle {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-entry-title);\n  font-weight: 400; \n  margin-top: 2px;\n}\n#resume .rt-entry-meta {\n  text-align: right;\n  color: var(--secondary-text-color);\n  font-size: var(--font-size-meta);\n  white-space: nowrap;\n  flex-shrink: 0;\n  padding-left: 1em;\n}\n#resume .rt-entry-description {\n  margin-top: var(--space-entry-content-top);\n}\n#resume .rt-entry-description ul {\n  padding-left: 1.5em;\n  list-style-type: disc;\n}\n#resume .rt-entry-description li {\n  margin-bottom: var(--space-bullet-list);\n}\n#resume .rt-entry-description li:last-child {\n  margin-bottom: 0;\n}\n\n#resume .rt-simple-list {\n  list-style: none;\n  padding: 0;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 0.5em 1.5em; \n}\n\n#resume .rt-simple-list span {\n  color: var(--secondary-text-color);\n}\n@media print {\n  @page {\n    margin-top: 0.50in; \n  }\n  @page :first {\n    margin-top: 0;\n  }\n  .rt-section ul > li, \n  .rt-entry {\n    break-inside: avoid;\n  }\n  .rt-section-title {\n    break-after: avoid;\n  }\n}",
+    "sections": [
+      {
+        "key": "experience",
+        "name": "Work Experience",
+        "html": "{{#if content.experience}}\n<section class=\"rt-section\">\n  <h2 class=\"rt-section-title\">Work Experience</h2>\n  {{#each content.experience}}\n  <div class=\"rt-entry\">\n    <div class=\"rt-entry-header\">\n      <div>\n        <h3 class=\"rt-entry-title\">{{this.jobTitle}}</h3>\n        <p class=\"rt-entry-subtitle\">{{this.company}}{{#if this.employmentType}} | {{this.employmentType}}{{/if}}</p>\n      </div>\n      <div class=\"rt-entry-meta\">\n        {{#if this.location}}<span>{{this.location}}</span><br>{{/if}}\n        <span>{{this.dates}}</span>\n      </div>\n    </div>\n    <div class=\"rt-entry-description\">\n      {{{formatAsList this.description}}}\n    </div>\n  </div>\n  {{/each}}\n</section>\n{{/if}}"
+      },
+      {
+        "key": "education",
+        "name": "Education",
+        "html": "{{#if content.education}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Education</h2>\n    {{#each content.education}}\n    <div class=\"rt-entry\">\n        <div class=\"rt-entry-header\">\n            <div>\n                <h3 class=\"rt-entry-title\">{{this.qualification}}</h3>\n                <p class=\"rt-entry-subtitle\">{{this.institution}}{{#if this.honorsOrMinor}} | {{this.honorsOrMinor}}{{/if}}</p>\n            </div>\n            <div class=\"rt-entry-meta\">\n                {{#if this.gpa}}<span>{{this.gpa}}</span><br>{{/if}}\n                <span>{{this.dates}}</span>\n            </div>\n        </div>\n        {{#if this.description}}\n        <div class=\"rt-entry-description\">\n            {{{formatAsList this.description}}}\n        </div>\n        {{/if}}\n    </div>\n    {{/each}}\n</section>\n{{/if}}"
+      },
+      {
+        "key": "projects",
+        "name": "Projects",
+        "html": "{{#if content.projects}}\n<section class=\"rt-section\">\n  <h2 class=\"rt-section-title\">Projects</h2>\n  {{#each content.projects}}\n  <div class=\"rt-entry\">\n    <div class=\"rt-entry-header\">\n      <div>\n        <h3 class=\"rt-entry-title\">{{this.projectName}}</h3>\n        {{! --- This is the corrected block --- }}\n        {{#if this.role}}\n            <p class=\"rt-entry-subtitle\">{{this.role}}{{#if this.techStack}} | {{this.techStack}}{{/if}}</p>\n        {{else}}\n            {{#if this.techStack}}\n                <p class=\"rt-entry-subtitle\">{{this.techStack}}</p>\n            {{/if}}\n        {{/if}}\n      </div>\n      {{#if this.links}}\n      <div class=\"rt-entry-meta\">\n        {{#each this.links}}\n          <a href=\"{{sanitizeUrl this.url}}\" target=\"_blank\" rel=\"noopener noreferrer\">{{this.text}}</a>{{#unless @last}} | {{/unless}}\n        {{/each}}\n      </div>\n      {{/if}}\n    </div>\n    <div class=\"rt-entry-description\">\n      {{{formatAsList this.description}}}\n    </div>\n  </div>\n  {{/each}}\n</section>\n{{/if}}"
+      },
+      {
+        "key": "summary",
+        "name": "Summary",
+        "html": "{{#if content.summary}}<section class=\"rt-section\"><h2 class=\"rt-section-title\">Summary</h2><div class=\"rt-entry\"><p class=\"rt-entry-description\">{{content.summary}}</p></div></section>{{/if}}"
+      },
+      {
+        "key": "skills",
+        "name": "Skills",
+        "html": "{{#if content.skills}}<section class=\"rt-section\"><h2 class=\"rt-section-title\">Skills</h2><div class=\"rt-entry\"><ul class=\"rt-skills-list\">{{#each content.skills}}<li><strong>{{this.category}}:</strong> {{this.skillList}}</li>{{/each}}</ul></div></section>{{/if}}"
+      },
+      {
+        "key": "header",
+        "name": "Header",
+        "html": "<header class=\"rt-header\">\n  {{#if content.name}}\n    <h1 class=\"rt-name\">{{content.name}}</h1>\n  {{/if}}\n\n  {{#if content.title}}\n    <h2 class=\"rt-title\">{{content.title}}</h2>\n  {{/if}}\n\n  <div class=\"rt-contact-info\">\n    {{#if content.location}}\n      <span>{{content.location}}</span>\n    {{/if}}\n\n    {{#if content.email}}\n      <span>\n        <a href=\"mailto:{{content.email}}\">{{content.email}}</a>\n      </span>\n    {{/if}}\n\n    {{#if content.phone}}\n      <span>{{content.phone}}</span>\n    {{/if}}\n\n    {{! This new block replaces the old, separate link spans }}\n    {{#each content.contactLinks}}\n      <span>\n        <a href=\"{{sanitizeUrl this.url}}\" target=\"_blank\" rel=\"noopener noreferrer\">{{this.text}}</a>\n      </span>\n    {{/each}}\n  </div>\n</header>"
+      },
+      {
+        "key": "certifications",
+        "name": "Certifications & Licenses",
+        "html": "{{#if content.certifications}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Certifications & Licenses</h2>\n    \n    {{#each content.certifications}}\n    <div class=\"rt-entry\">\n        <div class=\"rt-entry-header\">\n            <div>\n                <h3 class=\"rt-entry-title\">{{this.name}}</h3>\n                <p class=\"rt-entry-subtitle\">{{this.issuer}}</p>\n                {{#if this.credentialId}}\n                    <p class=\"rt-entry-credential\">Credential ID: {{this.credentialId}}</p>\n                {{/if}}\n            </div>\n            <div class=\"rt-entry-meta\">\n                {{#if this.date}}\n                    <span>Issued {{this.date}}</span>\n                {{/if}}\n                {{#if this.verificationLink}}\n                    <br><a href=\"{{sanitizeUrl this.verificationLink}}\" target=\"_blank\" rel=\"noopener noreferrer\">Verify Credential</a>\n                {{/if}}\n            </div>\n        </div>\n    </div>\n    {{/each}}\n</section>\n{{/if}}"
+      },
+      {
+        "key": "awards",
+        "name": "Awards & Honor",
+        "html": "{{#if content.awards}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Awards & Honors</h2>\n\n    {{#each content.awards}}\n    <div class=\"rt-entry\">\n        <div class=\"rt-entry-header\">\n            <div>\n                <h3 class=\"rt-entry-title\">{{this.awardName}}</h3>\n                <p class=\"rt-entry-subtitle\">{{this.issuer}}</p>\n            </div>\n            <div class=\"rt-entry-meta\">\n                {{#if this.date}}\n                    <span>{{this.date}}</span>\n                {{/if}}\n            </div>\n        </div>\n        \n        {{#if this.description}}\n        <div class=\"rt-entry-description\">\n            <p>{{{this.description}}}</p>\n        </div>\n        {{/if}}\n    </div>\n    {{/each}}\n    \n</section>\n{{/if}}"
+      },
+      {
+        "key": "languages",
+        "name": "Languages",
+        "html": "{{#if content.languages}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Languages</h2>\n    <div class=\"rt-entry\">\n        <div class=\"rt-entry-description\">\n            <ul class=\"rt-simple-list\">\n                {{#each content.languages}}\n                <li>{{this.language}} <span>({{this.proficiency}})</span></li>\n                {{/each}}\n            </ul>\n        </div>\n    </div>\n</section>\n{{/if}}"
+      },
+      {
+        "key": "volunteering",
+        "name": "Volunteer Experience",
+        "html": "{{#if content.volunteering}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Volunteer Experience</h2>\n    \n    {{#each content.volunteering}}\n    <div class=\"rt-entry\">\n        <div class=\"rt-entry-header\">\n            <div>\n                <h3 class=\"rt-entry-title\">{{this.role}}</h3>\n                <p class=\"rt-entry-subtitle\">{{this.organization}}</p>\n            </div>\n            <div class=\"rt-entry-meta\">\n                {{#if this.location}}<span>{{this.location}}</span><br>{{/if}}\n                <span>{{this.dates}}</span>\n            </div>\n        </div>\n\n        {{#if this.achievements}}\n        <div class=\"rt-entry-description\">\n            {{{formatAsList this.achievements}}}\n        </div>\n        {{/if}}\n    </div>\n    {{/each}}\n</section>\n{{/if}}"
+      },
+      {
+        "key": "publications",
+        "name": "Publications",
+        "html": "{{#if content.publications}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Publications</h2>\n    \n    {{#each content.publications}}\n    <div class=\"rt-entry\">\n        {{! The main title, which is a link if a URL is provided }}\n        <h3 class=\"rt-entry-title\">\n            {{#if this.url}}\n                <a href=\"{{sanitizeUrl this.url}}\" target=\"_blank\" rel=\"noopener noreferrer\">{{this.title}}</a>\n            {{else}}\n                {{this.title}}\n            {{/if}}\n        </h3>\n        {{! The list of authors }}\n        <p class=\"rt-entry-subtitle\">{{this.authors}}</p>\n        \n        <div class=\"rt-entry-description\">\n            {{! This block formats the citation details like a professional journal entry }}\n            <p class=\"rt-publication-meta\">\n                <em>{{this.journal}}</em>{{#if this.volume}}, <strong>{{this.volume}}</strong>{{/if}}{{#if this.issue}}({{this.issue}}){{/if}}{{#if this.pages}}, pp. {{this.pages}}{{/if}}. ({{this.date}}).\n            </p>\n            \n            {{! The optional summary of the work }}\n            {{#if this.summary}}\n                <p class=\"rt-publication-summary\">{{{this.summary}}}</p>\n            {{/if}}\n        </div>\n    </div>\n    {{/each}}\n</section>\n{{/if}}"
+      },
+      {
+        "key": "presentations",
+        "name": "Conference Presentations",
+        "html": "{{#if content.presentations}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Conference Presentations</h2>\n    \n    {{#each content.presentations}}\n    <div class=\"rt-entry\">\n        <div class=\"rt-entry-header\">\n            <div>\n                <h3 class=\"rt-entry-title\">\n                    {{#if this.url}}\n                        <a href=\"{{this.url}}\" target=\"_blank\" rel=\"noopener noreferrer\">{{this.presentationTitle}}</a>\n                    {{else}}\n                        {{this.presentationTitle}}\n                    {{/if}}\n                </h3>\n                <p class=\"rt-entry-subtitle\">{{this.conferenceName}} - {{this.location}} ({{this.date}})</p>\n            </div>\n        </div>\n\n        {{#if this.description}}\n        <div class=\"rt-entry-description\">\n            <p>{{{this.description}}}</p>\n        </div>\n        {{/if}}\n    </div>\n    {{/each}}\n    \n</section>\n{{/if}}"
+      },
+      {
+        "key": "licensure",
+        "name": "Licensure",
+        "html": "{{#if content.licensure}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Licensure</h2>\n    \n    {{#each content.licensure}}\n    <div class=\"rt-entry\">\n        <div class=\"rt-entry-header\">\n            <div>\n                <h3 class=\"rt-entry-title\">{{this.licenseName}}</h3>\n                <p class=\"rt-entry-subtitle\">{{this.issuingBody}}</p>\n            </div>\n            <div class=\"rt-entry-meta\">\n                {{#if this.licenseNumber}}\n                    <span>License #: {{this.licenseNumber}}</span>\n                    {{#if this.expirationDate}}<br>{{/if}}\n                {{/if}}\n                {{#if this.expirationDate}}\n                    <span>Expires: {{this.expirationDate}}</span>\n                {{/if}}\n            </div>\n        </div>\n    </div>\n    {{/each}}\n</section>\n{{/if}}"
+      },
+      {
+        "key": "barAdmissions",
+        "name": "Bar Admissions",
+        "html": "{{#if content.barAdmissions}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Bar Admissions</h2>\n    <div class=\"rt-entry\">\n        <div class=\"rt-entry-description\">\n            <ul class=\"rt-simple-list\">\n                {{#each content.barAdmissions}}\n                <li>{{this.stateBar}} <span>(Admitted {{this.admissionYear}}{{#if this.barNumber}}, No. {{this.barNumber}}{{/if}})</span></li>\n                {{/each}}\n            </ul>\n        </div>\n    </div>\n</section>\n{{/if}}"
+      },
+      {
+        "key": "custom",
+        "name": "Custom Section",
+        "html": "{{#if content.custom}}\n  {{#each content.custom}}\n    <section class=\"rt-section\">\n      <h2 class=\"rt-section-title\">{{this.sectionTitle}}</h2>\n      <div class=\"rt-entry\">\n        <div class=\"rt-entry-description\">\n          {{{formatAsList this.content}}}\n        </div>\n      </div>\n    </section>\n  {{/each}}\n{{/if}}"
+      },
+      {
+        "key": "memberships",
+        "name": "Professional Memberships",
+        "html": "{{#if content.memberships}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Professional Memberships</h2>\n    \n    {{#each content.memberships}}\n    <div class=\"rt-entry\">\n        <div class=\"rt-entry-header\">\n            <div>\n                <h3 class=\"rt-entry-title\">{{this.organization}}</h3>\n                {{#if this.role}}\n                <p class=\"rt-entry-subtitle\">{{this.role}}</p>\n                {{/if}}\n            </div>\n            <div class=\"rt-entry-meta\">\n                {{#if this.dates}}\n                <span>{{this.dates}}</span>\n                {{/if}}\n            </div>\n        </div>\n    </div>\n    {{/each}}\n\n</section>\n{{/if}}"
+      },
+      {
+        "key": "clinicalExperience",
+        "name": "Clinical Experience & Rotations",
+        "html": "{{#if content.clinicalExperience}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Clinical Experience</h2>\n    \n    {{#each content.clinicalExperience}}\n    <div class=\"rt-entry\">\n        <div class=\"rt-entry-header\">\n            <div>\n                <h3 class=\"rt-entry-title\">{{this.rotationName}}</h3>\n                <p class=\"rt-entry-subtitle\">{{this.institution}}</p>\n            </div>\n            <div class=\"rt-entry-meta\">\n                {{#if this.location}}<span>{{this.location}}</span><br>{{/if}}\n                <span>{{this.dates}}</span>\n                {{#if this.hours}}<br><span>{{this.hours}} Hours</span>{{/if}}\n            </div>\n        </div>\n\n        {{#if this.description}}\n        <div class=\"rt-entry-description\">\n            {{{formatAsList this.description}}}\n        </div>\n        {{/if}}\n    </div>\n    {{/each}}\n</section>\n{{/if}}"
+      },
+      {
+        "key": "grants",
+        "name": "Grants & Funding",
+        "html": "{{#if content.grants}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Grants & Funding</h2>\n    \n    {{#each content.grants}}\n    <div class=\"rt-entry\">\n        <div class=\"rt-entry-header\">\n            <div>\n                <h3 class=\"rt-entry-title\">{{this.grantTitle}}</h3>\n                <p class=\"rt-entry-subtitle\">{{this.role}} | {{this.fundingBody}}</p>\n                {{#if this.grantNumber}}\n                    <p class=\"rt-entry-credential\">Grant #: {{this.grantNumber}}</p>\n                {{/if}}\n            </div>\n            <div class=\"rt-entry-meta\">\n                {{#if this.amount}}\n                    <span>{{this.amount}}</span><br>\n                {{/if}}\n                <span>{{this.dates}}</span>\n            </div>\n        </div>\n\n        {{#if this.description}}\n        <div class=\"rt-entry-description\">\n            <p>{{{this.description}}}</p>\n        </div>\n        {{/if}}\n    </div>\n    {{/each}}\n</section>\n{{/if}}"
+      },
+      {
+        "key": "teachingExperience",
+        "name": "Teaching Experience",
+        "html": "{{#if content.teachingExperience}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Teaching Experience</h2>\n    \n    {{#each content.teachingExperience}}\n    <div class=\"rt-entry\">\n        <div class=\"rt-entry-header\">\n            <div>\n                <h3 class=\"rt-entry-title\">{{this.courseTitle}}</h3>\n                <p class=\"rt-entry-subtitle\">{{this.role}} | {{this.university}}</p>\n            </div>\n            <div class=\"rt-entry-meta\">\n                <span>{{this.dates}}</span>\n            </div>\n        </div>\n\n        {{#if this.achievements}}\n        <div class=\"rt-entry-description\">\n            {{{formatAsList this.achievements}}}\n        </div>\n        {{/if}}\n    </div>\n    {{/each}}\n</section>\n{{/if}}"
+      },
+      {
+        "key": "securityClearance",
+        "name": "Security Clearance",
+        "html": "{{#if content.securityClearance}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Security Clearance</h2>\n    \n    {{#each content.securityClearance}}\n    <div class=\"rt-entry\">\n        <div class=\"rt-entry-description\">\n            <p>\n                <strong>{{this.clearanceLevel}}:</strong> \n                {{this.issuingAgency}}{{#if this.polygraph}}, {{this.polygraph}}{{/if}}.\n                {{#if this.date}} (Last Investigation: {{this.date}}){{/if}}\n            </p>\n        </div>\n    </div>\n    {{/each}}\n</section>\n{{/if}}"
+      },
+      {
+        "key": "events",
+        "name": "Workshops & Hackathons",
+        "html": "{{#if content.events}}\n<section class=\"rt-section\">\n    <h2 class=\"rt-section-title\">Workshops & Hackathons</h2>\n    \n    {{#each content.events}}\n    <div class=\"rt-entry\">\n        <div class=\"rt-entry-header\">\n            <div>\n                <h3 class=\"rt-entry-title\">{{this.eventName}}</h3>\n                <p class=\"rt-entry-subtitle\">{{this.organizer}}{{#if this.achievement}} | <strong class=\"rt-achievement\">{{this.achievement}}</strong>{{/if}}</p>\n            </div>\n            <div class=\"rt-entry-meta\">\n                <span>{{this.date}}</span>\n                {{#if this.links}}\n                    <br>\n                    {{#each this.links}}\n                        <a href=\"{{sanitizeUrl this.url}}\" target=\"_blank\" rel=\"noopener noreferrer\">{{this.text}}</a>{{#unless @last}} | {{/unless}}\n                    {{/each}}\n                {{/if}}\n            </div>\n        </div>\n\n        {{#if this.description}}\n        <div class=\"rt-entry-description\">\n            {{{formatAsList this.description}}}\n        </div>\n        {{/if}}\n    </div>\n    {{/each}}\n</section>\n{{/if}}"
+      }
+    ],
+    "stylePacks": [
+      {
+        "key": "corporate-authority",
+        "name": "Corporate Authority",
+        "css": "/* --- Corporate Authority (Helvetica/Garamond) --- */\n@import url('https://fonts.googleapis.com/css2?family=Garamond:ital@0;1&display=swap');\n/* Note: Helvetica Neue is a system font and does not require an import */\n\n/* --- 1. Variable Definitions from Cheatsheet --- */\n#resume {\n  --accent-color: #003366; /* Navy */\n  --font-family-body: 'Garamond', serif;\n  --font-family-heading: 'Helvetica Neue', sans-serif;\n  --font-size-name: 24pt;\n  --font-size-section-title: 16pt;\n  --font-size-entry-title: 12pt; /* Corresponds to \"Subheadings\" */\n  --font-size-base: 12pt;      /* Corresponds to \"Body Text\" */\n  --font-size-meta: 12pt;      /* Corresponds to \"Dates/Location\" */\n}\n\n/* --- 2. Layout and Thematic Styles --- */\n#resume .rt-header {\n  text-align: left;\n  border-bottom: 2px solid var(--accent-color);\n  padding-bottom: var(--space-entry-content-top);\n  margin-bottom: var(--space-between-sections);\n}\n\n#resume .rt-contact-info {\n  font-family: var(--font-family-body); /* Use body font for contact details */\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: flex-start; /* Left-aligned */\n  gap: 0.75em;\n  margin-top: var(--space-entry-content-top);\n}\n\n#resume .rt-contact-info span:not(:last-child)::after {\n  content: '|';\n  margin-left: 0.75em;\n  color: var(--divider-color);\n}\n\n/* --- 3. Detailed Typographic Rules --- */\n\n/* Your Name */\n#resume .rt-name {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-name);\n  font-weight: 700; /* Bold */\n  color: var(--accent-color);\n  margin: 0;\n}\n\n/* Professional Title */\n#resume .rt-title {\n  font-family: var(--font-family-heading);\n  font-size: 14pt;\n  font-weight: 400; /* Regular */\n  color: var(--primary-text-color);\n  margin: 4px 0 8px 0;\n}\n\n/* Section Headings: e.g., \"Work Experience\" */\n#resume .rt-section-title {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-section-title);\n  font-weight: 700; /* Bold */\n  color: var(--primary-text-color);\n  text-transform: none; /* Not uppercase for a more traditional feel */\n  border-bottom: 1px solid var(--divider-color);\n  padding-bottom: calc(var(--base-line-height) * 0.2);\n  margin-bottom: var(--space-after-section-title);\n}\n\n/* Subheadings: e.g., \"Senior Software Engineer\" */\n#resume .rt-entry-title {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-entry-title);\n  font-weight: 700; /* Bold */\n  color: var(--primary-text-color);\n  margin: 0;\n}\n\n/* Sub-Subheadings: e.g., \"Company Name\" */\n#resume .rt-entry-subtitle {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-entry-title); /* Same size as title */\n  font-weight: 400; /* Regular weight for contrast */\n  color: var(--primary-text-color);\n  margin: 2px 0 0 0;\n}\n\n/* Meta Info: e.g., \"Jan 2022\" */\n#resume .rt-entry-meta {\n  font-family: var(--font-family-body);\n  font-size: var(--font-size-meta);\n  font-weight: 400; /* Regular */\n  color: var(--secondary-text-color);\n  font-style: italic; /* Italic as per cheatsheet */\n}\n\n/* Skills Section Specifics */\n#resume .rt-skills-list {\n  list-style: none;\n  padding: 0;\n  font-family: var(--font-family-body); /* Ensure skills use the body font */\n}\n\n#resume .rt-skills-list li {\n  margin-bottom: calc(var(--space-bullet-list) * 0.5);\n}\n\n#resume .rt-skills-list strong {\n  font-family: var(--font-family-heading); /* Use heading font for categories */\n  font-weight: 700;\n  margin-right: 0.5em;\n}"
+      },
+      {
+        "key": "tech-innovator",
+        "name": "Tech Innovator",
+        "css": "/* --- Tech Innovator (Inter) --- */\n/* Personality: Digital-native, clean. For developers, UI/UX, data scientists. */\n@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');\n\n/* --- 1. Variable Definitions from Cheatsheet --- */\n#resume {\n  --accent-color: #4A6B8A; /* Slate Blue */\n  --font-family-body: 'Inter', sans-serif;\n  --font-family-heading: 'Inter', sans-serif;\n  --font-size-name: 22pt;\n  --font-size-section-title: 14pt;\n  --font-size-entry-title: 12pt;\n  --font-size-base: 10.5pt;\n  --font-size-meta: 10.5pt;\n}\n\n/* --- 2. Layout and Thematic Styles --- */\n#resume .rt-header {\n  text-align: left;\n  padding-bottom: var(--space-entry-content-top);\n  margin-bottom: var(--space-between-sections);\n  border-bottom: 1px solid var(--divider-color);\n}\n\n#resume .rt-contact-info {\n  font-family: var(--font-family-body);\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: flex-start;\n  gap: 0.75em;\n  margin-top: var(--space-entry-content-top);\n}\n\n#resume .rt-contact-info span:not(:last-child)::after {\n  content: '•';\n  margin-left: 0.75em;\n  color: var(--divider-color);\n}\n\n/* --- 3. Detailed Typographic Rules --- */\n\n/* Your Name */\n#resume .rt-name {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-name);\n  font-weight: 700; /* Bold */\n  color: var(--accent-color);\n  margin: 0;\n}\n\n/* Professional Title */\n#resume .rt-title {\n  font-family: var(--font-family-heading);\n  font-size: 13pt;\n  font-weight: 600; /* Semibold for clean hierarchy */\n  color: var(--primary-text-color);\n  margin: 4px 0 8px 0;\n}\n\n/* Section Headings: e.g., \"Work Experience\" */\n#resume .rt-section-title {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-section-title);\n  font-weight: 600; /* Semibold */\n  color: var(--primary-text-color);\n  text-transform: uppercase;\n  border-bottom: 1px solid var(--divider-color);\n  padding-bottom: calc(var(--base-line-height) * 0.2);\n  margin-bottom: var(--space-after-section-title);\n}\n\n/* Subheadings: e.g., \"Senior Software Engineer\" */\n#resume .rt-entry-title {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-entry-title);\n  font-weight: 600; /* Semibold */\n  color: var(--primary-text-color);\n  margin: 0;\n}\n\n/* Sub-Subheadings: e.g., \"Company Name\" */\n#resume .rt-entry-subtitle {\n  font-family: var(--font-family-heading);\n  font-size: 11.5pt;\n  font-weight: 400; /* Regular weight for contrast */\n  color: var(--primary-text-color);\n  margin: 2px 0 0 0;\n}\n\n/* Meta Info: e.g., \"Jan 2022\" */\n#resume .rt-entry-meta {\n  font-family: var(--font-family-body);\n  font-size: var(--font-size-meta);\n  font-weight: 400; /* Regular */\n  color: var(--secondary-text-color);\n  font-style: normal;\n}\n\n/* Skills Section Specifics */\n#resume .rt-skills-list {\n  list-style: none;\n  padding: 0;\n  font-family: var(--font-family-body);\n}\n\n#resume .rt-skills-list li {\n  margin-bottom: calc(var(--space-bullet-list) * 0.5);\n}\n\n#resume .rt-skills-list strong {\n  font-family: var(--font-family-heading);\n  font-weight: 600; /* Semibold */\n  margin-right: 0.5em;\n}"
+      },
+      {
+        "key": "creative-minimalist",
+        "name": "Creative Minimalist",
+        "css": "/* --- Modern Centered (Lato) --- */\n@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');\n\n/* --- 1. Variable Definitions --- */\n#resume {\n  --accent-color: #005A5A; /* Dark Teal */\n  --font-family-body: 'Lato', sans-serif;\n  --font-family-heading: 'Lato', sans-serif;\n  --font-size-name: 22pt;\n  --font-size-section-title: 15pt;\n  --font-size-entry-title: 12pt;\n  --font-size-meta: 10.5pt;\n  --font-size-base: 11pt;\n}\n\n/* --- 2. Layout & Thematic Styles --- */\n#resume .rt-header {\n  text-align: center;\n  border-bottom: 1px solid var(--divider-color);\n  /* Space AFTER the border */\n  margin-bottom: var(--space-after-section-title); \n}\n\n#resume .rt-contact-info {\n  font-size: 10pt;\n  justify-content: center;\n  /* Space BEFORE the border */\n  margin-bottom: var(--space-entry-content-top); \n}\n\n#resume .rt-contact-info span:not(:last-child)::after {\n  content: '|';\n  margin-left: 0.5em;\n  margin-right: 0.5em; \n  color: var(--divider-color);\n}\n\n/* --- 3. Detailed Typographic Rules --- */\n#resume .rt-name {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-name);\n  font-weight: 700;\n  color: var(--accent-color);\n  margin-bottom: 4px;\n}\n\n#resume .rt-title {\n  font-family: var(--font-family-heading);\n  font-size: 13pt;\n  font-weight: 400;\n  color: var(--primary-text-color);\n  margin: 4px 0 8px 0;\n}\n\n#resume .rt-section-title {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-section-title);\n  font-weight: 700;\n  text-transform: uppercase;\n  border-bottom: 1px solid var(--divider-color);\n  padding-bottom: var(--space-entry-header); /* Use a defined smaller space */\n}\n\n#resume .rt-entry-title {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-entry-title);\n  font-weight: 700;\n}\n\n#resume .rt-entry-subtitle {\n  font-family: var(--font-family-body);\n  font-size: var(--font-size-base);\n  font-weight: 400;\n  margin-top: 2px;\n}\n\n#resume .rt-entry-meta {\n  font-family: var(--font-family-body);\n  font-size: var(--font-size-meta);\n  color: var(--secondary-text-color);\n  text-align: right;\n  white-space: nowrap;\n}\n\n#resume .skills-list strong {\n  display: inline-block;\n  width: 120px;\n}"
+      },
+      {
+        "key": "academic-scholar",
+        "name": "Academic Scholar",
+        "css": "/* --- Academic Scholar (Cambria) --- */\n/* Note: Cambria is a system font and not available on Google Fonts. This import may not work on all computers. */\n@import url('https://fonts.googleapis.com/css2?family=Cambria:wght@400;700&display=swap');\n\n/* --- 1. Variable Definitions from Cheatsheet --- */\n#resume {\n  --accent-color: #800020; /* Burgundy */\n  /* Fallback fonts (Georgia, serif) are included for better compatibility */\n  --font-family-body: 'Cambria', Georgia, serif;\n  --font-family-heading: 'Cambria', Georgia, serif;\n  --font-size-name: 22pt;\n  --font-size-section-title: 15pt;\n  --font-size-entry-title: 12pt;  /* Corresponds to \"Subheadings\" */\n  --font-size-base: 11.5pt;     /* Corresponds to \"Body Text\" */\n  --font-size-meta: 11.5pt;     /* Corresponds to \"Dates/Location\" */\n}\n\n/* --- 2. Layout and Thematic Styles --- */\n#resume .rt-header {\n  text-align: center;\n  border-bottom: 1px solid var(--divider-color);\n  padding-bottom: var(--space-after-section-title);\n  margin-bottom: var(--space-between-sections);\n}\n\n#resume .rt-contact-info {\n  font-family: var(--font-family-body);\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  gap: 0.75em;\n  margin-top: var(--space-entry-content-top);\n}\n\n/* --- 3. Detailed Typographic Rules --- */\n\n/* Your Name */\n#resume .rt-name {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-name);\n  font-weight: 700; /* Bold */\n  color: var(--accent-color);\n  margin: 0;\n}\n\n/* Professional Title */\n#resume .rt-title {\n  font-family: var(--font-family-heading);\n  font-size: 14pt;\n  font-weight: 400; /* Regular */\n  color: var(--primary-text-color);\n  margin: 4px 0 8px 0;\n}\n\n/* Section Headings: e.g., \"Work Experience\" */\n#resume .rt-section-title {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-section-title);\n  font-weight: 700; /* Bold */\n  color: var(--primary-text-color);\n  text-transform: none; /* Not uppercase for a classic look */\n  border-bottom: 1px solid var(--primary-text-color);\n  padding-bottom: calc(var(--base-line-height) * 0.2);\n  margin-bottom: var(--space-after-section-title);\n}\n\n/* Subheadings: e.g., \"Doctor of Philosophy\" */\n#resume .rt-entry-title {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-entry-title);\n  font-weight: 700; /* Bold */\n  color: var(--primary-text-color);\n  margin: 0;\n}\n\n/* Sub-Subheadings: e.g., \"University Name\" */\n#resume .rt-entry-subtitle {\n  font-family: var(--font-family-body);\n  font-size: var(--font-size-base);\n  font-weight: 400; /* Regular */\n  color: var(--primary-text-color);\n  margin: 2px 0 0 0;\n}\n\n/* Meta Info: e.g., \"May 2024\" */\n#resume .rt-entry-meta {\n  font-family: var(--font-family-body);\n  font-size: var(--font-size-meta);\n  font-weight: 400; /* Regular */\n  color: var(--secondary-text-color);\n  font-style: italic; /* Italic as per cheatsheet */\n}\n\n/* Skills Section Specifics */\n#resume .rt-skills-list {\n  list-style: none;\n  padding: 0;\n}\n\n#resume .rt-skills-list strong {\n  font-weight: 700; /* Bold */\n  margin-right: 0.5em;\n}"
+      },
+      {
+        "key": "modern-generalist",
+        "name": "Modern Generalist",
+        "css": "/* --- Modern Generalist (Lato) --- */\n@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');\n\n/* --- 1. Variable Definitions from Cheatsheet --- */\n#resume {\n  --accent-color: #005A5A; /* Dark Teal */\n  --font-family-body: 'Lato', sans-serif;\n  --font-family-heading: 'Lato', sans-serif;\n  --font-size-name: 22pt;\n  --font-size-section-title: 15pt;\n  --font-size-entry-title: 12pt; /* Corresponds to \"Subheadings\" */\n  --font-size-base: 11pt;      /* Corresponds to \"Body Text\" */\n  --font-size-meta: 11pt;      /* Corresponds to \"Dates/Location\" */\n}\n\n/* --- 2. Layout and Thematic Styles --- */\n#resume .rt-header {\n  text-align: center;\n  border-bottom: 1px solid var(--divider-color);\n  padding-bottom: var(--space-after-section-title);\n  margin-bottom: var(--space-between-sections);\n}\n\n#resume .rt-contact-info {\n  font-size: 10pt;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  gap: 0.5em;\n  margin-top: var(--space-entry-content-top);\n}\n\n#resume .rt-contact-info span:not(:last-child)::after {\n  content: '|';\n  margin-left: 0.5em;\n  color: var(--divider-color);\n}\n\n/* --- 3. Detailed Typographic Rules --- */\n\n/* Your Name */\n#resume .rt-name {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-name);\n  font-weight: 700; /* Bold */\n  color: var(--accent-color);\n  margin: 0;\n}\n\n/* Professional Title */\n#resume .rt-title {\n  font-family: var(--font-family-heading);\n  font-size: 13pt;\n  font-weight: 400; /* Regular */\n  color: var(--primary-text-color);\n  margin: 4px 0 8px 0;\n}\n\n/* Section Headings: e.g., \"Work Experience\" */\n#resume .rt-section-title {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-section-title);\n  font-weight: 700; /* Bold */\n  color: var(--primary-text-color);\n  text-transform: uppercase; /* ALL CAPS */\n  border-bottom: 2px solid var(--primary-text-color);\n  padding-bottom: calc(var(--base-line-height) * 0.2);\n  margin-bottom: var(--space-after-section-title);\n}\n\n/* Subheadings: e.g., \"Senior Software Engineer\" */\n#resume .rt-entry-title {\n  font-family: var(--font-family-heading);\n  font-size: var(--font-size-entry-title);\n  font-weight: 700; /* Bold */\n  color: var(--primary-text-color);\n  margin: 0;\n}\n\n/* Sub-Subheadings: e.g., \"Company Name\" */\n#resume .rt-entry-subtitle {\n  font-family: var(--font-family-body);\n  font-size: var(--font-size-base);\n  font-weight: 700; /* Keep it bold to stand out */\n  color: var(--primary-text-color);\n  margin: 2px 0 0 0;\n}\n\n/* Meta Info: e.g., \"Jan 2022\" */\n#resume .rt-entry-meta {\n  font-family: var(--font-family-body);\n  font-size: var(--font-size-meta);\n  font-weight: 400; /* Regular */\n  color: var(--secondary-text-color);\n  font-style: normal; /* Reset any inherited italics */\n}\n\n/* Skills Section Specifics */\n#resume .rt-skills-list {\n  list-style: none;\n  padding: 0;\n}\n\n#resume .rt-skills-list strong {\n  display: inline-block;\n  width: 180px;\n  font-weight: 700;\n}"
+      }
+    ],
+    "sectionPresets": [
+      {
+        "key": "steady-climber",
+        "name": "The Steady Climber (Chronological)",
+        "order": {
+          "header": [
+            "header"
+          ],
+          "main_column": [
+            "summary",
+            "experience",
+            "education",
+            "skills",
+            "projects",
+            "certifications",
+            "awards",
+            "volunteering",
+            "publications",
+            "teachingExperience",
+            "events",
+            "memberships",
+            "languages",
+            "licensure",
+            "barAdmissions",
+            "securityClearance",
+            "clinicalExperience",
+            "grants",
+            "custom"
+          ]
+        }
+      },
+      {
+        "key": "potential-star",
+        "name": "The Potential Star (Recent Graduate)",
+        "order": {
+          "header": [
+            "header"
+          ],
+          "main_column": [
+            "summary",
+            "education",
+            "projects",
+            "skills",
+            "experience",
+            "events",
+            "awards",
+            "volunteering",
+            "certifications",
+            "publications",
+            "memberships",
+            "languages",
+            "teachingExperience",
+            "clinicalExperience",
+            "grants",
+            "licensure",
+            "barAdmissions",
+            "securityClearance",
+            "custom"
+          ]
+        }
+      },
+      {
+        "key": "strategic-pivot",
+        "name": "The Strategic Pivot (Career Changer)",
+        "order": {
+          "header": [
+            "header"
+          ],
+          "main_column": [
+            "summary",
+            "skills",
+            "projects",
+            "certifications",
+            "events",
+            "experience",
+            "education",
+            "volunteering",
+            "awards",
+            "publications",
+            "memberships",
+            "languages",
+            "teachingExperience",
+            "licensure",
+            "barAdmissions",
+            "securityClearance",
+            "clinicalExperience",
+            "grants",
+            "custom"
+          ]
+        }
+      },
+      {
+        "key": "tech-specialist",
+        "name": "The Tech Specialist (Skills-First)",
+        "order": {
+          "header": [
+            "header"
+          ],
+          "main_column": [
+            "summary",
+            "skills",
+            "projects",
+            "experience",
+            "certifications",
+            "events",
+            "education",
+            "publications",
+            "awards",
+            "volunteering",
+            "memberships",
+            "languages",
+            "teachingExperience",
+            "licensure",
+            "barAdmissions",
+            "securityClearance",
+            "clinicalExperience",
+            "grants",
+            "custom"
+          ]
+        }
+      },
+      {
+        "key": "senior-authority",
+        "name": "The Authority (Senior Leader)",
+        "order": {
+          "header": [
+            "header"
+          ],
+          "main_column": [
+            "summary",
+            "experience",
+            "awards",
+            "publications",
+            "skills",
+            "memberships",
+            "teachingExperience",
+            "education",
+            "grants",
+            "certifications",
+            "projects",
+            "volunteering",
+            "languages",
+            "licensure",
+            "barAdmissions",
+            "securityClearance",
+            "clinicalExperience",
+            "events",
+            "custom"
+          ]
+        }
+      },
+      {
+        "key": "academic-focus",
+        "name": "The Academic (Research First)",
+        "order": {
+          "header": [
+            "header"
+          ],
+          "main_column": [
+            "summary",
+            "education",
+            "publications",
+            "grants",
+            "teachingExperience",
+            "experience",
+            "awards",
+            "clinicalExperience",
+            "skills",
+            "memberships",
+            "projects",
+            "certifications",
+            "events",
+            "volunteering",
+            "languages",
+            "licensure",
+            "barAdmissions",
+            "securityClearance",
+            "custom"
+          ]
+        }
+      }
+    ]
+  },
+  "templateFieldDefinition": [
+    {
+      "section": "profile",
+      "sectionLabel": "Professional Profile",
+      "sectionDescription": "Start with your name, title, and a compelling summary of your skills and career goals.",
+      "isCore": true,
+      "name": "name",
+      "label": "Full Name",
+      "placeholder": "e.g., Jane Doe",
+      "type": "text",
+      "required": true,
+      "livePreviewPlaceholder": "[Your Name]"
+    },
+    {
+      "section": "profile",
+      "name": "title",
+      "label": "Professional Title",
+      "placeholder": "e.g., Senior Software Engineer | Product Manager",
+      "type": "text",
+      "livePreviewPlaceholder": "[Your Professional Title]"
+    },
+    {
+      "section": "profile",
+      "name": "summary",
+      "label": "Professional Summary",
+      "placeholder": "A 2-4 sentence summary of your experience, skills, and what you bring to the table. Tailor this to the job you're applying for.",
+      "type": "textarea",
+      "rows": 4,
+      "livePreviewPlaceholder": "[Write a 2-4 sentence summary of your experience, skills, and career goals. Tailor this to the job you are applying for to highlight your most relevant qualifications.]"
+    },
+    {
+      "section": "contact",
+      "sectionLabel": "Contact Information",
+      "sectionDescription": "Provide ways for recruiters to get in touch with you.",
+      "isCore": true,
+      "name": "email",
+      "label": "Email Address",
+      "placeholder": "e.g., jane.doe@email.com",
+      "type": "email",
+      "required": true,
+      "livePreviewPlaceholder": "[your.email@example.com]"
+    },
+    {
+      "section": "contact",
+      "name": "phone",
+      "label": "Phone Number",
+      "placeholder": "e.g., +1 (555) 123-4567",
+      "type": "tel",
+      "livePreviewPlaceholder": "[Your Phone Number]"
+    },
+    {
+      "section": "contact",
+      "name": "location",
+      "label": "Location",
+      "placeholder": "e.g., San Francisco, CA",
+      "type": "text",
+      "livePreviewPlaceholder": "[City, State / Country]"
+    },
+    {
+      "section": "contact",
+      "name": "contactLinks",
+      "label": "Website & Social Links",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Link",
+      "pluralLabel": "Links",
+      "defaultValue": [
+        {
+          "text": "[Link]",
+          "url": ""
+        }
+      ],
+      "subFields": [
+        {
+          "name": "text",
+          "label": "Link Text",
+          "placeholder": "e.g., LinkedIn, Portfolio",
+          "type": "text"
+        },
+        {
+          "name": "url",
+          "label": "URL",
+          "placeholder": "linkedin.com/in/...",
+          "type": "url"
+        }
+      ]
+    },
+    {
+      "section": "experience",
+      "sectionLabel": "Work Experience",
+      "sectionDescription": "Detail your professional roles, starting with the most recent.",
+      "isCore": true,
+      "name": "experience",
+      "label": "Experience",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Position",
+      "pluralLabel": "Positions",
+      "subFields": [
+        {
+          "name": "jobTitle",
+          "label": "Job Title",
+          "placeholder": "e.g., Software Engineer",
+          "type": "text",
+          "livePreviewPlaceholder": "[Job Title]"
+        },
+        {
+          "name": "company",
+          "label": "Company",
+          "placeholder": "e.g., Tech Innovations Inc.",
+          "type": "text",
+          "livePreviewPlaceholder": "[Company Name]"
+        },
+        {
+          "name": "employmentType",
+          "label": "Employment Type (Optional)",
+          "type": "text",
+          "placeholder": "e.g., Full-time, Contract",
+          "livePreviewPlaceholder": "[Employment Type]"
+        },
+        {
+          "name": "location",
+          "label": "Location",
+          "placeholder": "e.g., Remote | New York, NY",
+          "type": "text",
+          "livePreviewPlaceholder": "[City, State]"
+        },
+        {
+          "name": "dates",
+          "label": "Dates Employed",
+          "placeholder": "e.g., Jan 2022 - Present",
+          "type": "text",
+          "livePreviewPlaceholder": "[Month Year] - [Month Year]"
+        },
+        {
+          "name": "description",
+          "label": "Responsibilities & Achievements",
+          "placeholder": "Enter each achievement on a new line. Each new line will automatically become a bullet point.",
+          "type": "textarea",
+          "rows": 5,
+          "livePreviewPlaceholder": " [Start with an action verb to describe a key responsibility or achievement.]\n [Quantify your accomplishments with numbers and metrics to show impact.]\n [Keep bullet points concise and relevant to the job you're applying for.]"
+        }
+      ]
+    },
+    {
+      "section": "education",
+      "sectionLabel": "Education",
+      "sectionDescription": "List your academic background, from university to high school.",
+      "isCore": true,
+      "name": "education",
+      "label": "Education",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Qualification",
+      "pluralLabel": "Qualifications",
+      "subFields": [
+        {
+          "name": "qualification",
+          "label": "Qualification / Program",
+          "placeholder": "e.g., B.S. in Computer Science, Class XII (CBSE)",
+          "type": "text",
+          "livePreviewPlaceholder": "[Bachelor of Science, Class XII]"
+        },
+        {
+          "name": "institution",
+          "label": "Institution / School / Board",
+          "placeholder": "e.g., University of Technology, Delhi Public School",
+          "type": "text",
+          "livePreviewPlaceholder": "[Name of the Institute]"
+        },
+        {
+          "name": "honorsOrMinor",
+          "label": "Honors or Key Subjects (Optional)",
+          "placeholder": "e.g., Magna Cum Laude, Science Stream (PCM)",
+          "type": "text",
+          "livePreviewPlaceholder": "[Key Subjects]"
+        },
+        {
+          "name": "dates",
+          "label": "Completion Date",
+          "placeholder": "e.g., May 2022, March 2018",
+          "type": "text",
+          "livePreviewPlaceholder": "[Month Year]"
+        },
+        {
+          "name": "gpa",
+          "label": "GPA / Percentage (Optional)",
+          "placeholder": "e.g., 3.8/4.0 or 95%",
+          "type": "text",
+          "livePreviewPlaceholder": "[9.5 CGPA or 95%]"
+        },
+        {
+          "name": "description",
+          "label": "Additional Details (Optional)",
+          "placeholder": "Add any other relevant details, like projects or achievements.",
+          "type": "textarea",
+          "rows": 3,
+          "livePreviewPlaceholder": "[Relevant Coursework, Achievements]"
+        }
+      ]
+    },
+    {
+      "section": "skills",
+      "sectionLabel": "Skills",
+      "sectionDescription": "List your technical and professional skills. Group them by category.",
+      "isCore": true,
+      "name": "skills",
+      "label": "Skills",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Skill Category",
+      "pluralLabel": "Skill Categories",
+      "subFields": [
+        {
+          "name": "category",
+          "label": "Skill Category",
+          "placeholder": "e.g., Programming Languages",
+          "type": "text",
+          "livePreviewPlaceholder": "[Skill Category]"
+        },
+        {
+          "name": "skillList",
+          "label": "Skills",
+          "placeholder": "e.g., JavaScript, Python, Java, SQL",
+          "type": "text",
+          "livePreviewPlaceholder": "[List of skills, separated by commas]"
+        }
+      ]
+    },
+    {
+      "section": "projects",
+      "sectionLabel": "Projects",
+      "sectionDescription": "Showcase personal or academic projects that demonstrate your skills.",
+      "isCore": false,
+      "recommendedFor": [
+        "Technology",
+        "Engineering",
+        "Creative / Media",
+        "Academia / Research"
+      ],
+      "name": "projects",
+      "label": "Projects",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Project",
+      "pluralLabel": "Projects",
+      "subFields": [
+        {
+          "name": "projectName",
+          "label": "Project Name",
+          "placeholder": "e.g., Personal Resume Builder",
+          "type": "text",
+          "livePreviewPlaceholder": "[Project Name]"
+        },
+        {
+          "name": "role",
+          "label": "Your Role (Optional)",
+          "placeholder": "e.g., Lead Developer, UI/UX Designer",
+          "type": "text",
+          "livePreviewPlaceholder": "[Your Role in the Project]"
+        },
+        {
+          "name": "techStack",
+          "label": "Technologies Used",
+          "placeholder": "e.g., React, Node.js, MongoDB",
+          "type": "text",
+          "livePreviewPlaceholder": "[List of Technologies Used]"
+        },
+        {
+          "name": "links",
+          "label": "Project Links",
+          "type": "group",
+          "repeatable": true,
+          "singularLabel": "Link",
+          "pluralLabel": "Links",
+          "defaultValue": [
+            {
+              "text": "[Live Demo]",
+              "url": ""
+            }
+          ],
+          "subFields": [
+            {
+              "name": "text",
+              "label": "Link Text",
+              "placeholder": "e.g., View Code, Live Demo",
+              "type": "text"
+            },
+            {
+              "name": "url",
+              "label": "URL",
+              "placeholder": "https://github.com/...",
+              "type": "url"
+            }
+          ]
+        },
+        {
+          "name": "description",
+          "label": "Project Description",
+          "placeholder": "Enter each achievement on a new line. Each new line will automatically become a bullet point.",
+          "type": "textarea",
+          "rows": 4,
+          "livePreviewPlaceholder": "[Briefly describe the project and its purpose.]\n [Explain your role and the key contributions you made to the project.]"
+        }
+      ]
+    },
+    {
+      "section": "certifications",
+      "sectionLabel": "Certifications & Licenses",
+      "sectionDescription": "List your relevant professional certifications and licenses.",
+      "isCore": false,
+      "recommendedFor": [
+        "Technology",
+        "Business / Finance",
+        "Healthcare"
+      ],
+      "name": "certifications",
+      "label": "Certifications & Licenses",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Certification or License",
+      "pluralLabel": "Certifications & Licenses",
+      "subFields": [
+        {
+          "name": "name",
+          "label": "Name of Certification or License",
+          "placeholder": "e.g., AWS Certified Solutions Architect - Associate",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Name of Certification or License]"
+        },
+        {
+          "name": "issuer",
+          "label": "Issuing Organization",
+          "placeholder": "e.g., Amazon Web Services",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Issuing Organization]"
+        },
+        {
+          "name": "date",
+          "label": "Issue Date (Optional)",
+          "placeholder": "e.g., Sep 2024",
+          "type": "text",
+          "livePreviewPlaceholder": "[Month Year]"
+        },
+        {
+          "name": "credentialId",
+          "label": "Credential ID (Optional)",
+          "placeholder": "e.g., L1PZ99818E11Q28P",
+          "type": "text",
+          "livePreviewPlaceholder": "[Credential ID]"
+        },
+        {
+          "name": "verificationLink",
+          "label": "Verification Link (Optional)",
+          "placeholder": "e.g., https://www.credly.com/badges/...",
+          "type": "url"
+        }
+      ]
+    },
+    {
+      "section": "publications",
+      "sectionLabel": "Publications",
+      "sectionDescription": "Showcase your written contributions, such as journal articles, book chapters, or conference papers.",
+      "isCore": false,
+      "recommendedFor": [
+        "Academia / Research",
+        "Healthcare",
+        "Legal"
+      ],
+      "name": "publications",
+      "label": "Publications",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Publication",
+      "pluralLabel": "Publications",
+      "subFields": [
+        {
+          "name": "title",
+          "label": "Title",
+          "placeholder": "e.g., The Impact of Quantum Computing on Financial Modeling",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Publication Title]"
+        },
+        {
+          "name": "authors",
+          "label": "Authors",
+          "placeholder": "e.g., Doe, J., Smith, A., & Jones, B.",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Author One, Author Two, Author Three]"
+        },
+        {
+          "name": "journal",
+          "label": "Journal / Conference / Publisher",
+          "placeholder": "e.g., Journal of Applied Finance",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Journal or Publisher Name]"
+        },
+        {
+          "name": "date",
+          "label": "Publication Date",
+          "placeholder": "e.g., Sep 2025",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Month Year]"
+        },
+        {
+          "name": "volume",
+          "label": "Volume (Optional)",
+          "placeholder": "e.g., 34",
+          "type": "text",
+          "livePreviewPlaceholder": "[Vol]"
+        },
+        {
+          "name": "issue",
+          "label": "Issue (Optional)",
+          "placeholder": "e.g., 2",
+          "type": "text",
+          "livePreviewPlaceholder": "[Issue]"
+        },
+        {
+          "name": "pages",
+          "label": "Pages (Optional)",
+          "placeholder": "e.g., 115-130",
+          "type": "text",
+          "livePreviewPlaceholder": "[pp. 1-10]"
+        },
+        {
+          "name": "url",
+          "label": "URL or DOI Link (Optional)",
+          "placeholder": "e.g., https://doi.org/...",
+          "type": "url"
+        },
+        {
+          "name": "summary",
+          "label": "Summary (Optional)",
+          "placeholder": "Provide a brief 1-2 sentence summary of the work or your specific contribution.",
+          "type": "textarea",
+          "rows": 3,
+          "livePreviewPlaceholder": "[Provide a brief 1-2 sentence summary of the publication's findings or your specific contribution.]"
+        }
+      ]
+    },
+    {
+      "section": "volunteering",
+      "sectionLabel": "Volunteer Experience",
+      "sectionDescription": "Showcase your involvement in community service and non-profit activities.",
+      "isCore": false,
+      "recommendedFor": [
+        "General Professional",
+        "Healthcare"
+      ],
+      "name": "volunteering",
+      "label": "Volunteer Experience",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Volunteer Role",
+      "pluralLabel": "Volunteer Roles",
+      "subFields": [
+        {
+          "name": "role",
+          "label": "Your Role",
+          "placeholder": "e.g., Community Outreach Coordinator",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Your Role]"
+        },
+        {
+          "name": "organization",
+          "label": "Organization",
+          "placeholder": "e.g., Local Food Bank",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Name of Organization]"
+        },
+        {
+          "name": "location",
+          "label": "Location (Optional)",
+          "placeholder": "e.g., San Francisco, CA",
+          "type": "text",
+          "livePreviewPlaceholder": "[City, State]"
+        },
+        {
+          "name": "dates",
+          "label": "Dates Volunteered",
+          "placeholder": "e.g., Jan 2024 - Present",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Month Year] - [Month Year]"
+        },
+        {
+          "name": "achievements",
+          "label": "Responsibilities & Achievements (Optional)",
+          "placeholder": "Enter each achievement on a new line. Each new line will become a bullet point.",
+          "type": "textarea",
+          "rows": 4,
+          "livePreviewPlaceholder": "[Describe a key achievement or responsibility.]\n[Quantify your impact, e.g., 'Coordinated a fundraising event that raised over $5,000 for local shelters.']"
+        }
+      ]
+    },
+    {
+      "section": "awards",
+      "sectionLabel": "Awards & Honors",
+      "sectionDescription": "List any relevant awards, honors, or scholarships you have received for your work or academic performance.",
+      "isCore": false,
+      "recommendedFor": [
+        "General Professional",
+        "Academia / Research"
+      ],
+      "name": "awards",
+      "label": "Awards & Honors",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Award or Honor",
+      "pluralLabel": "Awards & Honors",
+      "subFields": [
+        {
+          "name": "awardName",
+          "label": "Award or Honor Name",
+          "placeholder": "e.g., Dean's List, Employee of the Quarter",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Name of the Award or Honor]"
+        },
+        {
+          "name": "issuer",
+          "label": "Awarded by",
+          "placeholder": "e.g., University of Technology, Innovate Corp.",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Name of the Issuing Organization]"
+        },
+        {
+          "name": "date",
+          "label": "Date Received (Optional)",
+          "placeholder": "e.g., May 2024",
+          "type": "text",
+          "livePreviewPlaceholder": "[Month Year]"
+        },
+        {
+          "name": "description",
+          "label": "Brief Description (Optional)",
+          "placeholder": "e.g., Awarded for achieving top 5% academic standing in the department.",
+          "type": "textarea",
+          "rows": 2,
+          "livePreviewPlaceholder": "[Briefly describe the significance of the award or what it was for.]"
+        }
+      ]
+    },
+    {
+      "section": "languages",
+      "sectionLabel": "Languages",
+      "sectionDescription": "List the languages you speak and your proficiency level for each.",
+      "isCore": false,
+      "recommendedFor": [
+        "General Professional",
+        "Government / Defense"
+      ],
+      "name": "languages",
+      "label": "Languages",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Language",
+      "pluralLabel": "Languages",
+      "subFields": [
+        {
+          "name": "language",
+          "label": "Language",
+          "placeholder": "e.g., Spanish",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Language]"
+        },
+        {
+          "name": "proficiency",
+          "label": "Proficiency",
+          "placeholder": "e.g., Native, Fluent, Professional, Conversational",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Proficiency Level]"
+        }
+      ]
+    },
+    {
+      "section": "memberships",
+      "sectionLabel": "Professional Memberships",
+      "sectionDescription": "List your affiliations with relevant professional organizations.",
+      "isCore": false,
+      "recommendedFor": [
+        "General Professional",
+        "Engineering",
+        "Healthcare"
+      ],
+      "name": "memberships",
+      "label": "Professional Memberships",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Membership",
+      "pluralLabel": "Memberships",
+      "subFields": [
+        {
+          "name": "organization",
+          "label": "Organization Name",
+          "placeholder": "e.g., Institute of Electrical and Electronics Engineers (IEEE)",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Name of Professional Organization]"
+        },
+        {
+          "name": "role",
+          "label": "Your Role or Membership Level (Optional)",
+          "placeholder": "e.g., Senior Member, Chapter President",
+          "type": "text",
+          "livePreviewPlaceholder": "[Your Role or Membership Level]"
+        },
+        {
+          "name": "dates",
+          "label": "Membership Dates (Optional)",
+          "placeholder": "e.g., 2020 - Present",
+          "type": "text",
+          "livePreviewPlaceholder": "[Start Year] - [Present]"
+        }
+      ]
+    },
+    {
+      "section": "barAdmissions",
+      "sectionLabel": "Bar Admissions",
+      "sectionDescription": "List the jurisdictions where you are licensed to practice law.",
+      "isCore": false,
+      "recommendedFor": [
+        "Legal"
+      ],
+      "name": "barAdmissions",
+      "label": "Bar Admissions",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Bar Admission",
+      "pluralLabel": "Bar Admissions",
+      "subFields": [
+        {
+          "name": "stateBar",
+          "label": "Jurisdiction / State Bar",
+          "placeholder": "e.g., New York State Bar",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[State Bar Association]"
+        },
+        {
+          "name": "admissionYear",
+          "label": "Admission Year",
+          "placeholder": "e.g., 2022",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Year]"
+        },
+        {
+          "name": "barNumber",
+          "label": "Bar Number (Optional)",
+          "placeholder": "e.g., 1234567",
+          "type": "text",
+          "livePreviewPlaceholder": "[Bar Number]"
+        }
+      ]
+    },
+    {
+      "section": "licensure",
+      "sectionLabel": "Licensure",
+      "sectionDescription": "List your professional licenses required for practice in your field, such as RN, PE, or CPA.",
+      "isCore": false,
+      "recommendedFor": [
+        "Healthcare",
+        "Engineering",
+        "Business / Finance"
+      ],
+      "name": "licensure",
+      "label": "Licensure",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "License",
+      "pluralLabel": "Licenses",
+      "subFields": [
+        {
+          "name": "licenseName",
+          "label": "Name of License",
+          "placeholder": "e.g., Registered Nurse, Professional Engineer (PE)",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Name of License]"
+        },
+        {
+          "name": "issuingBody",
+          "label": "Issuing Body",
+          "placeholder": "e.g., California Board of Registered Nursing",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Issuing Body, e.g., State Board of Engineering]"
+        },
+        {
+          "name": "licenseNumber",
+          "label": "License Number (Optional)",
+          "placeholder": "e.g., 95000000",
+          "type": "text",
+          "livePreviewPlaceholder": "[License #]"
+        },
+        {
+          "name": "expirationDate",
+          "label": "Expiration Date (Optional)",
+          "placeholder": "e.g., Jan 2027",
+          "type": "text",
+          "livePreviewPlaceholder": "[Month Year]"
+        }
+      ]
+    },
+    {
+      "section": "clinicalExperience",
+      "sectionLabel": "Clinical Experience & Rotations",
+      "sectionDescription": "Detail your hands-on clinical training, rotations, and practicum experiences.",
+      "isCore": false,
+      "recommendedFor": [
+        "Healthcare"
+      ],
+      "name": "clinicalExperience",
+      "label": "Clinical Experience",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Clinical Experience",
+      "pluralLabel": "Clinical Experiences",
+      "subFields": [
+        {
+          "name": "rotationName",
+          "label": "Rotation Name / Department",
+          "placeholder": "e.g., Medical-Surgical, Pediatrics, Emergency Department",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Rotation or Department Name]"
+        },
+        {
+          "name": "institution",
+          "label": "Institution",
+          "placeholder": "e.g., City General Hospital",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Name of Hospital or Clinic]"
+        },
+        {
+          "name": "location",
+          "label": "Location (Optional)",
+          "placeholder": "e.g., Visakhapatnam, AP",
+          "type": "text",
+          "livePreviewPlaceholder": "[City, State]"
+        },
+        {
+          "name": "dates",
+          "label": "Dates of Rotation",
+          "placeholder": "e.g., Jan 2025 - Mar 2025",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Month Year] - [Month Year]"
+        },
+        {
+          "name": "hours",
+          "label": "Total Clinical Hours (Optional)",
+          "placeholder": "e.g., 120",
+          "type": "text",
+          "livePreviewPlaceholder": "[Total Hours]"
+        },
+        {
+          "name": "description",
+          "label": "Key Skills & Responsibilities (Optional)",
+          "placeholder": "On separate lines, list key skills, procedures, and patient populations. e.g., Administered medications and performed wound care for post-operative patients.",
+          "type": "textarea",
+          "rows": 4,
+          "livePreviewPlaceholder": "[Describe a key skill, e.g., 'Assessed and monitored vital signs for a diverse patient caseload.']\n[Collaborated with nursing staff to implement patient care plans.]"
+        }
+      ]
+    },
+    {
+      "section": "grants",
+      "sectionLabel": "Grants & Funding",
+      "sectionDescription": "Detail the research grants and funding you have secured as an individual or part of a team.",
+      "isCore": false,
+      "recommendedFor": [
+        "Academia / Research"
+      ],
+      "name": "grants",
+      "label": "Grants & Funding",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Grant",
+      "pluralLabel": "Grants",
+      "subFields": [
+        {
+          "name": "grantTitle",
+          "label": "Grant or Project Title",
+          "placeholder": "e.g., A Study of Machine Learning Models in Climate Prediction",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Name of the Grant or Research Project]"
+        },
+        {
+          "name": "fundingBody",
+          "label": "Funding Body",
+          "placeholder": "e.g., National Science Foundation",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Name of the Funding Body]"
+        },
+        {
+          "name": "role",
+          "label": "Your Role",
+          "placeholder": "e.g., Principal Investigator, Co-Investigator, Researcher",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Your Role, e.g., Principal Investigator]"
+        },
+        {
+          "name": "dates",
+          "label": "Grant Period",
+          "placeholder": "e.g., 2024 - 2026",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Start Year] - [End Year]"
+        },
+        {
+          "name": "amount",
+          "label": "Award Amount (Optional)",
+          "placeholder": "e.g., $500,000",
+          "type": "text",
+          "livePreviewPlaceholder": "[Award Amount]"
+        },
+        {
+          "name": "grantNumber",
+          "label": "Grant ID / Number (Optional)",
+          "placeholder": "e.g., NSF-12345",
+          "type": "text",
+          "livePreviewPlaceholder": "[Grant ID Number]"
+        },
+        {
+          "name": "description",
+          "label": "Brief Description (Optional)",
+          "placeholder": "Provide a 1-2 sentence summary of the research funded by the grant.",
+          "type": "textarea",
+          "rows": 3,
+          "livePreviewPlaceholder": "[Provide a brief 1-2 sentence description of the funded research.]"
+        }
+      ]
+    },
+    {
+      "section": "teachingExperience",
+      "sectionLabel": "Teaching Experience",
+      "sectionDescription": "Detail your experience in teaching, lecturing, or assisting in academic or professional courses.",
+      "isCore": false,
+      "recommendedFor": [
+        "Academia / Research"
+      ],
+      "name": "teachingExperience",
+      "label": "Teaching Experience",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Teaching Role",
+      "pluralLabel": "Teaching Roles",
+      "subFields": [
+        {
+          "name": "courseTitle",
+          "label": "Course Title or Subject",
+          "placeholder": "e.g., Introduction to Python Programming",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Course Title or Subject]"
+        },
+        {
+          "name": "role",
+          "label": "Your Role",
+          "placeholder": "e.g., Lead Teaching Assistant, Lecturer",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Your Role, e.g., Teaching Assistant, Lecturer]"
+        },
+        {
+          "name": "university",
+          "label": "University / Institution",
+          "placeholder": "e.g., Global Tech University",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Name of University or Institution]"
+        },
+        {
+          "name": "dates",
+          "label": "Semester / Dates",
+          "placeholder": "e.g., Fall 2025",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Semester or Term, e.g., Fall 2025]"
+        },
+        {
+          "name": "achievements",
+          "label": "Responsibilities & Achievements (Optional)",
+          "placeholder": "On separate lines, list key responsibilities and accomplishments. e.g., Led weekly lab sessions for over 100 students.",
+          "type": "textarea",
+          "rows": 4,
+          "livePreviewPlaceholder": "[Describe a key responsibility, e.g., 'Led weekly discussion sections for 50+ students.']\n[Mention an accomplishment, e.g., 'Received a 95% positive feedback rating from student evaluations.']"
+        }
+      ]
+    },
+    {
+      "section": "securityClearance",
+      "sectionLabel": "Security Clearance",
+      "sectionDescription": "Detail your active security clearance information.",
+      "isCore": false,
+      "recommendedFor": [
+        "Government / Defense"
+      ],
+      "name": "securityClearance",
+      "label": "Security Clearance",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Clearance",
+      "pluralLabel": "Clearances",
+      "subFields": [
+        {
+          "name": "clearanceLevel",
+          "label": "Clearance Level",
+          "placeholder": "e.g., Top Secret / SCI",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Clearance Level, e.g., Top Secret/SCI]"
+        },
+        {
+          "name": "issuingAgency",
+          "label": "Issuing Agency",
+          "placeholder": "e.g., U.S. Department of Defense",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Issuing Agency, e.g., Department of Defense]"
+        },
+        {
+          "name": "polygraph",
+          "label": "Polygraph (Optional)",
+          "placeholder": "e.g., with Full Scope Polygraph",
+          "type": "text",
+          "livePreviewPlaceholder": "[Polygraph Type, e.g., with CI Polygraph]"
+        },
+        {
+          "name": "date",
+          "label": "Date of Last Investigation (Optional)",
+          "placeholder": "e.g., May 2023",
+          "type": "text",
+          "livePreviewPlaceholder": "[Date of Last Investigation: Month Year]"
+        }
+      ]
+    },
+    {
+      "section": "custom",
+      "sectionLabel": "Custom Section",
+      "sectionDescription": "Add a custom section to highlight anything else, like patents, interests, or other achievements.",
+      "isCore": false,
+      "recommendedFor": [
+        "General Professional"
+      ],
+      "name": "custom",
+      "label": "Custom Sections",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Custom Section",
+      "pluralLabel": "Custom Sections",
+      "subFields": [
+        {
+          "name": "sectionTitle",
+          "label": "Section Title",
+          "placeholder": "e.g., Patents, Hobbies & Interests",
+          "type": "text"
+        },
+        {
+          "name": "content",
+          "label": "Content",
+          "placeholder": "Enter each item on a new line. Each new line will become a bullet point.",
+          "type": "textarea",
+          "rows": 5
+        }
+      ]
+    },
+    {
+      "section": "events",
+      "sectionLabel": "Workshops & Hackathons",
+      "sectionDescription": "Highlight your participation in notable workshops, hackathons, and competitions.",
+      "isCore": false,
+      "recommendedFor": [
+        "Technology",
+        "Engineering",
+        "Creative / Media"
+      ],
+      "name": "events",
+      "label": "Workshops & Hackathons",
+      "type": "group",
+      "repeatable": true,
+      "singularLabel": "Event",
+      "pluralLabel": "Events",
+      "subFields": [
+        {
+          "name": "eventName",
+          "label": "Event Name",
+          "placeholder": "e.g., AI for Good Hackathon",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Name of Hackathon or Workshop]"
+        },
+        {
+          "name": "organizer",
+          "label": "Organizer",
+          "placeholder": "e.g., Major League Hacking (MLH)",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Name of Organizer]"
+        },
+        {
+          "name": "date",
+          "label": "Date of Event",
+          "placeholder": "e.g., Oct 2025",
+          "type": "text",
+          "required": true,
+          "livePreviewPlaceholder": "[Month Year]"
+        },
+        {
+          "name": "achievement",
+          "label": "Achievement (Optional)",
+          "placeholder": "e.g., Winner - 1st Place, Best Use of API",
+          "type": "text",
+          "livePreviewPlaceholder": "[Your Achievement, e.g., Winner, 1st Place]"
+        },
+        {
+          "name": "description",
+          "label": "Description (Optional)",
+          "placeholder": "On separate lines, describe the project you built or what you learned.",
+          "type": "textarea",
+          "rows": 4,
+          "livePreviewPlaceholder": "[Describe the project you built or what you learned.]\n[Mention the technologies used, e.g., 'Developed a web app using React and Firebase to...']"
+        },
+        {
+          "name": "links",
+          "label": "Links (Optional)",
+          "type": "group",
+          "repeatable": true,
+          "singularLabel": "Link",
+          "pluralLabel": "Links",
+          "subFields": [
+            {
+              "name": "text",
+              "label": "Link Text",
+              "placeholder": "e.g., GitHub Repo, Devpost",
+              "type": "text"
+            },
+            {
+              "name": "url",
+              "label": "URL",
+              "type": "url"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tags": {
+    "style": "Modern",
+    "level": [
+      "Professional",
+      "Entry-Level",
+      "Executive"
+    ],
+    "industry": [
+      "Technology",
+      "General",
+      "Corporate"
+    ]
+  },
+  "createdAt": {
+    "$date": "2025-08-21T06:54:57.746Z"
+  },
+  "__v": 0,
+  "isAtsRecommended": false,
+  "presets": [
+    {
+      "key": "grad-ambitious",
+      "name": "For the Ambitious Graduate",
+      "industry": "General Professional",
+      "sectionPresetKey": "potential-star",
+      "stylePackKey": "modern-generalist",
+      "isPrimary": true
+    },
+    {
+      "key": "swe-modern",
+      "name": "For the Modern Software Engineer",
+      "industry": "Technology",
+      "sectionPresetKey": "tech-specialist",
+      "stylePackKey": "tech-innovator",
+      "isPrimary": true
+    },
+    {
+      "key": "corp-professional",
+      "name": "For the Corporate Professional",
+      "industry": "Business / Finance",
+      "sectionPresetKey": "steady-climber",
+      "stylePackKey": "corporate-authority",
+      "isPrimary": false
+    },
+    {
+      "key": "academic-researcher",
+      "name": "For the Academic Researcher",
+      "industry": "Academia / Research",
+      "sectionPresetKey": "academic-focus",
+      "stylePackKey": "academic-scholar",
+      "isPrimary": false
+    },
+    {
+      "key": "creative-pro",
+      "name": "For the Creative Professional",
+      "industry": "Creative / Media",
+      "sectionPresetKey": "potential-star",
+      "stylePackKey": "creative-minimalist",
+      "isPrimary": false
+    },
+    {
+      "key": "healthcare-pro",
+      "name": "For the Healthcare Professional",
+      "industry": "Healthcare",
+      "sectionPresetKey": "potential-star",
+      "stylePackKey": "modern-generalist",
+      "isPrimary": false
+    }
+  ]
+}
