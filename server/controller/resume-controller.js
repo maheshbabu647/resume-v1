@@ -247,7 +247,11 @@ export const downlaodResume = async (req, res, next) => {
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     const page = await browser.newPage();
-
+    await page.setViewport({
+      width: 1240,      
+      height: 1754,     
+      deviceScaleFactor: 2, 
+    });
     await page.setContent(fullHtml, { waitUntil: 'networkidle0' });
 
     const pdfBuffer = await page.pdf({
