@@ -98,8 +98,8 @@ const ResetPasswordPage = () => {
             </CardHeader>
             <CardContent className="p-6 sm:p-8 pt-0">
               {successMessage ? (
-                <Alert variant="default" className="bg-green-500/10 border-green-500/40 text-green-700 dark:text-green-300">
-                  <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400" />
+                <Alert variant="default" className="bg-green-500/10 border-green-500/40 text-green-700">
+                  <CheckCircle2 className="h-4 w-4 text-green-600" />
                   <AlertTitle>Success!</AlertTitle>
                   <AlertDescription>{successMessage} Redirecting you to the dashboard...</AlertDescription>
                 </Alert>

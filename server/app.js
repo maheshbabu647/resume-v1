@@ -14,8 +14,6 @@ import indexRouter from './router/index-router.js'
 import errorHandler from './middleware/err-handler.js'
 import { logAnalyticsEvent } from './service/analytics-logger.js' // <<-- NEW
 import performanceLogger from './middleware/performance-logger.js'
-import validateSecurityConfig, { securityHeaders, cspDirectives } from './config/security-config.js'
-import sanitizeInput from './middleware/input-sanitizer.js'
 
 // === [Swagger Docs Imports & Setup] ===
 import swaggerJsdoc from 'swagger-jsdoc'
@@ -42,36 +40,13 @@ const SWAGGER_ROUTE = '/api-docs'
 const morganFormat = process.env.NODE_ENV === 'production' ? 'combined' : 'dev'
 const morganStream = { write: msg => logger.http(msg.trim()) }
 
-// Validate security configuration on startup
-validateSecurityConfig();
-
 const app = express()
 
 const COOKIE_SECRET = process.env.COOKIE_SECRET || 'cookiesceret'
 const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || 'http://localhost:5173'
 
 // === [Security Middleware: Place BEFORE all routes/parsing] ===
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: cspDirectives
-  },
-  crossOriginEmbedderPolicy: false, // Disable for compatibility
-  hsts: {
-    maxAge: 31536000,
-    includeSubDomains: true,
-    preload: true
-  }
-})) // <-- [ENHANCED] Sets comprehensive secure HTTP headers
-
-// Add additional security headers
-app.use((req, res, next) => {
-  Object.entries(securityHeaders).forEach(([key, value]) => {
-    if (value) {
-      res.setHeader(key, value);
-    }
-  });
-  next();
-});
+app.use(helmet()) // <-- [ADDED] Sets secure HTTP headers
 
 // [SECURITY: CORS] Allow only trusted origins and credentials
 app.use(cors({ 
@@ -97,9 +72,6 @@ app.use(session({
 
 app.use(express.json({ limit: '10mb' }))
 app.use(express.urlencoded({ extended: true }))
-
-// Input sanitization middleware
-app.use(sanitizeInput)
 
 app.use(morgan(morganFormat, { stream: morganStream }))
 

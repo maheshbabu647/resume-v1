@@ -63,7 +63,7 @@ const emailLimiter = rateLimit({
 
 // [4] Auth routes, with security-first ordering
 authRouter.post('/signup',
-  signupLimiter, // Re-enabled for security
+  // signupLimiter,
   userSignUpValidators,
   userSignUpValidation,
   userSignUp

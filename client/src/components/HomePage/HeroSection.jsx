@@ -1,9 +1,8 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Sparkles, ArrowRight, Star, Heart, Zap } from 'lucide-react';
-import OptimizedImage from '@/components/Common/OptimizedImage/OptimizedImage';
 
 const HeroSection = () => {
   const floatingVariants = {
@@ -115,7 +114,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              Stop wrestling with broken Word templates and complex tools. Our process is simple, transparent, and built for results. Go from a blank page to a professional, ATS-optimized resume you're proud of—in minutes, not hours. We promise a perfect resume, ready for download, with no surprise costs.
+              Our process is simple, transparent, and built for results. Go from a blank page to a professional, ATS-optimized resume you're proud of—in minutes, not hours. We promise a perfect resume, ready for download. 
             </motion.p>
             
             <motion.div 
@@ -161,7 +160,7 @@ const HeroSection = () => {
                   <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-success flex items-center justify-center">
                     <span className="text-success-foreground text-xs font-bold">✓</span>
                   </div>
-                  <span className="font-medium">No Paywall to Get Your Resume</span>
+                  <span className="font-medium">No Cost to Download Your Resume.</span>
                 </div>
               </div>
             </motion.div>

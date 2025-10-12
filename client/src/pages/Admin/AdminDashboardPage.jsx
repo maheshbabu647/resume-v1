@@ -131,7 +131,7 @@ const AdminDashboardPage = () => {
                     {link.description}
                   </CardDescription>
                 </CardContent>
-                <CardFooter className="px-5 sm:px-6 pb-5 pt-4 bg-muted/20 dark:bg-muted/10 border-t border-border/50">
+                <CardFooter className="px-5 sm:px-6 pb-5 pt-4 bg-muted/20 border-t border-border/50">
                   <Button 
                     asChild 
                     variant="secondary" // Changed variant for distinction

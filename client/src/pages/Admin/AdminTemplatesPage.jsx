@@ -90,7 +90,7 @@ const AdminTemplatesPage = () => {
 
         {deleteFeedback && (
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
-              <Alert variant={deleteFeedback.type === 'error' ? 'destructive' : 'default'} className={cn(deleteFeedback.type === 'success' && 'bg-green-500/10 border-green-500/40 text-green-700 dark:text-green-300 [&>svg]:text-green-600 dark:[&>svg]:text-green-400', 'shadow-sm rounded-lg')}>
+              <Alert variant={deleteFeedback.type === 'error' ? 'destructive' : 'default'} className={cn(deleteFeedback.type === 'success' && 'bg-green-500/10 border-green-500/40 text-green-700 [&>svg]:text-green-600', 'shadow-sm rounded-lg')}>
                 {deleteFeedback.type === 'success' ? <CheckCircle2 className="h-5 w-5" /> : <AlertCircle className="h-5 w-5" />}
                 <AlertTitle className="font-semibold">{deleteFeedback.type === 'success' ? 'Success!' : 'Error'}</AlertTitle>
                 <AlertDescription>{deleteFeedback.message}</AlertDescription>

@@ -138,7 +138,7 @@ const CoverLetterPreviewPage = () => {
                                 {isCopied ? <Check className="h-4 w-4 text-green-500"/> : <Clipboard className="h-4 w-4"/>}
                                 <span className="sr-only">Copy content</span>
                             </Button>
-                            <div className="prose prose-sm sm:prose-base max-w-none dark:prose-invert whitespace-pre-wrap font-serif">
+                            <div className="prose prose-sm sm:prose-base max-w-none whitespace-pre-wrap font-serif">
                                 {letter.coverLetterContent}
                             </div>
                         </CardContent>

@@ -32,7 +32,7 @@ const StatCard = ({ title, value, todayValue, icon: Icon, colorClassName = "text
       <div className="text-3xl font-bold text-foreground">{value ?? 'N/A'}</div>
       {todayValue !== undefined && (
         <p className="text-xs text-muted-foreground pt-1">
-          <span className={cn("font-semibold", todayValue > 0 ? "text-green-600 dark:text-green-500" : "text-red-600 dark:text-red-500")}>
+          <span className={cn("font-semibold", todayValue > 0 ? "text-green-600" : "text-red-600")}>
             {todayValue > 0 ? `+${todayValue}` : todayValue === 0 ? '0' : todayValue}
           </span>
           &nbsp;today
@@ -135,10 +135,10 @@ const AdminAnalyticsOverviewPage = () => {
 
         <motion.div initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 }}}}>
           <div className="grid gap-5 md:gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 mb-8 md:mb-10">
-            <motion.div variants={{hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 }}}><StatCard title="Total Users" value={overviewData.totalUsers} todayValue={overviewData.newUsersToday} icon={Users} colorClassName="text-blue-500 dark:text-blue-400" /></motion.div>
-            <motion.div variants={{hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 }}}><StatCard title="Total Resumes" value={overviewData.totalResumes} todayValue={overviewData.newResumesToday} icon={FileTextIcon} colorClassName="text-green-500 dark:text-green-400" /></motion.div>
-            <motion.div variants={{hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 }}}><StatCard title="Total Downloads" value={overviewData.totalDownloads} todayValue={overviewData.downloadsToday} icon={DownloadCloud} colorClassName="text-indigo-500 dark:text-indigo-400" /></motion.div>
-            <motion.div variants={{hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 }}}><StatCard title="Total Templates" value={overviewData.totalTemplates} todayValue={overviewData.templateCreationsToday} icon={LayoutGrid} colorClassName="text-purple-500 dark:text-purple-400" /></motion.div>
+            <motion.div variants={{hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 }}}><StatCard title="Total Users" value={overviewData.totalUsers} todayValue={overviewData.newUsersToday} icon={Users} colorClassName="text-blue-500" /></motion.div>
+            <motion.div variants={{hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 }}}><StatCard title="Total Resumes" value={overviewData.totalResumes} todayValue={overviewData.newResumesToday} icon={FileTextIcon} colorClassName="text-green-500" /></motion.div>
+            <motion.div variants={{hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 }}}><StatCard title="Total Downloads" value={overviewData.totalDownloads} todayValue={overviewData.downloadsToday} icon={DownloadCloud} colorClassName="text-indigo-500" /></motion.div>
+            <motion.div variants={{hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 }}}><StatCard title="Total Templates" value={overviewData.totalTemplates} todayValue={overviewData.templateCreationsToday} icon={LayoutGrid} colorClassName="text-purple-500" /></motion.div>
           </div>
 
           <div className="grid gap-6 md:gap-8 md:grid-cols-1 xl:grid-cols-2"> {/* Adjusted grid for list items */}

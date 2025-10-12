@@ -195,9 +195,13 @@ const Navbar = () => {
               </NavLink>
             )}
 
+            {/* <NavLink to="/templates" className={getNavLinkClasses}>
+              <span className="flex items-center gap-2"><Star className="w-4 h-4" />Templates</span>
+            </NavLink> */}
           </nav>
 
           <div className="flex items-center gap-4">
+
             {isAuthenticated ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -332,13 +336,13 @@ const Navbar = () => {
               
               <div className="p-4 sm:p-6 space-y-1 sm:space-y-2">
                 <NavLink to="/" onClick={closeMobileMenu} className={getMobileNavLinkClasses}><HomeIcon className="w-5 h-5 mr-3" />Home</NavLink>
-                <NavLink to="/builder" onClick={closeMobileMenu} className={getMobileNavLinkClasses}>
+                <NavLink to="/templates" onClick={closeMobileMenu} className={getMobileNavLinkClasses}>
                   <LayoutTemplate className="w-5 h-5 mr-3" />
                   Resume Builder
                   <motion.div className="ml-auto px-3 py-1 bg-success rounded-full text-xs text-success-foreground font-bold shadow-md" animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>FREE</motion.div>
                 </NavLink>
-                <NavLink to="/cover-letter" onClick={closeMobileMenu} className={getMobileNavLinkClasses}><Zap className="w-5 h-5 mr-3" />Cover Letters</NavLink>
-                <NavLink to="/templates" onClick={closeMobileMenu} className={getMobileNavLinkClasses}><Star className="w-5 h-5 mr-3" />Templates</NavLink>
+                <NavLink to="/cover-letter/generate" onClick={closeMobileMenu} className={getMobileNavLinkClasses}><Zap className="w-5 h-5 mr-3" />Cover Letters</NavLink>
+               
                 
                 {/* Dashboard Navigation for Mobile - Only show for authenticated users */}
                 {isAuthenticated && (
@@ -366,7 +370,7 @@ const Navbar = () => {
                 {!isAuthenticated && (
                   <>
                     <div className="border-t border-border my-4"></div>
-                    <NavLink to="/signin" onClick={closeMobileMenu} className={getMobileNavLinkClasses}><User className="w-5 h-5 mr-3" />Sign In</NavLink>
+                    <NavLink to="/login" onClick={closeMobileMenu} className={getMobileNavLinkClasses}><User className="w-5 h-5 mr-3" />Sign In</NavLink>
                     <motion.div whileTap={{ scale: 0.98 }}>
                       <NavLink to="/signup" onClick={closeMobileMenu} className="flex items-center w-full text-left px-6 py-4 rounded-2xl text-base font-bold bg-gradient-to-r from-primary to-accent-purple text-primary-foreground shadow-xl group transition-all duration-300">
                         <Sparkles className="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform" />

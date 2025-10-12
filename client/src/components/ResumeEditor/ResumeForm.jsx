@@ -162,7 +162,7 @@ const FieldRenderer = ({
                 value={itemIndex.toString()} 
                 className="mt-4"
               >
-                <Card className="bg-muted/30 dark:bg-muted/20 border-border shadow-sm p-4">
+                <Card className="bg-muted/30 border-border shadow-sm p-4">
                   <CardContent className="p-0 space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-1 gap-y-4">
                       {Array.isArray(fieldDef.subFields) && fieldDef.subFields.map((subFieldDef) => (
@@ -248,7 +248,22 @@ const ResumeForm = ({
     return acc;
   }, {}), [templateFieldDefinition]);
 
-  const allSectionKeys = useMemo(() => Object.keys(allSections), [allSections]);
+  // Define the preferred order for sections
+  const sectionOrder = ['profile', 'contact', 'summary', 'experience', 'education', 'skills', 'projects', 'certifications', 'publications', 'volunteering', 'awards', 'languages', 'memberships', 'custom'];
+  
+  const allSectionKeys = useMemo(() => {
+    const keys = Object.keys(allSections);
+    // Sort sections according to the preferred order, with any unlisted sections at the end
+    return keys.sort((a, b) => {
+      const aIndex = sectionOrder.indexOf(a);
+      const bIndex = sectionOrder.indexOf(b);
+      if (aIndex === -1 && bIndex === -1) return a.localeCompare(b); // Both unlisted, sort alphabetically
+      if (aIndex === -1) return 1; // a is unlisted, put it at the end
+      if (bIndex === -1) return -1; // b is unlisted, put it at the end
+      return aIndex - bIndex; // Both listed, sort by order
+    });
+  }, [allSections, sectionOrder]);
+  
   const enabledSectionKeys = useMemo(() => allSectionKeys.filter(key => get(sectionsConfig, `${key}.enabled`, true)), [allSectionKeys, sectionsConfig]);
   
   const [activeSection, setActiveSection] = useState(enabledSectionKeys.length > 0 ? enabledSectionKeys[0] : null);
@@ -270,7 +285,8 @@ const ResumeForm = ({
       // A new section was added - find which one
       const newSections = enabledSectionKeys.filter(section => !prevEnabledSections.current.includes(section));
       if (newSections.length > 0) {
-        const newestSection = newSections[newSections.length - 1]; // Get the last added section
+        // Get the last added section (which should be at the end of the ordered list)
+        const newestSection = newSections[newSections.length - 1];
         setActiveSection(newestSection);
         // Call the parent callback if provided
         if (onSectionAdd) {
@@ -333,7 +349,7 @@ const ResumeForm = ({
       {/* --- Desktop Navigation (Hidden on Mobile) --- */}
       <nav 
         className={cn(
-            "hidden lg:flex bg-muted/30 dark:bg-muted/20 rounded-lg border border-border self-start flex-col p-2 mb-4 lg:mb-0 transition-all duration-300 ease-in-out relative group cursor-pointer",
+            "hidden lg:flex bg-muted/30 rounded-lg border border-border self-start flex-col p-2 mb-4 lg:mb-0 transition-all duration-300 ease-in-out relative group cursor-pointer",
             isNavCollapsed ? "lg:w-20 hover:bg-muted/40" : "lg:w-56"
         )}
         onMouseEnter={() => setIsNavCollapsed(false)}

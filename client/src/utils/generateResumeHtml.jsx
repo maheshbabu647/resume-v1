@@ -36,14 +36,6 @@ Handlebars.registerHelper('formatAsList', function(text) {
   return '';
 });
 
-// Security helper to escape all user content
-Handlebars.registerHelper('safe', function(text) {
-  if (!text || typeof text !== 'string') {
-    return '';
-  }
-  return Handlebars.escapeExpression(text);
-});
-
 Handlebars.registerHelper('eq', function (a, b) {
   return a === b;
 });

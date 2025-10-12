@@ -51,7 +51,7 @@ const AdminTemplateCard = ({ template, onDelete }) => {
           </div>
         </CardContent>
 
-        <CardFooter className="p-3 border-t border-border/60 bg-muted/20 dark:bg-muted/10">
+        <CardFooter className="p-3 border-t border-border/60 bg-muted/20">
           <div className="grid grid-cols-2 gap-2 w-full">
             <Button variant="outline" size="sm" onClick={handleEdit} className="text-xs">
               <Edit size={14} className="mr-1.5" /> Edit

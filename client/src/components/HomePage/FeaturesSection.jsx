@@ -171,7 +171,7 @@ const FeaturesSection = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <NavLink 
-                  to="/cover-letter-builder" 
+                  to="/cover-letter/generate" 
                   className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-accent-purple to-accent-pink hover:opacity-90 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-2xl font-semibold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300 group"
                 >
                   Generate My Cover Letter

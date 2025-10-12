@@ -78,7 +78,7 @@ const userSignIn = async (req, res, next) => {
        err.status = 401;
        return next(err);
     }
-    // Removed console.log for security - no sensitive data in logs
+    console.log("==============================================================")
     const isPasswordCorrect = await bcrypt.compare(userPassword, userExisted.userPassword);
 
     if (!isPasswordCorrect) {

@@ -21,7 +21,6 @@ const Footer = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
 
-
   const brevoFormActionUrl = import.meta.env.VITE_STAY_UPDATED_FORM_ACTION_URL;
 
   const handleSubmit = async (e) => {
@@ -52,7 +51,6 @@ const Footer = () => {
       setIsSubmitting(false);
     }
   };
-
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

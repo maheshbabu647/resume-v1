@@ -100,7 +100,11 @@ const TemplateCard = ({ template }) => {
                   whileTap={{ scale: 0.95 }}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <Button size="sm" variant="outline" className="bg-card/90 backdrop-blur-sm border-border hover:bg-card rounded-lg shadow-lg text-xs px-1.5 py-1.5">
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="bg-card/90 backdrop-blur-sm border-border hover:bg-card rounded-lg shadow-lg text-xs px-1.5 py-1.5"
+                  >
                     <Eye className="w-3 h-3" />
                   </Button>
                 </motion.div>
@@ -119,7 +123,10 @@ const TemplateCard = ({ template }) => {
                 whileTap={{ scale: 0.95 }}
                 onClick={(e) => e.stopPropagation()}
               >
-                <Button size="sm" className="bg-gradient-to-r from-primary to-accent-purple hover:opacity-90 text-primary-foreground rounded-lg shadow-lg text-xs px-3 py-2">
+                <Button 
+                  size="sm" 
+                  className="bg-gradient-to-r from-primary to-accent-purple hover:opacity-90 text-primary-foreground rounded-lg shadow-lg text-xs px-3 py-2"
+                >
                   <PenSquare className="w-3 h-3 mr-1" />
                   <span className="hidden sm:inline">Use Template</span>
                   <span className="sm:hidden">Use</span>
@@ -134,7 +141,11 @@ const TemplateCard = ({ template }) => {
                   whileTap={{ scale: 0.95 }}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <Button size="sm" variant="outline" className="bg-card/90 backdrop-blur-sm border-border hover:bg-card rounded-lg shadow-lg text-xs px-3 py-2">
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="bg-card/90 backdrop-blur-sm border-border hover:bg-card rounded-lg shadow-lg text-xs px-3 py-2"
+                  >
                     <Eye className="w-3 h-3 mr-1" />
                     Preview
                   </Button>

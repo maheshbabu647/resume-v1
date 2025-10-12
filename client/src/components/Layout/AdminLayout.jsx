@@ -62,7 +62,7 @@ const AdminLayout = () => {
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-muted/30 dark:bg-muted/10">
+      <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-muted/30">
         <Outlet /> {/* This is where the specific admin page content will be rendered */}
       </main>
     </div>

@@ -126,7 +126,7 @@ const VerifyEmailPage = () => {
                 </div>
 
                 {feedback.message && (
-                  <Alert variant={feedback.type === 'error' ? 'destructive' : 'default'} className={feedback.type === 'success' ? 'bg-green-500/10 border-green-500/40 text-green-700 dark:text-green-300 [&>svg]:text-green-500' : ''}>
+                  <Alert variant={feedback.type === 'error' ? 'destructive' : 'default'} className={feedback.type === 'success' ? 'bg-green-500/10 border-green-500/40 text-green-700 [&>svg]:text-green-500' : ''}>
                     {feedback.type === 'success' ? <CheckCircle2 className="h-4 w-4" /> : <AlertCircle className="h-4 w-4" />}
                     <AlertTitle>{feedback.type === 'success' ? 'Success!' : 'Error'}</AlertTitle>
                     <AlertDescription>{feedback.message}</AlertDescription>

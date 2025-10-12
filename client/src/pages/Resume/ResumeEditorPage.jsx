@@ -232,7 +232,7 @@ const ResumeEditorPage = () => {
     return (
         <>
             <Helmet><title>{seoTitle}</title></Helmet>
-            <div className="flex flex-col min-h-screen bg-muted/20 dark:bg-background text-foreground">
+            <div className="flex flex-col min-h-screen bg-muted/20 text-foreground">
                 <EditorHeader
                     resumeName={editableResumeName}
                     templateName={currentTemplateForEditor?.templateName}
@@ -283,7 +283,14 @@ const ResumeEditorPage = () => {
                                 {/* Spacing Control is inside CustomizePanel now for this example */}
                                 <Popover>
                                     <PopoverTrigger asChild>
-                                        <Button variant="outline" className="ml-4 flex-shrink-0">
+                                        <Button 
+                                            variant="outline" 
+                                            className="ml-4 flex-shrink-0"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                            }}
+                                        >
                                             <Settings2 className="mr-2 h-4 w-4" /> Customize
                                         </Button>
                                     </PopoverTrigger>
@@ -372,7 +379,13 @@ const ResumeEditorPage = () => {
                 <Button
                     variant={activeMobileView === 'edit' ? 'default' : 'ghost'}
                     size="sm"
-                    onClick={() => setActiveMobileView('edit')}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setActiveMobileView('edit');
+                        // Ensure customize dialog is closed when switching to form
+                        setIsCustomizeDialogOpen(false);
+                    }}
                     className="flex flex-col items-center gap-1 h-12 px-3 min-w-0 flex-1"
                 >
                     <Edit2 className="h-4 w-4" />
@@ -383,7 +396,13 @@ const ResumeEditorPage = () => {
                 <Button
                     variant={activeMobileView === 'preview' ? 'default' : 'ghost'}
                     size="sm"
-                    onClick={() => setActiveMobileView('preview')}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setActiveMobileView('preview');
+                        // Ensure customize dialog is closed when switching to preview
+                        setIsCustomizeDialogOpen(false);
+                    }}
                     className="flex flex-col items-center gap-1 h-12 px-3 min-w-0 flex-1"
                 >
                     <Eye className="h-4 w-4" />
@@ -394,7 +413,11 @@ const ResumeEditorPage = () => {
                 <Button
                     variant="ghost"
                     size="sm"
-                    onClick={() => setIsCustomizeDialogOpen(true)}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setIsCustomizeDialogOpen(true);
+                    }}
                     className="flex flex-col items-center gap-1 h-12 px-3 min-w-0 flex-1"
                 >
                     <Settings2 className="h-4 w-4" />

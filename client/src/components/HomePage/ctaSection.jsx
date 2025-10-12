@@ -1,17 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Rocket, Star, Zap, Check } from 'lucide-react';
 
 const CtaSection = () => {
-  const [email, setEmail] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState('');
-
-  // The action URL from the HTML code you provided for the "AI Feature Waitlist" form
-  const brevoFormActionUrl = import.meta.env.VITE_AI_WAITLIST_FORM_ACTION_URL;
 
   const pulseVariants = {
     animate: {
@@ -24,36 +17,6 @@ const CtaSection = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // This stops the page from redirecting
-    if (!email || isSubmitting) return;
-
-    setIsSubmitting(true);
-    setError('');
-    
-    const formData = new FormData();
-    formData.append('EMAIL', email);
-    formData.append('email_address_check', '');
-    formData.append('locale', 'en');
-
-    try {
-      // We send the data in 'no-cors' mode to prevent the cross-origin error
-      await fetch(brevoFormActionUrl, {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors', 
-      });
-      
-      // Since 'no-cors' mode succeeds immediately, we update the UI
-      setIsSubmitted(true);
-
-    } catch (err) {
-      console.error('Error submitting email:', err);
-      setError('A network error occurred. Please check your connection and try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   const FloatingIcon = ({ Icon, className, delay = 0 }) => (
     <motion.div
@@ -167,52 +130,6 @@ const CtaSection = () => {
               Our next-generation AI resume analyzer and content writer is in development. Be the first to get access when it launches.
             </p>
             
-            {isSubmitted ? (
-              <motion.div
-                className="text-center"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-green-500/20 border border-green-500/30 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                   <Check className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-green-400" />
-                </div>
-                <h4 className="text-lg sm:text-xl font-semibold text-white mb-2">You're on the list!</h4>
-                <p className="text-sm sm:text-base text-white/80">We'll notify you when our AI features are ready.</p>
-              </motion.div>
-            ) : (
-              <form 
-                onSubmit={handleSubmit}
-                className="flex flex-col sm:flex-row gap-2 sm:gap-3 max-w-md mx-auto"
-              >
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
-                  required
-                  disabled={isSubmitting}
-                  className="w-full sm:w-auto sm:flex-grow px-3 sm:px-4 py-2 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
-                />
-                <motion.button
-                  type="submit"
-                  disabled={isSubmitting || !email}
-                  className="px-4 sm:px-6 py-2 sm:py-3 bg-transparent text-white/80 border-white/40 hover:bg-white/10 hover:text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
-                  whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
-                  whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white/40 border-t-white rounded-full animate-spin"></div>
-                      <span className="hidden sm:inline">Submitting...</span>
-                      <span className="sm:hidden">...</span>
-                    </>
-                  ) : (
-                    'Notify Me'
-                  )}
-                </motion.button>
-              </form>
-            )}
-             {error && <p className="text-red-400 text-sm mt-4">{error}</p>}
           </motion.div>
         </div>
       </div>

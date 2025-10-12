@@ -28,10 +28,10 @@ import { cn } from '@/lib/utils';
 
 const getStageIconAndColor = (stageName) => {
     const lowerStageName = stageName.toLowerCase();
-    if (lowerStageName.includes('signup')) return { Icon: UsersFunnelStageIcon, color: 'text-blue-500 dark:text-blue-400' };
-    if (lowerStageName.includes('create')) return { Icon: FileTextIcon, color: 'text-green-500 dark:text-green-400' };
-    if (lowerStageName.includes('download')) return { Icon: DownloadCloud, color: 'text-purple-500 dark:text-purple-400' };
-    return { Icon: TrendingUp, color: 'text-gray-500 dark:text-gray-400' };
+    if (lowerStageName.includes('signup')) return { Icon: UsersFunnelStageIcon, color: 'text-blue-500' };
+    if (lowerStageName.includes('create')) return { Icon: FileTextIcon, color: 'text-green-500' };
+    if (lowerStageName.includes('download')) return { Icon: DownloadCloud, color: 'text-purple-500' };
+    return { Icon: TrendingUp, color: 'text-gray-500' };
 };
 
 // Sub-component for individual funnel stage cards

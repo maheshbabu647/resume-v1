@@ -4,7 +4,6 @@ import generateResumeHtml from "@/utils/generateResumeHtml";
 import { Button } from "@/components/ui/button";
 import { ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
-import DOMPurify from 'dompurify';
 
 const ResumePreview = forwardRef(({
   // --- Props ---
@@ -43,14 +42,7 @@ const ResumePreview = forwardRef(({
       editedSections,
       templateFieldDefinition
     );
-    // Sanitize HTML content to prevent XSS attacks
-    const sanitizedContent = DOMPurify.sanitize(newContent, {
-      ALLOWED_TAGS: ['div', 'span', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'strong', 'em', 'b', 'i', 'br', 'hr', 'a', 'img', 'table', 'tr', 'td', 'th', 'thead', 'tbody', 'tfoot', 'style'],
-      ALLOWED_ATTR: ['class', 'id', 'style', 'href', 'src', 'alt', 'title', 'target', 'rel'],
-      ALLOW_DATA_ATTR: false,
-      ALLOW_UNKNOWN_PROTOCOLS: false
-    });
-    setPreviewHtmlContent(sanitizedContent);
+    setPreviewHtmlContent(newContent);
   }, [
     htmlShell, 
     baseCss, 
@@ -141,11 +133,11 @@ const ResumePreview = forwardRef(({
   return (
     <section
       ref={containerRef}
-      className="relative w-full bg-muted/30 dark:bg-muted/20 rounded-xl border border-border shadow-inner p-2 sm:p-4 md:p-6 min-h-[calc(100vh-200px)] print:p-0 print:bg-white"
+      className="relative w-full bg-muted/30 rounded-xl border border-border shadow-inner p-2 sm:p-4 md:p-6 min-h-[calc(100vh-200px)] print:p-0 print:bg-white"
       aria-label="Resume Preview Area"
     >
       {isOverflowing && (
-        <div className="text-center text-xs sm:text-sm font-medium text-amber-800 dark:text-amber-100 bg-amber-100 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-800 p-2 sm:p-3 rounded-lg mb-3 sm:mb-4 w-full max-w-xl mx-auto">
+        <div className="text-center text-xs sm:text-sm font-medium text-amber-800 bg-amber-100 border border-amber-300 p-2 sm:p-3 rounded-lg mb-3 sm:mb-4 w-full max-w-xl mx-auto">
           <strong>Heads up!</strong> Your content may extend beyond one page. Consider shortening descriptions.
         </div>
       )}

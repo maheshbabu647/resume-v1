@@ -121,10 +121,10 @@ const AdminAnalyticsSecurityPage = () => {
                 <StatCard title="Failed Logins" value={securityData.failedLogins} icon={AlertOctagon} colorClassName="text-destructive" />
               </motion.div>
               <motion.div variants={{hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 }}}>
-                <StatCard title="Rate Limit Hits" value={securityData.rateLimitHits} icon={Ban} colorClassName="text-orange-500 dark:text-orange-400" />
+                <StatCard title="Rate Limit Hits" value={securityData.rateLimitHits} icon={Ban} colorClassName="text-orange-500" />
               </motion.div>
               <motion.div variants={{hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0 }}}>
-                <StatCard title="Error Events Logged" value={securityData.errorEvents} icon={AlertCircle} colorClassName="text-yellow-500 dark:text-yellow-400" />
+                <StatCard title="Error Events Logged" value={securityData.errorEvents} icon={AlertCircle} colorClassName="text-yellow-500" />
               </motion.div>
             </div>
 

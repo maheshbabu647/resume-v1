@@ -1,0 +1,221 @@
+2025-10-13 00:01:14 [INFO]: [Startup] Incoming request: POST /api/auth/signout
+2025-10-13 00:01:14 [INFO]: [JWT][Verify][Success] Token verified for userId: 68e677f656275bbd89be554d
+2025-10-13 00:01:14 [INFO]: [Auth] Auth success for user 68e677f656275bbd89be554d, role user, from IP: ::1
+2025-10-13 00:01:14 [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-10-13 00:01:14 [INFO]: [SignOut][Success] User: 68e677f656275bbd89be554d from IP: ::1
+2025-10-13 00:01:14 [HTTP]: ::1 - - [12/Oct/2025:18:31:14 +0000] "POST /api/auth/signout HTTP/1.1" 200 52 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:01:26 [INFO]: [Startup] Incoming request: POST /api/auth/signin
+2025-10-13 00:01:26 [INFO]: [JWT][Create][Success] Token issued for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:01:26 [INFO]: [Cookie][Clear][Success] Auth cookie cleared
+2025-10-13 00:01:26 [INFO]: [Cookie][Create][Success] Auth cookie set (httpOnly, secure) expiring: 2025-10-13T18:31:26.389Z
+2025-10-13 00:01:26 [INFO]: [SignIn][Success] User: gmbtnk10aug@gmail.com (ID: 68ab4a7b46b46afd9f445e5d) from IP: ::1
+2025-10-13 00:01:26 [HTTP]: ::1 - - [12/Oct/2025:18:31:26 +0000] "POST /api/auth/signin HTTP/1.1" 200 151 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:01:26 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-10-13 00:01:26 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:01:26 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 00:01:26 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:01:26 [HTTP]: ::1 - - [12/Oct/2025:18:31:26 +0000] "GET /api/auth/status HTTP/1.1" 200 151 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:01:26 [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-10-13 00:01:26 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:01:26 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 00:01:26 [INFO]: [Resume][GetAll][Success] User: 68ab4a7b46b46afd9f445e5d fetched all resumes (16)
+2025-10-13 00:01:26 [HTTP]: ::1 - - [12/Oct/2025:18:31:26 +0000] "GET /api/resume/getAll HTTP/1.1" 200 67241 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:01:26 [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-10-13 00:01:26 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:01:26 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 00:01:26 [INFO]: [Resume][GetAll][Success] User: 68ab4a7b46b46afd9f445e5d fetched all resumes (16)
+2025-10-13 00:01:26 [HTTP]: ::1 - - [12/Oct/2025:18:31:26 +0000] "GET /api/resume/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:13 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:02:13 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:02:13 [HTTP]: ::1 - - [12/Oct/2025:18:32:13 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:13 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:02:13 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:02:13 [HTTP]: ::1 - - [12/Oct/2025:18:32:13 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:17 [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-10-13 00:02:17 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:02:17 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 00:02:17 [INFO]: [Resume][GetAll][Success] User: 68ab4a7b46b46afd9f445e5d fetched all resumes (16)
+2025-10-13 00:02:17 [HTTP]: ::1 - - [12/Oct/2025:18:32:17 +0000] "GET /api/resume/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:17 [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-10-13 00:02:17 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:02:17 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 00:02:17 [INFO]: [Resume][GetAll][Success] User: 68ab4a7b46b46afd9f445e5d fetched all resumes (16)
+2025-10-13 00:02:17 [HTTP]: ::1 - - [12/Oct/2025:18:32:17 +0000] "GET /api/resume/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:21 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:02:21 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:02:21 [HTTP]: ::1 - - [12/Oct/2025:18:32:21 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:21 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:02:21 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:02:21 [HTTP]: ::1 - - [12/Oct/2025:18:32:21 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:23 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:02:23 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:02:23 [HTTP]: ::1 - - [12/Oct/2025:18:32:23 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:23 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:02:23 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:02:23 [HTTP]: ::1 - - [12/Oct/2025:18:32:23 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:27 [INFO]: [Startup] Incoming request: GET /api/template/68a6c2c1e4d86db2f29d35de
+2025-10-13 00:02:27 [INFO]: [Template][GetById][Success] ID: 68a6c2c1e4d86db2f29d35de
+2025-10-13 00:02:27 [HTTP]: ::1 - - [12/Oct/2025:18:32:27 +0000] "GET /api/template/68a6c2c1e4d86db2f29d35de HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:27 [INFO]: [Startup] Incoming request: GET /api/template/68a6c2c1e4d86db2f29d35de
+2025-10-13 00:02:27 [INFO]: [Template][GetById][Success] ID: 68a6c2c1e4d86db2f29d35de
+2025-10-13 00:02:27 [HTTP]: ::1 - - [12/Oct/2025:18:32:27 +0000] "GET /api/template/68a6c2c1e4d86db2f29d35de HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:31 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:02:31 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:02:31 [HTTP]: ::1 - - [12/Oct/2025:18:32:31 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:31 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:02:31 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:02:31 [HTTP]: ::1 - - [12/Oct/2025:18:32:31 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:33 [INFO]: [Startup] Incoming request: GET /api/template/68e183ffd3f93eb7b627c22d
+2025-10-13 00:02:33 [INFO]: [Template][GetById][Success] ID: 68e183ffd3f93eb7b627c22d
+2025-10-13 00:02:33 [HTTP]: ::1 - - [12/Oct/2025:18:32:33 +0000] "GET /api/template/68e183ffd3f93eb7b627c22d HTTP/1.1" 200 56238 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:33 [INFO]: [Startup] Incoming request: GET /api/template/68e183ffd3f93eb7b627c22d
+2025-10-13 00:02:33 [INFO]: [Template][GetById][Success] ID: 68e183ffd3f93eb7b627c22d
+2025-10-13 00:02:33 [HTTP]: ::1 - - [12/Oct/2025:18:32:33 +0000] "GET /api/template/68e183ffd3f93eb7b627c22d HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:43 [INFO]: [Startup] Incoming request: PUT /api/admin/template/update/68e183ffd3f93eb7b627c22d
+2025-10-13 00:02:43 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:02:43 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 00:02:43 [INFO]: [Upload] File accepted: dull.jpg (image/jpeg) from ::1
+2025-10-13 00:02:44 [INFO]: [Cloudinary][Delete][Success] Deleted image with publicId: resume_templates_previews/dull_b17c60e6-ad15-4bce-bea9-28ebb46af04b
+2025-10-13 00:02:46 [INFO]: [Cloudinary][Upload][Success] Uploaded image as: dull_f56ed730-5d5b-417d-bb65-ee2a63b29f67 in folder: resume_templates_previews
+2025-10-13 00:02:46 [INFO]: [Template][Update][Success] ID: 68e183ffd3f93eb7b627c22d
+2025-10-13 00:02:46 [HTTP]: ::1 - - [12/Oct/2025:18:32:46 +0000] "PUT /api/admin/template/update/68e183ffd3f93eb7b627c22d HTTP/1.1" 200 56293 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:47 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:02:47 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:02:47 [HTTP]: ::1 - - [12/Oct/2025:18:32:47 +0000] "GET /api/template/getAll HTTP/1.1" 200 283410 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:47 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:02:47 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:02:47 [HTTP]: ::1 - - [12/Oct/2025:18:32:47 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:50 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:02:50 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:02:50 [HTTP]: ::1 - - [12/Oct/2025:18:32:50 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:02:50 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:02:50 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:02:50 [HTTP]: ::1 - - [12/Oct/2025:18:32:50 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:03:01 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:03:01 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:03:01 [HTTP]: ::1 - - [12/Oct/2025:18:33:01 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:03:01 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:03:01 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:03:01 [HTTP]: ::1 - - [12/Oct/2025:18:33:01 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:07:54 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:07:54 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:07:54 [HTTP]: ::1 - - [12/Oct/2025:18:37:54 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:07:54 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:07:54 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:07:54 [HTTP]: ::1 - - [12/Oct/2025:18:37:54 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:08:09 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-10-13 00:08:09 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:08:09 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 00:08:09 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:08:09 [HTTP]: ::1 - - [12/Oct/2025:18:38:09 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:08:09 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-10-13 00:08:09 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:08:09 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 00:08:09 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:08:09 [HTTP]: ::1 - - [12/Oct/2025:18:38:09 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:08:09 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:08:09 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:08:09 [HTTP]: ::1 - - [12/Oct/2025:18:38:09 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:08:11 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:08:11 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:08:11 [HTTP]: ::1 - - [12/Oct/2025:18:38:11 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:08:11 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:08:11 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:08:11 [HTTP]: ::1 - - [12/Oct/2025:18:38:11 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:08:23 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:08:23 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:08:23 [HTTP]: ::1 - - [12/Oct/2025:18:38:23 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:08:23 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:08:23 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:08:23 [HTTP]: ::1 - - [12/Oct/2025:18:38:23 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:09:35 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:09:35 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:09:35 [HTTP]: ::1 - - [12/Oct/2025:18:39:35 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:09:35 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:09:35 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:09:35 [HTTP]: ::1 - - [12/Oct/2025:18:39:35 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:18:07 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:18:07 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-10-13 00:18:07 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:18:07 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 00:18:07 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:18:07 [HTTP]: ::1 - - [12/Oct/2025:18:48:07 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36"
+2025-10-13 00:18:07 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:18:07 [HTTP]: ::1 - - [12/Oct/2025:18:48:07 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36"
+2025-10-13 00:18:07 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:18:07 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-10-13 00:18:07 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:18:07 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 00:18:07 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:18:07 [HTTP]: ::1 - - [12/Oct/2025:18:48:07 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36"
+2025-10-13 00:18:07 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:18:07 [HTTP]: ::1 - - [12/Oct/2025:18:48:07 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36"
+2025-10-13 00:18:07 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:18:07 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:18:07 [HTTP]: ::1 - - [12/Oct/2025:18:48:07 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36"
+2025-10-13 00:23:37 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:23:37 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:23:37 [HTTP]: ::1 - - [12/Oct/2025:18:53:37 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:23:37 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:23:37 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:23:37 [HTTP]: ::1 - - [12/Oct/2025:18:53:37 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:23:59 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:23:59 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:23:59 [HTTP]: ::1 - - [12/Oct/2025:18:53:59 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:23:59 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:23:59 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:23:59 [HTTP]: ::1 - - [12/Oct/2025:18:53:59 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:24:19 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:24:19 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:24:19 [HTTP]: ::1 - - [12/Oct/2025:18:54:19 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:24:19 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:24:19 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:24:19 [HTTP]: ::1 - - [12/Oct/2025:18:54:19 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:34:38 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:34:38 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:34:38 [HTTP]: ::1 - - [12/Oct/2025:19:04:38 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:34:38 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 00:34:38 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 00:34:38 [HTTP]: ::1 - - [12/Oct/2025:19:04:38 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:44:24 [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-10-13 00:44:24 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:44:24 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 00:44:24 [INFO]: [Resume][GetAll][Success] User: 68ab4a7b46b46afd9f445e5d fetched all resumes (16)
+2025-10-13 00:44:24 [HTTP]: ::1 - - [12/Oct/2025:19:14:24 +0000] "GET /api/resume/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36"
+2025-10-13 00:44:24 [INFO]: [Startup] Incoming request: GET /api/resume/getAll
+2025-10-13 00:44:24 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:44:24 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 00:44:24 [INFO]: [Resume][GetAll][Success] User: 68ab4a7b46b46afd9f445e5d fetched all resumes (16)
+2025-10-13 00:44:24 [HTTP]: ::1 - - [12/Oct/2025:19:14:24 +0000] "GET /api/resume/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36"
+2025-10-13 00:51:47 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-10-13 00:51:47 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:51:47 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 00:51:47 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:51:47 [HTTP]: ::1 - - [12/Oct/2025:19:21:47 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 00:51:47 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-10-13 00:51:47 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:51:47 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 00:51:47 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-10-13 00:51:47 [HTTP]: ::1 - - [12/Oct/2025:19:21:47 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 01:02:13 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 01:02:13 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 01:02:13 [HTTP]: ::1 - - [12/Oct/2025:19:32:13 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36"
+2025-10-13 01:02:13 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 01:02:13 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 01:02:13 [HTTP]: ::1 - - [12/Oct/2025:19:32:13 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36"
+2025-10-13 01:02:43 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 01:02:43 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 01:02:43 [HTTP]: ::1 - - [12/Oct/2025:19:32:43 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36"
+2025-10-13 01:02:43 [INFO]: [Startup] Incoming request: GET /api/template/getAll
+2025-10-13 01:02:43 [INFO]: [Template][GetAll][Success] Returned 5 templates
+2025-10-13 01:02:43 [HTTP]: ::1 - - [12/Oct/2025:19:32:43 +0000] "GET /api/template/getAll HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Mobile Safari/537.36"
+2025-10-13 01:03:19 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-10-13 01:03:19 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 01:03:19 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 01:03:19 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-10-13 01:03:19 [HTTP]: ::1 - - [12/Oct/2025:19:33:19 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 01:03:19 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-10-13 01:03:19 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-13 01:03:19 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-13 01:03:19 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-10-13 01:03:19 [HTTP]: ::1 - - [12/Oct/2025:19:33:19 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
