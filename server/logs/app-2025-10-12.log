@@ -1324,3 +1324,23 @@
 2025-10-12 14:28:06 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
 2025-10-12 14:28:06 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
 2025-10-12 14:28:06 [HTTP]: ::1 - - [12/Oct/2025:08:58:06 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-12 14:29:18 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-10-12 14:29:18 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-12 14:29:18 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-12 14:29:18 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-10-12 14:29:18 [HTTP]: ::1 - - [12/Oct/2025:08:59:18 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-12 14:29:18 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-10-12 14:29:18 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-12 14:29:18 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-12 14:29:18 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-10-12 14:29:18 [HTTP]: ::1 - - [12/Oct/2025:08:59:18 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-12 14:29:21 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-10-12 14:29:21 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-12 14:29:21 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-12 14:29:21 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-10-12 14:29:21 [HTTP]: ::1 - - [12/Oct/2025:08:59:21 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-12 14:29:21 [INFO]: [Startup] Incoming request: GET /api/auth/status
+2025-10-12 14:29:21 [INFO]: [JWT][Verify][Success] Token verified for userId: 68ab4a7b46b46afd9f445e5d
+2025-10-12 14:29:21 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
+2025-10-12 14:29:21 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
+2025-10-12 14:29:21 [HTTP]: ::1 - - [12/Oct/2025:08:59:21 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
