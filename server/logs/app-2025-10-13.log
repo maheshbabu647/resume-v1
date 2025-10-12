@@ -219,3 +219,5 @@
 2025-10-13 01:03:19 [INFO]: [Auth] Auth success for user 68ab4a7b46b46afd9f445e5d, role admin, from IP: ::1
 2025-10-13 01:03:19 [INFO]: [AuthStatus][Checked] User: 68ab4a7b46b46afd9f445e5d
 2025-10-13 01:03:19 [HTTP]: ::1 - - [12/Oct/2025:19:33:19 +0000] "GET /api/auth/status HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36"
+2025-10-13 01:19:36 [INFO]: [MongoDB][Connect][Success] Connected to database: mongodb://localhost:27017/careerforge-db
+2025-10-13 01:19:36 [INFO]: [Server][Start][Success] Server is running on port 3000 [ENV: production]
