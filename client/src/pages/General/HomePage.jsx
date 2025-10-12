@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-// Import the redesigned section components
+
 import HeroSection from '@/components/HomePage/HeroSection.jsx';
 import SocialProof from '@/components/HomePage/SocialProof.jsx';
 import FeaturesSection from '@/components/HomePage/FeaturesSection.jsx';
