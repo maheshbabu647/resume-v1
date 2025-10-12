@@ -1,5 +1,6 @@
 import express from 'express'
 import rateLimit from 'express-rate-limit'
+import passport from 'passport'
 
 import {
   userSignUpValidators,
@@ -23,8 +24,11 @@ import {
     verifyEmail,
     resendVerificationLink
 } from '../controller/auth-controller.js'
+import { createToken } from '../util/jwt.js'
+import { createAuthCookie } from '../util/auth-cookie.js'
 
 const authRouter = express.Router()
+const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || 'http://localhost:5173'
 
 // [1] Signin brute-force protection
 const signinLimiter = rateLimit({
@@ -59,7 +63,7 @@ const emailLimiter = rateLimit({
 
 // [4] Auth routes, with security-first ordering
 authRouter.post('/signup',
-  // signupLimiter,
+  signupLimiter, // Re-enabled for security
   userSignUpValidators,
   userSignUpValidation,
   userSignUp
@@ -104,6 +108,72 @@ authRouter.put('/reset-password/:token',
   userSignUpValidation,
   resetPassword
 )
+
+
+
+authRouter.get('/google',
+  (req, res, next) => {
+    // Store redirect URL in session if provided
+    if (req.query.redirect) {
+      req.session.redirectUrl = req.query.redirect;
+    }
+    next();
+  },
+  passport.authenticate('google', { scope: ['profile', 'email'], session: false })
+);
+
+
+authRouter.get('/google/callback',
+  passport.authenticate('google', { failureRedirect: `${CLIENT_ORIGIN}/login`, session: false }),
+  async (req, res) => {
+
+    try {
+      const user = req.user;
+      const authToken = await createToken({ userId: user._id, userRole: user.userRole });
+      await createAuthCookie(res, authToken);
+
+      // Check for redirect parameter in the original request
+      const redirectUrl = req.session?.redirectUrl || req.query.redirect;
+      let finalRedirectUrl;
+      
+      if (redirectUrl) {
+        const decodedUrl = decodeURIComponent(redirectUrl);
+        // If it's just a path, prepend the client origin
+        if (decodedUrl.startsWith('/')) {
+          finalRedirectUrl = `${CLIENT_ORIGIN}${decodedUrl}`;
+        } else {
+          finalRedirectUrl = decodedUrl;
+        }
+      } else {
+        // Check if there's saved state in localStorage by redirecting to a special handler
+        finalRedirectUrl = `${CLIENT_ORIGIN}/oauth-return`;
+      }
+      
+      res.redirect(finalRedirectUrl); 
+    } catch (error) {
+      res.redirect(`${CLIENT_ORIGIN}/login?error=auth_failed`);
+    }
+  }
+);
+
+
+authRouter.get('/linkedin',
+  passport.authenticate('linkedin', { session: false })
+);
+
+authRouter.get('/linkedin/callback',
+  passport.authenticate('linkedin', { failureRedirect: `${CLIENT_ORIGIN}/login`, session: false }),
+  async (req, res) => {
+    try {
+      const user = req.user;
+      const authToken = await createToken({ userId: user._id, userRole: user.userRole });
+      await createAuthCookie(res, authToken);
+      res.redirect(`${CLIENT_ORIGIN}/home`); 
+    } catch (error) {
+      res.redirect(`${CLIENT_ORIGIN}/login?error=auth_failed`);
+    }
+  }
+);
 
 
 export default authRouter

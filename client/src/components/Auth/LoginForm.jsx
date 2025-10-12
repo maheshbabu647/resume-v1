@@ -21,21 +21,70 @@ const LoginForm = ({ onSubmit, isLoading, apiError }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Clear previous errors
+    setFormError('');
+    
+    // Check if fields are filled
     if (!formData.userEmail || !formData.userPassword) {
       setFormError('Please enter both email and password.');
       return;
     }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.userEmail.trim())) {
+      setFormError('Please enter a valid email address.');
+      return;
+    }
+
+    // Check password length
+    if (formData.userPassword.length < 1) {
+      setFormError('Please enter your password.');
+      return;
+    }
+    
     setFormError('');
-    onSubmit(formData);
+    onSubmit({
+      userEmail: formData.userEmail.trim(),
+      userPassword: formData.userPassword
+    });
   };
 
  const getErrorMessage = (error) => {
   if (!error) return '';
   if (typeof error === 'string') return error;
-  if (error.message) return error.message; // Extracts the string
-  if (error.msg) return error.msg;         // Also checks for .msg
   
-  // Fallback to prevent rendering an object
+  // Handle different error formats
+  if (error.message) {
+    if (typeof error.message === 'string') return error.message;
+    if (Array.isArray(error.message)) {
+      return error.message
+        .map(err => err.message || JSON.stringify(err))
+        .join('; ');
+    }
+    if (typeof error.message === 'object' && error.message !== null) {
+      return error.message.message || JSON.stringify(error.message);
+    }
+  }
+  
+  // Handle common API error patterns
+  if (error.error) {
+    if (typeof error.error === 'string') return error.error;
+    if (error.error.message) return error.error.message;
+  }
+  
+  if (error.details) {
+    if (typeof error.details === 'string') return error.details;
+  }
+  
+  if (error.msg) return error.msg;
+  
+  // Handle authentication specific errors
+  if (error.auth) {
+    if (typeof error.auth === 'string') return error.auth;
+  }
+  
   return 'An unexpected error occurred. Please try again.';
 };
 
@@ -51,13 +100,18 @@ const displayError = formError || (apiError ? getErrorMessage(apiError) : '');
       aria-label="Login Form"
       noValidate
     >
-      <div className="space-y-1.5">
+      <motion.div 
+        className="space-y-1.5"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.4, delay: 0.2 }}
+      >
         <Label htmlFor="login-email" className="text-sm font-medium text-muted-foreground">
           Email Address
         </Label>
-        <div className="relative">
+        <div className="relative group">
           <Mail
-            className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+            className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors duration-200"
             aria-hidden="true"
           />
           <Input
@@ -68,20 +122,25 @@ const displayError = formError || (apiError ? getErrorMessage(apiError) : '');
             placeholder="you@example.com"
             value={formData.userEmail}
             onChange={handleChange}
-            className="pl-10 w-full bg-background border-input focus:border-primary focus:ring-primary placeholder:text-muted-foreground/60"
+            className="pl-10 w-full bg-background/50 backdrop-blur-sm border-input focus:border-primary focus:ring-primary focus:ring-2 focus:ring-primary/20 placeholder:text-muted-foreground/60 transition-all duration-200 hover:border-primary/50"
             required
             aria-describedby={displayError && formData.userEmail === '' ? "error-message" : undefined}
           />
         </div>
-      </div>
+      </motion.div>
 
-      <div className="space-y-1.5">
+      <motion.div 
+        className="space-y-1.5"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.4, delay: 0.3 }}
+      >
         <Label htmlFor="login-password" className="text-sm font-medium text-muted-foreground">
           Password
         </Label>
-        <div className="relative">
+        <div className="relative group">
           <Lock
-            className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+            className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors duration-200"
             aria-hidden="true"
           />
           <Input
@@ -92,24 +151,26 @@ const displayError = formError || (apiError ? getErrorMessage(apiError) : '');
             placeholder="••••••••"
             value={formData.userPassword}
             onChange={handleChange}
-            className="pl-10 pr-10 w-full bg-background border-input focus:border-primary focus:ring-primary placeholder:text-muted-foreground/60"
+            className="pl-10 pr-10 w-full bg-background/50 backdrop-blur-sm border-input focus:border-primary focus:ring-primary focus:ring-2 focus:ring-primary/20 placeholder:text-muted-foreground/60 transition-all duration-200 hover:border-primary/50"
             required
             aria-describedby={displayError && formData.userPassword === '' ? "error-message" : undefined}
           />
-          <button
+          <motion.button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-primary transition-colors duration-200"
             aria-label={showPassword ? 'Hide password' : 'Show password'}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
             {showPassword ? (
               <EyeOff className="h-4 w-4" />
             ) : (
               <Eye className="h-4 w-4" />
             )}
-          </button>
+          </motion.button>
         </div>
-      </div>
+      </motion.div>
 
       {displayError && (
         <motion.div
@@ -128,22 +189,30 @@ const displayError = formError || (apiError ? getErrorMessage(apiError) : '');
         </motion.div>
       )}
 
-      <Button
-        type="submit"
-        disabled={isLoading}
-        className="w-full bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background shadow-md hover:shadow-lg transition-all duration-150 ease-in-out py-3 text-base"
-        aria-busy={isLoading}
-        aria-label={isLoading ? "Logging In..." : "Log In to your account"}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.4 }}
       >
-        {isLoading ? (
-          <>
-            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-            Logging In...
-          </>
-        ) : (
-          'Log In'
-        )}
-      </Button>
+        <Button
+          type="submit"
+          disabled={isLoading}
+          className="w-full bg-gradient-to-r from-primary via-accent-purple to-primary text-primary-foreground hover:from-primary/90 hover:via-accent-purple/90 hover:to-primary/90 focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out py-3 text-base font-semibold rounded-xl"
+          aria-busy={isLoading}
+          aria-label={isLoading ? "Logging In..." : "Log In to your account"}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+              Logging In...
+            </>
+          ) : (
+            'Log In'
+          )}
+        </Button>
+      </motion.div>
     </motion.form>
   );
 };

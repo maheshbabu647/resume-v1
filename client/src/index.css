@@ -1,58 +1,37 @@
 @import "tailwindcss";
 
-/* All your theme variables are defined here for both light and dark modes.
-*/
+/* Theme variables updated with new accent colors for purple, pink, and green. */
 @layer base {
   :root {
-    --background: oklch(0.96 0.006 330); /* Soft White */
-    --foreground: oklch(0.25 0.04 195); /* Dark Slate Teal */
-    --card: oklch(1 0 0); /* Pure White for crisp cards */
-    --card-foreground: oklch(0.25 0.04 195); /* Dark Slate Teal */
+    --background: oklch(0.98 0.01 240); /* Very Light Cool Grey */
+    --foreground: oklch(0.25 0.04 260); /* Dark Slate Blue */
+    --card: oklch(1 0 0); /* Pure White */
+    --card-foreground: oklch(0.25 0.04 260); /* Dark Slate Blue */
     --popover: oklch(1 0 0); /* Pure White */
-    --popover-foreground: oklch(0.25 0.04 195); /* Dark Slate Teal */
-    --primary: oklch(0.48 0.09 195); /* Deep Teal (#2c666e) */
-    --primary-foreground: oklch(0.98 0.005 330); /* Brighter Soft White */
-    --secondary: oklch(0.92 0.015 195); /* Light Teal Grey */
-    --secondary-foreground: oklch(0.48 0.09 195); /* Deep Teal */
-    --muted: oklch(0.92 0.015 195); /* Light Teal Grey */
-    --muted-foreground: oklch(0.45 0.05 195); /* Muted Teal */
-    --accent: oklch(0.6 0.15 195); /* Bright Teal for hover/focus */
-    --accent-foreground: oklch(0.98 0.005 330); /* Brighter Soft White */
-    --destructive: oklch(0.65 0.22 25); /* Professional Red for errors */
-    --destructive-foreground: oklch(0.98 0.005 330); /* Brighter Soft White */
-    --border: oklch(0.88 0.02 195); /* Subtle Teal Grey Border */
-    --input: oklch(0.88 0.02 195); /* Subtle Teal Grey Border */
-    --ring: oklch(0.55 0.12 195); /* Vibrant Teal Focus Ring */
+    --popover-foreground: oklch(0.25 0.04 260); /* Dark Slate Blue */
+    --primary: oklch(0.6 0.18 260); /* Vibrant Blue */
+    --primary-foreground: oklch(0.99 0.005 240); /* Bright White */
+    --secondary: oklch(0.95 0.02 260); /* Light Slate Blue */
+    --secondary-foreground: oklch(0.35 0.05 260); /* Darker Slate Blue */
+    --muted: oklch(0.95 0.02 260); /* Light Slate Blue */
+    --muted-foreground: oklch(0.55 0.03 260); /* Muted Slate Blue */
+    --accent: oklch(0.9 0.03 260); /* Bright, Light Slate Blue */
+    --accent-foreground: oklch(0.35 0.05 260); /* Darker Slate Blue */
+    --destructive: oklch(0.65 0.22 25); /* Professional Red */
+    --destructive-foreground: oklch(0.99 0.005 240); /* Bright White */
+    --border: oklch(0.9 0.02 260); /* Subtle Slate Blue Border */
+    --input: oklch(0.9 0.02 260); /* Subtle Slate Blue Border */
+    --ring: oklch(0.6 0.18 260); /* Vibrant Blue Focus Ring */
     --radius: 0.75rem;
-  }
 
-  .dark {
-    --background: oklch(0.2 0.03 195); /* Deep Dark Teal */
-    --foreground: oklch(0.96 0.006 330); /* Soft White */
-    --card: oklch(0.25 0.035 195); /* Darker Card Background */
-    --card-foreground: oklch(0.96 0.006 330); /* Soft White */
-    --popover: oklch(0.25 0.035 195); /* Darker Card Background */
-    --popover-foreground: oklch(0.96 0.006 330); /* Soft White */
-    --primary: oklch(0.65 0.16 195); /* Bright Teal for dark mode actions */
-    --primary-foreground: oklch(0.2 0.03 195); /* Deep Dark Teal */
-    --secondary: oklch(0.3 0.04 195); /* Mid Teal Grey */
-    --secondary-foreground: oklch(0.96 0.006 330); /* Soft White */
-    --muted: oklch(0.3 0.04 195); /* Mid Teal Grey */
-    --muted-foreground: oklch(0.7 0.01 330); /* Muted Soft White */
-    --accent: oklch(0.48 0.09 195); /* Original Deep Teal (muted accent in dark mode) */
-    --accent-foreground: oklch(0.96 0.006 330); /* Soft White */
-    --destructive: oklch(0.7 0.22 25); /* Brighter Red for dark mode errors */
-    --destructive-foreground: oklch(0.2 0.03 195); /* Deep Dark Teal */
-    --border: oklch(0.3 0.04 195); /* Subtle Dark Border */
-    --input: oklch(0.3 0.04 195); /* Subtle Dark Border */
-    --ring: oklch(0.65 0.16 195); /* Bright Teal Focus Ring */
+    /* --- NEW ACCENT COLORS ADDED HERE --- */
+    --accent-purple: oklch(0.6 0.18 290); /* Vibrant Purple */
+    --accent-pink: oklch(0.7 0.2 340); /* Bright Pink */
+    --success: oklch(0.65 0.15 150); /* Bright Emerald Green */
+    --success-foreground: oklch(0.99 0.005 240); /* Bright White */
   }
 }
 
-/*
-  This @theme block tells Tailwind about your variables so it can generate
-  utility classes like `bg-background`, `text-primary`, `border-destructive`, etc.
-*/
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -72,11 +51,14 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+ 
+  /* --- MAPPING NEW ACCENT COLORS --- */
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-pink: var(--accent-pink);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
 }
 
-/*
-  This applies your base styles using Tailwind's system.
-*/
 @layer base {
   body {
     @apply bg-background text-foreground;
@@ -87,5 +69,64 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
+  }
+}
+
+/* Performance optimizations */
+@layer utilities {
+  /* Optimize rendering performance */
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .will-change-opacity {
+    will-change: opacity;
+  }
+  
+  .will-change-scroll {
+    will-change: scroll-position;
+  }
+  
+  /* GPU acceleration for animations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  /* Optimize text rendering */
+  .text-optimize {
+    text-rendering: optimizeSpeed;
+    font-smooth: never;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+  
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  /* Optimize images */
+  img {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px;
+  }
+  
+  /* Optimize scrolling */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+  }
+  
+  /* Critical above-the-fold styles */
+  .above-fold {
+    contain: layout style paint;
   }
 }

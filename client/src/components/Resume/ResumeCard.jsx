@@ -1,19 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-// NEW: Imported MoreVertical icon and DropdownMenu components
-import { Download, Edit3, Trash2, Loader2, MoreVertical } from 'lucide-react';
+import { Download, Edit3, Trash2, Loader2, Calendar, Star, Sparkles } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
-} from "@/components/ui/dropdown-menu";
 import { useNavigate } from 'react-router-dom';
 import { downloadResume as apiDownloadResume, getById as apiGetById } from '@/api/resumeServiceApi';
 import generateResumeHtml from '@/utils/generateResumeHtml';
-import { cn } from "@/lib/utils"; // Ensure cn is imported
 
 const ResumeCard = ({ resume, onDelete }) => {
   const [isDownloading, setIsDownloading] = React.useState(false);
@@ -21,7 +13,12 @@ const ResumeCard = ({ resume, onDelete }) => {
 
   if (!resume) return null;
 
-  const { _id, resumeName, templateId, updatedAt } = resume;
+  const {
+    _id,
+    resumeName,
+    templateId,
+    updatedAt,
+  } = resume;
 
   const displayName = resumeName || 'Untitled Resume';
   const templateImageURL = templateId?.templateImage || 'https://placehold.co/600x800/E2E8F0/4A5568?text=Template&font=inter';
@@ -32,116 +29,187 @@ const ResumeCard = ({ resume, onDelete }) => {
       year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
     });
   };
+
   const lastUpdatedDate = formatDate(updatedAt);
 
-  const handleEdit = (e) => { e.stopPropagation(); navigate(`/resume/edit/${_id}`); };
+  const handleEdit = (e) => { 
+    e.stopPropagation(); 
+    navigate(`/resume/edit/${_id}`); 
+  };
+
   const handlePreview = () => navigate(`/resume/saved/view/${_id}`);
-  const handleDeleteClick = (e) => { e.stopPropagation(); if (onDelete) onDelete(_id, displayName); };
+
+  const handleDeleteClick = (e) => { 
+    e.stopPropagation(); 
+    if (onDelete) onDelete(_id, displayName); 
+  };
 
   const handleDownload = async (e) => {
     e.stopPropagation();
     setIsDownloading(true);
+
     try {
       const fullResumeData = await apiGetById(_id);
-      
+
       if (!fullResumeData?.templateId?.templateComponents || !fullResumeData.resumeData) {
-          throw new Error('Missing essential template components or resume data for download.');
+        throw new Error('Missing essential template components or resume data for download.');
       }
 
       const { baseCss, sections, stylePacks } = fullResumeData.templateId.templateComponents;
-      const { resumeData: currentFormData, spacingMultiplier, stylePackKey, sectionOrder } = fullResumeData;
+      const {
+        resumeData: currentFormData,
+        spacingMultiplier,
+        stylePackKey,
+        sectionOrder
+      } = fullResumeData;
 
       const htmlContent = generateResumeHtml(
-          null, baseCss, sections, stylePacks, stylePackKey, sectionOrder, currentFormData, spacingMultiplier
+        null,
+        baseCss,
+        sections,
+        stylePacks,
+        stylePackKey,
+        sectionOrder,
+        currentFormData,
+        spacingMultiplier
       );
-      
-      await apiDownloadResume(htmlContent);
 
+      await apiDownloadResume(htmlContent);
     } catch (error) {
       console.error('Error downloading resume:', error);
-      alert('An error occurred while trying to download your resume.');
+      alert('An error occurred while trying to download your resume. Please ensure the template data is complete.');
     } finally {
       setIsDownloading(false);
     }
   };
 
   return (
-    <motion.article
-      layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className="h-full group"
-      tabIndex={0}
+    <motion.div
+      className="group relative"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300 }}
     >
-      <Card
-        className="bg-card text-card-foreground rounded-lg border shadow-md hover:border-primary/60 hover:shadow-lg transition-all duration-300 ease-in-out flex flex-col h-full overflow-hidden relative cursor-pointer"
+      {/* Glow Effect */}
+      <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      
+      <Card 
+        className="relative bg-white/80 backdrop-blur-xl rounded-3xl border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer"
         onClick={handlePreview}
-        aria-labelledby={`resume-name-${_id}`}
       >
-        <div className="w-full bg-muted/50 aspect-[3/4] overflow-hidden">
+        {/* Header with Image */}
+        <div className="relative h-48 overflow-hidden rounded-t-3xl bg-gradient-to-br from-blue-50 to-purple-50">
           <img
             src={templateImageURL}
-            alt={`Template preview for ${displayName}`}
-            className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
-            loading="lazy"
-            onError={e => {
+            alt={`${displayName} template`}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            onError={(e) => {
               e.target.onerror = null;
               e.target.src = 'https://placehold.co/600x800/E2E8F0/4A5568?text=Preview+Error&font=inter';
             }}
           />
-        </div>
-
-        <div className="p-4 border-t flex-grow">
-            <CardTitle id={`resume-name-${_id}`} className="text-base font-semibold text-foreground mb-1 line-clamp-2">
-                {displayName}
-            </CardTitle>
-            <CardDescription className="text-xs">
-                Updated: {lastUpdatedDate}
-            </CardDescription>
-        </div>
-
-        {/* --- UPDATED: Hover overlay for DESKTOP ONLY --- */}
-        <div className="absolute inset-0 bg-black/75 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden lg:flex flex-col items-center justify-center p-4">
-            <div className="flex flex-col gap-2 w-full max-w-[180px]">
-                <Button onClick={handleEdit} aria-label={`Edit ${displayName}`} className="w-full">
-                    <Edit3 size={16} className="mr-2" /> Edit
-                </Button>
-                <Button variant="secondary" onClick={handleDownload} disabled={isDownloading} aria-label={`Download ${displayName}`} className="w-full">
-                    {isDownloading ? <Loader2 size={16} className="animate-spin mr-2" /> : <Download size={16} className="mr-2" />}
-                    {isDownloading ? '...' : 'Download'}
-                </Button>
-                <Button variant="destructive" onClick={handleDeleteClick} aria-label={`Delete ${displayName}`} className="w-full">
-                    <Trash2 size={16} className="mr-2" /> Delete
-                </Button>
+          
+          {/* Overlay with Status */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute top-4 right-4">
+              <motion.div 
+                className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <div className="w-3 h-3 bg-white rounded-full"></div>
+              </motion.div>
             </div>
+          </div>
+
+          {/* Floating Success Badge */}
+          <motion.div 
+            className="absolute top-4 left-4 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full px-3 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className="flex items-center gap-1">
+              <Star className="w-3 h-3 text-white fill-current" />
+              <span className="text-xs font-bold text-white">Ready</span>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Content */}
+        <div className="p-6">
+          {/* Title */}
+          <CardTitle className="text-xl font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+            {displayName}
+          </CardTitle>
+
+          {/* Last Updated */}
+          <CardDescription className="flex items-center gap-2 text-slate-600 mb-6">
+            <Calendar className="w-4 h-4" />
+            <span className="text-sm">Updated: {lastUpdatedDate}</span>
+          </CardDescription>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col gap-3">
+            {/* Primary Actions */}
+            <div className="flex gap-2">
+              <motion.div className="flex-1"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  onClick={handleEdit}
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group/btn"
+                >
+                  <Edit3 className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
+                  Edit
+                </Button>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button
+                  onClick={handleDownload}
+                  disabled={isDownloading}
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 px-6"
+                >
+                  {isDownloading ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Download className="w-4 h-4" />
+                  )}
+                </Button>
+              </motion.div>
+            </div>
+
+            {/* Secondary Action */}
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Button
+                onClick={handleDeleteClick}
+                variant="outline"
+                className="w-full border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 rounded-2xl transition-all duration-300 group/delete"
+              >
+                <Trash2 className="w-4 h-4 mr-2 group-hover/delete:rotate-12 transition-transform" />
+                Delete
+              </Button>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Decorative Elements */}
+        <div className="absolute bottom-4 right-4 opacity-5 group-hover:opacity-10 transition-opacity">
+          <Sparkles className="w-8 h-8 text-blue-500" />
         </div>
         
-        {/* --- NEW: Dropdown menu for MOBILE ONLY --- */}
-        <div className="absolute top-2 right-2 lg:hidden">
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Button variant="secondary" size="icon" onClick={e => e.stopPropagation()} className="h-8 w-8 rounded-full bg-card/80 backdrop-blur-sm">
-                        <MoreVertical size={16} />
-                    </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" onClick={e => e.stopPropagation()}>
-                    <DropdownMenuItem onClick={handleEdit}>
-                        <Edit3 size={16} className="mr-2" /> Edit
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={handleDownload} disabled={isDownloading}>
-                        {isDownloading ? <Loader2 size={16} className="animate-spin mr-2" /> : <Download size={16} className="mr-2" />}
-                        {isDownloading ? 'Downloading...' : 'Download'}
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={handleDeleteClick} className="text-destructive focus:text-destructive focus:bg-destructive/10">
-                        <Trash2 size={16} className="mr-2" /> Delete
-                    </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-        </div>
+        {/* Corner Gradient */}
+        <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       </Card>
-    </motion.article>
+    </motion.div>
   );
 };
 

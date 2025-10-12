@@ -9,6 +9,7 @@ import { Loader2, KeyRound } from 'lucide-react';
 
 import useAuthContext from '@/hooks/useAuth.js';
 import { verifyEmail as apiVerifyEmail, resendVerification as apiResendVerification } from '@/api/authServiceApi';
+import GoogleLoginButton from './GoogleLoginButton.jsx';
 
 const LoginForm = React.lazy(() => import('./LoginForm.jsx'));
 const SignupForm = React.lazy(() => import('./SignupForm.jsx'));
@@ -81,7 +82,7 @@ const VerificationView = ({ userEmail, onVerify, onResendClick, isLoading, isRes
 };
 
 
-const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess }) => {
+const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess, onSaveFormData = null }) => {
   const { signin, signup, error: authError, clearAuthError, checkStatus, userData } = useAuthContext();
   
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -213,6 +214,25 @@ const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess }) =>
                   <DialogTitle className="text-2xl font-bold text-center">Welcome Back</DialogTitle>
                   <DialogDescription className="text-center">Log in to continue your work.</DialogDescription>
                 </DialogHeader>
+                
+                {/* OAuth Section */}
+                <div className="space-y-4 mb-6">
+                  <GoogleLoginButton 
+                    redirectTo={window.location.href} 
+                    onBeforeRedirect={onSaveFormData}
+                  />
+                </div>
+                
+                {/* Divider */}
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-background px-2 text-muted-foreground">Or continue with email</span>
+                  </div>
+                </div>
+                
                 <LoginForm onSubmit={handleLogin} isLoading={isSubmitting} apiError={authError} />
               </TabsContent>
               <TabsContent value="signup" className="pt-6">
@@ -220,6 +240,25 @@ const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess }) =>
                   <DialogTitle className="text-2xl font-bold text-center">Create Your Account</DialogTitle>
                   <DialogDescription className="text-center">Sign up to get started.</DialogDescription>
                 </DialogHeader>
+                
+                {/* OAuth Section */}
+                <div className="space-y-4 mb-6">
+                  <GoogleLoginButton 
+                    redirectTo={window.location.href} 
+                    onBeforeRedirect={onSaveFormData}
+                  />
+                </div>
+                
+                {/* Divider */}
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t" />
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-background px-2 text-muted-foreground">Or continue with email</span>
+                  </div>
+                </div>
+                
                 <SignupForm onSubmit={handleSignup} isLoading={isSubmitting} apiError={authError} />
               </TabsContent>
             </Tabs>

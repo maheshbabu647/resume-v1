@@ -7,11 +7,12 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-      // The `colors` object is no longer needed here.
-      // Your theme is now defined directly in your index.css file.
-      // The `brand` color is also removed to be consistent with the new method.
+      // The `colors` object is intentionally omitted.
+      // Your theme is defined directly in your index.css file via the @theme block.
+      
+      // Updated grid pattern from your new CTA section
       backgroundImage: {
-        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+        'grid-pattern': "url(\"data:image/svg+xml,%3csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3e%3cg fill='none' fill-rule='evenodd'%3e%3cg fill='%23ffffff' fill-opacity='0.03'%3e%3ccircle cx='30' cy='30' r='2'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e\")",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -20,7 +21,6 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        serif: ['Georgia', 'serif'],
       },
       keyframes: {
         "accordion-down": {
@@ -31,13 +31,13 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        // Added shimmer animation from your component code
+        "shimmer": {
+          '100%': { transform: 'translateX(100%)' },
+        },
         "fadeIn": {
           from: { opacity: "0" },
           to: { opacity: "1" },
-        },
-        "fadeOut": {
-          from: { opacity: "1" },
-          to: { opacity: "0" },
         },
         "twinkle": { 
           '0%, 100%': { transform: 'scale(1) rotate(0deg)', opacity: '0.7' },
@@ -51,14 +51,16 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "shimmer": "shimmer 2s infinite",
         "fadeIn": "fadeIn 0.5s ease-in-out",
-        "fadeOut": "fadeOut 0.5s ease-in-out",
         "twinkle": 'twinkle 2s ease-in-out infinite',
         "slideInUp": "slideInUp 0.5s ease-out forwards",
       },
     },
   },
-  // The plugins have been removed to avoid the previous module errors.
-  // If you need to add them back, ensure they are compatible with ES Modules.
-  plugins: [],
+  // If you encounter module errors, you may need to install this plugin
+  // or adjust your project to use CommonJS for the config (tailwind.config.cjs).
+  plugins: [
+    require("tailwindcss-animate")
+  ],
 }

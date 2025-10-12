@@ -8,11 +8,11 @@ const createAuthCookie = async (res, authToken) => {
 
     const cookie_options = {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === 'production', // Only secure in production
       // domain: SERVER_DOMAIN, // Uncomment if using subdomains
       path: '/',
       expires: expiryDate,
-      sameSite: 'None'
+      sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax' // Secure for production, Lax for development
     }
 
     res.cookie("authToken", authToken, cookie_options)
@@ -33,10 +33,10 @@ const clearAuthCookie = async (res) => {
 
     const cookie_options = {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === 'production', // Only secure in production
       // domain: SERVER_DOMAIN,
       path: '/',
-      sameSite: 'None'
+      sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax' // Secure for production, Lax for development
     }
 
     res.clearCookie('authToken', cookie_options)

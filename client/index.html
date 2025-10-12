@@ -2,11 +2,45 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> You can replace /vite.svg with your actual favicon path -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="canonical" href="https://careerforge.pro/" />
-    <title>CareerForge | AI-Powered Resume Builder</title>
+    <title>CareerForge | Resume Builder</title>
     <meta name="description" content="Build professional resumes with AI assistance. Create, edit, and manage your resumes and cover letters effectively with CareerForge." />
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    
+    <!-- Performance optimizations -->
+    <meta name="theme-color" content="#1f2937" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/src/main.jsx" as="script" />
+    <link rel="preload" href="/src/index.css" as="style" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Critical CSS inline for above-the-fold content -->
+    <style>
+      /* Critical CSS for initial render */
+      body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+      #root { min-height: 100vh; }
+      .loading-spinner { 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        height: 100vh; 
+        background: #f9fafb;
+      }
+    </style>
     
     <!-- Script to set theme based on localStorage or system preference -->
     <script>
@@ -21,19 +55,25 @@
       })();
     </script>
 
-        <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics - Load asynchronously -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZFRD7VP2C"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
-      gtag('config', 'G-VZFRD7VP2C');
+      gtag('config', 'G-VZFRD7VP2C', {
+        send_page_view: false
+      });
     </script>
 
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Loading fallback -->
+      <div class="loading-spinner">
+        <div>Loading...</div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

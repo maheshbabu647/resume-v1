@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import session from 'express-session'
 import logger from "./config/logger.js" // Winston
 import morgan from "morgan"
 import helmet from 'helmet' // Secure HTTP headers
@@ -13,10 +14,14 @@ import indexRouter from './router/index-router.js'
 import errorHandler from './middleware/err-handler.js'
 import { logAnalyticsEvent } from './service/analytics-logger.js' // <<-- NEW
 import performanceLogger from './middleware/performance-logger.js'
+import validateSecurityConfig, { securityHeaders, cspDirectives } from './config/security-config.js'
+import sanitizeInput from './middleware/input-sanitizer.js'
 
 // === [Swagger Docs Imports & Setup] ===
 import swaggerJsdoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
+import passport from 'passport'
+import './config/passport-setup.js'
 
 const swaggerOptions = {
   definition: {
@@ -37,13 +42,36 @@ const SWAGGER_ROUTE = '/api-docs'
 const morganFormat = process.env.NODE_ENV === 'production' ? 'combined' : 'dev'
 const morganStream = { write: msg => logger.http(msg.trim()) }
 
+// Validate security configuration on startup
+validateSecurityConfig();
+
 const app = express()
 
 const COOKIE_SECRET = process.env.COOKIE_SECRET || 'cookiesceret'
 const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || 'http://localhost:5173'
 
 // === [Security Middleware: Place BEFORE all routes/parsing] ===
-app.use(helmet()) // <-- [ADDED] Sets secure HTTP headers
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: cspDirectives
+  },
+  crossOriginEmbedderPolicy: false, // Disable for compatibility
+  hsts: {
+    maxAge: 31536000,
+    includeSubDomains: true,
+    preload: true
+  }
+})) // <-- [ENHANCED] Sets comprehensive secure HTTP headers
+
+// Add additional security headers
+app.use((req, res, next) => {
+  Object.entries(securityHeaders).forEach(([key, value]) => {
+    if (value) {
+      res.setHeader(key, value);
+    }
+  });
+  next();
+});
 
 // [SECURITY: CORS] Allow only trusted origins and credentials
 app.use(cors({ 
@@ -54,8 +82,24 @@ app.use(cors({
 }))
 
 app.use(cookieParser(COOKIE_SECRET))
+
+// Session configuration for OAuth redirects
+app.use(session({
+  secret: COOKIE_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    httpOnly: true,
+    maxAge: 10 * 60 * 1000 // 10 minutes
+  }
+}))
+
 app.use(express.json({ limit: '10mb' }))
 app.use(express.urlencoded({ extended: true }))
+
+// Input sanitization middleware
+app.use(sanitizeInput)
 
 app.use(morgan(morganFormat, { stream: morganStream }))
 
@@ -66,26 +110,26 @@ app.use(performanceLogger)
 app.use(SWAGGER_ROUTE, swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 // === [Custom Rate Limit Handler with Analytics Logging] ===
-// const customRateLimitHandler = async (req, res, next) => {
-//   try {
-//     await logAnalyticsEvent({
-//       eventType: 'rate_limit_hit',
-//       meta: { route: req.originalUrl, ip: req.ip }
-//     })
-//   } catch (err) {
-//     logger.warn(`[Analytics][Log][Fail] rate_limit_hit: ${err.message}`)
-//   }
-//   res.status(429).json({ status: 429, error: 'Too many requests. Please try again later.' })
-// }
+const customRateLimitHandler = async (req, res, next) => {
+  try {
+    await logAnalyticsEvent({
+      eventType: 'rate_limit_hit',
+      meta: { route: req.originalUrl, ip: req.ip }
+    })
+  } catch (err) {
+    logger.warn(`[Analytics][Log][Fail] rate_limit_hit: ${err.message}`)
+  }
+  res.status(429).json({ status: 429, error: 'Too many requests. Please try again later.' })
+}
 
 // === [Global Rate Limiting] ===
-// const globalLimiter = rateLimit({
-//   windowMs: 15 * 60 * 1000,
-//   max: 100,
-//   handler: customRateLimitHandler
-// })
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  handler: customRateLimitHandler
+})
 
-// app.use('/api', globalLimiter)
+app.use('/api', globalLimiter)
 
 app.get('/health', (req, res) => {
   logger.info(`[Health] Check by ${req.ip}`)

@@ -22,6 +22,7 @@ export const useResumeEditorActions = ({
     editorFormData,
     editableResumeName,
     spacingMultiplier,
+    fontSizeMultiplier,
     sectionOrder,
     selectedStylePackKey,
     selectedIndustry,
@@ -70,7 +71,8 @@ export const useResumeEditorActions = ({
             spacingMultiplier,
             sectionOrder,
             selectedStylePackKey,
-            selectedIndustry
+            selectedIndustry,
+            fontSizeMultiplier
         );
         if (savedResult?._id) {
             setFeedbackDetailsForDialog({ title: 'Success!', message: 'Resume saved successfully!', type: 'success' });
@@ -84,7 +86,7 @@ export const useResumeEditorActions = ({
         } else {
             setSaveStatus('idle');
         }
-    }, [isAuthenticated, editorFormData, editableResumeName, spacingMultiplier, sectionOrder, selectedStylePackKey, selectedIndustry, mode, setPendingAction, setShowAuthDialog, setSaveStatus, saveOrUpdateCurrentResume, setFeedbackDetailsForDialog, setIsDirty, navigate]);
+    }, [isAuthenticated, editorFormData, editableResumeName, spacingMultiplier, fontSizeMultiplier, sectionOrder, selectedStylePackKey, selectedIndustry, mode, setPendingAction, setShowAuthDialog, setSaveStatus, saveOrUpdateCurrentResume, setFeedbackDetailsForDialog, setIsDirty, navigate]);
 
     const handleSaveResume = useCallback(() => {
         if (hasUntouchedPlaceholders(editorFormData.content)) {
@@ -142,13 +144,14 @@ export const useResumeEditorActions = ({
                 formData: editorFormData, 
                 resumeName: editableResumeName,
                 spacingMultiplier,
+                fontSizeMultiplier,
                 sectionOrder,
                 stylePackKey: selectedStylePackKey,
                 selectedIndustry,
                 template: currentTemplateForEditor
             } 
         });
-    }, [mode, newResumeTemplateId, existingResumeId, navigate, editorFormData, editableResumeName, spacingMultiplier, sectionOrder, selectedStylePackKey, selectedIndustry, currentTemplateForEditor]);
+    }, [mode, newResumeTemplateId, existingResumeId, navigate, editorFormData, editableResumeName, spacingMultiplier, fontSizeMultiplier,  sectionOrder, selectedStylePackKey, selectedIndustry, currentTemplateForEditor]);
 
     const handleEnhanceField = useCallback(async (fieldPath, textToEnhance, jobContext) => {
         if (!textToEnhance || textToEnhance.trim() === '') {

@@ -14,8 +14,18 @@ const userSchema = new mongoose.Schema({
     },
     userPassword: {
         type: String,
-        required: [true, 'Password is required'],
+        required: false,
         minlength: [6, 'Password must be at least 6 characters long'],
+    },
+    googleId: {
+        type: String,
+        unique: true,
+        sparse: true ,
+    },
+    linkedinId: { 
+        type: String,
+        unique: true,
+        sparse: true
     },
     userRole: {
         type: String,
@@ -26,7 +36,6 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    // New fields for email verification code
     verificationCode: {
         type: String,
         default: undefined

@@ -11,6 +11,7 @@ export const useDesignHandlers = ({
     setSectionOrder,
     setSpacingMultiplier,
     setEditableResumeName,
+    setFontSizeMultiplier,
 }) => {
     const handleStylePackChange = useCallback((key) => {
         setIsDirty(true);
@@ -32,6 +33,11 @@ export const useDesignHandlers = ({
         setSpacingMultiplier(value[0]);
     }, [setIsDirty, setSpacingMultiplier]);
 
+    const handleFontSizeChange = useCallback((value) => {
+        setIsDirty(true);
+        setFontSizeMultiplier(value[0]);
+    }, [setIsDirty, setFontSizeMultiplier]);
+
     const handleResumeNameChange = (e) => {
         setIsDirty(true);
         setEditableResumeName(e.target.value);
@@ -41,6 +47,7 @@ export const useDesignHandlers = ({
         handleStylePackChange,
         handlePresetChange,
         handleSpacingChange,
+        handleFontSizeChange,
         handleResumeNameChange,
     };
 };

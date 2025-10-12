@@ -45,11 +45,15 @@ export const useResumeEditorState = () => {
     const [isCustomizeDialogOpen, setIsCustomizeDialogOpen] = useState(false);
     const [editedSections, setEditedSections] = useState(new Set());
     const [spacingMultiplier, setSpacingMultiplier] = useState(1);
+    const [fontSizeMultiplier, setFontSizeMultiplier] = useState(1);
     const [selectedStylePackKey, setSelectedStylePackKey] = useState(null);
     const [sectionOrder, setSectionOrder] = useState(null);
     const [selectedPresetKey, setSelectedPresetKey] = useState(null);
     const [selectedIndustry, setSelectedIndustry] = useState(null);
     const [zoomLevel, setZoomLevel] = useState(1);
+    const [previewUpdateKey, setPreviewUpdateKey] = useState(0);
+    const [isTooltipDialogOpen, setIsTooltipDialogOpen] = useState(false)
+    const [tooltipContent, setTooltipContent] = useState({ title: '', message: '' })
 
     return {
         // Router & Refs
@@ -80,10 +84,14 @@ export const useResumeEditorState = () => {
         isCustomizeDialogOpen, setIsCustomizeDialogOpen,
         editedSections, setEditedSections,
         spacingMultiplier, setSpacingMultiplier,
+        fontSizeMultiplier, setFontSizeMultiplier,
         selectedStylePackKey, setSelectedStylePackKey,
         sectionOrder, setSectionOrder,
         selectedPresetKey, setSelectedPresetKey,
         selectedIndustry, setSelectedIndustry,
         zoomLevel, setZoomLevel,
+        previewUpdateKey, setPreviewUpdateKey,
+        isTooltipDialogOpen, setIsTooltipDialogOpen,
+        tooltipContent, setTooltipContent,
     };
 };

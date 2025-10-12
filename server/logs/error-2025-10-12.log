@@ -1,0 +1,879 @@
+2025-10-12 01:01:22 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:01:22 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:01:22 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:01:22 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:01:22 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:01:22 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:01:22 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:01:22 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:01:47 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:01:47 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:01:47 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:01:47 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:01:48 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:01:48 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:01:48 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:01:48 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:03:23 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:03:23 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:03:23 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:03:23 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:03:24 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:03:24 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:03:24 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:03:24 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:04:54 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:04:54 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:04:54 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:04:54 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:18:05 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:18:05 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 01:18:05 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 01:18:05 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 08:59:13 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 08:59:13 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 08:59:13 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 08:59:13 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 10:41:42 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 10:41:42 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 10:41:42 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 10:41:42 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 10:51:53 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 10:51:53 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 10:51:53 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 10:51:53 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:07:10 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:07:10 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:07:10 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:07:10 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:17:24 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:17:24 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:17:24 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:17:24 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:22:37 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:22:37 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:22:37 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:22:37 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:29:28 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:29:28 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:29:28 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:29:28 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:39:42 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:39:42 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:39:42 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:39:42 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:44:23 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:44:23 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:44:23 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:44:23 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:44:34 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:44:34 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:44:34 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:44:34 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:53:02 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:53:02 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 11:53:02 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 11:53:02 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:06:10 [ERROR]: Status: 400, Name: VALIDATION_ERROR, Message: [object Object], URL: /api/auth/signup, Method: POST, IP: ::1
+2025-10-12 12:06:10 [ERROR]: Stack: VALIDATION_ERROR: [object Object]
+    at userSignUpValidation (file:///E:/resume-v05-ui-sf/server/validators/auth-validators.js:41:17)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at middleware (E:\resume-v05-ui-sf\server\node_modules\express-validator\lib\middlewares\check.js:16:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-10-12 12:08:09 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:08:09 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:08:09 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:08:09 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:08:42 [ERROR]: Status: 409, Name: USER ALREADY EXISTS, Message: An account with this email address already exists., URL: /api/auth/signup, Method: POST, IP: ::1
+2025-10-12 12:08:42 [ERROR]: Stack: USER ALREADY EXISTS: An account with this email address already exists.
+    at userSignUp (file:///E:/resume-v05-ui-sf/server/controller/auth-controller.js:18:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-10-12 12:09:00 [ERROR]: Status: 401, Name: AUTH_FAILED, Message: Invalid email or password, URL: /api/auth/signin, Method: POST, IP: ::1
+2025-10-12 12:09:00 [ERROR]: Stack: AUTH_FAILED: Invalid email or password
+    at userSignIn (file:///E:/resume-v05-ui-sf/server/controller/auth-controller.js:94:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-10-12 12:14:00 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:14:00 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:14:00 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:14:00 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:22:31 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:22:31 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:22:31 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:22:31 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:22:55 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:22:55 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:22:55 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:22:55 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:23:03 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:23:03 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:23:03 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:23:03 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:33:57 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:33:57 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:33:57 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:33:57 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:34:02 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:34:02 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:34:02 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:34:02 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:34:27 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:34:27 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:34:27 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:34:27 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:38:34 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:38:34 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:38:34 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:38:34 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:38:52 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:38:52 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:38:52 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:38:52 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:38:59 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:38:59 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:38:59 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:38:59 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:47:31 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:47:31 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:47:31 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:47:31 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:47:36 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:47:36 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:47:36 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:47:36 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:47:41 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:47:41 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:47:41 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:47:41 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:48:00 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:48:00 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:48:00 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:48:00 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:48:05 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:48:05 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 12:48:05 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 12:48:05 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 13:48:07 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 13:48:07 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)
+2025-10-12 13:48:07 [ERROR]: Status: 401, Name: AUTHORIZATION TOKEN NOT FOUND, Message: Unable to find the authorization token in the cookie, URL: /api/auth/status, Method: GET, IP: ::1
+2025-10-12 13:48:07 [ERROR]: Stack: AUTHORIZATION TOKEN NOT FOUND: Unable to find the authorization token in the cookie
+    at userAuthorization (file:///E:/resume-v05-ui-sf/server/middleware/user-authorization.js:9:19)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\resume-v05-ui-sf\server\node_modules\router\lib\route.js:117:3)
+    at handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\resume-v05-ui-sf\server\node_modules\router\lib\layer.js:152:17)
+    at E:\resume-v05-ui-sf\server\node_modules\router\index.js:295:15
+    at processParams (E:\resume-v05-ui-sf\server\node_modules\router\index.js:582:12)
+    at next (E:\resume-v05-ui-sf\server\node_modules\router\index.js:291:5)
+    at Function.handle (E:\resume-v05-ui-sf\server\node_modules\router\index.js:186:3)

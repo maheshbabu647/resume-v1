@@ -50,7 +50,7 @@ const MainLayout = () => {
         // 4. Conditionally apply top padding to avoid a gap on the editor page
         className={cn(
           "flex-grow bg-background text-foreground",
-          !isEditorPage && "pt-16" 
+          // !isEditorPage && "pt-16" 
         )}
         role="main"
         id="main-content"
