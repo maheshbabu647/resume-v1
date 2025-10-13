@@ -4,8 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --force",
+    "dev:no-cache": "vite --force --clearCache",
     "build": "vite build",
+    "build:clean": "vite build --force",
     "lint": "eslint .",
     "preview": "vite preview"
   },
