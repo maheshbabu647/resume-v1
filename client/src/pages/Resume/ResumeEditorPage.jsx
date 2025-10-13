@@ -286,10 +286,6 @@ const ResumeEditorPage = () => {
                                         <Button 
                                             variant="outline" 
                                             className="ml-4 flex-shrink-0"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                e.stopPropagation();
-                                            }}
                                         >
                                             <Settings2 className="mr-2 h-4 w-4" /> Customize
                                         </Button>
@@ -424,6 +420,8 @@ const ResumeEditorPage = () => {
                     <span className="text-xs font-medium">Customize</span>
                 </Button>
             </div>
+            
+            {/* Customize Dialog */}
             <Dialog open={isCustomizeDialogOpen} onOpenChange={setIsCustomizeDialogOpen}>
                 <DialogContent className="sm:max-w-md bg-card">
                     <DialogHeader>
