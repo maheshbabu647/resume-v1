@@ -5,7 +5,6 @@ import dotenv from 'dotenv'
 dotenv.config()
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
-import session from 'express-session'
 import logger from "./config/logger.js" // Winston
 import morgan from "morgan"
 import helmet from 'helmet' // Secure HTTP headers
@@ -14,12 +13,12 @@ import indexRouter from './router/index-router.js'
 import errorHandler from './middleware/err-handler.js'
 import { logAnalyticsEvent } from './service/analytics-logger.js' // <<-- NEW
 import performanceLogger from './middleware/performance-logger.js'
+import passport from 'passport'
+import './config/passport-setup.js'
 
 // === [Swagger Docs Imports & Setup] ===
 import swaggerJsdoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
-import passport from 'passport'
-import './config/passport-setup.js'
 
 const swaggerOptions = {
   definition: {
@@ -57,19 +56,6 @@ app.use(cors({
 }))
 
 app.use(cookieParser(COOKIE_SECRET))
-
-// Session configuration for OAuth redirects
-app.use(session({
-  secret: COOKIE_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: process.env.NODE_ENV === 'production',
-    httpOnly: true,
-    maxAge: 10 * 60 * 1000 // 10 minutes
-  }
-}))
-
 app.use(express.json({ limit: '10mb' }))
 app.use(express.urlencoded({ extended: true }))
 

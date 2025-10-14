@@ -14,6 +14,8 @@ import {
 } from '../controller/resume-controller.js'
 import { resumeValidatorsMode, resumeValidation } from '../validators/resume-validators.js'
 
+import vertex_ai from '../config/cloudai-config.js'
+
 const resumeRouter = express.Router()
 
 // [1] GET (all user's resumes) limiter
@@ -39,7 +41,7 @@ const fetchResumeByIdLimiter = rateLimit({
 // [3] Download (heavy) limiter
 const downloadLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 10,
+  max: 20,
   message: {
     status: 429,
     error: 'Too many downloads. Please slow down and try again later.'
@@ -49,7 +51,7 @@ const downloadLimiter = rateLimit({
 // [4] Mutations limiter (add, update, delete)
 const resumeMutationLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 20,
+  max: 25,
   message: {
     status: 429,
     error: 'Too many changes to resumes. Please slow down and try again later.'
@@ -139,5 +141,18 @@ resumeRouter.post(
   // resumeValidation,
   enhanceResumeField
 );
+
+
+resumeRouter.get('/field', async(req, res)=>{
+    
+  const model = vertex_ai.getGenerativeModel({ model: 'gemini-1.5-flash' });
+
+    const prompt = `Generate 5 professional and impactful resume bullet points for a Ml Engineer. Focus on achievements, use action verbs, and include quantifiable metrics where possible.`;
+
+    const result = await model.generateContent(prompt);
+    const responseText = result.response.candidates[0].content.parts[0].text;
+    console.log(responseText)
+    res.json({ bulletPoints: responseText });
+  })
 
 export default resumeRouter

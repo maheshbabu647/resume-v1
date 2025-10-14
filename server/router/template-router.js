@@ -78,7 +78,7 @@ const fetchTemplatesLimiter = rateLimit({
 // Rate limiter for creating/updating/deleting templates
 const mutationLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 20,
+  max: 30,
   message: {
     status: 429,
     error: 'Too many template changes. Please try again later.'

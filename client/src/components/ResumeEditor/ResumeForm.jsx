@@ -266,15 +266,19 @@ const ResumeForm = ({
   
   const enabledSectionKeys = useMemo(() => allSectionKeys.filter(key => get(sectionsConfig, `${key}.enabled`, true)), [allSectionKeys, sectionsConfig]);
   
-  const [activeSection, setActiveSection] = useState(enabledSectionKeys.length > 0 ? enabledSectionKeys[0] : null);
+  const [activeSection, setActiveSection] = useState(null);
   const prevEnabledSections = useRef([]);
+  const isInitialLoad = useRef(true);
   
+  // Effect to ensure we always start with the first section (profile) when template loads
   useEffect(() => {
-    if (enabledSectionKeys.length > 0 && !enabledSectionKeys.includes(activeSection)) {
-      setActiveSection(enabledSectionKeys[0]);
-    } else if (enabledSectionKeys.length > 0 && activeSection === null) {
-      setActiveSection(enabledSectionKeys[0]);
-    } else if (enabledSectionKeys.length === 0) {
+    if (enabledSectionKeys.length > 0) {
+      // Only set to first section on initial load or if current section is no longer enabled
+      if (isInitialLoad.current || !enabledSectionKeys.includes(activeSection)) {
+        setActiveSection(enabledSectionKeys[0]);
+        isInitialLoad.current = false;
+      }
+    } else {
       setActiveSection(null);
     }
   }, [enabledSectionKeys, activeSection]);
@@ -285,18 +289,21 @@ const ResumeForm = ({
       // A new section was added - find which one
       const newSections = enabledSectionKeys.filter(section => !prevEnabledSections.current.includes(section));
       if (newSections.length > 0) {
-        // Get the last added section (which should be at the end of the ordered list)
-        const newestSection = newSections[newSections.length - 1];
-        setActiveSection(newestSection);
-        // Call the parent callback if provided
-        if (onSectionAdd) {
-          onSectionAdd(newestSection);
+        // Only auto-switch to new section if we already have an active section (not initial load)
+        if (activeSection !== null) {
+          // Get the last added section (which should be at the end of the ordered list)
+          const newestSection = newSections[newSections.length - 1];
+          setActiveSection(newestSection);
+          // Call the parent callback if provided
+          if (onSectionAdd) {
+            onSectionAdd(newestSection);
+          }
         }
       }
     }
     // Update the ref with current enabled sections
     prevEnabledSections.current = [...enabledSectionKeys];
-  }, [enabledSectionKeys, onSectionAdd]);
+  }, [enabledSectionKeys, onSectionAdd, activeSection]);
 
   const activeSectionIndex = enabledSectionKeys.indexOf(activeSection);
 

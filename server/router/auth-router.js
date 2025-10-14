@@ -2,6 +2,7 @@ import express from 'express'
 import rateLimit from 'express-rate-limit'
 import passport from 'passport'
 
+
 import {
   userSignUpValidators,
   userSignUpValidation,
@@ -24,6 +25,7 @@ import {
     verifyEmail,
     resendVerificationLink
 } from '../controller/auth-controller.js'
+
 import { createToken } from '../util/jwt.js'
 import { createAuthCookie } from '../util/auth-cookie.js'
 
@@ -33,7 +35,7 @@ const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN || 'http://localhost:5173'
 // [1] Signin brute-force protection
 const signinLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, 
-  max: 10,
+  max: 25,
   message: {
     status: 429,
     error: 'Too many sign-in attempts from this IP, please try again after 15 minutes.'
@@ -43,17 +45,17 @@ const signinLimiter = rateLimit({
 // [2] Signup abuse prevention
 const signupLimiter = rateLimit({
   windowMs: 60 * 60 * 1000,
-  max: 10,
+  max: 25,
   message: {
     status: 429,
     error: 'Too many accounts created from this IP, please try again after an hour.'
   }
 })
 
-// [3] Password Reset and Verification Resend limiter
+
 const emailLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 5,
+    max: 10,
     message: {
         status: 429,
         error: 'Too many requests. Please try again later.'
@@ -61,9 +63,8 @@ const emailLimiter = rateLimit({
 })
 
 
-// [4] Auth routes, with security-first ordering
 authRouter.post('/signup',
-  // signupLimiter,
+  signupLimiter,
   userSignUpValidators,
   userSignUpValidation,
   userSignUp
@@ -83,18 +84,15 @@ authRouter.get('/status',
   authStatus
 )
 
-// The user clicks the link in their email, which takes them to a frontend page.
-// That frontend page then makes this API call.
+
 authRouter.post('/verify-email', verifyEmailCodeValidator, verifyEmail);
 
-// [NEW] Resend Verification Link Route
 authRouter.post('/resend-verification',
     resendVerificationValidator,
-    userSignUpValidation, // Can reuse the same validation result handler
+    userSignUpValidation, 
     resendVerificationLink
 )
 
-// [NEW] Password Reset Routes
 authRouter.post('/forgot-password',
   emailLimiter,
   forgotPasswordValidator,
@@ -109,16 +107,7 @@ authRouter.put('/reset-password/:token',
   resetPassword
 )
 
-
-
 authRouter.get('/google',
-  (req, res, next) => {
-    // Store redirect URL in session if provided
-    if (req.query.redirect) {
-      req.session.redirectUrl = req.query.redirect;
-    }
-    next();
-  },
   passport.authenticate('google', { scope: ['profile', 'email'], session: false })
 );
 
@@ -132,24 +121,7 @@ authRouter.get('/google/callback',
       const authToken = await createToken({ userId: user._id, userRole: user.userRole });
       await createAuthCookie(res, authToken);
 
-      // Check for redirect parameter in the original request
-      const redirectUrl = req.session?.redirectUrl || req.query.redirect;
-      let finalRedirectUrl;
-      
-      if (redirectUrl) {
-        const decodedUrl = decodeURIComponent(redirectUrl);
-        // If it's just a path, prepend the client origin
-        if (decodedUrl.startsWith('/')) {
-          finalRedirectUrl = `${CLIENT_ORIGIN}${decodedUrl}`;
-        } else {
-          finalRedirectUrl = decodedUrl;
-        }
-      } else {
-        // Check if there's saved state in localStorage by redirecting to a special handler
-        finalRedirectUrl = `${CLIENT_ORIGIN}/oauth-return`;
-      }
-      
-      res.redirect(finalRedirectUrl); 
+      res.redirect(`${CLIENT_ORIGIN}/home`); 
     } catch (error) {
       res.redirect(`${CLIENT_ORIGIN}/login?error=auth_failed`);
     }
@@ -174,6 +146,5 @@ authRouter.get('/linkedin/callback',
     }
   }
 );
-
 
 export default authRouter
