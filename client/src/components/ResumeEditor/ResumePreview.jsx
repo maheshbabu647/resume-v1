@@ -76,31 +76,130 @@ const ResumePreview = forwardRef(({
   useEffect(() => {
     const RESUME_WIDTH_PX = 794;
     const PADDING_PX = 32;
+    const SMALL_SCREEN_BREAKPOINT = 768; // Consider screens < 768px as small
+    const SMALL_SCREEN_ZOOM = 0.3; // Fixed 30% zoom for small screens
 
-    const container = containerRef.current;
-    if (!container) return;
-
-    // Only set initial zoom, don't override user's manual zoom settings
     const setInitialZoom = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
       const containerWidth = container.offsetWidth;
       if (containerWidth > 0) {
-        const availableWidth = containerWidth - PADDING_PX;
-        const newZoom = availableWidth / RESUME_WIDTH_PX;
-        const calculatedZoom = Math.max(0.2, Math.min(newZoom, 1.0));
-        
-        // Only set zoom if it's the default value (1) to avoid overriding user's manual zoom
-        if (zoomLevel === 1) {
-          setZoomLevel(calculatedZoom);
+        // For small screens, use fixed 30% zoom
+        if (containerWidth < SMALL_SCREEN_BREAKPOINT) {
+          if (zoomLevel === 1) {
+            setZoomLevel(SMALL_SCREEN_ZOOM);
+          }
+        } else {
+          // For larger screens, calculate zoom based on available width
+          const availableWidth = containerWidth - PADDING_PX;
+          const newZoom = availableWidth / RESUME_WIDTH_PX;
+          const calculatedZoom = Math.max(0.2, Math.min(newZoom, 1.0));
+          
+          if (zoomLevel === 1) {
+            setZoomLevel(calculatedZoom);
+          }
         }
       }
     };
 
-    // Set initial zoom after a short delay to ensure container is rendered
-    const timer = setTimeout(setInitialZoom, 100);
+    // Set initial zoom with multiple attempts to ensure it works
+    const timer1 = setTimeout(setInitialZoom, 100);
+    const timer2 = setTimeout(setInitialZoom, 300);
+    const timer3 = setTimeout(setInitialZoom, 500);
     
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+    };
   }, [setZoomLevel, zoomLevel]);
 
+  // Additional effect to ensure initial zoom is set correctly on mount
+  useEffect(() => {
+    const SMALL_SCREEN_BREAKPOINT = 768;
+    const SMALL_SCREEN_ZOOM = 0.3;
+
+    const checkAndSetInitialZoom = () => {
+      const container = containerRef.current;
+      
+      // First check window width as a fallback
+      const windowWidth = window.innerWidth;
+      if (windowWidth < SMALL_SCREEN_BREAKPOINT) {
+        setZoomLevel(SMALL_SCREEN_ZOOM);
+        return true; // Indicate success
+      }
+      
+      // Then check container width if available
+      if (container) {
+        const containerWidth = container.offsetWidth;
+        if (containerWidth > 0 && containerWidth < SMALL_SCREEN_BREAKPOINT) {
+          setZoomLevel(SMALL_SCREEN_ZOOM);
+          return true; // Indicate success
+        }
+      }
+      
+      return false; // Indicate we need to try again
+    };
+
+    // Try multiple times with increasing delays to ensure container is ready
+    let attempts = 0;
+    const maxAttempts = 10;
+    
+    const trySetZoom = () => {
+      attempts++;
+      const success = checkAndSetInitialZoom();
+      
+      if (!success && attempts < maxAttempts) {
+        // If not successful and we haven't exceeded max attempts, try again
+        setTimeout(trySetZoom, 100 * attempts); // Increasing delay
+      }
+    };
+
+    // Start trying immediately
+    trySetZoom();
+
+    // Also use ResizeObserver to catch when container size changes
+    const container = containerRef.current;
+    if (container && window.ResizeObserver) {
+      const resizeObserver = new ResizeObserver(() => {
+        const windowWidth = window.innerWidth;
+        const containerWidth = container.offsetWidth;
+        
+        // Use window width as primary check, container width as secondary
+        if (windowWidth < SMALL_SCREEN_BREAKPOINT || 
+            (containerWidth > 0 && containerWidth < SMALL_SCREEN_BREAKPOINT)) {
+          setZoomLevel(SMALL_SCREEN_ZOOM);
+        }
+      });
+      
+      resizeObserver.observe(container);
+      
+      return () => {
+        resizeObserver.disconnect();
+      };
+    }
+  }, []); // Remove dependencies to run only on mount
+
+  // Effect to handle window resize and maintain 30% zoom on small screens
+  useEffect(() => {
+    const handleResize = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const containerWidth = container.offsetWidth;
+      const SMALL_SCREEN_BREAKPOINT = 768;
+      const SMALL_SCREEN_ZOOM = 0.3;
+      
+      // If screen becomes small and user hasn't manually changed zoom, set to 30%
+      if (containerWidth < SMALL_SCREEN_BREAKPOINT && zoomLevel === 1) {
+        setZoomLevel(SMALL_SCREEN_ZOOM);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [zoomLevel, setZoomLevel]);
 
   const handleZoomIn = () => {
     setZoomLevel(prev => {
@@ -119,14 +218,23 @@ const ResumePreview = forwardRef(({
   const handleResetZoom = () => {
     const RESUME_WIDTH_PX = 794;
     const PADDING_PX = 32;
+    const SMALL_SCREEN_BREAKPOINT = 768;
+    const SMALL_SCREEN_ZOOM = 0.3;
     const container = containerRef.current;
     
     if (container) {
       const containerWidth = container.offsetWidth;
-      const availableWidth = containerWidth - PADDING_PX;
-      const newZoom = availableWidth / RESUME_WIDTH_PX;
-      const calculatedZoom = Math.max(0.2, Math.min(newZoom, 1.0));
-      setZoomLevel(calculatedZoom);
+      
+      // For small screens, reset to 30% zoom
+      if (containerWidth < SMALL_SCREEN_BREAKPOINT) {
+        setZoomLevel(SMALL_SCREEN_ZOOM);
+      } else {
+        // For larger screens, calculate zoom based on available width
+        const availableWidth = containerWidth - PADDING_PX;
+        const newZoom = availableWidth / RESUME_WIDTH_PX;
+        const calculatedZoom = Math.max(0.2, Math.min(newZoom, 1.0));
+        setZoomLevel(calculatedZoom);
+      }
     }
   };
 
