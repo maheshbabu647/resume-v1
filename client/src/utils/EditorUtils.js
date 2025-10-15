@@ -36,7 +36,16 @@ export const initializeFormDataFromDefinitions = (definitions, selectedIndustry)
 
     for (const sectionKey in uniqueSections) {
         const { isCore, recommendedFor } = uniqueSections[sectionKey];
-        let isEnabled = isCore || !selectedIndustry || !recommendedFor || recommendedFor.includes(selectedIndustry);
+        let isEnabled;
+        
+        if (!selectedIndustry) {
+            // When no industry is selected (skip mode), only enable core sections
+            isEnabled = isCore;
+        } else {
+            // When industry is selected, enable core sections or industry-recommended sections
+            isEnabled = isCore || !recommendedFor || recommendedFor.includes(selectedIndustry);
+        }
+        
         sectionsConfig[sectionKey] = { enabled: isEnabled };
     }
 
