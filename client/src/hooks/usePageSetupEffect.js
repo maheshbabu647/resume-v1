@@ -77,6 +77,7 @@ export const usePageSetupEffect = ({
 
                     setEditableResumeName(loadedResume.resumeName || 'Untitled Resume');
                     setSpacingMultiplier(loadedResume.spacingMultiplier || 1);
+                    setFontSizeMultiplier(loadedResume.fontSizeMultiplier || 1);
                     setSelectedIndustry(loadedResume.selectedIndustry || null);
                     
                     const initialStyleKey = loadedResume.stylePackKey || template.templateComponents.stylePacks?.[0]?.key || null;
