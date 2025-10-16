@@ -170,11 +170,13 @@ const ResumeEditorPage = () => {
         setSectionOrder,
         setSelectedStylePackKey,
         setSelectedIndustry,
+        setEditedSections,
         setPageIsLoading,
         setPageError,
         setPreviewUpdateKey,
         isAuthenticated,
-        pageIsLoading
+        pageIsLoading,
+        currentTemplateForEditor
     });
 
     useEffect(() => { return () => { if (!window.location.pathname.startsWith('/resume/')) clearCurrentEditorData(); }; }, [location.pathname, clearCurrentEditorData]);
@@ -355,6 +357,7 @@ const ResumeEditorPage = () => {
                             sectionOrder,
                             selectedStylePackKey,
                             selectedIndustry,
+                            editedSections: Array.from(editedSections), // Convert Set to Array for JSON serialization
                             timestamp: Date.now()
                         };
                         console.log('Saving form data to localStorage:', formDataToSave);

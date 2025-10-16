@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { getInitiallyEditedSections } from '@/utils/EditorUtils';
 
 /**
  * Hook to restore OAuth-saved form data in the resume editor
@@ -12,11 +13,13 @@ export const useOAuthDataRestoration = ({
     setSectionOrder,
     setSelectedStylePackKey,
     setSelectedIndustry,
+    setEditedSections,
     setPageIsLoading,
     setPageError,
     setPreviewUpdateKey,
     isAuthenticated,
-    pageIsLoading
+    pageIsLoading,
+    currentTemplateForEditor
 }) => {
     useEffect(() => {
         // Only run on resume editor pages and when authenticated
@@ -58,6 +61,16 @@ export const useOAuthDataRestoration = ({
                     if (formData.selectedIndustry) {
                         setSelectedIndustry(formData.selectedIndustry);
                     }
+                    if (formData.editedSections && Array.isArray(formData.editedSections)) {
+                        setEditedSections(new Set(formData.editedSections));
+                    } else if (formData.editorFormData?.content && currentTemplateForEditor?.templateFieldDefinition) {
+                        // Fallback: calculate edited sections from form data if not saved
+                        const calculatedEditedSections = getInitiallyEditedSections(
+                            formData.editorFormData.content,
+                            currentTemplateForEditor.templateFieldDefinition
+                        );
+                        setEditedSections(calculatedEditedSections);
+                    }
                     
                     // Clear the saved data after restoration
                     localStorage.removeItem('resume_editor_form_data');
@@ -78,5 +91,5 @@ export const useOAuthDataRestoration = ({
             console.warn('OAuth: Could not restore form data from localStorage:', error);
             localStorage.removeItem('resume_editor_form_data');
         }
-    }, [isAuthenticated, pageIsLoading, setEditorFormData, setEditableResumeName, setSpacingMultiplier, setFontSizeMultiplier, setSectionOrder, setSelectedStylePackKey, setSelectedIndustry, setPageIsLoading, setPageError, setPreviewUpdateKey]);
+    }, [isAuthenticated, pageIsLoading, setEditorFormData, setEditableResumeName, setSpacingMultiplier, setFontSizeMultiplier, setSectionOrder, setSelectedStylePackKey, setSelectedIndustry, setEditedSections, setPageIsLoading, setPageError, setPreviewUpdateKey, currentTemplateForEditor]);
 };

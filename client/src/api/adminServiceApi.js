@@ -111,3 +111,27 @@ export const getAnalyticsPerformance = async (days = 7) => {
     throw error.response?.data || { message: 'Failed to fetch API performance data.' };
   }
 };
+
+/**
+ * Fetches all users with their resume information for admin dashboard.
+ * @param {number} [page=1] - The page number for pagination.
+ * @param {number} [limit=20] - The number of users per page.
+ * @param {string} [search=''] - Search term for filtering users by name or email.
+ * @returns {Promise<object>} A promise that resolves to the users data with pagination.
+ * @throws {Error} If the API request fails.
+ */
+export const getAdminUsers = async (page = 1, limit = 20, search = '') => {
+  try {
+    const response = await apiServer.get('/admin/analytics/users', {
+      params: {
+        page,
+        limit,
+        search,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching admin users:', error.response?.data || error.message);
+    throw error.response?.data || { message: 'Failed to fetch users data.' };
+  }
+};

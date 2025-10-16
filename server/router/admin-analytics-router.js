@@ -6,7 +6,8 @@ import { getAdminAnalyticsOverview,
          getUserRetention,
          getSecurityAnomalies,
          getDeviceAndGeoAnalytics,
-         getApiPerformanceStats } from '../controller/admin-analytics-controller.js'
+         getApiPerformanceStats,
+         getAdminUsers } from '../controller/admin-analytics-controller.js'
 import userAuthorization from '../middleware/user-authorization.js'
 
 const router = express.Router()
@@ -19,5 +20,6 @@ router.get('/retention', userAuthorization, isAdmin, getUserRetention)
 router.get('/security', userAuthorization, isAdmin, getSecurityAnomalies)
 router.get('/device', userAuthorization, isAdmin, getDeviceAndGeoAnalytics)
 router.get('/performance', userAuthorization, isAdmin, getApiPerformanceStats)
+router.get('/users', userAuthorization, isAdmin, getAdminUsers)
 
 export default router

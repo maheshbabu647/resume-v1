@@ -93,6 +93,12 @@ const resumeSchema = new mongoose.Schema({
     min: 0.8,
     max: 1.5,
   },
+  fontSizeMultiplier: {
+    type: Number,
+    default: 1,
+    min: 0.8,
+    max: 1.5,
+  },
   stylePackKey: {
     type: String,
     trim: true,

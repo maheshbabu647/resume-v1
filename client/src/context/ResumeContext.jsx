@@ -23,6 +23,7 @@ const ResumeContextProvider = ({ children }) => {
     const [resumeError, setResumeError] = useState(null);
 
     const [spacingMultiplier, setSpacingMultiplier] = useState(1);
+    const [fontSizeMultiplier, setFontSizeMultiplier] = useState(1);
     const [selectedStylePackKey, setSelectedStylePackKey] = useState(null);
     const [sectionOrder, setSectionOrder] = useState(null);
     const [selectedIndustry, setSelectedIndustry] = useState(null);
@@ -77,6 +78,7 @@ const ResumeContextProvider = ({ children }) => {
             setSelectedStylePackKey(loadedResume.stylePackKey || null);
             setSectionOrder(loadedResume.sectionOrder || null);
             setSelectedIndustry(loadedResume.selectedIndustry || null);
+            setFontSizeMultiplier(loadedResume.fontSizeMultiplier || 1);
 
             return loadedResume;
         } catch (error) {
@@ -110,7 +112,7 @@ const ResumeContextProvider = ({ children }) => {
         setIsLoadingCurrentResume(false);
     }, [userData]);
 
-    const saveOrUpdateCurrentResume = useCallback(async (formDataToSave, newResumeName, spacingMultiplier, sectionOrder, stylePackKey, selectedIndustry) => {
+    const saveOrUpdateCurrentResume = useCallback(async (formDataToSave, newResumeName, spacingMultiplier, sectionOrder, stylePackKey, selectedIndustry, fontSizeMultiplier) => {
         if (!isAuthenticated || !currentResumeDetail || !currentResumeDetail.templateId) {
             setResumeError("Cannot save: User not authenticated or essential resume/template details are missing.");
             return null;
@@ -133,6 +135,7 @@ const ResumeContextProvider = ({ children }) => {
             resumeData: formDataToSave,
             resumeName: newResumeName || currentResumeDetail.resumeName || `My Resume ${new Date().toLocaleDateString()}`,
             spacingMultiplier: spacingMultiplier,
+            fontSizeMultiplier: fontSizeMultiplier,
             sectionOrder: sectionOrder,
             stylePackKey: stylePackKey,
             selectedIndustry: selectedIndustry,
@@ -193,6 +196,7 @@ const ResumeContextProvider = ({ children }) => {
         setEditorFormData({});
         setResumeError(null);
         setSpacingMultiplier(1);
+        setFontSizeMultiplier(1);
         setSelectedStylePackKey(null);
         setSectionOrder(null);
         setSelectedIndustry(null);
@@ -216,6 +220,8 @@ const ResumeContextProvider = ({ children }) => {
         resumeError,
         spacingMultiplier,
         setSpacingMultiplier,
+        fontSizeMultiplier,
+        setFontSizeMultiplier,
         selectedStylePackKey,
         setSelectedStylePackKey,
         sectionOrder,

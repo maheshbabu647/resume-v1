@@ -4,6 +4,7 @@ export async function handleSaveResume({
   editorFormData,
   editableResumeName,
   spacingMultiplier,
+  fontSizeMultiplier,
   sectionOrder,
   selectedStylePackKey,
   selectedIndustry,
@@ -31,7 +32,8 @@ export async function handleSaveResume({
       spacingMultiplier,
       sectionOrder,
       selectedStylePackKey,
-      selectedIndustry
+      selectedIndustry,
+      fontSizeMultiplier
     );
     if (savedResult?.id) {
       setFeedbackDetailsForDialog({

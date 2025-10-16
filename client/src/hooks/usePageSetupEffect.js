@@ -27,6 +27,7 @@ export const usePageSetupEffect = ({
     setEditorFormData,
     setEditableResumeName,
     setSpacingMultiplier,
+    setFontSizeMultiplier,
     setSelectedIndustry,
     setSelectedStylePackKey,
     setSectionOrder,
@@ -136,6 +137,7 @@ export const usePageSetupEffect = ({
                         setSectionOrder(initialOrder);
                         setSelectedPresetKey(initialPresetKey);
                         setSelectedIndustry(initialIndustry);
+                        setFontSizeMultiplier(1);
 
                         const initialData = initializeFormDataFromDefinitions(targetTemplate.templateFieldDefinition, initialIndustry);
                         setEditorFormData(initialData);
@@ -153,6 +155,7 @@ export const usePageSetupEffect = ({
                         setSectionOrder(defaultPreset?.order || null);
                         setSelectedPresetKey(defaultPreset?.key || null);
                         setSpacingMultiplier(1);
+                        setFontSizeMultiplier(1);
                     }
                 } else {
                     throw new Error("Invalid page access.");

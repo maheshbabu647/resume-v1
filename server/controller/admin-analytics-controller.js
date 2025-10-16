@@ -1,4 +1,6 @@
 import AnalyticsEvent from '../model/analytics-event-model.js'
+import userModel from '../model/user-model.js'
+import resumeModel from '../model/resume-model.js'
 
 // Helper: date math
 const daysAgo = (n) => {
@@ -350,3 +352,84 @@ export const getApiPerformanceStats = async (req, res, next) => {
     next(err)
   }
 }
+
+/**
+ * Get all users with their resume information
+ * GET /api/admin/users
+ */
+export const getAdminUsers = async (req, res, next) => {
+  try {
+    const { page = 1, limit = 20, search = '' } = req.query;
+    const pageNum = parseInt(page);
+    const limitNum = parseInt(limit);
+    const skip = (pageNum - 1) * limitNum;
+
+    // Build search query
+    let searchQuery = {};
+    if (search) {
+      searchQuery = {
+        $or: [
+          { userName: { $regex: search, $options: 'i' } },
+          { userEmail: { $regex: search, $options: 'i' } }
+        ]
+      };
+    }
+
+    // Get users with pagination
+    const users = await userModel
+      .find(searchQuery)
+      .select('userName userEmail userRole verified createdAt')
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limitNum)
+      .lean();
+
+    // Get resume counts for each user
+    const userIds = users.map(user => user._id);
+    const resumeCounts = await resumeModel.aggregate([
+      { $match: { userId: { $in: userIds } } },
+      { $group: { _id: '$userId', count: { $sum: 1 } } }
+    ]);
+
+    // Create a map for quick lookup
+    const resumeCountMap = {};
+    resumeCounts.forEach(item => {
+      resumeCountMap[item._id.toString()] = item.count;
+    });
+
+    // Get detailed resume information for each user
+    const usersWithResumes = await Promise.all(
+      users.map(async (user) => {
+        const userResumes = await resumeModel
+          .find({ userId: user._id })
+          .select('resumeName createdAt updatedAt templateId')
+          .populate('templateId', 'templateName')
+          .sort({ updatedAt: -1 })
+          .limit(5) // Show only the 5 most recent resumes
+          .lean();
+
+        return {
+          ...user,
+          resumeCount: resumeCountMap[user._id.toString()] || 0,
+          recentResumes: userResumes
+        };
+      })
+    );
+
+    // Get total count for pagination
+    const totalUsers = await userModel.countDocuments(searchQuery);
+
+    res.json({
+      users: usersWithResumes,
+      pagination: {
+        currentPage: pageNum,
+        totalPages: Math.ceil(totalUsers / limitNum),
+        totalUsers,
+        hasNextPage: pageNum < Math.ceil(totalUsers / limitNum),
+        hasPrevPage: pageNum > 1
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
+};

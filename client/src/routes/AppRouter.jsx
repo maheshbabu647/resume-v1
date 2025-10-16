@@ -35,6 +35,7 @@ import AdminAnalyticsRetentionPage from '../pages/Admin/AdminAnalyticsRetentionP
 import AdminAnalyticsSecurityPage from '../pages/Admin/AdminAnalyticsSecurityPage.jsx';
 import AdminAnalyticsDevicePage from '../pages/Admin/AdminAnalyticsDevicePage.jsx';
 import AdminAnalyticsPerformancePage from '../pages/Admin/AdminAnalyticsPerformancePage.jsx';
+import AdminUsersPage from '../pages/Admin/AdminUsersPage.jsx';
 import MonarchDashboardPage from '../pages/Admin/MonarchDashboardPage.jsx';
 
 // Protected Route Wrapper
@@ -83,6 +84,7 @@ const AppRouter = () => {
                 <Route index element={<AdminDashboardPage />} />
                 <Route path="monarch-dashboard" element={<MonarchDashboardPage />} />
                 <Route path="dashboard" element={<AdminDashboardPage />} />
+                <Route path="users" element={<AdminUsersPage />} />
                 <Route path="templates" element={<AdminTemplatesPage />} />
                 <Route path="templates/new" element={<AdminTemplateEditPage />} />
                 <Route path="templates/edit/:templateId" element={<AdminTemplateEditPage />} />

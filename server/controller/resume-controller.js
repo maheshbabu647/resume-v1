@@ -12,7 +12,7 @@ const MAX_RESUMES_PER_USER = 100;
 
 export const createResume = async (req, res, next) => {
   try {
-    const { templateId, resumeData, resumeName, spacingMultiplier, stylePackKey, sectionOrder, selectedIndustry } = req.body;
+    const { templateId, resumeData, resumeName, spacingMultiplier, fontSizeMultiplier, stylePackKey, sectionOrder, selectedIndustry } = req.body;
     const userId = req.user.userId;
 
     // [SECURITY] Prevent spam by limiting resumes per user
@@ -30,6 +30,7 @@ export const createResume = async (req, res, next) => {
       resumeData,
       resumeName: resumeName || undefined,
       spacingMultiplier,
+      fontSizeMultiplier,
       stylePackKey,
       sectionOrder,
       selectedIndustry
@@ -105,7 +106,7 @@ export const getResumeById = async (req, res, next) => {
 export const updateResume = async (req, res, next) => {
   try {
     const { resumeId } = req.params;
-    const { resumeData, resumeName, spacingMultiplier, stylePackKey, sectionOrder, selectedIndustry } = req.body;
+    const { resumeData, resumeName, spacingMultiplier, fontSizeMultiplier, stylePackKey, sectionOrder, selectedIndustry } = req.body;
     const userId = req.user.userId;
 
     const resume = await resumeModel.findById(resumeId);
@@ -128,6 +129,7 @@ export const updateResume = async (req, res, next) => {
       resumeName: resumeName || resume.resumeName,
       resumeData: resumeData || resume.resumeData,
       spacingMultiplier: spacingMultiplier || resume.spacingMultiplier,
+      fontSizeMultiplier: fontSizeMultiplier || resume.fontSizeMultiplier,
       stylePackKey: stylePackKey || resume.stylePackKey,
       sectionOrder: sectionOrder || resume.sectionOrder,
       selectedIndustry: selectedIndustry || resume.selectedIndustry

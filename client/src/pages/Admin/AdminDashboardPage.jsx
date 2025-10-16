@@ -20,6 +20,12 @@ import {
 
 const adminLinks = [
   {
+    path: '/admin/users',
+    title: 'Users Management',
+    description: 'View and manage all users, their verification status, and resume information.',
+    icon: UsersFunnelIcon,
+  },
+  {
     path: '/admin/templates',
     title: 'Template Management',
     description: 'Create, view, edit, and delete resume templates available to users.',

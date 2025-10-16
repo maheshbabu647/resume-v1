@@ -252,12 +252,13 @@
 
 
 import logger from '../config/logger.js';
-import Groq from "groq-sdk";
+import vertex_ai from '../config/cloudai-config.js';
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+// Get the generative model from your config
+const model = vertex_ai.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
 /**
- * Generates a concise 3-4 line summary based on the input text using the Groq API.
+ * Generates a concise 3-4 line summary based on the input text using the Gemini model.
  * @param {string} inputText - The input text to summarize.
  * @returns {Promise<string>} - The AI-generated summary.
  */
@@ -266,18 +267,11 @@ export const generateAISummary = async (inputText) => {
                   No extra thinking or talk should be provided, just direct content is needed`;
 
   try {
-    const chatCompletion = await groq.chat.completions.create({
-      messages: [
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
-      model: "llama3-8b-8192",
-    });
-    return chatCompletion.choices[0].message.content;
+    const result = await model.generateContent(prompt);
+    const responseText = result.response.candidates[0].content.parts[0].text;
+    return responseText;
   } catch (error) {
-    logger.error('Groq API error in generateAISummary:', error.message);
+    logger.error('Gemini API error in generateAISummary:', error.message);
     const err = new Error('AI Summary generation failed');
     err.status = 500;
     throw err;
@@ -285,7 +279,7 @@ export const generateAISummary = async (inputText) => {
 };
 
 /**
- * Generates a professional cover letter based on the provided details using the Groq API.
+ * Generates a professional cover letter based on the provided details using the Gemini model.
  * @param {object} coverLetterData
  * @param {string} coverLetterData.userName - Applicant's full name
  * @param {string} coverLetterData.companyName - Company name
@@ -311,18 +305,11 @@ export const generateAICoverLetter = async (coverLetterData) => {
         No extra thinking or talk should be provided, just direct content is needed`;
   
   try {
-    const chatCompletion = await groq.chat.completions.create({
-      messages: [
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
-      model: "llama-3.1-8b-instant",
-    });
-    return chatCompletion.choices[0].message.content;
+    const result = await model.generateContent(prompt);
+    const responseText = result.response.candidates[0].content.parts[0].text;
+    return responseText;
   } catch (error) {
-    logger.error('Groq API error in generateAICoverLetter:', error.message);
+    logger.error('Gemini API error in generateAICoverLetter:', error.message);
     const err = new Error('AI Cover Letter generation failed');
     err.status = 500;
     throw err;
@@ -330,7 +317,7 @@ export const generateAICoverLetter = async (coverLetterData) => {
 };
 
 /**
- * Analyzes and enhances a piece of resume text, returning structured JSON using the Groq API.
+ * Analyzes and enhances a piece of resume text, returning structured JSON using the Gemini model.
  * @param {string} textToEnhance - The user-submitted resume text.
  * @param {string} jobContext - The job title or context for the text (e.g., "Senior Software Engineer").
  * @returns {Promise<object>} - A structured object with suggestions.
@@ -370,22 +357,19 @@ export const enhanceResumeText = async (textToEnhance, jobContext) => {
   `;
 
   try {
-    const chatCompletion = await groq.chat.completions.create({
-      messages: [{ role: "user", content: prompt }],
-      model: "llama-3.1-8b-instant",
-    });
-
-    const output = chatCompletion.choices[0].message.content;
+    const result = await model.generateContent(prompt);
+    const output = result.response.candidates[0].content.parts[0].text;
+    
     try {
       const jsonResponse = JSON.parse(output);
       return jsonResponse;
     } catch (parseError) {
-      logger.error('Failed to parse Groq JSON response:', output);
+      logger.error('Failed to parse Gemini JSON response:', output);
       throw new Error('AI enhancement failed: Invalid JSON format.');
     }
 
   } catch (error) {
-    logger.error('Groq API error in enhanceResumeText:', error.message);
+    logger.error('Gemini API error in enhanceResumeText:', error.message);
     const err = new Error('AI enhancement generation failed');
     err.status = 500;
     throw err;
