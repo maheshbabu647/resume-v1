@@ -35,9 +35,11 @@ const ResumeViewerPage = () => {
             formData: location.state.formData,
             resumeName: location.state.resumeName,
             spacingMultiplier: location.state.spacingMultiplier,
+            fontSizeMultiplier: location.state.fontSizeMultiplier,
             sectionOrder: location.state.sectionOrder,
             stylePackKey: location.state.stylePackKey,
             templateComponents: location.state.template.templateComponents,
+            templateFieldDefinition: location.state.template.templateFieldDefinition,
           };
         } else if (resumeId) {
           // --- SCENARIO 2: Viewing a SAVED resume from the dashboard ---
@@ -49,9 +51,11 @@ const ResumeViewerPage = () => {
             formData: savedResume.resumeData,
             resumeName: savedResume.resumeName,
             spacingMultiplier: savedResume.spacingMultiplier,
+            fontSizeMultiplier: savedResume.fontSizeMultiplier,
             sectionOrder: savedResume.sectionOrder,
             stylePackKey: savedResume.stylePackKey,
             templateComponents: savedResume.templateId.templateComponents,
+            templateFieldDefinition: savedResume.templateId.templateFieldDefinition,
           };
         } else {
           throw new Error('No resume information was provided.');
@@ -158,6 +162,9 @@ const ResumeViewerPage = () => {
               sectionOrder={resumeData.sectionOrder}
               currentFormData={resumeData.formData}
               spacingMultiplier={resumeData.spacingMultiplier}
+              fontSizeMultiplier={resumeData.fontSizeMultiplier}
+              editedSections={new Set(Object.keys(resumeData.formData?.sectionsConfig || {}))}
+              templateFieldDefinition={resumeData.templateFieldDefinition}
             />
           </Suspense>
         </main>

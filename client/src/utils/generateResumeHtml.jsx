@@ -106,7 +106,7 @@ const generateResumeHtml = (
   const selectedStylePack = stylePacks.find(pack => pack.key === selectedStylePackKey);
   const stylePackCss = selectedStylePack ? selectedStylePack.css : '';
 
-  console
+
   const finalCssContent  = `
       ${baseCss || ''}
       ${stylePackCss}

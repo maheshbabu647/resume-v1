@@ -328,8 +328,6 @@ const ResumeEditorPage = () => {
                                     stylePacks={currentTemplateForEditor?.templateComponents?.stylePacks}
                                     selectedStylePackKey={selectedStylePackKey}
                                     sectionOrder={sectionOrder}
-                                    zoomLevel={zoomLevel}
-                                    setZoomLevel={setZoomLevel}
                                     editedSections={editedSections}
                                     templateFieldDefinition={currentTemplateForEditor?.templateFieldDefinition || []}
                                 />

@@ -56,12 +56,24 @@ const ResumeCard = ({ resume, onDelete }) => {
       }
 
       const { baseCss, sections, stylePacks } = fullResumeData.templateId.templateComponents;
+      const templateFieldDefinition = fullResumeData.templateId.templateFieldDefinition;
       const {
         resumeData: currentFormData,
         spacingMultiplier,
+        fontSizeMultiplier,
         stylePackKey,
         sectionOrder
       } = fullResumeData;
+
+      // Create a set of all sections that should show real data (not placeholders)
+      const editedSections = new Set();
+      if (templateFieldDefinition && Array.isArray(templateFieldDefinition)) {
+        templateFieldDefinition.forEach(fieldDef => {
+          if (fieldDef.section) {
+            editedSections.add(fieldDef.section);
+          }
+        });
+      }
 
       const htmlContent = generateResumeHtml(
         null,
@@ -71,7 +83,10 @@ const ResumeCard = ({ resume, onDelete }) => {
         stylePackKey,
         sectionOrder,
         currentFormData,
-        spacingMultiplier
+        spacingMultiplier,
+        fontSizeMultiplier,
+        editedSections,
+        templateFieldDefinition
       );
 
       await apiDownloadResume(htmlContent);

@@ -328,10 +328,19 @@ export const enhanceResumeField = async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const { textToEnhance, jobContext } = req.body;
+    
     // [SECURITY & VALIDATION] Ensure required fields are present
-    if (!textToEnhance) {
+    if (!textToEnhance || textToEnhance.trim() === '') {
       logger.warn(`[Resume][Enhance][ValidationFail] No textToEnhance provided by user: ${userId}`);
       const err = new Error('No text was provided to enhance.');
+      err.status = 400;
+      return next(err);
+    }
+
+    // Validate text length
+    if (textToEnhance.length > 2000) {
+      logger.warn(`[Resume][Enhance][ValidationFail] Text too long (${textToEnhance.length} chars) by user: ${userId}`);
+      const err = new Error('Text is too long. Please keep it under 2000 characters.');
       err.status = 400;
       return next(err);
     }
@@ -360,8 +369,16 @@ export const enhanceResumeField = async (req, res, next) => {
     
   } catch (error) {
     logger.error(`[Resume][Enhance][Error] User: ${req.user?.userId || 'unknown'} - ${error.message}`);
-    const err = new Error(error.message || 'Error enhancing resume field.');
-    // Keep the original status if the service threw a specific one
+    
+    // Provide more specific error messages
+    let errorMessage = 'Error enhancing resume field.';
+    if (error.message.includes('AI enhancement generation failed')) {
+      errorMessage = 'AI service is temporarily unavailable. Please try again later.';
+    } else if (error.message.includes('Invalid JSON format')) {
+      errorMessage = 'AI response format error. Please try again.';
+    }
+    
+    const err = new Error(errorMessage);
     err.status = error.status || 500; 
     next(err);
   }
