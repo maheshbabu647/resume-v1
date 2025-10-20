@@ -44,6 +44,35 @@ const resumeValidatorsMode = (mode) => {
       body('jobDescription').notEmpty().withMessage('Job description is required.').trim(),
       body('userSkills').notEmpty().withMessage('Please provide some key skills.').trim()
     );
+  } else if (mode === 'generateFieldContent') {
+    validators.push(
+      body('fieldName').notEmpty().withMessage('fieldName is required.').isString().trim(),
+      body('fieldLabel').optional().isString().trim(),
+      body('fieldType').optional().isString().trim(),
+      body('globalContext').optional().custom(val => typeof val === 'object' && !Array.isArray(val)).withMessage('globalContext must be an object.'),
+      body('localContext').optional().custom(val => typeof val === 'object' && !Array.isArray(val)).withMessage('localContext must be an object.'),
+      body('userNotes').optional().isString().isLength({ max: 1500 }).withMessage('userNotes too long.')
+    );
+  } else if (mode === 'enhanceEntire') {
+    validators.push(
+      body('resumeData')
+        .notEmpty().withMessage('resumeData is required.')
+        .custom((val) => typeof val === 'object' && val !== null && !Array.isArray(val))
+        .withMessage('resumeData must be an object.'),
+    );
+    validators.push(
+      body('globalContext')
+        .optional()
+        .custom(val => typeof val === 'object' && !Array.isArray(val))
+        .withMessage('globalContext must be an object.'),
+    );
+    validators.push(
+      body('userNotes')
+        .optional()
+        .isString()
+        .isLength({ max: 2000 })
+        .withMessage('userNotes too long.'),
+    );
   }
 
 

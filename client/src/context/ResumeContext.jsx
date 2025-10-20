@@ -27,6 +27,7 @@ const ResumeContextProvider = ({ children }) => {
     const [selectedStylePackKey, setSelectedStylePackKey] = useState(null);
     const [sectionOrder, setSectionOrder] = useState(null);
     const [selectedIndustry, setSelectedIndustry] = useState(null);
+    const [resumeSetupData, setResumeSetupData] = useState(null);
 
 
     const loadUserResumes = useCallback(async () => {
@@ -200,6 +201,11 @@ const ResumeContextProvider = ({ children }) => {
         setSelectedStylePackKey(null);
         setSectionOrder(null);
         setSelectedIndustry(null);
+        setResumeSetupData(null);
+    }, []);
+
+    const saveResumeSetupData = useCallback((setupData) => {
+        setResumeSetupData(setupData);
     }, []);
 
     const contextValue = {
@@ -228,6 +234,9 @@ const ResumeContextProvider = ({ children }) => {
         setSectionOrder,
         selectedIndustry,
         setSelectedIndustry,
+        resumeSetupData,
+        setResumeSetupData,
+        saveResumeSetupData,
         setResumeError,
         loadUserResumes,
         loadResumeForEditor,

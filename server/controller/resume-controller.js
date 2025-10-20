@@ -2,7 +2,8 @@ import resumeModel from "../model/resume-model.js";
 import puppeteer from 'puppeteer';
 import logger from '../config/logger.js';
 import { logAnalyticsEvent } from '../service/analytics-logger.js';
-import { enhanceResumeText } from "../service/ai-summary-service.js";
+import { generateAIFieldContent as generateAIFieldContentService, enhanceResumeContent as enhanceResumeContentService } from '../service/ai-summary-service.js';
+
 
 // [SECURITY] Max allowed HTML size for PDF generation
 const MAX_HTML_SIZE = 100_000; // 100 KB
@@ -323,63 +324,70 @@ export const generateResumeSummary = async (req, res, next) => {
   }
 };
 
-
-export const enhanceResumeField = async (req, res, next) => {
+export const generateFieldContent = async (req, res, next) => {
   try {
     const userId = req.user.userId;
-    const { textToEnhance, jobContext } = req.body;
-    
-    // [SECURITY & VALIDATION] Ensure required fields are present
-    if (!textToEnhance || textToEnhance.trim() === '') {
-      logger.warn(`[Resume][Enhance][ValidationFail] No textToEnhance provided by user: ${userId}`);
-      const err = new Error('No text was provided to enhance.');
-      err.status = 400;
-      return next(err);
-    }
+    const { fieldName, fieldLabel, fieldType, globalContext, localContext, userNotes } = req.body || {};
 
-    // Validate text length
-    if (textToEnhance.length > 2000) {
-      logger.warn(`[Resume][Enhance][ValidationFail] Text too long (${textToEnhance.length} chars) by user: ${userId}`);
-      const err = new Error('Text is too long. Please keep it under 2000 characters.');
-      err.status = 400;
-      return next(err);
-    }
-
-    // === Analytics Logging: Attempt ===
     await logAnalyticsEvent({
-      eventType: 'resume_enhance_field_attempt',
+      eventType: 'resume_generate_field_attempt',
       userId,
-      meta: { context: jobContext || 'general', ip: req.ip }
+      meta: { fieldName, ip: req.ip }
     });
 
-    const suggestions = await enhanceResumeText(textToEnhance, jobContext);
+    const content = await generateAIFieldContentService({
+      fieldName,
+      fieldLabel,
+      fieldType,
+      globalContext: globalContext || {},
+      localContext: localContext || {},
+      userNotes: userNotes || ''
+    });
 
-    // === Analytics Logging: Success ===
     await logAnalyticsEvent({
-      eventType: 'resume_enhance_field_success',
+      eventType: 'resume_generate_field_success',
       userId,
-      meta: { context: jobContext || 'general', ip: req.ip }
+      meta: { fieldName, ip: req.ip }
     });
 
-    logger.info(`[Resume][Enhance][Success] User: ${userId} enhanced a resume field.`);
-    res.status(200).json({
-      success: true,
-      suggestions: suggestions
-    });
-    
+    res.status(200).json({ success: true, content });
   } catch (error) {
-    logger.error(`[Resume][Enhance][Error] User: ${req.user?.userId || 'unknown'} - ${error.message}`);
-    
-    // Provide more specific error messages
-    let errorMessage = 'Error enhancing resume field.';
-    if (error.message.includes('AI enhancement generation failed')) {
-      errorMessage = 'AI service is temporarily unavailable. Please try again later.';
-    } else if (error.message.includes('Invalid JSON format')) {
-      errorMessage = 'AI response format error. Please try again.';
-    }
-    
-    const err = new Error(errorMessage);
-    err.status = error.status || 500; 
+    console.error('[Resume][FieldGen][Error]', error);
+    const err = new Error(error.message || 'Error generating field content.');
+    err.status = error.status || 500;
     next(err);
   }
 };
+
+export const enhanceEntireResume = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const { resumeData, globalContext, userNotes } = req.body || {};
+
+    await logAnalyticsEvent({
+      eventType: 'resume_enhance_attempt',
+      userId,
+      meta: { ip: req.ip }
+    });
+
+    const enhanced = await enhanceResumeContentService({
+      resumeData: resumeData || {},
+      globalContext: globalContext || {},
+      userNotes: userNotes || ''
+    });
+
+    await logAnalyticsEvent({
+      eventType: 'resume_enhance_success',
+      userId,
+      meta: { ip: req.ip }
+    });
+
+    res.status(200).json({ success: true, enhancedResumeData: enhanced });
+  } catch (error) {
+    console.error('[Resume][Enhance][Error]', error);
+    const err = new Error(error.message || 'Error enhancing resume.');
+    err.status = error.status || 500;
+    next(err);
+  }
+};
+

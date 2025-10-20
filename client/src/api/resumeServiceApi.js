@@ -113,62 +113,54 @@ export const generateAISummary = async (resumeData) => {
     }
 };
 
+/**
+ * Generates AI content for a specific field based on global and local context.
+ * @param {object} payload - The payload containing global context, local context, and user notes.
+ * @returns {Promise<string>} A promise that resolves to the AI-generated content string.
+ * @throws {Error} If the API request fails or the content is not returned.
+ */
+export const generateAIFieldContent = async (payload) => {
+    try {
+        console.log('AI Field Generation Payload:', payload);
+        const response = await apiServer.post('/resume/generate-field-content', payload);
+        if (response.data && response.data.success && typeof response.data.content === 'string') {
+            return response.data.content;
+        } else {
+            throw new Error(response.data.message || 'Failed to generate field content or content not found in response.');
+        }
+    } catch (error) {
+        console.error('Error generating AI field content:', error.response?.data || error.message);
+        const errorMessage = error.response?.data?.message || 
+                             (error.response?.data?.name === "VALIDATION_ERROR" && Array.isArray(error.response?.data?.message) 
+                                ? error.response.data.message.map(e => e.message).join(', ') 
+                                : null) ||
+                             error.message ||
+                             'Failed to generate AI field content. Please ensure all relevant context is provided.';
+        throw { message: errorMessage };
+    }
+};
+
+// Enhance entire resume using AI (Gemini)
+export const enhanceEntireResume = async ({ resumeData, globalContext = {}, userNotes = '' }) => {
+    try {
+        const response = await apiServer.post('/resume/enhance-entire', {
+            resumeData,
+            globalContext,
+            userNotes
+        });
+        if (response.data && response.data.success && response.data.enhancedResumeData) {
+            console.log('Enhanced Resume Data:', response.data.enhancedResumeData);
+            return response.data.enhancedResumeData;
+        }
+        throw new Error(response.data?.message || 'Failed to enhance resume.');
+    } catch (error) {
+        console.error('Error enhancing entire resume:', error.response?.data || error.message);
+        const errorMessage = error.response?.data?.message || error.message || 'Enhancement failed.';
+        throw { message: errorMessage };
+    }
+};
+
 
 
 // Add this new function to your resumeServiceApi.js file
 
-/**
- * Sends text to the AI for enhancement and receives structured suggestions.
- * @param {string} textToEnhance - The text the user wants to improve.
- * @param {string} jobContext - The related context (e.g., job title) to make suggestions more relevant.
- * @returns {Promise<object>} A promise that resolves to the structured object of AI suggestions.
- * @throws {Error} If the API request fails or the suggestions are not returned.
- */
-// export const enhanceResumeField = async (textToEnhance, jobContext) => {
-//     try {
-//         // The API expects an object with textToEnhance and jobContext keys
-//         const payload = { textToEnhance, jobContext };
-//         console.log(payload)
-//         const response = await apiServer.post('/resume/ai/enhance-field', payload);
-//         console.log("respone",response)
-
-//         if (response.data && response.data.success && typeof response.data.suggestions === 'object') {
-//             return response.data.suggestions;
-//         } else {
-//             throw new Error(response.data.message || 'Failed to get suggestions or suggestions not found in response.');
-//         }
-//     } catch (error) {
-//         console.error('Error enhancing resume field:', error.response?.data || error.message);
-//         const errorMessage = error.response?.data?.message ||
-//             'Failed to get AI suggestions. The server might be busy, or the request was invalid.';
-//         throw { message: errorMessage };
-//     }
-// };
-
-// This is your api call function - THIS IS THE ONE TO CHANGE
-
-// Change this function in your API service file
-
-export const enhanceResumeField = async (textToEnhance, jobContext) => {
-    try {
-        const payload = { textToEnhance, jobContext };
-        const response = await apiServer.post('/resume/ai/enhance-field', payload);
-        if (
-            response.data &&
-            response.data.success &&
-            response.data.suggestions && // <-- Check for the suggestions object
-            Array.isArray(response.data.suggestions.enhancements) &&
-            response.data.suggestions.enhancements.length > 0
-        ) {
-            // We return the first object from the correct, deeper path.
-            return response.data.suggestions.enhancements[0];
-        } else {
-            throw new Error('AI suggestions were not found in the server response.');
-        }
-    } catch (error) {
-        console.error('Error enhancing resume field:', error.response?.data || error.message);
-        const errorMessage = error.response?.data?.message ||
-            'Failed to get AI suggestions. The server might be busy, or the request was invalid.';
-        throw { message: errorMessage };
-    }
-};

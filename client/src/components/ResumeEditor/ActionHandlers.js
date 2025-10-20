@@ -87,24 +87,3 @@ export async function handleDownloadPdf({
   }
 }
 
-export async function handleEnhanceField({ fieldPath, textToEnhance, jobContext, enhanceResumeField, setEnhancementSuggestions, setShowFeedbackDialog }) {
-  if (!textToEnhance || !textToEnhance.trim()) {
-    setShowFeedbackDialog({
-      title: "Cannot Enhance",
-      message: "Please enter some text before using AI enhancement.",
-      type: "error",
-    });
-    return;
-  }
-
-  try {
-    const suggestions = await enhanceResumeField(textToEnhance, jobContext);
-    setEnhancementSuggestions(suggestions);
-  } catch (error) {
-    setShowFeedbackDialog({
-      title: "AI Enhancement Failed",
-      message: error.message,
-      type: "error",
-    });
-  }
-}

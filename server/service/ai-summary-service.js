@@ -1,256 +1,3 @@
-// import logger from '../config/logger.js';
-// import { InferenceClient } from "@huggingface/inference";
-
-// const client = new InferenceClient(process.env.HF_TOKEN);
-
-// /**
-//  * Generates a concise 3-4 line summary based on the input text using DeepSeek model.
-//  * @param {string} inputText - The input text to summarize.
-//  * @returns {Promise<string>} - The AI-generated summary.
-//  */
-// export const generateAISummary = async (inputText) => {
-//   console.log(inputText)
-//   const prompt = `Generate a concise 3-4 line professional summary based on the following input:\n\n${inputText}.
-//                   No extra thinking or talk should be provided, just direct content is needed`;
-
-//   return prompt
-//   try {
-//     const chatCompletion = await client.chatCompletion({
-//       provider: "novita",
-//       model: "deepseek-ai/DeepSeek-R1-0528",
-//       messages: [
-//         {
-//           role: "user",
-//           content: prompt,
-//         },
-//       ],
-//     });
-//     const output =  chatCompletion.choices[0].message.content;
-//     const cleanedOutput = output.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
-//     return cleanedOutput
-//   } catch (error) {
-//     logger.error('AI API error:', error.response?.data || error.message);
-//     const err = new Error('AI Summary generation failed');
-//     err.status = 500;
-//     throw err;
-//   }
-// };
-
-// /**
-//  * Generates a professional cover letter based on the provided details.
-//  * @param {object} coverLetterData
-//  * @param {string} coverLetterData.userName - Applicant's full name
-//  * @param {string} coverLetterData.companyName - Company name
-//  * @param {string} coverLetterData.jobTitle - Job title applied for
-//  * @param {string} coverLetterData.jobDescription - Job description text
-//  * @param {string} coverLetterData.userSkills - Key skills relevant to the job
-//  * @returns {Promise<string>} - Generated cover letter text
-//  */
-// export const generateAICoverLetter = async (coverLetterData) => {
-//   const {
-//     userName, 
-//     companyName,
-//     jobTitle,
-//     jobDescription,
-//     userSkills
-//   } = coverLetterData;
-
-//   const prompt = `Write a professional cover letter of 4-5 paragraphs addressed to the hiring manager at [CompanyName]. 
-//         The position is ${jobTitle}. Use this job description: ${jobDescription}. 
-//         Highlight these skills: ${userSkills}. 
-//         Applicant's name is ${userName}. 
-//         The letter should be formal, engaging, and end with a strong closing.
-//         No extra thinking or talk should be provided, just direct content is needed
-// `;
-//   // const prompt = ` Write a professional, persuasive cover letter of about 4-5 paragraphs based on the following input: ${coverLetterData}`
-//   try {
-//     const chatCompletion = await client.chatCompletion({
-//       provider: "novita",
-//       model: "deepseek-ai/DeepSeek-R1-0528",
-//       messages: [
-//         {
-//           role: "user",
-//           content: prompt,
-//         },
-//       ],
-//     });
-//     const output =  chatCompletion.choices[0].message.content;
-//     const cleanedOutput = output.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
-//     return cleanedOutput
-
-//   } catch (error) {
-//     logger.error('AI Cover Letter API error:', error.response?.data || error.message);
-//     const err = new Error('AI Cover Letter generation failed');
-//     err.status = 500;
-//     throw err;
-//   }
-// };
-
-
-// // /**
-// //  * Analyzes and enhances a piece of resume text, returning structured JSON.
-// //  * @param {string} textToEnhance - The user-submitted resume text.
-// //  * @param {string} jobContext - The job title or context for the text (e.g., "Senior Software Engineer").
-// //  * @returns {Promise<object>} - A structured object with suggestions.
-// //  */
-// // export const enhanceResumeText = async (textToEnhance, jobContext) => {
-// //   // 1. Define the exact JSON structure you want the AI to return.
-// //   const jsonSchema = `{
-// //     "enhancements": [
-// //       {
-// //         "original_text": "string", 
-// //         "action_verb_rewrites": [
-// //           "string"
-// //         ],
-// //         "quantification_templates": [
-// //           "string"
-// //         ],
-// //         "conciseness_rewrite": "string",
-// //         "grammar_correction": {
-// //           "has_errors": "boolean",
-// //           "corrected_text": "string"
-// //         }
-// //       }
-// //     ]
-// //   }`;
-
-// //   // 2. Craft a very strict prompt demanding JSON output.
-// //   const prompt = `
-// //     You are a resume enhancement API. Your only function is to return a valid JSON object.
-// //     Do not provide any explanations, introductory text, or markdown formatting.
-
-// //     Analyze the following resume text from a "${jobContext}":
-// //     TEXT:
-// //     """
-// //     ${textToEnhance}
-// //     """
-
-// //     Important rules:
-// //     1. Treat each line of the input text as a separate entry in the "enhancements" array.
-// //     2. Do not merge multiple lines together.
-// //     3. For each line, create a JSON object containing:
-// //       - The original text.
-// //       - 2-3 rewrites with stronger action verbs.
-// //       - 1-2 quantification templates with placeholders like [Number] or [Percentage].
-// //       - A concise rewrite.
-// //       - Grammar correction info (boolean + corrected text).
-// //     4. Return only the populated JSON object matching the schema below.
-// //     5. Absolutely no extra text outside the JSON.
-
-// //     JSON SCHEMA:
-// //     ${jsonSchema} `;
-
-// //   try {
-
-// //     const chatCompletion = await client.chatCompletion({
-// //       provider: "novita",
-// //       model: "deepseek-ai/DeepSeek-R1-0528",
-// //       messages: [{ role: "user", content: prompt }],
-// //       // Optional: You might want to increase max_tokens if the suggestions are long
-// //       // max_tokens: 1024, 
-// //     });
-
-// //     const output = chatCompletion.choices[0].message.content;
-// //     const cleanedOutput = output.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
-
-// //     // 3. Parse the string response into a JSON object. This is the crucial step.
-// //     try {
-// //       const jsonResponse = JSON.parse(cleanedOutput);
-// //       console.log(jsonResponse)
-// //       return jsonResponse;
-// //     } catch (parseError) {
-// //       logger.error('Failed to parse AI JSON response:', cleanedOutput);
-// //       throw new Error('AI enhancement failed: Invalid JSON format.');
-// //     }
-
-// //   } catch (error) {
-// //     console.log("This is the error", error)
-// //     logger.error('AI API error:', error.response?.data || error.message);
-// //     const err = new Error('AI enhancement generation failed');
-// //     err.status = 500;
-// //     throw err;
-// //   }
-// // };
-
-
-
-
-// /**
-//  * Analyzes and enhances a piece of resume text, returning structured JSON.
-//  * @param {string} textToEnhance - The user-submitted resume text.
-//  * @param {string} jobContext - The job title or context for the text (e.g., "Senior Software Engineer").
-//  * @returns {Promise<object>} - A structured object with suggestions.
-//  */
-// export const enhanceResumeText = async (textToEnhance, jobContext) => {
-//   // 1. Define the exact JSON structure you want the AI to return.
-//   const jsonSchema = `{
-//     "enhancements": [
-//       {
-//         "original_text": "string", 
-//         "action_verb_rewrites": [
-//           "string"
-//         ],
-//         "quantification_templates": [
-//           "string"
-//         ],
-//         "conciseness_rewrite": "string",
-//         "grammar_correction": {
-//           "has_errors": "boolean",
-//           "corrected_text": "string"
-//         }
-//       }
-//     ]
-//   }`;
-
-//   // 2. Craft a very strict prompt demanding JSON output.
-//   const prompt = `
-//     You are a resume enhancement API. Your only function is to return a valid JSON object.
-//     Do not provide any explanations, introductory text, or markdown formatting.
-
-//     Analyze the following resume text from a "${jobContext}":
-//     TEXT: "${textToEnhance}"
-
-//     Based on your analysis, populate the following JSON object with relevant suggestions.
-//     JSON SCHEMA:
-//     ${jsonSchema}
-
-//     Your entire response must be ONLY the populated JSON object.
-//   `; 
-
-//   try {
-
-//     const chatCompletion = await client.chatCompletion({
-//       provider: "novita",
-//       model: "deepseek-ai/DeepSeek-R1-0528",
-//       messages: [{ role: "user", content: prompt }],
-//       // Optional: You might want to increase max_tokens if the suggestions are long
-//       // max_tokens: 1024, 
-//     });
-
-//     const output = chatCompletion.choices[0].message.content;
-//     const cleanedOutput = output.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
-
-//     // 3. Parse the string response into a JSON object. This is the crucial step.
-//     try {
-//       const jsonResponse = JSON.parse(cleanedOutput);
-//       console.log(jsonResponse)
-//       return jsonResponse;
-//     } catch (parseError) {
-//       logger.error('Failed to parse AI JSON response:', cleanedOutput);
-//       throw new Error('AI enhancement failed: Invalid JSON format.');
-//     }
-
-//   } catch (error) {
-//     console.log("This is the error", error)
-//     logger.error('AI API error:', error.response?.data || error.message);
-//     const err = new Error('AI enhancement generation failed');
-//     err.status = 500;
-//     throw err;
-//   }
-// };
-
-
-
 import logger from '../config/logger.js';
 import vertex_ai from '../config/cloudai-config.js';
 
@@ -317,134 +64,101 @@ export const generateAICoverLetter = async (coverLetterData) => {
 };
 
 /**
- * Analyzes and enhances a piece of resume text, returning structured JSON using the Gemini model.
- * @param {string} textToEnhance - The user-submitted resume text.
- * @param {string} jobContext - The job title or context for the text (e.g., "Senior Software Engineer").
- * @returns {Promise<object>} - A structured object with suggestions.
+ * Generates AI content for a specific resume field using global and local context.
+ * Uses the same Gemini model configuration as other AI features.
+ *
+ * @param {object} params
+ * @param {string} params.fieldName - The target field key (e.g., "summary").
+ * @param {string} params.fieldLabel - Human readable label of the field.
+ * @param {string} params.fieldType - Field type (text, textarea, etc.).
+ * @param {object} params.globalContext - Global context collected from setup dialog.
+ * @param {object} params.localContext - Local context from aiConfig.contextFields.
+ * @param {string} params.userNotes - Optional user notes.
+ * @returns {Promise<string>} Generated content for the field.
  */
-export const enhanceResumeText = async (textToEnhance, jobContext) => {
-  const jsonSchema = `{
-    "enhancements": [
-      {
-        "original_text": "string", 
-        "action_verb_rewrites": [
-          "string"
-        ],
-        "quantification_templates": [
-          "string"
-        ],
-        "conciseness_rewrite": "string",
-        "grammar_correction": {
-          "has_errors": "boolean",
-          "corrected_text": "string"
-        }
-      }
-    ]
-  }`;
+export const generateAIFieldContent = async ({
+  fieldName,
+  fieldLabel,
+  fieldType,
+  globalContext = {},
+  localContext = {},
+  userNotes = ''
+}) => {
+  console.log(globalContext)
+  const safeFieldLabel = fieldLabel || fieldName || 'this field';
 
-  const prompt = `You are a resume enhancement API. Analyze the following resume text and return ONLY a valid JSON object.
+  const prompt = `You are assisting with writing content for a resume field: "${safeFieldLabel}".
 
-Resume text: "${textToEnhance}"
-Job context: "${jobContext}"
+Global Context (overall resume intent and preferences):
+${JSON.stringify(globalContext, null, 2)}
 
-Return a JSON object with this exact structure:
-{
-  "enhancements": [
-    {
-      "original_text": "the original text here",
-      "action_verb_rewrites": ["improved version 1", "improved version 2"],
-      "quantification_templates": ["template with [number]", "template with [percentage]"],
-      "conciseness_rewrite": "concise version",
-      "grammar_correction": {
-        "has_errors": false,
-        "corrected_text": "corrected text if needed"
-      }
-    }
-  ]
-}
+Local Context (must strictly guide the output):
+${JSON.stringify(localContext, null, 2)}
 
-IMPORTANT: Return ONLY the JSON object. No explanations, no markdown, no additional text.`;
+User Notes (optional, higher priority than global context):
+${(userNotes || '').trim()}
+
+Instructions:
+- Generate polished, concise content tailored to the Local Context.
+- Align with Global Context tone/intent when relevant.
+- Do not include meta text or explanations.
+- Output only the final content suitable for the "${safeFieldLabel}" ${fieldType === 'textarea' ? 'multiline' : 'single line'} field.`;
 
   try {
     const result = await model.generateContent(prompt);
-    const output = result.response.candidates[0].content.parts[0].text;
-    
-    // Clean the output to remove any markdown formatting or extra text
-    let cleanedOutput = output.trim();
-    
-    // Remove markdown code blocks if present
-    if (cleanedOutput.startsWith('```json')) {
-      cleanedOutput = cleanedOutput.replace(/^```json\s*/, '').replace(/\s*```$/, '');
-    } else if (cleanedOutput.startsWith('```')) {
-      cleanedOutput = cleanedOutput.replace(/^```\s*/, '').replace(/\s*```$/, '');
-    }
-    
-    // Try to find JSON object in the response
-    const jsonMatch = cleanedOutput.match(/\{[\s\S]*\}/);
-    if (jsonMatch) {
-      cleanedOutput = jsonMatch[0];
-    }
-    
-    try {
-      const jsonResponse = JSON.parse(cleanedOutput);
-      
-      // Validate the response structure
-      if (!jsonResponse.enhancements || !Array.isArray(jsonResponse.enhancements)) {
-        throw new Error('Invalid response structure');
-      }
-      
-      return jsonResponse;
-    } catch (parseError) {
-      logger.error('Failed to parse Gemini JSON response. Raw output:', output);
-      logger.error('Cleaned output:', cleanedOutput);
-      logger.error('Parse error:', parseError.message);
-      
-      // Return a fallback response
-      return {
-        enhancements: [
-          {
-            original_text: textToEnhance,
-            action_verb_rewrites: [
-              `Enhanced version of: ${textToEnhance}`,
-              `Improved version: ${textToEnhance}`
-            ],
-            quantification_templates: [
-              `Achieved [number]% improvement in ${textToEnhance}`,
-              `Increased [metric] by [percentage]%`
-            ],
-            conciseness_rewrite: textToEnhance,
-            grammar_correction: {
-              has_errors: false,
-              corrected_text: textToEnhance
-            }
-          }
-        ]
-      };
-    }
-
+    const responseText = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    return (responseText || '').trim();
   } catch (error) {
-    logger.error('Gemini API error in enhanceResumeText:', error.message);
-    
-    // Return a fallback response instead of throwing an error
-    return {
-      enhancements: [
-        {
-          original_text: textToEnhance,
-          action_verb_rewrites: [
-            `Enhanced version of: ${textToEnhance}`,
-            `Improved version: ${textToEnhance}`
-          ],
-          quantification_templates: [
-            `Achieved [number]% improvement in ${textToEnhance}`,
-            `Increased [metric] by [percentage]%`
-          ],
-          conciseness_rewrite: textToEnhance,
-          grammar_correction: {
-            has_errors: false,
-            corrected_text: textToEnhance
-          }
-        }
-      ]
-    };
+    logger.error('Gemini API error in generateAIFieldContent:', error.message);
+    const err = new Error('AI field content generation failed');
+    err.status = 500;
+    throw err;
   }
 };
+
+/**
+ * Enhances an entire resume's data using Gemini based on provided global context and optional user notes.
+ * Returns JSON in the exact same structure as the provided resumeData (only enhanced text values).
+ *
+ * @param {object} params
+ * @param {object} params.resumeData - The user's entered resume data object (pruned fields)
+ * @param {object} params.globalContext - Global onboarding context from setup dialog
+ * @param {string} params.userNotes - Optional user notes guiding enhancement
+ * @returns {Promise<object>} Enhanced resume data JSON matching the same shape as resumeData
+ */
+export const enhanceResumeContent = async ({ resumeData = {}, globalContext = {}, userNotes = '' }) => {
+  const instructions = `You are enhancing a resume. Improve clarity, impact, grammar, and professionalism.
+Keep content factual, concise, and achievement-focused. Use action verbs and quantify when reasonable.
+Respect existing structure strictly. Do not add or remove keys. Do not include explanations.
+Only modify string values that represent user content; keep non-string values unchanged.
+Return ONLY a JSON object that mirrors the exact shape of input resumeData with enhanced values.`;
+
+  const prompt = `Global Context (user preferences / profile):
+${JSON.stringify(globalContext, null, 2)}
+
+User Notes (guidance, optional):
+${(userNotes || '').trim()}
+
+resumeData (to enhance - STRUCTURE MUST BE PRESERVED):
+${JSON.stringify(resumeData, null, 2)}
+
+${instructions}`;
+
+  try {
+    const result = await model.generateContent(prompt);
+    const raw = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+    // Attempt to parse JSON; some models may wrap in code fences
+    const cleaned = raw.trim().replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/i, '');
+    const parsed = JSON.parse(cleaned);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      throw new Error('Model returned invalid JSON structure');
+    }
+    return parsed;
+  } catch (error) {
+    logger.error('Gemini API error in enhanceResumeContent:', error.message);
+    const err = new Error('AI resume enhancement failed');
+    err.status = 500;
+    throw err;
+  }
+};
+

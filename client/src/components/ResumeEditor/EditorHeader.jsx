@@ -17,6 +17,7 @@ import {
   Heart
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import useResumeContext from "@/hooks/useResume";
 
 const EditorHeader = ({
   // --- Data Props ---
@@ -35,8 +36,16 @@ const EditorHeader = ({
   onPreview,
   onDownloadPdf,
   onSave,
+  onEnhance,
 }) => {
   const nameInputRef = useRef(null);
+  const resumeCtx = useResumeContext();
+
+  useEffect(() => {
+    try {
+      console.log('[Enhance] Header mounted. onEnhance present:', Boolean(onEnhance));
+    } catch {}
+  }, [onEnhance]);
 
   useEffect(() => {
     if (isEditingName && nameInputRef.current) {
@@ -196,6 +205,78 @@ const EditorHeader = ({
                 Preview
               </Button>
             </motion.div> */}
+
+            {/* Enhance Button */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button
+                onClick={() => {
+                  try {
+                    console.log('[Enhance] Header button clicked');
+                  } catch {}
+                  try {
+                    if (onEnhance) {
+                      console.log('[Enhance] Calling onEnhance...');
+                      onEnhance();
+                      console.log('[Enhance] onEnhance call returned');
+                    } else {
+                      console.warn('[Enhance] onEnhance is not provided');
+                      try {
+                        const { editorFormData, resumeSetupData } = resumeCtx || {};
+                        console.log('[Enhance][Fallback] Using context data');
+                        console.log('[Enhance][Fallback] editorFormData:', editorFormData);
+                        console.log('[Enhance][Fallback] resumeSetupData:', resumeSetupData);
+
+                        const isMeaningful = (val) => {
+                          if (val === null || val === undefined) return false;
+                          if (typeof val === 'string') {
+                            const trimmed = val.trim();
+                            if (!trimmed) return false;
+                            if (/^\[.*\]$/.test(trimmed)) return false;
+                            return true;
+                          }
+                          if (Array.isArray(val)) return val.length > 0;
+                          if (typeof val === 'number') return true;
+                          if (typeof val === 'boolean') return true;
+                          if (typeof val === 'object') return Object.keys(val).length > 0;
+                          return false;
+                        };
+                        const pruneContent = (node) => {
+                          if (Array.isArray(node)) {
+                            return node.map(pruneContent).filter(isMeaningful);
+                          }
+                          if (node && typeof node === 'object') {
+                            const result = {};
+                            Object.entries(node).forEach(([k, v]) => {
+                              const pv = pruneContent(v);
+                              if (isMeaningful(pv)) result[k] = pv;
+                            });
+                            return result;
+                          }
+                          return node;
+                        };
+
+                        const raw = editorFormData?.content || {};
+                        const cleaned = pruneContent(raw);
+                        const payload = { resumeData: cleaned, globalContext: resumeSetupData || {} };
+                        console.log('[Enhance][Fallback] Generated payload:', payload);
+                      } catch (fallbackErr) {
+                        console.error('[Enhance][Fallback] Failed to generate payload:', fallbackErr);
+                      }
+                    }
+                  } catch (err) {
+                    console.error('[Enhance] onEnhance threw error:', err);
+                  }
+                }}
+                className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white rounded-lg sm:rounded-xl px-2 sm:px-3 md:px-6 py-1.5 sm:py-2 md:py-3 shadow-lg hover:shadow-xl transition-all duration-300 font-semibold group text-xs sm:text-sm"
+              >
+                <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 mr-0.5 sm:mr-1 md:mr-2 group-hover:scale-110 transition-transform" />
+                <span className="hidden md:inline">Enhance</span>
+                <span className="md:hidden">AI</span>
+              </Button>
+            </motion.div>
 
             {/* Download Button */}
             <motion.div

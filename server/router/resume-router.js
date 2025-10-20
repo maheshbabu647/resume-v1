@@ -10,7 +10,8 @@ import {
   getResumeById,
   updateResume,
   generateResumeSummary,
-  enhanceResumeField,
+  generateFieldContent,
+  enhanceEntireResume,
 } from '../controller/resume-controller.js'
 import { resumeValidatorsMode, resumeValidation } from '../validators/resume-validators.js'
 
@@ -68,16 +69,27 @@ const summaryLimiter = rateLimit({
   }
 })
 
-
-// [6] AI Field Enhancement limiter
-const enhanceLimiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
-  max: 15, // A bit more generous than summary, for enhancing multiple fields
+// [6] Field generation limiter
+const fieldGenLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 10,
   message: {
     status: 429,
-    error: 'Too many field enhancement requests. Please try again later.'
+    error: 'Too many AI generation requests. Please try again later.'
   }
-});
+})
+
+// [7] Enhance entire resume limiter
+const enhanceLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 5,
+  message: {
+    status: 429,
+    error: 'Too many enhancement requests. Please try again later.'
+  }
+})
+
+
 
 // [7] Routes (defense-in-depth: Auth → RateLimit → Validate → Handler)
 resumeRouter.post('/add',
@@ -134,13 +146,23 @@ resumeRouter.post(
 )
 
 resumeRouter.post(
-  '/ai/enhance-field',
+  '/generate-field-content',
+  userAuthorization,
+  fieldGenLimiter,
+  resumeValidatorsMode('generateFieldContent'),
+  resumeValidation,
+  generateFieldContent
+)
+
+resumeRouter.post(
+  '/enhance-entire',
   userAuthorization,
   enhanceLimiter,
-  // resumeValidatorsMode('enhanceField'), 
-  // resumeValidation,
-  enhanceResumeField
-);
+  resumeValidatorsMode('enhanceEntire'),
+  resumeValidation,
+  enhanceEntireResume
+)
+
 
 
 resumeRouter.get('/field', async(req, res)=>{

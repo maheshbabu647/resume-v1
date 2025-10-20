@@ -33,9 +33,6 @@ export const useResumeEditorState = () => {
     const [showFeedbackDialog, setShowFeedbackDialog] = useState(false);
     const [feedbackDetailsForDialog, setFeedbackDetailsForDialog] = useState({ title: '', message: '', type: 'success' });
     const [showAuthDialog, setShowAuthDialog] = useState(false);
-    const [isEnhancing, setIsEnhancing] = useState(false);
-    const [enhancementSuggestions, setEnhancementSuggestions] = useState(null);
-    const [activeEnhancementInfo, setActiveEnhancementInfo] = useState({ path: null, originalText: '' });
     const [isDirty, setIsDirty] = useState(false);
     const [saveStatus, setSaveStatus] = useState('idle');
     const [showPlaceholderWarning, setShowPlaceholderWarning] = useState(false);
@@ -54,6 +51,7 @@ export const useResumeEditorState = () => {
     const [previewUpdateKey, setPreviewUpdateKey] = useState(0);
     const [isTooltipDialogOpen, setIsTooltipDialogOpen] = useState(false)
     const [tooltipContent, setTooltipContent] = useState({ title: '', message: '' })
+    const [showResumeSetupDialog, setShowResumeSetupDialog] = useState(false)
 
     return {
         // Router & Refs
@@ -72,9 +70,6 @@ export const useResumeEditorState = () => {
         showFeedbackDialog, setShowFeedbackDialog,
         feedbackDetailsForDialog, setFeedbackDetailsForDialog,
         showAuthDialog, setShowAuthDialog,
-        isEnhancing, setIsEnhancing,
-        enhancementSuggestions, setEnhancementSuggestions,
-        activeEnhancementInfo, setActiveEnhancementInfo,
         isDirty, setIsDirty,
         saveStatus, setSaveStatus,
         showPlaceholderWarning, setShowPlaceholderWarning,
@@ -93,5 +88,6 @@ export const useResumeEditorState = () => {
         previewUpdateKey, setPreviewUpdateKey,
         isTooltipDialogOpen, setIsTooltipDialogOpen,
         tooltipContent, setTooltipContent,
+        showResumeSetupDialog, setShowResumeSetupDialog,
     };
 };

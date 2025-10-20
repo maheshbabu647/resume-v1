@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { downloadResume, enhanceResumeField } from "@/api/resumeServiceApi";
+import { downloadResume } from "@/api/resumeServiceApi";
 
 // Helper function can be co-located or imported from a utils file
 const hasUntouchedPlaceholders = (data) => {
@@ -29,7 +29,6 @@ export const useResumeEditorActions = ({
     mode,
     newResumeTemplateId,
     existingResumeId,
-    activeEnhancementInfo,
     currentResumeDetail,
     currentTemplateForEditor,
     
@@ -45,9 +44,6 @@ export const useResumeEditorActions = ({
     setIsDirty,
     setIsDownloadingPdf,
     setPageError,
-    setIsEnhancing,
-    setActiveEnhancementInfo,
-    setEnhancementSuggestions,
     setShowFeedbackDialog,
 
     // CONTEXT & OTHER HOOKS
@@ -153,38 +149,6 @@ export const useResumeEditorActions = ({
         });
     }, [mode, newResumeTemplateId, existingResumeId, navigate, editorFormData, editableResumeName, spacingMultiplier, fontSizeMultiplier,  sectionOrder, selectedStylePackKey, selectedIndustry, currentTemplateForEditor]);
 
-    const handleEnhanceField = useCallback(async (fieldPath, textToEnhance, jobContext) => {
-        if (!textToEnhance || textToEnhance.trim() === '') {
-            setFeedbackDetailsForDialog({ title: 'Cannot Enhance', message: 'Please enter some text before using AI enhancement.', type: 'error' });
-            setShowFeedbackDialog(true);
-            return;
-        }
-        setIsEnhancing(true);
-        setActiveEnhancementInfo({ path: fieldPath, originalText: textToEnhance });
-        try {
-            const suggestions = await enhanceResumeField(textToEnhance, jobContext);
-            setEnhancementSuggestions(suggestions);
-        } catch (error) {
-            setFeedbackDetailsForDialog({ title: 'AI Enhancement Failed', message: error.message, type: 'error' });
-            setShowFeedbackDialog(true);
-        } finally {
-            setIsEnhancing(false);
-        }
-    }, [setFeedbackDetailsForDialog, setIsEnhancing, setActiveEnhancementInfo, setEnhancementSuggestions]);
-
-    const handleAcceptSuggestion = useCallback((suggestionText) => {
-        if (activeEnhancementInfo.path) {
-            const arrayMatch = activeEnhancementInfo.path.match(/^(.*)\[(\d+)\]\.(.*)$/);
-            if (arrayMatch) {
-                const [, arrayName, itemIndex, fieldName] = arrayMatch;
-                handleArrayItemChange(arrayName, parseInt(itemIndex, 10), fieldName, suggestionText);
-            } else {
-                handleSimpleChange(activeEnhancementInfo.path, suggestionText);
-            }
-        }
-        setEnhancementSuggestions(null);
-        setActiveEnhancementInfo({ path: null, originalText: '' });
-    }, [activeEnhancementInfo, handleArrayItemChange, handleSimpleChange, setEnhancementSuggestions, setActiveEnhancementInfo]);
 
 
     return {
@@ -193,7 +157,5 @@ export const useResumeEditorActions = ({
         handleDownloadPdf,
         executeDownloadPdf,
         handlePreviewPage,
-        handleEnhanceField,
-        handleAcceptSuggestion,
     };
 };

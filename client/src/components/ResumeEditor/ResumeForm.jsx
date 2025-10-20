@@ -5,21 +5,29 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { 
   Plus, Trash2, Sparkles, Loader2, User, Briefcase, GraduationCap, 
   Star, Info, CheckCircle2, MessageSquareQuote, Contact, FolderKanban, X,
   BadgeCheck, FileText, HandHeart, Trophy, Languages, Users,
-  PlusCircle, ArrowLeft, ArrowRight, ChevronLeft, ChevronRight
+  PlusCircle, ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Wand2, RefreshCw, Edit2
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { generateAIFieldContent } from '@/api/resumeServiceApi';
 
 // FieldRenderer component can remain unchanged as its logic is sound.
 const FieldRenderer = ({ 
-  fieldDef, basePath, content, onFormChange, onArrayChange, onAddItem, onRemoveItem, onEnhanceField, isEnhancing, formData, onShowTooltip
+  fieldDef, basePath, content, onFormChange, onArrayChange, onAddItem, onRemoveItem, formData, onShowTooltip, resumeSetupData
 }) => {
+  const [isAiDialogOpen, setIsAiDialogOpen] = useState(false);
+  const [userNotes, setUserNotes] = useState('');
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generatedContent, setGeneratedContent] = useState('');
+  const [showContextModal, setShowContextModal] = useState(false);
+  const generatedTextareaRef = useRef(null);
   let currentPath;
   
   // CORRECTED PATH LOGIC
@@ -174,11 +182,10 @@ const FieldRenderer = ({
                           onFormChange={onFormChange}
                           onArrayChange={onArrayChange}
                           onAddItem={onAddItem}
-                          onRemoveItem={onRemoveItem}
-                          onEnhanceField={onEnhanceField}
-                          isEnhancing={isEnhancing}
+                          onRemoveItem={onRemoveItem} 
                           formData={formData}
                           onShowTooltip={onShowTooltip}
+                          resumeSetupData={resumeSetupData}
                         />
                       ))}
                     </div>
@@ -192,24 +199,411 @@ const FieldRenderer = ({
     );
   }
 
-  if (['text', 'email', 'tel', 'url', 'textarea', 'date', 'number'].includes(fieldDef.type)) { const value = get(formData.content, currentPath, ''); const inputId = currentPath.replace(/\./g, '-'); const InputComponent = fieldDef.type === 'textarea' ? Textarea : Input; const shouldShowEnhance = (fieldDef.type === 'textarea' || (fieldDef.type === 'text' && fieldDef.name?.includes('summary')) || (fieldDef.type === 'text' && fieldDef.name?.includes('description')) || (fieldDef.type === 'text' && fieldDef.name?.includes('responsibilities'))); return ( <div key={fieldKey} className="space-y-1.5 pt-2 relative"> <div className="flex items-center justify-between">
+  if (['text', 'email', 'tel', 'url', 'textarea', 'date', 'number'].includes(fieldDef.type)) { 
+    const value = get(formData.content, currentPath, ''); 
+    const inputId = currentPath.replace(/\./g, '-'); 
+    const InputComponent = fieldDef.type === 'textarea' ? Textarea : Input; 
+    
+    // Check if AI is enabled for this field
+    const aiConfig = fieldDef.aiConfig;
+    const isAiEnabled = aiConfig?.enabled === true;
+    
+    // Collect context fields data if AI is enabled
+    const getContextData = () => {
+      if (!isAiEnabled || !aiConfig?.contextFields) return {};
+      
+      const contextData = {};
+      aiConfig.contextFields.forEach(fieldName => {
+        const contextPath = basePath
+          ? `${basePath}.${fieldName}`
+          : (fieldDef.section && fieldName !== fieldDef.section)
+            ? `${fieldDef.section}.${fieldName}`
+            : fieldName;
+        const contextValue = get(formData.content, contextPath, '');
+        if (contextValue && contextValue.trim()) {
+          contextData[fieldName] = contextValue;
+        }
+      });
+      return contextData;
+    };
+    
+    const contextData = getContextData();
+    const hasRequiredContext = aiConfig?.contextFields ? aiConfig.contextFields.every(fieldName => {
+      const contextPath = basePath
+        ? `${basePath}.${fieldName}`
+        : (fieldDef.section && fieldName !== fieldDef.section)
+          ? `${fieldDef.section}.${fieldName}`
+          : fieldName;
+      const contextValue = get(formData.content, contextPath, '');
+      const isFilled = contextValue && contextValue.trim();
+      
+   
+      return isFilled;
+    }) : false;
+    
+    const isAiButtonEnabled = isAiEnabled && hasRequiredContext;
+  
+    const handleAiGenerate = () => {
+      if (!isAiButtonEnabled) {
+        // Show context modal to highlight missing fields
+        setShowContextModal(true);
+        return;
+      }
+      
+      // Open the user notes dialog
+      setIsAiDialogOpen(true);
+      setUserNotes('');
+      setGeneratedContent('');
+    };
+
+    const handleGenerateContent = async () => {
+      if (!isAiButtonEnabled) return;
+      
+      setIsGenerating(true);
+      
+      try {
+        // Create the payload with global context, local context, and user notes
+        const payload = {
+          fieldName: fieldDef.name,
+          fieldLabel: fieldDef.label,
+          fieldType: fieldDef.type,
+          globalContext: resumeSetupData || {},
+          localContext: contextData,
+          userNotes: userNotes.trim(),
+          userNotesPrompt: aiConfig?.userNotesPrompt || '',
+          targetField: currentPath
+        };
+        
+        console.log('AI Generation Payload:', payload);
+        
+        // Call the AI API
+        const content = await generateAIFieldContent(payload);
+        setGeneratedContent(content || '');
+        // Keep dialog open to allow Accept/Regenerate/Edit
+        setTimeout(() => {
+          try { generatedTextareaRef.current?.focus(); } catch {}
+        }, 50);
+        
+      } catch (error) {
+        console.error('AI Generation Error:', error);
+        alert(`AI generation failed: ${error.message || 'Unknown error occurred'}`);
+      } finally {
+        setIsGenerating(false);
+      }
+    };
+
+    const handleAcceptGenerated = () => {
+      if (!generatedContent || isGenerating) return;
+      handleChange(null, generatedContent);
+      setIsAiDialogOpen(false);
+      setUserNotes('');
+      setGeneratedContent('');
+    };
+
+    const handleEditFocus = () => {
+      try { generatedTextareaRef.current?.focus(); } catch {}
+    };
+    
+    return ( 
+      <div key={fieldKey} className="space-y-1.5 pt-2"> 
+        <div className="flex items-center justify-between">
           <Label htmlFor={inputId} className="text-sm font-medium text-foreground">
             {fieldDef.label || fieldDef.name}
             {fieldDef.required && <span className="text-destructive ml-1">*</span>}
           </Label>
-          {fieldDef.tooltip && (
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon"
-              className="h-6 w-6 text-muted-foreground hover:text-primary"
-              onClick={() => onShowTooltip(fieldDef.label, fieldDef.tooltip)}
-              aria-label={`More information about ${fieldDef.label}`}
-            >
-              <Info className="h-4 w-4" />
-            </Button>
-          )}
-        </div> <InputComponent id={inputId} placeholder={fieldDef.placeholder || `Enter your ${fieldDef.label.toLowerCase()}`} type={fieldDef.type === 'textarea' ? undefined : fieldDef.type} name={currentPath} value={value} onChange={handleChange} required={fieldDef.required || false} className="bg-background border-input focus:border-primary focus:ring-primary" rows={fieldDef.type === 'textarea' ? (fieldDef.rows || 4) : undefined} {...(fieldDef.props || {})} /> {shouldShowEnhance && onEnhanceField && (<Button type="button" variant="outline" size="sm" className="absolute bottom-2 right-2 h-8 px-3 text-xs font-medium text-primary hover:bg-primary/10 hover:text-primary border-primary/20" onClick={() => { const jobContext = get(formData, 'content.experience[0].roles[0].jobTitle', get(formData, 'content.profile.title', 'this role')); onEnhanceField(currentPath, value, jobContext); }} disabled={isEnhancing} aria-label="Enhance with AI">{isEnhancing ? <><Loader2 className="h-3 w-3 animate-spin mr-1" /> Enhancing...</> : <><Sparkles className="h-3 w-3 mr-1" />Enhance</>}</Button>)} {fieldDef.helperText && <p className="text-xs text-muted-foreground/80 pt-0.5">{fieldDef.helperText}</p>} </div> ); }
+          <div className="flex items-center gap-2">
+            {isAiEnabled && (
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={handleAiGenerate}
+                className={cn(
+                  "h-8 px-3 text-xs",
+                  isAiButtonEnabled 
+                    ? "text-primary border-primary hover:bg-primary hover:text-primary-foreground" 
+                    : "text-amber-600 border-amber-300 hover:bg-amber-50 hover:text-amber-700"
+                )}
+                title={isAiButtonEnabled ? "Generate with AI" : "Click to see required context fields"}
+              >
+                <Wand2 className="h-3 w-3 mr-1" />
+                Generate with AI
+              </Button>
+            )}
+            {fieldDef.tooltip && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                className="h-6 w-6 text-muted-foreground hover:text-primary"
+                onClick={() => onShowTooltip(fieldDef.label, fieldDef.tooltip)}
+                aria-label={`More information about ${fieldDef.label}`}
+              >
+                <Info className="h-4 w-4" />
+              </Button>
+            )}
+          </div>
+        </div> 
+        <InputComponent 
+          id={inputId} 
+          placeholder={fieldDef.placeholder || `Enter your ${fieldDef.label.toLowerCase()}`} 
+          type={fieldDef.type === 'textarea' ? undefined : fieldDef.type} 
+          name={currentPath} 
+          value={value} 
+          onChange={handleChange} 
+          required={fieldDef.required || false} 
+          className="bg-background border-input focus:border-primary focus:ring-primary" 
+          rows={fieldDef.type === 'textarea' ? (fieldDef.rows || 4) : undefined} 
+          {...(fieldDef.props || {})} 
+        /> 
+        {fieldDef.helperText && <p className="text-xs text-muted-foreground/80 pt-0.5">{fieldDef.helperText}</p>} 
+        
+        {/* AI Generation Dialog */}
+        {isAiEnabled && (
+          <Dialog open={isAiDialogOpen} onOpenChange={setIsAiDialogOpen}>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <Wand2 className="h-5 w-5 text-primary" />
+                  Generate with AI
+                </DialogTitle>
+                <DialogDescription>
+                  {generatedContent
+                    ? `Review and tweak the generated ${fieldDef.label || fieldDef.name}.`
+                    : (aiConfig?.userNotesPrompt || `Provide additional context for generating ${fieldDef.label}`)}
+                </DialogDescription>
+              </DialogHeader>
+              
+              <div className="space-y-4">
+                {!generatedContent && (
+                  <>
+                    <div>
+                      <Label htmlFor="user-notes" className="text-sm font-medium">
+                        Additional Context (Optional)
+                      </Label>
+                      <Textarea
+                        id="user-notes"
+                        placeholder="Add any specific details or preferences..."
+                        value={userNotes}
+                        onChange={(e) => setUserNotes(e.target.value)}
+                        rows={3}
+                        className="mt-1"
+                      />
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      <p className="font-medium mb-1">Context being used:</p>
+                      <div className="space-y-1">
+                        {Object.entries(contextData).map(([key, value]) => (
+                          <div key={key} className="flex">
+                            <span className="font-medium w-20 truncate">{key}:</span>
+                            <span className="ml-2 flex-1 truncate">{value}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {generatedContent && (
+                  <div>
+                    <Label htmlFor="generated-content" className="text-sm font-medium">Generated Text</Label>
+                    <Textarea
+                      id="generated-content"
+                      ref={generatedTextareaRef}
+                      value={generatedContent}
+                      onChange={(e) => setGeneratedContent(e.target.value)}
+                      rows={6}
+                      className="mt-1"
+                    />
+                  </div>
+                )}
+              </div>
+              
+              <DialogFooter>
+                <Button 
+                  variant="outline" 
+                  onClick={() => setIsAiDialogOpen(false)}
+                  disabled={isGenerating}
+                >
+                  Cancel
+                </Button>
+
+                {!generatedContent && (
+                  <Button 
+                    onClick={handleGenerateContent}
+                    disabled={isGenerating}
+                    className="min-w-[120px]"
+                  >
+                    {isGenerating ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Generating...
+                      </>
+                    ) : (
+                      <>
+                        <Wand2 className="h-4 w-4 mr-2" />
+                        Generate
+                      </>
+                    )}
+                  </Button>
+                )}
+
+                {generatedContent && (
+                  <>
+                    <Button 
+                      onClick={handleAcceptGenerated}
+                      disabled={isGenerating || !generatedContent}
+                      className="min-w-[110px]"
+                    >
+                      <CheckCircle2 className="h-4 w-4 mr-2" />
+                      Accept
+                    </Button>
+                    <Button 
+                      variant="secondary"
+                      onClick={handleGenerateContent}
+                      disabled={isGenerating}
+                      className="min-w-[130px]"
+                    >
+                      {isGenerating ? (
+                        <>
+                          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                          Regenerating...
+                        </>
+                      ) : (
+                        <>
+                          <RefreshCw className="h-4 w-4 mr-2" />
+                          Regenerate
+                        </>
+                      )}
+                    </Button>
+                    <Button 
+                      variant="outline"
+                      onClick={handleEditFocus}
+                      className="min-w-[100px]"
+                    >
+                      <Edit2 className="h-4 w-4 mr-2" />
+                      Edit
+                    </Button>
+                  </>
+                )}
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        )}
+
+        {/* Context Requirements Modal */}
+        {isAiEnabled && (
+          <Dialog open={showContextModal} onOpenChange={setShowContextModal}>
+            <DialogContent className="sm:max-w-lg">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <Info className="h-5 w-5 text-amber-500" />
+                  Required Context Fields
+                </DialogTitle>
+                <DialogDescription>
+                  To generate AI content for "{fieldDef.label || fieldDef.name}", you need to fill in the following context fields first:
+                </DialogDescription>
+              </DialogHeader>
+              
+              <div className="space-y-4">
+                <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <Info className="h-5 w-5 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
+                    <div className="space-y-2">
+                      <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
+                        Fill these fields to enable AI generation:
+                      </p>
+                      <div className="space-y-2">
+                        {aiConfig?.contextFields?.map((fieldName) => {
+                          const contextPath = basePath
+                            ? `${basePath}.${fieldName}`
+                            : (fieldDef.section && fieldName !== fieldDef.section)
+                              ? `${fieldDef.section}.${fieldName}`
+                              : fieldName;
+                          const contextValue = get(formData.content, contextPath, '');
+                          const isFilled = contextValue && contextValue.trim();
+                          
+                          return (
+                            <div key={fieldName} className={`flex items-center gap-2 p-2 rounded border ${isFilled ? 'bg-green-50 dark:bg-green-950/20 border-green-200 dark:border-green-800' : 'bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-800'}`}>
+                              {isFilled ? (
+                                <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400 flex-shrink-0" />
+                              ) : (
+                                <X className="h-4 w-4 text-red-600 dark:text-red-400 flex-shrink-0" />
+                              )}
+                              <div className="flex-1">
+                                <span className={`text-sm font-medium ${isFilled ? 'text-green-800 dark:text-green-200' : 'text-red-800 dark:text-red-200'}`}>
+                                  {fieldName}
+                                </span>
+                                {isFilled && (
+                                  <p className="text-xs text-green-600 dark:text-green-400 mt-1">
+                                    ✓ Filled: {contextValue.length > 50 ? contextValue.substring(0, 50) + '...' : contextValue}
+                                  </p>
+                                )}
+                                {!isFilled && (
+                                  <p className="text-xs text-red-600 dark:text-red-400 mt-1">
+                                    ✗ Empty - Please fill this field
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {aiConfig?.userNotesPrompt && (
+                  <div className="text-sm text-muted-foreground">
+                    <p className="font-medium mb-1">Additional context you can provide:</p>
+                    <p className="italic">"{aiConfig.userNotesPrompt}"</p>
+                  </div>
+                )}
+              </div>
+              
+              <DialogFooter>
+                <Button 
+                  variant="outline" 
+                  onClick={() => setShowContextModal(false)}
+                >
+                  Close
+                </Button>
+                <Button 
+                  onClick={() => {
+                    setShowContextModal(false);
+                    // Scroll to the first missing field if possible
+                    const firstMissingField = aiConfig?.contextFields?.find(fieldName => {
+                      const contextPath = basePath
+                        ? `${basePath}.${fieldName}`
+                        : (fieldDef.section && fieldName !== fieldDef.section)
+                          ? `${fieldDef.section}.${fieldName}`
+                          : fieldName;
+                      const contextValue = get(formData.content, contextPath, '');
+                      return !contextValue || !contextValue.trim();
+                    });
+                    
+                    if (firstMissingField) {
+                      const missingPath = basePath ? `${basePath}.${firstMissingField}` : firstMissingField;
+                      const fieldId = missingPath.replace(/\./g, '-');
+                      const fieldElement = document.getElementById(fieldId);
+                      if (fieldElement) {
+                        fieldElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        fieldElement.focus();
+                      }
+                    }
+                  }}
+                  className="min-w-[120px]"
+                >
+                  <Edit2 className="h-4 w-4 mr-2" />
+                  Fill Fields
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        )}
+      </div> 
+    ); 
+  }
   if (fieldDef.type === 'select') { const value = get(formData.content, currentPath, ''); const inputId = currentPath.replace(/\./g, '-'); return ( <div key={fieldKey} className="space-y-1.5 pt-2"> <Label htmlFor={inputId} className="text-sm font-medium text-foreground">{fieldDef.label}</Label> <Select value={value} onValueChange={(selectValue) => handleChange(null, selectValue)}><SelectTrigger id={inputId} className="w-full bg-background border-input focus:border-primary focus:ring-primary"><SelectValue placeholder={fieldDef.placeholder || "Select an option"} /></SelectTrigger><SelectContent>{(fieldDef.options || []).filter(Boolean).map(option => (<SelectItem key={option} value={option}>{option}</SelectItem>))}</SelectContent></Select> </div> ); }
   if (fieldDef.type === 'tags') { const value = get(formData.content, currentPath, ''); const tags = value ? value.split(',').map(t => t.trim()).filter(Boolean) : []; const [inputValue, setInputValue] = useState(''); const inputId = currentPath.replace(/\./g, '-'); const addTag = () => { if (inputValue && !tags.includes(inputValue)) { const newTags = [...tags, inputValue.trim()]; handleChange(null, newTags.join(', ')); } setInputValue(''); }; const removeTag = (tagToRemove) => { const newTags = tags.filter(tag => tag !== tagToRemove); handleChange(null, newTags.join(', ')); }; return ( <div key={fieldKey} className="space-y-1.5 pt-2"> <Label htmlFor={inputId} className="text-sm font-medium text-foreground">{fieldDef.label}</Label> <div className="flex flex-wrap items-center gap-2 p-2 border rounded-md bg-background border-input min-h-[40px]"> {tags.map(tag => (<div key={tag} className="flex items-center gap-1 bg-primary text-primary-foreground text-xs font-semibold px-2 py-1 rounded-full"><span>{tag}</span><button onClick={() => removeTag(tag)} type="button" className="hover:opacity-75"><X className="w-3 h-3" /></button></div>))} <Input id={inputId} type="text" value={inputValue} placeholder={fieldDef.placeholder} onChange={(e) => setInputValue(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addTag(); } }} className="flex-1 bg-transparent border-none focus:ring-0 h-auto p-0" /> </div> </div> ); }
   return <div key={fieldKey} className="text-sm text-muted-foreground pt-2">Unsupported field: "{fieldDef.label || fieldDef.name}"</div>;
@@ -223,12 +617,11 @@ const ResumeForm = ({
   onAddItem,
   onRemoveItem,
   onSectionToggle,
-  onEnhanceField,
-  isEnhancing,
   onOpenAddSectionDialog,
   sectionProperties,
   onShowTooltip,
-  onSectionAdd // New prop to handle section addition
+  onSectionAdd, // New prop to handle section addition
+  resumeSetupData // Add resumeSetupData prop
 }) => {
   const content = formData?.content || {};
   const sectionsConfig = formData?.sectionsConfig || {};
@@ -454,10 +847,9 @@ const ResumeForm = ({
                       onArrayChange={onArrayChange} 
                       onAddItem={onAddItem} 
                       onRemoveItem={onRemoveItem} 
-                      onEnhanceField={onEnhanceField} 
-                      isEnhancing={isEnhancing} 
                       formData={formData} 
                       onShowTooltip={onShowTooltip}
+                      resumeSetupData={resumeSetupData}
                     />
                   ))}
                 </CardContent>
