@@ -6,6 +6,8 @@ import resumeRouter from './resume-router.js'
 import coverLetterRouter from './cover-letter-router.js'
 import adminAnalyticsRouter from './admin-analytics-router.js'
 import chatRouter from './chat-router.js'
+import textExtractionRouter from './text-extraction-router.js'
+import atsScoreRouter from './ats-score-router.js'
 
 
 const indexRouter = express.Router()
@@ -17,6 +19,8 @@ indexRouter.use('/cover-letter', coverLetterRouter)
 indexRouter.use('/admin/template', adminTemplateRouter)
 indexRouter.use('/admin/analytics', adminAnalyticsRouter)
 indexRouter.use('/chat', chatRouter)
+indexRouter.use('/text-extraction', textExtractionRouter)
+indexRouter.use('/ats-score', atsScoreRouter)
 indexRouter.get('/', (req, res) => {
   res.json({ status: "OK", message: "API root. All systems operational." })
 })

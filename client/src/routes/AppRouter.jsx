@@ -21,6 +21,7 @@ import TemplatesPage from '../pages/General/TemplatesPage.jsx';
 import OAuthReturnPage from '../pages/General/OAuthReturnPage.jsx';
 import ResumeEditorPage from '../pages/Resume/ResumeEditorPage.jsx';
 import ResumeViewerPage from '../pages/Resume/ResumeViewerPage.jsx';
+import ATSCheckerPage from '../pages/ATSChecker/ATSCheckerPage.jsx';
 import NotFoundPage from '../pages/General/NotFoundPage.jsx';
 import UnauthorizedPage from '../pages/General/UnauthorizedPage.jsx';
 
@@ -67,7 +68,8 @@ const AppRouter = () => {
           <Route path='templates' element={<TemplatesPage />} />
           <Route path='resume/new/:newResumeTemplateId' element={<ResumeEditorPage />} />
           <Route path='resume/view/:templateId' element={<ResumeViewerPage />} />
-          <Route path='cover-letter/generate' element={<CoverLetterGeneratorPage />} />   
+          <Route path='cover-letter/generate' element={<CoverLetterGeneratorPage />} />
+          <Route path='ats-checker' element={<ATSCheckerPage />} />   
 
           {/* Routes protected by authentication */}
           <Route element={<ProtectedRoute roles={['user', 'admin']} />}>

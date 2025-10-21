@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
-import { FileText, Mail, Sparkles, ArrowRight, Palette, Layers, Eye } from 'lucide-react';
+import { FileText, Mail, Sparkles, ArrowRight, Palette, Layers, Eye, Upload, File } from 'lucide-react';
 
 const FeaturesSection = () => {
   const containerVariants = {
@@ -67,7 +67,7 @@ const FeaturesSection = () => {
         </motion.div>
 
         <motion.div 
-          className="grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 max-w-6xl mx-auto"
+          className="grid lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -175,6 +175,62 @@ const FeaturesSection = () => {
                   className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-accent-purple to-accent-pink hover:opacity-90 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-2xl font-semibold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300 group"
                 >
                   Generate My Cover Letter
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                </NavLink>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Document Upload Card */}
+          <motion.div 
+            className="group relative"
+            variants={cardVariants}
+            whileHover={{ y: -8 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            
+            <div className="relative bg-card/80 backdrop-blur-xl rounded-3xl p-4 sm:p-6 lg:p-10 shadow-xl border border-border h-full">
+              <motion.div 
+                className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 shadow-lg"
+                variants={iconVariants}
+                whileHover="hover"
+              >
+                <Upload className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-white" />
+              </motion.div>
+
+              <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-foreground mb-3 sm:mb-4">
+                ATS Score Checker
+              </h3>
+              
+              <p className="text-muted-foreground text-sm sm:text-base lg:text-lg leading-relaxed mb-4 sm:mb-6 lg:mb-8">
+                Upload your resume and job description to get an ATS compatibility score. We'll analyze how well your resume matches the job requirements and provide detailed feedback.
+              </p>
+
+              <div className="space-y-2 sm:space-y-3 lg:space-y-4 mb-4 sm:mb-6 lg:mb-8">
+                <div className="flex items-center gap-2 sm:gap-3 text-muted-foreground font-medium text-xs sm:text-sm">
+                  <File className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" />
+                  <span>Resume & Job Description Upload</span>
+                </div>
+                <div className="flex items-center gap-2 sm:gap-3 text-muted-foreground font-medium text-xs sm:text-sm">
+                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" />
+                  <span>AI-Powered ATS Analysis</span>
+                </div>
+                <div className="flex items-center gap-2 sm:gap-3 text-muted-foreground font-medium text-xs sm:text-sm">
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0" />
+                  <span>Detailed Compatibility Score</span>
+                </div>
+              </div>
+
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <NavLink 
+                  to="/ats-checker" 
+                  className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-green-500 to-emerald-500 hover:opacity-90 text-white px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-2xl font-semibold text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300 group"
+                >
+                  Check ATS Score
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
                 </NavLink>
               </motion.div>

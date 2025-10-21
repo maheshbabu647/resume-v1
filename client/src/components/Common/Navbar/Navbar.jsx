@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Menu, X, LayoutTemplate, User, LogOut, Home as HomeIcon, ShieldCheck, Sparkles, Zap, Star, Settings, BarChart3, Users, Crown } from 'lucide-react';
+import { Menu, X, LayoutTemplate, User, LogOut, Home as HomeIcon, ShieldCheck, Sparkles, Zap, Star, Settings, BarChart3, Users, Crown, Upload } from 'lucide-react';
 import { NavLink, useNavigate, Link } from 'react-router-dom';
 import useAuthContext from '@/hooks/useAuth.js';
 import { cn } from '@/lib/utils';
@@ -169,6 +169,10 @@ const Navbar = () => {
 
             <NavLink to="/cover-letter/generate" className={getNavLinkClasses}>
               <span className="flex items-center gap-2"><Zap className="w-4 h-4" />Cover Letters</span>
+            </NavLink>
+
+            <NavLink to="/ats-checker" className={getNavLinkClasses}>
+              <span className="flex items-center gap-2"><Upload className="w-4 h-4" />ATS Checker</span>
             </NavLink>
 
             {/* Dashboard Navigation - Only show for authenticated users */}
@@ -342,6 +346,7 @@ const Navbar = () => {
                   <motion.div className="ml-auto px-3 py-1 bg-success rounded-full text-xs text-success-foreground font-bold shadow-md" animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>FREE</motion.div>
                 </NavLink>
                 <NavLink to="/cover-letter/generate" onClick={closeMobileMenu} className={getMobileNavLinkClasses}><Zap className="w-5 h-5 mr-3" />Cover Letters</NavLink>
+                <NavLink to="/ats-checker" onClick={closeMobileMenu} className={getMobileNavLinkClasses}><Upload className="w-5 h-5 mr-3" />ATS Checker</NavLink>
                
                 
                 {/* Dashboard Navigation for Mobile - Only show for authenticated users */}
