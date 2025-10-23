@@ -19,7 +19,9 @@ export const useOAuthDataRestoration = ({
     setPreviewUpdateKey,
     isAuthenticated,
     pageIsLoading,
-    currentTemplateForEditor
+    currentTemplateForEditor,
+    saveResumeSetupData,
+    setShowResumeSetupDialog
 }) => {
     useEffect(() => {
         // Only run on resume editor pages and when authenticated
@@ -32,6 +34,10 @@ export const useOAuthDataRestoration = ({
         try {
             const savedFormData = localStorage.getItem('resume_editor_form_data');
             if (savedFormData) {
+                console.log('OAuth: Found saved form data in localStorage');
+                
+                // Set a flag to prevent setup dialog from showing during restoration
+                sessionStorage.setItem('oauth_restore_in_progress', 'true');
                 const formData = JSON.parse(savedFormData);
                 const now = Date.now();
                 const dataAge = now - formData.timestamp;
@@ -72,6 +78,25 @@ export const useOAuthDataRestoration = ({
                         setEditedSections(calculatedEditedSections);
                     }
                     
+                    // Restore resume setup data to prevent dialog from reopening
+                    console.log('🔍 Checking for setup data to restore:');
+                    console.log('   - Has resumeSetupData:', !!formData.resumeSetupData);
+                    console.log('   - resumeSetupData value:', formData.resumeSetupData);
+                    console.log('   - setupCompleted flag:', formData.setupCompleted);
+                    
+                    if (formData.resumeSetupData && saveResumeSetupData) {
+                        console.log('✅ Restoring resume setup data:', formData.resumeSetupData);
+                        saveResumeSetupData(formData.resumeSetupData);
+                    } else {
+                        console.log('⚠️ No setup data to restore or saveResumeSetupData not available');
+                    }
+                    
+                    // Prevent setup dialog from reopening if it was already completed
+                    if (formData.setupCompleted && setShowResumeSetupDialog) {
+                        console.log('✅ Setup was already completed, explicitly closing dialog');
+                        setShowResumeSetupDialog(false);
+                    }
+                    
                     // Clear the saved data after restoration
                     localStorage.removeItem('resume_editor_form_data');
                     console.log('OAuth: Form data restored successfully in resume editor');
@@ -82,14 +107,23 @@ export const useOAuthDataRestoration = ({
                     // Set page as loaded without fetching from server
                     setPageIsLoading(false);
                     setPageError(null);
+                    
+                    // Clear the restoration flag after a short delay to ensure all effects have run
+                    setTimeout(() => {
+                        sessionStorage.removeItem('oauth_restore_in_progress');
+                        console.log('OAuth: Restoration complete, flag cleared');
+                    }, 100);
                 } else {
                     // Clear old data
+                    console.log('OAuth: Saved data is too old, clearing');
                     localStorage.removeItem('resume_editor_form_data');
+                    sessionStorage.removeItem('oauth_restore_in_progress');
                 }
             }
         } catch (error) {
             console.warn('OAuth: Could not restore form data from localStorage:', error);
             localStorage.removeItem('resume_editor_form_data');
+            sessionStorage.removeItem('oauth_restore_in_progress');
         }
-    }, [isAuthenticated, pageIsLoading, setEditorFormData, setEditableResumeName, setSpacingMultiplier, setFontSizeMultiplier, setSectionOrder, setSelectedStylePackKey, setSelectedIndustry, setEditedSections, setPageIsLoading, setPageError, setPreviewUpdateKey, currentTemplateForEditor]);
+    }, [isAuthenticated, pageIsLoading, setEditorFormData, setEditableResumeName, setSpacingMultiplier, setFontSizeMultiplier, setSectionOrder, setSelectedStylePackKey, setSelectedIndustry, setEditedSections, setPageIsLoading, setPageError, setPreviewUpdateKey, currentTemplateForEditor, saveResumeSetupData, setShowResumeSetupDialog]);
 };

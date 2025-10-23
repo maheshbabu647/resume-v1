@@ -16,6 +16,7 @@ import {
   GaugeCircle,
   ArrowRight,
   Crown,
+  Brain,
 } from 'lucide-react';
 
 const adminLinks = [
@@ -30,6 +31,12 @@ const adminLinks = [
     title: 'Template Management',
     description: 'Create, view, edit, and delete resume templates available to users.',
     icon: Settings2,
+  },
+  {
+    path: '/admin/ai-usage',
+    title: 'AI Usage & Costs',
+    description: 'Track AI token consumption, analyze costs by user and service, and plan future pricing strategies.',
+    icon: Brain,
   },
   {
     path: '/admin/analytics/overview',

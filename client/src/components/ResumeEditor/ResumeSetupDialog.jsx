@@ -19,7 +19,8 @@ import {
   Type,
   FileUp,
   Loader2,
-  AlertCircle
+  AlertCircle,
+  PartyPopper
 } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -125,6 +126,7 @@ const ResumeSetupDialog = ({ open, onOpenChange, onComplete, templateFieldDefini
   const [parseError, setParseError] = useState(null);
   const [parsedData, setParsedData] = useState(null);
   const fileInputRef = useRef(null);
+  const successAlertRef = useRef(null);
   
   const [setupData, setSetupData] = useState({
     profession_industry: '',
@@ -224,6 +226,16 @@ const ResumeSetupDialog = ({ open, onOpenChange, onComplete, templateFieldDefini
         setParseError(null);
         
         console.log('✅ Resume parsed successfully:', result.data.parsedResumeData);
+        
+        // Auto-scroll to success message after a brief delay to allow animation
+        setTimeout(() => {
+          if (successAlertRef.current) {
+            successAlertRef.current.scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'center' 
+            });
+          }
+        }, 400);
         
         // User can now click "Continue to Editor" button when ready
       } else {
@@ -460,29 +472,49 @@ const ResumeSetupDialog = ({ open, onOpenChange, onComplete, templateFieldDefini
 
                       {parsedData && (
                         <motion.div
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.2 }}
+                          ref={successAlertRef}
+                          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                          animate={{ opacity: 1, scale: 1, y: 0 }}
+                          transition={{ duration: 0.4, type: "spring" }}
                         >
-                          <Alert className="mt-3 sm:mt-4 bg-gradient-to-r from-success/10 to-success/5 border-success shadow-lg">
-                            <Check className="h-3 w-3 sm:h-4 sm:w-4 text-success" />
+                          <Alert className="mt-3 sm:mt-4 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-500 shadow-2xl ring-4 ring-green-100">
+                            <motion.div
+                              initial={{ rotate: 0 }}
+                              animate={{ rotate: [0, 10, -10, 0] }}
+                              transition={{ duration: 0.5, repeat: 2 }}
+                            >
+                              <PartyPopper className="h-4 w-4 sm:h-5 sm:w-5 text-green-600" />
+                            </motion.div>
                             <AlertDescription>
                               <div className="space-y-3">
                                 <div className="flex items-start gap-2 sm:gap-3">
                                   <div className="flex-1">
-                                    <span className="text-xs sm:text-sm font-semibold text-success block">✅ Resume imported successfully!</span>
-                                    <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">
-                                      Your resume has been parsed and is ready to edit.
+                                    <motion.span 
+                                      className="text-sm sm:text-base font-bold text-green-700 block"
+                                      initial={{ opacity: 0 }}
+                                      animate={{ opacity: 1 }}
+                                      transition={{ delay: 0.2 }}
+                                    >
+                                      🎉 Resume Imported Successfully!
+                                    </motion.span>
+                                    <p className="text-xs sm:text-sm text-green-600 mt-1.5 font-medium">
+                                      Your resume has been parsed and prefilled. Ready to customize in the editor!
                                     </p>
                                   </div>
                                 </div>
-                                <Button
-                                  onClick={handleSkipToEditor}
-                                  className="w-full h-10 sm:h-11 bg-gradient-to-r from-success to-success/80 hover:from-success/90 hover:to-success/70 text-white shadow-md hover:shadow-lg transition-all"
+                                <motion.div
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.3 }}
                                 >
-                                  <FileText className="h-4 w-4 mr-2" />
-                                  Continue to Editor
-                                </Button>
+                                  <Button
+                                    onClick={handleSkipToEditor}
+                                    className="w-full h-10 sm:h-11 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-md hover:shadow-xl transition-all font-semibold"
+                                  >
+                                    <FileText className="h-4 w-4 mr-2" />
+                                    Continue to Editor
+                                  </Button>
+                                </motion.div>
                               </div>
                             </AlertDescription>
                           </Alert>
@@ -507,7 +539,7 @@ const ResumeSetupDialog = ({ open, onOpenChange, onComplete, templateFieldDefini
                         ) : (
                           <>
                             <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
-                            Parse Resume with AI
+                            Prefill Resume with AI
                           </>
                         )}
                       </Button>

@@ -24,13 +24,12 @@ import {
   Sparkles, 
   Star, 
   Zap,
-  Crown,
   ArrowRight,
   X
 } from 'lucide-react';
 
 
-const TemplateCard = ({ template }) => {
+const TemplateCard = ({ template, isFirstTemplate = false }) => {
   const navigate = useNavigate();
   const [isPresetDialogOpen, setIsPresetDialogOpen] = useState(false);
   const [showBuilder, setShowBuilder] = useState(false);
@@ -157,16 +156,20 @@ const TemplateCard = ({ template }) => {
             </Dialog>
           </div>
 
-          <motion.div 
-            className="absolute top-2 right-2 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full px-2 py-1"
-            animate={{ y: [0, -4, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <div className="flex items-center gap-1">
-              <Crown className="w-2.5 h-2.5 text-white" />
-              <span className="text-xs font-bold text-white">Hot</span>
-            </div>
-          </motion.div>
+          {/* Show "Recommended" badge only for the first template */}
+          {isFirstTemplate && (
+            <motion.div 
+              className="absolute top-2 right-2 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full px-2.5 py-1 shadow-lg"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="flex items-center gap-1">
+                <CheckCircle className="w-3 h-3 text-white" />
+                <span className="text-xs font-bold text-white">Recommended</span>
+              </div>
+            </motion.div>
+          )}
         </div>
 
         <div className="p-3 sm:p-4 md:p-5 flex-1 flex flex-col justify-between">
@@ -221,8 +224,9 @@ const TemplateCard = ({ template }) => {
                       <p className="text-muted-foreground text-xs sm:text-sm mt-1">Industry: {preset.industry}</p>
                     </div>
                     <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-                      {preset.isPrimary && (
-                        <span className="bg-success text-success-foreground px-2 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                      {/* Show recommended badge on preset if it's marked as primary AND this is the first template */}
+                      {preset.isPrimary && isFirstTemplate && (
+                        <span className="bg-green-600 text-white px-2 py-1 rounded-full text-xs font-bold flex items-center gap-1">
                           <CheckCircle className="w-3 h-3" />
                           <span className="hidden sm:inline">Recommended</span>
                           <span className="sm:hidden">Rec</span>

@@ -415,7 +415,9 @@ const ResumeEditorPage = () => {
         setPreviewUpdateKey,
         isAuthenticated,
         pageIsLoading,
-        currentTemplateForEditor
+        currentTemplateForEditor,
+        saveResumeSetupData,
+        setShowResumeSetupDialog
     });
 
     useEffect(() => { return () => { if (!window.location.pathname.startsWith('/resume/')) clearCurrentEditorData(); }; }, [location.pathname, clearCurrentEditorData]);
@@ -427,8 +429,27 @@ const ResumeEditorPage = () => {
         const locationState = location.state || {};
         const isATSMode = locationState.mode === 'ats-optimize' && locationState.skipSetupDialog;
         
-        if (mode === 'create' && currentTemplateForEditor && !resumeSetupData && !pageIsLoading && !isATSMode) {
+        // Check if we're in the process of restoring from OAuth
+        const isRestoringFromOAuth = sessionStorage.getItem('oauth_restore_in_progress') === 'true';
+        
+        // Check if there's saved form data from OAuth that will restore setup data
+        let hasSavedSetupData = false;
+        try {
+            const savedFormData = localStorage.getItem('resume_editor_form_data');
+            if (savedFormData) {
+                const parsedData = JSON.parse(savedFormData);
+                hasSavedSetupData = parsedData.setupCompleted === true || !!parsedData.resumeSetupData;
+                console.log('📦 Detected saved setup data in localStorage:', hasSavedSetupData);
+            }
+        } catch (error) {
+            console.warn('Could not check saved form data:', error);
+        }
+        
+        if (mode === 'create' && currentTemplateForEditor && !resumeSetupData && !pageIsLoading && !isATSMode && !isRestoringFromOAuth && !hasSavedSetupData) {
+            console.log('📋 Showing resume setup dialog');
             setShowResumeSetupDialog(true);
+        } else if (isRestoringFromOAuth || hasSavedSetupData) {
+            console.log('🔄 OAuth restoration in progress or saved setup data found, skipping setup dialog');
         }
     }, [mode, currentTemplateForEditor, resumeSetupData, pageIsLoading, location.state]);
     
@@ -607,13 +628,19 @@ const ResumeEditorPage = () => {
                             selectedStylePackKey,
                             selectedIndustry,
                             editedSections: Array.from(editedSections), // Convert Set to Array for JSON serialization
+                            resumeSetupData, // Save setup data to prevent dialog from reopening
+                            setupCompleted: !!resumeSetupData, // Flag to indicate setup was already done
                             timestamp: Date.now()
                         };
-                        console.log('Saving form data to localStorage:', formDataToSave);
+                        console.log('💾 Saving form data before OAuth redirect:');
+                        console.log('   - Has resumeSetupData:', !!resumeSetupData);
+                        console.log('   - resumeSetupData:', resumeSetupData);
+                        console.log('   - setupCompleted flag:', !!resumeSetupData);
+                        console.log('   - Full data:', formDataToSave);
                         localStorage.setItem('resume_editor_form_data', JSON.stringify(formDataToSave));
-                        console.log('Form data saved successfully');
+                        console.log('✅ Form data saved successfully to localStorage');
                     } catch (error) {
-                        console.warn('Could not save form data to localStorage:', error);
+                        console.error('❌ Could not save form data to localStorage:', error);
                     }
                 }}
             />

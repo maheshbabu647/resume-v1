@@ -109,10 +109,19 @@ const TemplatesPage = () => {
 
   const filteredTemplates = useMemo(() => {
     if (!templates) return [];
-    if (activeFilter === 'all') return templates;
-    if (activeFilter === 'ats') return templates.filter(t => t.isAtsRecommended);
-    if (activeFilter === 'creative') return templates.filter(t => !t.isAtsRecommended);
-    return [];
+    
+    let filtered = [];
+    if (activeFilter === 'all') filtered = templates;
+    else if (activeFilter === 'ats') filtered = templates.filter(t => t.isAtsRecommended);
+    else if (activeFilter === 'creative') filtered = templates.filter(t => !t.isAtsRecommended);
+    else filtered = [];
+    
+    // Sort by createdAt (oldest first - most established/used templates)
+    return [...filtered].sort((a, b) => {
+      const dateA = new Date(a.createdAt || 0);
+      const dateB = new Date(b.createdAt || 0);
+      return dateA - dateB; // Ascending order (oldest first)
+    });
   }, [templates, activeFilter]);
 
   const containerVariants = {
@@ -225,10 +234,10 @@ const TemplatesPage = () => {
                 )}
 
                 {!isLoadingTemplates && !templateError && filteredTemplates.length > 0 && (
-                  filteredTemplates.map((template) => (
+                  filteredTemplates.map((template, index) => (
                     <motion.div key={template._id} variants={itemVariants} layout className="w-full">
                       <Suspense fallback={<SkeletonCard />}>
-                        <TemplateCard template={template} />
+                        <TemplateCard template={template} isFirstTemplate={index === 0} />
                       </Suspense>
                     </motion.div>
                   ))

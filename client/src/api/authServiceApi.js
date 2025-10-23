@@ -1,9 +1,12 @@
 import apiServer from "./index.js";
+import { getCurrentSessionId, clearSessionId } from '../utils/sessionManager.js';
 
 export const userSignin = async (signinCredentials) => {
     try{
         const response = await apiServer.post('/auth/signin', signinCredentials)
         console.log("heyllo",response.data)
+        // Clear session after successful sign-in
+        clearSessionId();
         return response.data
     }
     catch (error) {
@@ -13,7 +16,17 @@ export const userSignin = async (signinCredentials) => {
 
 export const userSignup = async (signupCredentials) => {
     try{
-        const response = await apiServer.post('/auth/signup', signupCredentials)
+        // Get current session ID to link anonymous usage
+        const sessionId = getCurrentSessionId();
+        
+        const response = await apiServer.post('/auth/signup', {
+            ...signupCredentials,
+            sessionId // Include session ID in sign-up request
+        })
+        
+        // Clear session after successful sign-up
+        clearSessionId();
+        
         return response.data
     }
     catch (error) {

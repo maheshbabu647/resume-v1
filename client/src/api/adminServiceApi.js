@@ -214,6 +214,20 @@ export const getAIUsageAnonymous = async (startDate = '', endDate = '') => {
 };
 
 /**
+ * Fixes data inconsistency in AI usage records
+ * @returns {Promise<object>} Fix result
+ */
+export const fixAIUsageDataInconsistency = async () => {
+  try {
+    const response = await apiServer.post('/admin/ai-usage/fix-data');
+    return response.data;
+  } catch (error) {
+    console.error('Error fixing AI usage data:', error.response?.data || error.message);
+    throw error.response?.data || { message: 'Failed to fix AI usage data inconsistency.' };
+  }
+};
+
+/**
  * Fetches AI usage by service
  * @param {string} [startDate] - Optional start date (YYYY-MM-DD)
  * @param {string} [endDate] - Optional end date (YYYY-MM-DD)
