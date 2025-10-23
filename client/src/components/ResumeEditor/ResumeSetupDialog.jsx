@@ -225,18 +225,7 @@ const ResumeSetupDialog = ({ open, onOpenChange, onComplete, templateFieldDefini
         
         console.log('✅ Resume parsed successfully:', result.data.parsedResumeData);
         
-        // Auto-populate profession and role if available
-        const parsed = result.data.parsedResumeData;
-        if (parsed.content) {
-          // Try to extract profession from the parsed data
-          const experienceData = parsed.content.experience || parsed.content.workExperience;
-          if (experienceData && experienceData.length > 0 && experienceData[0].position) {
-            // Auto-progress to next step
-            setTimeout(() => {
-              setCurrentCard(1); // Move to profession selection
-            }, 500);
-          }
-        }
+        // User can now click "Continue to Editor" button when ready
       } else {
         setParseError(result.error || 'Failed to parse resume. Please try again.');
       }
@@ -475,23 +464,26 @@ const ResumeSetupDialog = ({ open, onOpenChange, onComplete, templateFieldDefini
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.2 }}
                         >
-                          <Alert className="mt-3 sm:mt-4 bg-gradient-to-r from-success/10 to-success/5 border-success shadow-sm">
+                          <Alert className="mt-3 sm:mt-4 bg-gradient-to-r from-success/10 to-success/5 border-success shadow-lg">
                             <Check className="h-3 w-3 sm:h-4 sm:w-4 text-success" />
-                            <AlertDescription className="text-success">
-                              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4">
-                                <span className="text-xs sm:text-sm font-medium">Resume imported successfully!</span>
+                            <AlertDescription>
+                              <div className="space-y-3">
+                                <div className="flex items-start gap-2 sm:gap-3">
+                                  <div className="flex-1">
+                                    <span className="text-xs sm:text-sm font-semibold text-success block">✅ Resume imported successfully!</span>
+                                    <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">
+                                      Your resume has been parsed and is ready to edit.
+                                    </p>
+                                  </div>
+                                </div>
                                 <Button
-                                  variant="outline"
-                                  size="sm"
                                   onClick={handleSkipToEditor}
-                                  className="border-success text-success hover:bg-success/10 text-xs sm:text-sm h-8 sm:h-9 flex-shrink-0"
+                                  className="w-full h-10 sm:h-11 bg-gradient-to-r from-success to-success/80 hover:from-success/90 hover:to-success/70 text-white shadow-md hover:shadow-lg transition-all"
                                 >
-                                  Skip to Editor →
+                                  <FileText className="h-4 w-4 mr-2" />
+                                  Continue to Editor
                                 </Button>
                               </div>
-                              <p className="text-[10px] sm:text-xs text-muted-foreground mt-2">
-                                Click "Skip to Editor" to start editing now, or click "Next" to customize settings first.
-                              </p>
                             </AlertDescription>
                           </Alert>
                         </motion.div>

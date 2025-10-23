@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { isLimitError, parseLimitError } from '../utils/rateLimitHandler.js';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
 
@@ -12,24 +11,11 @@ class ATSScoreService {
     this.api = axios.create({
       baseURL: `${API_BASE_URL}/ats-score`,
       timeout: 60000, // 60 seconds timeout for AI analysis
+      withCredentials: true, // Send cookies with requests (REQUIRED for cookie-based auth)
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
-
-    // Add request interceptor for authentication
-    this.api.interceptors.request.use(
-      (config) => {
-        const token = localStorage.getItem('token');
-        if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      }
-    );
 
     // Add response interceptor for error handling
     this.api.interceptors.response.use(
@@ -71,21 +57,6 @@ class ATSScoreService {
       };
     } catch (error) {
       console.error('ATS score analysis failed:', error);
-      
-      // Check if it's a rate limit or cost limit error
-      if (isLimitError(error)) {
-        const limitError = parseLimitError(error);
-        return {
-          success: false,
-          error: error.response?.data?.error || 'ATS analysis failed',
-          message: error.response?.data?.message || error.message,
-          isLimitError: true,
-          limitError: limitError,
-          hint: error.response?.data?.hint,
-          resetTime: error.response?.data?.resetTime
-        };
-      }
-      
       return {
         success: false,
         error: error.response?.data?.error || 'ATS analysis failed',
@@ -237,21 +208,6 @@ class ATSScoreService {
     } catch (error) {
       console.error('[ATS API] Optimization failed:', error);
       console.error('[ATS API] Error response:', error.response?.data);
-      
-      // Check if it's a rate limit or cost limit error
-      if (isLimitError(error)) {
-        const limitError = parseLimitError(error);
-        return {
-          success: false,
-          error: error.response?.data?.error || 'Resume optimization failed',
-          message: error.response?.data?.message || error.message,
-          isLimitError: true,
-          limitError: limitError,
-          hint: error.response?.data?.hint,
-          resetTime: error.response?.data?.resetTime
-        };
-      }
-      
       return {
         success: false,
         error: error.response?.data?.error || 'Resume optimization failed',

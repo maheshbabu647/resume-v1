@@ -10,10 +10,12 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
-import { Eye, Settings2, RefreshCw, AlertCircle, Edit2, Sparkles } from "lucide-react";
+import { Eye, Settings2, RefreshCw, AlertCircle, Edit2, Sparkles, Lightbulb, Target, Briefcase, GraduationCap, Award, ChevronRight, TrendingUp, Check, X, Zap } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner';
 
 // Custom Components
@@ -627,14 +629,60 @@ const ResumeEditorPage = () => {
 
             {/* Enhance Review Dialog */}
             <Dialog open={isEnhanceReviewOpen} onOpenChange={setIsEnhanceReviewOpen}>
-                <DialogContent className="sm:max-w-3xl bg-card max-h-[80vh] overflow-y-auto">
-                    <DialogHeader>
-                        <DialogTitle className="text-lg font-semibold">Review AI Enhancements</DialogTitle>
-                        <DialogDescription>Compare suggested changes and accept or reject per field. Accepted changes update your form.</DialogDescription>
+                <DialogContent className="sm:max-w-5xl bg-gradient-to-br from-card to-card/80 max-h-[90vh] overflow-hidden flex flex-col">
+                    <DialogHeader className="pb-4 border-b border-border/50">
+                        <div className="flex items-start justify-between gap-4">
+                            <div className="flex items-center gap-3">
+                                <div className="p-2 rounded-lg bg-gradient-to-br from-primary/20 to-accent-purple/20 border border-primary/30">
+                                    <Sparkles className="h-5 w-5 text-primary" />
+                                </div>
+                                <div>
+                                    <DialogTitle className="text-xl font-bold">Review AI Enhancements</DialogTitle>
+                                    <DialogDescription className="text-sm mt-1">
+                                        Compare the improvements and choose what to apply
+                                    </DialogDescription>
+                                </div>
+                            </div>
+                            {enhanceDiffs.length > 0 && (() => {
+                                const sections = Object.entries(
+                                    enhanceDiffs.reduce((acc, diff) => {
+                                        const section = diff.path.split('.')[0];
+                                        if (!acc[section]) acc[section] = [];
+                                        acc[section].push(diff);
+                                        return acc;
+                                    }, {})
+                                ).filter(([sectionName, diffs]) => diffs.length > 0);
+                                
+                                const totalChanges = enhanceDiffs.length;
+                                const acceptedCount = Object.values(enhanceDecisions).filter(d => d === 'accepted').length;
+                                const progressPercent = totalChanges > 0 ? (acceptedCount / totalChanges) * 100 : 0;
+                                
+                                return (
+                                    <div className="hidden sm:flex flex-col items-end gap-2">
+                                        <Badge variant="outline" className="gap-1.5 px-3 py-1">
+                                            <TrendingUp className="h-3.5 w-3.5" />
+                                            {acceptedCount} of {totalChanges} accepted
+                                        </Badge>
+                                        <Progress value={progressPercent} className="w-32 h-2" />
+                                    </div>
+                                );
+                            })()}
+                        </div>
                     </DialogHeader>
-                    <div className="space-y-4">
+                    
+                    <div className="flex-1 overflow-y-auto py-4 px-1">
                         {enhanceDiffs.length === 0 && (
-                            <p className="text-sm text-muted-foreground">No changes suggested.</p>
+                            <motion.div 
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="flex flex-col items-center justify-center py-12 text-center"
+                            >
+                                <div className="p-4 rounded-full bg-muted/50 mb-4">
+                                    <Sparkles className="h-8 w-8 text-muted-foreground" />
+                                </div>
+                                <p className="text-lg font-medium text-muted-foreground">No changes suggested</p>
+                                <p className="text-sm text-muted-foreground/70 mt-1">Your resume looks great already!</p>
+                            </motion.div>
                         )}
                         {enhanceDiffs.length > 0 && (
                             (() => {
@@ -648,10 +696,10 @@ const ResumeEditorPage = () => {
                                     }, {})
                                 ).filter(([sectionName, diffs]) => diffs.length > 0); // Only sections with actual changes
                                 
-                                if (sections.length === 0) return <p className="text-sm text-muted-foreground">No changes suggested.</p>;
+                                if (sections.length === 0) return null;
                                 
                                 const currentSection = sections[currentReviewSection];
-                                if (!currentSection) return <p className="text-sm text-muted-foreground">No more sections to review.</p>;
+                                if (!currentSection) return null;
                                 
                                 const [sectionName, diffs] = currentSection;
                                 
@@ -659,58 +707,108 @@ const ResumeEditorPage = () => {
                                 console.log('[Review] Current section:', sectionName, 'diffs:', diffs.length);
                                 
                                 return (
-                                    <>
-                                        <div className="flex items-center justify-between mb-4">
-                                            <div className="text-sm text-muted-foreground">
-                                                Section {currentReviewSection + 1} of {sections.length}
-                                            </div>
-                                            <div className="flex gap-2">
-                                                <Button
-                                                    size="sm"
-                                                    variant="outline"
-                                                    onClick={() => setCurrentReviewSection(Math.max(0, currentReviewSection - 1))}
-                                                    disabled={currentReviewSection === 0}
-                                                >
-                                                    Previous
-                                                </Button>
-                                                <Button
-                                                    size="sm"
-                                                    variant="outline"
-                                                    onClick={() => setCurrentReviewSection(Math.min(sections.length - 1, currentReviewSection + 1))}
-                                                    disabled={currentReviewSection === sections.length - 1}
-                                                >
-                                                    Next
-                                                </Button>
+                                    <motion.div
+                                        key={currentReviewSection}
+                                        initial={{ opacity: 0, x: 20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -20 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="space-y-4"
+                                    >
+                                        {/* Section Header */}
+                                        <div className="flex items-center justify-between px-2">
+                                            <div className="space-y-1">
+                                                <h3 className="text-lg font-bold capitalize flex items-center gap-2">
+                                                    {sectionName}
+                                                    <Badge variant="secondary" className="text-xs">
+                                                        {diffs.length} change{diffs.length !== 1 ? 's' : ''}
+                                                    </Badge>
+                                                </h3>
+                                                <p className="text-xs text-muted-foreground">
+                                                    Section {currentReviewSection + 1} of {sections.length}
+                                                </p>
                                             </div>
                                         </div>
                                         
-                                        <Card className="border border-border">
-                                            <CardHeader>
-                                                <CardTitle className="text-base">{sectionName} <span className="text-xs font-normal text-muted-foreground">({diffs.length} change{diffs.length !== 1 ? 's' : ''})</span></CardTitle>
-                                            </CardHeader>
-                                            <CardContent className="space-y-3">
-                                                {diffs.map(({ path, before, after }) => {
-                                                    const decision = enhanceDecisions[path];
-                                                    const isAccepted = decision === 'accepted';
-                                                    const isRejected = decision === 'rejected';
-                                                    return (
-                                                    <div key={path} className="p-3 rounded-md border bg-muted/30">
-                                                        <div className="text-xs text-muted-foreground mb-1">{path}</div>
-                                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                                            <div>
-                                                                <Label className="text-xs">Before</Label>
-                                                                <div className="mt-1 text-sm whitespace-pre-wrap bg-background border rounded p-2 min-h-[44px]">
-                                                                    {typeof before === 'string' ? before : (before ? JSON.stringify(before, null, 2) : '\u2014')}
+                                        {/* Changes List */}
+                                        <div className="space-y-3">
+                                            {diffs.map(({ path, before, after }, idx) => {
+                                                const decision = enhanceDecisions[path];
+                                                const isAccepted = decision === 'accepted';
+                                                const isRejected = decision === 'rejected';
+                                                return (
+                                                    <motion.div
+                                                        key={path}
+                                                        initial={{ opacity: 0, y: 10 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        transition={{ delay: idx * 0.05 }}
+                                                        className={cn(
+                                                            "relative p-4 rounded-xl border-2 transition-all",
+                                                            isAccepted && "border-success/50 bg-success/5",
+                                                            isRejected && "border-destructive/50 bg-destructive/5",
+                                                            !isAccepted && !isRejected && "border-border bg-card/50 hover:border-primary/30"
+                                                        )}
+                                                    >
+                                                        {/* Status Badge */}
+                                                        {(isAccepted || isRejected) && (
+                                                            <div className="absolute -top-2 -right-2">
+                                                                <Badge 
+                                                                    className={cn(
+                                                                        "gap-1 shadow-lg",
+                                                                        isAccepted && "bg-success text-white border-success",
+                                                                        isRejected && "bg-destructive text-white border-destructive"
+                                                                    )}
+                                                                >
+                                                                    {isAccepted ? <Check className="h-3 w-3" /> : <X className="h-3 w-3" />}
+                                                                    {isAccepted ? 'Applied' : 'Rejected'}
+                                                                </Badge>
+                                                            </div>
+                                                        )}
+                                                        
+                                                        {/* Path Label */}
+                                                        <div className="flex items-center gap-2 mb-3">
+                                                            <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+                                                            <p className="text-xs font-medium text-muted-foreground">{path}</p>
+                                                        </div>
+                                                        
+                                                        {/* Before/After Comparison */}
+                                                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+                                                            {/* Before */}
+                                                            <div className="space-y-2">
+                                                                <div className="flex items-center gap-2">
+                                                                    <div className="px-2 py-0.5 rounded bg-destructive/10 border border-destructive/30">
+                                                                        <span className="text-xs font-semibold text-destructive">Before</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="relative p-3 rounded-lg bg-background border border-border min-h-[60px] text-sm leading-relaxed">
+                                                                    {typeof before === 'string' && before ? (
+                                                                        <p className="whitespace-pre-wrap text-muted-foreground">{before}</p>
+                                                                    ) : (
+                                                                        <span className="text-muted-foreground/50 italic">Empty</span>
+                                                                    )}
                                                                 </div>
                                                             </div>
-                                                            <div>
-                                                                <Label className="text-xs">After</Label>
-                                                                <div className="mt-1 text-sm whitespace-pre-wrap bg-background border rounded p-2 min-h-[44px]">
-                                                                    {typeof after === 'string' ? after : (after ? JSON.stringify(after, null, 2) : '\u2014')}
+                                                            
+                                                            {/* After */}
+                                                            <div className="space-y-2">
+                                                                <div className="flex items-center gap-2">
+                                                                    <div className="px-2 py-0.5 rounded bg-success/10 border border-success/30">
+                                                                        <span className="text-xs font-semibold text-success">After (AI Enhanced)</span>
+                                                                    </div>
+                                                                    <Sparkles className="h-3.5 w-3.5 text-primary" />
+                                                                </div>
+                                                                <div className="relative p-3 rounded-lg bg-primary/5 border-2 border-primary/20 min-h-[60px] text-sm leading-relaxed">
+                                                                    {typeof after === 'string' && after ? (
+                                                                        <p className="whitespace-pre-wrap font-medium">{after}</p>
+                                                                    ) : (
+                                                                        <span className="text-muted-foreground/50 italic">Empty</span>
+                                                                    )}
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div className="mt-2 flex items-center gap-2">
+                                                        
+                                                        {/* Action Buttons */}
+                                                        <div className="flex items-center gap-2 pt-2 border-t border-border/50">
                                                             {!isAccepted && !isRejected && (
                                                                 <>
                                                                     <Button
@@ -721,78 +819,302 @@ const ResumeEditorPage = () => {
                                                                                 setEnhanceDecisions(prev => ({ ...prev, [path]: 'accepted' }));
                                                                             } catch (e) { console.warn('Apply change failed', e); }
                                                                         }}
-                                                                    >Accept</Button>
+                                                                        className="flex-1 gap-2 bg-success hover:bg-success/90 text-white"
+                                                                    >
+                                                                        <Check className="h-3.5 w-3.5" />
+                                                                        Accept Change
+                                                                    </Button>
                                                                     <Button
                                                                         size="sm"
                                                                         variant="outline"
                                                                         onClick={() => setEnhanceDecisions(prev => ({ ...prev, [path]: 'rejected' }))}
-                                                                    >Reject</Button>
+                                                                        className="flex-1 gap-2 border-2"
+                                                                    >
+                                                                        <X className="h-3.5 w-3.5" />
+                                                                        Reject
+                                                                    </Button>
                                                                 </>
                                                             )}
-                                                            {isAccepted && (
-                                                                <Button size="sm" disabled className="bg-green-600 text-white hover:bg-green-600 cursor-default">Accepted</Button>
-                                                            )}
-                                                            {isRejected && (
-                                                                <Button size="sm" disabled variant="destructive" className="cursor-default">Rejected</Button>
-                                                            )}
                                                             {(isAccepted || isRejected) && (
-                                                                <Button size="sm" variant="ghost" className="text-xs" onClick={() => setEnhanceDecisions(prev => { const copy = { ...prev }; delete copy[path]; return copy; })}>Undo</Button>
+                                                                <Button 
+                                                                    size="sm" 
+                                                                    variant="ghost" 
+                                                                    onClick={() => setEnhanceDecisions(prev => { const copy = { ...prev }; delete copy[path]; return copy; })}
+                                                                    className="w-full gap-2"
+                                                                >
+                                                                    <RefreshCw className="h-3.5 w-3.5" />
+                                                                    Undo Decision
+                                                                </Button>
                                                             )}
                                                         </div>
-                                                    </div>
-                                                    );
-                                                })}
-                                            </CardContent>
-                                        </Card>
-                                    </>
+                                                    </motion.div>
+                                                );
+                                            })}
+                                        </div>
+                                    </motion.div>
                                 );
                             })()
                         )}
                     </div>
-                    <DialogFooter>
-                        <Button type="button" variant="secondary" onClick={() => setIsEnhanceReviewOpen(false)}>Done</Button>
-                    </DialogFooter>
+                    
+                    {/* Footer with Navigation */}
+                    <div className="border-t border-border/50 pt-4 pb-2 space-y-3">
+                        {enhanceDiffs.length > 0 && (() => {
+                            const sections = Object.entries(
+                                enhanceDiffs.reduce((acc, diff) => {
+                                    const section = diff.path.split('.')[0];
+                                    if (!acc[section]) acc[section] = [];
+                                    acc[section].push(diff);
+                                    return acc;
+                                }, {})
+                            ).filter(([sectionName, diffs]) => diffs.length > 0);
+                            
+                            if (sections.length === 0) return null;
+                            
+                            return (
+                                <>
+                                    {/* Progress on Mobile */}
+                                    <div className="sm:hidden flex items-center justify-between px-2">
+                                        <span className="text-xs text-muted-foreground">
+                                            {Object.values(enhanceDecisions).filter(d => d === 'accepted').length} of {enhanceDiffs.length} accepted
+                                        </span>
+                                        <Progress 
+                                            value={(Object.values(enhanceDecisions).filter(d => d === 'accepted').length / enhanceDiffs.length) * 100} 
+                                            className="w-24 h-2" 
+                                        />
+                                    </div>
+                                    
+                                    {/* Navigation Buttons */}
+                                    <div className="flex items-center justify-between gap-3">
+                                        <Button
+                                            variant="outline"
+                                            onClick={() => setCurrentReviewSection(Math.max(0, currentReviewSection - 1))}
+                                            disabled={currentReviewSection === 0}
+                                            className="flex-1 sm:flex-none gap-2 border-2"
+                                        >
+                                            <ChevronRight className="h-4 w-4 rotate-180" />
+                                            <span className="hidden sm:inline">Previous</span>
+                                        </Button>
+                                        
+                                        <div className="flex items-center gap-1.5">
+                                            {sections.map((_, idx) => (
+                                                <button
+                                                    key={idx}
+                                                    onClick={() => setCurrentReviewSection(idx)}
+                                                    className={cn(
+                                                        "h-2 rounded-full transition-all",
+                                                        currentReviewSection === idx ? "w-8 bg-primary" : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                                                    )}
+                                                    aria-label={`Go to section ${idx + 1}`}
+                                                />
+                                            ))}
+                                        </div>
+                                        
+                                        <Button
+                                            variant="outline"
+                                            onClick={() => {
+                                                if (currentReviewSection === sections.length - 1) {
+                                                    setIsEnhanceReviewOpen(false);
+                                                } else {
+                                                    setCurrentReviewSection(Math.min(sections.length - 1, currentReviewSection + 1));
+                                                }
+                                            }}
+                                            className={cn(
+                                                "flex-1 sm:flex-none gap-2 border-2",
+                                                currentReviewSection === sections.length - 1 && "bg-primary text-primary-foreground hover:bg-primary/90"
+                                            )}
+                                        >
+                                            <span className="hidden sm:inline">
+                                                {currentReviewSection === sections.length - 1 ? 'Finish' : 'Next'}
+                                            </span>
+                                            <span className="sm:hidden">
+                                                {currentReviewSection === sections.length - 1 ? 'Done' : 'Next'}
+                                            </span>
+                                            {currentReviewSection === sections.length - 1 ? (
+                                                <Check className="h-4 w-4" />
+                                            ) : (
+                                                <ChevronRight className="h-4 w-4" />
+                                            )}
+                                        </Button>
+                                    </div>
+                                </>
+                            );
+                        })()}
+                        
+                        {enhanceDiffs.length === 0 && (
+                            <Button 
+                                type="button" 
+                                onClick={() => setIsEnhanceReviewOpen(false)}
+                                className="w-full"
+                            >
+                                Close
+                            </Button>
+                        )}
+                    </div>
                 </DialogContent>
             </Dialog>
 
             {/* Enhance Entire Resume - Notes Dialog */}
             <Dialog open={isEnhanceDialogOpen} onOpenChange={(open) => { if (!isEnhancing) setIsEnhanceDialogOpen(open); }}>
-                <DialogContent className="sm:max-w-md bg-card">
+                <DialogContent className="sm:max-w-2xl bg-gradient-to-br from-card to-card/80 border-primary/20 max-h-[90vh] overflow-y-auto">
                     <DialogHeader>
-                        <DialogTitle className="flex items-center text-lg font-semibold">
-                            <Sparkles className="h-5 w-5 mr-2 text-primary" /> Enhance Entire Resume
-                        </DialogTitle>
-                        <DialogDescription>Provide optional notes to guide enhancements. These will be sent along with your resume data and setup context.</DialogDescription>
+                        <div className="flex items-center gap-3 mb-2">
+                            <div className="p-2 rounded-lg bg-primary/10">
+                                <Sparkles className="h-6 w-6 text-primary" />
+                            </div>
+                            <div>
+                                <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-accent-purple bg-clip-text text-transparent">
+                                    Enhance Your Resume
+                                </DialogTitle>
+                                <DialogDescription className="text-sm mt-1">
+                                    Let AI transform your resume into a professional masterpiece
+                                </DialogDescription>
+                            </div>
+                        </div>
                     </DialogHeader>
-                    <div className="space-y-4">
-                        <div>
-                            <Label htmlFor="enhance-notes" className="text-sm font-medium">Additional Notes (Optional)</Label>
+                    
+                    <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="space-y-5 py-2"
+                    >
+                        {/* Example Prompts */}
+                        <div className="space-y-3">
+                            <div className="flex items-center gap-2 mb-3">
+                                <Lightbulb className="h-4 w-4 text-yellow-500" />
+                                <Label className="text-sm font-semibold">Quick Examples (Click to Use)</Label>
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                {[
+                                    { icon: Target, text: "Make it more achievement-focused", color: "border-blue-500/30 hover:border-blue-500 hover:bg-blue-500/5" },
+                                    { icon: Briefcase, text: "Optimize for leadership roles", color: "border-purple-500/30 hover:border-purple-500 hover:bg-purple-500/5" },
+                                    { icon: GraduationCap, text: "Emphasize technical skills", color: "border-green-500/30 hover:border-green-500 hover:bg-green-500/5" },
+                                    { icon: Award, text: "Highlight quantifiable results", color: "border-orange-500/30 hover:border-orange-500 hover:bg-orange-500/5" },
+                                    { icon: TrendingUp, text: "Add more action verbs", color: "border-pink-500/30 hover:border-pink-500 hover:bg-pink-500/5" },
+                                    { icon: Zap, text: "Make it more concise", color: "border-cyan-500/30 hover:border-cyan-500 hover:bg-cyan-500/5" },
+                                ].map((example, idx) => (
+                                    <motion.button
+                                        key={idx}
+                                        type="button"
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: idx * 0.05 }}
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        onClick={() => setEnhanceUserNotes(example.text)}
+                                        disabled={isEnhancing}
+                                        className={cn(
+                                            "flex items-center gap-2 p-3 rounded-lg border-2 transition-all text-left",
+                                            "bg-card/50 backdrop-blur-sm",
+                                            example.color,
+                                            isEnhancing && "opacity-50 cursor-not-allowed"
+                                        )}
+                                    >
+                                        <example.icon className="h-4 w-4 flex-shrink-0 opacity-70" />
+                                        <span className="text-xs font-medium">{example.text}</span>
+                                    </motion.button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Custom Input */}
+                        <div className="space-y-2">
+                            <Label htmlFor="enhance-notes" className="text-sm font-semibold flex items-center gap-2">
+                                <Edit2 className="h-3.5 w-3.5" />
+                                Or Write Your Own Instructions
+                            </Label>
                             <Textarea
                                 id="enhance-notes"
-                                placeholder="Add any specific preferences or guidance for improving your resume..."
+                                placeholder="e.g., Focus on project management experience and leadership skills..."
                                 value={enhanceUserNotes}
                                 onChange={(e) => setEnhanceUserNotes(e.target.value)}
-                                rows={5}
-                                className="mt-1"
+                                rows={4}
+                                className="resize-none border-2 focus:border-primary transition-colors"
                                 disabled={isEnhancing}
                             />
+                            {enhanceUserNotes && (
+                                <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: "auto" }}
+                                    className="flex items-center gap-2 text-xs text-muted-foreground"
+                                >
+                                    <Check className="h-3 w-3 text-success" />
+                                    <span>{enhanceUserNotes.length} characters</span>
+                                    <Button
+                                        type="button"
+                                        variant="ghost"
+                                        size="sm"
+                                        onClick={() => setEnhanceUserNotes('')}
+                                        disabled={isEnhancing}
+                                        className="h-6 px-2 ml-auto"
+                                    >
+                                        Clear
+                                    </Button>
+                                </motion.div>
+                            )}
                         </div>
-                    </div>
-                    <DialogFooter>
+
+                        {/* Info Card */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.3 }}
+                            className="p-4 rounded-lg bg-primary/5 border border-primary/20"
+                        >
+                            <div className="flex gap-3">
+                                <Sparkles className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                                <div className="space-y-1 text-xs text-muted-foreground">
+                                    <p className="font-medium text-foreground">AI will analyze your resume and:</p>
+                                    <ul className="space-y-1 ml-1">
+                                        <li className="flex items-center gap-2">
+                                            <div className="h-1 w-1 rounded-full bg-primary" />
+                                            Improve clarity and impact of your descriptions
+                                        </li>
+                                        <li className="flex items-center gap-2">
+                                            <div className="h-1 w-1 rounded-full bg-primary" />
+                                            Optimize keyword usage for ATS systems
+                                        </li>
+                                        <li className="flex items-center gap-2">
+                                            <div className="h-1 w-1 rounded-full bg-primary" />
+                                            Suggest improvements based on your notes
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                    
+                    <DialogFooter className="gap-2 sm:gap-0 mt-2">
                         <DialogClose asChild>
-                            <Button type="button" variant="outline" disabled={isEnhancing}>Cancel</Button>
+                            <Button 
+                                type="button" 
+                                variant="outline" 
+                                disabled={isEnhancing}
+                                className="border-2"
+                            >
+                                Cancel
+                            </Button>
                         </DialogClose>
-                        <Button onClick={handleEnhanceEntireResume} disabled={isEnhancing}>
+                        <Button 
+                            onClick={handleEnhanceEntireResume} 
+                            disabled={isEnhancing}
+                            className="bg-gradient-to-r from-primary to-accent-purple hover:opacity-90 transition-opacity gap-2 min-w-[140px]"
+                            size="lg"
+                        >
                             {isEnhancing ? (
                                 <>
-                                    <svg className="mr-2 h-4 w-4 animate-spin" viewBox="0 0 24 24">
+                                    <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24">
                                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
                                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
                                     </svg>
-                                    Generating...
+                                    Enhancing...
                                 </>
                             ) : (
-                                'Generate'
+                                <>
+                                    <Sparkles className="h-4 w-4" />
+                                    Enhance Resume
+                                </>
                             )}
                         </Button>
                     </DialogFooter>

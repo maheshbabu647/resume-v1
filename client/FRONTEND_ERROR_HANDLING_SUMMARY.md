@@ -320,3 +320,4 @@ Your frontend now has:
 **Documentation**: See `client/RATE_LIMIT_FRONTEND_GUIDE.md` for complete guide
 **Live Implementation**: Check `ATSCheckerPage.jsx` and `ResultsStep.jsx`
 
+

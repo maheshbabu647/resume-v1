@@ -6,13 +6,14 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Loader2, Sparkles, Clipboard, Check, AlertCircle, Save, Download } from 'lucide-react';
+import { Loader2, Sparkles, Clipboard, Check, AlertCircle, Save, Download, LogIn } from 'lucide-react';
 import { generateCoverLetter, saveCoverLetter } from '@/api/coverLetterServiceApi';
 import useAuthContext from '@/hooks/useAuth';
 import { useCoverLetterContext } from '@/context/CoverLetterContext';
+import AuthDialog from '@/components/Auth/AuthDialog';
 
 const CoverLetterGenerator = ({ onLetterSaved }) => {
-  const { userData } = useAuthContext();
+  const { userData, isAuthenticated } = useAuthContext();
   
   const [formData, setFormData] = useState({
     userName: userData?.userName || '',
@@ -26,6 +27,7 @@ const CoverLetterGenerator = ({ onLetterSaved }) => {
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState(null);
   const [isCopied, setIsCopied] = useState(false);
+  const [showAuthDialog, setShowAuthDialog] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,22 +35,48 @@ const CoverLetterGenerator = ({ onLetterSaved }) => {
 
   const handleGenerate = async (e) => {
     e.preventDefault();
+    
+    // Check if user is authenticated
+    if (!isAuthenticated) {
+      console.log('User not authenticated, showing auth dialog');
+      setShowAuthDialog(true);
+      return;
+    }
+
     setIsLoading(true);
     setError(null);
     setGeneratedLetter('');
+    
     try {
       const response = await generateCoverLetter(formData);
       setGeneratedLetter(response.coverLetterContent);
     } catch (err) {
-      setError(err.message || 'Failed to generate cover letter. Please try again.');
+      console.error('Cover letter generation error:', err);
+      
+      // Check if it's an authentication error
+      if (err.response?.status === 401 || err.message?.includes('authorization') || err.message?.includes('token')) {
+        console.log('Authentication error detected, showing auth dialog');
+        setShowAuthDialog(true);
+        setError('Please sign in to generate cover letters.');
+      } else {
+        setError(err.message || 'Failed to generate cover letter. Please try again.');
+      }
     } finally {
       setIsLoading(false);
     }
   };
   
   const handleSave = async () => {
+    // Check if user is authenticated
+    if (!isAuthenticated) {
+      console.log('User not authenticated, showing auth dialog');
+      setShowAuthDialog(true);
+      return;
+    }
+
     setIsSaving(true);
     setError(null);
+    
     try {
       const payload = {
         companyName: formData.companyName,
@@ -64,7 +92,16 @@ const CoverLetterGenerator = ({ onLetterSaved }) => {
         onLetterSaved();
       }
     } catch (err) {
-      setError(err.message || 'Failed to save the cover letter.');
+      console.error('Cover letter save error:', err);
+      
+      // Check if it's an authentication error
+      if (err.response?.status === 401 || err.message?.includes('authorization') || err.message?.includes('token')) {
+        console.log('Authentication error detected, showing auth dialog');
+        setShowAuthDialog(true);
+        setError('Please sign in to save cover letters.');
+      } else {
+        setError(err.message || 'Failed to save the cover letter.');
+      }
     } finally {
       setIsSaving(false);
     }
@@ -105,7 +142,64 @@ const CoverLetterGenerator = ({ onLetterSaved }) => {
     URL.revokeObjectURL(url);
   };
 
+  const handleSaveFormDataBeforeOAuth = () => {
+    // Save form data to localStorage before OAuth redirect
+    try {
+      const formDataToSave = {
+        ...formData,
+        timestamp: Date.now()
+      };
+      console.log('💾 Saving cover letter form data before OAuth redirect:', formDataToSave);
+      localStorage.setItem('cover_letter_form_data', JSON.stringify(formDataToSave));
+      console.log('✅ Form data saved to localStorage');
+    } catch (error) {
+      console.error('❌ Failed to save form data to localStorage:', error);
+    }
+  };
+
+  const handleAuthSuccess = () => {
+    console.log('Authentication successful');
+    setShowAuthDialog(false);
+    setError(null);
+  };
+
+  // Restore form data after OAuth redirect
+  React.useEffect(() => {
+    try {
+      const savedData = localStorage.getItem('cover_letter_form_data');
+      if (savedData) {
+        console.log('🔄 Found saved form data, restoring...');
+        const parsedData = JSON.parse(savedData);
+        
+        // Check if data is not too old (within 1 hour)
+        const oneHour = 60 * 60 * 1000;
+        if (Date.now() - parsedData.timestamp < oneHour) {
+          console.log('✅ Restoring form data:', parsedData);
+          
+          // Restore the form data (excluding timestamp)
+          const { timestamp, ...restoredFormData } = parsedData;
+          setFormData(prevData => ({
+            ...prevData,
+            ...restoredFormData
+          }));
+          
+          console.log('✅ Form data restored successfully');
+          
+          // Clear the saved data after restoring
+          localStorage.removeItem('cover_letter_form_data');
+        } else {
+          console.log('⏰ Saved data is too old, removing...');
+          localStorage.removeItem('cover_letter_form_data');
+        }
+      }
+    } catch (error) {
+      console.error('❌ Failed to restore form data:', error);
+      localStorage.removeItem('cover_letter_form_data');
+    }
+  }, []);
+
   return (
+    <>
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
         <Card>
@@ -158,7 +252,25 @@ const CoverLetterGenerator = ({ onLetterSaved }) => {
                 rows={20}
                 placeholder="Your AI-generated cover letter will appear here."
             />
-            {error && <Alert variant="destructive" className="mt-4"><AlertCircle className="h-4 w-4" /><AlertDescription>{error}</AlertDescription></Alert>}
+            {error && (
+              <Alert variant={error.includes('sign in') ? 'default' : 'destructive'} className={error.includes('sign in') ? 'mt-4 border-primary/50 bg-primary/5' : 'mt-4'}>
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle>{error.includes('sign in') ? 'Authentication Required' : 'Error'}</AlertTitle>
+                <AlertDescription className="flex items-center justify-between gap-2">
+                  <span>{error}</span>
+                  {error.includes('sign in') && (
+                    <Button 
+                      size="sm" 
+                      onClick={() => setShowAuthDialog(true)}
+                      className="ml-2"
+                    >
+                      <LogIn className="h-3 w-3 mr-1" />
+                      Sign In
+                    </Button>
+                  )}
+                </AlertDescription>
+              </Alert>
+            )}
             <div className="flex flex-col gap-2 mt-4">
                 <Button onClick={handleSave} disabled={!generatedLetter || isSaving} className="w-full">
                 {isSaving ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...</> : <><Save className="mr-2 h-4 w-4" />Save Letter</>}
@@ -176,6 +288,15 @@ const CoverLetterGenerator = ({ onLetterSaved }) => {
         </Card>
         </motion.div>
     </div>
+    
+    {/* Authentication Dialog */}
+    <AuthDialog 
+      open={showAuthDialog} 
+      onOpenChange={setShowAuthDialog}
+      onSuccess={handleAuthSuccess}
+      onSaveFormData={handleSaveFormDataBeforeOAuth}
+    />
+    </>
   );
 };
 

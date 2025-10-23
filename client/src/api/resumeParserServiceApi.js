@@ -12,21 +12,8 @@ class ResumeParserService {
     this.api = axios.create({
       baseURL: `${API_BASE_URL}/resume-parser`,
       timeout: 60000, // 60 seconds timeout for AI processing
+      withCredentials: true, // Send cookies with requests (REQUIRED for cookie-based auth)
     });
-
-    // Add request interceptor for authentication (if needed)
-    this.api.interceptors.request.use(
-      (config) => {
-        const token = localStorage.getItem('token');
-        if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      }
-    );
 
     // Add response interceptor for error handling
     this.api.interceptors.response.use(

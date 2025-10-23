@@ -1074,7 +1074,7 @@ const ATSCheckerPage = () => {
   const [analysisProgress, setAnalysisProgress] = useState('');
   const [resumeText, setResumeText] = useState('');
   const [jobDescriptionText, setJobDescriptionText] = useState('');
-  const [limitError, setLimitError] = useState(null); // NEW: For displaying limit errors
+  const [limitError, setLimitError] = useState(null); // For displaying limit errors
 
   // Restore ATS data after OAuth redirect
   React.useEffect(() => {
@@ -1286,8 +1286,7 @@ const ATSCheckerPage = () => {
                       limitError={limitError}
                       onSignUp={() => {
                         setLimitError(null);
-                        // You can add auth dialog here if needed
-                        // For now, redirect to signup
+                        // Redirect to signup or open auth dialog
                         window.location.href = '/signup';
                       }}
                       onClose={() => setLimitError(null)}

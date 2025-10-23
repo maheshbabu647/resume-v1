@@ -11,24 +11,11 @@ class TextExtractionService {
     this.api = axios.create({
       baseURL: `${API_BASE_URL}/text-extraction`,
       timeout: 30000, // 30 seconds timeout for file uploads
+      withCredentials: true, // Send cookies with requests (REQUIRED for cookie-based auth)
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
-
-    // Add request interceptor for authentication
-    this.api.interceptors.request.use(
-      (config) => {
-        const token = localStorage.getItem('token');
-        if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      }
-    );
 
     // Add response interceptor for error handling
     this.api.interceptors.response.use(

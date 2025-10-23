@@ -111,7 +111,7 @@ const ResultsStep = ({ results, onReset, resumeFile, jobDescriptionFile, resumeT
   const [isLoadingTemplates, setIsLoadingTemplates] = useState(false);
   const [isOptimizing, setIsOptimizing] = useState(false);
   const [showAuthDialog, setShowAuthDialog] = useState(false);
-  const [limitError, setLimitError] = useState(null); // NEW: For displaying limit errors
+  const [limitError, setLimitError] = useState(null); // For displaying limit errors
   const { atsScore, scoreInterpretation, keywordMatch, skillsMatch, suggestions, strengths, improvements } = results;
 
   const handleGetOptimizedResume = async () => {
