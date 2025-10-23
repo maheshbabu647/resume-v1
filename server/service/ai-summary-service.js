@@ -84,7 +84,7 @@ export const generateAIFieldContent = async ({
   localContext = {},
   userNotes = ''
 }) => {
-  console.log(globalContext)
+
   const safeFieldLabel = fieldLabel || fieldName || 'this field';
 
   const prompt = `You are assisting with writing content for a resume field: "${safeFieldLabel}".

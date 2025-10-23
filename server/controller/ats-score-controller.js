@@ -218,6 +218,74 @@ class ATSScoreController {
   }
 
   /**
+   * Generate ATS-optimized resume content
+   * @param {Object} req - Express request object
+   * @param {Object} res - Express response object
+   */
+  static async generateOptimizedResume(req, res) {
+    try {
+      logger.info('[ATSScore] Received optimization request');
+      logger.info(`[ATSScore] Request body keys: ${Object.keys(req.body).join(', ')}`);
+      
+      const { resumeText, jobDescriptionText, atsResults, templateFieldDefinition } = req.body;
+
+      logger.info(`[ATSScore] Resume text length: ${resumeText?.length || 0}`);
+      logger.info(`[ATSScore] Job desc text length: ${jobDescriptionText?.length || 0}`);
+      logger.info(`[ATSScore] ATS Results present: ${!!atsResults}`);
+      logger.info(`[ATSScore] Template field def present: ${!!templateFieldDefinition}`);
+
+      // Validate required fields
+      if (!resumeText || !jobDescriptionText || !atsResults) {
+        const missing = [];
+        if (!resumeText) missing.push('resumeText');
+        if (!jobDescriptionText) missing.push('jobDescriptionText');
+        if (!atsResults) missing.push('atsResults');
+        
+        logger.warn(`[ATSScore] Missing required fields: ${missing.join(', ')}`);
+        return res.status(400).json({
+          success: false,
+          error: 'Missing required fields',
+          message: `Missing required fields: ${missing.join(', ')}`
+        });
+      }
+
+      logger.info('[ATSScore] All required fields validated, generating optimized resume content');
+
+      // Generate optimized resume
+      const result = await ATSScoreService.generateOptimizedResume(
+        resumeText,
+        jobDescriptionText,
+        atsResults,
+        templateFieldDefinition
+      );
+
+      if (!result.success) {
+        logger.error(`[ATSScore] Optimization failed: ${result.error}`);
+        return res.status(500).json({
+          success: false,
+          error: 'Resume optimization failed',
+          message: result.message
+        });
+      }
+
+      logger.info('[ATSScore] Successfully generated optimized resume');
+
+      res.status(200).json({
+        success: true,
+        data: result.data
+      });
+
+    } catch (error) {
+      logger.error(`[ATSScore] Optimization error: ${error.message}`);
+      res.status(500).json({
+        success: false,
+        error: 'Resume optimization failed',
+        message: error.message
+      });
+    }
+  }
+
+  /**
    * Health check for ATS score service
    * @param {Object} req - Express request object
    * @param {Object} res - Express response object
@@ -232,7 +300,8 @@ class ATSScoreController {
           'Resume and job description analysis',
           'ATS compatibility scoring',
           'AI-powered suggestions',
-          'Keyword matching analysis'
+          'Keyword matching analysis',
+          'ATS-optimized resume generation'
         ]
       });
     } catch (error) {

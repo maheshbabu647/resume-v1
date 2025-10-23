@@ -3,6 +3,21 @@ import multer from 'multer';
 import { body } from 'express-validator';
 import ATSScoreController from '../controller/ats-score-controller.js';
 import logger from '../config/logger.js';
+import { 
+  optionalAuth, 
+  atsAnalysisLimiter, 
+  atsOptimizationLimiter 
+} from '../middleware/tiered-rate-limit.js';
+import { 
+  validateATSRequest, 
+  validateOptimizationRequest,
+  suspiciousActivityDetector 
+} from '../middleware/request-validation.js';
+import { 
+  costLimitMiddleware, 
+  injectCostRecording 
+} from '../middleware/cost-monitor.js';
+import userAuthorization from '../middleware/user-authorization.js';
 
 const router = express.Router();
 
@@ -151,10 +166,26 @@ const validateATSAnalysis = [
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-router.post('/analyze', upload.fields([
-  { name: 'resume', maxCount: 1 },
-  { name: 'jobDescription', maxCount: 1 }
-]), validateATSAnalysis, ATSScoreController.analyzeATSScore);
+/**
+ * ATS Score Analysis - FREE with limits
+ * - Free users: 3 per hour (try before signup)
+ * - Authenticated: 20 per hour
+ * - Cost monitoring and validation applied
+ */
+router.post('/analyze', 
+  optionalAuth,                           // Extract user if present (doesn't fail if not)
+  suspiciousActivityDetector,             // Detect abuse patterns
+  atsAnalysisLimiter,                     // Tiered rate limiting (3/hr free, 20/hr auth)
+  upload.fields([
+    { name: 'resume', maxCount: 1 },
+    { name: 'jobDescription', maxCount: 1 }
+  ]),
+  validateATSAnalysis,                    // Original validation
+  validateATSRequest,                     // Additional security validation
+  costLimitMiddleware('ats_analysis'),    // Cost circuit breaker
+  injectCostRecording,                    // Record cost after success
+  ATSScoreController.analyzeATSScore
+);
 
 /**
  * @swagger
@@ -191,6 +222,76 @@ router.post('/analyze', upload.fields([
  *               $ref: '#/components/schemas/ErrorResponse'
  */
 router.get('/guide', ATSScoreController.getScoreGuide);
+
+/**
+ * @swagger
+ * /api/ats-score/optimize:
+ *   post:
+ *     summary: Generate ATS-optimized resume content
+ *     tags: [ATS Score]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - resumeText
+ *               - jobDescriptionText
+ *               - atsResults
+ *             properties:
+ *               resumeText:
+ *                 type: string
+ *                 description: Original resume text
+ *               jobDescriptionText:
+ *                 type: string
+ *                 description: Job description text
+ *               atsResults:
+ *                 type: object
+ *                 description: ATS analysis results
+ *               templateFieldDefinition:
+ *                 type: array
+ *                 description: Template field definitions
+ *     responses:
+ *       200:
+ *         description: Optimized resume generated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   type: object
+ *       400:
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+/**
+ * ATS Optimization - REQUIRES AUTHENTICATION
+ * - This is a premium feature (already protected in frontend)
+ * - Added backend protection as defense-in-depth
+ * - Free tier gets 1/hr as fallback, authenticated gets 10/hr
+ */
+router.post('/optimize',
+  userAuthorization,                         // MUST be authenticated
+  suspiciousActivityDetector,                // Detect abuse patterns
+  atsOptimizationLimiter,                    // Rate limiting (backup)
+  validateOptimizationRequest,               // Validate request
+  costLimitMiddleware('ats_optimization'),   // Cost circuit breaker
+  injectCostRecording,                       // Record cost after success
+  ATSScoreController.generateOptimizedResume
+);
 
 /**
  * @swagger

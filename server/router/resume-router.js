@@ -2,6 +2,9 @@ import express from 'express'
 import rateLimit from 'express-rate-limit'
 
 import userAuthorization from '../middleware/user-authorization.js'
+import { optionalAuth, fieldEnhancementLimiter } from '../middleware/tiered-rate-limit.js'
+import { validateFieldEnhancementRequest, suspiciousActivityDetector } from '../middleware/request-validation.js'
+import { costLimitMiddleware, injectCostRecording } from '../middleware/cost-monitor.js'
 import {
   createResume,
   deleteResume,
@@ -136,45 +139,56 @@ resumeRouter.post('/download',
   downlaodResume
 )
 
+/**
+ * Generate Resume Summary - REQUIRES AUTHENTICATION
+ * - AI-powered summary generation
+ */
 resumeRouter.post(
   '/generate-summary',
   userAuthorization,
   summaryLimiter,
   resumeValidatorsMode('generateSummary'),
   resumeValidation,
+  costLimitMiddleware('summary_generate'),    // Cost circuit breaker
+  injectCostRecording,                        // Record cost after success
   generateResumeSummary
 )
 
+/**
+ * Field Content Enhancement - FREE with limits
+ * - Free users: 10/hr (try AI writing assistance)
+ * - Authenticated: 50/hr (can enhance whole resume field by field)
+ * This allows users to experience AI quality before signup
+ */
 resumeRouter.post(
   '/generate-field-content',
-  userAuthorization,
-  fieldGenLimiter,
-  resumeValidatorsMode('generateFieldContent'),
+  optionalAuth,                                 // Extract user if present (doesn't require auth)
+  suspiciousActivityDetector,                   // Detect abuse patterns
+  fieldEnhancementLimiter,                      // Tiered rate limiting (10/hr free, 50/hr auth)
+  resumeValidatorsMode('generateFieldContent'), // Original validation
   resumeValidation,
+  validateFieldEnhancementRequest,              // Security validation
+  costLimitMiddleware('field_enhance'),         // Cost circuit breaker
+  injectCostRecording,                          // Record cost after success
   generateFieldContent
 )
 
+/**
+ * Enhance Entire Resume - REQUIRES AUTHENTICATION
+ * - Premium feature (already protected in frontend)
+ * - Most expensive AI operation
+ */
 resumeRouter.post(
   '/enhance-entire',
-  userAuthorization,
-  enhanceLimiter,
+  userAuthorization,                          // MUST be authenticated
+  enhanceLimiter,                             // Rate limiting (5/hr)
   resumeValidatorsMode('enhanceEntire'),
   resumeValidation,
+  costLimitMiddleware('enhance_entire'),      // Cost circuit breaker
+  injectCostRecording,                        // Record cost after success
   enhanceEntireResume
 )
 
-
-
-resumeRouter.get('/field', async(req, res)=>{
-    
-  const model = vertex_ai.getGenerativeModel({ model: 'gemini-1.5-flash' });
-
-    const prompt = `Generate 5 professional and impactful resume bullet points for a Ml Engineer. Focus on achievements, use action verbs, and include quantifiable metrics where possible.`;
-
-    const result = await model.generateContent(prompt);
-    const responseText = result.response.candidates[0].content.parts[0].text;
-    console.log(responseText)
-    res.json({ bulletPoints: responseText });
-  })
+// NOTE: Test endpoint removed for security. Use proper endpoints instead.
 
 export default resumeRouter

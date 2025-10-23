@@ -1,6 +1,7 @@
 import express from 'express'
 import rateLimit from 'express-rate-limit'
 import userAuthorization from '../middleware/user-authorization.js'
+import { costLimitMiddleware, injectCostRecording } from '../middleware/cost-monitor.js'
 import {
   generateCoverLetter,
   saveCoverLetter,
@@ -38,12 +39,15 @@ const mutationLimiter = rateLimit({
 // --- Cover Letter Routes ---
 
 // Generate a new cover letter (does not save)
+// REQUIRES AUTHENTICATION + Cost monitoring
 coverLetterRouter.post(
   '/generate',
   userAuthorization,
   generationLimiter,
   coverLetterValidatorsMode('generate'),
   coverLetterValidation,
+  costLimitMiddleware('cover_letter'),        // Cost circuit breaker
+  injectCostRecording,                        // Record cost after success
   generateCoverLetter
 );
 

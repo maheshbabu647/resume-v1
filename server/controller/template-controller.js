@@ -595,7 +595,6 @@ const updateTemplate = async (req, res, next) => {
     let updatedImageUrl = template.templateImage;
     let updatedImageId = template.templateImageId;
     if (req.file) {
-      console.log("hereeeeeeeeeeeeeeeeeeeeee",req.file)
       if (template.templateImageId) {
         await deleteImageFromCloudinary(template.templateImageId);
       }

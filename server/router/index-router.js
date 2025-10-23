@@ -8,6 +8,7 @@ import adminAnalyticsRouter from './admin-analytics-router.js'
 import chatRouter from './chat-router.js'
 import textExtractionRouter from './text-extraction-router.js'
 import atsScoreRouter from './ats-score-router.js'
+import resumeParserRouter from './resume-parser-router.js'
 
 
 const indexRouter = express.Router()
@@ -21,6 +22,7 @@ indexRouter.use('/admin/analytics', adminAnalyticsRouter)
 indexRouter.use('/chat', chatRouter)
 indexRouter.use('/text-extraction', textExtractionRouter)
 indexRouter.use('/ats-score', atsScoreRouter)
+indexRouter.use('/resume-parser', resumeParserRouter)
 indexRouter.get('/', (req, res) => {
   res.json({ status: "OK", message: "API root. All systems operational." })
 })
