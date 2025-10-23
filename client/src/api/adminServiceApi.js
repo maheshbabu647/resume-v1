@@ -135,3 +135,137 @@ export const getAdminUsers = async (page = 1, limit = 20, search = '') => {
     throw error.response?.data || { message: 'Failed to fetch users data.' };
   }
 };
+
+// ==================== AI Usage Analytics APIs ====================
+
+/**
+ * Fetches overall AI usage statistics
+ * @param {string} [startDate] - Optional start date (YYYY-MM-DD)
+ * @param {string} [endDate] - Optional end date (YYYY-MM-DD)
+ * @returns {Promise<object>} Overall AI usage statistics
+ */
+export const getAIUsageStats = async (startDate = '', endDate = '') => {
+  try {
+    const response = await apiServer.get('/admin/ai-usage/stats', {
+      params: { startDate, endDate },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching AI usage stats:', error.response?.data || error.message);
+    throw error.response?.data || { message: 'Failed to fetch AI usage statistics.' };
+  }
+};
+
+/**
+ * Fetches AI usage by users
+ * @param {number} [limit=50] - Number of users to fetch
+ * @param {number} [offset=0] - Offset for pagination
+ * @param {string} [startDate] - Optional start date (YYYY-MM-DD)
+ * @param {string} [endDate] - Optional end date (YYYY-MM-DD)
+ * @returns {Promise<object>} User AI usage data
+ */
+export const getAIUsageByUsers = async (limit = 50, offset = 0, startDate = '', endDate = '') => {
+  try {
+    const response = await apiServer.get('/admin/ai-usage/users', {
+      params: { limit, offset, startDate, endDate },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching AI usage by users:', error.response?.data || error.message);
+    throw error.response?.data || { message: 'Failed to fetch user AI usage data.' };
+  }
+};
+
+/**
+ * Fetches AI usage for a specific user
+ * @param {string} userId - User ID
+ * @param {string} [startDate] - Optional start date (YYYY-MM-DD)
+ * @param {string} [endDate] - Optional end date (YYYY-MM-DD)
+ * @returns {Promise<object>} Specific user AI usage data
+ */
+export const getAIUsageByUser = async (userId, startDate = '', endDate = '') => {
+  try {
+    const response = await apiServer.get(`/admin/ai-usage/users/${userId}`, {
+      params: { startDate, endDate },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching user AI usage:', error.response?.data || error.message);
+    throw error.response?.data || { message: 'Failed to fetch user AI usage data.' };
+  }
+};
+
+/**
+ * Fetches anonymous user AI usage statistics
+ * @param {string} [startDate] - Optional start date (YYYY-MM-DD)
+ * @param {string} [endDate] - Optional end date (YYYY-MM-DD)
+ * @returns {Promise<object>} Anonymous user AI usage data
+ */
+export const getAIUsageAnonymous = async (startDate = '', endDate = '') => {
+  try {
+    const response = await apiServer.get('/admin/ai-usage/anonymous', {
+      params: { startDate, endDate },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching anonymous AI usage:', error.response?.data || error.message);
+    throw error.response?.data || { message: 'Failed to fetch anonymous AI usage data.' };
+  }
+};
+
+/**
+ * Fetches AI usage by service
+ * @param {string} [startDate] - Optional start date (YYYY-MM-DD)
+ * @param {string} [endDate] - Optional end date (YYYY-MM-DD)
+ * @returns {Promise<object>} Service-level AI usage data
+ */
+export const getAIUsageByService = async (startDate = '', endDate = '') => {
+  try {
+    const response = await apiServer.get('/admin/ai-usage/services', {
+      params: { startDate, endDate },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching AI usage by service:', error.response?.data || error.message);
+    throw error.response?.data || { message: 'Failed to fetch service AI usage data.' };
+  }
+};
+
+/**
+ * Fetches AI usage trends over time
+ * @param {string} [groupBy='day'] - Group by 'hour', 'day', 'week', or 'month'
+ * @param {string} [startDate] - Optional start date (YYYY-MM-DD)
+ * @param {string} [endDate] - Optional end date (YYYY-MM-DD)
+ * @returns {Promise<object>} Time-series AI usage trends
+ */
+export const getAIUsageTrends = async (groupBy = 'day', startDate = '', endDate = '') => {
+  try {
+    const response = await apiServer.get('/admin/ai-usage/trends', {
+      params: { groupBy, startDate, endDate },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching AI usage trends:', error.response?.data || error.message);
+    throw error.response?.data || { message: 'Failed to fetch AI usage trends.' };
+  }
+};
+
+/**
+ * Exports AI usage data
+ * @param {string} [format='json'] - Export format ('json' or 'csv')
+ * @param {string} [startDate] - Optional start date (YYYY-MM-DD)
+ * @param {string} [endDate] - Optional end date (YYYY-MM-DD)
+ * @returns {Promise<Blob|object>} Exported data
+ */
+export const exportAIUsageData = async (format = 'json', startDate = '', endDate = '') => {
+  try {
+    const response = await apiServer.get('/admin/ai-usage/export', {
+      params: { format, startDate, endDate },
+      responseType: format === 'csv' ? 'blob' : 'json',
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error exporting AI usage data:', error.response?.data || error.message);
+    throw error.response?.data || { message: 'Failed to export AI usage data.' };
+  }
+};

@@ -37,6 +37,7 @@ import AdminAnalyticsSecurityPage from '../pages/Admin/AdminAnalyticsSecurityPag
 import AdminAnalyticsDevicePage from '../pages/Admin/AdminAnalyticsDevicePage.jsx';
 import AdminAnalyticsPerformancePage from '../pages/Admin/AdminAnalyticsPerformancePage.jsx';
 import AdminUsersPage from '../pages/Admin/AdminUsersPage.jsx';
+import AdminAIUsagePage from '../pages/Admin/AdminAIUsagePage.jsx';
 import MonarchDashboardPage from '../pages/Admin/MonarchDashboardPage.jsx';
 
 // Protected Route Wrapper
@@ -83,20 +84,21 @@ const AppRouter = () => {
           {/* Admin Routes - nested under its own protected layout */}
           <Route path="admin" element={<ProtectedRoute roles={['admin']} />}>
              <Route element={<AdminLayout />}>
-                <Route index element={<AdminDashboardPage />} />
-                <Route path="monarch-dashboard" element={<MonarchDashboardPage />} />
-                <Route path="dashboard" element={<AdminDashboardPage />} />
-                <Route path="users" element={<AdminUsersPage />} />
-                <Route path="templates" element={<AdminTemplatesPage />} />
-                <Route path="templates/new" element={<AdminTemplateEditPage />} />
-                <Route path="templates/edit/:templateId" element={<AdminTemplateEditPage />} />
-                <Route path="analytics/overview" element={<AdminAnalyticsOverviewPage />} />
-                <Route path="analytics/timeseries" element={<AdminAnalyticsTimeSeriesPage />} />
-                <Route path="analytics/funnel" element={<AdminAnalyticsFunnelPage />} />
-                <Route path="analytics/retention" element={<AdminAnalyticsRetentionPage />} />
-                <Route path="analytics/security" element={<AdminAnalyticsSecurityPage />} />
-                <Route path="analytics/device" element={<AdminAnalyticsDevicePage />} />
-                <Route path="analytics/performance" element={<AdminAnalyticsPerformancePage />} />
+               <Route index element={<AdminDashboardPage />} />
+               <Route path="monarch-dashboard" element={<MonarchDashboardPage />} />
+               <Route path="dashboard" element={<AdminDashboardPage />} />
+               <Route path="users" element={<AdminUsersPage />} />
+               <Route path="ai-usage" element={<AdminAIUsagePage />} />
+               <Route path="templates" element={<AdminTemplatesPage />} />
+               <Route path="templates/new" element={<AdminTemplateEditPage />} />
+               <Route path="templates/edit/:templateId" element={<AdminTemplateEditPage />} />
+               <Route path="analytics/overview" element={<AdminAnalyticsOverviewPage />} />
+               <Route path="analytics/timeseries" element={<AdminAnalyticsTimeSeriesPage />} />
+               <Route path="analytics/funnel" element={<AdminAnalyticsFunnelPage />} />
+               <Route path="analytics/retention" element={<AdminAnalyticsRetentionPage />} />
+               <Route path="analytics/security" element={<AdminAnalyticsSecurityPage />} />
+               <Route path="analytics/device" element={<AdminAnalyticsDevicePage />} />
+               <Route path="analytics/performance" element={<AdminAnalyticsPerformancePage />} />
             </Route>
           </Route>
 
