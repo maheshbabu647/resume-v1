@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Loader2, Save, ArrowLeft, AlertCircle, RefreshCw } from 'lucide-react';
+import { Loader2, Save, ArrowLeft, AlertCircle, RefreshCw, Download } from 'lucide-react';
 import { getCoverLetterById, updateCoverLetter } from '@/api/coverLetterServiceApi';
 import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner';
 
@@ -63,6 +63,26 @@ const CoverLetterEditPage = () => {
         }
     };
 
+    const handleDownload = () => {
+        if (!content) return;
+        
+        // Create filename with company and job title
+        const fileName = letterData?.companyName && letterData?.jobTitle
+            ? `${letterData.companyName} - ${letterData.jobTitle} - Cover Letter.txt`
+            : 'Cover Letter.txt';
+        
+        // Create blob and download
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    };
+
     if (isLoading) {
         return <div className="flex justify-center items-center h-[calc(100vh-100px)]"><LoadingSpinner label="Loading Cover Letter..." /></div>;
     }
@@ -111,9 +131,14 @@ const CoverLetterEditPage = () => {
                         className="text-base leading-relaxed"
                     />
                     {error && <Alert variant="destructive" className="mt-4"><AlertCircle className="h-4 w-4" /><AlertDescription>{error}</AlertDescription></Alert>}
-                    <Button onClick={handleSave} disabled={isSaving} className="mt-6 w-full sm:w-auto">
-                        {isSaving ? <><Loader2 className="mr-2 h-4 w-4 animate-spin"/> Saving...</> : <><Save className="mr-2 h-4 w-4"/> Save Changes</>}
-                    </Button>
+                    <div className="mt-6 flex flex-col sm:flex-row gap-2">
+                        <Button onClick={handleSave} disabled={isSaving} className="flex-1 sm:flex-initial">
+                            {isSaving ? <><Loader2 className="mr-2 h-4 w-4 animate-spin"/> Saving...</> : <><Save className="mr-2 h-4 w-4"/> Save Changes</>}
+                        </Button>
+                        <Button onClick={handleDownload} disabled={!content} variant="outline" className="flex-1 sm:flex-initial">
+                            <Download className="mr-2 h-4 w-4"/> Download TXT
+                        </Button>
+                    </div>
                 </CardContent>
             </Card>
           </motion.div>

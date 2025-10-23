@@ -25,19 +25,22 @@ export const useSectionHandlers = ({
   const handleSectionToggle = useCallback((sectionKey) => {
     setEditorFormData(prev => {
       const newFormData = cloneDeep(prev);
-      const currentStatus = get(newFormData, `sectionsConfig.${sectionKey}.enabled`, false);
+      // Default to true if not explicitly set (matches the enabledSectionKeys logic)
+      const currentStatus = get(newFormData, `sectionsConfig.${sectionKey}.enabled`, true);
       set(newFormData, `sectionsConfig.${sectionKey}.enabled`, !currentStatus);
       return newFormData;
     });
   }, [setEditorFormData]);
 
   /**
-   * Adds the chosen section and closes the selection dialog.
+   * Adds the chosen section without closing the dialog.
+   * Allows users to add multiple sections at once.
    */
   const handleAddChosenSection = useCallback((sectionKey) => {
     handleSectionToggle(sectionKey);
-    setIsAddSectionDialogOpen(false);
-  }, [handleSectionToggle, setIsAddSectionDialogOpen]);
+    // Removed: setIsAddSectionDialogOpen(false); 
+    // Let users close the dialog manually when they're done
+  }, [handleSectionToggle]);
 
   /**
    * Updates section visibility based on the selected industry.

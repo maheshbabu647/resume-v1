@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { get } from 'lodash';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -361,69 +361,155 @@ const FieldRenderer = ({
         {/* AI Generation Dialog */}
         {isAiEnabled && (
           <Dialog open={isAiDialogOpen} onOpenChange={setIsAiDialogOpen}>
-            <DialogContent className="sm:max-w-md">
-              <DialogHeader>
-                <DialogTitle className="flex items-center gap-2">
-                  <Wand2 className="h-5 w-5 text-primary" />
-                  Generate with AI
+            <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
+              {/* Gradient Header */}
+              <DialogHeader className="space-y-3 pb-4">
+                <DialogTitle className="flex items-center gap-3 text-xl">
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-primary/20 to-primary/10">
+                    <Wand2 className="h-6 w-6 text-primary" />
+                  </div>
+                  <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+                    Generate with AI
+                  </span>
                 </DialogTitle>
-                <DialogDescription>
+                <DialogDescription className="text-base leading-relaxed">
                   {generatedContent
-                    ? `Review and tweak the generated ${fieldDef.label || fieldDef.name}.`
-                    : (aiConfig?.userNotesPrompt || `Provide additional context for generating ${fieldDef.label}`)}
+                    ? `✨ Review and customize the generated ${fieldDef.label || fieldDef.name} below.`
+                    : (aiConfig?.userNotesPrompt || `📝 Provide additional context to help AI generate better ${fieldDef.label || 'content'}.`)}
                 </DialogDescription>
               </DialogHeader>
               
-              <div className="space-y-4">
+              <div className="space-y-5">
                 {!generatedContent && (
                   <>
-                    <div>
-                      <Label htmlFor="user-notes" className="text-sm font-medium">
+                    {/* User Notes Input */}
+                    <div className="space-y-3">
+                      <Label htmlFor="user-notes" className="text-sm font-semibold flex items-center gap-2">
+                        <span className="text-primary">💡</span>
                         Additional Context (Optional)
                       </Label>
                       <Textarea
                         id="user-notes"
-                        placeholder="Add any specific details or preferences..."
+                        placeholder="E.g., 'Focus on leadership skills' or 'Highlight technical achievements'..."
                         value={userNotes}
                         onChange={(e) => setUserNotes(e.target.value)}
-                        rows={3}
-                        className="mt-1"
+                        rows={4}
+                        className="mt-1 resize-none border-2 focus:border-primary transition-colors"
                       />
                     </div>
-                    <div className="text-xs text-muted-foreground">
-                      <p className="font-medium mb-1">Context being used:</p>
-                      <div className="space-y-1">
-                        {Object.entries(contextData).map(([key, value]) => (
-                          <div key={key} className="flex">
-                            <span className="font-medium w-20 truncate">{key}:</span>
-                            <span className="ml-2 flex-1 truncate">{value}</span>
+
+                    {/* Example Prompts */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold flex items-center gap-2">
+                        <span className="text-primary">✨</span>
+                        Quick Examples - Click to add
+                      </Label>
+                      <div className="flex flex-wrap gap-2">
+                        {(() => {
+                          const fieldName = fieldDef.name?.toLowerCase() || '';
+                          const fieldLabel = fieldDef.label?.toLowerCase() || '';
+                          let examples = [];
+                          
+                          if (fieldName.includes('summary') || fieldLabel.includes('summary')) {
+                            examples = [
+                              'Focus on leadership and team management',
+                              'Highlight technical expertise and innovation',
+                              'Emphasize problem-solving and results',
+                              'Show career progression and growth'
+                            ];
+                          } else if (fieldName.includes('description') || fieldLabel.includes('description')) {
+                            examples = [
+                              'Use action verbs and quantify achievements',
+                              'Focus on impact and outcomes',
+                              'Keep it concise and results-oriented',
+                              'Highlight relevant technologies used'
+                            ];
+                          } else if (fieldName.includes('skill') || fieldLabel.includes('skill')) {
+                            examples = [
+                              'Group by categories (technical, soft skills)',
+                              'Prioritize most relevant skills',
+                              'Include proficiency levels',
+                              'Add certifications if applicable'
+                            ];
+                          } else {
+                            examples = [
+                              'Be specific and detailed',
+                              'Focus on achievements',
+                              'Use professional tone',
+                              'Keep it concise'
+                            ];
+                          }
+                          
+                          return examples.map((example, index) => (
+                            <button
+                              key={index}
+                              type="button"
+                              onClick={() => {
+                                setUserNotes(prev => {
+                                  if (prev.trim()) {
+                                    return `${prev}\n${example}`;
+                                  }
+                                  return example;
+                                });
+                              }}
+                              className="group relative px-4 py-2 text-sm rounded-full border-2 border-primary/20 bg-gradient-to-r from-primary/5 to-primary/10 hover:from-primary/10 hover:to-primary/20 hover:border-primary/40 transition-all duration-200 hover:shadow-md hover:scale-105 active:scale-95"
+                            >
+                              <span className="text-primary font-medium">{example}</span>
+                            </button>
+                          ));
+                        })()}
+                      </div>
+                    </div>
+
+                    {/* Context Info Card */}
+                    <div className="rounded-xl border-2 border-primary/10 bg-gradient-to-br from-primary/5 via-background to-primary/5 p-4">
+                      <div className="flex items-start gap-3">
+                        <div className="p-1.5 rounded-lg bg-primary/10">
+                          <Info className="h-4 w-4 text-primary" />
+                        </div>
+                        <div className="flex-1 space-y-2">
+                          <p className="text-sm font-semibold text-foreground">
+                            Context being used:
+                          </p>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            {Object.entries(contextData).map(([key, value]) => (
+                              <div key={key} className="flex flex-col p-2 rounded-lg bg-background/50 border border-primary/10">
+                                <span className="text-xs font-semibold text-primary uppercase tracking-wide">{key}</span>
+                                <span className="text-sm text-foreground/80 truncate mt-0.5">{value}</span>
+                              </div>
+                            ))}
                           </div>
-                        ))}
+                        </div>
                       </div>
                     </div>
                   </>
                 )}
 
                 {generatedContent && (
-                  <div>
-                    <Label htmlFor="generated-content" className="text-sm font-medium">Generated Text</Label>
+                  <div className="space-y-3">
+                    <Label htmlFor="generated-content" className="text-sm font-semibold flex items-center gap-2">
+                      <CheckCircle2 className="h-4 w-4 text-green-600" />
+                      Generated Content - Edit as needed
+                    </Label>
                     <Textarea
                       id="generated-content"
                       ref={generatedTextareaRef}
                       value={generatedContent}
                       onChange={(e) => setGeneratedContent(e.target.value)}
-                      rows={6}
-                      className="mt-1"
+                      rows={8}
+                      className="resize-none border-2 border-green-500/30 focus:border-green-500 bg-green-50/50 dark:bg-green-950/20 transition-colors"
                     />
                   </div>
                 )}
               </div>
               
-              <DialogFooter>
+              {/* Footer with responsive buttons */}
+              <DialogFooter className="flex-col sm:flex-row gap-2 sm:gap-0 pt-4 border-t">
                 <Button 
                   variant="outline" 
                   onClick={() => setIsAiDialogOpen(false)}
                   disabled={isGenerating}
+                  className="w-full sm:w-auto order-last sm:order-first"
                 >
                   Cancel
                 </Button>
@@ -432,7 +518,7 @@ const FieldRenderer = ({
                   <Button 
                     onClick={handleGenerateContent}
                     disabled={isGenerating}
-                    className="min-w-[120px]"
+                    className="w-full sm:w-auto min-w-[140px] bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg hover:shadow-xl transition-all"
                   >
                     {isGenerating ? (
                       <>
@@ -442,18 +528,18 @@ const FieldRenderer = ({
                     ) : (
                       <>
                         <Wand2 className="h-4 w-4 mr-2" />
-                        Generate
+                        Generate Now
                       </>
                     )}
                   </Button>
                 )}
 
                 {generatedContent && (
-                  <>
+                  <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                     <Button 
                       onClick={handleAcceptGenerated}
                       disabled={isGenerating || !generatedContent}
-                      className="min-w-[110px]"
+                      className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 shadow-lg"
                     >
                       <CheckCircle2 className="h-4 w-4 mr-2" />
                       Accept
@@ -462,7 +548,7 @@ const FieldRenderer = ({
                       variant="secondary"
                       onClick={handleGenerateContent}
                       disabled={isGenerating}
-                      className="min-w-[130px]"
+                      className="w-full sm:w-auto"
                     >
                       {isGenerating ? (
                         <>
@@ -479,12 +565,12 @@ const FieldRenderer = ({
                     <Button 
                       variant="outline"
                       onClick={handleEditFocus}
-                      className="min-w-[100px]"
+                      className="w-full sm:w-auto"
                     >
                       <Edit2 className="h-4 w-4 mr-2" />
                       Edit
                     </Button>
-                  </>
+                  </div>
                 )}
               </DialogFooter>
             </DialogContent>
@@ -494,77 +580,159 @@ const FieldRenderer = ({
         {/* Context Requirements Modal */}
         {isAiEnabled && (
           <Dialog open={showContextModal} onOpenChange={setShowContextModal}>
-            <DialogContent className="sm:max-w-lg">
-              <DialogHeader>
-                <DialogTitle className="flex items-center gap-2">
-                  <Info className="h-5 w-5 text-amber-500" />
-                  Required Context Fields
+            <DialogContent className="w-[95vw] max-w-2xl max-h-[90vh] overflow-y-auto">
+              {/* Clean Header */}
+              <DialogHeader className="space-y-3 pb-4">
+                <DialogTitle className="flex items-center gap-2 text-lg sm:text-xl">
+                  <div className="p-2 rounded-lg bg-primary/10">
+                    <Info className="h-5 w-5 text-primary" />
+                  </div>
+                  <span>Required Context Fields</span>
                 </DialogTitle>
-                <DialogDescription>
-                  To generate AI content for "{fieldDef.label || fieldDef.name}", you need to fill in the following context fields first:
+                
+                <DialogDescription className="text-sm sm:text-base leading-relaxed">
+                  To generate AI content for <span className="font-semibold text-foreground">"{fieldDef.label || fieldDef.name}"</span>, 
+                  please complete the following fields first.
                 </DialogDescription>
-              </DialogHeader>
-              
-              <div className="space-y-4">
-                <div className="bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
-                  <div className="flex items-start gap-3">
-                    <Info className="h-5 w-5 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
-                    <div className="space-y-2">
-                      <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
-                        Fill these fields to enable AI generation:
-                      </p>
-                      <div className="space-y-2">
-                        {aiConfig?.contextFields?.map((fieldName) => {
+
+                {/* Subtle Progress Bar */}
+                <div className="space-y-2 pt-2">
+                  <div className="flex items-center justify-between text-xs sm:text-sm">
+                    <span className="text-muted-foreground">Progress</span>
+                    <span className="font-medium text-foreground">
+                      {(() => {
+                        let filled = 0;
+                        let total = aiConfig?.contextFields?.length || 0;
+                        aiConfig?.contextFields?.forEach((fieldName) => {
                           const contextPath = basePath
                             ? `${basePath}.${fieldName}`
                             : (fieldDef.section && fieldName !== fieldDef.section)
                               ? `${fieldDef.section}.${fieldName}`
                               : fieldName;
                           const contextValue = get(formData.content, contextPath, '');
-                          const isFilled = contextValue && contextValue.trim();
-                          
-                          return (
-                            <div key={fieldName} className={`flex items-center gap-2 p-2 rounded border ${isFilled ? 'bg-green-50 dark:bg-green-950/20 border-green-200 dark:border-green-800' : 'bg-red-50 dark:bg-red-950/20 border-red-200 dark:border-red-800'}`}>
-                              {isFilled ? (
-                                <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400 flex-shrink-0" />
-                              ) : (
-                                <X className="h-4 w-4 text-red-600 dark:text-red-400 flex-shrink-0" />
-                              )}
-                              <div className="flex-1">
-                                <span className={`text-sm font-medium ${isFilled ? 'text-green-800 dark:text-green-200' : 'text-red-800 dark:text-red-200'}`}>
-                                  {fieldName}
-                                </span>
-                                {isFilled && (
-                                  <p className="text-xs text-green-600 dark:text-green-400 mt-1">
-                                    ✓ Filled: {contextValue.length > 50 ? contextValue.substring(0, 50) + '...' : contextValue}
-                                  </p>
-                                )}
-                                {!isFilled && (
-                                  <p className="text-xs text-red-600 dark:text-red-400 mt-1">
-                                    ✗ Empty - Please fill this field
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
+                          if (contextValue && contextValue.trim()) {
+                            filled++;
+                          }
+                        });
+                        return `${filled} of ${total} completed`;
+                      })()}
+                    </span>
+                  </div>
+                  <div className="h-2 bg-muted rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-primary transition-all duration-500 ease-out"
+                      style={{ 
+                        width: `${(() => {
+                          let filled = 0;
+                          let total = aiConfig?.contextFields?.length || 0;
+                          aiConfig?.contextFields?.forEach((fieldName) => {
+                            const contextPath = basePath
+                              ? `${basePath}.${fieldName}`
+                              : (fieldDef.section && fieldName !== fieldDef.section)
+                                ? `${fieldDef.section}.${fieldName}`
+                                : fieldName;
+                            const contextValue = get(formData.content, contextPath, '');
+                            if (contextValue && contextValue.trim()) {
+                              filled++;
+                            }
+                          });
+                          return total > 0 ? (filled / total) * 100 : 0;
+                        })()}%` 
+                      }}
+                    />
                   </div>
                 </div>
+              </DialogHeader>
+              
+              <div className="space-y-3 py-2">
+                {/* Cleaner Field Status Cards */}
+                {aiConfig?.contextFields?.map((fieldName) => {
+                  const contextPath = basePath
+                    ? `${basePath}.${fieldName}`
+                    : (fieldDef.section && fieldName !== fieldDef.section)
+                      ? `${fieldDef.section}.${fieldName}`
+                      : fieldName;
+                  const contextValue = get(formData.content, contextPath, '');
+                  const isFilled = contextValue && contextValue.trim();
+                  
+                  return (
+                    <div 
+                      key={fieldName} 
+                      className={cn(
+                        "rounded-lg border p-3 sm:p-4 transition-all duration-200",
+                        isFilled 
+                          ? 'bg-primary/5 border-primary/20' 
+                          : 'bg-muted/50 border-muted-foreground/20'
+                      )}
+                    >
+                      <div className="flex items-start gap-3">
+                        {/* Icon */}
+                        <div className={cn(
+                          "p-1.5 rounded-md flex-shrink-0",
+                          isFilled ? 'bg-primary/10' : 'bg-muted'
+                        )}>
+                          {isFilled ? (
+                            <CheckCircle2 className="h-4 w-4 text-primary" />
+                          ) : (
+                            <Info className="h-4 w-4 text-muted-foreground" />
+                          )}
+                        </div>
+                        
+                        {/* Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-2 mb-1">
+                            <span className="text-sm sm:text-base font-semibold text-foreground">
+                              {fieldName}
+                            </span>
+                            <span className={cn(
+                              "px-2 py-0.5 rounded-full text-xs font-medium",
+                              isFilled
+                                ? 'bg-primary/10 text-primary'
+                                : 'bg-muted text-muted-foreground'
+                            )}>
+                              {isFilled ? 'Filled' : 'Required'}
+                            </span>
+                          </div>
+                          
+                          {isFilled ? (
+                            <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 mt-1">
+                              {contextValue}
+                            </p>
+                          ) : (
+                            <p className="text-xs sm:text-sm text-muted-foreground mt-1">
+                              This field needs to be filled before generating
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
                 
+                {/* Additional Info */}
                 {aiConfig?.userNotesPrompt && (
-                  <div className="text-sm text-muted-foreground">
-                    <p className="font-medium mb-1">Additional context you can provide:</p>
-                    <p className="italic">"{aiConfig.userNotesPrompt}"</p>
+                  <div className="rounded-lg border border-primary/20 bg-primary/5 p-3 sm:p-4 mt-4">
+                    <div className="flex items-start gap-2">
+                      <Info className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs sm:text-sm font-medium text-foreground mb-1">
+                          Tip: You can provide additional context later
+                        </p>
+                        <p className="text-xs sm:text-sm text-muted-foreground">
+                          {aiConfig.userNotesPrompt}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
               
-              <DialogFooter>
+              {/* Responsive Footer */}
+              <DialogFooter className="flex flex-col-reverse sm:flex-row gap-2 pt-4 border-t">
                 <Button 
                   variant="outline" 
                   onClick={() => setShowContextModal(false)}
+                  className="w-full sm:w-auto"
                 >
                   Close
                 </Button>
@@ -592,10 +760,10 @@ const FieldRenderer = ({
                       }
                     }
                   }}
-                  className="min-w-[120px]"
+                  className="w-full sm:w-auto sm:min-w-[140px]"
                 >
                   <Edit2 className="h-4 w-4 mr-2" />
-                  Fill Fields
+                  Go to Fields
                 </Button>
               </DialogFooter>
             </DialogContent>
@@ -621,7 +789,8 @@ const ResumeForm = ({
   sectionProperties,
   onShowTooltip,
   onSectionAdd, // New prop to handle section addition
-  resumeSetupData // Add resumeSetupData prop
+  resumeSetupData, // Add resumeSetupData prop
+  onGetEnabledSections // Callback to pass enabled sections to parent
 }) => {
   const content = formData?.content || {};
   const sectionsConfig = formData?.sectionsConfig || {};
@@ -657,7 +826,81 @@ const ResumeForm = ({
     });
   }, [allSections, sectionOrder]);
   
-  const enabledSectionKeys = useMemo(() => allSectionKeys.filter(key => get(sectionsConfig, `${key}.enabled`, true)), [allSectionKeys, sectionsConfig]);
+  // Track initially enabled sections (from template setup)
+  const initiallyEnabledSections = useRef(null);
+  
+  // Helper function to check if a section has any data
+  const sectionHasData = useCallback((sectionKey) => {
+    const sectionFields = allSections[sectionKey]?.fields || [];
+    return sectionFields.some(field => {
+      // Construct the correct path to check for the field value
+      // If field has a section and field.name is not the same as the section, use section.name
+      const fieldPath = (field.section && field.name !== field.section) 
+        ? `${field.section}.${field.name}` 
+        : field.name;
+      
+      const value = get(content, fieldPath);
+      
+      // Check if value has actual data (not empty, not placeholder)
+      if (Array.isArray(value)) {
+        // For arrays, check if any item has any non-empty, non-placeholder value
+        return value.some(item => {
+          if (typeof item === 'object' && item !== null) {
+            return Object.values(item).some(val => val && val !== '' && !/^\[.*\]$/.test(val.toString()));
+          }
+          return item && item !== '' && !/^\[.*\]$/.test(item.toString());
+        });
+      }
+      
+      // For non-arrays, check if value exists and is not empty or placeholder
+      return value && value !== '' && !/^\[.*\]$/.test(value.toString());
+    });
+  }, [allSections, content]);
+
+  const enabledSectionKeys = useMemo(() => {
+    // Get sections that are enabled in config (default to true for initial load)
+    const configEnabledSections = allSectionKeys.filter(key => 
+      get(sectionsConfig, `${key}.enabled`, true)
+    );
+    
+    // Store initially enabled sections on first load
+    if (initiallyEnabledSections.current === null) {
+      initiallyEnabledSections.current = configEnabledSections;
+    }
+    
+    // Get sections with data (from imported resume)
+    const sectionsWithData = allSectionKeys.filter(key => sectionHasData(key));
+    
+    // Get manually enabled sections (explicitly enabled via Add Section dialog)
+    // Only include if there's an EXPLICIT enabled: true in config (not default)
+    const manuallyEnabledSections = allSectionKeys.filter(key => {
+      const hasExplicitEnabled = sectionsConfig[key]?.enabled === true;
+      const wasNotInitial = !initiallyEnabledSections.current.includes(key);
+      const hasNoData = !sectionsWithData.includes(key);
+      return hasExplicitEnabled && wasNotInitial && hasNoData;
+    });
+    
+    // Combine three sources:
+    // 1. Initially enabled sections (from template)
+    // 2. Sections with parsed data (from resume parsing)
+    // 3. Manually enabled sections (from Add Section dialog)
+    const combinedSections = [
+      ...initiallyEnabledSections.current,
+      ...sectionsWithData.filter(key => !initiallyEnabledSections.current.includes(key)),
+      ...manuallyEnabledSections
+    ];
+    
+    // Filter out explicitly disabled sections (when user toggles them off)
+    // If a section has enabled: false in config, it should be removed from nav
+    const finalSections = allSectionKeys.filter(key => {
+      const isInCombined = combinedSections.includes(key);
+      const isExplicitlyDisabled = sectionsConfig[key]?.enabled === false;
+      return isInCombined && !isExplicitlyDisabled;
+    });
+    
+    return finalSections;
+    
+  }, [allSectionKeys, sectionsConfig, sectionHasData]);
   
   const [activeSection, setActiveSection] = useState(null);
   const prevEnabledSections = useRef([]);
@@ -702,9 +945,25 @@ const ResumeForm = ({
 
   const getIsSectionCompleted = (sectionKey) => {
     return allSections[sectionKey].fields.some(field => {
-      const value = get(content, field.name);
-      if (Array.isArray(value)) { return value.some(item => Object.values(item).some(val => val && !/\[.*\]/.test(val.toString()))); }
-      return value && !/\[.*\]/.test(value.toString());
+      // Construct the correct path to check for the field value
+      // If field has a section and field.name is not the same as the section, use section.name
+      const fieldPath = (field.section && field.name !== field.section) 
+        ? `${field.section}.${field.name}` 
+        : field.name;
+      
+      const value = get(content, fieldPath);
+      
+      // Check if value exists and is not a placeholder
+      if (Array.isArray(value)) { 
+        return value.some(item => {
+          if (typeof item === 'object' && item !== null) {
+            return Object.values(item).some(val => val && val !== '' && !/^\[.*\]$/.test(val.toString()));
+          }
+          return item && item !== '' && !/^\[.*\]$/.test(item.toString());
+        });
+      }
+      
+      return value && value !== '' && !/^\[.*\]$/.test(value.toString());
     });
   };
 
@@ -736,7 +995,10 @@ const ResumeForm = ({
           <Button 
             variant="outline" 
             size="sm" 
-            onClick={onOpenAddSectionDialog} 
+            onClick={() => {
+              if (onGetEnabledSections) onGetEnabledSections(enabledSectionKeys);
+              onOpenAddSectionDialog();
+            }} 
             className="flex-shrink-0 h-8 sm:h-9 rounded-md ml-1 sm:ml-2 text-xs sm:text-sm"
           >
              <PlusCircle className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
@@ -798,7 +1060,10 @@ const ResumeForm = ({
           </div>
         </div>
         <div className="pt-2 mt-2 border-t border-border relative group/add-section">
-          <Button variant="outline" className="w-full" onClick={onOpenAddSectionDialog}>
+          <Button variant="outline" className="w-full" onClick={() => {
+            if (onGetEnabledSections) onGetEnabledSections(enabledSectionKeys);
+            onOpenAddSectionDialog();
+          }}>
             <PlusCircle className={cn("h-4 w-4", !isNavCollapsed && "mr-2")} />
             <span className={cn(isNavCollapsed && "lg:hidden")}>Add Section</span>
           </Button>

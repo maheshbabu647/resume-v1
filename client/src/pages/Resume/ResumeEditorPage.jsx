@@ -36,11 +36,14 @@ import { usePageSetupEffect } from '@/hooks/usePageSetupEffect';
 import { useOAuthDataRestoration } from '@/hooks/useOAuthDataRestoration';
 
 // Utilities
-import { initializeFormDataFromDefinitions, calculateProgressData } from '@/utils/EditorUtils';
+import { initializeFormDataFromDefinitions, initializeSectionsConfigFromData, calculateProgressData } from '@/utils/EditorUtils';
 import { cn } from "@/lib/utils";
 import { enhanceEntireResume as apiEnhanceEntireResume } from '@/api/resumeServiceApi';
     
 const ResumeEditorPage = () => {
+    const editorState = useResumeEditorState();
+    
+    // Destructure from the state object
     const {
         newResumeTemplateId, existingResumeId, navigate, location,
         resumePreviewRef, nameInputRef,
@@ -50,7 +53,7 @@ const ResumeEditorPage = () => {
             currentResumeDetail, editorFormData, setEditorFormData, isSavingResume,
             resumeError, loadResumeForEditor, prepareNewResumeForEditor,
             saveOrUpdateCurrentResume, clearCurrentEditorData, isLoadingCurrentResume,
-            resumeSetupData, saveResumeSetupData
+            resumeSetupData, saveResumeSetupData, setCurrentResumeDetail
         },
         // All State & Setters
         mode, setMode, pageIsLoading, setPageIsLoading,
@@ -71,7 +74,7 @@ const ResumeEditorPage = () => {
         isTooltipDialogOpen, setIsTooltipDialogOpen, 
         tooltipContent, setTooltipContent,
         showResumeSetupDialog, setShowResumeSetupDialog,
-    } = useResumeEditorState();
+    } = editorState;
 
     const {
       handleSimpleChange,
@@ -131,9 +134,10 @@ const ResumeEditorPage = () => {
     usePageSetupEffect({
       existingResumeId, newResumeTemplateId, location, isAuthLoading,
       loadResumeForEditor, currentResumeDetail, editorFormData, allTemplates,
-      getAllTemplates, prepareNewResumeForEditor, setPageIsLoading, setPageError,
-      setMode, setCurrentTemplateForEditor, setEditorFormData, setEditableResumeName,
-      setSpacingMultiplier, setFontSizeMultiplier, setSelectedIndustry, setSelectedStylePackKey,
+      getAllTemplates, prepareNewResumeForEditor, setCurrentResumeDetail, 
+      setPageIsLoading, setPageError, setMode, setCurrentTemplateForEditor, 
+      setEditorFormData, setEditableResumeName, setSpacingMultiplier, 
+      setFontSizeMultiplier, setSelectedIndustry, setSelectedStylePackKey,
       setSectionOrder, setSelectedPresetKey, setEditedSections
     });
 
@@ -153,12 +157,73 @@ const ResumeEditorPage = () => {
     const handleAuthSuccess = async () => {
         if (pendingAction === 'save') { await executeSaveResume(); } 
         else if (pendingAction === 'download') { await executeDownloadPdf(); }
+        else if (pendingAction === 'enhance') { executeEnhance(); }
         setPendingAction(null);
     };
 
-    const handleResumeSetupComplete = (setupData) => {
-        console.log('Resume setup completed:', setupData);
+    const handleResumeSetupComplete = async (setupData) => {
+        console.log('📋 Resume setup completed:', setupData);
         saveResumeSetupData(setupData);
+        
+        // If imported resume data is present, prefill the editor
+        if (setupData.importedResumeData) {
+            console.log('📥 Imported resume data detected:', setupData.importedResumeData);
+            
+            if (setupData.importedResumeData.content) {
+                console.log('✅ Prefilling editor with imported resume data');
+                console.log('📊 Data structure:', setupData.importedResumeData);
+                
+                // CRITICAL FIX: Ensure sectionsConfig is included
+                // The imported data may only have 'content', but we need 'sectionsConfig' too
+                let completeFormData = { ...setupData.importedResumeData };
+                
+                if (!completeFormData.sectionsConfig) {
+                    console.log('🔧 sectionsConfig missing, initializing based on parsed data...');
+                    // Initialize sectionsConfig based on which sections have actual data
+                    const sectionsConfig = initializeSectionsConfigFromData(
+                        currentTemplateForEditor.templateFieldDefinition,
+                        setupData.importedResumeData.content
+                    );
+                    
+                    // Use the imported content with data-based sectionsConfig
+                    completeFormData = {
+                        content: setupData.importedResumeData.content,
+                        sectionsConfig: sectionsConfig
+                    };
+                    console.log('✅ sectionsConfig initialized based on data:', completeFormData.sectionsConfig);
+                    console.log('📊 Sections with data enabled, sections without data disabled');
+                } else {
+                    console.log('✅ sectionsConfig already present');
+                }
+                
+                setEditorFormData(completeFormData);
+                setIsDirty(true);
+                
+                // Calculate and set edited sections from imported data
+                if (currentTemplateForEditor?.templateFieldDefinition) {
+                    const { getInitiallyEditedSections } = await import('@/utils/EditorUtils');
+                    const calculatedEditedSections = getInitiallyEditedSections(
+                        completeFormData.content,
+                        currentTemplateForEditor.templateFieldDefinition
+                    );
+                    setEditedSections(calculatedEditedSections);
+                    console.log('📝 Edited sections calculated:', calculatedEditedSections);
+                }
+                
+                // Force preview update to reflect imported data
+                setPreviewUpdateKey(prev => prev + 1);
+                
+                // Show success notification
+                setTimeout(() => {
+                    console.log('✨ Editor form data updated with complete structure:', completeFormData);
+                }, 100);
+            } else {
+                console.warn('⚠️ Imported data exists but no content property found:', setupData.importedResumeData);
+            }
+        } else {
+            console.log('ℹ️ No imported data, starting fresh');
+        }
+        
         setShowResumeSetupDialog(false);
     };
     
@@ -171,11 +236,26 @@ const ResumeEditorPage = () => {
     const [enhanceDiffs, setEnhanceDiffs] = useState([]);
     const [enhanceDecisions, setEnhanceDecisions] = useState({}); // path => 'accepted' | 'rejected'
     const [currentReviewSection, setCurrentReviewSection] = useState(0);
+    const [currentlyVisibleSections, setCurrentlyVisibleSections] = useState([]);
 
-    const openEnhanceDialog = useCallback(() => {
-        try { console.log('[Enhance] Open dialog'); } catch {}
+    const executeEnhance = useCallback(() => {
+        console.log('[Enhance] Opening enhance dialog');
         setIsEnhanceDialogOpen(true);
     }, []);
+
+    const openEnhanceDialog = useCallback(() => {
+        // Check authentication before opening enhance dialog
+        if (!isAuthenticated) {
+            console.log('[Enhance] User not authenticated, showing auth dialog');
+            setPendingAction('enhance');
+            setShowAuthDialog(true);
+            return;
+        }
+        
+        // User is authenticated, proceed with opening enhance dialog
+        console.log('[Enhance] User authenticated, opening enhance dialog');
+        executeEnhance();
+    }, [isAuthenticated, setPendingAction, setShowAuthDialog, executeEnhance]);
 
     const handleEnhanceEntireResume = useCallback(async () => {
         try {
@@ -339,12 +419,16 @@ const ResumeEditorPage = () => {
     useEffect(() => { return () => { if (!window.location.pathname.startsWith('/resume/')) clearCurrentEditorData(); }; }, [location.pathname, clearCurrentEditorData]);
     useEffect(() => { if (resumeError && saveStatus === 'saving') { setFeedbackDetailsForDialog({ title: 'Operation Failed', message: resumeError.message || 'An unexpected error occurred.', type: 'error' }); setShowFeedbackDialog(true); } }, [resumeError, saveStatus]);
     
-    // Show setup dialog for new resumes
+    // Show setup dialog for new resumes (skip for ATS optimization mode)
     useEffect(() => {
-        if (mode === 'create' && currentTemplateForEditor && !resumeSetupData && !pageIsLoading) {
+        // Check if coming from ATS optimization mode
+        const locationState = location.state || {};
+        const isATSMode = locationState.mode === 'ats-optimize' && locationState.skipSetupDialog;
+        
+        if (mode === 'create' && currentTemplateForEditor && !resumeSetupData && !pageIsLoading && !isATSMode) {
             setShowResumeSetupDialog(true);
         }
-    }, [mode, currentTemplateForEditor, resumeSetupData, pageIsLoading]);
+    }, [mode, currentTemplateForEditor, resumeSetupData, pageIsLoading, location.state]);
     
     // --- MEMOIZED CALCULATIONS ---
     const progressData = useMemo(() => {
@@ -438,6 +522,7 @@ const ResumeEditorPage = () => {
                                     console.log(`New section added: ${sectionKey}`);
                                 }}
                                 resumeSetupData={resumeSetupData}
+                                onGetEnabledSections={(sections) => setCurrentlyVisibleSections(sections)}
                             />
                         </motion.div>
 
@@ -482,6 +567,7 @@ const ResumeEditorPage = () => {
                             </div>
                             <Suspense fallback={<div className="flex justify-center items-center min-h-[calc(100vh-100px)] bg-muted/20 rounded-xl border border-border"><LoadingSpinner label="Loading preview..." /></div>}>
                                 <ResumePreview 
+                                    key={previewUpdateKey}
                                     ref={resumePreviewRef}
                                     currentFormData={editorFormData || {}}
                                     spacingMultiplier={spacingMultiplier}
@@ -530,12 +616,13 @@ const ResumeEditorPage = () => {
                 }}
             />
             <PlaceholderWarningDialog open={showPlaceholderWarning} onOpenChange={setShowPlaceholderWarning} onConfirm={handleConfirmAction} onCancel={() => setPendingAction(null)}/>
-            <AddSectionDialog open={isAddSectionDialogOpen} onOpenChange={setIsAddSectionDialogOpen} sectionProperties={sectionProperties} editorFormData={editorFormData} onSectionAdd={handleAddChosenSection}/>
+            <AddSectionDialog open={isAddSectionDialogOpen} onOpenChange={setIsAddSectionDialogOpen} sectionProperties={sectionProperties} editorFormData={editorFormData} onSectionAdd={handleAddChosenSection} currentlyVisibleSections={currentlyVisibleSections} />
             <TooltipDialog open={isTooltipDialogOpen} onOpenChange={setIsTooltipDialogOpen} title={tooltipContent.title} message={tooltipContent.message} />
             <ResumeSetupDialog 
                 open={showResumeSetupDialog} 
                 onOpenChange={setShowResumeSetupDialog} 
                 onComplete={handleResumeSetupComplete}
+                templateFieldDefinition={currentTemplateForEditor?.templateFieldDefinition || []}
             />
 
             {/* Enhance Review Dialog */}

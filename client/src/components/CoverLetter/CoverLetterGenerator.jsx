@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Loader2, Sparkles, Clipboard, Check, AlertCircle, Save } from 'lucide-react';
+import { Loader2, Sparkles, Clipboard, Check, AlertCircle, Save, Download } from 'lucide-react';
 import { generateCoverLetter, saveCoverLetter } from '@/api/coverLetterServiceApi';
 import useAuthContext from '@/hooks/useAuth';
 import { useCoverLetterContext } from '@/context/CoverLetterContext';
@@ -85,6 +85,26 @@ const CoverLetterGenerator = ({ onLetterSaved }) => {
     document.body.removeChild(textArea);
   };
 
+  const handleDownload = () => {
+    if (!generatedLetter) return;
+    
+    // Create filename with company and job title
+    const fileName = formData.companyName && formData.jobTitle
+      ? `${formData.companyName} - ${formData.jobTitle} - Cover Letter.txt`
+      : 'Cover Letter.txt';
+    
+    // Create blob and download
+    const blob = new Blob([generatedLetter], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
@@ -139,13 +159,18 @@ const CoverLetterGenerator = ({ onLetterSaved }) => {
                 placeholder="Your AI-generated cover letter will appear here."
             />
             {error && <Alert variant="destructive" className="mt-4"><AlertCircle className="h-4 w-4" /><AlertDescription>{error}</AlertDescription></Alert>}
-            <div className="flex gap-2 mt-4">
-                <Button onClick={handleSave} disabled={!generatedLetter || isSaving} className="flex-1">
+            <div className="flex flex-col gap-2 mt-4">
+                <Button onClick={handleSave} disabled={!generatedLetter || isSaving} className="w-full">
                 {isSaving ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Saving...</> : <><Save className="mr-2 h-4 w-4" />Save Letter</>}
                 </Button>
-                <Button variant="outline" onClick={handleCopy} disabled={!generatedLetter || isCopied} className="flex-1">
-                {isCopied ? <><Check className="h-4 w-4 mr-2"/>Copied</> : <><Clipboard className="h-4 w-4 mr-2"/>Copy Text</>}
-                </Button>
+                <div className="flex gap-2">
+                    <Button variant="outline" onClick={handleDownload} disabled={!generatedLetter} className="flex-1">
+                        <Download className="h-4 w-4 mr-2"/>Download TXT
+                    </Button>
+                    <Button variant="outline" onClick={handleCopy} disabled={!generatedLetter || isCopied} className="flex-1">
+                    {isCopied ? <><Check className="h-4 w-4 mr-2"/>Copied</> : <><Clipboard className="h-4 w-4 mr-2"/>Copy Text</>}
+                    </Button>
+                </div>
             </div>
             </CardContent>
         </Card>

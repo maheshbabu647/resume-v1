@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { isLimitError, parseLimitError } from '../utils/rateLimitHandler.js';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
 
@@ -70,6 +71,21 @@ class ATSScoreService {
       };
     } catch (error) {
       console.error('ATS score analysis failed:', error);
+      
+      // Check if it's a rate limit or cost limit error
+      if (isLimitError(error)) {
+        const limitError = parseLimitError(error);
+        return {
+          success: false,
+          error: error.response?.data?.error || 'ATS analysis failed',
+          message: error.response?.data?.message || error.message,
+          isLimitError: true,
+          limitError: limitError,
+          hint: error.response?.data?.hint,
+          resetTime: error.response?.data?.resetTime
+        };
+      }
+      
       return {
         success: false,
         error: error.response?.data?.error || 'ATS analysis failed',
@@ -180,10 +196,74 @@ class ATSScoreService {
     };
     return messages[step] || 'Processing...';
   }
+
+  /**
+   * Generate ATS-optimized resume content
+   * @param {string} resumeText - Original resume text
+   * @param {string} jobDescriptionText - Job description text
+   * @param {Object} atsResults - ATS analysis results
+   * @param {Array} templateFieldDefinition - Template field definitions
+   * @returns {Promise<Object>} - Optimized resume data
+   */
+  async generateOptimizedResume(resumeText, jobDescriptionText, atsResults, templateFieldDefinition) {
+    try {
+      console.log('[ATS API] Sending optimization request...');
+      console.log('[ATS API] Resume text length:', resumeText?.length);
+      console.log('[ATS API] Job desc text length:', jobDescriptionText?.length);
+      console.log('[ATS API] ATS Results present:', !!atsResults);
+      console.log('[ATS API] Template field def present:', !!templateFieldDefinition);
+      
+      const payload = {
+        resumeText,
+        jobDescriptionText,
+        atsResults,
+        templateFieldDefinition
+      };
+      
+      console.log('[ATS API] Payload:', payload);
+      
+      const response = await this.api.post('/optimize', payload, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      console.log('[ATS API] Response received:', response.data);
+
+      return {
+        success: true,
+        data: response.data.data,
+      };
+    } catch (error) {
+      console.error('[ATS API] Optimization failed:', error);
+      console.error('[ATS API] Error response:', error.response?.data);
+      
+      // Check if it's a rate limit or cost limit error
+      if (isLimitError(error)) {
+        const limitError = parseLimitError(error);
+        return {
+          success: false,
+          error: error.response?.data?.error || 'Resume optimization failed',
+          message: error.response?.data?.message || error.message,
+          isLimitError: true,
+          limitError: limitError,
+          hint: error.response?.data?.hint,
+          resetTime: error.response?.data?.resetTime
+        };
+      }
+      
+      return {
+        success: false,
+        error: error.response?.data?.error || 'Resume optimization failed',
+        message: error.response?.data?.message || error.message,
+      };
+    }
+  }
 }
 
 // Create and export a singleton instance
 const atsScoreService = new ATSScoreService();
 export default atsScoreService;
+
 
 

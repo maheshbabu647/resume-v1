@@ -1,3 +1,11 @@
+/**
+ * @fileoverview Resume Context - Global state management for resume operations
+ * @module context/ResumeContext
+ * @description Provides a React context for managing resume state, including
+ * CRUD operations, editor state, and resume metadata. Centralizes all resume-related
+ * data and operations for use throughout the application.
+ */
+
 import React, { createContext, useState, useCallback, useContext } from "react";
 import useAuthContext from '../hooks/useAuth';
 import {
@@ -8,28 +16,89 @@ import {
     deleteResume as apiDeleteResume
 } from '../api/resumeServiceApi.js';
 
+/**
+ * Resume context object
+ * @type {React.Context}
+ */
 const ResumeContext = createContext(null);
 
+// ============================================================================
+// CONTEXT PROVIDER COMPONENT
+// ============================================================================
+
+/**
+ * Resume Context Provider Component
+ * @component
+ * @param {Object} props - Component props
+ * @param {React.ReactNode} props.children - Child components
+ * @returns {JSX.Element} Context provider wrapping children
+ * @description Provides resume state and operations to all child components.
+ * Manages user's resume list, current resume being edited, editor form data,
+ * and all resume customization settings.
+ */
 const ResumeContextProvider = ({ children }) => {
     const { isAuthenticated, userData } = useAuthContext();
 
+    // ========================================================================
+    // STATE - RESUME LIST
+    // ========================================================================
+    
+    /** @type {[Array<Object>, Function]} User's list of resumes */
     const [userResumesList, setUserResumesList] = useState([]);
+    /** @type {[boolean, Function]} Loading state for resume list */
     const [isLoadingUserResumes, setIsLoadingUserResumes] = useState(false);
+
+    // ========================================================================
+    // STATE - CURRENT RESUME
+    // ========================================================================
+    
+    /** @type {[Object|null, Function]} Currently loaded resume details */
     const [currentResumeDetail, setCurrentResumeDetail] = useState(null);
+    /** @type {[boolean, Function]} Loading state for current resume */
     const [isLoadingCurrentResume, setIsLoadingCurrentResume] = useState(false);
+    /** @type {[Object, Function]} Editor form data (content and sectionsConfig) */
     const [editorFormData, setEditorFormData] = useState({});
+
+    // ========================================================================
+    // STATE - OPERATIONS
+    // ========================================================================
+    
+    /** @type {[boolean, Function]} Saving state */
     const [isSavingResume, setIsSavingResume] = useState(false);
+    /** @type {[boolean, Function]} Deleting state */
     const [isDeletingResume, setIsDeletingResume] = useState(false);
+    /** @type {[string|null, Function]} Error message */
     const [resumeError, setResumeError] = useState(null);
 
+    // ========================================================================
+    // STATE - CUSTOMIZATION
+    // ========================================================================
+    
+    /** @type {[number, Function]} Layout spacing multiplier (default: 1) */
     const [spacingMultiplier, setSpacingMultiplier] = useState(1);
+    /** @type {[number, Function]} Font size multiplier (default: 1) */
     const [fontSizeMultiplier, setFontSizeMultiplier] = useState(1);
+    /** @type {[string|null, Function]} Selected style pack key */
     const [selectedStylePackKey, setSelectedStylePackKey] = useState(null);
+    /** @type {[Array|null, Function]} Custom section ordering */
     const [sectionOrder, setSectionOrder] = useState(null);
+    /** @type {[string|null, Function]} Target industry for resume */
     const [selectedIndustry, setSelectedIndustry] = useState(null);
+    /** @type {[Object|null, Function]} Resume setup wizard data */
     const [resumeSetupData, setResumeSetupData] = useState(null);
 
+    // ========================================================================
+    // OPERATIONS - LOAD RESUMES
+    // ========================================================================
 
+    /**
+     * Loads all resumes for the authenticated user
+     * @async
+     * @function loadUserResumes
+     * @returns {Promise<void>}
+     * @description Fetches the user's complete resume list from the API.
+     * Automatically clears the list if user is not authenticated.
+     */
     const loadUserResumes = useCallback(async () => {
         if (!isAuthenticated) {
             setUserResumesList([]);
@@ -51,6 +120,15 @@ const ResumeContextProvider = ({ children }) => {
         }
     }, [isAuthenticated]);
 
+    /**
+     * Loads a specific resume for editing
+     * @async
+     * @function loadResumeForEditor
+     * @param {string} resumeId - The ID of the resume to load
+     * @returns {Promise<Object|null>} The loaded resume object or null if failed
+     * @description Fetches a resume by ID and sets it as the current resume in the editor.
+     * Also loads all customization settings (spacing, styles, etc.).
+     */
     const loadResumeForEditor = useCallback(async (resumeId) => {
         if (!isAuthenticated || !resumeId) {
             setCurrentResumeDetail(null);
@@ -93,6 +171,14 @@ const ResumeContextProvider = ({ children }) => {
         }
     }, [isAuthenticated]);
 
+    /**
+     * Prepares a new resume for editing based on a template
+     * @function prepareNewResumeForEditor
+     * @param {Object} template - The template object to base the resume on
+     * @returns {void}
+     * @description Initializes a new resume in the editor with empty data
+     * but associated with a specific template.
+     */
     const prepareNewResumeForEditor = useCallback((template) => {
         if (!template || !template._id || !template.templateComponents) {
             console.error('ResumeContext: prepareNewResumeForEditor - Invalid or incomplete template object provided.', template);
@@ -113,7 +199,27 @@ const ResumeContextProvider = ({ children }) => {
         setIsLoadingCurrentResume(false);
     }, [userData]);
 
+    /**
+     * Saves or updates the current resume
+     * @async
+     * @function saveOrUpdateCurrentResume
+     * @param {Object} formDataToSave - The form data to save
+     * @param {string} newResumeName - Name for the resume
+     * @param {number} spacingMultiplier - Layout spacing multiplier
+     * @param {Array|null} sectionOrder - Custom section order
+     * @param {string|null} stylePackKey - Selected style pack
+     * @param {string|null} selectedIndustry - Target industry
+     * @param {number} fontSizeMultiplier - Font size multiplier
+     * @returns {Promise<Object|null>} The saved resume object or null if failed
+     * @description Creates a new resume or updates an existing one. Automatically
+     * determines whether to create or update based on presence of resume ID.
+     */
     const saveOrUpdateCurrentResume = useCallback(async (formDataToSave, newResumeName, spacingMultiplier, sectionOrder, stylePackKey, selectedIndustry, fontSizeMultiplier) => {
+        console.log('[ResumeContext] saveOrUpdateCurrentResume called');
+        console.log('[ResumeContext] formDataToSave received:', formDataToSave);
+        console.log('[ResumeContext] formDataToSave.content:', formDataToSave?.content);
+        console.log('[ResumeContext] formDataToSave.sectionsConfig:', formDataToSave?.sectionsConfig);
+        
         if (!isAuthenticated || !currentResumeDetail || !currentResumeDetail.templateId) {
             setResumeError("Cannot save: User not authenticated or essential resume/template details are missing.");
             return null;
@@ -141,6 +247,9 @@ const ResumeContextProvider = ({ children }) => {
             stylePackKey: stylePackKey,
             selectedIndustry: selectedIndustry,
         };
+        
+        console.log('[ResumeContext] Payload being sent to API:', payload);
+        console.log('[ResumeContext] Payload.resumeData:', payload.resumeData);
 
         try {
             let savedData;
@@ -168,6 +277,15 @@ const ResumeContextProvider = ({ children }) => {
         }
     }, [isAuthenticated, currentResumeDetail]);
 
+    /**
+     * Deletes a resume by ID
+     * @async
+     * @function deleteResumeById
+     * @param {string} resumeId - The ID of the resume to delete
+     * @returns {Promise<boolean>} True if deletion successful, false otherwise
+     * @description Permanently deletes a resume and removes it from the user's list.
+     * Also clears current editor data if the deleted resume was being edited.
+     */
     const deleteResumeById = useCallback(async (resumeId) => {
         if (!isAuthenticated || !resumeId) {
             setResumeError("cannot delete: user not authenticated or no Resume ID provided.");
@@ -192,6 +310,13 @@ const ResumeContextProvider = ({ children }) => {
         }
     }, [isAuthenticated, currentResumeDetail]);
 
+    /**
+     * Clears all editor data and resets to default state
+     * @function clearCurrentEditorData
+     * @returns {void}
+     * @description Resets the editor to a clean state, clearing all resume data
+     * and customization settings. Called when navigating away from the editor.
+     */
     const clearCurrentEditorData = useCallback(() => {
         setCurrentResumeDetail(null);
         setEditorFormData({});
@@ -204,6 +329,13 @@ const ResumeContextProvider = ({ children }) => {
         setResumeSetupData(null);
     }, []);
 
+    /**
+     * Saves resume setup wizard data
+     * @function saveResumeSetupData
+     * @param {Object} setupData - Setup wizard data (target role, industry, etc.)
+     * @returns {void}
+     * @description Stores data from the resume setup wizard for use in AI content generation.
+     */
     const saveResumeSetupData = useCallback((setupData) => {
         setResumeSetupData(setupData);
     }, []);

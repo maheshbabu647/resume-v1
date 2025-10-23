@@ -60,6 +60,10 @@ export const useResumeEditorActions = ({
             setShowAuthDialog(true);
             return;
         }
+        console.log('[SAVE] Starting save operation');
+        console.log('[SAVE] editorFormData being saved:', editorFormData);
+        console.log('[SAVE] editorFormData.content:', editorFormData?.content);
+        console.log('[SAVE] editorFormData.sectionsConfig:', editorFormData?.sectionsConfig);
         setSaveStatus('saving');
         const savedResult = await saveOrUpdateCurrentResume(
             editorFormData,
@@ -70,6 +74,7 @@ export const useResumeEditorActions = ({
             selectedIndustry,
             fontSizeMultiplier
         );
+        console.log('[SAVE] Save result:', savedResult);
         if (savedResult?._id) {
             setFeedbackDetailsForDialog({ title: 'Success!', message: 'Resume saved successfully!', type: 'success' });
             setShowFeedbackDialog(true);

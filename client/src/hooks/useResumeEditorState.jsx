@@ -1,3 +1,10 @@
+/**
+ * @fileoverview Resume Editor State Hook - Centralized state management for the editor
+ * @module hooks/useResumeEditorState
+ * @description Custom hook that consolidates all state, refs, and context needed by the
+ * Resume Editor page. Provides a single source of truth for editor state management.
+ */
+
 import { useState, useRef } from "react";
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import useAuthContext from "@/hooks/useAuth";
@@ -5,7 +12,54 @@ import useTemplateContext from "@/hooks/useTemplate";
 import useResumeContext from "@/hooks/useResume";
 
 /**
- * Manages all state, refs, and context for the ResumeEditorPage.
+ * Custom hook for managing Resume Editor state
+ * @hook
+ * @function useResumeEditorState
+ * @returns {Object} Complete editor state object
+ * @returns {string} return.newResumeTemplateId - Template ID for new resume (from URL params)
+ * @returns {string} return.existingResumeId - Resume ID for editing (from URL params)
+ * @returns {Function} return.navigate - React Router navigate function
+ * @returns {Object} return.location - React Router location object
+ * @returns {React.RefObject} return.resumePreviewRef - Ref to preview component
+ * @returns {React.RefObject} return.nameInputRef - Ref to name input element
+ * @returns {Object} return.auth - Authentication context
+ * @returns {Object} return.templates - Template context
+ * @returns {Object} return.resume - Resume context
+ * @returns {string|null} return.mode - Editor mode ('create' or 'edit')
+ * @returns {boolean} return.pageIsLoading - Overall page loading state
+ * @returns {string|null} return.pageError - Page-level error message
+ * @returns {Object|null} return.currentTemplateForEditor - Current template being used
+ * @returns {string} return.editableResumeName - Current resume name
+ * @returns {boolean} return.isEditingName - Whether name is being edited
+ * @returns {boolean} return.isDownloadingPdf - PDF download state
+ * @returns {boolean} return.showFeedbackDialog - Feedback dialog visibility
+ * @returns {Object} return.feedbackDetailsForDialog - Feedback dialog content
+ * @returns {boolean} return.showAuthDialog - Auth dialog visibility
+ * @returns {boolean} return.isDirty - Whether form has unsaved changes
+ * @returns {string} return.saveStatus - Current save status ('idle'|'saving'|'saved')
+ * @returns {boolean} return.showPlaceholderWarning - Placeholder warning dialog visibility
+ * @returns {string|null} return.pendingAction - Pending action ('save'|'download')
+ * @returns {boolean} return.isAddSectionDialogOpen - Add section dialog visibility
+ * @returns {string} return.activeMobileView - Active mobile view ('edit'|'preview')
+ * @returns {boolean} return.isCustomizeDialogOpen - Customize dialog visibility
+ * @returns {Set} return.editedSections - Set of edited section keys
+ * @returns {number} return.spacingMultiplier - Layout spacing multiplier
+ * @returns {number} return.fontSizeMultiplier - Font size multiplier
+ * @returns {string|null} return.selectedStylePackKey - Selected style pack
+ * @returns {Array|null} return.sectionOrder - Custom section order
+ * @returns {string|null} return.selectedPresetKey - Selected preset
+ * @returns {string|null} return.selectedIndustry - Target industry
+ * @returns {number} return.zoomLevel - Preview zoom level
+ * @returns {number} return.previewUpdateKey - Key to force preview updates
+ * @returns {boolean} return.isTooltipDialogOpen - Tooltip dialog visibility
+ * @returns {Object} return.tooltipContent - Tooltip content
+ * @returns {boolean} return.showResumeSetupDialog - Setup dialog visibility
+ * @description This hook centralizes all state management for the Resume Editor page,
+ * including router state, UI state, customization settings, and context integration.
+ * It reduces prop drilling and provides a clean interface for the editor component.
+ * @example
+ * const editorState = useResumeEditorState();
+ * const { mode, isLoadingPage, currentTemplateForEditor } = editorState;
  */
 export const useResumeEditorState = () => {
     // Router Hooks
