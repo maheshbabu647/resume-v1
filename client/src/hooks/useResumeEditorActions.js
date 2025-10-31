@@ -45,6 +45,8 @@ export const useResumeEditorActions = ({
     setIsDownloadingPdf,
     setPageError,
     setShowFeedbackDialog,
+    setShowFeedbackFormDialog,
+    setFeedbackFormAction,
 
     // CONTEXT & OTHER HOOKS
     saveOrUpdateCurrentResume,
@@ -78,6 +80,9 @@ export const useResumeEditorActions = ({
         if (savedResult?._id) {
             setFeedbackDetailsForDialog({ title: 'Success!', message: 'Resume saved successfully!', type: 'success' });
             setShowFeedbackDialog(true);
+            setFeedbackFormAction('save_resume');
+            // Delay showing feedback form to allow success dialog to be seen first
+            setTimeout(() => setShowFeedbackFormDialog(true), 2000);
             setIsDirty(false);
             setSaveStatus('success');
             setTimeout(() => setSaveStatus('idle'), 2500);
@@ -118,6 +123,9 @@ export const useResumeEditorActions = ({
             }
             const cleanHtmlForPdf = styleElement.outerHTML + resumeContainer.outerHTML;
             await downloadResume(cleanHtmlForPdf);
+            setFeedbackFormAction('download_resume');
+            // Delay showing feedback form to allow success/OS download UI to settle
+            setTimeout(() => setShowFeedbackFormDialog(true), 2000);
         } catch (error) {
             setPageError('Failed to download PDF.');
         } finally {

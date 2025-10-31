@@ -54,7 +54,7 @@ export const parseResumeFromFile = async (req, res, next) => {
     
     // Parse resume using AI with example form data structure
     logger.info('[ResumeParserController] Parsing resume with AI');
-    const parsedData = await parseResumeWithAI(extractedData.text, exampleFormData);
+    const parsedData = await parseResumeWithAI(extractedData.text, exampleFormData, req.user || null, req.body.sessionId);
     
     // Validate parsed data
     const validatedData = validateParsedResumeData(parsedData, exampleFormData);
@@ -86,7 +86,7 @@ export const parseResumeFromText = async (req, res, next) => {
   try {
     logger.info('[ResumeParserController] parseResumeFromText called');
     
-    const { resumeText, exampleFormData } = req.body;
+    const { resumeText, exampleFormData, sessionId } = req.body;
     
     // Validate input
     if (!resumeText || typeof resumeText !== 'string' || resumeText.trim().length === 0) {
@@ -103,7 +103,7 @@ export const parseResumeFromText = async (req, res, next) => {
     
     // Parse resume using AI with example form data structure
     logger.info('[ResumeParserController] Parsing resume with AI');
-    const parsedData = await parseResumeWithAI(resumeText, exampleFormData);
+    const parsedData = await parseResumeWithAI(resumeText, exampleFormData, req.user || null, sessionId);
     
     // Validate parsed data
     const validatedData = validateParsedResumeData(parsedData, exampleFormData);

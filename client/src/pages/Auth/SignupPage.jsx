@@ -6,6 +6,7 @@ import useAuthContext from '@/hooks/useAuth.js';
 import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import GoogleLoginButton from '@/components/Auth/GoogleLoginButton.jsx';
+import LinkedInLoginButton from '@/components/Auth/LinkedInLoginButton.jsx';
 
 const SignupForm = React.lazy(() => import('@/components/Auth/SignupForm.jsx'));
 
@@ -158,6 +159,8 @@ const SignupPage = () => {
               </div>
             </div>
             <GoogleLoginButton />
+            <div className="mt-2" />
+            <LinkedInLoginButton />
             </CardContent>
             <CardFooter className="flex flex-col items-center p-6 sm:p-8 pt-2">
               <p className="mt-4 text-center text-sm text-muted-foreground">

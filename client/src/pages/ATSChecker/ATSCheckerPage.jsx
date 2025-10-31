@@ -1125,9 +1125,14 @@ const ATSCheckerPage = () => {
     }
   }, []);
 
-  const handleAnalyze = async (resumeFile, jdFile) => {
+  const handleAnalyze = async (resumeFile, jdInput) => {
     setResumeFile(resumeFile);
-    setJobDescriptionFile(jdFile);
+    // If text input was used, keep a lightweight placeholder; else keep file meta
+    if (jdInput && jdInput.text) {
+      setJobDescriptionFile({ name: 'Pasted Job Description', status: 'ready' });
+    } else {
+      setJobDescriptionFile(jdInput);
+    }
     setCurrentStep('analyzing');
     setAtsResults(null);
 
@@ -1140,8 +1145,8 @@ const ATSCheckerPage = () => {
       onProgress('uploading'); // Initial progress message
       const result = await atsScoreService.analyzeATSScore(
         resumeFile.file,
-        jdFile.file,
-        onProgress // Pass the callback
+        jdInput && jdInput.text ? jdInput.text : jdInput.file,
+        onProgress
       );
 
       if (result.success) {

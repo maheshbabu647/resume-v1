@@ -24,6 +24,7 @@ import CustomizePanel from "@/components/ResumeEditor/CustomizationPanel";
 import AuthDialog from '@/components/Auth/AuthDialog.jsx';
 import { TooltipDialog } from "@/components/ResumeEditor/TooltipDialog";
 import { FeedbackDialog, PlaceholderWarningDialog, AddSectionDialog } from '@/components/ResumeEditor/EditorDialogs';
+import FeedbackFormDialog from '@/components/Common/Feedback/FeedbackFormDialog.jsx';
 import ResumeSetupDialog from '@/components/ResumeEditor/ResumeSetupDialog';
 const ResumePreview = React.lazy(() => import("@/components/ResumeEditor/ResumePreview"));
 const ResumeForm = React.lazy(() => import("@/components/ResumeEditor/ResumeForm"));
@@ -76,6 +77,8 @@ const ResumeEditorPage = () => {
         isTooltipDialogOpen, setIsTooltipDialogOpen, 
         tooltipContent, setTooltipContent,
         showResumeSetupDialog, setShowResumeSetupDialog,
+        showFeedbackFormDialog, setShowFeedbackFormDialog,
+        feedbackFormAction, setFeedbackFormAction,
     } = editorState;
 
     const {
@@ -129,7 +132,7 @@ const ResumeEditorPage = () => {
         currentTemplateForEditor, resumePreviewRef, setPendingAction,
         setShowPlaceholderWarning, setShowAuthDialog, setSaveStatus,
         setFeedbackDetailsForDialog, setIsDirty, setIsDownloadingPdf,
-        setPageError, setShowFeedbackDialog,
+        setPageError, setShowFeedbackDialog, setShowFeedbackFormDialog, setFeedbackFormAction,
         saveOrUpdateCurrentResume, handleSimpleChange, handleArrayItemChange,
     });  
 
@@ -612,6 +615,7 @@ const ResumeEditorPage = () => {
 
             {/* Dialogs */}
             <FeedbackDialog open={showFeedbackDialog} onOpenChange={setShowFeedbackDialog} title={feedbackDetailsForDialog.title} message={feedbackDetailsForDialog.message} type={feedbackDetailsForDialog.type}/>
+            <FeedbackFormDialog open={showFeedbackFormDialog} onOpenChange={setShowFeedbackFormDialog} defaultAction={feedbackFormAction} />
             <AuthDialog 
                 open={showAuthDialog} 
                 onOpenChange={setShowAuthDialog} 

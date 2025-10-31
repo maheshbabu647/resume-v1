@@ -295,7 +295,7 @@ export const downlaodResume = async (req, res, next) => {
 export const generateResumeSummary = async (req, res, next) => {
   try {
     const userId = req.user.userId;
-    const resumeData = req.body;
+    const { resumeData, sessionId } = req.body;
 
     await logAnalyticsEvent({
       eventType: 'resume_generate_summary_attempt',
@@ -303,7 +303,7 @@ export const generateResumeSummary = async (req, res, next) => {
       meta: { ip: req.ip }
     });
 
-    const summary = await generateAISummary(resumeData);
+    const summary = await generateAISummary(resumeData, req.user, sessionId);
 
     await logAnalyticsEvent({
       eventType: 'resume_generate_summary_success',
@@ -327,7 +327,7 @@ export const generateResumeSummary = async (req, res, next) => {
 export const generateFieldContent = async (req, res, next) => {
   try {
     const userId = req.user.userId;
-    const { fieldName, fieldLabel, fieldType, globalContext, localContext, userNotes } = req.body || {};
+    const { fieldName, fieldLabel, fieldType, globalContext, localContext, userNotes, sessionId } = req.body || {};
 
     await logAnalyticsEvent({
       eventType: 'resume_generate_field_attempt',
@@ -341,7 +341,9 @@ export const generateFieldContent = async (req, res, next) => {
       fieldType,
       globalContext: globalContext || {},
       localContext: localContext || {},
-      userNotes: userNotes || ''
+      userNotes: userNotes || '',
+      user: req.user,
+      sessionId
     });
 
     await logAnalyticsEvent({
@@ -362,7 +364,7 @@ export const generateFieldContent = async (req, res, next) => {
 export const enhanceEntireResume = async (req, res, next) => {
   try {
     const userId = req.user.userId;
-    const { resumeData, globalContext, userNotes } = req.body || {};
+    const { resumeData, globalContext, userNotes, sessionId } = req.body || {};
 
     await logAnalyticsEvent({
       eventType: 'resume_enhance_attempt',
@@ -373,7 +375,9 @@ export const enhanceEntireResume = async (req, res, next) => {
     const enhanced = await enhanceResumeContentService({
       resumeData: resumeData || {},
       globalContext: globalContext || {},
-      userNotes: userNotes || ''
+      userNotes: userNotes || '',
+      user: req.user,
+      sessionId
     });
 
     await logAnalyticsEvent({

@@ -1,6 +1,6 @@
 // @/components/ATSCheckerPage/ResultsStep.jsx
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -19,6 +19,7 @@ import {
   Loader2,
   FileText,
 } from 'lucide-react';
+import TemplateCard from '@/components/Template/TemplateCard';
 import { getAllTemplates } from '@/api/templateServiceApi.js';
 import atsScoreService from '@/api/atsScoreServiceApi.js';
 import { cn } from '@/lib/utils';
@@ -113,6 +114,15 @@ const ResultsStep = ({ results, onReset, resumeFile, jobDescriptionFile, resumeT
   const [showAuthDialog, setShowAuthDialog] = useState(false);
   const [limitError, setLimitError] = useState(null); // For displaying limit errors
   const { atsScore, scoreInterpretation, keywordMatch, skillsMatch, suggestions, strengths, improvements } = results;
+
+  const sortedTemplates = useMemo(() => {
+    if (!Array.isArray(templates)) return [];
+    return [...templates].sort((a, b) => {
+      const dateA = new Date(a.createdAt || 0);
+      const dateB = new Date(b.createdAt || 0);
+      return dateA - dateB; // oldest first
+    });
+  }, [templates]);
 
   const handleGetOptimizedResume = async () => {
     // Check if user is authenticated
@@ -342,38 +352,10 @@ const ResultsStep = ({ results, onReset, resumeFile, jobDescriptionFile, resumeT
                             <p className="text-lg font-medium">Loading templates...</p>
                           </div>
                         ) : (
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {templates.map((template) => (
-                              <motion.div
-                                key={template._id}
-                                whileHover={{ y: -5 }}
-                                className="group"
-                              >
-                                <Card
-                                  className="cursor-pointer border-border hover:border-primary hover:shadow-xl transition-all overflow-hidden h-full flex flex-col"
-                                  onClick={() => handleTemplateSelect(template)}
-                                >
-                                  <CardContent className="p-4 text-center space-y-4 flex flex-col flex-1">
-                                    <div className="bg-muted/50 rounded-lg p-6 group-hover:bg-primary/10 transition-colors">
-                                      <FileText className="w-16 h-16 text-primary mx-auto" />
-                                    </div>
-                                    <div className="flex-1">
-                                      <h3 className="font-bold text-base mb-1">
-                                        {template.templateName}
-                                      </h3>
-                                      <p className="text-xs text-muted-foreground line-clamp-2">
-                                        {template.templateDescription}
-                                      </p>
-                                    </div>
-                                    <Button
-                                      variant="outline"
-                                      size="sm"
-                                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                                    >
-                                      Select Template
-                                    </Button>
-                                  </CardContent>
-                                </Card>
+                          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 w-full">
+                            {sortedTemplates.map((template, index) => (
+                              <motion.div key={template._id} whileHover={{ y: -5 }} layout className="w-full">
+                                <TemplateCard template={template} isFirstTemplate={index === 0} onSelect={handleTemplateSelect} />
                               </motion.div>
                             ))}
                           </div>

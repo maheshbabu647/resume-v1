@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import textExtractionService from '@/api/textExtractionServiceApi.js';
 
-const FileDropzone = ({ title, icon: Icon, iconColor, onFileSelect, file, onRemove }) => {
+const FileDropzone = ({ title, icon: Icon, iconColor, onFileSelect, file, onRemove, showTitle = true }) => {
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef(null);
 
@@ -55,10 +55,12 @@ const FileDropzone = ({ title, icon: Icon, iconColor, onFileSelect, file, onRemo
 
   return (
     <div className="w-full">
-      <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2 sm:mb-3 flex items-center gap-2">
-        <Icon className={cn('w-4 h-4 sm:w-5 sm:h-5', iconColor)} />
-        {title}
-      </h3>
+      {showTitle && (
+        <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2 sm:mb-3 flex items-center gap-2">
+          <Icon className={cn('w-4 h-4 sm:w-5 sm:h-5', iconColor)} />
+          {title}
+        </h3>
+      )}
       
       {!file ? (
         <div

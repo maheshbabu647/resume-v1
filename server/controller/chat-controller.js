@@ -1,6 +1,7 @@
 // controller/chat-controller.js
 
 import vertex_ai from '../config/cloudai-config.js';
+import AIUsageTracker from '../util/ai-usage-tracker.js';
 
 // Get the generative model from your config
 const model = vertex_ai.getGenerativeModel({ model: 'gemini-2.5-flash' });
@@ -11,7 +12,7 @@ const model = vertex_ai.getGenerativeModel({ model: 'gemini-2.5-flash' });
  */
 export const handleChat = async (req, res) => {
   try {
-    const { history } = req.body;
+    const { history, sessionId } = req.body;
 
     // Validate that history is a non-empty array
     if (!history || !Array.isArray(history) || history.length === 0) {
@@ -32,6 +33,18 @@ export const handleChat = async (req, res) => {
     // Extract the response text
     const responseText = result.response.candidates[0].content.parts[0].text;
 
+    // Track AI usage
+    const tokens = AIUsageTracker.extractTokenCounts(result);
+    await AIUsageTracker.logUsage({
+      service: 'chat',
+      model: 'gemini-2.5-flash',
+      inputTokens: tokens.inputTokens,
+      outputTokens: tokens.outputTokens,
+      user: req.user || null,
+      sessionId: sessionId || null,
+      success: true
+    });
+
     res.status(200).json({
       status: 200,
       reply: responseText
@@ -39,6 +52,19 @@ export const handleChat = async (req, res) => {
 
   } catch (error) {
     console.error('Gemini chat error:', error);
+    
+    // Track failed usage
+    await AIUsageTracker.logUsage({
+      service: 'chat',
+      model: 'gemini-2.5-flash',
+      inputTokens: 0,
+      outputTokens: 0,
+      user: req.user || null,
+      sessionId: req.body.sessionId || null,
+      success: false,
+      errorMessage: error.message
+    });
+    
     res.status(500).json({
       status: 500,
       error: 'An error occurred while communicating with the AI.'

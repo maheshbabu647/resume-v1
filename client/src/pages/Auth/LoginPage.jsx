@@ -6,6 +6,7 @@ import useAuthContext from '@/hooks/useAuth.js';
 import LoadingSpinner from '@/components/Common/LoadingSpinner/LoadingSpinner';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import GoogleLoginButton from '@/components/Auth/GoogleLoginButton.jsx';
+import LinkedInLoginButton from '@/components/Auth/LinkedInLoginButton.jsx';
 
 const LoginForm = React.lazy(() => import('@/components/Auth/LoginForm.jsx'));
 
@@ -162,6 +163,8 @@ const LoginPage = () => {
                 </div>
               </div>
               <GoogleLoginButton />
+              <div className="mt-2" />
+              <LinkedInLoginButton />
 
               <div className="mt-4 text-center text-sm">
                 <Link to="/forgot-password" className="font-medium text-primary hover:text-primary/80 underline underline-offset-4">

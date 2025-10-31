@@ -10,6 +10,7 @@ import { Loader2, KeyRound } from 'lucide-react';
 import useAuthContext from '@/hooks/useAuth.js';
 import { verifyEmail as apiVerifyEmail, resendVerification as apiResendVerification } from '@/api/authServiceApi';
 import GoogleLoginButton from './GoogleLoginButton.jsx';
+import LinkedInLoginButton from './LinkedInLoginButton.jsx';
 
 const LoginForm = React.lazy(() => import('./LoginForm.jsx'));
 const SignupForm = React.lazy(() => import('./SignupForm.jsx'));
@@ -221,6 +222,10 @@ const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess, onSa
                     redirectTo={window.location.href} 
                     onBeforeRedirect={onSaveFormData}
                   />
+                  <LinkedInLoginButton 
+                    redirectTo={window.location.href}
+                    onBeforeRedirect={onSaveFormData}
+                  />
                 </div>
                 
                 {/* Divider */}
@@ -245,6 +250,10 @@ const AuthDialog = ({ open, onOpenChange, initialView = 'login', onSuccess, onSa
                 <div className="space-y-4 mb-6">
                   <GoogleLoginButton 
                     redirectTo={window.location.href} 
+                    onBeforeRedirect={onSaveFormData}
+                  />
+                  <LinkedInLoginButton 
+                    redirectTo={window.location.href}
                     onBeforeRedirect={onSaveFormData}
                   />
                 </div>

@@ -29,7 +29,7 @@ import {
 } from 'lucide-react';
 
 
-const TemplateCard = ({ template, isFirstTemplate = false }) => {
+const TemplateCard = ({ template, isFirstTemplate = false, onSelect }) => {
   const navigate = useNavigate();
   const [isPresetDialogOpen, setIsPresetDialogOpen] = useState(false);
   const [showBuilder, setShowBuilder] = useState(false);
@@ -56,8 +56,18 @@ const TemplateCard = ({ template, isFirstTemplate = false }) => {
     return Array.from(allIndustries).sort();
   }, [template]);
 
-  const handlePresetSelect = (presetKey) => navigate(`/resume/new/${template._id}`, { state: { presetKey } });
+  const handlePresetSelect = (presetKey) => {
+    if (onSelect) {
+      onSelect(template);
+      return;
+    }
+    navigate(`/resume/new/${template._id}`, { state: { presetKey } });
+  };
   const handleCombinationSelect = () => {
+    if (onSelect) {
+      onSelect(template);
+      return;
+    }
     const virtualPreset = {
       sectionPresetKey: combination.sectionPresetKey,
       stylePackKey: combination.stylePackKey,
@@ -65,12 +75,22 @@ const TemplateCard = ({ template, isFirstTemplate = false }) => {
     };
     navigate(`/resume/new/${template._id}`, { state: { virtualPreset } });
   };
-  const handleSkip = () => navigate(`/resume/new/${template._id}`);
+  const handleSkip = () => {
+    if (onSelect) {
+      onSelect(template);
+      return;
+    }
+    navigate(`/resume/new/${template._id}`);
+  };
   const isCombinationComplete = useMemo(() => (
     combination.industry && combination.sectionPresetKey && combination.stylePackKey
   ), [combination]);
 
   const handleCardClick = () => {
+    if (onSelect) {
+      onSelect(template);
+      return;
+    }
     setIsPresetDialogOpen(true);
   };
 

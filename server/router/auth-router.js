@@ -130,7 +130,7 @@ authRouter.get('/google/callback',
 
 
 authRouter.get('/linkedin',
-  passport.authenticate('linkedin', { session: false })
+  passport.authenticate('linkedin', { scope: ['openid', 'profile', 'email'], session: false })
 );
 
 authRouter.get('/linkedin/callback',

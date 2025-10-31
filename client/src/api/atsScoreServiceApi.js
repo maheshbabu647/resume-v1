@@ -30,20 +30,35 @@ class ATSScoreService {
   /**
    * Analyze ATS compatibility between resume and job description
    * @param {File} resumeFile - Resume file
-   * @param {File} jobDescriptionFile - Job description file
+   * @param {File|string|Object} jobDescriptionInput - Job description file, plain text string, or { text }
+   * @param {function} onProgress - Optional upload progress callback
    * @returns {Promise<Object>} - ATS analysis results
    */
-  async analyzeATSScore(resumeFile, jobDescriptionFile) {
+  async analyzeATSScore(resumeFile, jobDescriptionInput, onProgress) {
     try {
       const formData = new FormData();
       formData.append('resume', resumeFile);
-      formData.append('jobDescription', jobDescriptionFile);
+      // Support JD as file or pasted text
+      if (jobDescriptionInput instanceof File) {
+        formData.append('jobDescription', jobDescriptionInput);
+      } else if (typeof jobDescriptionInput === 'string') {
+        formData.append('jobDescriptionText', jobDescriptionInput);
+        formData.append('jobInputType', 'text');
+      } else if (jobDescriptionInput && typeof jobDescriptionInput === 'object' && jobDescriptionInput.text) {
+        formData.append('jobDescriptionText', jobDescriptionInput.text);
+        formData.append('jobInputType', 'text');
+      } else {
+        throw new Error('Invalid job description input');
+      }
 
       const response = await this.api.post('/analyze', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
         onUploadProgress: (progressEvent) => {
+          if (typeof onProgress === 'function') {
+            onProgress('uploading');
+          }
           const percentCompleted = Math.round(
             (progressEvent.loaded * 100) / progressEvent.total
           );

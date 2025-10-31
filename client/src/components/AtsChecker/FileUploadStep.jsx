@@ -15,6 +15,8 @@ import FileDropzone from './FileDropzone';
 const FileUploadStep = ({ onAnalyze }) => {
   const [resumeFile, setResumeFile] = useState(null);
   const [jobDescriptionFile, setJobDescriptionFile] = useState(null);
+  const [jobDescriptionMode, setJobDescriptionMode] = useState('file'); // 'file' | 'text'
+  const [jobDescriptionText, setJobDescriptionText] = useState('');
   const [error, setError] = useState(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
 
@@ -48,13 +50,36 @@ const FileUploadStep = ({ onAnalyze }) => {
   };
 
   const handleAnalyzeClick = () => {
-    if (!resumeFile || !jobDescriptionFile) {
-      setError('Please upload both your resume and the job description.');
+    if (!resumeFile) {
+      setError('Please upload your resume.');
+      return;
+    }
+
+    if (jobDescriptionMode === 'file') {
+      if (!jobDescriptionFile) {
+        setError('Please upload the job description file or switch to Paste Text.');
+        return;
+      }
+      setIsAnalyzing(true);
+      setError(null);
+      onAnalyze(resumeFile, jobDescriptionFile);
+      return;
+    }
+
+    // Text mode validations
+    const trimmed = (jobDescriptionText || '').trim();
+    if (trimmed.length < 50) {
+      setError('Please paste a longer job description (at least 50 characters).');
+      return;
+    }
+    if (trimmed.length > 20000) {
+      setError('Job description is too long. Please keep it under 20,000 characters.');
       return;
     }
     setIsAnalyzing(true);
     setError(null);
-    onAnalyze(resumeFile, jobDescriptionFile);
+    // Pass an object that carries the pasted text instead of a file
+    onAnalyze(resumeFile, { text: trimmed });
   };
 
   return (
@@ -80,14 +105,56 @@ const FileUploadStep = ({ onAnalyze }) => {
             file={resumeFile}
             onRemove={() => setResumeFile(null)}
           />
-          <FileDropzone
-            title="Step 2: Upload Job Description"
-            icon={File}
-            iconColor="text-accent-purple"
-            onFileSelect={(file) => handleFile(file, 'jobdesc')}
-            file={jobDescriptionFile}
-            onRemove={() => setJobDescriptionFile(null)}
-          />
+          <div className="space-y-3">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <File className="w-5 h-5 text-accent-purple" />
+                <span className="text-base sm:text-lg font-semibold">
+                  {jobDescriptionMode === 'file' ? 'Step 2: Upload Job Description' : 'Step 2: Paste Job Description'}
+                </span>
+              </div>
+              <div className="grid grid-cols-2 sm:inline-flex w-full sm:w-auto rounded-md border border-border p-1 gap-1">
+                <button
+                  type="button"
+                  className={`px-3 py-1 text-sm rounded w-full sm:w-auto ${jobDescriptionMode === 'file' ? 'bg-muted' : ''}`}
+                  onClick={() => setJobDescriptionMode('file')}
+                >
+                  Upload File
+                </button>
+                <button
+                  type="button"
+                  className={`px-3 py-1 text-sm rounded w-full sm:w-auto ${jobDescriptionMode === 'text' ? 'bg-muted' : ''}`}
+                  onClick={() => setJobDescriptionMode('text')}
+                >
+                  Paste Text
+                </button>
+              </div>
+            </div>
+
+            {jobDescriptionMode === 'file' ? (
+              <FileDropzone
+                title="Upload Job Description"
+                icon={File}
+                iconColor="text-accent-purple"
+                onFileSelect={(file) => handleFile(file, 'jobdesc')}
+                file={jobDescriptionFile}
+                onRemove={() => setJobDescriptionFile(null)}
+                showTitle={false}
+              />
+            ) : (
+              <div className="border border-border rounded-xl p-4 bg-muted/20">
+                <textarea
+                  value={jobDescriptionText}
+                  onChange={(e) => setJobDescriptionText(e.target.value)}
+                  placeholder="Paste the full job description here..."
+                  className="w-full h-48 resize-y bg-transparent outline-none"
+                />
+                <div className="text-xs text-muted-foreground mt-2">
+                  {`${(jobDescriptionText || '').length} / 20000 characters`}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Error Message */}
@@ -110,7 +177,7 @@ const FileUploadStep = ({ onAnalyze }) => {
         <div className="text-center pt-2 sm:pt-4">
           <Button
             onClick={handleAnalyzeClick}
-            disabled={!resumeFile || !jobDescriptionFile || isAnalyzing}
+            disabled={!resumeFile || (jobDescriptionMode === 'file' ? !jobDescriptionFile : false) || isAnalyzing}
             size="lg"
             // Responsive button - full width on mobile, auto on larger screens
             className="w-full sm:w-auto px-6 sm:px-10 py-3 text-sm sm:text-base font-semibold rounded-xl shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all"

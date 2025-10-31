@@ -1,5 +1,6 @@
 import logger from '../config/logger.js';
 import vertex_ai from '../config/cloudai-config.js';
+import AIUsageTracker from '../util/ai-usage-tracker.js';
 
 // Get the generative model from your config
 const model = vertex_ai.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
@@ -46,9 +47,10 @@ function getDefaultSchema() {
  * Parses a resume text using Gemini AI and extracts structured data.
  * @param {string} resumeText - The extracted text from the resume
  * @param {object} exampleFormData - The example form data structure to match
+ * @param {object} user - User object (for usage tracking)
  * @returns {Promise<object>} - Structured resume data matching the template format
  */
-export const parseResumeWithAI = async (resumeText, exampleFormData = null) => {
+export const parseResumeWithAI = async (resumeText, exampleFormData = null, user = null, sessionId = null) => {
   try {
     logger.info('[ResumeParser] Starting AI resume parsing');
     
@@ -94,6 +96,18 @@ Generate the JSON matching the example structure now:`;
     const result = await model.generateContent(prompt);
     const responseText = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
     
+    // Track AI usage
+    const tokens = AIUsageTracker.extractTokenCounts(result);
+    await AIUsageTracker.logUsage({
+      service: 'resume_parser',
+      model: 'gemini-2.0-flash-exp',
+      inputTokens: tokens.inputTokens,
+      outputTokens: tokens.outputTokens,
+      user,
+      sessionId,
+      success: true
+    });
+    
     // Clean up the response - remove markdown code fences if present
     const cleaned = responseText.trim()
       .replace(/^```json\s*/i, '')
@@ -122,6 +136,19 @@ Generate the JSON matching the example structure now:`;
     
   } catch (error) {
     logger.error('[ResumeParser] Error in parseResumeWithAI:', error.message);
+    
+    // Track failed usage
+    await AIUsageTracker.logUsage({
+      service: 'resume_parser',
+      model: 'gemini-2.0-flash-exp',
+      inputTokens: AIUsageTracker.estimateTokens(prompt),
+      outputTokens: 0,
+      user,
+      sessionId,
+      success: false,
+      errorMessage: error.message
+    });
+    
     throw error;
   }
 };

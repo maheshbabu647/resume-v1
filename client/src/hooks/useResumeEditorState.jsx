@@ -85,6 +85,8 @@ export const useResumeEditorState = () => {
     const [isEditingName, setIsEditingName] = useState(false);
     const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
     const [showFeedbackDialog, setShowFeedbackDialog] = useState(false);
+    const [showFeedbackFormDialog, setShowFeedbackFormDialog] = useState(false);
+    const [feedbackFormAction, setFeedbackFormAction] = useState('save_resume');
     const [feedbackDetailsForDialog, setFeedbackDetailsForDialog] = useState({ title: '', message: '', type: 'success' });
     const [showAuthDialog, setShowAuthDialog] = useState(false);
     const [isDirty, setIsDirty] = useState(false);
@@ -122,6 +124,8 @@ export const useResumeEditorState = () => {
         isEditingName, setIsEditingName,
         isDownloadingPdf, setIsDownloadingPdf,
         showFeedbackDialog, setShowFeedbackDialog,
+        showFeedbackFormDialog, setShowFeedbackFormDialog,
+        feedbackFormAction, setFeedbackFormAction,
         feedbackDetailsForDialog, setFeedbackDetailsForDialog,
         showAuthDialog, setShowAuthDialog,
         isDirty, setIsDirty,

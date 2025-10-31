@@ -118,23 +118,7 @@ const Navbar = () => {
           >
             <Link to="/" className="flex items-center gap-3 group">
               <div className="relative">
-                <motion.div 
-                  className="w-10 h-10 bg-gradient-to-br from-primary to-accent-purple rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300"
-                  whileHover={{ rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 400 }}
-                >
-                  <Sparkles className="w-5 h-5 text-primary-foreground" />
-                </motion.div>
-                
-                <motion.div 
-                  className="absolute -top-1 -right-1 w-4 h-4 bg-success rounded-full opacity-90 group-hover:opacity-100 transition-opacity"
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <div className="w-full h-full rounded-full flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 bg-success-foreground rounded-full"></div>
-                  </div>
-                </motion.div>
+                <img src="/logo.JPG" alt="CareerForge" className="w-10 h-10 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 object-cover" />
               </div>
 
               <div className="hidden sm:block">

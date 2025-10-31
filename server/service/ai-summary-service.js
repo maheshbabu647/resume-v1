@@ -1,5 +1,6 @@
 import logger from '../config/logger.js';
 import vertex_ai from '../config/cloudai-config.js';
+import AIUsageTracker from '../util/ai-usage-tracker.js';
 
 // Get the generative model from your config
 const model = vertex_ai.getGenerativeModel({ model: 'gemini-2.5-flash' });
@@ -7,18 +8,46 @@ const model = vertex_ai.getGenerativeModel({ model: 'gemini-2.5-flash' });
 /**
  * Generates a concise 3-4 line summary based on the input text using the Gemini model.
  * @param {string} inputText - The input text to summarize.
+ * @param {object} user - User object (for usage tracking)
+ * @param {string} sessionId - Session ID for anonymous users (optional)
  * @returns {Promise<string>} - The AI-generated summary.
  */
-export const generateAISummary = async (inputText) => {
+export const generateAISummary = async (inputText, user = null, sessionId = null) => {
   const prompt = `Generate a concise 3-4 line professional summary based on the following input:\n\n${inputText}.
                   No extra thinking or talk should be provided, just direct content is needed`;
 
   try {
     const result = await model.generateContent(prompt);
     const responseText = result.response.candidates[0].content.parts[0].text;
+    
+    // Track AI usage
+    const tokens = AIUsageTracker.extractTokenCounts(result);
+    await AIUsageTracker.logUsage({
+      service: 'resume_summary',
+      model: 'gemini-2.5-flash',
+      inputTokens: tokens.inputTokens,
+      outputTokens: tokens.outputTokens,
+      user,
+      sessionId,
+      success: true
+    });
+    
     return responseText;
   } catch (error) {
     logger.error('Gemini API error in generateAISummary:', error.message);
+    
+    // Track failed usage
+    await AIUsageTracker.logUsage({
+      service: 'resume_summary',
+      model: 'gemini-2.5-flash',
+      inputTokens: AIUsageTracker.estimateTokens(prompt),
+      outputTokens: 0,
+      user,
+      sessionId,
+      success: false,
+      errorMessage: error.message
+    });
+    
     const err = new Error('AI Summary generation failed');
     err.status = 500;
     throw err;
@@ -33,9 +62,11 @@ export const generateAISummary = async (inputText) => {
  * @param {string} coverLetterData.jobTitle - Job title applied for
  * @param {string} coverLetterData.jobDescription - Job description text
  * @param {string} coverLetterData.userSkills - Key skills relevant to the job
+ * @param {object} user - User object (for usage tracking)
+ * @param {string} sessionId - Session ID for anonymous users (optional)
  * @returns {Promise<string>} - Generated cover letter text
  */
-export const generateAICoverLetter = async (coverLetterData) => {
+export const generateAICoverLetter = async (coverLetterData, user = null, sessionId = null) => {
   const {
     userName,
     companyName,
@@ -54,9 +85,35 @@ export const generateAICoverLetter = async (coverLetterData) => {
   try {
     const result = await model.generateContent(prompt);
     const responseText = result.response.candidates[0].content.parts[0].text;
+    
+    // Track AI usage
+    const tokens = AIUsageTracker.extractTokenCounts(result);
+    await AIUsageTracker.logUsage({
+      service: 'cover_letter',
+      model: 'gemini-2.5-flash',
+      inputTokens: tokens.inputTokens,
+      outputTokens: tokens.outputTokens,
+      user,
+      sessionId,
+      success: true
+    });
+    
     return responseText;
   } catch (error) {
     logger.error('Gemini API error in generateAICoverLetter:', error.message);
+    
+    // Track failed usage
+    await AIUsageTracker.logUsage({
+      service: 'cover_letter',
+      model: 'gemini-2.5-flash',
+      inputTokens: AIUsageTracker.estimateTokens(prompt),
+      outputTokens: 0,
+      user,
+      sessionId,
+      success: false,
+      errorMessage: error.message
+    });
+    
     const err = new Error('AI Cover Letter generation failed');
     err.status = 500;
     throw err;
@@ -74,6 +131,7 @@ export const generateAICoverLetter = async (coverLetterData) => {
  * @param {object} params.globalContext - Global context collected from setup dialog.
  * @param {object} params.localContext - Local context from aiConfig.contextFields.
  * @param {string} params.userNotes - Optional user notes.
+ * @param {object} params.user - User object (for usage tracking)
  * @returns {Promise<string>} Generated content for the field.
  */
 export const generateAIFieldContent = async ({
@@ -82,7 +140,9 @@ export const generateAIFieldContent = async ({
   fieldType,
   globalContext = {},
   localContext = {},
-  userNotes = ''
+  userNotes = '',
+  user = null,
+  sessionId = null
 }) => {
 
   const safeFieldLabel = fieldLabel || fieldName || 'this field';
@@ -107,9 +167,35 @@ Instructions:
   try {
     const result = await model.generateContent(prompt);
     const responseText = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    
+    // Track AI usage
+    const tokens = AIUsageTracker.extractTokenCounts(result);
+    await AIUsageTracker.logUsage({
+      service: 'field_content',
+      model: 'gemini-2.5-flash',
+      inputTokens: tokens.inputTokens,
+      outputTokens: tokens.outputTokens,
+      user,
+      sessionId,
+      success: true
+    });
+    
     return (responseText || '').trim();
   } catch (error) {
     logger.error('Gemini API error in generateAIFieldContent:', error.message);
+    
+    // Track failed usage
+    await AIUsageTracker.logUsage({
+      service: 'field_content',
+      model: 'gemini-2.5-flash',
+      inputTokens: AIUsageTracker.estimateTokens(prompt),
+      outputTokens: 0,
+      user,
+      sessionId,
+      success: false,
+      errorMessage: error.message
+    });
+    
     const err = new Error('AI field content generation failed');
     err.status = 500;
     throw err;
@@ -124,9 +210,10 @@ Instructions:
  * @param {object} params.resumeData - The user's entered resume data object (pruned fields)
  * @param {object} params.globalContext - Global onboarding context from setup dialog
  * @param {string} params.userNotes - Optional user notes guiding enhancement
+ * @param {object} params.user - User object (for usage tracking)
  * @returns {Promise<object>} Enhanced resume data JSON matching the same shape as resumeData
  */
-export const enhanceResumeContent = async ({ resumeData = {}, globalContext = {}, userNotes = '' }) => {
+export const enhanceResumeContent = async ({ resumeData = {}, globalContext = {}, userNotes = '', user = null, sessionId = null }) => {
   const instructions = `You are enhancing a resume. Improve clarity, impact, grammar, and professionalism.
 Keep content factual, concise, and achievement-focused. Use action verbs and quantify when reasonable.
 Respect existing structure strictly. Do not add or remove keys. Do not include explanations.
@@ -147,6 +234,19 @@ ${instructions}`;
   try {
     const result = await model.generateContent(prompt);
     const raw = result.response.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+    
+    // Track AI usage
+    const tokens = AIUsageTracker.extractTokenCounts(result);
+    await AIUsageTracker.logUsage({
+      service: 'resume_enhancement',
+      model: 'gemini-2.5-flash',
+      inputTokens: tokens.inputTokens,
+      outputTokens: tokens.outputTokens,
+      user,
+      sessionId,
+      success: true
+    });
+    
     // Attempt to parse JSON; some models may wrap in code fences
     const cleaned = raw.trim().replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/i, '');
     const parsed = JSON.parse(cleaned);
@@ -156,6 +256,19 @@ ${instructions}`;
     return parsed;
   } catch (error) {
     logger.error('Gemini API error in enhanceResumeContent:', error.message);
+    
+    // Track failed usage
+    await AIUsageTracker.logUsage({
+      service: 'resume_enhancement',
+      model: 'gemini-2.5-flash',
+      inputTokens: AIUsageTracker.estimateTokens(prompt),
+      outputTokens: 0,
+      user,
+      sessionId,
+      success: false,
+      errorMessage: error.message
+    });
+    
     const err = new Error('AI resume enhancement failed');
     err.status = 500;
     throw err;

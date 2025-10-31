@@ -24,40 +24,56 @@ class ATSScoreController {
         });
       }
 
-      // Check if both files were uploaded
-      if (!req.files || !req.files.resume || !req.files.jobDescription) {
-        logger.warn('[ATSScore] Missing required files');
+      // Validate presence of resume (file) and JD (file or text)
+      if (!req.files || !req.files.resume || !req.files.resume[0]) {
+        logger.warn('[ATSScore] Missing resume file');
         return res.status(400).json({
           success: false,
-          error: 'Both resume and job description files are required'
+          error: 'Resume file is required'
         });
       }
 
       const resume = req.files.resume[0];
-      const jobDescription = req.files.jobDescription[0];
+      const hasJobFile = req.files && req.files.jobDescription && req.files.jobDescription[0];
+      const jdTextRaw = typeof req.body.jobDescriptionText === 'string' ? req.body.jobDescriptionText : '';
+      const hasJobText = jdTextRaw.trim().length > 0;
+
+      if (!hasJobFile && !hasJobText) {
+        logger.warn('[ATSScore] Missing job description (file or text)');
+        return res.status(400).json({
+          success: false,
+          error: 'Provide a job description file or pasted text'
+        });
+      }
+
+      const jobDescription = hasJobFile ? req.files.jobDescription[0] : null;
       
       // Add null checks and logging
-      if (!resume || !jobDescription) {
-        logger.error('[ATSScore] Missing files in request');
+      if (!resume) {
+        logger.error('[ATSScore] Missing resume in request');
         return res.status(400).json({
           success: false,
           error: 'Missing required files'
         });
       }
       
-      logger.info(`[ATSScore] Processing files: Resume: ${resume.originalname || 'unknown'}, Job Desc: ${jobDescription.originalname || 'unknown'}`);
-      logger.info(`[ATSScore] File details - Resume: ${JSON.stringify({
-        originalname: resume.originalname,
-        mimetype: resume.mimetype,
-        size: resume.size
-      })}, JobDesc: ${JSON.stringify({
-        originalname: jobDescription.originalname,
-        mimetype: jobDescription.mimetype,
-        size: jobDescription.size
-      })}`);
+      if (hasJobFile) {
+        logger.info(`[ATSScore] Processing files: Resume: ${resume.originalname || 'unknown'}, Job Desc: ${jobDescription.originalname || 'unknown'}`);
+        logger.info(`[ATSScore] File details - Resume: ${JSON.stringify({
+          originalname: resume.originalname,
+          mimetype: resume.mimetype,
+          size: resume.size
+        })}, JobDesc: ${JSON.stringify({
+          originalname: jobDescription.originalname,
+          mimetype: jobDescription.mimetype,
+          size: jobDescription.size
+        })}`);
+      } else {
+        logger.info(`[ATSScore] Processing files: Resume: ${resume.originalname || 'unknown'}, Job Desc: Pasted Text (${jdTextRaw.length} chars)`);
+      }
       
-      // Debug: Log the entire file objects
-      logger.info(`[ATSScore] Full file objects - Resume: ${JSON.stringify(resume)}, JobDesc: ${JSON.stringify(jobDescription)}`);
+      // Debug: Log the file objects (omit JD file if using text)
+      logger.info(`[ATSScore] Full file objects - Resume: ${JSON.stringify(resume)}${hasJobFile ? `, JobDesc: ${JSON.stringify(jobDescription)}` : ''}`);
 
       // Enhanced file type validation
       const supportedMimeTypes = [
@@ -90,7 +106,18 @@ class ATSScoreController {
         }
       };
 
-      if (!isFileTypeSupported(resume) || !isFileTypeSupported(jobDescription)) {
+      if (!isFileTypeSupported(resume)) {
+        logger.warn(`[ATSScore] Unsupported file type - Resume: ${resume.mimetype}`);
+        return res.status(400).json({
+          success: false,
+          error: 'Unsupported file type',
+          message: 'Please upload PDF, DOCX, DOC, or TXT files',
+          supportedTypes: supportedMimeTypes,
+          supportedExtensions
+        });
+      }
+
+      if (hasJobFile && !isFileTypeSupported(jobDescription)) {
         logger.warn(`[ATSScore] Unsupported file types - Resume: ${resume.mimetype}, JobDesc: ${jobDescription.mimetype}`);
         return res.status(400).json({
           success: false,
@@ -101,12 +128,17 @@ class ATSScoreController {
         });
       }
 
+      // Prepare JD buffer/mime depending on input type
+      const jdBuffer = hasJobFile ? jobDescription.buffer : Buffer.from(jdTextRaw, 'utf8');
+      const jdMime = hasJobFile ? jobDescription.mimetype : 'text/plain';
+
       // Analyze ATS score
       const analysisResult = await ATSScoreService.analyzeATSScore(
         resume.buffer,
         resume.mimetype,
-        jobDescription.buffer,
-        jobDescription.mimetype
+        jdBuffer,
+        jdMime,
+        req.user || null
       );
 
       if (!analysisResult.success) {
@@ -134,9 +166,9 @@ class ATSScoreController {
             resumeName: resume.originalname,
             resumeSize: resume.size,
             resumeType: resume.mimetype,
-            jobDescName: jobDescription.originalname,
-            jobDescSize: jobDescription.size,
-            jobDescType: jobDescription.mimetype
+            jobDescName: hasJobFile ? jobDescription.originalname : 'Pasted Text',
+            jobDescSize: hasJobFile ? jobDescription.size : jdTextRaw.length,
+            jobDescType: hasJobFile ? jobDescription.mimetype : 'text/plain'
           }
         }
       });
@@ -227,7 +259,7 @@ class ATSScoreController {
       logger.info('[ATSScore] Received optimization request');
       logger.info(`[ATSScore] Request body keys: ${Object.keys(req.body).join(', ')}`);
       
-      const { resumeText, jobDescriptionText, atsResults, templateFieldDefinition } = req.body;
+      const { resumeText, jobDescriptionText, atsResults, templateFieldDefinition, sessionId } = req.body;
 
       logger.info(`[ATSScore] Resume text length: ${resumeText?.length || 0}`);
       logger.info(`[ATSScore] Job desc text length: ${jobDescriptionText?.length || 0}`);
@@ -256,7 +288,9 @@ class ATSScoreController {
         resumeText,
         jobDescriptionText,
         atsResults,
-        templateFieldDefinition
+        templateFieldDefinition,
+        req.user || null,
+        sessionId
       );
 
       if (!result.success) {

@@ -16,19 +16,20 @@ export const validateATSRequest = (req, res, next) => {
   try {
     const resume = req.files?.resume?.[0];
     const jobDesc = req.files?.jobDescription?.[0];
+    const jdText = typeof req.body?.jobDescriptionText === 'string' ? req.body.jobDescriptionText.trim() : '';
     
-    // Check file presence (already done in router, but double-check)
-    if (!resume || !jobDesc) {
+    // Check presence: require resume file and either JD file or JD text
+    if (!resume || (!jobDesc && !jdText)) {
       return res.status(400).json({
         success: false,
         error: 'Missing files',
-        message: 'Both resume and job description are required'
+        message: 'Resume file and job description (file or text) are required'
       });
     }
     
     // Check file sizes (10MB already enforced by multer, but add warning for large files)
     const resumeSizeMB = resume.size / (1024 * 1024);
-    const jobDescSizeMB = jobDesc.size / (1024 * 1024);
+    const jobDescSizeMB = jobDesc ? jobDesc.size / (1024 * 1024) : jdText.length / (1024 * 1024);
     
     if (resumeSizeMB > 5 || jobDescSizeMB > 5) {
       logger.warn(
@@ -38,12 +39,21 @@ export const validateATSRequest = (req, res, next) => {
     }
     
     // Log request for monitoring
-    logger.info(
-      `[Validation][ATS] Request accepted - ` +
-      `Resume: ${resume.originalname} (${resumeSizeMB.toFixed(2)}MB), ` +
-      `JobDesc: ${jobDesc.originalname} (${jobDescSizeMB.toFixed(2)}MB), ` +
-      `IP: ${req.ip}, Auth: ${!!req.user?.userId}`
-    );
+    if (jobDesc) {
+      logger.info(
+        `[Validation][ATS] Request accepted - ` +
+        `Resume: ${resume.originalname} (${resumeSizeMB.toFixed(2)}MB), ` +
+        `JobDesc: ${jobDesc.originalname} (${jobDescSizeMB.toFixed(2)}MB), ` +
+        `IP: ${req.ip}, Auth: ${!!req.user?.userId}`
+      );
+    } else {
+      logger.info(
+        `[Validation][ATS] Request accepted - ` +
+        `Resume: ${resume.originalname} (${resumeSizeMB.toFixed(2)}MB), ` +
+        `JobDesc: Pasted Text (${jobDescSizeMB.toFixed(2)}MB eq), ` +
+        `IP: ${req.ip}, Auth: ${!!req.user?.userId}`
+      );
+    }
     
     next();
   } catch (error) {
@@ -136,10 +146,10 @@ export const validateParserRequest = (req, res, next) => {
  */
 export const validateFieldEnhancementRequest = (req, res, next) => {
   try {
-    const { field, context, currentContent } = req.body;
+    const { fieldName, context, currentContent } = req.body;
     
     // Check required fields
-    if (!field) {
+    if (!fieldName) {
       return res.status(400).json({
         success: false,
         error: 'Missing field',
@@ -164,7 +174,7 @@ export const validateFieldEnhancementRequest = (req, res, next) => {
     
     // Log request
     logger.info(
-      `[Validation][FieldEnhance] Request for field: ${field}, ` +
+      `[Validation][FieldEnhance] Request for field: ${fieldName}, ` +
       `length: ${totalLength}, IP: ${req.ip}, Auth: ${!!req.user?.userId}`
     );
     

@@ -1,6 +1,7 @@
 import TextExtractionService from './text-extraction-service.js';
 import logger from '../config/logger.js';
 import vertex_ai from '../config/cloudai-config.js';
+import AIUsageTracker from '../util/ai-usage-tracker.js';
 
 /**
  * ATS Score Analysis Service
@@ -17,9 +18,11 @@ class ATSScoreService {
    * @param {string} resumeMimeType - Resume file MIME type
    * @param {Buffer} jobDescBuffer - Job description file buffer
    * @param {string} jobDescMimeType - Job description file MIME type
+   * @param {Object} user - User object (for usage tracking)
+   * @param {string} sessionId - Session ID for anonymous users (optional)
    * @returns {Promise<Object>} - ATS score and suggestions
    */
-  static async analyzeATSScore(resumeBuffer, resumeMimeType, jobDescBuffer, jobDescMimeType) {
+  static async analyzeATSScore(resumeBuffer, resumeMimeType, jobDescBuffer, jobDescMimeType, user = null, sessionId = null) {
     try {
       logger.info('[ATSScore] Starting ATS score analysis');
 
@@ -37,7 +40,7 @@ class ATSScoreService {
       const prompt = this.createATSAnalysisPrompt(resumeText, jobDescText);
 
       // Generate ATS analysis using Gemini
-      const atsAnalysis = await this.generateATSAnalysis(prompt);
+      const atsAnalysis = await this.generateATSAnalysis(prompt, user, sessionId);
       logger.info('[ATSScore] ATS analysis completed successfully');
 
       return {
@@ -156,9 +159,10 @@ Below 60 → Poor match: significant keyword or role misalignment
   /**
    * Generate ATS analysis using Gemini AI
    * @param {string} prompt - Analysis prompt
+   * @param {Object} user - User object (for usage tracking)
    * @returns {Promise<Object>} - Parsed ATS analysis
    */
-  static async generateATSAnalysis(prompt) {
+  static async generateATSAnalysis(prompt, user = null, sessionId = null) {
     try {
       const model = vertex_ai.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
@@ -166,6 +170,18 @@ Below 60 → Poor match: significant keyword or role misalignment
       const responseText = result.response.candidates[0].content.parts[0].text;
 
       logger.info(`[ATSScore] Raw AI response: ${responseText.substring(0, 200)}...`);
+
+      // Track AI usage
+      const tokens = AIUsageTracker.extractTokenCounts(result);
+      await AIUsageTracker.logUsage({
+        service: 'ats_analysis',
+        model: 'gemini-2.5-flash',
+        inputTokens: tokens.inputTokens,
+        outputTokens: tokens.outputTokens,
+        user,
+        sessionId,
+        success: true
+      });
 
       // Extract JSON from AI response (handle markdown formatting)
       let jsonText = responseText;
@@ -199,6 +215,19 @@ Below 60 → Poor match: significant keyword or role misalignment
 
     } catch (error) {
       logger.error(`[ATSScore] Gemini analysis failed: ${error.message}`);
+      
+      // Track failed usage
+      await AIUsageTracker.logUsage({
+        service: 'ats_analysis',
+        model: 'gemini-2.5-flash',
+        inputTokens: AIUsageTracker.estimateTokens(prompt),
+        outputTokens: 0,
+        user,
+        sessionId,
+        success: false,
+        errorMessage: error.message
+      });
+      
       throw new Error(`AI analysis failed: ${error.message}`);
     }
   }
@@ -254,9 +283,10 @@ Below 60 → Poor match: significant keyword or role misalignment
    * @param {string} jobDescText - Job description text
    * @param {Object} atsResults - ATS analysis results
    * @param {Object} templateFieldDefinition - Template field definitions
+   * @param {Object} user - User object (for usage tracking)
    * @returns {Promise<Object>} - Optimized resume data
    */
-  static async generateOptimizedResume(resumeText, jobDescText, atsResults, templateFieldDefinition) {
+  static async generateOptimizedResume(resumeText, jobDescText, atsResults, templateFieldDefinition, user = null, sessionId = null) {
     try {
       logger.info('[ATSScore] Generating ATS-optimized resume content');
 
@@ -269,6 +299,18 @@ Below 60 → Poor match: significant keyword or role misalignment
       const responseText = result.response.candidates[0].content.parts[0].text;
 
       logger.info(`[ATSScore] Raw optimization response: ${responseText.substring(0, 200)}...`);
+
+      // Track AI usage
+      const tokens = AIUsageTracker.extractTokenCounts(result);
+      await AIUsageTracker.logUsage({
+        service: 'ats_optimization',
+        model: 'gemini-2.5-flash',
+        inputTokens: tokens.inputTokens,
+        outputTokens: tokens.outputTokens,
+        user,
+        sessionId,
+        success: true
+      });
 
       // Extract JSON from response
       let jsonText = responseText;
@@ -298,6 +340,19 @@ Below 60 → Poor match: significant keyword or role misalignment
 
     } catch (error) {
       logger.error(`[ATSScore] Optimization failed: ${error.message}`);
+      
+      // Track failed usage
+      await AIUsageTracker.logUsage({
+        service: 'ats_optimization',
+        model: 'gemini-2.5-flash',
+        inputTokens: AIUsageTracker.estimateTokens(prompt),
+        outputTokens: 0,
+        user,
+        sessionId,
+        success: false,
+        errorMessage: error.message
+      });
+      
       return {
         success: false,
         error: 'Resume optimization failed',

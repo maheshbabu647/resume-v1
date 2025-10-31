@@ -68,9 +68,14 @@ const validateATSAnalysis = [
     }
     return true;
   }),
-  body('jobDescription').custom((value, { req }) => {
-    if (!req.files || !req.files.jobDescription || !req.files.jobDescription[0]) {
-      throw new Error('Job description file is required');
+  body('jobDescriptionText').custom((value, { req }) => {
+    const hasFile = req.files && req.files.jobDescription && req.files.jobDescription[0];
+    const hasText = typeof req.body.jobDescriptionText === 'string' && req.body.jobDescriptionText.trim().length > 0;
+    if (!hasFile && !hasText) {
+      throw new Error('Provide a job description file or pasted text');
+    }
+    if (hasText && req.body.jobDescriptionText.length > 20000) {
+      throw new Error('Job description text too long (max 20,000 characters)');
     }
     return true;
   })

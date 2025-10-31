@@ -12,12 +12,12 @@ import { generateAICoverLetter } from '../service/ai-summary-service.js';
 const generateCoverLetter = async (req, res, next) => {
   try {
     const userId = req.user.userId;
-    const { userName, companyName, jobTitle, jobDescription, userSkills } = req.body;
+    const { userName, companyName, jobTitle, jobDescription, userSkills, sessionId } = req.body;
     const coverLetterData = { userName, companyName, jobTitle, jobDescription, userSkills };
 
     await logAnalyticsEvent({ eventType: 'cover_letter_generate_attempt', userId, meta: { ip: req.ip } });
     
-    const coverLetterContent = await generateAICoverLetter(coverLetterData);
+    const coverLetterContent = await generateAICoverLetter(coverLetterData, req.user, sessionId);
 
     await logAnalyticsEvent({ eventType: 'cover_letter_generate_success', userId, meta: { ip: req.ip } });
     logger.info(`[CoverLetter][Generate][Success] User: ${userId} generated a cover letter text.`);

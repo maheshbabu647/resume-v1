@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 import userModel from '../model/user-model.js'
+import AIUsage from '../model/ai-usage-model.js'
 import sendVerificationMail from '../service/email-verification-service.js'
 import sendPasswordResetEmail from '../service/password-reset-service.js'
 import { createToken } from '../util/jwt.js' // Still needed for auth token
@@ -10,7 +11,7 @@ import { logAnalyticsEvent } from '../service/analytics-logger.js'
 
 const userSignUp = async (req, res, next) => {
   try {
-    const { userName, userEmail, userPassword } = req.body
+    const { userName, userEmail, userPassword, sessionId } = req.body
     const userExisted = await userModel.findOne({ userEmail })
 
     if (userExisted) {
@@ -24,6 +25,31 @@ const userSignUp = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(userPassword, 10)
     const userData = { userName, userEmail, userPassword: hashedPassword }
     const createdData = await userModel.create(userData)
+
+    // Link previous anonymous AI usage to this user
+    if (sessionId) {
+      try {
+        const updateResult = await AIUsage.updateMany(
+          { 
+            sessionId: sessionId,
+            isAuthenticated: false,
+            userId: null
+          },
+          { 
+            $set: {
+              userId: createdData._id,
+              userEmail: createdData.userEmail
+            }
+          }
+        );
+        
+        if (updateResult.modifiedCount > 0) {
+          logger.info(`[SignUp][SessionLink] Linked ${updateResult.modifiedCount} anonymous AI usage records to user ${userEmail}`);
+        }
+      } catch (linkError) {
+        logger.error('[SignUp][SessionLink] Failed to link anonymous usage:', linkError.message);
+      }
+    }
 
     // Generate and send verification code
     const verificationCode = await sendVerificationMail(createdData._id, userName, userEmail);
