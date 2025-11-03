@@ -85,7 +85,7 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: Twitter, href: "#", label: "Twitter", color: "hover:text-blue-400" },
-    { icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:text-blue-600" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/109617317", label: "LinkedIn", color: "hover:text-blue-600" },
     { icon: Github, href: "#", label: "GitHub", color: "hover:text-slate-400" },
     { icon: Mail, href: "mailto:hello@careerforge.com", label: "Email", color: "hover:text-purple-500" },
   ];
@@ -154,10 +154,13 @@ const Footer = () => {
               <div className="flex items-center gap-4">
                 {socialLinks.map((social, index) => {
                   const Icon = social.icon;
+                  const isExternalLink = social.href.startsWith('http://') || social.href.startsWith('https://');
                   return (
                     <motion.a
                       key={index}
                       href={social.href}
+                      target={isExternalLink ? "_blank" : undefined}
+                      rel={isExternalLink ? "noopener noreferrer" : undefined}
                       className={`w-10 h-10 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center text-slate-300 ${social.color} border border-white/20 transition-all duration-300 hover:bg-white/20 hover:shadow-lg`}
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}

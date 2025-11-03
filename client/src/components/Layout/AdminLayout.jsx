@@ -13,12 +13,14 @@ import {
   GaugeCircle,
   LayoutDashboard, // For the main link to admin overview
   Brain,
+  MessageSquare,
 } from 'lucide-react';
 
 const adminNavLinks = [
   { path: '/admin/dashboard', title: 'Overview', icon: LayoutDashboard }, // Or '/admin/analytics/overview'
   { path: '/admin/templates', title: 'Templates', icon: Settings2 },
   { path: '/admin/ai-usage', title: 'AI Usage & Costs', icon: Brain },
+  { path: '/admin/feedback', title: 'User Feedback', icon: MessageSquare },
   { path: '/admin/analytics/timeseries', title: 'Time Series', icon: LineChartIcon },
   { path: '/admin/analytics/funnel', title: 'User Funnel', icon: UsersFunnelIcon },
   { path: '/admin/analytics/retention', title: 'Retention', icon: UserCheckIcon },

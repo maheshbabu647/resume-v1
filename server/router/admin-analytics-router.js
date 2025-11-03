@@ -8,6 +8,7 @@ import { getAdminAnalyticsOverview,
          getDeviceAndGeoAnalytics,
          getApiPerformanceStats,
          getAdminUsers } from '../controller/admin-analytics-controller.js'
+import { getAllFeedback } from '../controller/feedback-controller.js'
 import userAuthorization from '../middleware/user-authorization.js'
 
 const router = express.Router()
@@ -21,5 +22,6 @@ router.get('/security', userAuthorization, isAdmin, getSecurityAnomalies)
 router.get('/device', userAuthorization, isAdmin, getDeviceAndGeoAnalytics)
 router.get('/performance', userAuthorization, isAdmin, getApiPerformanceStats)
 router.get('/users', userAuthorization, isAdmin, getAdminUsers)
+router.get('/feedback', userAuthorization, isAdmin, getAllFeedback)
 
 export default router

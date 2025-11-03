@@ -231,7 +231,7 @@ export const deleteResume = async (req, res, next) => {
 };
 export const downlaodResume = async (req, res, next) => {
   try {
-    const { html } = req.body;
+    const { html, resumeId, resumeData, templateId, resumeName, spacingMultiplier, fontSizeMultiplier, stylePackKey, sectionOrder, selectedIndustry } = req.body;
     const userId = req.user ? req.user.userId : 'unknown';
 
     if (!html || typeof html !== 'string') {
@@ -242,6 +242,73 @@ export const downlaodResume = async (req, res, next) => {
     }
 
     logger.info(`[Resume][Download][Request] User: ${userId}`);
+
+    // Check if resume should be saved before download
+    let resumeToSave = null;
+    if (resumeData && templateId) {
+      // Check if resumeId is provided and exists
+      if (resumeId) {
+        const existingResume = await resumeModel.findById(resumeId);
+        if (existingResume && existingResume.userId.toString() === userId.toString()) {
+          // Resume exists and belongs to user, no need to save
+          logger.info(`[Resume][Download] Resume ${resumeId} already exists for user: ${userId}`);
+        } else {
+          // ResumeId provided but doesn't exist or doesn't belong to user, save as new
+          resumeToSave = {
+            userId,
+            templateId,
+            resumeData,
+            resumeName: resumeName || `My Resume ${new Date().toLocaleDateString()}`,
+            spacingMultiplier: spacingMultiplier || 1,
+            fontSizeMultiplier: fontSizeMultiplier || 1,
+            stylePackKey,
+            sectionOrder,
+            selectedIndustry
+          };
+          logger.info(`[Resume][Download] Resume ${resumeId} not found, saving as new resume for user: ${userId}`);
+        }
+      } else {
+        // No resumeId provided, save as new resume
+        resumeToSave = {
+          userId,
+          templateId,
+          resumeData,
+          resumeName: resumeName || `My Resume ${new Date().toLocaleDateString()}`,
+          spacingMultiplier: spacingMultiplier || 1,
+          fontSizeMultiplier: fontSizeMultiplier || 1,
+          stylePackKey,
+          sectionOrder,
+          selectedIndustry
+        };
+        logger.info(`[Resume][Download] No resumeId provided, saving as new resume for user: ${userId}`);
+      }
+    }
+
+    // Save resume if needed
+    if (resumeToSave) {
+      // Check resume limit
+      const existingCount = await resumeModel.countDocuments({ userId });
+      if (existingCount >= MAX_RESUMES_PER_USER) {
+        logger.warn(`[Resume][Download][Limit] User: ${userId} exceeded resume limit`);
+        // Continue with download even if save fails due to limit
+        logger.warn(`[Resume][Download] Continuing with download despite save limit`);
+      } else {
+        try {
+          const savedResume = await resumeModel.create(resumeToSave);
+          logger.info(`[Resume][Download][AutoSave] Resume saved automatically: ${savedResume._id} for user: ${userId}`);
+          
+          // Log analytics for auto-save
+          await logAnalyticsEvent({
+            eventType: 'resume_auto_save_on_download',
+            userId,
+            meta: { resumeId: savedResume._id, templateId, ip: req.ip }
+          });
+        } catch (saveError) {
+          // Log error but continue with download
+          logger.error(`[Resume][Download][AutoSave][Error] Failed to save resume for user: ${userId} - ${saveError.message}`);
+        }
+      }
+    }
 
     const fullHtml = `<style>body { margin: 0; }</style>${html}`;
 

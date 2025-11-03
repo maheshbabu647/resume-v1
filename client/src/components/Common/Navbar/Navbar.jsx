@@ -116,16 +116,16 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <Link to="/" className="flex items-center gap-3 group">
+            <Link to="/" className="flex items-center gap-2 sm:gap-3 group">
               <div className="relative">
-                <img src="/logo.JPG" alt="CareerForge" className="w-10 h-10 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 object-cover" />
+                <img src="/logo.JPG" alt="CareerForge" className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 object-cover" />
               </div>
 
-              <div className="hidden sm:block">
-                <h1 className="text-xl font-bold bg-gradient-to-r from-foreground to-secondary-foreground bg-clip-text text-transparent group-hover:from-primary group-hover:to-accent-purple transition-all duration-300">
+              <div className="block">
+                <h1 className="text-base sm:text-lg md:text-xl font-bold bg-gradient-to-r from-foreground to-secondary-foreground bg-clip-text text-transparent group-hover:from-primary group-hover:to-accent-purple transition-all duration-300 leading-tight">
                   CareerForge
                 </h1>
-                <p className="text-xs text-muted-foreground -mt-1 group-hover:text-secondary-foreground transition-colors">
+                <p className="text-[10px] sm:text-xs text-muted-foreground -mt-0.5 sm:-mt-1 group-hover:text-secondary-foreground transition-colors hidden sm:block">
                   Resume Builder
                 </p>
               </div>

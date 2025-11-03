@@ -283,3 +283,31 @@ export const exportAIUsageData = async (format = 'json', startDate = '', endDate
     throw error.response?.data || { message: 'Failed to export AI usage data.' };
   }
 };
+
+/**
+ * Fetches all user feedback for admin dashboard
+ * @param {number} [page=1] - The page number for pagination
+ * @param {number} [limit=20] - The number of feedback entries per page
+ * @param {string} [action] - Optional filter by action type
+ * @param {string} [sortBy='createdAt'] - Field to sort by
+ * @param {string} [sortOrder='desc'] - Sort order ('asc' or 'desc')
+ * @returns {Promise<object>} A promise that resolves to the feedback data with pagination
+ * @throws {Error} If the API request fails
+ */
+export const getAdminFeedback = async (page = 1, limit = 20, action = '', sortBy = 'createdAt', sortOrder = 'desc') => {
+  try {
+    const response = await apiServer.get('/admin/analytics/feedback', {
+      params: {
+        page,
+        limit,
+        action: action || undefined,
+        sortBy,
+        sortOrder,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching admin feedback:', error.response?.data || error.message);
+    throw error.response?.data || { message: 'Failed to fetch feedback data.' };
+  }
+};

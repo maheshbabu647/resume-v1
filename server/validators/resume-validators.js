@@ -73,6 +73,50 @@ const resumeValidatorsMode = (mode) => {
         .isLength({ max: 2000 })
         .withMessage('userNotes too long.'),
     );
+  } else if (mode === 'download') {
+    // Optional resume data fields for auto-save on download
+    validators.push(
+      body('resumeId')
+        .optional()
+        .isMongoId().withMessage('Invalid resume ID format.')
+    );
+    validators.push(
+      body('templateId')
+        .optional()
+        .isMongoId().withMessage('Invalid Template ID format.')
+    );
+    validators.push(
+      body('resumeData')
+        .optional()
+        .custom((val) => typeof val === 'object' && val !== null && !Array.isArray(val))
+        .withMessage("Resume data must be a valid object.")
+        .custom(val => !val || Object.keys(val).length <= 1000)
+        .withMessage("Resume data is too large.")
+    );
+    validators.push(
+      body('spacingMultiplier')
+        .optional()
+        .isFloat({ min: 0.8, max: 1.5 }).withMessage('Spacing multiplier must be between 0.8 and 1.5.')
+    );
+    validators.push(
+      body('fontSizeMultiplier')
+        .optional()
+        .isFloat({ min: 0.8, max: 1.5 }).withMessage('Font size multiplier must be between 0.8 and 1.5.')
+    );
+    validators.push(
+      body('stylePackKey')
+        .optional()
+        .isString().trim()
+    );
+    validators.push(
+      body('sectionOrder')
+        .optional()
+    );
+    validators.push(
+      body('selectedIndustry')
+        .optional()
+        .isString().trim()
+    );
   }
 
 

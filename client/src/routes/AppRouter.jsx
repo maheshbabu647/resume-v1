@@ -38,6 +38,7 @@ import AdminAnalyticsDevicePage from '../pages/Admin/AdminAnalyticsDevicePage.js
 import AdminAnalyticsPerformancePage from '../pages/Admin/AdminAnalyticsPerformancePage.jsx';
 import AdminUsersPage from '../pages/Admin/AdminUsersPage.jsx';
 import AdminAIUsagePage from '../pages/Admin/AdminAIUsagePage.jsx';
+import AdminFeedbackPage from '../pages/Admin/AdminFeedbackPage.jsx';
 import MonarchDashboardPage from '../pages/Admin/MonarchDashboardPage.jsx';
 
 // Protected Route Wrapper
@@ -89,6 +90,7 @@ const AppRouter = () => {
                <Route path="dashboard" element={<AdminDashboardPage />} />
                <Route path="users" element={<AdminUsersPage />} />
                <Route path="ai-usage" element={<AdminAIUsagePage />} />
+               <Route path="feedback" element={<AdminFeedbackPage />} />
                <Route path="templates" element={<AdminTemplatesPage />} />
                <Route path="templates/new" element={<AdminTemplateEditPage />} />
                <Route path="templates/edit/:templateId" element={<AdminTemplateEditPage />} />

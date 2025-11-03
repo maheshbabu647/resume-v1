@@ -122,7 +122,32 @@ export const useResumeEditorActions = ({
                 throw new Error("Could not find style or resume content for PDF generation.");
             }
             const cleanHtmlForPdf = styleElement.outerHTML + resumeContainer.outerHTML;
-            await downloadResume(cleanHtmlForPdf);
+            
+            // Only prepare resume data for auto-save if resume hasn't been saved yet (editor-only feature)
+            let resumeDataForSave = null;
+            const isResumeSaved = currentResumeDetail?._id;
+            const hasTemplateId = currentTemplateForEditor?._id;
+            
+            // Only send resume data if resume is NOT saved - this enables auto-save on download from editor
+            if (!isResumeSaved && hasTemplateId && editorFormData && Object.keys(editorFormData).length > 0) {
+                const templateIdForSave = typeof currentTemplateForEditor._id === 'string' 
+                    ? currentTemplateForEditor._id 
+                    : currentTemplateForEditor._id.toString();
+                
+                resumeDataForSave = {
+                    templateId: templateIdForSave,
+                    resumeData: editorFormData,
+                    resumeName: editableResumeName?.trim() || `My Resume ${new Date().toLocaleDateString()}`,
+                    spacingMultiplier,
+                    fontSizeMultiplier,
+                    sectionOrder,
+                    stylePackKey: selectedStylePackKey,
+                    selectedIndustry
+                };
+            }
+            // If resume is already saved, don't send any resume data (just download like other pages)
+            
+            await downloadResume(cleanHtmlForPdf, resumeDataForSave);
             setFeedbackFormAction('download_resume');
             // Delay showing feedback form to allow success/OS download UI to settle
             setTimeout(() => setShowFeedbackFormDialog(true), 2000);
@@ -131,7 +156,7 @@ export const useResumeEditorActions = ({
         } finally {
             setIsDownloadingPdf(false);
         }
-    }, [isAuthenticated, resumePreviewRef, setPendingAction, setShowAuthDialog, setIsDownloadingPdf, setPageError]);
+    }, [isAuthenticated, resumePreviewRef, currentResumeDetail, currentTemplateForEditor, editorFormData, editableResumeName, spacingMultiplier, fontSizeMultiplier, sectionOrder, selectedStylePackKey, selectedIndustry, setPendingAction, setShowAuthDialog, setIsDownloadingPdf, setPageError, setShowFeedbackFormDialog, setFeedbackFormAction]);
 
     const handleDownloadPdf = useCallback(() => {
         if (hasUntouchedPlaceholders(editorFormData.content)) {

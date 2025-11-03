@@ -69,18 +69,68 @@ export const getAllResumes = async () => {
  * @async
  * @function downloadResume
  * @param {string} htmlContent - The HTML content of the resume to convert to PDF
+ * @param {Object} [resumeDataForSave] - Optional resume data to save if not already saved
+ * @param {string} [resumeDataForSave.resumeId] - Existing resume ID if resume is saved
+ * @param {string} [resumeDataForSave.templateId] - Template ID for auto-save
+ * @param {Object} [resumeDataForSave.resumeData] - Resume data for auto-save
+ * @param {string} [resumeDataForSave.resumeName] - Resume name for auto-save
+ * @param {number} [resumeDataForSave.spacingMultiplier] - Spacing multiplier
+ * @param {number} [resumeDataForSave.fontSizeMultiplier] - Font size multiplier
+ * @param {string} [resumeDataForSave.stylePackKey] - Style pack key
+ * @param {Array} [resumeDataForSave.sectionOrder] - Section order
+ * @param {string} [resumeDataForSave.selectedIndustry] - Selected industry
  * @returns {Promise<void>} Triggers a browser download, no return value
  * @throws {Error} If the PDF generation or download fails
  * @description Converts HTML resume content to PDF and triggers a browser download.
+ * If resume data is provided and the resume hasn't been saved, it will be automatically saved.
  * The function creates a temporary link element to download the file and cleans up after.
  * @example
  * const html = '<html><body>Resume content...</body></html>';
  * await downloadResume(html);
+ * // Or with auto-save:
+ * await downloadResume(html, {
+ *   templateId: '123',
+ *   resumeData: { content: {...} },
+ *   resumeName: 'My Resume'
+ * });
  */
-export const downloadResume = async (htmlContent) => {
+export const downloadResume = async (htmlContent, resumeDataForSave = null) => {
     try {
+        const requestBody = { html: htmlContent };
+        
+        // Include resume data for auto-save if provided
+        if (resumeDataForSave) {
+            if (resumeDataForSave.resumeId) {
+                requestBody.resumeId = resumeDataForSave.resumeId;
+            }
+            if (resumeDataForSave.templateId) {
+                requestBody.templateId = resumeDataForSave.templateId;
+            }
+            if (resumeDataForSave.resumeData) {
+                requestBody.resumeData = resumeDataForSave.resumeData;
+            }
+            if (resumeDataForSave.resumeName) {
+                requestBody.resumeName = resumeDataForSave.resumeName;
+            }
+            if (resumeDataForSave.spacingMultiplier !== undefined) {
+                requestBody.spacingMultiplier = resumeDataForSave.spacingMultiplier;
+            }
+            if (resumeDataForSave.fontSizeMultiplier !== undefined) {
+                requestBody.fontSizeMultiplier = resumeDataForSave.fontSizeMultiplier;
+            }
+            if (resumeDataForSave.stylePackKey) {
+                requestBody.stylePackKey = resumeDataForSave.stylePackKey;
+            }
+            if (resumeDataForSave.sectionOrder) {
+                requestBody.sectionOrder = resumeDataForSave.sectionOrder;
+            }
+            if (resumeDataForSave.selectedIndustry) {
+                requestBody.selectedIndustry = resumeDataForSave.selectedIndustry;
+            }
+        }
+        
         const response = await apiServer.post('/resume/download',
-            { html: htmlContent },
+            requestBody,
             { responseType: 'blob' }
         );
         

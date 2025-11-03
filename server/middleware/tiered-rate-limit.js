@@ -124,13 +124,31 @@ export const fieldEnhancementLimiter = createTieredLimiter({
 export const optionalAuth = async (req, res, next) => {
   try {
     const { verifyToken } = await import('../util/jwt.js');
+    const userModel = (await import('../model/user-model.js')).default;
     const { authToken } = req.cookies;
     
     if (authToken) {
       try {
         const { userId, userRole } = await verifyToken(authToken);
-        req.user = { userId, userRole };
-        logger.info(`[OptionalAuth] User ${userId} authenticated for ${req.originalUrl}`);
+        
+        // Fetch full user details for better tracking and feedback attribution
+        const user = await userModel.findById(userId).select('_id userEmail userName userRole');
+        if (user) {
+          req.user = {
+            _id: user._id,
+            userId: user._id,
+            email: user.userEmail,
+            userEmail: user.userEmail,
+            name: user.userName,
+            userName: user.userName,
+            userRole: user.userRole || userRole
+          };
+          logger.info(`[OptionalAuth] User ${userId} (${user.userEmail}) authenticated for ${req.originalUrl}`);
+        } else {
+          // User not found in DB - treat as anonymous
+          req.user = { userId, userRole };
+          logger.warn(`[OptionalAuth] User ${userId} not found in database for ${req.originalUrl}`);
+        }
       } catch (error) {
         // Token invalid/expired - treat as free user
         logger.info(`[OptionalAuth] Invalid token for ${req.originalUrl}, treating as free user`);

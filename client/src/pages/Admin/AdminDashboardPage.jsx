@@ -17,6 +17,7 @@ import {
   ArrowRight,
   Crown,
   Brain,
+  MessageSquare,
 } from 'lucide-react';
 
 const adminLinks = [
@@ -37,6 +38,12 @@ const adminLinks = [
     title: 'AI Usage & Costs',
     description: 'Track AI token consumption, analyze costs by user and service, and plan future pricing strategies.',
     icon: Brain,
+  },
+  {
+    path: '/admin/feedback',
+    title: 'User Feedback',
+    description: 'View all user feedback, ratings, and comments submitted across the platform.',
+    icon: MessageSquare,
   },
   {
     path: '/admin/analytics/overview',
