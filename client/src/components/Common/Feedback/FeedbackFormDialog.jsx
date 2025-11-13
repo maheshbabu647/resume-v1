@@ -16,10 +16,11 @@ const FeedbackFormDialog = ({ open, onOpenChange, defaultAction = 'save_resume' 
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleFeedbackDecision = (decision) => {
-    if (decision === 'later') {
-      localStorage.setItem('feedback_ask_later', Date.now());
-    } else if (decision === 'never') {
+    if (decision === 'never') {
       localStorage.setItem('feedback_never_ask', 'true');
+    } else if (decision === 'skip') {
+      // Set timestamp so dialog won't show again for 1 day
+      localStorage.setItem('feedback_ask_later', Date.now());
     }
     onOpenChange(false);
   }
@@ -62,19 +63,16 @@ const FeedbackFormDialog = ({ open, onOpenChange, defaultAction = 'save_resume' 
             rows={4}
           />
         </div>
-        <DialogFooter className="flex-col sm:flex-row sm:justify-between gap-2">
-          <div className="flex gap-2 justify-center sm:justify-start">
-            <Button type="button" variant="ghost" size="sm" onClick={() => handleFeedbackDecision('later')}>Ask Me Later</Button>
-            <Button type="button" variant="ghost" size="sm" onClick={() => handleFeedbackDecision('never')}>Don't Ask Again</Button>
-          </div>
-          <div className="flex gap-2 justify-center sm:justify-end">
-            <DialogClose asChild>
-              <Button type="button" variant="outline">Skip</Button>
-            </DialogClose>
-            <Button onClick={handleSubmit} disabled={isSubmitting || rating === 0}>
-              {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
-            </Button>
-          </div>
+        <DialogFooter className="flex gap-2 justify-end sm:justify-end">
+          <Button type="button" variant="ghost" size="sm" onClick={() => handleFeedbackDecision('never')}>
+            Don't ask me again
+          </Button>
+          <Button type="button" variant="outline" onClick={() => handleFeedbackDecision('skip')}>
+            Skip for now
+          </Button>
+          <Button onClick={handleSubmit} disabled={isSubmitting || rating === 0}>
+            {isSubmitting ? 'Submitting...' : 'Submit'}
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

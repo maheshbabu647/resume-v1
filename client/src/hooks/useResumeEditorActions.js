@@ -8,8 +8,8 @@ const shouldAskForFeedback = () => {
 
   const askLaterTimestamp = localStorage.getItem('feedback_ask_later');
   if (askLaterTimestamp) {
-    const sevenDaysInMillis = 7 * 24 * 60 * 60 * 1000;
-    const shouldAskAgainTime = parseInt(askLaterTimestamp, 10) + sevenDaysInMillis;
+    const oneDayInMillis = 1 * 24 * 60 * 60 * 1000; // Changed from 7 days to 1 day
+    const shouldAskAgainTime = parseInt(askLaterTimestamp, 10) + oneDayInMillis;
     if (Date.now() < shouldAskAgainTime) {
       return false;
     }
