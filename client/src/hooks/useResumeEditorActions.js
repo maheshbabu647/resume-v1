@@ -2,6 +2,22 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { downloadResume } from "@/api/resumeServiceApi";
 
+const shouldAskForFeedback = () => {
+  const neverAsk = localStorage.getItem('feedback_never_ask') === 'true';
+  if (neverAsk) return false;
+
+  const askLaterTimestamp = localStorage.getItem('feedback_ask_later');
+  if (askLaterTimestamp) {
+    const sevenDaysInMillis = 7 * 24 * 60 * 60 * 1000;
+    const shouldAskAgainTime = parseInt(askLaterTimestamp, 10) + sevenDaysInMillis;
+    if (Date.now() < shouldAskAgainTime) {
+      return false;
+    }
+  }
+  
+  return true;
+};
+
 // Helper function can be co-located or imported from a utils file
 const hasUntouchedPlaceholders = (data) => {
     if (typeof data === 'string') {
@@ -81,8 +97,9 @@ export const useResumeEditorActions = ({
             setFeedbackDetailsForDialog({ title: 'Success!', message: 'Resume saved successfully!', type: 'success' });
             setShowFeedbackDialog(true);
             setFeedbackFormAction('save_resume');
-            // Delay showing feedback form to allow success dialog to be seen first
-            setTimeout(() => setShowFeedbackFormDialog(true), 2000);
+            if (shouldAskForFeedback()) {
+              setTimeout(() => setShowFeedbackFormDialog(true), 2000);
+            }
             setIsDirty(false);
             setSaveStatus('success');
             setTimeout(() => setSaveStatus('idle'), 2500);
@@ -149,8 +166,9 @@ export const useResumeEditorActions = ({
             
             await downloadResume(cleanHtmlForPdf, resumeDataForSave);
             setFeedbackFormAction('download_resume');
-            // Delay showing feedback form to allow success/OS download UI to settle
-            setTimeout(() => setShowFeedbackFormDialog(true), 2000);
+            if (shouldAskForFeedback()) {
+              setTimeout(() => setShowFeedbackFormDialog(true), 2000);
+            }
         } catch (error) {
             setPageError('Failed to download PDF.');
         } finally {

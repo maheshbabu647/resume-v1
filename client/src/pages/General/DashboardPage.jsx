@@ -88,28 +88,6 @@ const DashboardPage = () => {
     }
   };
 
-  // Career tips data
-  const careerTips = [
-    {
-      icon: Target,
-      title: "Power Words Matter",
-      content: "Use action verbs like 'Orchestrated,' 'Accelerated,' and 'Pioneered' to make your experience sound more impactful.",
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
-      icon: TrendingUp,
-      title: "Quantify Achievements",
-      content: "Include specific numbers and percentages. '35% increase in sales' is more compelling than 'increased sales.'",
-      color: "from-purple-500 to-pink-500"
-    },
-    {
-      icon: Zap,
-      title: "ATS Optimization",
-      content: "Use keywords from the job description naturally throughout your resume to pass applicant tracking systems.",
-      color: "from-emerald-500 to-teal-500"
-    }
-  ];
-
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -294,54 +272,6 @@ const DashboardPage = () => {
             <p className="text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Your career command center. Let's build, tailor, and track your applications.
             </p>
-          </motion.div>
-
-
-
-          {/* Quick Tips Section */}
-          <motion.div 
-            className="mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-slate-800 mb-2 flex items-center justify-center gap-2">
-                <Star className="w-6 h-6 text-yellow-500 fill-current" />
-                Career Tips
-              </h2>
-              <p className="text-slate-600">Boost your application success with these expert insights</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {careerTips.map((tip, index) => {
-                const Icon = tip.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    className="group"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 * index }}
-                    whileHover={{ y: -4 }}
-                  >
-                    <Card className="bg-white/70 backdrop-blur-sm rounded-2xl border border-white/40 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-                      <CardContent className="p-6">
-                        <div className={`w-12 h-12 bg-gradient-to-r ${tip.color} rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                          <Icon className="w-6 h-6 text-white" />
-                        </div>
-                        <h3 className="font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors">
-                          {tip.title}
-                        </h3>
-                        <p className="text-slate-600 text-sm leading-relaxed">
-                          {tip.content}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                );
-              })}
-            </div>
           </motion.div>
 
           {/* Main Content Tabs */}
