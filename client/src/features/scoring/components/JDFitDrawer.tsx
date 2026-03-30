@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Check, AlertTriangle, Loader2 } from 'lucide-react'
+import { Check, AlertTriangle, Loader2, X } from 'lucide-react'
 import { Button } from '../../../shared/components/Button/Button'
 import { UpgradeModal } from '../../../shared/components/UpgradeModal/UpgradeModal'
 import { useJDFitScore } from '../hooks/useJDFitScore'
@@ -7,7 +7,11 @@ import { useResumeStore } from '../../resume-builder/store/useResumeStore'
 import { preprocessJD, serializeResume } from '../lib/jdPreprocessor'
 import styles from './JDFit.module.css'
 
-export const JDFitDrawer: React.FC = () => {
+interface Props {
+  onClose: () => void
+}
+
+export const JDFitDrawer: React.FC<Props> = ({ onClose }) => {
   const resume = useResumeStore()
   const { mutate: analyze, isPending, data: scoreData, error } = useJDFitScore()
   const [jdTitle, setJdTitle] = useState('')
@@ -41,8 +45,15 @@ export const JDFitDrawer: React.FC = () => {
   )
 
   return (
-    <div className={styles.content}>
-      <div className={styles.inputSection}>
+    <div className={styles.overlay} onClick={onClose}>
+      <div className={styles.drawer} onClick={e => e.stopPropagation()}>
+        <div className={styles.header}>
+          <h2>Job Description Match</h2>
+          <button className={styles.closeBtn} onClick={onClose}><X size={20} /></button>
+        </div>
+
+        <div className={styles.content}>
+          <div className={styles.inputSection}>
             <h3>1. Paste the Job Information</h3>
             <input 
               className={styles.jdInput} 
@@ -139,6 +150,8 @@ export const JDFitDrawer: React.FC = () => {
               </div>
             </div>
           )}
+        </div>
+      </div>
       <UpgradeModal 
         isOpen={showUpgradeModal} 
         onClose={() => setShowUpgradeModal(false)} 
@@ -147,3 +160,4 @@ export const JDFitDrawer: React.FC = () => {
     </div>
   )
 }
+

@@ -5,6 +5,7 @@ import styles from './ResumeScore.module.css'
 
 interface Props {
   scoreData: ResumeQualityScore
+  onClose: () => void
 }
 
 const DIMENSION_MAX = {
@@ -15,7 +16,7 @@ const DIMENSION_MAX = {
   keywordDensity: 10,
 }
 
-export const ResumeQualityDrawer: React.FC<Props> = ({ scoreData }) => {
+export const ResumeQualityDrawer: React.FC<Props> = ({ scoreData, onClose }) => {
   const { totalScore, label, dimensionScores, failedChecks } = scoreData
 
   let colorClass = styles.needsWork
@@ -27,8 +28,15 @@ export const ResumeQualityDrawer: React.FC<Props> = ({ scoreData }) => {
   if (totalScore >= 90) { colorClass = styles.excellent; borderColor = '#bfdbfe' }
 
   return (
-    <div className={styles.content}>
-      <div className={styles.scoreCircleContainer}>
+    <div className={styles.drawerOverlay} onClick={onClose}>
+      <div className={styles.drawer} onClick={e => e.stopPropagation()}>
+        <div className={styles.header}>
+          <h2>Resume Strength Analysis</h2>
+          <button className={styles.closeBtn} onClick={onClose}><AlertCircle size={20} /></button>
+        </div>
+
+        <div className={styles.content}>
+          <div className={styles.scoreCircleContainer}>
             <div className={`${styles.scoreCircle} ${colorClass}`} style={{ borderColor }}>
               {totalScore}
             </div>
@@ -82,6 +90,9 @@ export const ResumeQualityDrawer: React.FC<Props> = ({ scoreData }) => {
               ))
             )}
           </div>
+        </div>
+      </div>
     </div>
   )
 }
+

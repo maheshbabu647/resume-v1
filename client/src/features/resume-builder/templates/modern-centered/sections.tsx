@@ -348,7 +348,7 @@ export const SecurityClearanceSection = ({ entries, name }: { entries: any[], na
 )
 
 // Custom is special: each entry is technically its own section visually
-export const CustomSection = ({ entries, name }: { entries: any[], name?: string }) => (
+export const CustomSection = ({ entries }: { entries: any[], name?: string }) => (
   <>
     {entries.map((entry, i) => (
       <SectionWrapper key={i} title={entry.sectionTitle || 'Details'}>
