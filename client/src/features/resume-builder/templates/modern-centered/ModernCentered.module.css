@@ -1,0 +1,136 @@
+.root {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  box-sizing: border-box;
+  padding: var(--page-padding, 36px);
+  font-family: var(--font-family, 'sans-serif');
+  color: #333;
+  line-height: var(--line-height, 1.4);
+  font-size: var(--font-size-base, 10.5pt);
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  border-bottom: 2px solid var(--accent-color, #000);
+  margin-bottom: var(--section-gap, 1.2rem);
+  padding-bottom: 12px;
+}
+
+.name {
+  font-size: var(--font-size-name, 20pt);
+  color: var(--accent-color, #000);
+  margin: 0 0 4px 0;
+  font-weight: bold;
+}
+
+.title {
+  font-size: var(--font-size-title, 13pt);
+  font-weight: normal;
+  margin: 0 0 8px 0;
+}
+
+.contactLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: var(--font-size-meta, 10pt);
+}
+
+.contactLine a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.contactSeparator {
+  color: #999;
+}
+
+/* Base template classes applied to generic wrappers */
+:global(.template-section) {
+  margin-bottom: var(--section-gap, 1.2rem);
+  break-inside: avoid;
+}
+
+:global(.template-section-title) {
+  font-size: var(--font-size-section, 13pt);
+  font-weight: bold;
+  color: var(--accent-color, #000);
+  border-bottom: 1px solid #ddd;
+  margin: 0 0 8px 0;
+  padding-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+:global(.template-entry) {
+  margin-bottom: var(--entry-gap, 0.75rem);
+  break-inside: avoid;
+}
+
+:global(.template-entry-header) {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+:global(.template-entry-title) {
+  font-size: var(--font-size-entry, 11.5pt);
+  font-weight: bold;
+  margin: 0;
+  display: inline;
+}
+
+:global(.template-entry-subtitle) {
+  margin: 0;
+  display: inline;
+}
+:global(.template-entry-subtitle):before {
+  content: " | ";
+}
+
+:global(.template-entry-meta-right) {
+  text-align: right;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: var(--font-size-meta, 10pt);
+  margin-left: 16px;
+}
+
+:global(.template-entry-body p) {
+  margin: 0;
+}
+
+:global(.template-entry-body ul) {
+  margin: 0;
+  padding-left: 1.5em;
+}
+
+:global(.template-entry-body li) {
+  margin-bottom: var(--bullet-gap, 0.2rem);
+}
+
+/* Skills specifically */
+.skillsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skillsList li {
+  margin-bottom: 4px;
+}
+
+.languagesWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

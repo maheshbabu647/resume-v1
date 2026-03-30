@@ -1,73 +1,107 @@
-@import "tailwindcss";
+/* ============================================================
+   index.css — Global resets + base styles
+   ============================================================ */
 
-/* Theme variables updated with new accent colors for purple, pink, and green. */
-@layer base {
-  :root {
-    --background: oklch(0.98 0.01 240); /* Very Light Cool Grey */
-    --foreground: oklch(0.25 0.04 260); /* Dark Slate Blue */
-    --card: oklch(1 0 0); /* Pure White */
-    --card-foreground: oklch(0.25 0.04 260); /* Dark Slate Blue */
-    --popover: oklch(1 0 0); /* Pure White */
-    --popover-foreground: oklch(0.25 0.04 260); /* Dark Slate Blue */
-    --primary: oklch(0.6 0.18 260); /* Vibrant Blue */
-    --primary-foreground: oklch(0.99 0.005 240); /* Bright White */
-    --secondary: oklch(0.95 0.02 260); /* Light Slate Blue */
-    --secondary-foreground: oklch(0.35 0.05 260); /* Darker Slate Blue */
-    --muted: oklch(0.95 0.02 260); /* Light Slate Blue */
-    --muted-foreground: oklch(0.55 0.03 260); /* Muted Slate Blue */
-    --accent: oklch(0.9 0.03 260); /* Bright, Light Slate Blue */
-    --accent-foreground: oklch(0.35 0.05 260); /* Darker Slate Blue */
-    --destructive: oklch(0.65 0.22 25); /* Professional Red */
-    --destructive-foreground: oklch(0.99 0.005 240); /* Bright White */
-    --border: oklch(0.9 0.02 260); /* Subtle Slate Blue Border */
-    --input: oklch(0.9 0.02 260); /* Subtle Slate Blue Border */
-    --ring: oklch(0.6 0.18 260); /* Vibrant Blue Focus Ring */
-    --radius: 0.75rem;
+@import './tokens.css';
 
-    /* --- NEW ACCENT COLORS ADDED HERE --- */
-    --accent-purple: oklch(0.6 0.18 290); /* Vibrant Purple */
-    --accent-pink: oklch(0.7 0.2 340); /* Bright Pink */
-    --success: oklch(0.65 0.15 150); /* Bright Emerald Green */
-    --success-foreground: oklch(0.99 0.005 240); /* Bright White */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--on-surface);
+  background: var(--surface);
+  line-height: var(--leading-normal);
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+input, textarea, select {
+  font-family: var(--font-sans);
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--outline-variant); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--outline); }
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   Print / PDF Export Styles
+   ============================================================ */
+@media print {
+  /* Hide everything on the page by default */
+  body * {
+    visibility: hidden;
   }
-}
 
-@theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
- 
-  /* --- MAPPING NEW ACCENT COLORS --- */
-  --color-accent-purple: var(--accent-purple);
-  --color-accent-pink: var(--accent-pink);
-  --color-success: var(--success);
-  --color-success-foreground: var(--success-foreground);
-}
+  /* Make ONLY the print-area visible */
+  .print-area, .print-area * {
+    visibility: visible;
+  }
 
-@layer base {
+  /* Position the print area at the absolute top left */
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    transform: none !important; /* Cancel out Editor's auto-scaling */
+    width: 210mm !important;
+  }
+
+  /* Remove any global backgrounds */
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    background: transparent !important;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
+  /* Set the physical page size to A4 with no browser margins */
+  @page {
+    size: A4;
+    margin: 0;
   }
 }
+

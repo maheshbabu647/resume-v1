@@ -1,3 +1,11 @@
 User-agent: *
 Allow: /
+
+# Block private/user-specific routes
+Disallow: /dashboard
+Disallow: /resume/
+Disallow: /admin/
+Disallow: /oauth-return
+Disallow: /auth/callback
+
 Sitemap: https://careerforge.pro/sitemap.xml

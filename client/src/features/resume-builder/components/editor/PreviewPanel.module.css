@@ -1,0 +1,163 @@
+.panel {
+  flex: 1;
+  background: var(--surface-container-low);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Gallery */
+.gallery {
+  background: var(--surface-container-lowest);
+  border-bottom: 1px solid rgba(197, 198, 207, 0.35);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease-in-out);
+  position: relative;
+  flex-shrink: 0;
+}
+.galleryOpen { max-height: 200px; }
+
+.galleryClose {
+  position: absolute;
+  right: var(--space-4);
+  top: var(--space-3);
+  display: flex; align-items: center; gap: 4px;
+  font-size: var(--text-xs); font-weight: var(--weight-semibold);
+  color: var(--on-surface-variant);
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-sans); z-index: 1;
+  transition: color var(--transition-fast);
+}
+.galleryClose:hover { color: var(--on-surface); }
+
+.galleryScroller {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-8);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.galleryScroller::-webkit-scrollbar { display: none; }
+
+.galleryCard {
+  flex: 0 0 130px;
+  background: none;
+  border: 2px solid var(--outline-variant);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex; flex-direction: column;
+  font-family: var(--font-sans);
+}
+.galleryCard:hover { border-color: var(--on-surface-variant); transform: translateY(-2px); }
+.galleryCardActive { border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(0, 108, 73, 0.2); }
+
+.galleryThumb {
+  height: 120px;
+  background: var(--c, var(--primary-container));
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.thumbInner { width: 72%; display: flex; flex-direction: column; gap: 4px; }
+.thumbLine { height: 4px; background: rgba(255,255,255,0.65); border-radius: 3px; }
+
+.galleryName {
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  color: var(--on-surface);
+  text-align: center;
+  padding: var(--space-2) var(--space-2) 0;
+}
+
+.atsTag {
+  font-size: 9px;
+  font-weight: var(--weight-bold);
+  color: var(--success);
+  text-align: center;
+  padding: 0 var(--space-2) var(--space-3);
+  letter-spacing: 0.04em;
+}
+
+.viewport {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-8);
+  display: flex;
+  justify-content: center;
+  background: var(--surface-container-low);
+}
+
+.scaleWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.paper {
+  background: white;
+  width: 210mm;
+  min-height: 297mm;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.12), 0 1px 4px rgba(15, 23, 42, 0.08);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* Resume content styles */
+.resume {
+  padding: 40px 48px;
+  font-family: 'Inter', 'Georgia', serif;
+  color: #191c1e;
+}
+
+.resumeHeader { text-align: center; margin-bottom: 16px; }
+.resumeName { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
+.resumeHeadline { font-size: 13px; color: #45464d; margin-bottom: 6px; font-weight: 500; }
+.resumeContact { font-size: 11px; color: #757780; }
+
+.resumeDivider { height: 2px; background: #131b2e; border-radius: 1px; margin-bottom: 20px; }
+
+.resumeSection { margin-bottom: 22px; }
+.resumeSectionTitle {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #131b2e;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(117, 119, 128, 0.2);
+}
+
+.resumeSummary { font-size: 12px; color: #191c1e; line-height: 1.65; }
+
+.resumeEntry { margin-bottom: 14px; }
+.entryRow { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; color: #191c1e; margin-bottom: 2px; }
+.entryRow span { font-weight: 400; font-size: 12px; color: #45464d; }
+.entryCompany { font-size: 12px; color: #45464d; font-style: italic; margin-bottom: 5px; }
+
+.bullets { padding-left: 16px; display: flex; flex-direction: column; gap: 3px; }
+.bullets li { font-size: 12px; color: #191c1e; line-height: 1.55; }
+
+.skillLine { font-size: 12px; color: #191c1e; margin-bottom: 4px; line-height: 1.5; }
+.smallText { font-size: 11px; color: #45464d; }
+
+/* Mobile Overrides */
+@media (max-width: 1024px) {
+  .panel {
+    width: 100%;
+    flex: 1; 
+  }
+
+  .hiddenOnMobile {
+    display: none !important;
+  }
+
+  .viewport {
+    padding: var(--space-3);
+  }
+}

@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # ─── API Server ─────────────────────────────────────────────────────────────
+  api:
+    build: 
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: careerforge-api
+    restart: always
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+      - MONGODB_URI=mongodb://mongo:27017/careerforge
+      - REDIS_URL=redis://redis:6379
+      # Include other required envs here or use env_file
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - cf-network
+
+  # ─── Database ───────────────────────────────────────────────────────────────
+  mongo:
+    image: mongo:latest
+    container_name: careerforge-db
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - cf-network
+
+  # ─── Cache ──────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:alpine
+    container_name: careerforge-cache
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - cf-network
+
+networks:
+  cf-network:
+    driver: bridge
+
+volumes:
+  mongo-data:

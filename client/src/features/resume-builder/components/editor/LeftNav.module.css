@@ -1,0 +1,292 @@
+.nav {
+  width: var(--leftnav-w);
+  flex-shrink: 0;
+  background: var(--surface-container-lowest);
+  border-right: 1px solid rgba(197, 198, 207, 0.35);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.navHead {
+  padding: var(--space-6) var(--space-4) var(--space-4);
+  background: var(--surface-container-low);
+  border-bottom: 1px solid rgba(197, 198, 207, 0.4);
+}
+
+.navHeadTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--primary-container);
+}
+
+.logoIcon { color: var(--secondary); }
+
+.mobileHint {
+  display: none;
+}
+
+.mobileCloseBtn {
+  display: none;
+}
+
+.navList { display: flex; flex-direction: column; }
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 10px var(--space-4);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  color: var(--on-surface-variant);
+  transition: all var(--transition-fast);
+  position: relative;
+  user-select: none;
+}
+
+.navItem:hover { background: var(--surface-container-low); color: var(--on-surface); }
+
+.navItem.active {
+  background: rgba(19, 27, 46, 0.07);
+  color: var(--primary-container);
+  font-weight: var(--weight-semibold);
+}
+.navItem.active .navIcon { color: var(--primary-container); }
+
+.navItem.active::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 4px; bottom: 4px;
+  width: 3px;
+  background: var(--primary-container);
+  border-radius: 0 3px 3px 0;
+}
+
+.navItem.done .checkIcon { color: var(--secondary); opacity: 1; }
+
+.navIcon { display: flex; align-items: center; color: var(--outline); flex-shrink: 0; }
+.navItem.active .navIcon { color: var(--primary-container); }
+
+.navLabel { flex: 1; }
+
+.checkIcon {
+  flex-shrink: 0;
+  opacity: 0;
+  color: var(--secondary);
+  transition: opacity var(--transition-fast);
+}
+
+.rearrangeActive { cursor: grab !important; }
+.rearrangeActive:active { cursor: grabbing !important; }
+
+.dragOver {
+  border-top: 2px solid var(--secondary);
+  background: rgba(0, 108, 73, 0.06);
+}
+
+.dragHandleAlways {
+  flex-shrink: 0;
+  color: var(--outline-variant);
+}
+
+.lockedIcon {
+  font-size: 10px;
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+.deleteBtn {
+  background: none; border: none;
+  color: var(--outline);
+  cursor: pointer;
+  padding: 4px; border-radius: 4px;
+  display: flex; align-items: center;
+  transition: all var(--transition-fast);
+}
+.deleteBtn:hover {
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--error);
+}
+
+.spacer { flex: 1; }
+
+.manageActions {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  border-top: 1px solid rgba(197, 198, 207, 0.2);
+  background: var(--surface-container-lowest);
+  position: sticky;
+  bottom: 0;
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: 8px var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--on-surface-variant);
+  background: var(--surface-container-low);
+  border: 1px solid rgba(197, 198, 207, 0.4);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.actionBtn:hover {
+  background: var(--surface-container);
+  color: var(--on-surface);
+  border-color: rgba(197, 198, 207, 0.8);
+}
+
+.actionBtnActive {
+  background: var(--primary-container);
+  color: white;
+  border-color: var(--primary-container);
+}
+.actionBtnActive:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.actionBtnActiveRed {
+  background: var(--error);
+  color: white;
+  border-color: var(--error);
+}
+.actionBtnActiveRed:hover {
+  background: #b91c1c;
+  color: white;
+}
+
+/* Modal specific styles */
+.emptyText {
+  text-align: center;
+  color: var(--on-surface-variant);
+  font-size: var(--text-sm);
+  padding: var(--space-4) 0;
+}
+
+.modalGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 480px) {
+  .modalGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+}
+
+.modalAddBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.modalAddBtn:hover {
+  background: var(--success-container);
+  border-color: var(--secondary);
+  color: var(--secondary);
+  transform: translateY(-2px);
+}
+.modalAddIcon {
+  color: var(--secondary);
+  background: rgba(0, 108, 73, 0.1);
+  padding: 12px;
+  border-radius: 50%;
+}
+.modalAddLabel {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+/* Mobile Overrides - Sliding Drawer */
+@media (max-width: 1024px) {
+  .nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 280px;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.4s var(--ease-out);
+    box-shadow: 20px 0 50px rgba(0, 0, 0, 0.15);
+    background: var(--surface-container-lowest);
+    display: flex; /* Ensure it is visible when open */
+    padding-top: 0;
+  }
+  
+  .navOpen {
+    transform: translateX(0);
+  }
+
+  .navHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+    background: var(--surface-container-low);
+  }
+
+  .navHeadTitle {
+    font-size: var(--text-base);
+  }
+
+  .mobileCloseBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--on-surface-variant);
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .mobileHint {
+    display: block;
+    padding: var(--space-3) var(--space-4);
+    font-size: 11px;
+    color: var(--on-surface-variant);
+    background: var(--surface-container-lowest);
+    border-bottom: 1px solid rgba(197, 198, 207, 0.2);
+  }
+}
+
+.navBackdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+.backdropOpen {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -1,0 +1,106 @@
+# CareerForge — llms.txt
+# This file helps AI assistants, language models, and search crawlers
+# understand exactly what CareerForge is, what it does, and who it's for.
+# Standard: https://llmstxt.org/
+
+## What is CareerForge?
+
+CareerForge (https://careerforge.pro) is a free, AI-powered resume builder and career application toolkit built for job seekers who want to optimize their applications for Applicant Tracking Systems (ATS) and land more interviews.
+
+CareerForge is NOT just a resume template generator. It is an end-to-end career intelligence platform with the following distinct AI-powered features:
+
+---
+
+## Core Features
+
+### 1. AI Resume Builder
+A full-featured resume editor with multiple professionally designed templates (ATS-friendly and creative styles). Users fill in their information through a structured form; a live preview renders the resume in real-time. All resumes can be downloaded as pixel-perfect PDFs. Supports resume import from uploaded PDF or DOCX files.
+
+### 2. JD Fit Score (https://careerforge.pro/jd-tailor)
+CareerForge's most distinctive feature. Users provide their resume (paste text, upload file, or select a saved resume) and paste any job description. The AI returns:
+- A 0–100 overall JD Fit Score
+- A list of required skills the resume already demonstrates
+- A list of required skills that are missing from the resume
+- Semantic keyword overlap analysis
+- Seniority level match assessment
+- Actionable, prioritized suggestions to improve the score
+
+This is different from a basic ATS checker — it uses an LLM to understand semantic alignment, not just keyword matching.
+
+### 3. AI Resume Tailoring (https://careerforge.pro/jd-tailor)
+After running a JD Fit Score, users can click "Tailor My Resume" to trigger a full AI rewrite. The AI rewrites the resume's experience bullets, skills, and summary to naturally incorporate the job description's required keywords and align the candidate's experience with the role. The tailored result opens directly in the resume editor pre-filled, ready to refine and download. Users can also tailor from scratch (paste resume text + JD, pick a template, get a new tailored resume).
+
+### 4. AI Cover Letter Generator (https://careerforge.pro/cover-letter)
+Users provide their resume (paste, upload, or select from saved) and a job description (paste or upload). They choose a writing tone from four options: Professional, Enthusiastic, Concise, or Creative. The AI generates a complete, tailored cover letter including a suggested email subject line in under 60 seconds. Output includes the full letter body, word count, and the detected company name and role. The letter can be copied to clipboard or downloaded as a .txt file.
+
+### 5. AI Bullet-Point Enhancement
+Within the resume editor, users can trigger AI-powered improvement for individual bullet points in any section. The AI rewrites the content to be more impactful, specific, and keyword-rich while preserving the user's actual experience.
+
+### 6. Resume Templates
+Multiple professionally designed templates. Includes both ATS-optimized (clean, single-column, parser-friendly) and creative (visual, design-forward) options. Users can switch templates without losing content.
+
+### 7. PDF Download
+All resumes can be downloaded as PDFs directly from the editor. The PDF is generated from the live preview and matches exactly what the user sees on screen.
+
+---
+
+## Pricing
+
+CareerForge has a freemium pricing model:
+
+**Seeker (Free)**
+- Resume builder: unlimited
+- JD Fit Scoring: 3/month
+- AI Resume Tailoring: 2/month
+- AI Cover Letter Generation: 3/month
+- AI Bullet Suggestions: 5/month
+- PDF Downloads: 5/month
+
+**Hustler (Paid)**
+- JD Fit Scoring: 20/month
+- AI Resume Tailoring: 12/month
+- AI Cover Letter Generation: 15/month
+- AI Bullet Suggestions: 25/month
+- PDF Downloads: 10/month
+
+**Closer (Paid)**
+- All features: unlimited
+
+No credit card is required to start on the free Seeker plan.
+
+---
+
+## Technology
+
+- Frontend: React (TypeScript), Vite, Zustand
+- Backend: Node.js, Express, MongoDB
+- AI: Google Gemini 2.5 Flash (for JD scoring, tailoring, cover letter, bullet suggestions)
+- Authentication: Email/password with OTP verification, Google OAuth
+- PDF generation: Browser-based print rendering
+
+---
+
+## Target Audience
+
+- Job seekers applying to companies that use Applicant Tracking Systems
+- Recent graduates and early-career candidates
+- Candidates in India applying to Indian and international tech companies
+- Anyone who wants to tailor their resume to specific job descriptions without manual effort
+
+---
+
+## What Makes CareerForge Different from Other Resume Builders
+
+Most resume builders (Zety, Resume.io, Canva, Novoresume) are template generators — you fill in fields and download a PDF. CareerForge goes further:
+
+1. **JD Fit Scoring** — no other free tool gives you a semantic AI-powered match score with specific skill gap analysis
+2. **AI Tailoring** — one click rewrites your resume for a specific job, not just adds keywords
+3. **Cover Letter tied to JD** — the cover letter is generated from both your resume AND the job description, making it genuinely specific
+4. **All in one** — resume builder, ATS analyzer, tailoring, and cover letter in a single platform with shared state
+
+---
+
+## Contact
+
+Website: https://careerforge.pro
+Support: support@careerforge.pro

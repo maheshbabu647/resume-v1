@@ -1,0 +1,29 @@
+
+> client@0.0.0 build
+> tsc -b && vite build
+
+src/features/auth-pages/RegisterPage.tsx(18,9): error TS6198: All destructured elements are unused.
+src/features/resume-builder/components/editor/EditorShell.tsx(2,10): error TS2614: Module '"./LeftNav"' has no exported member 'LeftNav'. Did you mean to use 'import LeftNav from "./LeftNav"' instead?
+src/features/resume-builder/components/editor/EditorShell.tsx(3,10): error TS2614: Module '"./FormPanel"' has no exported member 'FormPanel'. Did you mean to use 'import FormPanel from "./FormPanel"' instead?
+src/features/resume-builder/components/editor/EditorShell.tsx(4,10): error TS2614: Module '"./PreviewPanel"' has no exported member 'PreviewPanel'. Did you mean to use 'import PreviewPanel from "./PreviewPanel"' instead?
+src/features/resume-builder/components/editor/FormPanel.tsx(1,1): error TS6133: 'React' is declared but its value is never read.
+src/features/resume-builder/components/editor/FormPanel.tsx(2,24): error TS6133: 'ChevronRight' is declared but its value is never read.
+src/features/resume-builder/components/editor/FormPanel.tsx(2,38): error TS6133: 'ChevronLeft' is declared but its value is never read.
+src/features/resume-builder/components/editor/FormPanel.tsx(5,1): error TS6133: 'Button' is declared but its value is never read.
+src/features/resume-builder/components/editor/FormPanel.tsx(8,31): error TS1484: 'FieldDefinition' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/features/resume-builder/components/editor/LeftNav.tsx(4,9): error TS6133: 'Trash2' is declared but its value is never read.
+src/features/resume-builder/components/editor/LeftNav.tsx(6,28): error TS2305: Module '"../../store/useEditorUIStore"' has no exported member 'ActivePanel'.
+src/features/resume-builder/components/editor/LeftNav.tsx(6,28): error TS6133: 'ActivePanel' is declared but its value is never read.
+src/features/resume-builder/components/editor/PreviewPanel.tsx(1,20): error TS6133: 'useState' is declared but its value is never read.
+src/features/resume-builder/components/editor/RightSidebarUtils.tsx(1,1): error TS6133: 'useState' is declared but its value is never read.
+src/features/resume-builder/components/editor/Toolbar.tsx(10,43): error TS2339: Property 'isDirty' does not exist on type 'ResumeState'.
+src/features/resume-builder/components/editor/Toolbar.tsx(23,68): error TS2339: Property 'headline' does not exist on type 'PersonalInfo'.
+src/features/resume-builder/config/fieldDefinitions.ts(1,10): error TS1484: 'SectionKey' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/features/resume-builder/config/sectionOrder.ts(1,10): error TS1484: 'SectionKey' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/features/resume-builder/config/sectionOrder.ts(15,13): error TS2322: Type '"summary"' is not assignable to type 'SectionKey'.
+src/features/resume-builder/config/sectionOrder.ts(21,13): error TS2322: Type '"summary"' is not assignable to type 'SectionKey'.
+src/features/resume-builder/config/sectionOrder.ts(27,13): error TS2322: Type '"summary"' is not assignable to type 'SectionKey'.
+src/features/resume-builder/config/sectionOrder.ts(33,13): error TS2322: Type '"summary"' is not assignable to type 'SectionKey'.
+src/features/resume-builder/config/sectionOrder.ts(39,13): error TS2322: Type '"summary"' is not assignable to type 'SectionKey'.
+src/features/resume-builder/config/sectionOrder.ts(45,13): error TS2322: Type '"summary"' is not assignable to type 'SectionKey'.
+src/features/templates/TemplatesPage.tsx(3,92): error TS6133: 'UserIcon' is declared but its value is never read.

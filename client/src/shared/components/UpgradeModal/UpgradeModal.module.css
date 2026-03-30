@@ -1,0 +1,214 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal {
+  background: var(--surface-container);
+  border: 1px solid var(--outline-variant);
+  border-radius: 20px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 680px;
+  animation: slideUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.iconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--on-surface-variant);
+  padding: 6px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+.closeBtn:hover { background: var(--surface-container-high); }
+
+/* ── Copy ── */
+.copy { margin-bottom: 1.25rem; }
+
+.headline {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--on-surface);
+  margin: 0 0 0.5rem;
+  line-height: 1.35;
+}
+
+.sub {
+  font-size: var(--text-sm);
+  color: var(--on-surface-variant);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── Error ── */
+.errorBanner {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  color: #ef4444;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-size: var(--text-sm);
+  margin-bottom: 1rem;
+}
+
+/* ── Plans ── */
+.plans {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 520px) {
+  .plans { grid-template-columns: 1fr; }
+}
+
+.planCard {
+  background: var(--surface);
+  border: 1.5px solid var(--outline-variant);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.planCardHighlight {
+  border-color: #6366f133;
+  background: linear-gradient(145deg, rgba(99, 102, 241, 0.06), var(--surface));
+  box-shadow: 0 0 0 1px #6366f133;
+}
+
+.planCard:hover { transform: translateY(-2px); }
+
+.planBadge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  padding: 3px 10px;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.planName {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--on-surface);
+  letter-spacing: -0.02em;
+}
+
+.planPrice {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.planAmount {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--on-surface);
+  letter-spacing: -0.04em;
+}
+
+.planPeriod {
+  font-size: var(--text-sm);
+  color: var(--on-surface-variant);
+}
+
+.planFeatures {
+  list-style: none;
+  margin: 0.25rem 0 0.75rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.planFeature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-sm);
+  color: var(--on-surface-variant);
+}
+
+.featureDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.upgradeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-sm);
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  margin-top: auto;
+}
+.upgradeBtn:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
+.upgradeBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.spin {
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Footer note ── */
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: var(--on-surface-variant);
+  margin: 0;
+  opacity: 0.7;
+}

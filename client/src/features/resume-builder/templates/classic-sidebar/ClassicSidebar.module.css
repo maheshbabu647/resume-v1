@@ -1,0 +1,191 @@
+/* ─── Classic Sidebar Template ───
+   A clean two-column layout: thin left sidebar for contact, main right column for content.
+   ATS-safe: uses standard HTML elements, no complex grids or images.
+*/
+
+.root {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  box-sizing: border-box;
+  font-family: var(--font-family, 'Inter', sans-serif);
+  color: #2d2d2d;
+  line-height: var(--line-height, 1.45);
+  font-size: var(--font-size-base, 10.5pt);
+  margin: 0 auto;
+  display: flex;
+  gap: 0;
+}
+
+/* Left Sidebar */
+.sidebar {
+  width: 210px;
+  flex-shrink: 0;
+  background: var(--accent-color, #1a2332);
+  color: #e8edf3;
+  padding: var(--page-padding, 32px) 20px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap, 1.2rem);
+}
+
+.sidebar a {
+  color: #b8c9e0;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+.sidebarName {
+  font-size: var(--font-size-name, 18pt);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 2px 0;
+  line-height: 1.2;
+}
+
+.sidebarTitle {
+  font-size: var(--font-size-meta, 9.5pt);
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+  margin: 0 0 16px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.sidebarSection {
+  margin-bottom: 4px;
+}
+
+.sidebarSectionTitle {
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 8px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sidebarItem {
+  font-size: var(--font-size-meta, 9pt);
+  margin-bottom: 4px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.sidebarSkillCategory {
+  font-weight: 600;
+  font-size: 9pt;
+  margin-bottom: 2px;
+  color: #ffffff;
+}
+
+.sidebarSkillItems {
+  font-size: 8.5pt;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 8px;
+}
+
+.languageItem {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9pt;
+  margin-bottom: 3px;
+}
+
+.languageLevel {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 8pt;
+}
+
+/* Main content */
+.main {
+  flex: 1;
+  padding: var(--page-padding, 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Override shared section title for this template */
+.main :global(.template-section) {
+  margin-bottom: var(--section-gap, 1.1rem);
+  break-inside: avoid;
+}
+
+.main :global(.template-section-title) {
+  font-size: var(--font-size-section, 12pt);
+  font-weight: 700;
+  color: var(--accent-color, #1a2332);
+  border-bottom: 2px solid var(--accent-color, #1a2332);
+  margin: 0 0 8px 0;
+  padding-bottom: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.main :global(.template-entry) {
+  margin-bottom: var(--entry-gap, 0.7rem);
+  break-inside: avoid;
+}
+
+.main :global(.template-entry-header) {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 3px;
+}
+
+.main :global(.template-entry-title) {
+  font-size: var(--font-size-entry, 11pt);
+  font-weight: 700;
+  margin: 0;
+  display: inline;
+}
+
+.main :global(.template-entry-subtitle) {
+  margin: 0;
+  display: inline;
+  color: #666;
+}
+
+.main :global(.template-entry-subtitle):before {
+  content: " — ";
+}
+
+.main :global(.template-entry-meta-right) {
+  text-align: right;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: var(--font-size-meta, 9.5pt);
+  margin-left: 12px;
+  color: #888;
+}
+
+.main :global(.template-entry-body p) {
+  margin: 0;
+}
+
+.main :global(.template-entry-body ul) {
+  margin: 2px 0 0 0;
+  padding-left: 1.4em;
+}
+
+.main :global(.template-entry-body li) {
+  margin-bottom: var(--bullet-gap, 0.15rem);
+}
+
+/* Skills in main (if not in sidebar) */
+.skillsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skillsList li {
+  margin-bottom: 3px;
+}

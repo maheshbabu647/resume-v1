@@ -1,0 +1,202 @@
+/* ─── Executive Minimal Template ───
+   Ultra-clean single-column layout with thin accent lines, generous whitespace,
+   and a left-aligned header. Targets senior professionals and executive roles.
+   ATS-safe: standard HTML, no complex grids or images.
+*/
+
+.root {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  box-sizing: border-box;
+  padding: var(--page-padding, 40px) var(--page-padding, 44px);
+  font-family: var(--font-family, 'Georgia', serif);
+  color: #333;
+  line-height: var(--line-height, 1.5);
+  font-size: var(--font-size-base, 10.5pt);
+  margin: 0 auto;
+}
+
+/* Header — left-aligned, understated elegance */
+.header {
+  margin-bottom: var(--section-gap, 1.4rem);
+  padding-bottom: 14px;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.nameRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.name {
+  font-size: var(--font-size-name, 22pt);
+  font-weight: 400;
+  color: #111;
+  margin: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: var(--font-size-title, 11pt);
+  font-weight: 400;
+  color: var(--accent-color, #555);
+  margin: 4px 0 0 0;
+  letter-spacing: 0.02em;
+}
+
+.contactRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: var(--font-size-meta, 9.5pt);
+  color: #555;
+}
+
+.contactRow a {
+  color: #555;
+  text-decoration: none;
+  border-bottom: 1px dotted #bbb;
+  transition: border-color 0.2s;
+}
+
+.contactRow a:hover {
+  border-bottom-color: var(--accent-color, #333);
+}
+
+.contactSep {
+  color: #ccc;
+  margin: 0 2px;
+}
+
+/* Override shared section styles for this template */
+:global(.template-section) {
+  margin-bottom: var(--section-gap, 1.3rem);
+  break-inside: avoid;
+}
+
+:global(.template-section-title) {
+  font-size: var(--font-size-section, 11pt);
+  font-weight: 600;
+  color: var(--accent-color, #333);
+  border-bottom: none;
+  margin: 0 0 6px 0;
+  padding: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+}
+
+/* Thin accent underline */
+:global(.template-section-title)::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--accent-color, #333);
+  margin-top: 4px;
+}
+
+:global(.template-entry) {
+  margin-bottom: var(--entry-gap, 0.7rem);
+  break-inside: avoid;
+}
+
+:global(.template-entry-header) {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2px;
+}
+
+:global(.template-entry-title) {
+  font-size: var(--font-size-entry, 11pt);
+  font-weight: 600;
+  margin: 0;
+  display: inline;
+  color: #222;
+}
+
+:global(.template-entry-subtitle) {
+  margin: 0;
+  display: inline;
+  color: #666;
+  font-style: italic;
+}
+
+:global(.template-entry-subtitle):before {
+  content: " — ";
+  font-style: normal;
+}
+
+:global(.template-entry-meta-right) {
+  text-align: right;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: var(--font-size-meta, 9.5pt);
+  margin-left: 16px;
+  color: #888;
+}
+
+:global(.template-entry-body p) {
+  margin: 0;
+}
+
+:global(.template-entry-body ul) {
+  margin: 2px 0 0 0;
+  padding-left: 1.4em;
+}
+
+:global(.template-entry-body li) {
+  margin-bottom: var(--bullet-gap, 0.18rem);
+}
+
+/* Skills — inline pills */
+.skillsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skillRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.skillCategory {
+  font-weight: 600;
+  font-size: 10pt;
+  color: #333;
+  min-width: 140px;
+  flex-shrink: 0;
+}
+
+.skillItems {
+  color: #555;
+  font-size: 10pt;
+}
+
+/* Languages — horizontal */
+.languagesRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.languagesRow li {
+  font-size: 10pt;
+}
+
+.languagesRow strong {
+  color: #333;
+}

@@ -1,0 +1,20 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--surface-container-low);
+  overflow: hidden;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .body {
+    padding-bottom: 60px; /* Accounts for bottom-fixed util sidebar */
+  }
+}
