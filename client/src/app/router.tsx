@@ -15,6 +15,10 @@ const EditorShell = lazy(() => import('@/features/resume-builder/components/edit
 const JDTailorPage     = lazy(() => import('@/features/jd-tailor/JDTailorPage'))
 const CoverLetterPage  = lazy(() => import('@/features/cover-letter/CoverLetterPage'))
 
+import { GlobalErrorBoundary } from '@/shared/components/ErrorBoundary/GlobalErrorBoundary'
+
+const NotFoundPage = lazy(() => import('@/features/not-found/NotFoundPage'))
+
 const Fallback = () => (
   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', background: 'var(--surface)' }}>
     <div style={{ width: 32, height: 32, border: '3px solid var(--outline-variant)', borderTopColor: 'var(--secondary)', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
@@ -24,45 +28,54 @@ const Fallback = () => (
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Suspense fallback={<Fallback />}><HomePage /></Suspense>,
-  },
-  {
-    path: '/login',
-    element: <Suspense fallback={<Fallback />}><LoginPage /></Suspense>,
-  },
-  {
-    path: '/register',
-    element: <Suspense fallback={<Fallback />}><RegisterPage /></Suspense>,
-  },
-  {
-    path: '/verify-email',
-    element: <Suspense fallback={<Fallback />}><VerifyEmailPage /></Suspense>,
-  },
-  {
-    path: '/auth/callback',
-    element: <Suspense fallback={<Fallback />}><AuthCallback /></Suspense>,
-  },
-  {
-    element: <MainLayout />,
+    errorElement: <GlobalErrorBoundary />,
     children: [
-      { 
-        path: 'templates', 
-        element: <Suspense fallback={<Fallback />}><TemplatesPage /></Suspense> 
+      {
+        path: '/',
+        element: <Suspense fallback={<Fallback />}><HomePage /></Suspense>,
       },
       {
-        path: 'pricing',
-        element: <Suspense fallback={<Fallback />}><PricingPage /></Suspense>
+        path: '/login',
+        element: <Suspense fallback={<Fallback />}><LoginPage /></Suspense>,
       },
       {
-        element: <AuthGuard />,
+        path: '/register',
+        element: <Suspense fallback={<Fallback />}><RegisterPage /></Suspense>,
+      },
+      {
+        path: '/verify-email',
+        element: <Suspense fallback={<Fallback />}><VerifyEmailPage /></Suspense>,
+      },
+      {
+        path: '/auth/callback',
+        element: <Suspense fallback={<Fallback />}><AuthCallback /></Suspense>,
+      },
+      {
+        element: <MainLayout />,
         children: [
-          { path: 'dashboard',     element: <Suspense fallback={<Fallback />}><Dashboard /></Suspense> },
-          { path: 'jd-tailor',     element: <Suspense fallback={<Fallback />}><JDTailorPage /></Suspense> },
-          { path: 'cover-letter',  element: <Suspense fallback={<Fallback />}><CoverLetterPage /></Suspense> },
-          { path: 'resume/:id',    element: <Suspense fallback={<Fallback />}><EditorShell /></Suspense> },
-        ]
+          { 
+            path: 'templates', 
+            element: <Suspense fallback={<Fallback />}><TemplatesPage /></Suspense> 
+          },
+          {
+            path: 'pricing',
+            element: <Suspense fallback={<Fallback />}><PricingPage /></Suspense>
+          },
+          {
+            element: <AuthGuard />,
+            children: [
+              { path: 'dashboard',     element: <Suspense fallback={<Fallback />}><Dashboard /></Suspense> },
+              { path: 'jd-tailor',     element: <Suspense fallback={<Fallback />}><JDTailorPage /></Suspense> },
+              { path: 'cover-letter',  element: <Suspense fallback={<Fallback />}><CoverLetterPage /></Suspense> },
+              { path: 'resume/:id',    element: <Suspense fallback={<Fallback />}><EditorShell /></Suspense> },
+            ]
+          }
+        ],
+      },
+      {
+        path: '*',
+        element: <Suspense fallback={<Fallback />}><NotFoundPage /></Suspense>,
       }
-    ],
-  },
+    ]
+  }
 ])
