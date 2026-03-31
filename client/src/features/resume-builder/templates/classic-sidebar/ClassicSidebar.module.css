@@ -144,17 +144,17 @@
   font-size: var(--font-size-entry, 11pt);
   font-weight: 700;
   margin: 0;
-  display: inline;
+  display: block;
 }
 
 .main :global(.template-entry-subtitle) {
   margin: 0;
-  display: inline;
+  display: block;
   color: #666;
 }
 
 .main :global(.template-entry-subtitle):before {
-  content: " — ";
+  content: "";
 }
 
 .main :global(.template-entry-meta-right) {
@@ -173,6 +173,7 @@
 .main :global(.template-entry-body ul) {
   margin: 2px 0 0 0;
   padding-left: 1.4em;
+  list-style-type: disc;
 }
 
 .main :global(.template-entry-body li) {

@@ -46,17 +46,18 @@ const ExperienceLikeRenderer = ({ entries, subtitleKeys }: { entries: any[], sub
         let subtitle = subtitleLeft
         if (subtitleRight) subtitle += ` | ${subtitleRight}`
         
-        let right = []
-        if (entry.location) right.push(entry.location)
-        if (entry.dates) right.push(entry.dates)
-        if (entry.hours) right.push(`${entry.hours} Hours`)
-
         return (
           <EntryBlock 
             key={i} 
             title={title} 
             subtitle={subtitle}
-            metaRight={right.join(' • ')}
+            metaRight={
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }}>
+                {entry.dates && <div>{entry.dates}</div>}
+                {entry.location && <div>{entry.location}</div>}
+                {entry.hours && <div>{entry.hours} Hours</div>}
+              </div>
+            }
           >
             {formatAsList(entry.description || entry.achievements)}
             {entry.links && entry.links.length > 0 && (
@@ -101,16 +102,17 @@ export const EducationSection = ({ entries, name }: { entries: any[], name?: str
       let subtitle = entry.institution
       if (entry.honorsOrMinor) subtitle += ` | ${entry.honorsOrMinor}`
       
-      let right = []
-      if (entry.gpa) right.push(entry.gpa)
-      if (entry.dates) right.push(entry.dates)
-
       return (
         <EntryBlock 
           key={i} 
           title={entry.qualification} 
           subtitle={subtitle}
-          metaRight={right.join(' • ')}
+          metaRight={
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }}>
+              {entry.dates && <div>{entry.dates}</div>}
+              {entry.gpa && <div>{entry.gpa}</div>}
+            </div>
+          }
         >
           {formatAsList(entry.description)}
         </EntryBlock>
@@ -144,7 +146,12 @@ export const ProjectsSection = ({ entries, name }: { entries: any[], name?: stri
           key={i} 
           title={entry.projectName} 
           subtitle={subtitle}
-          metaRight={renderLinks(entry.links)}
+          metaRight={
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }}>
+              {entry.dates && <div>{entry.dates}</div>}
+              {entry.links && renderLinks(entry.links)}
+            </div>
+          }
         >
           {formatAsList(entry.description)}
         </EntryBlock>
@@ -161,11 +168,10 @@ export const CertificationsSection = ({ entries, name }: { entries: any[], name?
         title={entry.name} 
         subtitle={entry.issuer}
         metaRight={
-          <>
-            {entry.date && <span>Issued {entry.date}</span>}
-            {entry.date && entry.verificationLink && ' • '}
-            {entry.verificationLink && <a href={sanitizeUrl(entry.verificationLink)}>Verify</a>}
-          </>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }}>
+            {entry.date && <div>Issued {entry.date}</div>}
+            {entry.verificationLink && <div><a href={sanitizeUrl(entry.verificationLink)}>Verify</a></div>}
+          </div>
         }
       >
         {entry.credentialId && <p style={{ fontSize: 'var(--font-size-meta)' }}>Credential ID: {entry.credentialId}</p>}
@@ -251,11 +257,10 @@ export const EventsSection = ({ entries, name }: { entries: any[], name?: string
           title={entry.eventName} 
           subtitle={subtitleNode}
           metaRight={
-            <>
-              {entry.date}
-              {entry.date && entry.links && entry.links.length > 0 && ' • '}
-              {entry.links && renderLinks(entry.links)}
-            </>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }}>
+              {entry.date && <div>{entry.date}</div>}
+              {entry.links && entry.links.length > 0 && <div>{renderLinks(entry.links)}</div>}
+            </div>
           }
         >
           {formatAsList(entry.description)}
@@ -273,11 +278,10 @@ export const LicensureSection = ({ entries, name }: { entries: any[], name?: str
         title={entry.licenseName} 
         subtitle={entry.issuingBody}
         metaRight={
-          <>
-            {entry.licenseNumber && <span>License #: {entry.licenseNumber}</span>}
-            {entry.licenseNumber && entry.expirationDate && ' • '}
-            {entry.expirationDate && <span>Expires: {entry.expirationDate}</span>}
-          </>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }}>
+            {entry.licenseNumber && <div>License #: {entry.licenseNumber}</div>}
+            {entry.expirationDate && <div>Expires: {entry.expirationDate}</div>}
+          </div>
         }
       />
     ))}
@@ -304,11 +308,10 @@ export const GrantsSection = ({ entries, name }: { entries: any[], name?: string
         title={entry.grantTitle} 
         subtitle={`${entry.role} | ${entry.fundingBody}`}
         metaRight={
-          <>
-            {entry.amount && <span>{entry.amount}</span>}
-            {entry.amount && entry.dates && ' • '}
-            {entry.dates && <span>{entry.dates}</span>}
-          </>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }}>
+            {entry.dates && <div>{entry.dates}</div>}
+            {entry.amount && <div>{entry.amount}</div>}
+          </div>
         }
       >
         {entry.grantNumber && <p style={{ fontSize: 'var(--font-size-meta)', marginBottom: '4px' }}>Grant #: {entry.grantNumber}</p>}

@@ -49,14 +49,43 @@ const ExperienceLikeRenderer = ({ entries, subtitleKeys }: { entries: any[], sub
   </>
 )
 
-const ExperienceSection = ({ entries }: { entries: any[] }) => <ExperienceLikeRenderer entries={entries} subtitleKeys={['jobTitle', 'company']} />
-const InternshipsSection = ({ entries }: { entries: any[] }) => <ExperienceLikeRenderer entries={entries} subtitleKeys={['jobTitle', 'company']} />
-const VolunteeringSection = ({ entries }: { entries: any[] }) => <ExperienceLikeRenderer entries={entries} subtitleKeys={['role', 'organization']} />
-const ClinicalExperienceSection = ({ entries }: { entries: any[] }) => <ExperienceLikeRenderer entries={entries} subtitleKeys={['rotationName', 'institution']} />
-const TeachingExperienceSection = ({ entries }: { entries: any[] }) => <ExperienceLikeRenderer entries={entries} subtitleKeys={['courseTitle', 'institution']} />
+const ExperienceSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Experience"}>
+    <ExperienceLikeRenderer entries={entries} subtitleKeys={['jobTitle', 'company']} />
+  </SectionWrapper>
+)
 
-const EducationSection = ({ entries }: { entries: any[] }) => (
-  <>
+
+const InternshipsSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Internships"}>
+    <ExperienceLikeRenderer entries={entries} subtitleKeys={['jobTitle', 'company']} />
+  </SectionWrapper>
+)
+
+
+const VolunteeringSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Volunteer Experience"}>
+    <ExperienceLikeRenderer entries={entries} subtitleKeys={['role', 'organization']} />
+  </SectionWrapper>
+)
+
+
+const ClinicalExperienceSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Clinical Experience"}>
+    <ExperienceLikeRenderer entries={entries} subtitleKeys={['rotationName', 'institution']} />
+  </SectionWrapper>
+)
+
+
+const TeachingExperienceSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Teaching Experience"}>
+    <ExperienceLikeRenderer entries={entries} subtitleKeys={['courseTitle', 'institution']} />
+  </SectionWrapper>
+)
+
+
+const EducationSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Education"}>
     {entries.map((e: any, i: number) => (
       <EntryBlock
         key={i}
@@ -68,11 +97,12 @@ const EducationSection = ({ entries }: { entries: any[] }) => (
         {formatAsList(e.additionalDetails)}
       </EntryBlock>
     ))}
-  </>
+  </SectionWrapper>
 )
 
-const ProjectsSection = ({ entries }: { entries: any[] }) => (
-  <>
+
+const ProjectsSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Projects"}>
     {entries.map((e: any, i: number) => (
       <EntryBlock
         key={i}
@@ -84,126 +114,143 @@ const ProjectsSection = ({ entries }: { entries: any[] }) => (
         {renderLinks(e.links)}
       </EntryBlock>
     ))}
-  </>
+  </SectionWrapper>
 )
 
-const CertificationsSection = ({ entries }: { entries: any[] }) => (
-  <>
+
+const CertificationsSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Certifications"}>
     {entries.map((e: any, i: number) => (
       <EntryBlock key={i} title={e.certificationName} subtitle={e.issuingOrg} metaRight={e.issueDate}>
         {e.credentialId && <p>ID: {e.credentialId}</p>}
       </EntryBlock>
     ))}
-  </>
+  </SectionWrapper>
 )
 
-const AwardsSection = ({ entries }: { entries: any[] }) => (
-  <>
+
+const AwardsSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Awards & Honors"}>
     {entries.map((e: any, i: number) => (
       <EntryBlock key={i} title={e.awardName} subtitle={e.awardedBy} metaRight={e.dateReceived}>
         {formatAsList(e.description)}
       </EntryBlock>
     ))}
-  </>
+  </SectionWrapper>
 )
 
-const EventsSection = ({ entries }: { entries: any[] }) => (
-  <>
+
+const EventsSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Workshops & Hackathons"}>
     {entries.map((e: any, i: number) => (
       <EntryBlock key={i} title={e.eventName} subtitle={e.organizer} metaRight={e.eventDate}>
         {e.achievement && <p><strong>{e.achievement}</strong></p>}
         {formatAsList(e.description)}
       </EntryBlock>
     ))}
-  </>
+  </SectionWrapper>
 )
 
-const PublicationsSection = ({ entries }: { entries: any[] }) => (
-  <>
+
+const PublicationsSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Publications"}>
     {entries.map((e: any, i: number) => (
       <EntryBlock key={i} title={e.title} subtitle={e.journal} metaRight={e.publicationDate}>
         {e.authors && <p><em>{e.authors}</em></p>}
         {formatAsList(e.summary)}
       </EntryBlock>
     ))}
-  </>
+  </SectionWrapper>
 )
 
-const PresentationsSection = ({ entries }: { entries: any[] }) => (
-  <>
+
+const PresentationsSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Presentations"}>
     {entries.map((e: any, i: number) => (
       <EntryBlock key={i} title={e.presentationTitle} subtitle={e.conferenceName} metaRight={e.date}>
         {formatAsList(e.description)}
       </EntryBlock>
     ))}
-  </>
+  </SectionWrapper>
 )
 
-const MembershipsSection = ({ entries }: { entries: any[] }) => (
-  <>
+
+const MembershipsSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Professional Memberships"}>
     {entries.map((e: any, i: number) => (
       <EntryBlock key={i} title={e.organizationName} subtitle={e.role} metaRight={e.membershipDates} />
     ))}
-  </>
+  </SectionWrapper>
 )
 
-const GrantsSection = ({ entries }: { entries: any[] }) => (
-  <>
+
+const GrantsSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Grants & Funding"}>
     {entries.map((e: any, i: number) => (
       <EntryBlock key={i} title={e.grantTitle} subtitle={e.fundingBody} metaRight={<>{e.grantPeriod}{e.awardAmount ? <><br />{e.awardAmount}</> : ''}</>}>
         {e.role && <p><strong>Role:</strong> {e.role}</p>}
         {formatAsList(e.description)}
       </EntryBlock>
     ))}
-  </>
+  </SectionWrapper>
 )
 
-const LicensureSection = ({ entries }: { entries: any[] }) => (
-  <>
+
+const LicensureSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Licensure"}>
     {entries.map((e: any, i: number) => (
       <EntryBlock key={i} title={e.licenseName} subtitle={e.issuingBody} metaRight={e.expirationDate}>
         {e.licenseNumber && <p>License #: {e.licenseNumber}</p>}
       </EntryBlock>
     ))}
-  </>
+  </SectionWrapper>
 )
 
-const BarAdmissionsSection = ({ entries }: { entries: any[] }) => (
-  <>
+
+const BarAdmissionsSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Bar Admissions"}>
     {entries.map((e: any, i: number) => (
       <EntryBlock key={i} title={e.jurisdiction} metaRight={e.admissionYear}>
         {e.barNumber && <p>{e.barNumber}</p>}
       </EntryBlock>
     ))}
-  </>
+  </SectionWrapper>
 )
 
-const SecurityClearanceSection = ({ entries }: { entries: any[] }) => (
-  <>
+
+const SecurityClearanceSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Security Clearance"}>
     {entries.map((e: any, i: number) => (
       <EntryBlock key={i} title={e.clearanceLevel} subtitle={e.issuingAgency} metaRight={e.investigationDate}>
         {e.polygraph && <p>Polygraph: {e.polygraph}</p>}
       </EntryBlock>
     ))}
-  </>
+  </SectionWrapper>
 )
 
+
 // Skills section — renders in sidebar, but fallback for main area
-const SkillsSection = ({ entries }: { entries: any[] }) => (
-  <ul className={styles.skillsList}>
+const SkillsSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Skills"}>
+    <ul className={styles.skillsList}>
     {entries.map((e: any, i: number) => (
       <li key={i}><strong>{e.category}:</strong> {e.skills}</li>
     ))}
   </ul>
+  </SectionWrapper>
 )
 
-const LanguagesSection = ({ entries }: { entries: any[] }) => (
-  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+
+const LanguagesSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Languages"}>
+    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
     {entries.map((e: any, i: number) => (
       <li key={i}><strong>{e.language}</strong> — {e.proficiency}</li>
     ))}
   </ul>
+  </SectionWrapper>
 )
+
 
 const CustomSection = ({ entries }: { entries: any[] }) => (
   <>

@@ -83,15 +83,16 @@
   font-size: var(--font-size-entry, 11.5pt);
   font-weight: bold;
   margin: 0;
-  display: inline;
+  display: block;
 }
 
 :global(.template-entry-subtitle) {
   margin: 0;
-  display: inline;
+  display: block;
+  font-weight: 500;
 }
 :global(.template-entry-subtitle):before {
-  content: " | ";
+  content: "";
 }
 
 :global(.template-entry-meta-right) {
@@ -109,6 +110,7 @@
 :global(.template-entry-body ul) {
   margin: 0;
   padding-left: 1.5em;
+  list-style-type: disc;
 }
 
 :global(.template-entry-body li) {
