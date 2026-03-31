@@ -190,7 +190,7 @@ export default function HomePage() {
                 "name": "What is CareerForge?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "CareerForge is a free AI-powered resume builder and career toolkit built for Indian freshers. It includes a smart resume editor with 20+ professional templates, a real-time ATS score checker, and a one-click AI cover letter generator."
+                  "text": "CareerForge is a free AI-powered resume builder and career toolkit built for Indian freshers. It includes a smart resume editor with professional templates, a real-time ATS score checker, JD fit analysis, AI resume tailoring, and a one-click AI cover letter generator."
                 }
               },
               {
@@ -198,7 +198,39 @@ export default function HomePage() {
                 "name": "Is CareerForge free?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes. CareerForge offers a free tier that includes access to the full resume builder, ATS checker, and cover letter generator. No credit card is required to get started."
+                  "text": "Yes. CareerForge offers a free tier that includes access to the full resume builder, ATS checker, JD fit analysis, and cover letter generator. No credit card is required to get started."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the JD Fit Score on CareerForge?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The JD Fit Score is CareerForge's AI-powered job description match analyzer. You paste your resume and a job description, and the AI returns a 0–100 compatibility score that shows missing skills, keywords, and improvement suggestions."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does CareerForge's AI resume tailoring work?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "CareerForge's AI takes your existing resume and a job description to naturally incorporate required keywords and align your experience with the role's requirements. You then land in the editor with pre-filled content ready to download."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How does CareerForge generate cover letters?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "CareerForge uses AI to generate a fully tailored cover letter based on your resume and the job description you provide. You can choose from multiple tones like Professional or Enthusiastic, and it's generated in under a minute."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Are CareerForge's resume templates ATS-friendly?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. All CareerForge templates are designed with clean, structured layouts and standard section headings to ensure they parse perfectly in Applicant Tracking Systems."
                 }
               }
             ]
