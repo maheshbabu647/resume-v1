@@ -97,7 +97,22 @@ export default function PricingPage() {
         description: `${plan.charAt(0).toUpperCase() + plan.slice(1)} Plan`,
         prefill: { name, email },
         theme: { color: plan === 'hustler' ? '#6366f1' : '#f59e0b' },
-        handler: () => window.location.href = '/dashboard',
+        handler: async (response: any) => {
+          try {
+            // Verify payment aggressively since webhooks won't work easily on localhost
+            await apiClient.post('/payment/verify', {
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_subscription_id: response.razorpay_subscription_id,
+              razorpay_signature: response.razorpay_signature,
+            })
+            // Force refresh user profile to show updated plan globally
+            await useAuthStore.getState().fetchUser()
+            window.location.href = '/dashboard'
+          } catch (err: any) {
+            setError('Payment verification failed. Please check your dashboard.')
+            setLoading(null)
+          }
+        },
         modal: { ondismiss: () => setLoading(null) },
       })
       rzp.open()

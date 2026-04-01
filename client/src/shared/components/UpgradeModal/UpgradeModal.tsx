@@ -102,10 +102,18 @@ export function UpgradeModal({ isOpen, onClose, trigger = 'general' }: Omit<Upgr
         image: '', // optional logo URL
         prefill: { name, email },
         theme: { color: plan === 'hustler' ? '#6366f1' : '#f59e0b' },
-        handler: () => {
-          // Payment successful — backend webhook will upgrade the plan
-          // Reload the page to reflect new plan
-          window.location.reload()
+        handler: async (response: any) => {
+          try {
+            await apiClient.post('/payment/verify', {
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_subscription_id: response.razorpay_subscription_id,
+              razorpay_signature: response.razorpay_signature,
+            })
+            window.location.reload()
+          } catch (err: any) {
+            setError('Payment verification failed. Check your dashboard.')
+            setLoading(null)
+          }
         },
         modal: {
           ondismiss: () => setLoading(null),

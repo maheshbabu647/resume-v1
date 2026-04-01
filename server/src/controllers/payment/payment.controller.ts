@@ -37,3 +37,21 @@ export const getUsage = async (req: Request, res: Response, next: NextFunction) 
     res.json({ ok: true, data })
   } catch (err) { next(err) }
 }
+
+export const verifySubscription = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { razorpay_payment_id, razorpay_subscription_id, razorpay_signature } = req.body
+    
+    if (!razorpay_payment_id || !razorpay_subscription_id || !razorpay_signature) {
+      return res.status(400).json({ ok: false, error: { message: 'Missing required Razorpay parameters.' } })
+    }
+
+    const data = await paymentService.verifySubscriptionPayment(
+      razorpay_payment_id,
+      razorpay_subscription_id,
+      razorpay_signature
+    )
+
+    res.json({ ok: true, data })
+  } catch (err) { next(err) }
+}
