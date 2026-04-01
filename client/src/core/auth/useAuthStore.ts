@@ -19,6 +19,7 @@ interface AuthStore {
   isAuthenticated: boolean
   setTokens: (access: string) => void
   setUser: (user: AuthUser) => void
+  fetchUser: () => Promise<void>
   logout: () => void
 }
 
@@ -30,6 +31,17 @@ export const useAuthStore = create<AuthStore>()(
       isAuthenticated: false,
       setTokens: (access) => set({ accessToken: access, isAuthenticated: true }),
       setUser: (user) => set({ user }),
+      fetchUser: async () => {
+        try {
+          const { apiClient } = await import('@/shared/lib/apiClient')
+          const res = await apiClient.get('/auth/me')
+          if (res.data.data) {
+            set({ user: res.data.data })
+          }
+        } catch (err) {
+          console.error('Failed to fetch user:', err)
+        }
+      },
       logout: () => set({ accessToken: null, user: null, isAuthenticated: false }),
     }),
     { name: 'auth-store' }
