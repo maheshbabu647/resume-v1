@@ -192,15 +192,11 @@ export function UpgradeModal({ isOpen, onClose, trigger = 'general' }: Omit<Upgr
               </ul>
               <button
                 className={styles.upgradeBtn}
-                style={{ background: plan.color }}
+                style={{ background: '#ccc', cursor: 'not-allowed' }}
                 onClick={() => handleUpgrade(plan.key)}
-                disabled={loading !== null}
+                disabled={true}
               >
-                {loading === plan.key ? (
-                  <Loader2 size={16} className={styles.spin} />
-                ) : (
-                  <>Upgrade to {plan.name} <ArrowRight size={14} /></>
-                )}
+                Coming Soon
               </button>
             </div>
           ))}

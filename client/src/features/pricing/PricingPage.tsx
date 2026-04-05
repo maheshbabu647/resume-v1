@@ -183,13 +183,10 @@ export default function PricingPage() {
               <button
                 className={`${styles.ctaBtn} ${plan.key === 'closer' ? styles.ctaWarm : ''}`}
                 style={{ '--btn-color': plan.color } as React.CSSProperties}
-                onClick={() => handleUpgrade(plan.key as UpgradePlan)}
-                disabled={loading !== null}
+                onClick={() => trackUpgradeClicked(plan.key as UpgradePlan, 'pricing_page')}
+                disabled={true}
               >
-                {loading === plan.key
-                  ? <Loader2 size={16} className={styles.spin} />
-                  : <>{plan.cta} <ArrowRight size={14} /></>
-                }
+                Coming Soon
               </button>
             )}
           </div>
