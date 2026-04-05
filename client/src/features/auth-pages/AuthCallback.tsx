@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Loader2 } from 'lucide-react'
 import { useAuthStore } from '@/core/auth/useAuthStore'
 import { apiClient } from '@/shared/lib/apiClient'
+import { trackSignUp, trackLogin, setUserProperties } from '@/shared/lib/analytics'
 
 export default function AuthCallback() {
   const [searchParams] = useSearchParams()
@@ -31,8 +32,18 @@ export default function AuthCallback() {
           headers: { Authorization: `Bearer ${token}` }
         })
         
-        setUser(data.data.user)
-        
+        const user = data.data.user ?? data.data
+        setUser(user)
+
+        // Detect new vs returning user — new if account created within last 60 seconds
+        const isNewUser = (Date.now() - new Date(user.createdAt).getTime()) < 60_000
+        if (isNewUser) {
+          trackSignUp('google')
+        } else {
+          trackLogin('google')
+        }
+        setUserProperties(user._id, user.plan)
+
         // 3. Redirect to dashboard
         navigate('/dashboard')
       } catch (err) {

@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { NavLink, Link, useNavigate } from 'react-router-dom'
 import { LayoutDashboard, FileText, LogOut, User as UserIcon, Menu, X, Target, FileSignature, CreditCard } from 'lucide-react'
 import { useAuthStore } from '@/core/auth/useAuthStore'
+import { useUsage } from '@/core/hooks/useUsage'
 import { Button } from '@/shared/components/Button/Button'
 import styles from './Navbar.module.css'
 
 export const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuthStore()
+  const { plan } = useUsage()
   const navigate = useNavigate()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -68,7 +70,7 @@ export const Navbar = () => {
             <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', padding: 'var(--space-2) 0' }}>
                 <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--on-secondary)', fontWeight: 'bold' }}>
-                  {user.name.charAt(0).toUpperCase()}
+                  {user.name?.charAt(0)?.toUpperCase() || 'U'}
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   <span style={{ fontSize: 'var(--text-sm)', fontWeight: 'var(--weight-bold)', color: 'var(--on-surface)' }}>{user.name}</span>
@@ -97,12 +99,12 @@ export const Navbar = () => {
         {isAuthenticated && user ? (
           <>
             <div className={styles.avatar}>
-              {user.name.charAt(0).toUpperCase() || <UserIcon size={16} />}
+              {user.name?.charAt(0)?.toUpperCase() || <UserIcon size={16} />}
             </div>
             <div className={styles.userInfo}>
               <span className={styles.userName}>{user.name}</span>
               <span className={styles.userPlan}>
-                {user.plan === 'closer' ? 'Closer' : user.plan === 'hustler' ? 'Hustler' : 'Seeker'}
+                {plan === 'closer' ? 'Closer' : plan === 'hustler' ? 'Hustler' : 'Seeker'}
               </span>
             </div>
             <button className={styles.logoutBtn} onClick={handleLogout} title="Logout">

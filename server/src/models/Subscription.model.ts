@@ -2,7 +2,7 @@ import { Schema, model, Document, Types } from 'mongoose'
 
 export type SubscriptionStatus = 'created' | 'active' | 'past_due' | 'cancelled' | 'completed'
 
-export interface ISubscription extends Document {
+export interface ISubscriptionBase {
   userId: Types.ObjectId                  // ref: User
   plan: 'hustler' | 'closer'             // which paid plan
   razorpaySubscriptionId: string          // Razorpay's sub_xxx id
@@ -14,6 +14,8 @@ export interface ISubscription extends Document {
   createdAt: Date
   updatedAt: Date
 }
+
+export interface ISubscription extends ISubscriptionBase, Document {}
 
 const SubscriptionSchema = new Schema<ISubscription>(
   {

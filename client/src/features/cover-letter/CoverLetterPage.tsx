@@ -9,6 +9,7 @@ import { apiClient } from '@/shared/lib/apiClient'
 import { UpgradeModal } from '@/shared/components/UpgradeModal/UpgradeModal'
 import { useUsage } from '@/core/hooks/useUsage'
 import { serializeResume } from '@/features/scoring/lib/jdPreprocessor'
+import { trackCoverLetterGenerated } from '@/shared/lib/analytics'
 import styles from './CoverLetterPage.module.css'
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -111,7 +112,10 @@ export default function CoverLetterPage() {
       const res = await apiClient.post('/ai/cover-letter', payload)
       return res.data.data as CoverLetterResult
     },
-    onSuccess: (data) => setResult(data),
+    onSuccess: (data) => {
+      setResult(data)
+      trackCoverLetterGenerated()
+    },
     onError: (err: any) => {
       const code = err?.response?.data?.error?.code
       if (code === 'QUOTA_EXCEEDED') setShowUpgradeModal(true)

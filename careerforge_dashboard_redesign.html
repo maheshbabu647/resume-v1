@@ -1,0 +1,434 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary)}
+.tabs{display:flex;gap:4px;background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:4px;margin-bottom:20px;width:fit-content}
+.tab{padding:6px 16px;border-radius:var(--border-radius-md);font-size:13px;cursor:pointer;border:none;background:transparent;color:var(--color-text-secondary);font-family:var(--font-sans)}
+.tab.active{background:var(--color-background-primary);color:var(--color-text-primary);font-weight:500;border:0.5px solid var(--color-border-tertiary)}
+.view{display:none}.view.active{display:block}
+
+/* DESKTOP */
+.d-shell{display:grid;grid-template-columns:220px 1fr;gap:0;min-height:600px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
+.d-sidebar{background:var(--color-background-secondary);padding:16px 12px;border-right:0.5px solid var(--color-border-tertiary);display:flex;flex-direction:column;gap:4px}
+.d-logo{font-size:14px;font-weight:500;padding:8px 10px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.d-logo span{width:22px;height:22px;background:#1a1a2e;border-radius:6px;display:flex;align-items:center;justify-content:center}
+.d-logo span svg{width:12px;height:12px;fill:white}
+.nav-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--border-radius-md);font-size:13px;color:var(--color-text-secondary);cursor:pointer;border:none;background:transparent;font-family:var(--font-sans);width:100%;text-align:left}
+.nav-item:hover{background:var(--color-background-primary)}
+.nav-item.active{background:var(--color-background-primary);color:var(--color-text-primary);font-weight:500;border:0.5px solid var(--color-border-tertiary)}
+.nav-item svg{width:15px;height:15px;flex-shrink:0;opacity:0.6}
+.nav-item.active svg{opacity:1}
+.nav-section{font-size:11px;color:var(--color-text-tertiary);padding:12px 10px 4px;letter-spacing:0.05em}
+.d-sidebar-bottom{margin-top:auto;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary)}
+.plan-badge{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:var(--color-background-primary);border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary)}
+.plan-name{font-size:12px;font-weight:500}
+.plan-tier{font-size:11px;color:var(--color-text-tertiary)}
+
+.d-main{background:var(--color-background-primary);padding:20px;overflow-y:auto}
+.d-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.d-greeting h2{font-size:18px;font-weight:500}
+.d-greeting p{font-size:13px;color:var(--color-text-secondary);margin-top:2px}
+.new-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--color-text-primary);color:var(--color-background-primary);border:none;border-radius:var(--border-radius-md);font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-sans)}
+
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.stat-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px}
+.stat-label{font-size:11px;color:var(--color-text-tertiary);margin-bottom:4px}
+.stat-val{font-size:20px;font-weight:500}
+.stat-sub{font-size:11px;color:var(--color-text-tertiary);margin-top:2px}
+.progress-bar{height:3px;background:var(--color-border-tertiary);border-radius:2px;margin-top:6px}
+.progress-fill{height:3px;border-radius:2px;background:var(--color-text-primary)}
+
+.filter-row{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.filter-btn{padding:5px 12px;border:0.5px solid var(--color-border-tertiary);border-radius:20px;font-size:12px;background:transparent;color:var(--color-text-secondary);cursor:pointer;font-family:var(--font-sans)}
+.filter-btn.on{background:var(--color-text-primary);color:var(--color-background-primary);border-color:var(--color-text-primary)}
+.filter-label{font-size:12px;color:var(--color-text-tertiary);margin-right:4px}
+
+.resume-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.r-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;cursor:pointer;transition:border-color 0.15s}
+.r-card:hover{border-color:var(--color-border-secondary)}
+.r-thumb{height:110px;background:var(--color-background-secondary);display:flex;align-items:center;justify-content:center;position:relative}
+.r-thumb-lines{display:flex;flex-direction:column;gap:5px;width:70%;padding:10px 0}
+.r-line{height:3px;background:var(--color-border-secondary);border-radius:2px}
+.r-line.short{width:50%}
+.r-line.med{width:75%}
+.r-score{position:absolute;bottom:8px;left:8px;font-size:11px;font-weight:500;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);padding:2px 7px;border-radius:20px;color:#16a34a}
+.r-body{padding:10px 12px}
+.r-title{font-size:13px;font-weight:500;margin-bottom:2px}
+.r-meta{font-size:11px;color:var(--color-text-tertiary);display:flex;align-items:center;justify-content:space-between}
+.r-actions{display:flex;gap:6px;padding:8px 12px;border-top:0.5px solid var(--color-border-tertiary)}
+.r-action-btn{flex:1;padding:5px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);font-size:11px;background:transparent;color:var(--color-text-secondary);cursor:pointer;font-family:var(--font-sans)}
+.r-action-btn:hover{background:var(--color-background-secondary)}
+.r-new{border:0.5px dashed var(--color-border-tertiary);border-radius:var(--border-radius-lg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;min-height:160px}
+.r-new:hover{background:var(--color-background-secondary)}
+.r-new-icon{width:28px;height:28px;border:1.5px solid var(--color-border-secondary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--color-text-secondary)}
+.r-new-label{font-size:12px;color:var(--color-text-secondary)}
+
+/* MOBILE */
+.m-shell{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;max-width:375px;margin:0 auto;min-height:700px;display:flex;flex-direction:column}
+.m-header{padding:14px 16px 10px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.m-header-row{display:flex;align-items:center;justify-content:space-between}
+.m-logo{font-size:14px;font-weight:500}
+.m-avatar{width:30px;height:30px;background:var(--color-background-secondary);border-radius:50%;border:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500}
+.m-greeting{font-size:15px;font-weight:500;margin-top:10px}
+.m-sub{font-size:12px;color:var(--color-text-secondary);margin-top:1px}
+
+.m-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 16px}
+.m-stat{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px}
+.m-stat-label{font-size:10px;color:var(--color-text-tertiary);margin-bottom:3px}
+.m-stat-val{font-size:18px;font-weight:500}
+
+.m-section-header{display:flex;align-items:center;justify-content:space-between;padding:0 16px 8px}
+.m-section-title{font-size:13px;font-weight:500}
+.m-see-all{font-size:12px;color:var(--color-text-tertiary)}
+
+.m-tools{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0 16px 14px}
+.m-tool{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 6px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);cursor:pointer;border:0.5px solid var(--color-border-tertiary)}
+.m-tool-icon{width:28px;height:28px;border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:center}
+.m-tool-label{font-size:9px;color:var(--color-text-secondary);text-align:center;line-height:1.3}
+
+.m-cards{display:flex;flex-direction:column;gap:8px;padding:0 16px;flex:1}
+.m-rcard{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);display:flex;gap:10px;padding:10px 12px;cursor:pointer}
+.m-rcard:hover{background:var(--color-background-secondary)}
+.m-rthumb{width:44px;height:56px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);flex-shrink:0;display:flex;flex-direction:column;justify-content:center;gap:3px;padding:6px}
+.m-rline{height:2px;background:var(--color-border-secondary);border-radius:1px}
+.m-rline.s{width:50%}
+.m-rinfo{flex:1;min-width:0}
+.m-rtitle{font-size:13px;font-weight:500;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m-rmeta{font-size:11px;color:var(--color-text-tertiary);margin-bottom:6px}
+.m-rtags{display:flex;gap:4px;flex-wrap:wrap}
+.m-rtag{font-size:10px;padding:2px 7px;border-radius:20px;border:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary)}
+.m-rtag.green{border-color:#16a34a;color:#16a34a}
+
+.m-fab{position:relative;margin:12px 16px;background:var(--color-text-primary);color:var(--color-background-primary);border:none;border-radius:var(--border-radius-md);padding:12px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--font-sans);display:flex;align-items:center;justify-content:center;gap:6px}
+
+.m-bottom-nav{display:flex;border-top:0.5px solid var(--color-border-tertiary);padding:8px 0 12px}
+.m-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:4px 0}
+.m-nav-item svg{width:18px;height:18px;opacity:0.4}
+.m-nav-item.active svg{opacity:1}
+.m-nav-label{font-size:9px;color:var(--color-text-tertiary)}
+.m-nav-item.active .m-nav-label{color:var(--color-text-primary);font-weight:500}
+</style>
+
+<div style="padding:1rem 0">
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('desktop')">Desktop</button>
+  <button class="tab" onclick="switchTab('mobile')">Mobile</button>
+</div>
+
+<div class="view active" id="view-desktop">
+<div class="d-shell">
+  <div class="d-sidebar">
+    <div class="d-logo">
+      <span><svg viewBox="0 0 12 12"><path d="M2 2h3v3H2zm5 0h3v3H7zM2 7h3v3H2zm5 0h3v3H7z"/></svg></span>
+      CareerForge
+    </div>
+    <div class="nav-section">Workspace</div>
+    <button class="nav-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </button>
+    <button class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Resumes
+    </button>
+    <button class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Cover Letters
+    </button>
+    <button class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      JD Tailor
+    </button>
+    <div class="nav-section" style="margin-top:4px">Coming soon</div>
+    <button class="nav-item" style="opacity:0.4;cursor:not-allowed">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Job Suggestions
+    </button>
+    <button class="nav-item" style="opacity:0.4;cursor:not-allowed">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      App Tracker
+    </button>
+    <div class="d-sidebar-bottom">
+      <div class="plan-badge">
+        <div>
+          <div class="plan-name">Mahesh</div>
+          <div class="plan-tier">Hustler — ₹79/mo</div>
+        </div>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity:0.4"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-main">
+    <div class="d-header">
+      <div class="d-greeting">
+        <h2>Good morning, Mahesh</h2>
+        <p>6 resumes · avg 85% ATS · 10 PDF downloads left</p>
+      </div>
+      <button class="new-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        New resume
+      </button>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">PDF downloads</div>
+        <div class="stat-val">0<span style="font-size:13px;font-weight:400;color:var(--color-text-tertiary)">/10</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+        <div class="stat-sub">+2 bonus from referrals</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">JD tailoring</div>
+        <div class="stat-val">0<span style="font-size:13px;font-weight:400;color:var(--color-text-tertiary)">/12</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">AI suggestions</div>
+        <div class="stat-val">0<span style="font-size:13px;font-weight:400;color:var(--color-text-tertiary)">/25</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Cover letters</div>
+        <div class="stat-val">0<span style="font-size:13px;font-weight:400;color:var(--color-text-tertiary)">/15</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="filter-row">
+      <span class="filter-label">Show</span>
+      <button class="filter-btn on">All</button>
+      <button class="filter-btn">Resumes</button>
+      <button class="filter-btn">Cover letters</button>
+      <button class="filter-btn">Tailored</button>
+    </div>
+
+    <div class="resume-grid">
+      <div class="r-new">
+        <div class="r-new-icon">+</div>
+        <div class="r-new-label">New resume</div>
+      </div>
+      <div class="r-card">
+        <div class="r-thumb">
+          <div class="r-thumb-lines">
+            <div class="r-line short"></div>
+            <div class="r-line med"></div>
+            <div class="r-line"></div>
+            <div class="r-line med"></div>
+            <div class="r-line short"></div>
+          </div>
+          <div class="r-score">85% ATS</div>
+        </div>
+        <div class="r-body">
+          <div class="r-title">G Mahesh Babu's Resume</div>
+          <div class="r-meta"><span>Modern Centered</span><span>Mar 31</span></div>
+        </div>
+        <div class="r-actions">
+          <button class="r-action-btn">Edit</button>
+          <button class="r-action-btn">Tailor JD</button>
+          <button class="r-action-btn">Download</button>
+        </div>
+      </div>
+      <div class="r-card">
+        <div class="r-thumb">
+          <div class="r-thumb-lines">
+            <div class="r-line short"></div>
+            <div class="r-line med"></div>
+            <div class="r-line"></div>
+            <div class="r-line med"></div>
+            <div class="r-line short"></div>
+          </div>
+          <div class="r-score">85% ATS</div>
+        </div>
+        <div class="r-body">
+          <div class="r-title">Full Stack (Fresher)</div>
+          <div class="r-meta"><span>Modern Centered</span><span>Mar 29</span></div>
+        </div>
+        <div class="r-actions">
+          <button class="r-action-btn">Edit</button>
+          <button class="r-action-btn">Tailor JD</button>
+          <button class="r-action-btn">Download</button>
+        </div>
+      </div>
+      <div class="r-card">
+        <div class="r-thumb">
+          <div class="r-thumb-lines">
+            <div class="r-line short"></div>
+            <div class="r-line med"></div>
+            <div class="r-line"></div>
+            <div class="r-line med"></div>
+            <div class="r-line short"></div>
+          </div>
+          <div class="r-score">85% ATS</div>
+        </div>
+        <div class="r-body">
+          <div class="r-title">ML Engineer (Fresher)</div>
+          <div class="r-meta"><span>Modern Centered</span><span>Mar 29</span></div>
+        </div>
+        <div class="r-actions">
+          <button class="r-action-btn">Edit</button>
+          <button class="r-action-btn">Tailor JD</button>
+          <button class="r-action-btn">Download</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="view" id="view-mobile">
+<div class="m-shell">
+  <div class="m-header">
+    <div class="m-header-row">
+      <div class="m-logo">CareerForge</div>
+      <div class="m-avatar">MB</div>
+    </div>
+    <div class="m-greeting">Good morning, Mahesh</div>
+    <div class="m-sub">Here's your workspace</div>
+  </div>
+
+  <div class="m-stats">
+    <div class="m-stat">
+      <div class="m-stat-label">Downloads left</div>
+      <div class="m-stat-val">10</div>
+      <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" style="width:100%"></div></div>
+    </div>
+    <div class="m-stat">
+      <div class="m-stat-label">Avg ATS score</div>
+      <div class="m-stat-val" style="color:#16a34a">85%</div>
+    </div>
+  </div>
+
+  <div class="m-section-header">
+    <div class="m-section-title">Quick tools</div>
+  </div>
+  <div class="m-tools">
+    <div class="m-tool">
+      <div class="m-tool-icon" style="background:var(--color-background-secondary)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      </div>
+      <div class="m-tool-label">Resume</div>
+    </div>
+    <div class="m-tool">
+      <div class="m-tool-icon" style="background:var(--color-background-secondary)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <div class="m-tool-label">JD Tailor</div>
+    </div>
+    <div class="m-tool">
+      <div class="m-tool-icon" style="background:var(--color-background-secondary)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div class="m-tool-label">Cover Letter</div>
+    </div>
+    <div class="m-tool" style="opacity:0.4">
+      <div class="m-tool-icon" style="background:var(--color-background-secondary)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </div>
+      <div class="m-tool-label">Jobs</div>
+    </div>
+  </div>
+
+  <div class="m-section-header">
+    <div class="m-section-title">My work</div>
+    <div class="m-see-all">See all</div>
+  </div>
+
+  <div class="m-cards">
+    <button class="m-fab">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      New resume
+    </button>
+    <div class="m-rcard">
+      <div class="m-rthumb">
+        <div class="m-rline"></div>
+        <div class="m-rline s"></div>
+        <div class="m-rline"></div>
+        <div class="m-rline s"></div>
+      </div>
+      <div class="m-rinfo">
+        <div class="m-rtitle">G Mahesh Babu's Resume</div>
+        <div class="m-rmeta">Mar 31 · Modern Centered</div>
+        <div class="m-rtags">
+          <span class="m-rtag green">85% ATS</span>
+          <span class="m-rtag">Edit</span>
+          <span class="m-rtag">Download</span>
+        </div>
+      </div>
+    </div>
+    <div class="m-rcard">
+      <div class="m-rthumb">
+        <div class="m-rline"></div>
+        <div class="m-rline s"></div>
+        <div class="m-rline"></div>
+        <div class="m-rline s"></div>
+      </div>
+      <div class="m-rinfo">
+        <div class="m-rtitle">Full Stack (Fresher)</div>
+        <div class="m-rmeta">Mar 29 · Modern Centered</div>
+        <div class="m-rtags">
+          <span class="m-rtag green">85% ATS</span>
+          <span class="m-rtag">Edit</span>
+          <span class="m-rtag">Download</span>
+        </div>
+      </div>
+    </div>
+    <div class="m-rcard">
+      <div class="m-rthumb">
+        <div class="m-rline"></div>
+        <div class="m-rline s"></div>
+        <div class="m-rline"></div>
+        <div class="m-rline s"></div>
+      </div>
+      <div class="m-rinfo">
+        <div class="m-rtitle">ML Engineer (Fresher)</div>
+        <div class="m-rmeta">Mar 29 · Modern Centered</div>
+        <div class="m-rtags">
+          <span class="m-rtag green">85% ATS</span>
+          <span class="m-rtag">Edit</span>
+          <span class="m-rtag">Download</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-bottom-nav">
+    <div class="m-nav-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      <span class="m-nav-label">Home</span>
+    </div>
+    <div class="m-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <span class="m-nav-label">Resumes</span>
+    </div>
+    <div class="m-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <span class="m-nav-label">Tailor</span>
+    </div>
+    <div class="m-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span class="m-nav-label">Letters</span>
+    </div>
+    <div class="m-nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <span class="m-nav-label">Profile</span>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+function switchTab(t){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelector('[onclick="switchTab(\''+t+'\')"]').classList.add('active');
+  document.getElementById('view-'+t).classList.add('active');
+}
+document.querySelectorAll('.filter-btn').forEach(b=>{
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('on'));
+    this.classList.add('on');
+  });
+});
+</script>

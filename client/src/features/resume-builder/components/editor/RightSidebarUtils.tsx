@@ -6,6 +6,7 @@ import { STYLE_PACKS } from '../../config/stylePacks'
 import { DEFAULT_SPACING, DEFAULT_SIZING } from '../../templates/shared/buildCSSVars'
 import { SECTION_ORDER_PRESETS } from '../../config/sectionOrder'
 import type { SectionKey } from '../../templates/shared/template.types'
+import { trackTemplateChanged } from '@/shared/lib/analytics'
 import styles from './RightSidebarUtils.module.css'
 
 type DrawerName = 'score' | 'jdfit' | 'style'
@@ -118,7 +119,10 @@ const StyleContent = () => {
             <button
               key={pack.key}
               className={`${styles.presetCard} ${stylePack.key === pack.key ? styles.presetCardActive : ''}`}
-              onClick={() => setTemplateStyle(pack.key)}
+              onClick={() => {
+                trackTemplateChanged(stylePack.key, pack.key)
+                setTemplateStyle(pack.key)
+              }}
             >
               <div className={styles.presetSwatch} style={{ background: pack.accentColor }} />
               <span className={styles.presetName}>{pack.name}</span>

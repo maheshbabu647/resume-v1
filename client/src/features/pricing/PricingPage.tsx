@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Check, X as XIcon, Zap, ArrowRight, Loader2,
@@ -6,6 +6,10 @@ import {
 } from 'lucide-react'
 import { useAuthStore } from '@/core/auth/useAuthStore'
 import { apiClient } from '@/shared/lib/apiClient'
+import {
+  trackPricingPageViewed, trackUpgradeClicked,
+  trackPaymentInitiated, trackPaymentCompleted, trackPaymentFailed,
+} from '@/shared/lib/analytics'
 import styles from './PricingPage.module.css'
 
 type UpgradePlan = 'hustler' | 'closer'
@@ -72,10 +76,16 @@ export default function PricingPage() {
   const [loading, setLoading] = useState<UpgradePlan | null>(null)
   const [error, setError] = useState<string | null>(null)
 
+  // ── Track pricing page view ──────────────────────────────────────────────
+  useEffect(() => { trackPricingPageViewed() }, [])
+
+  const PLAN_AMOUNTS: Record<UpgradePlan, number> = { hustler: 79, closer: 179 }
+
   const handleUpgrade = async (plan: UpgradePlan) => {
     if (!isAuthenticated) { window.location.href = '/register'; return }
     setLoading(plan)
     setError(null)
+    trackUpgradeClicked(plan, 'pricing_page')
     try {
       const res = await apiClient.post('/payment/subscribe', { plan })
       const { subscriptionId, keyId, name, email } = res.data.data
@@ -90,6 +100,9 @@ export default function PricingPage() {
         })
       }
 
+      const amount = PLAN_AMOUNTS[plan]
+      trackPaymentInitiated(plan, amount)
+
       const rzp = new window.Razorpay({
         key: keyId,
         subscription_id: subscriptionId,
@@ -99,6 +112,7 @@ export default function PricingPage() {
         theme: { color: plan === 'hustler' ? '#6366f1' : '#f59e0b' },
         handler: async (response: any) => {
           try {
+            trackPaymentCompleted(plan, amount, response.razorpay_order_id ?? response.razorpay_subscription_id)
             // Verify payment aggressively since webhooks won't work easily on localhost
             await apiClient.post('/payment/verify', {
               razorpay_payment_id: response.razorpay_payment_id,
@@ -113,7 +127,12 @@ export default function PricingPage() {
             setLoading(null)
           }
         },
-        modal: { ondismiss: () => setLoading(null) },
+        modal: {
+          ondismiss: () => {
+            trackPaymentFailed(plan, 'user_dismissed')
+            setLoading(null)
+          },
+        },
       })
       rzp.open()
     } catch (err: any) {

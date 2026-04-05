@@ -12,6 +12,7 @@ import { apiClient } from '@/shared/lib/apiClient'
 import { Button } from '@/shared/components/Button/Button'
 import { UpgradeModal } from '@/shared/components/UpgradeModal/UpgradeModal'
 import { useUsage, PLAN_LIMITS } from '@/core/hooks/useUsage'
+import { trackSubscriptionCancelled, trackReferralShared } from '@/shared/lib/analytics'
 import styles from './Dashboard.module.css'
 
 import { TEMPLATE_REGISTRY } from '../resume-builder/templates/registry'
@@ -115,6 +116,25 @@ export default function Dashboard() {
     onSuccess: () => { queryClient.invalidateQueries({ queryKey: ['resumes'] }); setOpenMenuId(null) }
   })
 
+  // Subscription fetch for premium users to detect cancellation status
+  const { data: sub } = useQuery({
+    queryKey: ['subscription'],
+    queryFn: async () => {
+      const res = await apiClient.get('/payment/subscription')
+      return res.data.data
+    },
+    enabled: plan !== 'seeker',
+  })
+
+  const cancelMutation = useMutation({
+    mutationFn: async () => apiClient.post('/payment/cancel'),
+    onSuccess: () => {
+      trackSubscriptionCancelled(plan)
+      queryClient.invalidateQueries({ queryKey: ['subscription'] })
+      alert('Subscription will cancel at the end of your billing period.')
+    }
+  })
+
   const greeting = () => {
     const h = new Date().getHours()
     if (h < 12) return 'Good morning'
@@ -144,6 +164,7 @@ export default function Dashboard() {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(referralUrl)
     setShowShareOptions(false)
+    trackReferralShared('copy')
     alert('Referral link copied!')
   }
 
@@ -324,10 +345,36 @@ export default function Dashboard() {
               <div className={styles.usageLoading}>Loading usage…</div>
             )}
 
-            {plan === 'seeker' && (
+            {plan === 'seeker' ? (
               <Link to="/pricing" className={styles.sideUpgradeBtn}>
                 <Zap size={14} /> Upgrade Plan <ArrowRight size={13} />
               </Link>
+            ) : (
+              <div style={{ marginTop: 'var(--space-4)', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+                {sub?.cancelAtPeriodEnd ? (
+                   <>
+                     <div style={{ fontSize: '11px', color: '#b45309', background: '#fef3c7', padding: '8px', borderRadius: '6px', border: '1px solid #fde68a' }}>
+                       Plan cancels on <strong>{sub?.currentPeriodEnd ? new Date(sub.currentPeriodEnd).toLocaleDateString() : 'end of period'}</strong>.
+                     </div>
+                     <button className={styles.sideUpgradeBtn} onClick={() => openUpgrade('general')} style={{ background: planDisplay.color }}>
+                       Reactivate Plan
+                     </button>
+                   </>
+                ) : (
+                   <button 
+                     className={styles.sideUpgradeBtn} 
+                     style={{ background: 'transparent', color: '#ef4444', border: '1px solid rgba(239, 68, 68, 0.2)' }}
+                     onClick={() => {
+                        if(confirm("You'll keep your premium access until the period ends. No refund. Are you sure you want to cancel?")) {
+                          cancelMutation.mutate()
+                        }
+                     }}
+                     disabled={cancelMutation.isPending}
+                   >
+                     {cancelMutation.isPending ? 'Cancelling...' : 'Cancel Auto-Pay'}
+                   </button>
+                )}
+              </div>
             )}
           </div>
 
@@ -368,6 +415,7 @@ export default function Dashboard() {
                     target="_blank" 
                     rel="noreferrer" 
                     className={styles.shareItem}
+                    onClick={() => trackReferralShared('whatsapp')}
                   >
                     <MessageCircle size={14} color="#25D366" /> WhatsApp
                   </a>
@@ -376,12 +424,14 @@ export default function Dashboard() {
                     target="_blank" 
                     rel="noreferrer" 
                     className={styles.shareItem}
+                    onClick={() => trackReferralShared('telegram')}
                   >
                     <Send size={14} color="#0088cc" /> Telegram
                   </a>
                   <a 
                     href={`mailto:?subject=Join CareerForge&body=${encodeURIComponent(shareText)}`} 
                     className={styles.shareItem}
+                    onClick={() => trackReferralShared('email')}
                   >
                     <Mail size={14} color="#ea4335" /> Email
                   </a>

@@ -10,6 +10,7 @@ import { apiClient } from '@/shared/lib/apiClient'
 import { UpgradeModal } from '@/shared/components/UpgradeModal/UpgradeModal'
 import { useUsage } from '@/core/hooks/useUsage'
 import { preprocessJD, serializeResume } from '@/features/scoring/lib/jdPreprocessor'
+import { trackJDScoreViewed, trackJDTailorRequested } from '@/shared/lib/analytics'
 import styles from './JDTailorPage.module.css'
 
 // ── Template registry ──────────────────────────────────────────────────────────
@@ -156,6 +157,7 @@ export default function JDTailorPage() {
     onSuccess: (data) => {
       setFitResult(data)
       setStage('results')
+      trackJDScoreViewed()
     },
     onError: (err: any) => {
       const code = err?.response?.data?.error?.code
@@ -221,6 +223,7 @@ export default function JDTailorPage() {
   // ── Tailor handler ───────────────────────────────────────────────────────────
   const handleTailor = (templateId: string) => {
     const text = getResumeText()
+    trackJDTailorRequested()
     tailorMutation.mutate({ resumeText: text, jdText, templateId })
     setStage('tailoring')
   }

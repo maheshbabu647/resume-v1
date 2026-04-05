@@ -28,6 +28,33 @@ const getClient = (): Razorpay => {
 
 // ─── Create Razorpay subscription ────────────────────────────────────────────
 
+/**
+ * Internal helper to sync subscription status with Razorpay truth.
+ */
+const syncSubscriptionWithRazorpay = async (userId: string, subscriptionId: string): Promise<boolean> => {
+  const client = getClient()
+  try {
+    const rzpSub = await (client.subscriptions.fetch as Function)(subscriptionId)
+    
+    if (rzpSub.status === 'active') {
+      const sub = await Subscription.findOneAndUpdate(
+        { userId },
+        { status: 'active' },
+        { new: true }
+      )
+      if (sub) {
+        await User.findByIdAndUpdate(userId, { plan: sub.plan })
+        return true
+      }
+    }
+  } catch (err) {
+    console.error(`[Sync] Failed to fetch subscription ${subscriptionId}:`, err)
+  }
+  return false
+}
+
+// ─── Create Razorpay subscription ────────────────────────────────────────────
+
 export const createSubscription = async (
   userId: string,
   planName: 'hustler' | 'closer',
@@ -38,38 +65,31 @@ export const createSubscription = async (
   const planId = planName === 'hustler' ? RAZORPAY_PLAN_IDS.hustler : RAZORPAY_PLAN_IDS.closer
   const amount = planName === 'hustler' ? 7900 : 17900
 
-  // Check if user already has a subscription record
   const existing = await Subscription.findOne({ userId })
 
   if (existing) {
-    if (existing.status === 'active') {
-      throw new AppError('SUBSCRIPTION_ALREADY_ACTIVE', 409, 'You already have an active subscription.')
-    }
-
-    if (existing.status === 'created' || existing.status === 'past_due') {
-      try {
-        // Verify the TRUE status directly from Razorpay to auto-heal missed webhooks
-        const rzpSubInfo = await (client.subscriptions.fetch as Function)(existing.razorpaySubscriptionId)
-        
-        if (rzpSubInfo.status === 'active') {
-          existing.status = 'active'
-          await existing.save()
-          await User.findByIdAndUpdate(userId, { plan: existing.plan })
-          
-          throw new AppError(
-            'SUBSCRIPTION_RECOVERED', 
-            409, 
-            'We recovered your previous successful payment! Your account is now upgraded. Please refresh the page.'
-          )
-        }
-      } catch (err: any) {
-        // Bubble up our own error, ignore Razorpay network/not-found errors
-        if (err.statusCode === 409) throw err
+    // 1. Try to sync if it's not active in our DB
+    if (existing.status !== 'active') {
+      const recovered = await syncSubscriptionWithRazorpay(userId, existing.razorpaySubscriptionId)
+      if (recovered) {
+        throw new AppError(
+          'SUBSCRIPTION_RECOVERED',
+          409,
+          'Your active subscription was found and synced! Please refresh the page.'
+        )
       }
     }
 
+    // 2. If truly active, block new creation
+    if (existing.status === 'active') {
+      // If pending cancellation (reactivate flow), skip this block so it cancels the old and creates a fresh one
+      if (!existing.cancelAtPeriodEnd) {
+        throw new AppError('SUBSCRIPTION_ALREADY_ACTIVE', 409, 'You already have an active subscription.')
+      }
+    }
+
+    // 3. If "created" and same plan, reuse it
     if (existing.status === 'created' && existing.plan === planName) {
-      // Resume the payment flow with the existing pending Razorpay subscription
       return {
         subscriptionId: existing.razorpaySubscriptionId,
         keyId: env.RAZORPAY_KEY_ID,
@@ -80,15 +100,11 @@ export const createSubscription = async (
       }
     }
 
+    // 4. Otherwise, cancel old pending and create fresh
     try {
-      // Attempt to cancel the old un-paid or past-due subscription on Razorpay to clean up
       await (client.subscriptions.cancel as Function)(existing.razorpaySubscriptionId)
-    } catch (err) {
-      // Ignore errors if the subscription is already cancelled or the transition is invalid
-    }
+    } catch (err) {}
 
-    // The user has a different plan, or a non-active status (e.g. cancelled, past_due)
-    // Since our userId field is unique, we must update the existing record
     const rzpSub = await (client.subscriptions.create as Function)({
       plan_id: planId,
       total_count: 12,
@@ -112,15 +128,14 @@ export const createSubscription = async (
     }
   }
 
-  // Create new Razorpay subscription
+  // Fresh creation
   const rzpSub = await (client.subscriptions.create as Function)({
     plan_id: planId,
-    total_count: 12,         // 12 billing cycles (1 year), can be adjusted
+    total_count: 12,
     quantity: 1,
     customer_notify: 1,
   })
 
-  // Store in DB with status 'created'
   await Subscription.create({
     userId,
     plan: planName,
@@ -146,7 +161,7 @@ export const cancelSubscription = async (userId: string) => {
   if (!sub) throw new AppError('NO_ACTIVE_SUBSCRIPTION', 404, 'No active subscription found.')
 
   const client = getClient()
-  await (client.subscriptions.cancel as Function)(sub.razorpaySubscriptionId)
+  await (client.subscriptions.cancel as Function)(sub.razorpaySubscriptionId, { cancel_at_cycle_end: 1 })
 
   // Mark as cancelAtPeriodEnd so user keeps access till period ends
   await Subscription.findByIdAndUpdate(sub._id, { cancelAtPeriodEnd: true })
@@ -156,16 +171,40 @@ export const cancelSubscription = async (userId: string) => {
 
 // ─── Get current subscription ─────────────────────────────────────────────────
 
-export const getSubscription = async (userId: string) => {
+import { ISubscriptionBase } from '../../models/Subscription.model'
+
+export const getSubscription = async (userId: string): Promise<ISubscriptionBase | null> => {
   const sub = await Subscription.findOne({ userId }).lean()
+  
+  // Auto-heal if we have a sub record that isn't active
+  if (sub && sub.status !== 'active') {
+    const recovered = await syncSubscriptionWithRazorpay(userId, sub.razorpaySubscriptionId)
+    if (recovered) return { ...sub, status: 'active' }
+  }
+  
   return sub
 }
 
 // ─── Get usage for current user ───────────────────────────────────────────────
 
-export const getUsage = async (userId: string) => {
+export const getUsage = async (userId: string): Promise<{ plan: PlanName, usage: any, limits: any }> => {
   const user = await User.findById(userId).select('plan usage').lean()
   if (!user) throw new AppError('USER_NOT_FOUND', 404)
+
+  // Auto-heal check: if user is still on seeker but we have a non-active sub record
+  if (user.plan === 'seeker') {
+    const sub = await Subscription.findOne({ userId }).select('razorpaySubscriptionId status').lean()
+    if (sub && sub.status !== 'active') {
+      await syncSubscriptionWithRazorpay(userId, sub.razorpaySubscriptionId)
+      // Note: we don't return early here, we let it fetch updated user below
+    }
+  }
+
+  const updatedUser = user.plan === 'seeker' 
+    ? await User.findById(userId).select('plan usage').lean() 
+    : user
+    
+  if (!updatedUser) throw new AppError('USER_NOT_FOUND', 404)
 
   const currentMonth = new Date().toISOString().slice(0, 7)
 

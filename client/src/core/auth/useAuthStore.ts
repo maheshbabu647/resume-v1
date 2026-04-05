@@ -37,6 +37,9 @@ export const useAuthStore = create<AuthStore>()(
           const res = await apiClient.get('/auth/me')
           if (res.data.data) {
             set({ user: res.data.data })
+            // Re-identify user in GA4 on every session restore
+            const { setUserProperties } = await import('@/shared/lib/analytics')
+            setUserProperties(res.data.data._id, res.data.data.plan)
           }
         } catch (err) {
           console.error('Failed to fetch user:', err)

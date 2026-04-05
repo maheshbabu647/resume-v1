@@ -4,6 +4,7 @@ import { Eye, EyeOff, CheckCircle2 } from 'lucide-react'
 import { Button } from '@/shared/components/Button/Button'
 import { Input } from '@/shared/components/Input/Input'
 import { apiClient } from '@/shared/lib/apiClient'
+import { trackSignUp } from '@/shared/lib/analytics'
 import styles from './auth-pages.module.css'
 
 export default function RegisterPage() {
@@ -26,6 +27,7 @@ export default function RegisterPage() {
       if (referralCode) payload.referralCode = referralCode
 
       await apiClient.post('/auth/register', payload)
+      trackSignUp('email')
       // Redirect to verification without setting tokens yet
       navigate(`/verify-email?email=${encodeURIComponent(email)}`)
     } catch (err: any) {

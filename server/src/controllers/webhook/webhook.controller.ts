@@ -55,8 +55,15 @@ export const handleRazorpay = async (req: Request, res: Response, next: NextFunc
           { status: rzStatus === 'cancelled' ? 'cancelled' : 'completed' },
           { new: true }
         )
-        // Downgrade user to seeker (free)
-        if (sub) await User.findByIdAndUpdate(sub.userId, { plan: 'seeker' })
+        // Only downgrade if the period has actually ended
+        if (sub) {
+          const now = new Date()
+          if (!sub.currentPeriodEnd || now >= sub.currentPeriodEnd) {
+             await User.findByIdAndUpdate(sub.userId, { plan: 'seeker' })
+          } else {
+             console.log(`[Webhook] Sub cancelled but paid period active until ${sub.currentPeriodEnd}`)
+          }
+        }
         break
       }
       case 'subscription.pending':
@@ -64,8 +71,16 @@ export const handleRazorpay = async (req: Request, res: Response, next: NextFunc
         await Subscription.findOneAndUpdate({ razorpaySubscriptionId: razorpayId }, { status: 'past_due' })
         break
       }
+      case 'subscription.paused': {
+        await Subscription.findOneAndUpdate({ razorpaySubscriptionId: razorpayId }, { status: 'paused' })
+        break
+      }
+      case 'subscription.resumed': {
+        await Subscription.findOneAndUpdate({ razorpaySubscriptionId: razorpayId }, { status: 'active' })
+        break
+      }
       case 'payment.failed':
-        await Subscription.findOneAndUpdate({ razorpaySubscriptionId: razorpayId }, { status: 'past_due' })
+        console.log(`[Webhook] Payment failed for sub ${razorpayId}. Razorpay retries automatically.`)
         break
       default:
         console.log(`[Webhook] Unhandled event: ${event}`)

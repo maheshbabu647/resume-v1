@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from 'react'
 import { FileUp, FileText, PenLine, ChevronRight, ArrowLeft, Check, AlertCircle, Loader2 } from 'lucide-react'
 import { apiClient } from '@/shared/lib/apiClient'
+import { trackResumeStartedFresh, trackResumeImported } from '@/shared/lib/analytics'
 import { useResumeStore } from '../../store/useResumeStore'
 import styles from './ResumeOnboarding.module.css'
 
@@ -26,6 +27,7 @@ export default function ResumeOnboarding({ onComplete }: ResumeOnboardingProps) 
   const loadResume = useResumeStore(s => s.loadResume)
 
   const handleStartFresh = () => {
+    trackResumeStartedFresh()
     onComplete()
   }
 
@@ -58,6 +60,8 @@ export default function ResumeOnboarding({ onComplete }: ResumeOnboardingProps) 
 
       setProcessingStep(4) // All done
       await new Promise(res => setTimeout(res, 600))
+
+      trackResumeImported()
 
       // Load into store
       loadResume({

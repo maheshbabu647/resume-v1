@@ -5,6 +5,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { Button } from '@/shared/components/Button/Button'
 import { apiClient } from '@/shared/lib/apiClient'
 import { UpgradeModal } from '@/shared/components/UpgradeModal/UpgradeModal'
+import { trackResumeDownloaded, trackTemplateGalleryOpened } from '@/shared/lib/analytics'
 import { useEditorUIStore } from '../../store/useEditorUIStore'
 import { useResumeStore } from '../../store/useResumeStore'
 import styles from './Toolbar.module.css'
@@ -87,6 +88,9 @@ export const Toolbar = () => {
       link.click()
       link.remove()
       window.URL.revokeObjectURL(blobUrl)
+
+      // Track the download
+      trackResumeDownloaded(resumeId ?? 'unsaved', 'pdf')
       
       // Refresh usage counter
       queryClient.invalidateQueries({ queryKey: ['usage'] })
@@ -187,7 +191,7 @@ export const Toolbar = () => {
         <div className={styles.right}>
           {/* Desktop Actions */}
           <div className={styles.desktopActions}>
-            <Button variant="ghost" size="sm" onClick={toggleGallery}>
+            <Button variant="ghost" size="sm" onClick={() => { trackTemplateGalleryOpened(); toggleGallery() }}>
               <LayoutTemplate size={14} /> Switch Template
             </Button>
             <Button variant="ghost" size="sm" onClick={handleExportPDF} disabled={isExporting}>

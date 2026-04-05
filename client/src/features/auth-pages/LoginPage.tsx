@@ -5,6 +5,7 @@ import { Button } from '@/shared/components/Button/Button'
 import { Input } from '@/shared/components/Input/Input'
 import { useAuthStore } from '@/core/auth/useAuthStore'
 import { apiClient } from '@/shared/lib/apiClient'
+import { trackLogin, trackLoginFailed, setUserProperties } from '@/shared/lib/analytics'
 import styles from './auth-pages.module.css'
 
 export default function LoginPage() {
@@ -24,12 +25,15 @@ export default function LoginPage() {
       const { data } = await apiClient.post('/auth/login', { email, password })
       setTokens(data.data.accessToken)
       setUser(data.data.user)
+      trackLogin('email')
+      setUserProperties(data.data.user._id, data.data.user.plan)
       navigate('/dashboard')
     } catch (err: any) {
       const code = err.response?.data?.error?.code
       if (code === 'AUTH_UNVERIFIED') {
         navigate(`/verify-email?email=${encodeURIComponent(email)}`)
       } else {
+        trackLoginFailed('email')
         setError(err.response?.data?.error?.message || 'Invalid email or password.')
       }
     } finally {
