@@ -80,7 +80,10 @@ export default function ResumeOnboarding({ onComplete }: ResumeOnboardingProps) 
 
       onComplete()
     } catch (err: any) {
-      const msg = err?.response?.data?.error?.message || 'Failed to parse your resume. Please try again.'
+      let msg = err?.response?.data?.error?.message || 'Failed to parse your resume. Please try again.'
+      if (err?.response?.status === 429 || err?.response?.data?.error?.code === 'RATE_LIMITED') {
+        msg = 'you have reached your limit please try again.'
+      }
       setErrorMsg(msg)
       setStep('error')
     }

@@ -67,9 +67,9 @@ export const router = createBrowserRouter([
               { path: 'dashboard',     element: <Suspense fallback={<Fallback />}><Dashboard /></Suspense> },
               { path: 'jd-tailor',     element: <Suspense fallback={<Fallback />}><JDTailorPage /></Suspense> },
               { path: 'cover-letter',  element: <Suspense fallback={<Fallback />}><CoverLetterPage /></Suspense> },
-              { path: 'resume/:id',    element: <Suspense fallback={<Fallback />}><EditorShell /></Suspense> },
             ]
-          }
+          },
+          { path: 'resume/:id',    element: <Suspense fallback={<Fallback />}><EditorShell /></Suspense> },
         ],
       },
       {

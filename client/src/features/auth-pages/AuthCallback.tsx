@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Loader2 } from 'lucide-react'
 import { useAuthStore } from '@/core/auth/useAuthStore'
@@ -9,8 +9,12 @@ export default function AuthCallback() {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const { setTokens, setUser } = useAuthStore()
+  const hasProcessed = useRef(false)
 
   useEffect(() => {
+    if (hasProcessed.current) return
+    hasProcessed.current = true
+
     const token = searchParams.get('token')
     
     if (!token) {
@@ -44,8 +48,14 @@ export default function AuthCallback() {
         }
         setUserProperties(user._id, user.plan)
 
-        // 3. Redirect to dashboard
-        navigate('/dashboard')
+        // 3. Redirect to dashboard or saved returnTo
+        const returnTo = localStorage.getItem('returnTo')
+        if (returnTo) {
+          localStorage.removeItem('returnTo')
+          navigate(returnTo)
+        } else {
+          navigate('/dashboard')
+        }
       } catch (err) {
         console.error('Failed to complete OAuth login:', err)
         navigate('/login?error=oauth_failed')

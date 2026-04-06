@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import {
   Plus, FileText, MoreHorizontal, Edit3, Copy, Trash2,
-  BarChart3, Clock, TrendingUp, X, CheckCircle2,
+  Clock, TrendingUp, X, CheckCircle2,
   Download, Zap, ArrowRight, Share2, Target, CheckCircle,
-  MessageCircle, Send, Mail, Link as LinkIcon, FileSignature
+  MessageCircle, Send, Mail, Link as LinkIcon, FileSignature, CreditCard
 } from 'lucide-react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useAuthStore } from '@/core/auth/useAuthStore'
@@ -24,9 +24,9 @@ const TEMPLATES_QUICK = Object.values(TEMPLATE_REGISTRY).map(t => ({
 }))
 
 const PLAN_DISPLAY: Record<string, { label: string; color: string; bg: string }> = {
-  seeker:  { label: 'Seeker — Free',    color: '#94a3b8', bg: 'rgba(148,163,184,0.12)' },
-  hustler: { label: 'Hustler — ₹79/mo', color: '#818cf8', bg: 'rgba(99,102,241,0.12)'  },
-  closer:  { label: 'Closer — ₹179/mo', color: '#fbbf24', bg: 'rgba(245,158,11,0.12)'  },
+  seeker: { label: 'Seeker — Free', color: '#94a3b8', bg: 'rgba(148,163,184,0.12)' },
+  hustler: { label: 'Hustler', color: '#818cf8', bg: 'rgba(99,102,241,0.12)' },
+  closer: { label: 'Closer', color: '#fbbf24', bg: 'rgba(245,158,11,0.12)' },
 }
 
 interface UsageBarProps {
@@ -42,7 +42,7 @@ function UsageBar({ label, icon, used, limit, bonus = 0, onUpgrade }: UsageBarPr
   const isUnlimited = limit === -1
   const pct = isUnlimited ? 0 : Math.min(100, Math.round((used / limit) * 100))
   const isNearLimit = !isUnlimited && pct >= 80
-  const isAtLimit   = !isUnlimited && used >= limit && bonus <= 0
+  const isAtLimit = !isUnlimited && used >= limit && bonus <= 0
 
   return (
     <div className={`${styles.usageBar} ${isAtLimit ? styles.usageBarDanger : isNearLimit ? styles.usageBarWarn : ''}`}>
@@ -168,282 +168,271 @@ export default function Dashboard() {
     alert('Referral link copied!')
   }
 
+  const [isMoreOpen, setIsMoreOpen] = useState(false)
+
   return (
     <div className={styles.page}>
-      {/* ── Stats bar ── */}
-      <div className={styles.statsBar}>
-        <div className={styles.greeting}>
-          <h1 className={styles.greetingText}>{greeting()}, {user?.name?.split(' ')[0] ?? 'there'} 👋</h1>
-          <p className={styles.greetingSub}>Here's your career progress at a glance.</p>
-        </div>
-        <div className={styles.stats}>
-          <div className={styles.stat}>
-            <FileText size={18} color="var(--secondary)" />
-            <div>
-              <div className={styles.statNum}>{resumes.length}</div>
-              <div className={styles.statLabel}>Resumes</div>
+      <div className={styles.shell}>
+        <main className={styles.mainContent}>
+          {/* ── Dark Header Banner ── */}
+          <div className={styles.headerBanner}>
+            <div className={styles.greeting}>
+              <h1 className={styles.greetingText}>{greeting()}, {user?.name?.split(' ')[0] ?? 'there'} 👋</h1>
+              <p className={styles.greetingSub}>Here's your career progress at a glance.</p>
             </div>
-          </div>
-          <div className={styles.statDivider} />
-          <div className={styles.stat}>
-            <BarChart3 size={18} color="var(--secondary)" />
-            <div>
-              <div className={styles.statNum}>{resumes.length > 0 ? 85 : 0}%</div>
-              <div className={styles.statLabel}>Avg ATS Score</div>
-            </div>
-          </div>
-          <div className={styles.statDivider} />
-          {/* Plan badge */}
-          <div className={styles.stat}>
-            <TrendingUp size={18} color={planDisplay.color} />
-            <div>
-              <div
-                className={styles.planBadge}
-                style={{ color: planDisplay.color, background: planDisplay.bg }}
-              >
-                {planDisplay.label}
-              </div>
-              {plan === 'seeker' && (
-                <Link to="/pricing" className={styles.upgradeNudge}>
-                  Upgrade <ArrowRight size={10} />
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Two-column layout: resumes + sidebar ── */}
-      <div className={styles.contentRow}>
-        {/* ── Left: Resume grid ── */}
-        <div className={styles.contentArea}>
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>My Resumes</h2>
-            <Button size="sm" onClick={() => setShowNewModal(true)}>
-              <Plus size={14} /> New Resume
-            </Button>
-          </div>
-
-          <div className={styles.grid}>
-            <button className={styles.newCard} onClick={() => setShowNewModal(true)}>
-              <div className={styles.newCardIcon}><Plus size={24} /></div>
-              <span className={styles.newCardLabel}>New Resume</span>
-              <span className={styles.newCardSub}>Start from a template</span>
-            </button>
-
-            {isLoading ? (
-              <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: 'var(--space-12)' }}>
-                Loading your resumes...
-              </div>
-            ) : resumes.map((r) => {
-              const template = TEMPLATE_REGISTRY[r.templateId as keyof typeof TEMPLATE_REGISTRY]
-              const tColor = template?.id === 'modern-centered' ? '#1e2d4a' : '#006c49'
-              const lastEdited = new Date(r.updatedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })
-
-              return (
-                <div key={r._id} className={styles.card}>
-                  <div className={styles.cardThumb} style={{ '--c': tColor } as React.CSSProperties}>
-                    <div className={styles.thumbLines}>
-                      <div className={styles.tl} style={{ width: '60%' }} />
-                      <div className={styles.tl} style={{ width: '40%', height: 3 }} />
-                      <div style={{ height: 6 }} />
-                      <div className={styles.tl} style={{ width: '35%', height: 3, opacity: 0.5 }} />
-                      {[100,80,90,70,65].map((w,i) => <div key={i} className={styles.tl} style={{ width: `${w}%`, opacity: 0.25 }} />)}
-                    </div>
-                    <div className={styles.atsOverlay}>
-                      <CheckCircle2 size={12} />
-                      85%
-                    </div>
-                    <button className={styles.menuBtn} onClick={(e) => { e.stopPropagation(); setOpenMenuId(openMenuId === r._id ? null : r._id) }}>
-                      <MoreHorizontal size={16} />
-                    </button>
-                    {openMenuId === r._id && (
-                      <div className={styles.menu}>
-                        <button className={styles.menuItem} onClick={() => navigate(`/resume/${r._id}`)}><Edit3 size={13} /> Edit</button>
-                        <button className={styles.menuItem} onClick={() => duplicateMutation.mutate(r._id)}><Copy size={13} /> Duplicate</button>
-                        <button className={`${styles.menuItem} ${styles.menuDanger}`} onClick={() => { if(confirm('Delete this resume?')) deleteMutation.mutate(r._id) }}><Trash2 size={13} /> Delete</button>
-                      </div>
-                    )}
-                  </div>
-                  <div className={styles.cardInfo}>
-                    <div>
-                      <h3 className={styles.cardTitle}>{r.title}</h3>
-                      <span className={styles.cardTemplate}>{template?.name || r.templateId}</span>
-                    </div>
-                    <div className={styles.cardMeta}>
-                      <span className={styles.cardTime}><Clock size={11} /> {lastEdited}</span>
-                      <Button variant="ghost" size="sm" onClick={() => navigate(`/resume/${r._id}`)}>
-                        Edit <Edit3 size={12} />
-                      </Button>
-                    </div>
-                  </div>
+            <div className={styles.headerStats}>
+              <div className={styles.headerStat}>
+                <FileText size={16} className={styles.statIcon} />
+                <div className={styles.statInner}>
+                  <span className={styles.statMain}>{resumes.length}</span>
+                  <span className={styles.statCap}>Resumes</span>
                 </div>
-              )
-            })}
-
-            {!isLoading && resumes.length === 0 && (
-              <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: 'var(--space-12)', color: 'var(--on-surface-variant)' }}>
-                <FileText size={32} style={{ opacity: 0.5, marginBottom: 'var(--space-4)' }} />
-                <p>You haven't created any resumes yet.</p>
-                <p style={{ fontSize: 'var(--text-sm)', marginTop: '4px' }}>Click "New Resume" to get started.</p>
               </div>
-            )}
+              <div className={styles.headerStatDivider} />
+              <div className={styles.headerStat}>
+                <TrendingUp size={16} className={styles.statIcon} />
+                <div className={styles.statInner}>
+                  <div className={styles.statPill} style={{ background: planDisplay.bg, color: planDisplay.color }}>
+                    {planDisplay.label}
+                  </div>
+                  {plan === 'seeker' && (
+                    <Link to="/pricing" className={styles.upgradeNudge}>Upgrade <ArrowRight size={10} /></Link>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
 
-        {/* ── Right Sidebar: Usage + Referral ── */}
-        <div className={styles.sidebar}>
-          {/* Usage Panel */}
-          <div className={styles.sideCard}>
-            <div className={styles.sideCardHead}>
-              <Zap size={15} />
-              <h3 className={styles.sideCardTitle}>Monthly Usage</h3>
-              <span className={styles.sideCardSub}>resets on the 1st</span>
+          <div className={styles.bodyWrapper}>
+            {/* ── Left Grid Area ── */}
+            <div className={styles.contentArea}>
+              <div className={styles.sectionHeader}>
+                <h2 className={styles.sectionTitle}>My Resumes</h2>
+              </div>
+
+              <div className={styles.grid}>
+                <button className={styles.newCard} onClick={() => setShowNewModal(true)}>
+                  <div className={styles.newCardInner}>
+                    <div className={styles.newCardIcon}><Plus size={24} /></div>
+                    <span className={styles.newCardLabel}>New Resume</span>
+                    <span className={styles.newCardSub}>Start from a template</span>
+                  </div>
+                </button>
+
+                {isLoading ? (
+                  <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: 'var(--space-12)' }}>
+                    Loading your resumes...
+                  </div>
+                ) : resumes.map((r) => {
+                  const template = TEMPLATE_REGISTRY[r.templateId as keyof typeof TEMPLATE_REGISTRY]
+                  const tColor = template?.id === 'modern-centered' ? '#1e2d4a' : '#006c49'
+                  const lastEdited = new Date(r.updatedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+
+                  return (
+                    <div key={r._id} className={styles.card}>
+                      <div className={styles.cardThumb} style={{ '--c': tColor } as React.CSSProperties}>
+                        <div className={styles.thumbLines}>
+                          <div className={styles.tl} style={{ width: '60%' }} />
+                          <div className={styles.tl} style={{ width: '40%', height: 3 }} />
+                          <div style={{ height: 6 }} />
+                          <div className={styles.tl} style={{ width: '35%', height: 3, opacity: 0.5 }} />
+                          {[100, 80, 90, 70, 65].map((w, i) => <div key={i} className={styles.tl} style={{ width: `${w}%`, opacity: 0.25 }} />)}
+                        </div>
+                        <div className={styles.atsOverlay}>
+                          <CheckCircle2 size={12} />
+                          85%
+                        </div>
+                        <button className={styles.menuBtn} onClick={(e) => { e.stopPropagation(); setOpenMenuId(openMenuId === r._id ? null : r._id) }}>
+                          <MoreHorizontal size={16} />
+                        </button>
+                        {openMenuId === r._id && (
+                          <div className={styles.menu}>
+                            <button className={styles.menuItem} onClick={() => navigate(`/resume/${r._id}`)}><Edit3 size={13} /> Edit</button>
+                            <button className={styles.menuItem} onClick={() => duplicateMutation.mutate(r._id)}><Copy size={13} /> Duplicate</button>
+                            <button className={`${styles.menuItem} ${styles.menuDanger}`} onClick={() => { if (confirm('Delete this resume?')) deleteMutation.mutate(r._id) }}><Trash2 size={13} /> Delete</button>
+                          </div>
+                        )}
+                      </div>
+                      <div className={styles.cardInfo}>
+                        <div>
+                          <h3 className={styles.cardTitle}>{r.title}</h3>
+                          <span className={styles.cardTemplate}>{template?.name || r.templateId}</span>
+                        </div>
+                        <div className={styles.cardMeta}>
+                          <span className={styles.cardTime}><Clock size={11} /> {lastEdited}</span>
+                          <Button variant="ghost" size="sm" onClick={() => navigate(`/resume/${r._id}`)}>
+                            Edit <Edit3 size={12} />
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
 
-            {usage ? (
-              <div className={styles.usageBars}>
-                <UsageBar
-                  label="PDF Downloads"
-                  icon={<Download size={13} />}
-                  used={usage.pdfDownloads}
-                  limit={limits.pdfDownloads}
-                  bonus={usage.bonusPdfDownloads}
-                  onUpgrade={() => openUpgrade('pdfDownloads')}
-                />
-                <UsageBar
-                  label="JD Score"
-                  icon={<CheckCircle size={13} />}
-                  used={usage.jdScore}
-                  limit={limits.jdScore}
-                  onUpgrade={() => openUpgrade('general')}
-                />
-                <UsageBar
-                  label="AI Suggestions"
-                  icon={<Zap size={13} />}
-                  used={usage.aiBullets}
-                  limit={limits.aiBullets}
-                  onUpgrade={() => openUpgrade('general')}
-                />
-                <UsageBar
-                  label="JD Tailoring"
-                  icon={<Target size={13} />}
-                  used={usage.jdTailoring}
-                  limit={limits.jdTailoring}
-                  bonus={usage.bonusTailoring}
-                  onUpgrade={() => openUpgrade('jdTailoring')}
-                />
-                <UsageBar
-                  label="Cover Letters"
-                  icon={<FileSignature size={13} />}
-                  used={usage.coverLetter ?? 0}
-                  limit={limits.coverLetter}
-                  onUpgrade={() => openUpgrade('general')}
-                />
-              </div>
-            ) : (
-              <div className={styles.usageLoading}>Loading usage…</div>
-            )}
+            {/* ── Right: Usage Sidebar ── */}
+            <div className={styles.sidebar}>
+              <div className={styles.sideCard}>
+                <div className={styles.sideCardHead}>
+                  <Zap size={15} />
+                  <h3 className={styles.sideCardTitle}>Monthly Usage</h3>
+                  <span className={styles.sideCardSub}>On the 1st</span>
+                </div>
 
-            {plan === 'seeker' ? (
-              <Link to="/pricing" className={styles.sideUpgradeBtn}>
-                <Zap size={14} /> Upgrade Plan <ArrowRight size={13} />
-              </Link>
-            ) : (
-              <div style={{ marginTop: 'var(--space-4)', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-                {sub?.cancelAtPeriodEnd ? (
-                   <>
-                     <div style={{ fontSize: '11px', color: '#b45309', background: '#fef3c7', padding: '8px', borderRadius: '6px', border: '1px solid #fde68a' }}>
-                       Plan cancels on <strong>{sub?.currentPeriodEnd ? new Date(sub.currentPeriodEnd).toLocaleDateString() : 'end of period'}</strong>.
-                     </div>
-                     <button className={styles.sideUpgradeBtn} onClick={() => openUpgrade('general')} style={{ background: planDisplay.color }}>
-                       Reactivate Plan
-                     </button>
-                   </>
+                {usage ? (
+                  <div className={styles.usageBars}>
+                    <UsageBar
+                      label="PDF Downloads"
+                      icon={<Download size={13} />}
+                      used={usage.pdfDownloads}
+                      limit={limits.pdfDownloads}
+                      bonus={usage.bonusPdfDownloads}
+                      onUpgrade={() => openUpgrade('pdfDownloads')}
+                    />
+                    <UsageBar
+                      label="JD Score"
+                      icon={<CheckCircle size={13} />}
+                      used={usage.jdScore}
+                      limit={limits.jdScore}
+                      onUpgrade={() => openUpgrade('general')}
+                    />
+                    <UsageBar
+                      label="AI Suggestions"
+                      icon={<Zap size={13} />}
+                      used={usage.aiBullets}
+                      limit={limits.aiBullets}
+                      onUpgrade={() => openUpgrade('aiBullets')}
+                    />
+                    <UsageBar
+                      label="JD Tailoring"
+                      icon={<Target size={13} />}
+                      used={usage.jdTailoring}
+                      limit={limits.jdTailoring}
+                      bonus={usage.bonusTailoring}
+                      onUpgrade={() => openUpgrade('jdTailoring')}
+                    />
+                    <UsageBar
+                      label="Cover Letters"
+                      icon={<FileSignature size={13} />}
+                      used={usage.coverLetter ?? 0}
+                      limit={limits.coverLetter}
+                      onUpgrade={() => openUpgrade('general')}
+                    />
+                  </div>
                 ) : (
-                   <button 
-                     className={styles.sideUpgradeBtn} 
-                     style={{ background: 'transparent', color: '#ef4444', border: '1px solid rgba(239, 68, 68, 0.2)' }}
-                     onClick={() => {
-                        if(confirm("You'll keep your premium access until the period ends. No refund. Are you sure you want to cancel?")) {
-                          cancelMutation.mutate()
-                        }
-                     }}
-                     disabled={cancelMutation.isPending}
-                   >
-                     {cancelMutation.isPending ? 'Cancelling...' : 'Cancel Auto-Pay'}
-                   </button>
+                  <div className={styles.usageLoading}>Loading usage…</div>
+                )}
+
+                {plan !== 'seeker' && !sub?.cancelAtPeriodEnd && (
+                  <button
+                    className={styles.cancelBtn}
+                    onClick={() => {
+                      if (confirm("Are you sure you want to cancel auto-pay?")) {
+                        cancelMutation.mutate()
+                      }
+                    }}
+                    disabled={cancelMutation.isPending}
+                  >
+                    Cancel Auto-Pay
+                  </button>
                 )}
               </div>
-            )}
-          </div>
 
-          {/* Referral bonus counter */}
-          {usage && (usage.bonusTailoring > 0 || usage.bonusPdfDownloads > 0) && (
-            <div className={styles.sideCard} style={{ borderColor: 'rgba(99,102,241,0.25)', background: 'rgba(99,102,241,0.05)' }}>
-              <div className={styles.referralCount}>
-                <Share2 size={16} color="#818cf8" style={{ flexShrink: 0 }} />
-                <span>
-                  You have <strong>{usage.bonusTailoring} Tailoring{usage.bonusTailoring !== 1 ? 's' : ''}</strong> and <strong>{usage.bonusPdfDownloads} PDF Download{usage.bonusPdfDownloads !== 1 ? 's' : ''}</strong> earned from referrals. They never expire!
-                </span>
+              {/* Share referral nudge */}
+              <div className={styles.sideCard}>
+                <div className={styles.sideCardHead}>
+                  <Share2 size={15} />
+                  <h3 className={styles.sideCardTitle}>Give 2, Get 2</h3>
+                </div>
+                <p className={styles.referralDesc}>
+                  Share your link and get <strong>+2 JD Tailorings</strong> and <strong>+2 PDF Downloads</strong> for every friend who creates a resume.
+                </p>
+                <div className={styles.shareWrapper}>
+                  <Button
+                    variant="secondary"
+                    className={styles.shareBtn}
+                    onClick={handleShare}
+                  >
+                    <Share2 size={14} /> Share Link
+                  </Button>
+
+                  {showShareOptions && (
+                    <div className={styles.shareMenu}>
+                      <a
+                        href={`https://wa.me/?text=${encodeURIComponent(shareText)}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={styles.shareItem}
+                        onClick={() => trackReferralShared('whatsapp')}
+                      >
+                        <MessageCircle size={14} color="#25D366" /> WhatsApp
+                      </a>
+                      <a
+                        href={`https://t.me/share/url?url=${encodeURIComponent(referralUrl)}&text=${encodeURIComponent('Join CareerForge!')}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={styles.shareItem}
+                        onClick={() => trackReferralShared('telegram')}
+                      >
+                        <Send size={14} color="#0088cc" /> Telegram
+                      </a>
+                      <a
+                        href={`mailto:?subject=Join CareerForge&body=${encodeURIComponent(shareText)}`}
+                        className={styles.shareItem}
+                        onClick={() => trackReferralShared('email')}
+                      >
+                        <Mail size={14} color="#ea4335" /> Email
+                      </a>
+                      <button onClick={copyToClipboard} className={styles.shareItem}>
+                        <LinkIcon size={14} /> Copy Link
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          )}
-
-          {/* Share referral nudge */}
-          <div className={styles.sideCard}>
-            <div className={styles.sideCardHead}>
-              <Share2 size={15} />
-              <h3 className={styles.sideCardTitle}>Give 2, Get 2</h3>
-            </div>
-            <p className={styles.referralDesc}>
-              Share your link and get <strong>+2 JD Tailorings</strong> and <strong>+2 PDF Downloads</strong> for every friend who creates a resume.
-            </p>
-            <div className={styles.shareWrapper}>
-              <Button
-                variant="secondary"
-                className={styles.shareBtn}
-                onClick={handleShare}
-              >
-                <Share2 size={14} /> Share Link
-              </Button>
-
-              {showShareOptions && (
-                <div className={styles.shareMenu}>
-                  <a 
-                    href={`https://wa.me/?text=${encodeURIComponent(shareText)}`} 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className={styles.shareItem}
-                    onClick={() => trackReferralShared('whatsapp')}
-                  >
-                    <MessageCircle size={14} color="#25D366" /> WhatsApp
-                  </a>
-                  <a 
-                    href={`https://t.me/share/url?url=${encodeURIComponent(referralUrl)}&text=${encodeURIComponent('Join CareerForge!')}`} 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className={styles.shareItem}
-                    onClick={() => trackReferralShared('telegram')}
-                  >
-                    <Send size={14} color="#0088cc" /> Telegram
-                  </a>
-                  <a 
-                    href={`mailto:?subject=Join CareerForge&body=${encodeURIComponent(shareText)}`} 
-                    className={styles.shareItem}
-                    onClick={() => trackReferralShared('email')}
-                  >
-                    <Mail size={14} color="#ea4335" /> Email
-                  </a>
-                  <button onClick={copyToClipboard} className={styles.shareItem}>
-                    <LinkIcon size={14} /> Copy Link
-                  </button>
-                </div>
-              )}
-            </div>
           </div>
+        </main>
+      </div>
+
+      {/* ── Mobile Navigation ── */}
+      <div className={styles.bottomNav}>
+        <div className={styles.bottomNavInner}>
+          <button className={`${styles.bottomNavItem} ${styles.active}`}>
+            <FileText size={20} />
+            <span className={styles.bottomNavLabel}>Resumes</span>
+          </button>
+          <button className={styles.bottomNavItem} onClick={() => navigate('/cover-letter')}>
+            <FileSignature size={20} />
+            <span className={styles.bottomNavLabel}>Letters</span>
+          </button>
+          <button className={styles.bottomNavItem} onClick={() => setIsMoreOpen(!isMoreOpen)}>
+            <MoreHorizontal size={20} />
+            <span className={styles.bottomNavLabel}>More</span>
+          </button>
         </div>
       </div>
+
+      {/* ── More Drawer (Mobile) ── */}
+      {isMoreOpen && (
+        <>
+          <div className={styles.drawerBackdrop} onClick={() => setIsMoreOpen(false)} />
+          <div className={styles.moreDrawer}>
+            <div className={styles.drawerGrid}>
+              <button className={styles.drawerItem} onClick={() => { setIsMoreOpen(false); navigate('/jd-tailor'); }}>
+                <Target size={24} /> <span>JD Tailor</span>
+              </button>
+              <button className={styles.drawerItem} onClick={() => { setIsMoreOpen(false); setUpgradeOpen(true); }}>
+                <Zap size={24} /> <span>Usage</span>
+              </button>
+              <button className={styles.drawerItem} onClick={() => { setIsMoreOpen(false); navigate('/pricing'); }}>
+                <CreditCard size={24} /> <span>Pricing</span>
+              </button>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* ── New Resume Modal ── */}
       {showNewModal && (

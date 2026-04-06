@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { Search, CheckCircle2, ArrowRight } from 'lucide-react'
 import { Button } from '@/shared/components/Button/Button'
 import { useAuthStore } from '@/core/auth/useAuthStore'
@@ -34,6 +35,10 @@ export default function TemplatesPage() {
 
   return (
     <div className={styles.page}>
+      <Helmet>
+        <link rel="canonical" href="https://careerforge.pro/templates" />
+      </Helmet>
+
       {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.heroBadge}>{TEMPLATES.length} templates available</div>
@@ -83,10 +88,10 @@ export default function TemplatesPage() {
                 ))}
               </div>
               <div className={`${styles.thumbOverlay} ${hoveredId === t.id ? styles.overlayVisible : ''}`}>
-                <Link to={isAuthenticated ? "/dashboard" : "/register"}>
+                <Link to={`/resume/new?template=${t.id}`}>
                   <Button size="sm">Use template <ArrowRight size={13} /></Button>
                 </Link>
-                <Link to={isAuthenticated ? "/dashboard" : "/register"} className={styles.previewLink}>Preview</Link>
+                <Link to={`/resume/new?template=${t.id}`} className={styles.previewLink}>Preview</Link>
               </div>
               {t.tag && <div className={styles.thumbTag}>{t.tag}</div>}
             </div>
@@ -115,9 +120,9 @@ export default function TemplatesPage() {
         <h2 className={styles.ctaTitle}>Ready to build?</h2>
         <p className={styles.ctaSub}>Pick any template and start editing in our AI-powered editor.</p>
         {isAuthenticated ? (
-          <Link to="/dashboard"><Button size="lg">Go to Dashboard <ArrowRight size={16} /></Button></Link>
+          <Link to="/resume/new"><Button size="lg">Start Building <ArrowRight size={16} /></Button></Link>
         ) : (
-          <Link to="/register"><Button size="lg">Start for free <ArrowRight size={16} /></Button></Link>
+          <Link to="/resume/new"><Button size="lg">Start for free <ArrowRight size={16} /></Button></Link>
         )}
       </section>
     </div>

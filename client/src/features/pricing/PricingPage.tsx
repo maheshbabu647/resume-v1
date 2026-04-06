@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import {
   Check, X as XIcon, Zap, ArrowRight, Loader2,
   Download, Brain, BarChart3, GitBranch, Share2, Shield
@@ -143,6 +144,10 @@ export default function PricingPage() {
 
   return (
     <div className={styles.page}>
+      <Helmet>
+        <link rel="canonical" href="https://careerforge.pro/pricing" />
+      </Helmet>
+
       {/* ── Header ── */}
       <div className={styles.header}>
         <div className={styles.badge}><Shield size={13} /> Simple pricing</div>

@@ -8,6 +8,8 @@ import { UpgradeModal } from '@/shared/components/UpgradeModal/UpgradeModal'
 import { trackResumeDownloaded, trackTemplateGalleryOpened } from '@/shared/lib/analytics'
 import { useEditorUIStore } from '../../store/useEditorUIStore'
 import { useResumeStore } from '../../store/useResumeStore'
+import { useAuthStore } from '@/core/auth/useAuthStore'
+import { AuthRequireModal } from '@/shared/components/AuthRequireModal/AuthRequireModal'
 import styles from './Toolbar.module.css'
 
 export const Toolbar = () => {
@@ -26,6 +28,7 @@ export const Toolbar = () => {
   const setMobileViewMode = useEditorUIStore((s) => s.setMobileViewMode)
   const toggleMobileNav = useEditorUIStore((s) => s.toggleMobileNav)
   const toggleGlobalNav = useEditorUIStore((s) => s.toggleGlobalNav)
+  const [authModalArgs, setAuthModalArgs] = useState<{ isOpen: boolean; pendingAction?: 'save' | 'export' }>({ isOpen: false })
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value)
@@ -38,6 +41,11 @@ export const Toolbar = () => {
   }
 
   const handleExportPDF = async () => {
+    if (!useAuthStore.getState().isAuthenticated) {
+      setAuthModalArgs({ isOpen: true, pendingAction: 'export' })
+      return
+    }
+
     const printArea = document.querySelector('.print-area')
     if (!printArea) return
 
@@ -121,6 +129,11 @@ export const Toolbar = () => {
   }
 
   const handleSave = async () => {
+    if (!useAuthStore.getState().isAuthenticated) {
+      setAuthModalArgs({ isOpen: true, pendingAction: 'save' })
+      return
+    }
+
     const { title, data, customization, resumeId, setResumeId, templateId } = useResumeStore.getState()
     const { setSaving, setDirty } = useEditorUIStore.getState()
     
@@ -157,6 +170,17 @@ export const Toolbar = () => {
     })
     return unsub
   }, [])
+
+  const handleAuthSuccess = () => {
+    const action = authModalArgs.pendingAction;
+    setAuthModalArgs({ isOpen: false, pendingAction: undefined })
+    
+    if (action === 'save') {
+      setTimeout(handleSave, 50)
+    } else if (action === 'export') {
+      setTimeout(handleExportPDF, 50)
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -254,6 +278,14 @@ export const Toolbar = () => {
         isOpen={showUpgradeModal}
         onClose={() => setShowUpgradeModal(false)}
         trigger={upgradeTrigger}
+      />
+
+      <AuthRequireModal
+        isOpen={authModalArgs.isOpen}
+        onClose={() => setAuthModalArgs({ isOpen: false })}
+        onSuccess={handleAuthSuccess}
+        title="Authentication Required"
+        subtitle={`Please log in to ${authModalArgs.pendingAction === 'export' ? 'download' : 'save'} your resume.`}
       />
     </div>
   )

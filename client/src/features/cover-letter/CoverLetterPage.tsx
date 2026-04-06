@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from 'react'
+import { Helmet } from 'react-helmet-async'
 import {
   FileText, Upload, List, X, Check, Loader2,
   FileSignature, BookOpen, Copy, Download, Zap,
@@ -515,6 +516,10 @@ export default function CoverLetterPage() {
   // ── Main render ────────────────────────────────────────────────────────────
   return (
     <div className={styles.page}>
+      <Helmet>
+        <link rel="canonical" href="https://careerforge.pro/cover-letter" />
+      </Helmet>
+
       {/* Hero */}
       <div className={styles.hero}>
         <div className={styles.heroBadge}><Zap size={10} /> AI-Powered</div>

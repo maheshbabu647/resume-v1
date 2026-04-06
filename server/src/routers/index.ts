@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { authenticate } from '../middleware/authenticate'
 import { planGuard }    from '../middleware/planGuard'
 import { quotaGuard }   from '../middleware/quotaGuard'
-import { aiRateLimiter } from '../middleware/rateLimiter'
+import { aiRateLimiter, parseRateLimiter } from '../middleware/rateLimiter'
 
 import authRouter    from './auth/index'
 import userRouter    from './user/index'
@@ -32,8 +32,8 @@ router.use('/payment',  authenticate, paymentRouter)
 router.use('/resumes',  authenticate, resumeRouter)
 
 // ─── AI features ─────────────────────────────────────────────────────────────
-// Parse resume — free for all authenticated users (onboarding feature)
-router.post('/ai/parse-resume', authenticate, aiRateLimiter, uploadMiddleware, parseResume)
+// Parse resume — free for all users (onboarding feature)
+router.post('/ai/parse-resume', parseRateLimiter, uploadMiddleware, parseResume)
 
 // AI suggest — quota gated (aiBullets: 5/25/∞ per month)
 // AI JD score  — quota gated (jdScore: 3/20/∞ per month)

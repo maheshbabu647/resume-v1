@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { Loader2 } from 'lucide-react'
@@ -25,8 +25,8 @@ export default function EditorShell() {
   const loadResume = useResumeStore(s => s.loadResume)
   const setDirty = useEditorUIStore(s => s.setDirty)
   
-  // For tailored resumes, skip onboarding — content is pre-filled
-  const [showOnboarding, setShowOnboarding] = useState(id === 'new' && !isTailored)
+  // For tailored resumes or stashed resumes, skip onboarding
+  const [showOnboarding, setShowOnboarding] = useState(id === 'new' && !isTailored && !localStorage.getItem('careerforge_unsaved_resume'))
 
   // Fetch resume if loading an existing one
   const { data: remoteResume, isLoading, isError } = useQuery({
@@ -40,14 +40,41 @@ export default function EditorShell() {
     retry: false
   })
 
+  const hasInitialized = useRef(false)
+
   // Synchronize fetched data into the central store and reset dirty state
   useEffect(() => {
+    if (hasInitialized.current && id === 'new') return // Prevent double-trigger wipes for new resumes
+    
     if (resumeId && remoteResume) {
+      if (hasInitialized.current) return // Only load remote resume once
+      hasInitialized.current = true
+      
       console.log('[EditorShell] Loading remote resume:', resumeId)
       loadResume(remoteResume)
       setTimeout(() => setDirty(false), 50)
     } else if (!resumeId && id === 'new') {
-      if (isTailored) {
+      hasInitialized.current = true
+      const stashed = localStorage.getItem('careerforge_unsaved_resume')
+      
+      if (stashed) {
+        console.log('[EditorShell] Restoring stashed resume')
+        try {
+          const parsed = JSON.parse(stashed)
+          loadResume({
+            _id: null,
+            templateId: searchParams.get('template') || 'modern-centered',
+            title: parsed.title,
+            personalInfo: parsed.data?.personalInfo,
+            sections: parsed.data?.sections || [],
+            customization: parsed.customization
+          })
+          localStorage.removeItem('careerforge_unsaved_resume')
+        } catch (err) {
+          console.error('[EditorShell] Failed to parse stashed resume:', err)
+          loadResume(null)
+        }
+      } else if (isTailored) {
         const raw = sessionStorage.getItem('careerforge_tailored_resume')
         if (raw) {
           try {
@@ -67,9 +94,6 @@ export default function EditorShell() {
             loadResume(null)
           }
         } else {
-          // If isTailored is true but no data in session storage, 
-          // we might have already loaded it and removed the item.
-          // Don't call loadResume(null) here as it would wipe the store.
           console.log('[EditorShell] Tailored data already loaded or missing from session')
         }
       } else {

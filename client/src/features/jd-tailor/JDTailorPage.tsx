@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import {
   Zap, FileText, Upload, List, X, Check, AlertTriangle,
   Loader2, ChevronRight, BarChart2, Lightbulb, Wand2,
@@ -592,6 +593,10 @@ export default function JDTailorPage() {
 
   return (
     <div className={styles.page}>
+      <Helmet>
+        <link rel="canonical" href="https://careerforge.pro/jd-tailor" />
+      </Helmet>
+
       {/* Hero */}
       <div className={styles.hero}>
         <div className={styles.heroBadge}><Zap size={10} /> AI-Powered</div>

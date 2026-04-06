@@ -47,18 +47,14 @@ export const Navbar = () => {
             Dashboard
           </NavLink>
         )}
-        {isAuthenticated && (
-          <NavLink to="/jd-tailor" onClick={closeMenu} className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
-            <Target size={15} />
-            JD Tailor
-          </NavLink>
-        )}
-        {isAuthenticated && (
-          <NavLink to="/cover-letter" onClick={closeMenu} className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
-            <FileSignature size={15} />
-            Cover Letter
-          </NavLink>
-        )}
+        <NavLink to="/jd-tailor" onClick={closeMenu} className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
+          <Target size={15} />
+          JD Tailor
+        </NavLink>
+        <NavLink to="/cover-letter" onClick={closeMenu} className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
+          <FileSignature size={15} />
+          Cover Letter
+        </NavLink>
         <NavLink to="/pricing" onClick={closeMenu} className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
           <CreditCard size={15} />
           Pricing

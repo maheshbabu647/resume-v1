@@ -7,6 +7,8 @@ import { DEFAULT_SPACING, DEFAULT_SIZING } from '../../templates/shared/buildCSS
 import { SECTION_ORDER_PRESETS } from '../../config/sectionOrder'
 import type { SectionKey } from '../../templates/shared/template.types'
 import { trackTemplateChanged } from '@/shared/lib/analytics'
+import { useAuthStore } from '@/core/auth/useAuthStore'
+import { AuthRequireModal } from '@/shared/components/AuthRequireModal/AuthRequireModal'
 import styles from './RightSidebarUtils.module.css'
 
 type DrawerName = 'score' | 'jdfit' | 'style'
@@ -298,6 +300,27 @@ export const RightSidebarUtils = () => {
   const redo = useResumeStore((s) => s.redo)
   const historyLen = useResumeStore((s) => s.history.length)
   const futureLen = useResumeStore((s) => s.future.length)
+  const [authModalArgs, setAuthModalArgs] = useState<{ isOpen: boolean; pendingDrawer?: DrawerName }>({ isOpen: false })
+
+  const handleDrawerClick = (drawerId: DrawerName) => {
+    if (activeDrawer === drawerId) {
+      closeDrawer()
+      return
+    }
+    if ((drawerId === 'score' || drawerId === 'jdfit') && !useAuthStore.getState().isAuthenticated) {
+      setAuthModalArgs({ isOpen: true, pendingDrawer: drawerId })
+      return
+    }
+    openDrawer(drawerId as Parameters<typeof openDrawer>[0])
+  }
+
+  const handleAuthSuccess = () => {
+    const drawer = authModalArgs.pendingDrawer;
+    setAuthModalArgs({ isOpen: false, pendingDrawer: undefined })
+    if (drawer) {
+      setTimeout(() => openDrawer(drawer as Parameters<typeof openDrawer>[0]), 50)
+    }
+  }
 
   const currentDrawer = DRAWERS.find((d) => d.id === activeDrawer)
 
@@ -339,13 +362,21 @@ export const RightSidebarUtils = () => {
           <button
             key={d.id}
             className={`${styles.utilBtn} ${activeDrawer === d.id ? styles.utilBtnActive : ''}`}
-            onClick={() => activeDrawer === d.id ? closeDrawer() : openDrawer(d.id as Parameters<typeof openDrawer>[0])}
+            onClick={() => handleDrawerClick(d.id)}
             title={d.tooltip}
           >
             {d.icon}
           </button>
         ))}
       </aside>
+
+      <AuthRequireModal
+        isOpen={authModalArgs.isOpen}
+        onClose={() => setAuthModalArgs({ isOpen: false })}
+        onSuccess={handleAuthSuccess}
+        title="Authentication Required"
+        subtitle="Please log in to use AI scoring and JD matchmaking."
+      />
     </>
   )
 }

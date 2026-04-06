@@ -23,7 +23,7 @@ export const rateLimiter =
         res.setHeader('X-RateLimit-Remaining', Math.max(0, opts.maxRequests - requestCount - 1))
         if (requestCount >= opts.maxRequests) {
           res.setHeader('Retry-After', opts.windowSec)
-          return next(new AppError('RATE_LIMITED', 429))
+          return next(new AppError('RATE_LIMITED', 429, 'You have reached your limit please try again.'))
         }
         next()
       } catch (err) {
@@ -35,3 +35,4 @@ export const rateLimiter =
 export const aiRateLimiter = rateLimiter('ai', { windowSec: 60, maxRequests: 20 })
 export const authRateLimiter = rateLimiter('auth', { windowSec: 900, maxRequests: 100 })
 export const apiRateLimiter = rateLimiter('api', { windowSec: 60, maxRequests: 120 })
+export const parseRateLimiter = rateLimiter('parse', { windowSec: 900, maxRequests: 5 })
