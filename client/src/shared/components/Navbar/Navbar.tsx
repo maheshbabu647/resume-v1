@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import { LayoutDashboard, FileText, LogOut, User as UserIcon, Menu, X, Target, FileSignature, CreditCard } from 'lucide-react'
+import { LayoutDashboard, FileText, LogOut, User as UserIcon, Menu, X, Target, FileSignature, CreditCard, BookOpen } from 'lucide-react'
 import { useAuthStore } from '@/core/auth/useAuthStore'
 import { useUsage } from '@/core/hooks/useUsage'
 import { Button } from '@/shared/components/Button/Button'
@@ -60,7 +60,10 @@ export const Navbar = () => {
           <CreditCard size={15} />
           Pricing
         </NavLink>
-        
+        <NavLink to="/blog" onClick={closeMenu} className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
+          <BookOpen size={15} />
+          Insights
+        </NavLink>
         {/* Mobile Auth/Info (Bottom) */}
         <div className={styles.mobileAuth}>
           {isAuthenticated && user ? (

@@ -7,7 +7,7 @@ import {
   Target, FileSignature, 
   FileText, CreditCard, Copy, EyeOff, Filter,
   UploadCloud, Activity, FileCheck, Layers, GitMerge,
-  Shield, CheckCircle
+  Shield, CheckCircle, BookOpen
 } from 'lucide-react'
 import { Button } from '@/shared/components/Button/Button'
 import { Footer } from '@/shared/components/Footer/Footer'
@@ -26,22 +26,31 @@ const successStories = [
 // ── Problem cards ────────────────────────────────────────────────────────────
 const problems = [
   {
-    icon: <Copy size={22} />,
-    accent: 'var(--primary-container)',
+    icon: <Copy size={24} />,
+    accent: '#6366f1',
+    stat: '73%',
+    statLabel: 'of applications',
     title: 'Same resume, every job',
     desc: 'One generic resume lowers your chances on every application. Tailoring to the JD is what separates callbacks from silence.',
+    tag: 'Most common mistake',
   },
   {
-    icon: <EyeOff size={22} />,
+    icon: <EyeOff size={24} />,
     accent: 'var(--secondary)',
+    stat: '6 sec',
+    statLabel: 'recruiter scan time',
     title: 'Missing job-specific signals',
-    desc: 'If your resume doesn\'t reflect what the job actually requires, it gets ignored — even if you\'re qualified.',
+    desc: "If your resume doesn't reflect what the job actually requires, it gets ignored — even if you're qualified.",
+    tag: 'Hidden killer',
   },
   {
-    icon: <Filter size={22} />,
-    accent: '#eab308',
+    icon: <Filter size={24} />,
+    accent: '#f59e0b',
+    stat: '75%',
+    statLabel: 'filtered before human review',
     title: 'Filtered before a human sees it',
-    desc: 'Most companies use ATS filters. If your resume doesn\'t match the job, it never reaches a recruiter.',
+    desc: "Most companies use ATS filters. If your resume doesn't match the job, it never reaches a recruiter.",
+    tag: '2026 reality',
   },
 ]
 
@@ -185,6 +194,7 @@ export default function HomePage() {
               <Link to="/dashboard" className={styles.navLink} onClick={closeMenu}><BarChart3 size={15} /> Dashboard</Link>
             )}
             <Link to="/pricing" className={styles.navLink} onClick={closeMenu}><CreditCard size={15} /> Pricing</Link>
+            <Link to="/blog" className={styles.navLink} onClick={closeMenu}><BookOpen size={15} /> Insights</Link>
             <div className={styles.mobileNavActions}>
               {isAuthenticated ? (
                 <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
@@ -243,11 +253,11 @@ export default function HomePage() {
           </p>
 
           <div className={styles.heroCtas}>
-            <Link to={isAuthenticated ? '/jd-tailor' : '/register'}>
-              <Button size="lg">Fix my resume for a job <ArrowRight size={16} /></Button>
+            <Link to="/jd-tailor">
+              <Button size="lg">Tailor my resume for a job <ArrowRight size={16} /></Button>
             </Link>
-            <Link to="/register">
-              <Button variant="ghost" size="lg">Build resume</Button>
+            <Link to="/scoring">
+              <Button variant="ghost" size="lg">Check my ATS score</Button>
             </Link>
           </div>
 
@@ -351,17 +361,26 @@ export default function HomePage() {
       <section className={styles.problemSection}>
         <div className={styles.sectionInner}>
           <div className={styles.problemIntro}>
-            <h2 className={styles.problemHeadline}>Why most resumes never get shortlisted</h2>
-            <p className={styles.problemLead}>It's not your skills — it's how your resume is filtered before a human ever sees it.</p>
+            <p className={styles.sectionLabelLight}>The real problem</p>
+            <h2 className={styles.problemHeadline}>
+              Why most resumes<br />
+              <span className={styles.problemHlEmphasis}>never get shortlisted</span>
+            </h2>
+            <p className={styles.problemLead}>It's not your skills — it's how your resume is filtered before a human ever sees it. These three silent killers are eliminating 75% of applications.</p>
           </div>
           <div className={styles.problemGrid}>
             {problems.map((p) => (
               <div key={p.title} className={styles.problemCard}>
-                <div className={styles.problemIconWrap} style={{ color: p.accent, background: `color-mix(in srgb, ${p.accent} 12%, transparent)` }}>
+                <div className={styles.problemCardTop}>
+                  <div className={styles.problemStat} style={{ color: p.accent }}>{p.stat}</div>
+                  <span className={styles.problemStatLabel}>{p.statLabel}</span>
+                </div>
+                <div className={styles.problemIconWrap} style={{ color: p.accent, background: `color-mix(in srgb, ${p.accent} 10%, transparent)` }}>
                   {p.icon}
                 </div>
                 <h3 className={styles.problemTitle}>{p.title}</h3>
                 <p className={styles.problemDesc}>{p.desc}</p>
+                <span className={styles.problemTag} style={{ color: p.accent, background: `color-mix(in srgb, ${p.accent} 10%, transparent)` }}>{p.tag}</span>
               </div>
             ))}
           </div>
@@ -463,12 +482,12 @@ export default function HomePage() {
             Join 12,000+ job seekers using CareerForge to score, tailor, and send better applications.
           </p>
           <div className={styles.ctaActions}>
-            <Link to={isAuthenticated ? '/jd-tailor' : '/register'}>
-              <Button size="lg">Fix my resume for a job <ArrowRight size={16} /></Button>
-            </Link>
             <Link to="/jd-tailor">
+              <Button size="lg">Tailor my resume now <ArrowRight size={16} /></Button>
+            </Link>
+            <Link to="/scoring">
               <Button variant="ghost" size="lg" style={{ color: 'rgba(255,255,255,0.7)', borderColor: 'rgba(255,255,255,0.2)' }}>
-                Try JD Fit Score free
+                Check my ATS score free
               </Button>
             </Link>
           </div>

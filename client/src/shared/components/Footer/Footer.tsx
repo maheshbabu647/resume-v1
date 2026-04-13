@@ -32,6 +32,7 @@ export const Footer = () => {
             <Link to="/jd-tailor" className={styles.footerLink}>JD Fit Score</Link>
             <Link to="/cover-letter" className={styles.footerLink}>Cover Letter</Link>
             <Link to="/pricing" className={styles.footerLink}>Pricing</Link>
+            <Link to="/blog" className={styles.footerLink}>Insights</Link>
           </div>
           <div className={styles.footerCol}>
             <span className={styles.footerColTitle}>Legal</span>

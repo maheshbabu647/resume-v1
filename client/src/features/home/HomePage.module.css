@@ -507,12 +507,26 @@
 }
 
 /* ══════════════════════════════════════════════
-   PROBLEM SECTION — Clean Enterprise Look
+   PROBLEM SECTION — Dark premium stat cards
 ══════════════════════════════════════════════ */
 .problemSection {
   padding: 6rem 0;
-  background: var(--surface-container-low);
-  border-top: 1px solid var(--outline-variant);
+  background: var(--primary-container);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background noise / glow */
+.problemSection::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 108, 73, 0.18) 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .problemIntro {
@@ -520,18 +534,25 @@
 }
 
 .problemHeadline {
-  font-size: clamp(24px, 3.5vw, 36px);
-  font-weight: 700;
-  color: var(--on-surface);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  font-size: clamp(24px, 3.5vw, 38px);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
   margin: 0 0 1rem;
+}
+
+.problemHlEmphasis {
+  background: linear-gradient(135deg, var(--secondary-container) 0%, #6cf8bb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .problemLead {
   font-size: var(--text-base);
-  color: var(--on-surface-variant);
-  max-width: 600px;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 580px;
   line-height: 1.65;
 }
 
@@ -542,28 +563,61 @@
 }
 
 .problemCard {
-  background: white;
-  border-radius: var(--radius-xl);
-  padding: 2rem 1.75rem;
-  border: 1px solid var(--outline-variant);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-2xl);
+  padding: 2rem 1.75rem 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
+  transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .problemCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05);
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Subtle corner gradient per card */
+.problemCard::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at top right, rgba(255,255,255,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.problemCardTop {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.problemStat {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.problemStatLabel {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 500;
+  line-height: 1.3;
 }
 
 .problemIconWrap {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-lg);
-  background: var(--surface-container-low);
-  color: var(--on-surface);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -571,9 +625,9 @@
 }
 
 .problemTitle {
-  font-size: var(--text-base);
+  font-size: var(--text-lg);
   font-weight: 700;
-  color: var(--on-surface);
+  color: #ffffff;
   letter-spacing: -0.01em;
   margin: 0;
   line-height: 1.3;
@@ -581,8 +635,21 @@
 
 .problemDesc {
   font-size: var(--text-sm);
-  color: var(--on-surface-variant);
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.problemTag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  width: fit-content;
+  margin-top: 0.25rem;
 }
 
 /* ══════════════════════════════════════════════
@@ -812,11 +879,12 @@
 .authorRole { font-size: var(--text-xs); color: var(--on-surface-variant); }
 
 /* ══════════════════════════════════════════════
-   WHY SECTION (dark)
+   WHY SECTION (dark, slightly lighter than CTA)
 ══════════════════════════════════════════════ */
 .whySection {
-  background: var(--primary-container);
+  background: #1a2540;
   padding: 6rem 0;
+  border-top: 2px solid rgba(108, 248, 187, 0.12);
 }
 
 .whyInner {
@@ -918,8 +986,23 @@
 /* ── CTA Banner ── */
 .ctaBanner {
   background: var(--primary-container);
-  padding: 5rem var(--space-6);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 5.5rem var(--space-6);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaBanner::before {
+  content: '';
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(0, 108, 73, 0.22) 0%, transparent 65%);
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .ctaContent {
@@ -1110,7 +1193,7 @@
 }
 
 @media (max-width: 900px) {
-  .problemGrid { grid-template-columns: 1fr; }
+  .problemGrid { grid-template-columns: 1fr; gap: var(--space-4); }
 
   .stepsRow {
     grid-template-columns: 1fr;
