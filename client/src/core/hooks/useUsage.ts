@@ -4,9 +4,8 @@
  */
 import { useQuery } from '@tanstack/react-query'
 import { apiClient } from '@/shared/lib/apiClient'
-import { useAuthStore } from '@/core/auth/useAuthStore'
 
-export type PlanName = 'seeker' | 'hustler' | 'closer'
+export type PlanName = 'guest' | 'seeker' | 'hustler' | 'closer'
 export type QuotaFeature = 'pdfDownloads' | 'jdScore' | 'aiBullets' | 'jdTailoring' | 'coverLetter'
 
 export interface UsageData {
@@ -27,15 +26,17 @@ interface UsageResponse {
 }
 
 export const PLAN_LIMITS: Record<PlanName, Record<QuotaFeature, number>> = {
+  guest:   { pdfDownloads: 0,  jdScore: 2,  aiBullets: 4,  jdTailoring: 1,  coverLetter: 1  },
   seeker:  { pdfDownloads: 5,  jdScore: 3,  aiBullets: 5,  jdTailoring: 2,  coverLetter: 3  },
   hustler: { pdfDownloads: 10, jdScore: 20, aiBullets: 25, jdTailoring: 12, coverLetter: 15 },
   closer:  { pdfDownloads: -1, jdScore: -1, aiBullets: -1, jdTailoring: -1, coverLetter: -1 },
 }
 
 export const PLAN_LABELS: Record<PlanName, string> = {
-  seeker: 'Seeker — Free',
+  guest:   'Guest — Free Trial',
+  seeker:  'Seeker — Free',
   hustler: 'Hustler — ₹79/mo',
-  closer: 'Closer — ₹179/mo',
+  closer:  'Closer — ₹179/mo',
 }
 
 export const PLAN_PRICES: Record<'hustler' | 'closer', string> = {
@@ -44,7 +45,6 @@ export const PLAN_PRICES: Record<'hustler' | 'closer', string> = {
 }
 
 export function useUsage() {
-  const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
 
   const { data, isLoading, refetch } = useQuery<UsageResponse>({
     queryKey: ['usage'],
@@ -52,16 +52,19 @@ export function useUsage() {
       const res = await apiClient.get('/payment/usage')
       return res.data.data as UsageResponse
     },
-    enabled: isAuthenticated,
+    enabled: true,
     staleTime: 30_000, // re-fetch every 30s
   })
 
-  const rawPlan = (data?.plan as string) ?? 'seeker'
-  // Normalize legacy plan names if they exist in DB
-  let plan: PlanName = 'seeker'
-  if (rawPlan === 'hustler' || rawPlan === 'pro') plan = 'hustler'
+  const rawPlan = (data?.plan as string) ?? 'guest'
+  // Normalize plan names
+  let plan: PlanName = 'guest'
+  if (rawPlan === 'seeker') plan = 'seeker'
+  else if (rawPlan === 'hustler' || rawPlan === 'pro') plan = 'hustler'
   else if (rawPlan === 'closer') plan = 'closer'
+  else if (rawPlan === 'guest' || rawPlan === 'anonymous') plan = 'guest'
   
+  const isGuest = plan === 'guest'
   const usage = data?.usage
   // Prioritize limits from backend, fallback to frontend defaults for robustness
   const limits = data?.limits ?? PLAN_LIMITS[plan]
@@ -116,5 +119,5 @@ export function useUsage() {
     return Math.min(1, used / featureLimit)
   }
 
-  return { plan, usage, isLoading, isAtLimit, remaining, ratio, refetch }
+  return { plan, isGuest, usage, isLoading, isAtLimit, remaining, ratio, refetch }
 }

@@ -15,6 +15,13 @@ const EditorShell = lazy(() => import('@/features/resume-builder/components/edit
 const JDTailorPage     = lazy(() => import('@/features/jd-tailor/JDTailorPage'))
 const CoverLetterPage  = lazy(() => import('@/features/cover-letter/CoverLetterPage'))
 
+// Legal & Support
+const PrivacyPage      = lazy(() => import('@/features/legal-support/PrivacyPage'))
+const TermsPage        = lazy(() => import('@/features/legal-support/TermsPage'))
+const CookiePage       = lazy(() => import('@/features/legal-support/CookiePage'))
+const RefundPage       = lazy(() => import('@/features/legal-support/RefundPage'))
+const ContactPage      = lazy(() => import('@/features/legal-support/ContactPage'))
+
 import { GlobalErrorBoundary } from '@/shared/components/ErrorBoundary/GlobalErrorBoundary'
 
 const NotFoundPage = lazy(() => import('@/features/not-found/NotFoundPage'))
@@ -65,11 +72,18 @@ export const router = createBrowserRouter([
             element: <AuthGuard />,
             children: [
               { path: 'dashboard',     element: <Suspense fallback={<Fallback />}><Dashboard /></Suspense> },
-              { path: 'jd-tailor',     element: <Suspense fallback={<Fallback />}><JDTailorPage /></Suspense> },
-              { path: 'cover-letter',  element: <Suspense fallback={<Fallback />}><CoverLetterPage /></Suspense> },
-            ]
+            ],
           },
+          { path: 'cover-letter',  element: <Suspense fallback={<Fallback />}><CoverLetterPage /></Suspense> },
+          { path: 'jd-tailor',     element: <Suspense fallback={<Fallback />}><JDTailorPage /></Suspense> },
           { path: 'resume/:id',    element: <Suspense fallback={<Fallback />}><EditorShell /></Suspense> },
+          
+          // Legal & Support routes
+          { path: 'privacy',       element: <Suspense fallback={<Fallback />}><PrivacyPage /></Suspense> },
+          { path: 'terms',         element: <Suspense fallback={<Fallback />}><TermsPage /></Suspense> },
+          { path: 'cookies',       element: <Suspense fallback={<Fallback />}><CookiePage /></Suspense> },
+          { path: 'refund-policy', element: <Suspense fallback={<Fallback />}><RefundPage /></Suspense> },
+          { path: 'contact',       element: <Suspense fallback={<Fallback />}><ContactPage /></Suspense> },
         ],
       },
       {

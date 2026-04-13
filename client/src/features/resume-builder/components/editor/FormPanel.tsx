@@ -1,6 +1,7 @@
 import { X, Lightbulb, Plus, Trash2, ArrowRight, ArrowLeft } from 'lucide-react'
 import { Input } from '@/shared/components/Input/Input'
 import { Textarea } from '@/shared/components/Textarea/Textarea'
+import { AiTextarea } from './AiTextarea'
 import { useEditorUIStore } from '../../store/useEditorUIStore'
 import { useResumeStore } from '../../store/useResumeStore'
 import { SECTION_DEFINITIONS, type FieldDefinition } from '../../config/fieldDefinitions'
@@ -45,11 +46,13 @@ const SummaryForm = () => {
   const set = useResumeStore((s) => s.setPersonalField)
   return (
     <div className={styles.form}>
-      <Textarea
+      <AiTextarea
         label="Professional Summary"
-        value={info.summary || ''}
-        rows={6}
-        onChange={(e) => set('summary', e.target.value)}
+        sectionKey="profile"
+        fieldName="summary"
+        currentValue={info.summary || ''}
+        contextFields={{ fullName: info.fullName || '', title: info.title || '' }}
+        onValueChange={(val) => set('summary', val)}
         placeholder="Results-driven professional with..."
       />
       <p className={styles.hint}>2–4 sentences. Lead with your role, years of experience, and biggest strength.</p>
@@ -57,8 +60,25 @@ const SummaryForm = () => {
   )
 }
 
-const renderField = (f: FieldDefinition, val: string, onChange: (val: string) => void) => {
+const renderField = (f: FieldDefinition, val: string, onChange: (val: string) => void, sectionKey?: string, entry?: any) => {
   if (f.type === 'textarea') {
+    if (f.aiConfig && sectionKey) {
+      const contextFields: Record<string, string> = {}
+      f.aiConfig.contextFields.forEach(cf => {
+        contextFields[cf] = entry?.[cf] || ''
+      })
+      return (
+        <AiTextarea 
+          label={f.label} 
+          sectionKey={sectionKey} 
+          fieldName={f.name} 
+          currentValue={val} 
+          contextFields={contextFields} 
+          onValueChange={onChange} 
+          placeholder={f.placeholder} 
+        />
+      )
+    }
     return <Textarea label={f.label} value={val} onChange={(e) => onChange(e.target.value)} rows={f.rows || 3} placeholder={f.placeholder} />
   }
   return <Input label={f.label} type={f.type === 'text' ? 'text' : f.type} value={val} onChange={(e) => onChange(e.target.value)} placeholder={f.placeholder} />
@@ -85,7 +105,7 @@ const GroupFieldRenderer = ({ field, value, onChange }: { field: FieldDefinition
             <div className={styles.groupItemFields}>
               {field.subFields?.map(sf => (
                 <div key={sf.name} className={styles.subField}>
-                  {renderField(sf, item[sf.name] || '', (v) => updateItem(idx, sf.name, v))}
+                  {renderField(sf, item[sf.name] || '', (v) => updateItem(idx, sf.name, v), undefined, undefined)}
                 </div>
               ))}
             </div>
@@ -145,7 +165,7 @@ const DynamicSectionForm = ({ sectionKey }: { sectionKey: SectionKey }) => {
               const isFullW = f.type === 'textarea'
               return (
                 <div key={f.name} style={{ gridColumn: isFullW ? 'span 2' : 'span 1' }}>
-                  {renderField(f, entry[f.name] ?? '', (v) => updateField(idx, f.name, v))}
+                  {renderField(f, entry[f.name] ?? '', (v) => updateField(idx, f.name, v), sectionKey, entry)}
                 </div>
               )
             })}

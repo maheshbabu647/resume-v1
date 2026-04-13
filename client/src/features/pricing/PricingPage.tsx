@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import {
-  Check, X as XIcon, Zap, ArrowRight, Loader2,
-  Download, Brain, BarChart3, GitBranch, Share2, Shield
+  Check, X as XIcon, Zap, Loader2,
+  Download, Brain, BarChart3, Share2, Shield
 } from 'lucide-react'
 import { useAuthStore } from '@/core/auth/useAuthStore'
 import { apiClient } from '@/shared/lib/apiClient'
@@ -24,7 +24,6 @@ const FEATURES = [
   { label: 'JD Score / month',      seeker: '3',           hustler: '20',          closer: 'Unlimited',    icon: <BarChart3 size={15}/> },
   { label: 'AI Bullet Suggestions', seeker: '5 / month',   hustler: '25 / month',  closer: 'Unlimited',    icon: <Brain size={15}/> },
   { label: 'JD Tailoring / month',  seeker: '2',           hustler: '12',          closer: 'Unlimited',    icon: <Brain size={15}/> },
-  { label: 'Resume Version History',seeker: false,         hustler: '5 versions',  closer: 'Unlimited',    icon: <GitBranch size={15}/> },
   { label: 'Referral Bonus',        seeker: '+2 Bundle',   hustler: '+2 Bundle',   closer: '+2 Bundle',    icon: <Share2 size={15}/> },
 ]
 
@@ -160,7 +159,12 @@ export default function PricingPage() {
         </p>
       </div>
 
-      {/* ── Plan Cards ── */}
+
+
+      {/* ── Error ── */}
+      {error && <div className={styles.error}>{error}</div>}
+
+      {/* ── Plan Grid ── */}
       <div className={styles.planGrid}>
         {PLANS.map((plan) => (
           <div
@@ -175,56 +179,49 @@ export default function PricingPage() {
             )}
             <div className={styles.planName} style={{ color: plan.color }}>{plan.name}</div>
             <p className={styles.planDesc}>{plan.description}</p>
+            
             <div className={styles.planPrice}>
               <span className={styles.planAmount}>{plan.price}</span>
               {plan.priceSub && <span className={styles.planSub}>{plan.priceSub}</span>}
             </div>
 
-            {plan.key === 'seeker' ? (
-              <Link to={isAuthenticated ? '/dashboard' : '/register'} className={styles.ctaOutline}>
-                {plan.cta} <ArrowRight size={14} />
-              </Link>
-            ) : (
-              <button
-                className={`${styles.ctaBtn} ${plan.key === 'closer' ? styles.ctaWarm : ''}`}
-                style={{ '--btn-color': plan.color } as React.CSSProperties}
-                onClick={() => trackUpgradeClicked(plan.key as UpgradePlan, 'pricing_page')}
-                disabled={true}
-              >
-                Coming Soon
-              </button>
-            )}
+            <div className={styles.ctaWrapper}>
+              {plan.key === 'seeker' ? (
+                <Link to={isAuthenticated ? '/dashboard' : '/register'} className={styles.ctaOutline}>
+                  {plan.cta}
+                </Link>
+              ) : (
+                <button
+                  className={`${styles.ctaBtn} ${plan.key === 'closer' ? styles.ctaWarm : ''} ${loading === plan.key ? styles.ctaLoading : ''}`}
+                  style={{ '--btn-color': plan.color } as React.CSSProperties}
+                  onClick={() => handleUpgrade(plan.key as UpgradePlan)}
+                  disabled={loading !== null}
+                >
+                  {loading === plan.key ? <Loader2 size={16} className={styles.spin} /> : plan.cta}
+                </button>
+              )}
+            </div>
+
+            <div className={styles.featureDivider} />
+
+            <div className={styles.cardFeatures}>
+              {FEATURES.map((feat, i) => {
+                const val = (feat as any)[plan.key]
+                return (
+                  <div key={i} className={styles.cardFeatItem}>
+                    <div className={styles.featLabel}>
+                      <span className={styles.featIcon}>{feat.icon}</span>
+                      {feat.label}
+                    </div>
+                    <div className={styles.featValue}>
+                      {renderValue(val)}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         ))}
-      </div>
-
-      {/* ── Error ── */}
-      {error && <div className={styles.error}>{error}</div>}
-
-      {/* ── Comparison Table ── */}
-      <div className={styles.tableWrap}>
-        <h2 className={styles.tableTitle}>Full feature comparison</h2>
-        <div className={styles.table}>
-          {/* Thead */}
-          <div className={styles.tableHead}>
-            <div className={styles.thFeature}>Feature</div>
-            <div className={styles.th}>Seeker</div>
-            <div className={`${styles.th} ${styles.thHighlight}`}>Hustler</div>
-            <div className={styles.th}>Closer</div>
-          </div>
-          {/* Rows */}
-          {FEATURES.map((row, i) => (
-            <div key={i} className={`${styles.tableRow} ${i % 2 === 0 ? styles.tableRowAlt : ''}`}>
-              <div className={styles.tdFeature}>
-                <span className={styles.featureIcon}>{row.icon}</span>
-                {row.label}
-              </div>
-              <div className={styles.td}>{renderValue(row.seeker)}</div>
-              <div className={`${styles.td} ${styles.tdHighlight}`}>{renderValue(row.hustler)}</div>
-              <div className={styles.td}>{renderValue(row.closer)}</div>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* ── Referral Callout ── */}

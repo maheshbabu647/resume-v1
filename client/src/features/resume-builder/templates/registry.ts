@@ -5,6 +5,7 @@ export const TEMPLATE_REGISTRY = {
     id: 'modern-centered',
     name: 'Modern Centered',
     thumbnail: '/thumbnails/modern-centered.png',
+    thumbnailUrl: 'https://res.cloudinary.com/draqrqhdg/image/upload/v1775974692/Arjun_Mehta_s_Resume_vysgl6.jpg',
     isAtsRecommended: true,
     tags: {
       style: 'Modern',
@@ -19,6 +20,7 @@ export const TEMPLATE_REGISTRY = {
     id: 'classic-sidebar',
     name: 'Classic Sidebar',
     thumbnail: '/thumbnails/classic-sidebar.png',
+    thumbnailUrl: '',
     isAtsRecommended: true,
     tags: {
       style: 'Classic',
@@ -33,6 +35,7 @@ export const TEMPLATE_REGISTRY = {
     id: 'executive-minimal',
     name: 'Executive Minimal',
     thumbnail: '/thumbnails/executive-minimal.png',
+    thumbnailUrl: '',
     isAtsRecommended: true,
     tags: {
       style: 'Minimal',

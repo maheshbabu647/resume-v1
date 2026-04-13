@@ -1,0 +1,129 @@
+.footer {
+  background: var(--surface-container-lowest);
+  border-top: 1px solid var(--outline-variant);
+  padding: var(--space-12) var(--space-6) var(--space-6);
+}
+
+.footerContent {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: var(--space-16);
+  margin-bottom: var(--space-8);
+}
+
+.footerBrand { flex: 1; }
+
+/* Re-using brand styles because they are shared in several places */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.brandLogo {
+  width: 32px;
+  height: 32px;
+  background: var(--primary);
+  color: var(--on-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+}
+
+.brandName {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--on-surface);
+  letter-spacing: -0.02em;
+}
+
+.footerTagline {
+  font-size: var(--text-sm);
+  color: var(--on-surface-variant);
+  margin-top: var(--space-2);
+}
+
+.footerLinks { display: flex; gap: var(--space-12); }
+
+.footerCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.footerColTitle {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  color: var(--on-surface);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  margin-bottom: var(--space-1);
+}
+
+.footerLink {
+  font-size: var(--text-sm);
+  color: var(--on-surface-variant);
+  transition: color var(--transition-fast);
+  text-decoration: none;
+}
+
+.footerLink:hover { color: var(--on-surface); }
+
+.footerText {
+  color: var(--on-surface-variant);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  margin-bottom: var(--space-4);
+  max-width: 210px;
+}
+
+.socialRow {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.socialLink {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: var(--surface-container);
+  color: var(--on-surface);
+  transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+}
+
+.socialLink:hover {
+  transform: translateY(-2px);
+  background: var(--secondary);
+  color: var(--on-secondary);
+}
+
+.followText {
+  font-size: var(--text-xs);
+  color: var(--outline);
+  line-height: 1.6;
+}
+
+.footerBottom {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--outline-variant);
+  font-size: var(--text-xs);
+  color: var(--on-surface-variant);
+}
+
+@media (max-width: 600px) {
+  .footerContent {
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+  .footerLinks { flex-direction: column; gap: var(--space-8); }
+}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink, Link, useNavigate } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { LayoutDashboard, FileText, LogOut, User as UserIcon, Menu, X, Target, FileSignature, CreditCard } from 'lucide-react'
 import { useAuthStore } from '@/core/auth/useAuthStore'
 import { useUsage } from '@/core/hooks/useUsage'
@@ -9,13 +9,14 @@ import styles from './Navbar.module.css'
 export const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuthStore()
   const { plan } = useUsage()
-  const navigate = useNavigate()
+
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const handleLogout = () => {
     logout()
     setIsMenuOpen(false)
-    navigate('/login')
+    // Full page reload ensures all React Query caches are cleared
+    window.location.href = '/login'
   }
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)

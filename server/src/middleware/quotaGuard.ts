@@ -11,7 +11,8 @@
 
 import type { Request, Response, NextFunction } from 'express'
 import { User } from '../models/User.model'
-import { PLAN_LIMITS, type PlanName } from '../config/constants'
+import { Guest } from '../models/Guest.model'
+import { PLAN_LIMITS, GUEST_LIMITS, type PlanName } from '../config/constants'
 import { AppError } from '../lib/AppError'
 
 export type QuotaFeature = 'pdfDownloads' | 'jdScore' | 'aiBullets' | 'jdTailoring' | 'coverLetter'
@@ -20,10 +21,66 @@ const currentMonth = () => new Date().toISOString().slice(0, 7) // "YYYY-MM"
 
 export const quotaGuard =
   (feature: QuotaFeature) =>
-  async (req: Request, _res: Response, next: NextFunction): Promise<void> => {
+  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const userId = req.user!._id
       const isDev = process.env.NODE_ENV === 'development'
+      
+      if (!req.user) {
+        if (!req.guestId) {
+          return next(new AppError('UNAUTHORIZED', 401))
+        }
+        
+        const month = currentMonth()
+        let guest = await Guest.findOne({ guestId: req.guestId }).lean()
+        if (!guest) {
+          await Guest.create({ guestId: req.guestId, usage: { month } })
+          guest = await Guest.findOne({ guestId: req.guestId }).lean()
+        }
+        if (!guest) return next(new AppError('SERVER_ERROR', 500))
+
+        // Reset counters if it's a new month
+        if (guest.usage?.month !== month) {
+          await Guest.findOneAndUpdate(
+            { guestId: req.guestId },
+            { $set: {
+              'usage.month': month,
+              'usage.pdfDownloads': 0,
+              'usage.jdScore': 0,
+              'usage.aiBullets': 0,
+              'usage.jdTailoring': 0,
+              'usage.coverLetter': 0,
+            }}
+          )
+          guest = await Guest.findOne({ guestId: req.guestId }).lean()
+          if (!guest) return next(new AppError('SERVER_ERROR', 500))
+        }
+
+        const limit = GUEST_LIMITS[feature]
+        const used = guest.usage?.[feature] ?? 0
+
+        if (used < limit) {
+          await Guest.findOneAndUpdate({ guestId: req.guestId }, { $inc: { [`usage.${feature}`]: 1 } })
+          return next()
+        }
+        
+        if (isDev) {
+          await Guest.findOneAndUpdate({ guestId: req.guestId }, { $inc: { [`usage.${feature}`]: 1 } })
+          return next()
+        }
+
+        res.status(403).json({
+          success: false,
+          code: 'GUEST_LIMIT_HIT',
+          message: `Guest limit reached for ${feature}. Please sign up to continue.`,
+          data: { feature, used, limit }
+        })
+        return
+      }
+
+      // ─────────────────────────────────────────────────────────
+      // User path
+      // ─────────────────────────────────────────────────────────
+      const userId = req.user._id
 
       // Fetch user with usage
       let user = await User.findById(userId).select('plan usage').lean()

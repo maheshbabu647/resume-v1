@@ -47,9 +47,19 @@ const defaultData: ResumeData = {
     contactLinks: []
   },
   sections: [
-    { key: 'experience', visible: true, order: 1, entries: [] },
-    { key: 'education', visible: true, order: 2, entries: [] },
-    { key: 'skills', visible: true, order: 3, entries: [] }
+    { key: 'summary' as any, visible: true, order: 0, entries: [] },
+    { 
+      key: 'experience', visible: true, order: 1, 
+      entries: [{ jobTitle: '', company: '', employmentType: '', location: '', dates: '', description: '' }] 
+    },
+    { 
+      key: 'education', visible: true, order: 2, 
+      entries: [{ qualification: '', institution: '', honorsOrMinor: '', dates: '', gpa: '', description: '' }] 
+    },
+    { 
+      key: 'skills', visible: true, order: 3, 
+      entries: [{ category: '', skillList: '' }] 
+    }
   ]
 }
 
@@ -156,13 +166,25 @@ export const useResumeStore = create<ResumeState>((set, _get) => {
       const loadedOrder = resume.customization?.sectionOrder || defaultCustomization.sectionOrder
       const mergedOrder = [...new Set([...loadedOrder, ...ALL_SECTION_KEYS])]
 
+      // Patch old resumes that don't track 'summary' in the sections array
+      const loadedSections = resume.sections?.length ? resume.sections : defaultData.sections
+      const hasSummarySection = loadedSections.some((s: any) => s.key === 'summary')
+      let patchedSections = loadedSections
+      if (!hasSummarySection) {
+        const hasSummaryText = !!(resume.personalInfo?.summary)
+        patchedSections = [
+          { key: 'summary', visible: hasSummaryText, order: 0, entries: [] },
+          ...loadedSections
+        ]
+      }
+
       set({
         resumeId: resume._id,
         templateId: resume.templateId || 'modern-centered',
         title: resume.title || 'Untitled Resume',
         data: {
           personalInfo: { ...defaultData.personalInfo, ...(resume.personalInfo || {}) },
-          sections: resume.sections?.length ? resume.sections : defaultData.sections,
+          sections: patchedSections,
         },
         customization: {
           ...safeCustomization,

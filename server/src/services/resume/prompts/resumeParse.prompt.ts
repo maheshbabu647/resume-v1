@@ -243,6 +243,7 @@ You are an expert resume parser. Extract all information from the following resu
       "key": "events",
       "visible": true,
       "order": 19,
+      "notes": "USE THIS FOR HACKATHONS AND WORKSHOPS",
       "entries": [{
         "eventName": "string",
         "organizer": "string",
@@ -261,6 +262,8 @@ You are an expert resume parser. Extract all information from the following resu
 - Respond with ONLY valid JSON — no markdown, no explanation, no code fences
 - Preserve bullet point text in "description" fields with newline characters
 - Pay special attention to exact property names! For example, output "skillList" not "skills", "qualification" not "degree", "dates" not "startDate".
+- **Categorization Rule**: Put all Hackathons, Workshops, and Tech Competitions in the "events" section. Use "awards" ONLY for honors, rewards, and formal recognitions. Do NOT mix them.
+- **Section Visibility**: The "sections" array must ONLY include sections with at least one entry. Do NOT return empty sections. Set "visible": true for every section you include.
 
 ## Resume Text to Parse:
 ---

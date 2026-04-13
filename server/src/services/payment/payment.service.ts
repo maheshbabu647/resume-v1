@@ -10,7 +10,9 @@ import { env } from '../../config/env'
 import { RAZORPAY_PLAN_IDS, PLAN_LIMITS, type PlanName } from '../../config/constants'
 import { Subscription } from '../../models/Subscription.model'
 import { User } from '../../models/User.model'
+import { Guest } from '../../models/Guest.model'
 import { AppError } from '../../lib/AppError'
+import { GUEST_LIMITS } from '../../config/constants'
 
 // ─── Razorpay client ─────────────────────────────────────────────────────────
 
@@ -187,7 +189,40 @@ export const getSubscription = async (userId: string): Promise<ISubscriptionBase
 
 // ─── Get usage for current user ───────────────────────────────────────────────
 
-export const getUsage = async (userId: string): Promise<{ plan: PlanName, usage: any, limits: any }> => {
+export const getUsage = async (userId?: string, guestId?: string): Promise<{ plan: string, usage: any, limits: any }> => {
+  const currentMonth = new Date().toISOString().slice(0, 7)
+
+  if (!userId) {
+    if (!guestId) return { plan: 'anonymous', usage: { month: currentMonth }, limits: GUEST_LIMITS }
+    
+    let guest = await Guest.findOne({ guestId }).select('usage').lean()
+    if (!guest) {
+      await Guest.create({ guestId })
+      guest = await Guest.findOne({ guestId }).select('usage').lean()
+    }
+    if (!guest) return { plan: 'guest', usage: { month: currentMonth }, limits: GUEST_LIMITS }
+
+    // If it's a new month, return zeroed usage (same logic as user path)
+    const guestUsage = guest.usage?.month === currentMonth
+      ? guest.usage
+      : {
+          month: currentMonth,
+          pdfDownloads: 0,
+          jdScore: 0,
+          aiBullets: 0,
+          jdTailoring: 0,
+          coverLetter: 0,
+          bonusTailoring: 0,
+          bonusPdfDownloads: 0,
+        }
+
+    return {
+      plan: 'guest',
+      usage: guestUsage,
+      limits: GUEST_LIMITS
+    }
+  }
+
   const user = await User.findById(userId).select('plan usage').lean()
   if (!user) throw new AppError('USER_NOT_FOUND', 404)
 
@@ -206,11 +241,9 @@ export const getUsage = async (userId: string): Promise<{ plan: PlanName, usage:
     
   if (!updatedUser) throw new AppError('USER_NOT_FOUND', 404)
 
-  const currentMonth = new Date().toISOString().slice(0, 7)
-
   // If it's a new month, return zeroed usage (don't persist here — quotaGuard does that)
-  const usage = user.usage?.month === currentMonth
-    ? user.usage
+  const usage = updatedUser.usage?.month === currentMonth
+    ? updatedUser.usage
     : { 
         month: currentMonth, 
         pdfDownloads: 0, 
@@ -218,10 +251,10 @@ export const getUsage = async (userId: string): Promise<{ plan: PlanName, usage:
         aiBullets: 0, 
         jdTailoring: 0, 
         coverLetter: 0,
-        bonusPdfDownloads: user.usage?.bonusPdfDownloads ?? 0 
+        bonusPdfDownloads: updatedUser.usage?.bonusPdfDownloads ?? 0 
       }
 
-  const planName = (user.plan || 'seeker') as PlanName
+  const planName = (updatedUser.plan || 'seeker') as PlanName
   const limits = PLAN_LIMITS[planName]
 
   return {

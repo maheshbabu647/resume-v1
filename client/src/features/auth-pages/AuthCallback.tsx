@@ -38,6 +38,7 @@ export default function AuthCallback() {
         
         const user = data.data.user ?? data.data
         setUser(user)
+        localStorage.removeItem('guest_id') // Guest was merged server-side; discard stale ID
 
         // Detect new vs returning user — new if account created within last 60 seconds
         const isNewUser = (Date.now() - new Date(user.createdAt).getTime()) < 60_000

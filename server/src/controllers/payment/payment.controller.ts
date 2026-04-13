@@ -33,7 +33,9 @@ export const getSubscription = async (req: Request, res: Response, next: NextFun
 
 export const getUsage = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const data = await paymentService.getUsage(req.user!._id.toString())
+    const userId = req.user?._id?.toString()
+    const guestId = req.guestId
+    const data = await paymentService.getUsage(userId, guestId)
     res.json({ ok: true, data })
   } catch (err) { next(err) }
 }

@@ -8,6 +8,8 @@ import {
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { apiClient } from '@/shared/lib/apiClient'
 import { UpgradeModal } from '@/shared/components/UpgradeModal/UpgradeModal'
+import { AuthRequireModal } from '@/shared/components/AuthRequireModal/AuthRequireModal'
+import { useAuthStore } from '@/core/auth/useAuthStore'
 import { useUsage } from '@/core/hooks/useUsage'
 import { serializeResume } from '@/features/scoring/lib/jdPreprocessor'
 import { trackCoverLetterGenerated } from '@/shared/lib/analytics'
@@ -45,7 +47,8 @@ const TONES: { id: Tone; name: string; desc: string; emoji: string }[] = [
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function CoverLetterPage() {
-  const { remaining } = useUsage()
+  const { remaining, isGuest, isAtLimit } = useUsage()
+  const isAuthenticated = useAuthStore(s => s.isAuthenticated)
 
   // Input state
   const [resumeSource, setResumeSource] = useState<ResumeSource>('paste')
@@ -61,6 +64,7 @@ export default function CoverLetterPage() {
   const [result, setResult]             = useState<CoverLetterResult | null>(null)
   const [copied, setCopied]             = useState(false)
   const [showUpgradeModal, setShowUpgradeModal] = useState(false)
+  const [showAuthModal, setShowAuthModal]       = useState(false)
 
   const fileInputRef   = useRef<HTMLInputElement>(null)
   const jdFileInputRef = useRef<HTMLInputElement>(null)
@@ -71,7 +75,8 @@ export default function CoverLetterPage() {
     queryFn: async () => {
       const res = await apiClient.get('/resumes')
       return res.data.data.resumes
-    }
+    },
+    enabled: isAuthenticated
   })
 
   // ── Parse uploaded resume ─────────────────────────────────────────────────
@@ -118,8 +123,12 @@ export default function CoverLetterPage() {
       trackCoverLetterGenerated()
     },
     onError: (err: any) => {
-      const code = err?.response?.data?.error?.code
-      if (code === 'QUOTA_EXCEEDED') setShowUpgradeModal(true)
+      const code = err?.response?.data?.error?.code ?? err?.response?.data?.code
+      if (code === 'GUEST_LIMIT_HIT') {
+        window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: err?.response?.data?.data ?? { feature: 'coverLetter' } }))
+      } else if (code === 'QUOTA_EXCEEDED') {
+        setShowUpgradeModal(true)
+      }
     }
   })
 
@@ -150,11 +159,20 @@ export default function CoverLetterPage() {
     const rt = getResumeText()
     if (!rt.trim() || rt.trim().length < 50) return
     if (!jdText.trim() || jdText.trim().length < 50) return
+    // Pre-check: if guest is at limit, show auth modal
+    if (isGuest && isAtLimit('coverLetter')) {
+      window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: { feature: 'coverLetter' } }))
+      return
+    }
     generateMutation.mutate({ resumeText: rt, jdText, tone: selectedTone })
   }
 
   const handleCopy = async () => {
     if (!result) return
+    if (!isAuthenticated) {
+      setShowAuthModal(true)
+      return
+    }
     await navigator.clipboard.writeText(result.body)
     setCopied(true)
     setTimeout(() => setCopied(false), 2500)
@@ -162,6 +180,10 @@ export default function CoverLetterPage() {
 
   const handleDownload = () => {
     if (!result) return
+    if (!isAuthenticated) {
+      setShowAuthModal(true)
+      return
+    }
     const content = `Subject: ${result.subject}\n\nDear ${result.recipientName},\n\n${result.body}`
     const blob = new Blob([content], { type: 'text/plain' })
     const url = URL.createObjectURL(blob)
@@ -283,7 +305,21 @@ export default function CoverLetterPage() {
 
       {resumeSource === 'existing' && (
         <>
-          {resumes.length === 0 ? (
+          {!isAuthenticated ? (
+            <div style={{ textAlign: 'center', padding: '2.5rem 1.5rem' }}>
+              <div style={{ background: 'rgba(99,102,241,0.1)', width: 48, height: 48, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem', color: '#6366f1' }}>
+                <Zap size={20} />
+              </div>
+              <p style={{ color: 'var(--on-surface)', fontWeight: 600, fontSize: '0.95rem', marginBottom: '0.5rem' }}>Unlock your saved resumes</p>
+              <p style={{ color: 'var(--on-surface-variant)', fontSize: '0.85rem', marginBottom: '1.5rem', lineHeight: 1.5 }}>Sign in to use your professional resumes and track your application history.</p>
+              <button 
+                style={{ all: 'unset', background: '#6366f1', color: 'white', padding: '10px 20px', borderRadius: 'var(--radius-lg)', fontSize: 'var(--text-xs)', fontWeight: 600, cursor: 'pointer' }}
+                onClick={() => setShowAuthModal(true)}
+              >
+                Sign In Now
+              </button>
+            </div>
+          ) : resumes.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '1.5rem', color: 'var(--on-surface-variant)', fontSize: 'var(--text-sm)' }}>
               No resumes found. <a href="/resume/new" style={{ color: 'var(--secondary)' }}>Create one first</a>.
             </div>
@@ -557,8 +593,16 @@ export default function CoverLetterPage() {
       <UpgradeModal
         isOpen={showUpgradeModal}
         onClose={() => setShowUpgradeModal(false)}
-        trigger="jdTailoring"
+        trigger="coverLetter"
         currentPlan="seeker"
+      />
+
+      <AuthRequireModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        onSuccess={() => { setShowAuthModal(false); window.location.reload() }}
+        title="Welcome back to CareerForge"
+        subtitle="Sign in to access your resumes and continue generating tailored cover letters."
       />
     </div>
   )

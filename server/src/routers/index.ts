@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { authenticate } from '../middleware/authenticate'
+import { authenticate, optionalAuthenticate } from '../middleware/authenticate'
 import { planGuard }    from '../middleware/planGuard'
 import { quotaGuard }   from '../middleware/quotaGuard'
 import { aiRateLimiter, parseRateLimiter } from '../middleware/rateLimiter'
@@ -26,7 +26,7 @@ router.use('/webhooks', webhookRouter)
 router.use('/user',     authenticate, userRouter)
 
 // ─── Payment ──────────────────────────────────────────────────────────────────
-router.use('/payment',  authenticate, paymentRouter)
+router.use('/payment',  optionalAuthenticate, paymentRouter)
 
 // ─── Resumes ──────────────────────────────────────────────────────────────────
 router.use('/resumes',  authenticate, resumeRouter)
@@ -39,7 +39,7 @@ router.post('/ai/parse-resume', parseRateLimiter, uploadMiddleware, parseResume)
 // AI JD score  — quota gated (jdScore: 3/20/∞ per month)
 // AI JD tailor — quota gated (jdTailoring: 2/12/∞ per month)
 // These are applied inside ai.router per-route for fine-grained control
-router.use('/ai',       authenticate, aiRouter)
+router.use('/ai',       optionalAuthenticate, aiRouter)
 
 // ─── Export/Download ──────────────────────────────────────────────────────────
 // PDF download is quota gated (pdfDownloads: 2/10/∞ per month)

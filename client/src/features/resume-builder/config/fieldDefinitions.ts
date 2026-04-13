@@ -61,11 +61,11 @@ export const SECTION_DEFINITIONS: SectionDefinition[] = [
       { name: 'email', label: 'Email Address', type: 'email', required: true },
       { name: 'phone', label: 'Phone Number', type: 'tel' },
       { name: 'location', label: 'Location (City, State)', type: 'text' },
-      { 
-        name: 'contactLinks', 
-        label: 'Social & Web Links', 
-        type: 'group', 
-        repeatable: true, 
+      {
+        name: 'contactLinks',
+        label: 'Social & Web Links',
+        type: 'group',
+        repeatable: true,
         singularLabel: 'Link',
         pluralLabel: 'Links',
         subFields: [
@@ -131,10 +131,12 @@ export const SECTION_DEFINITIONS: SectionDefinition[] = [
       { name: 'projectName', label: 'Project Name', type: 'text' },
       { name: 'role', label: 'Role', type: 'text' },
       { name: 'techStack', label: 'Tech Stack', type: 'text' },
-      { name: 'links', label: 'Links', type: 'group', repeatable: true, subFields: [
-        { name: 'text', label: 'Link Text', type: 'text' },
-        { name: 'url', label: 'URL', type: 'url' }
-      ]},
+      {
+        name: 'links', label: 'Links', type: 'group', repeatable: true, subFields: [
+          { name: 'text', label: 'Link Text', type: 'text' },
+          { name: 'url', label: 'URL', type: 'url' }
+        ]
+      },
       { name: 'description', label: 'Description', type: 'textarea', rows: 4, aiConfig: aiText(['projectName', 'role', 'techStack']) }
     ]
   },
@@ -360,10 +362,12 @@ export const SECTION_DEFINITIONS: SectionDefinition[] = [
       { name: 'date', label: 'Date', type: 'text', required: true },
       { name: 'achievement', label: 'Achievement', type: 'text' },
       { name: 'description', label: 'Description', type: 'textarea', rows: 4 },
-      { name: 'links', label: 'Links', type: 'group', repeatable: true, subFields: [
-        { name: 'text', label: 'Link Text', type: 'text' },
-        { name: 'url', label: 'URL', type: 'url' }
-      ]}
+      {
+        name: 'links', label: 'Links', type: 'group', repeatable: true, subFields: [
+          { name: 'text', label: 'Link Text', type: 'text' },
+          { name: 'url', label: 'URL', type: 'url' }
+        ]
+      }
     ]
   },
   {
@@ -379,10 +383,12 @@ export const SECTION_DEFINITIONS: SectionDefinition[] = [
       { name: 'employmentType', label: 'Employment Type', type: 'text' },
       { name: 'location', label: 'Location', type: 'text' },
       { name: 'dates', label: 'Dates', type: 'text' },
-      { name: 'links', label: 'Links', type: 'group', repeatable: true, subFields: [
-        { name: 'text', label: 'Link Text', type: 'text' },
-        { name: 'url', label: 'URL', type: 'url' }
-      ]},
+      {
+        name: 'links', label: 'Links', type: 'group', repeatable: true, subFields: [
+          { name: 'text', label: 'Link Text', type: 'text' },
+          { name: 'url', label: 'URL', type: 'url' }
+        ]
+      },
       { name: 'description', label: 'Description', type: 'textarea', rows: 5 }
     ]
   }

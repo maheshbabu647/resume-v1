@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 import { Eye, EyeOff, ArrowRight } from 'lucide-react'
 import { Modal } from '@/shared/components/Modal/Modal'
 import { Button } from '@/shared/components/Button/Button'
@@ -31,6 +32,7 @@ export const AuthRequireModal = ({ isOpen, onClose, onSuccess, title, subtitle }
   const [resendCooldown, setResendCooldown] = useState(0)
   
   const { setTokens, setUser } = useAuthStore()
+  const queryClient = useQueryClient()
 
   useEffect(() => {
     if (resendCooldown > 0) {
@@ -50,11 +52,16 @@ export const AuthRequireModal = ({ isOpen, onClose, onSuccess, title, subtitle }
     setError('')
     setLoading(true)
     try {
-      const { data } = await apiClient.post('/auth/login', { email, password })
+      const guestId = localStorage.getItem('guest_id')
+      const { data } = await apiClient.post('/auth/login', { email, password }, {
+        headers: guestId ? { 'X-Guest-Id': guestId } : {},
+      })
       setTokens(data.data.accessToken)
       setUser(data.data.user)
+      localStorage.removeItem('guest_id') // Guest was merged server-side; discard stale ID
       trackLogin('email')
       setUserProperties(data.data.user._id, data.data.user.plan)
+      await queryClient.refetchQueries({ queryKey: ['usage'] })
       onSuccess()
     } catch (err: any) {
       const code = err.response?.data?.error?.code
@@ -74,7 +81,11 @@ export const AuthRequireModal = ({ isOpen, onClose, onSuccess, title, subtitle }
     setError('')
     setLoading(true)
     try {
-      await apiClient.post('/auth/register', { name, email, password })
+      const guestId = localStorage.getItem('guest_id')
+      await apiClient.post('/auth/register', { name, email, password }, {
+        headers: guestId ? { 'X-Guest-Id': guestId } : {},
+      })
+      localStorage.removeItem('guest_id') // Guest was merged server-side; discard stale ID
       trackSignUp('email')
       switchMode('verify')
     } catch (err: any) {
@@ -93,6 +104,8 @@ export const AuthRequireModal = ({ isOpen, onClose, onSuccess, title, subtitle }
       const { data } = await apiClient.post('/auth/verify-email', { email, otp })
       setTokens(data.data.accessToken)
       setUser(data.data.user)
+      localStorage.removeItem('guest_id') // Guest was merged server-side; discard stale ID
+      await queryClient.refetchQueries({ queryKey: ['usage'] })
       onSuccess()
     } catch (err: any) {
       setError(err.response?.data?.error?.message || 'Invalid or expired verification code.')
@@ -121,8 +134,21 @@ export const AuthRequireModal = ({ isOpen, onClose, onSuccess, title, subtitle }
       data: state.data,
       customization: state.customization
     }))
-    window.location.href = e.currentTarget.href
+    // Add guestId to the OAuth URL so mergeGuest runs
+    const guestId = localStorage.getItem('guest_id')
+    let url = e.currentTarget.href
+    if (guestId && !url.includes('guestId')) {
+      url += (url.includes('?') ? '&' : '?') + `guestId=${guestId}`
+    }
+    window.location.href = url
   }
+
+  // Build Google OAuth URL with guestId
+  const googleOAuthUrl = (() => {
+    const base = `${import.meta.env.VITE_API_URL || 'http://localhost:4000/v1'}/auth/google`
+    const guestId = localStorage.getItem('guest_id')
+    return guestId ? `${base}?guestId=${guestId}` : base
+  })()
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={mode === 'verify' ? 'Check your email' : title}>
@@ -138,7 +164,7 @@ export const AuthRequireModal = ({ isOpen, onClose, onSuccess, title, subtitle }
         {mode === 'login' && (
           <>
             <a 
-              href={`${import.meta.env.VITE_API_URL || 'http://localhost:4000/v1'}/auth/google`} 
+              href={googleOAuthUrl} 
               className={styles.googleBtn}
               onClick={stashStateForOAuth}
             >
@@ -193,7 +219,7 @@ export const AuthRequireModal = ({ isOpen, onClose, onSuccess, title, subtitle }
         {mode === 'register' && (
           <>
             <a 
-              href={`${import.meta.env.VITE_API_URL || 'http://localhost:4000/v1'}/auth/google`} 
+              href={googleOAuthUrl} 
               className={styles.googleBtn}
               onClick={stashStateForOAuth}
             >

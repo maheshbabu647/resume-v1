@@ -45,20 +45,33 @@ export const analyzeJDMatch = async (body: AnalyzeJdBody) => {
   return finalResult
 }
 
-interface JdTailorLLMResponse { jdCompanyName: string; jdRoleName: string; rewrittenSections: ISection[] }
+interface JdTailorLLMResponse { 
+  jdCompanyName: string; 
+  jdRoleName: string; 
+  rewrittenPersonalInfo?: any;
+  rewrittenSections: ISection[] 
+}
 
 export const jdTailor = async (userId: string, body: JdTailorBody) => {
-  const { resumeId, jdText, sections } = body
-  const parsed = await callLLMJSON<JdTailorLLMResponse>(buildJdTailorPrompt({ sections: sections as ISection[], jdText }))
+  const { resumeId, jdText, personalInfo, sections } = body
+  const parsed = await callLLMJSON<JdTailorLLMResponse>(buildJdTailorPrompt({ personalInfo, sections: sections as ISection[], jdText }))
   if (!parsed.rewrittenSections || !Array.isArray(parsed.rewrittenSections)) throw new AppError('LLM_ERROR', 500, 'AI returned unexpected response format.')
   const history = await JDHistory.create({
     resumeId, userId, jdText,
     jdCompanyName:  parsed.jdCompanyName ?? '',
     jdRoleName:     parsed.jdRoleName ?? '',
+    beforePersonalInfo: personalInfo,
+    afterPersonalInfo:  parsed.rewrittenPersonalInfo,
     beforeSnapshot: sections,
     afterSnapshot:  parsed.rewrittenSections,
   })
-  return { historyId: history._id, rewrittenSections: parsed.rewrittenSections, jdCompanyName: parsed.jdCompanyName, jdRoleName: parsed.jdRoleName }
+  return { 
+    historyId: history._id, 
+    rewrittenPersonalInfo: parsed.rewrittenPersonalInfo, 
+    rewrittenSections: parsed.rewrittenSections, 
+    jdCompanyName: parsed.jdCompanyName, 
+    jdRoleName: parsed.jdRoleName 
+  }
 }
 
 export const suggest = async (body: SuggestBody): Promise<{ suggestions: string[] }> => {
@@ -80,7 +93,7 @@ export const revert = async (userId: string, historyId: string) => {
   const history = await JDHistory.findById(historyId).lean()
   if (!history) throw new AppError('RESUME_NOT_FOUND', 404, 'History entry not found.')
   if (history.userId.toString() !== userId) throw new AppError('FORBIDDEN', 403)
-  return { restoredSections: history.beforeSnapshot }
+  return { restoredPersonalInfo: history.beforePersonalInfo, restoredSections: history.beforeSnapshot }
 }
 
 export interface ParsedResumeData {

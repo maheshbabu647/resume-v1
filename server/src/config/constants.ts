@@ -51,6 +51,14 @@ export const PLAN_LIMITS: Record<PlanName, PlanLimits> = {
   },
 } as const
 
+export const GUEST_LIMITS: Omit<PlanLimits, 'resumeVersions' | 'referralBonusCap' | 'referralBonusPerReferral' | 'aiAccess'> = {
+  pdfDownloads: 0,
+  jdScore: 2,
+  aiBullets: 4,
+  jdTailoring: 1,
+  coverLetter: 1,
+}
+
 // ─── Razorpay plan IDs ────────────────────────────────────────────────────────
 // Set these to your actual Razorpay plan IDs once created in the dashboard.
 export const RAZORPAY_PLAN_IDS: Record<'hustler' | 'closer', string> = {

@@ -4,6 +4,7 @@ import { AI } from '../config/constants'
 export const jdTailorSchema = z.object({
   resumeId: z.string().length(24, 'Invalid resume ID'),
   jdText:   z.string().min(50).max(AI.JD_TEXT_MAX_CHARS),
+  personalInfo: z.record(z.any()),
   sections: z.array(z.unknown()).min(1),
 })
 
@@ -14,9 +15,9 @@ export const tailorNewSchema = z.object({
 })
 
 export const suggestSchema = z.object({
-  resumeId:      z.string().length(24, 'Invalid resume ID'),
+  resumeId:      z.string().length(24, 'Invalid resume ID').optional(), // optional for unsaved resumes
   sectionKey:    z.string().min(1),
-  entryIndex:    z.number().int().min(0),
+  entryIndex:    z.number().int().min(0).optional(),
   fieldName:     z.string().min(1),
   currentValue:  z.string().min(1),
   contextFields: z.record(z.string()).optional(),

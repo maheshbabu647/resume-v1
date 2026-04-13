@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { X, Zap, ArrowRight, Loader2 } from 'lucide-react'
+import { X, Zap } from 'lucide-react'
 import { useAuthStore } from '@/core/auth/useAuthStore'
 import { apiClient } from '@/shared/lib/apiClient'
 import {
@@ -14,7 +14,7 @@ interface UpgradeModalProps {
   isOpen: boolean
   onClose: () => void
   /** The feature that triggered the modal, for contextual copy */
-  trigger?: 'jdTailoring' | 'pdfDownloads' | 'jdScore' | 'aiBullets' | 'versionHistory' | 'general'
+  trigger?: 'jdTailoring' | 'pdfDownloads' | 'jdScore' | 'aiBullets' | 'coverLetter' | 'versionHistory' | 'general'
   /** Currently active plan */
   currentPlan?: string
 }
@@ -39,6 +39,10 @@ const TRIGGER_COPY: Record<string, { headline: string; sub: string }> = {
   versionHistory: {
     headline: 'Resume version history is a paid feature.',
     sub: "Students constantly overwrite good resumes. Hustler saves 5 versions — never lose your best draft.",
+  },
+  coverLetter: {
+    headline: "You've used all your cover letter credits.",
+    sub: 'Hustler gives you 15 cover letters/month. Never submit a generic application again.',
   },
   general: {
     headline: 'Level up your job hunt.',
@@ -74,7 +78,7 @@ declare global {
 }
 
 export function UpgradeModal({ isOpen, onClose, trigger = 'general' }: Omit<UpgradeModalProps, 'currentPlan'> & { currentPlan?: string }) {
-  const [loading, setLoading] = useState<UpgradePlan | null>(null)
+  // const [loading, setLoading] = useState<UpgradePlan | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   // Fire feature_locked_seen every time the modal opens
@@ -91,7 +95,7 @@ export function UpgradeModal({ isOpen, onClose, trigger = 'general' }: Omit<Upgr
   const PLAN_AMOUNTS: Record<UpgradePlan, number> = { hustler: 79, closer: 179 }
 
   const handleUpgrade = async (plan: UpgradePlan) => {
-    setLoading(plan)
+    // setLoading(plan)
     setError(null)
     trackUpgradeClicked(plan, 'feature_gate_modal')
     try {
@@ -132,13 +136,13 @@ export function UpgradeModal({ isOpen, onClose, trigger = 'general' }: Omit<Upgr
             onClose()
           } catch (err: any) {
             setError('Payment verification failed. Check your dashboard.')
-            setLoading(null)
+            // setLoading(null)
           }
         },
         modal: {
           ondismiss: () => {
             trackPaymentFailed(plan, 'user_dismissed')
-            setLoading(null)
+            // setLoading(null)
           },
         },
       })
@@ -146,7 +150,7 @@ export function UpgradeModal({ isOpen, onClose, trigger = 'general' }: Omit<Upgr
     } catch (err: any) {
       const msg = err?.response?.data?.error?.message ?? 'Something went wrong. Please try again.'
       setError(msg)
-      setLoading(null)
+      // setLoading(null)
     }
   }
 

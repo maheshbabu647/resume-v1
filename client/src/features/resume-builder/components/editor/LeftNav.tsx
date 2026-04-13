@@ -37,18 +37,19 @@ export default function LeftNav() {
 
   const sectionOrder = useResumeStore((s) => s.customization.sectionOrder)
   
-  // Dynamic sections visible in the resume (including Summary which is shuffleable)
   const visibleDynamicKeys = sectionOrder.filter(key => {
     if (key === 'personalInfo' as any) return false
-    if (key === 'summary' as any) return !!useResumeStore.getState().data.personalInfo.summary
     const s = sections.find(sec => sec.key === key)
     return s && s.visible
   }) as (SectionKey | 'summary')[]
 
-  const hiddenDynamicKeys = SECTION_DEFINITIONS
-    .map(d => d.key as string)
-    .filter(k => k !== 'profile' && k !== 'contact')
-    .filter(k => !sections.find(s => s.key === (k as any))?.visible) as SectionKey[]
+  const hiddenDynamicKeys = [
+    ...SECTION_DEFINITIONS
+      .map(d => d.key as string)
+      .concat(['summary'])
+      .filter(k => k !== 'profile' && k !== 'contact')
+      .filter(k => !sections.find(s => s.key === (k as any))?.visible) as SectionKey[]
+  ]
 
   const isComplete = (key: string) => {
     if (key === 'personalInfo' || key === 'summary') return true
@@ -56,8 +57,8 @@ export default function LeftNav() {
     return (sec?.entries?.length ?? 0) > 0
   }
 
-  const handleAddSection = (key: SectionKey) => {
-    setSectionVisibility(key, true)
+  const handleAddSection = (key: SectionKey | 'summary') => {
+    setSectionVisibility(key as SectionKey, true)
     setActiveSection(key)
     setAddModalOpen(false)
   }
@@ -103,7 +104,6 @@ export default function LeftNav() {
     // We must use the SAME array as the one rendered in the UI to match indices
     const visibleDynamicKeys = currentOrder.filter(key => {
       if (key === 'personalInfo' as any) return false
-      if (key === 'summary' as any) return !!useResumeStore.getState().data.personalInfo.summary
       const s = currentSections.find(sec => sec.key === key)
       return s && s.visible
     }) as (SectionKey | 'summary')[]
@@ -253,12 +253,12 @@ export default function LeftNav() {
         ) : (
           <div className={styles.modalGrid}>
             {hiddenDynamicKeys.map((key) => {
-              const def = SECTION_DEFINITIONS.find(d => d.key === key)
-              if (!def) return null
+              const label = key === 'summary' ? 'Professional Summary' : SECTION_DEFINITIONS.find(d => d.key === key)?.sectionLabel
+              if (!label) return null
               return (
-                <button key={key} className={styles.modalAddBtn} onClick={() => handleAddSection(key)}>
+                <button key={key} className={styles.modalAddBtn} onClick={() => handleAddSection(key as any)}>
                   <div className={styles.modalAddIcon}>{ICON_MAP[key] || <FileText size={20} />}</div>
-                  <span className={styles.modalAddLabel}>{def.sectionLabel}</span>
+                  <span className={styles.modalAddLabel}>{label}</span>
                 </button>
               )
             })}

@@ -7,6 +7,8 @@ export interface IJDHistory extends Document {
   jdText: string                    // full job description that was used
   jdCompanyName: string             // extracted by LLM
   jdRoleName: string                // extracted by LLM
+  beforePersonalInfo?: any          // personal info BEFORE tailoring
+  afterPersonalInfo?: any           // personal info AFTER tailoring
   beforeSnapshot: ISection[]        // sections state BEFORE tailoring — used for revert
   afterSnapshot: ISection[]         // sections state AFTER tailoring
   createdAt: Date
@@ -19,6 +21,8 @@ const JDHistorySchema = new Schema<IJDHistory>(
     jdText:         { type: String, required: true },
     jdCompanyName:  { type: String, default: '' },
     jdRoleName:     { type: String, default: '' },
+    beforePersonalInfo: { type: Schema.Types.Mixed },
+    afterPersonalInfo:  { type: Schema.Types.Mixed },
     beforeSnapshot: { type: Schema.Types.Mixed, required: true }, // ISection[] stored as plain objects
     afterSnapshot:  { type: Schema.Types.Mixed, required: true },
   },

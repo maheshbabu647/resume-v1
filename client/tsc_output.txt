@@ -1,0 +1,3 @@
+src/shared/components/UpgradeModal/UpgradeModal.tsx(2,18): error TS6133: 'ArrowRight' is declared but its value is never read.
+src/shared/components/UpgradeModal/UpgradeModal.tsx(2,30): error TS6133: 'Loader2' is declared but its value is never read.
+src/shared/components/UpgradeModal/UpgradeModal.tsx(77,10): error TS6133: 'loading' is declared but its value is never read.

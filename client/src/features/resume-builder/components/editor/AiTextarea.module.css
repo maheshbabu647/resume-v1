@@ -1,0 +1,245 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  color: var(--on-surface);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.aiButton {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #00a36c;
+  background: rgba(0, 163, 108, 0.1);
+  border: 1px solid rgba(0, 163, 108, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.aiButton:hover {
+  background: #00a36c;
+  color: white;
+}
+
+.sparkleIcon {
+  animation: pulse 2s infinite;
+}
+
+.textarea {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--surface-container-high);
+  color: var(--on-surface);
+  padding: 10px var(--space-4);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  resize: vertical;
+  min-height: 5rem;
+  transition: all var(--transition-base);
+}
+
+.textarea:focus {
+  outline: none;
+  background: var(--surface-container-lowest);
+  box-shadow: 0 0 0 2px rgba(0, 108, 73, 0.35);
+}
+
+.popover {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: var(--bg-100);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.popoverHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-50);
+}
+
+.popoverHeader strong {
+  font-size: 0.875rem;
+  color: var(--text-100);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: var(--text-300);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.closeBtn:hover {
+  background: var(--bg-200);
+  color: var(--text-100);
+}
+
+.popoverBody {
+  padding: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  color: var(--text-300);
+  font-size: 0.875rem;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  color: var(--primary-400);
+}
+
+.errorState {
+  text-align: center;
+  color: var(--error);
+  font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.retryBtn {
+  background: var(--primary-400);
+  color: white;
+  border: none;
+  padding: 0.375rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.suggestionList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.suggestionItem {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: var(--bg-50);
+  padding: 0.875rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+  transition: border-color 0.2s;
+}
+
+.suggestionItem:hover {
+  border-color: var(--primary-300);
+}
+
+.suggestionItem p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-200);
+  line-height: 1.5;
+}
+
+.appendBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--primary-50);
+  color: var(--primary-500);
+  border: 1px solid var(--primary-100);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.appendBtn:hover {
+  background: var(--primary-400);
+  color: white;
+  border-color: var(--primary-400);
+}
+
+.popoverFooter {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-50);
+  display: flex;
+  justify-content: center;
+}
+
+.regenerateBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  color: var(--text-200);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.regenerateBtn:hover {
+  color: var(--primary-400);
+  background: var(--primary-50);
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}

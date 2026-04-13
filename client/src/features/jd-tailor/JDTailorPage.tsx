@@ -9,6 +9,8 @@ import {
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { apiClient } from '@/shared/lib/apiClient'
 import { UpgradeModal } from '@/shared/components/UpgradeModal/UpgradeModal'
+import { AuthRequireModal } from '@/shared/components/AuthRequireModal/AuthRequireModal'
+import { useAuthStore } from '@/core/auth/useAuthStore'
 import { useUsage } from '@/core/hooks/useUsage'
 import { preprocessJD, serializeResume } from '@/features/scoring/lib/jdPreprocessor'
 import { trackJDScoreViewed, trackJDTailorRequested } from '@/shared/lib/analytics'
@@ -81,7 +83,8 @@ function ScoreRing({ score }: { score: number }) {
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function JDTailorPage() {
   const navigate = useNavigate()
-  const { isAtLimit, remaining } = useUsage()
+  const isAuthenticated = useAuthStore(s => s.isAuthenticated)
+  const { isAtLimit, remaining, isGuest } = useUsage()
 
   const [stage, setStage] = useState<Stage>('input')
   const [resumeSource, setResumeSource] = useState<ResumeSource>('paste')
@@ -96,6 +99,7 @@ export default function JDTailorPage() {
   const [fitResult, setFitResult] = useState<JDFitResult | null>(null)
   const [showTemplatePicker, setShowTemplatePicker] = useState(false)
   const [showUpgradeModal, setShowUpgradeModal] = useState(false)
+  const [showAuthModal, setShowAuthModal] = useState(false)
   const [upgradeFeature, setUpgradeFeature] = useState<'jdScore' | 'jdTailoring'>('jdScore')
   const fileInputRef = useRef<HTMLInputElement>(null)
   const jdFileInputRef = useRef<HTMLInputElement>(null)
@@ -106,7 +110,8 @@ export default function JDTailorPage() {
     queryFn: async () => {
       const res = await apiClient.get('/resumes')
       return res.data.data.resumes
-    }
+    },
+    enabled: isAuthenticated
   })
 
   // Parse uploaded resume file
@@ -161,8 +166,12 @@ export default function JDTailorPage() {
       trackJDScoreViewed()
     },
     onError: (err: any) => {
-      const code = err?.response?.data?.error?.code
-      if (code === 'QUOTA_EXCEEDED') { setUpgradeFeature('jdScore'); setShowUpgradeModal(true) }
+      const code = err?.response?.data?.error?.code ?? err?.response?.data?.code
+      if (code === 'GUEST_LIMIT_HIT') {
+        window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: err?.response?.data?.data ?? { feature: 'jdScore' } }))
+      } else if (code === 'QUOTA_EXCEEDED') {
+        setUpgradeFeature('jdScore'); setShowUpgradeModal(true)
+      }
       setStage('input')
     }
   })
@@ -178,8 +187,12 @@ export default function JDTailorPage() {
       navigate(`/resume/new?tailored=true&template=${tailorMutation.variables?.templateId ?? 'modern-centered'}`)
     },
     onError: (err: any) => {
-      const code = err?.response?.data?.error?.code
-      if (code === 'QUOTA_EXCEEDED') { setUpgradeFeature('jdTailoring'); setShowUpgradeModal(true) }
+      const code = err?.response?.data?.error?.code ?? err?.response?.data?.code
+      if (code === 'GUEST_LIMIT_HIT') {
+        window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: err?.response?.data?.data ?? { feature: 'jdTailoring' } }))
+      } else if (code === 'QUOTA_EXCEEDED') {
+        setUpgradeFeature('jdTailoring'); setShowUpgradeModal(true)
+      }
       setShowTemplatePicker(false)
       setStage('results')
     }
@@ -215,6 +228,11 @@ export default function JDTailorPage() {
     const currentJd = jdText
     if (!text.trim() || text.trim().length < 50) return
     if (!currentJd.trim() || currentJd.trim().length < 50) return
+    // Pre-check: if guest is at limit, show auth modal immediately
+    if (isGuest && isAtLimit('jdScore')) {
+      window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: { feature: 'jdScore' } }))
+      return
+    }
     setStage('analyzing')
     const preprocessedJD = preprocessJD(currentJd)
     const serializedResume = text.length > 6000 ? text.slice(0, 6000) : text
@@ -344,7 +362,22 @@ export default function JDTailorPage() {
 
       {resumeSource === 'existing' && (
         <>
-          {resumes.length === 0 ? (
+          {!isAuthenticated ? (
+            <div style={{ textAlign: 'center', padding: '2.5rem 1.5rem' }}>
+              <div style={{ background: 'rgba(var(--primary-400-rgb), 0.1)', width: 48, height: 48, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem', color: 'var(--primary-400)' }}>
+                <Zap size={20} />
+              </div>
+              <p style={{ color: 'var(--on-surface)', fontWeight: 600, fontSize: '0.95rem', marginBottom: '0.5rem' }}>Unlock your saved resumes</p>
+              <p style={{ color: 'var(--on-surface-variant)', fontSize: '0.85rem', marginBottom: '1.5rem', lineHeight: 1.5 }}>Sign in to compare against your existing resumes and track your tailoring history.</p>
+              <button 
+                className={styles.primaryBtn} 
+                style={{ all: 'unset', background: 'var(--primary-400)', color: 'white', padding: '10px 20px', borderRadius: 'var(--radius-lg)', fontSize: 'var(--text-xs)', fontWeight: 600, cursor: 'pointer' }}
+                onClick={() => setShowAuthModal(true)}
+              >
+                Sign In Now
+              </button>
+            </div>
+          ) : resumes.length === 0 ? (
             <div style={{ textAlign: 'center', padding: '1.5rem', color: 'var(--on-surface-variant)', fontSize: 'var(--text-sm)' }}>
               No resumes found. <a href="/resume/new" style={{ color: 'var(--secondary)' }}>Create one first</a>.
             </div>
@@ -491,17 +524,26 @@ export default function JDTailorPage() {
 
             <button
               className={styles.tailorBtn}
-              onClick={() => setShowTemplatePicker(true)}
-              disabled={isAtLimit('jdTailoring')}
-              style={{ all: 'unset', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '0.75rem 1rem', background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', borderRadius: 'var(--radius-xl)', color: 'white', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: isAtLimit('jdTailoring') ? 'not-allowed' : 'pointer', opacity: isAtLimit('jdTailoring') ? 0.5 : 1, fontFamily: 'var(--font-sans)', transition: 'opacity 0.2s, transform 0.15s', boxSizing: 'border-box' }}
+              onClick={() => {
+                // Pre-check: if guest is at limit, show auth modal
+                if (isGuest && isAtLimit('jdTailoring')) {
+                  window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: { feature: 'jdTailoring' } }))
+                  return
+                }
+                setShowTemplatePicker(true)
+              }}
+              disabled={!isGuest && isAtLimit('jdTailoring')}
+              style={{ all: 'unset', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, padding: '0.75rem 1rem', background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', borderRadius: 'var(--radius-xl)', color: 'white', fontWeight: 700, fontSize: 'var(--text-sm)', cursor: (!isGuest && isAtLimit('jdTailoring')) ? 'not-allowed' : 'pointer', opacity: (!isGuest && isAtLimit('jdTailoring')) ? 0.5 : 1, fontFamily: 'var(--font-sans)', transition: 'opacity 0.2s, transform 0.15s', boxSizing: 'border-box' }}
             >
               <Wand2 size={15} />
               Tailor My Resume
             </button>
             {isAtLimit('jdTailoring') && (
-              <button style={{ all: 'unset', fontSize: '11px', color: '#818cf8', cursor: 'pointer', textAlign: 'center', fontFamily: 'var(--font-sans)' }} onClick={() => { setUpgradeFeature('jdTailoring'); setShowUpgradeModal(true) }}>
-                Quota used — upgrade to tailor →
-              </button>
+              isGuest ? (
+                <button style={{ all: 'unset', fontSize: '11px', color: '#818cf8', cursor: 'pointer', textAlign: 'center', fontFamily: 'var(--font-sans)' }} onClick={() => window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: { feature: 'jdTailoring' } }))}>Sign up to continue tailoring →</button>
+              ) : (
+                <button style={{ all: 'unset', fontSize: '11px', color: '#818cf8', cursor: 'pointer', textAlign: 'center', fontFamily: 'var(--font-sans)' }} onClick={() => { setUpgradeFeature('jdTailoring'); setShowUpgradeModal(true) }}>Quota used — upgrade to tailor →</button>
+              )
             )}
             <div className={styles.quotaStrip}>
               <Zap size={11} />
@@ -731,6 +773,14 @@ export default function JDTailorPage() {
         onClose={() => setShowUpgradeModal(false)}
         trigger={upgradeFeature}
         currentPlan="seeker"
+      />
+
+      <AuthRequireModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        onSuccess={() => { setShowAuthModal(false); navigate(0) }}
+        title="Welcome back to CareerForge"
+        subtitle="Sign in to access your resumes and continue tailoring."
       />
     </div>
   )

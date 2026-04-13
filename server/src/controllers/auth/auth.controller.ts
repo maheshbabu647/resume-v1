@@ -7,14 +7,16 @@ const p = (v: string | string[]): string => (Array.isArray(v) ? v[0] : v)
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { user, message } = await authService.register(req.body)
+    const guestId = req.headers['x-guest-id'] as string | undefined
+    const { user, message } = await authService.register(req.body, guestId)
     res.status(201).json({ ok: true, data: { user, message } })
   } catch (err) { next(err) }
 }
 
 export const login = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { user, accessToken, refreshToken } = await authService.login(req.body)
+    const guestId = req.headers['x-guest-id'] as string | undefined
+    const { user, accessToken, refreshToken } = await authService.login(req.body, guestId)
     res.cookie(TOKEN.REFRESH_COOKIE, refreshToken, TOKEN.COOKIE_OPTIONS)
     res.json({ ok: true, data: { user, accessToken } })
   } catch (err) { next(err) }
@@ -49,8 +51,15 @@ export const logout = (_req: Request, res: Response) => {
   res.status(204).send()
 }
 
-export const googleRedirect = (req: Request, res: Response) =>
-  res.redirect(authService.getGoogleAuthUrl(p(req.query.ref as string)))
+export const googleRedirect = (req: Request, res: Response) => {
+  const ref = p(req.query.ref as string)
+  const guestId = p(req.query.guestId as string)
+  let stateStr: string | undefined
+  if (ref || guestId) {
+    stateStr = JSON.stringify({ ref, guestId })
+  }
+  res.redirect(authService.getGoogleAuthUrl(stateStr))
+}
 
 export const googleCallback = async (req: Request, res: Response, next: NextFunction) => {
   try {

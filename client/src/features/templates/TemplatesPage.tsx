@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async'
 import { Search, CheckCircle2, ArrowRight } from 'lucide-react'
 import { Button } from '@/shared/components/Button/Button'
 import { useAuthStore } from '@/core/auth/useAuthStore'
+import { Modal } from '@/shared/components/Modal/Modal'
 import styles from './TemplatesPage.module.css'
 
 import { TEMPLATE_REGISTRY } from '../resume-builder/templates/registry'
@@ -13,10 +14,10 @@ type Filter = typeof FILTERS[number]
 
 const TEMPLATES = Object.values(TEMPLATE_REGISTRY).map(t => ({
   id: t.id,
-  name: t.name,
+  name: t.name, // Will be "Modern Centered" instead of "MODERN CENTERED"
+  imageUrl: t.thumbnailUrl,
   tag: t.tags?.style || 'Modern',
-  category: t.tags?.industry?.[0] || 'Professional',
-  color: '#1e2d4a', // Using a default base color for now
+  industries: t.tags?.industry || [],
   ats: 96,
   desc: t.isAtsRecommended ? 'ATS-Optimized layout for professional roles.' : 'Modern creative layout.'
 }))
@@ -26,9 +27,10 @@ export default function TemplatesPage() {
   const { isAuthenticated } = useAuthStore()
   const [search, setSearch] = useState('')
   const [hoveredId, setHoveredId] = useState<string | null>(null)
+  const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null)
 
   const filtered = TEMPLATES.filter((t) => {
-    const matchFilter = activeFilter === 'All' || t.category === activeFilter
+    const matchFilter = activeFilter === 'All' || t.industries.includes(activeFilter as any)
     const matchSearch = t.name.toLowerCase().includes(search.toLowerCase()) || t.desc.toLowerCase().includes(search.toLowerCase())
     return matchFilter && matchSearch
   })
@@ -41,14 +43,14 @@ export default function TemplatesPage() {
 
       {/* Hero */}
       <section className={styles.hero}>
-        <div className={styles.heroBadge}>{TEMPLATES.length} templates available</div>
-        <h1 className={styles.heroTitle}>Choose your template</h1>
-        <p className={styles.heroSub}>Every template is ATS-optimized and fully customizable with our editor.</p>
+        <div className={styles.heroBadge}>{TEMPLATES.length} premium templates</div>
+        <h1 className={styles.heroTitle}>The Executive Library</h1>
+        <p className={styles.heroSub}>Choose a high-end editorial layout designed to pass ATS checks and impress recruiters.</p>
         <div className={styles.searchBar}>
           <Search size={15} className={styles.searchIcon} />
           <input
             className={styles.searchInput}
-            placeholder="Search templates..."
+            placeholder="Search our collection..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -75,35 +77,43 @@ export default function TemplatesPage() {
             onMouseEnter={() => setHoveredId(t.id)}
             onMouseLeave={() => setHoveredId(null)}
           >
-            <div className={styles.thumb} style={{ '--c': t.color } as React.CSSProperties}>
-              <div className={styles.thumbContent}>
-                <div className={styles.thumbHeader}>
-                  <div className={styles.thumbName} />
-                  <div className={styles.thumbContact} />
+            <div className={styles.thumb}>
+              {t.imageUrl ? (
+                <img src={t.imageUrl} alt={t.name} className={styles.thumbImage} />
+              ) : (
+                <div className={styles.thumbPlaceholder}>
+                  <div className={styles.placeholderLogo} />
+                  <div className={styles.placeholderLines}>
+                    <div style={{ width: '40%' }} />
+                    <div style={{ width: '80%' }} />
+                    <div style={{ width: '60%' }} />
+                  </div>
                 </div>
-                <div className={styles.thumbDivider} />
-                <div className={styles.thumbSection} />
-                {[100, 80, 90, 70].map((w, i) => (
-                  <div key={i} className={styles.thumbLine} style={{ width: `${w}%` }} />
-                ))}
-              </div>
+              )}
+              
               <div className={`${styles.thumbOverlay} ${hoveredId === t.id ? styles.overlayVisible : ''}`}>
-                <Link to={`/resume/new?template=${t.id}`}>
-                  <Button size="sm">Use template <ArrowRight size={13} /></Button>
-                </Link>
-                <Link to={`/resume/new?template=${t.id}`} className={styles.previewLink}>Preview</Link>
+                <div className={styles.overlayActions}>
+                  <Link to={`/resume/new?template=${t.id}`}>
+                    <Button variant="primary">Use Template <ArrowRight size={14} /></Button>
+                  </Link>
+                  <button 
+                    className={styles.previewBtn}
+                    onClick={(e) => { e.stopPropagation(); setPreviewImageUrl(t.imageUrl || null); }}
+                  >
+                    View Preview
+                  </button>
+                </div>
               </div>
-              {t.tag && <div className={styles.thumbTag}>{t.tag}</div>}
+              
+              <div className={styles.thumbBadge}>
+                <CheckCircle2 size={10} />
+                <span>ATS {t.ats}%</span>
+              </div>
             </div>
+
             <div className={styles.cardInfo}>
-              <div>
-                <h3 className={styles.cardName}>{t.name}</h3>
-                <p className={styles.cardDesc}>{t.desc}</p>
-              </div>
-              <div className={styles.atsBadge}>
-                <CheckCircle2 size={12} />
-                ATS {t.ats}%
-              </div>
+              <h3 className={styles.cardName}>{t.name}</h3>
+              <p className={styles.customLabel}>Fully Customizable</p>
             </div>
           </div>
         ))}
@@ -120,11 +130,21 @@ export default function TemplatesPage() {
         <h2 className={styles.ctaTitle}>Ready to build?</h2>
         <p className={styles.ctaSub}>Pick any template and start editing in our AI-powered editor.</p>
         {isAuthenticated ? (
-          <Link to="/resume/new"><Button size="lg">Start Building <ArrowRight size={16} /></Button></Link>
+          <Link to="/resume/new"><Button variant="primary" size="lg">Start Building <ArrowRight size={16} /></Button></Link>
         ) : (
-          <Link to="/resume/new"><Button size="lg">Start for free <ArrowRight size={16} /></Button></Link>
+          <Link to="/resume/new"><Button variant="primary" size="lg">Start for free <ArrowRight size={16} /></Button></Link>
         )}
       </section>
+
+      <Modal 
+        isOpen={!!previewImageUrl} 
+        onClose={() => setPreviewImageUrl(null)} 
+        title="Template Preview"
+      >
+        <div className={styles.previewModalBody}>
+          <img src={previewImageUrl || ''} alt="Template Preview" className={styles.previewFullImage} />
+        </div>
+      </Modal>
     </div>
   )
 }
