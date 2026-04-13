@@ -168,7 +168,7 @@ export const JDFitDrawer: React.FC<Props> = ({ onClose }) => {
       rewrittenSections:     pendingTailorData.rewrittenSections || [],
       originalPersonalInfo:  resume.data.personalInfo,
       rewrittenPersonalInfo: pendingTailorData.rewrittenPersonalInfo || null,
-      updateSectionEntries:  useResumeStore.getState().updateSectionEntries,
+      updateSectionEntries:  useResumeStore.getState().updateSectionEntries as (key: string, entries: any[]) => void,
       setPersonalField:      useResumeStore.getState().setPersonalField,
     })
     queryClient.invalidateQueries({ queryKey: ['usage'] })

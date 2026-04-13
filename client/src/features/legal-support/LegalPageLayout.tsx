@@ -1,4 +1,5 @@
-import { ReactNode, useEffect } from 'react'
+import { useEffect } from 'react'
+import type { ReactNode } from 'react'
 import { Helmet } from 'react-helmet-async'
 import styles from './LegalPage.module.css'
 

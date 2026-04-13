@@ -253,7 +253,7 @@ export default function LeftNav() {
         ) : (
           <div className={styles.modalGrid}>
             {hiddenDynamicKeys.map((key) => {
-              const label = key === 'summary' ? 'Professional Summary' : SECTION_DEFINITIONS.find(d => d.key === key)?.sectionLabel
+              const label = SECTION_DEFINITIONS.find(d => d.key === key)?.sectionLabel || 'Section'
               if (!label) return null
               return (
                 <button key={key} className={styles.modalAddBtn} onClick={() => handleAddSection(key as any)}>

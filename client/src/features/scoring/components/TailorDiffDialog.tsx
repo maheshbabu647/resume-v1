@@ -95,14 +95,7 @@ export const TailorDiffDialog = ({
   if (!isOpen) return null
 
   const currentStep  = steps[stepIdx]
-  const progress     = steps.length > 0 ? (stepIdx / steps.length) * 100 : 0
   const progressNext = steps.length > 0 ? ((stepIdx + 1) / steps.length) * 100 : 100
-
-  /* Is this step a different section/entry from the previous? */
-  const previousStep = stepIdx > 0 ? steps[stepIdx - 1] : null
-  const isNewSection = !previousStep || previousStep.sectionKey !== currentStep?.sectionKey
-  const isNewEntry   = !previousStep || previousStep.sectionKey !== currentStep?.sectionKey
-                       || previousStep.entryIndex !== currentStep?.entryIndex
 
   return (
     <div className={styles.backdrop} onClick={() => !isPending && onClose()}>

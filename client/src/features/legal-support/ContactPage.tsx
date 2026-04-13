@@ -1,5 +1,5 @@
 import { LegalPageLayout } from './LegalPageLayout'
-import { Mail, Target, User, Users, Globe, FileText } from 'lucide-react'
+import { Mail, User, Users, Globe } from 'lucide-react'
 import styles from './LegalPage.module.css'
 
 export default function ContactPage() {
