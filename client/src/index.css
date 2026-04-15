@@ -71,6 +71,14 @@ ul, ol {
    Print / PDF Export Styles
    ============================================================ */
 @media print {
+  /* Set the physical page size to A4 with consistent top/bottom margins.
+     These margins ensure every page has breathing room at top and bottom,
+     including pages 2, 3, etc. */
+  @page {
+    size: A4;
+    margin: 10mm 0;
+  }
+
   /* Hide everything on the page by default */
   body * {
     visibility: hidden;
@@ -98,10 +106,30 @@ ul, ol {
     background: transparent !important;
   }
 
-  /* Set the physical page size to A4 with no browser margins */
-  @page {
-    size: A4;
-    margin: 0;
+  /* Zero-out the resume root's top/bottom padding in print —
+     the @page margin replaces it for consistent per-page spacing.
+     Left/right padding remains for content margins. */
+  #resume {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: auto !important;
+  }
+
+  /* ── Pagination rules ──
+     Sections can span pages (no break-inside:avoid).
+     Section titles must stay with their first entry.
+     Individual entries (jobs, education items) must not split. */
+  .template-section-title {
+    break-after: avoid;
+  }
+
+  .template-entry {
+    break-inside: avoid;
+  }
+
+  /* Hide page-break visual indicators from the PDF output */
+  .pageBreakLine {
+    display: none !important;
   }
 }
 

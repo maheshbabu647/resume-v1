@@ -248,6 +248,22 @@ const SecurityClearanceSection = ({ entries, name }: { entries: any[], name?: st
 )
 
 
+const DeclarationSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Declaration"}>
+    {entries.map((e: any, i: number) => (
+      <div key={i} className="template-entry-body">
+        {e.statement && <p style={{ marginBottom: '8px' }}>{e.statement}</p>}
+        <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '2px', fontSize: 'var(--font-size-meta)' }}>
+          {e.place && <span><strong>Place:</strong> {e.place}</span>}
+          {e.date && <span><strong>Date:</strong> {e.date}</span>}
+          {e.name && <span style={{ marginTop: '6px', fontStyle: 'italic' }}>{e.name}</span>}
+        </div>
+      </div>
+    ))}
+  </SectionWrapper>
+)
+
+
 const CustomSection = ({ entries }: { entries: any[] }) => (
   <>
     {entries.map((entry: any, i: number) => (
@@ -281,4 +297,5 @@ export const SECTION_COMPONENTS: Partial<Record<SectionKey, React.FC<{ entries: 
   securityClearance: SecurityClearanceSection,
   events: EventsSection,
   internships: InternshipsSection,
+  declaration: DeclarationSection,
 }

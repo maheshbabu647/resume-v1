@@ -267,12 +267,12 @@ export function BlogPostLayout({ slug, heroImagePath, tocEntries, children }: Bl
             <aside className={styles.ctaStrip} aria-label="CareerForge call to action">
               <div className={styles.ctaStripGlow} aria-hidden="true" />
               <div className={styles.ctaTextBlock}>
-                <span className={styles.ctaLabel}>Free Tool</span>
-                <strong className={styles.ctaTitle}>See exactly what the ATS sees in your resume</strong>
-                <span className={styles.ctaSubtitle}>Our AI parser mirrors TCS Neuralent &amp; Workday logic. Instant visibility score — no signup needed.</span>
+                <span className={styles.ctaLabel}>Free Resumes</span>
+                <strong className={styles.ctaTitle}>Build your ATS-friendly resume in minutes</strong>
+                <span className={styles.ctaSubtitle}>Pre-formatted, single-column templates built for Indian ATS systems. Pass the parser and get shortlisted.</span>
               </div>
-              <Link to="/jd-tailor" className={styles.ctaButton} id="blog-cta-scoring">
-                Check your ATS Score
+              <Link to="/templates" className={styles.ctaButton} id="blog-cta-scoring">
+                Browse Templates
                 <IconExternalLink />
               </Link>
             </aside>

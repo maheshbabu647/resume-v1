@@ -36,20 +36,19 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt:
       'Your resume never reached a human being. It was filtered out in seconds — by software. Learn exactly how ATS works at TCS, Infosys, Wipro, and what you must change right now.',
   },
-  // ── ADD NEW POSTS BELOW THIS LINE ───────────────────────────
-  // {
-  //   slug: 'ats-master-template-2026',
-  //   title: 'The ATS Master Template: A Single-Column Format That Gets You Shortlisted',
-  //   shortTitle: 'The ATS Master Template for 2026',
-  //   metaDescription: '...',
-  //   ogImage: '/assets/blog-post-2-cover.png',
-  //   publishedAt: '2026-04-15',
-  //   readingTime: 8,
-  //   tags: ['Resume Template', 'ATS', 'Fresher'],
-  //   series: '90-Day Career Forge',
-  //   seriesDay: 2,
-  //   excerpt: '...',
-  // },
+  {
+    slug: 'ats-friendly-resume-format-indian-freshers-2026',
+    title: 'The Complete ATS-Friendly Resume Format for Indian Freshers (2026 Guide)',
+    shortTitle: 'The ATS-Friendly Resume Format',
+    metaDescription: 'The complete ATS-friendly resume format for Indian freshers — every section, every rule, a full template, and a checklist. Built for TCS, Infosys, Wipro, and beyond.',
+    ogImage: '/assets/blog-post-1-cover.png', // Fallback to cover 1 since cover 2 not yet generated
+    publishedAt: '2026-04-15',
+    readingTime: 14,
+    tags: ['Resume Template', 'ATS', 'Fresher', 'Indian Job Market'],
+    series: '90-Day Career Forge',
+    seriesDay: 2,
+    excerpt: 'Stop. Before You Open Canva. Most freshers in India start building their resume by picking the template that looks the most impressive. Here\'s why that guarantees rejection—and how to build a resume that passes every Indian ATS.',
+  },
 ]
 
 // Sorted newest-first for the list page

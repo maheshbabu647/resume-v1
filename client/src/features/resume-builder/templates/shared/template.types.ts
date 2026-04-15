@@ -40,6 +40,7 @@ export type SectionKey =
   | 'publications' | 'presentations' | 'licensure' | 'barAdmissions'
   | 'custom' | 'memberships' | 'clinicalExperience' | 'grants'
   | 'teachingExperience' | 'securityClearance' | 'events' | 'internships'
+  | 'declaration'
 
 export interface CustomizationConfig {
   stylePack: StylePack

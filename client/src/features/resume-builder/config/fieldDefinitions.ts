@@ -391,5 +391,25 @@ export const SECTION_DEFINITIONS: SectionDefinition[] = [
       },
       { name: 'description', label: 'Description', type: 'textarea', rows: 5 }
     ]
+  },
+  {
+    key: 'declaration',
+    sectionLabel: 'Declaration',
+    sectionDescription: 'A formal statement confirming the accuracy of information provided.',
+    isCore: false,
+    singularLabel: 'Declaration',
+    pluralLabel: 'Declarations',
+    fields: [
+      {
+        name: 'statement',
+        label: 'Declaration Statement',
+        type: 'textarea',
+        rows: 3,
+        placeholder: 'I hereby declare that all the information stated above is true and correct to the best of my knowledge and belief.'
+      },
+      { name: 'place', label: 'Place', type: 'text', placeholder: 'e.g. Bengaluru' },
+      { name: 'date', label: 'Date', type: 'text', placeholder: 'e.g. April 2025' },
+      { name: 'name', label: 'Full Name', type: 'text', placeholder: 'Your full name (as signature)' }
+    ]
   }
 ]

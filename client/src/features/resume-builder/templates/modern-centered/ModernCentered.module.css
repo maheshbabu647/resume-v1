@@ -53,7 +53,9 @@
 /* Base template classes applied to generic wrappers */
 :global(.template-section) {
   margin-bottom: var(--section-gap, 1.2rem);
-  break-inside: avoid;
+  /* NO break-inside:avoid here — sections CAN span pages.
+     This prevents entire sections from jumping to the next page
+     and leaving large empty gaps at the bottom of the previous page. */
 }
 
 :global(.template-section-title) {
@@ -65,10 +67,15 @@
   padding-bottom: 2px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  /* Prevent a section title from appearing alone at the bottom of a page
+     with all its entries on the next page */
+  break-after: avoid;
 }
 
 :global(.template-entry) {
   margin-bottom: var(--entry-gap, 0.75rem);
+  /* Keep individual entries together — e.g., don't split an education
+     entry with institution on one page and degree on the next */
   break-inside: avoid;
 }
 
@@ -105,6 +112,8 @@
 
 :global(.template-entry-body p) {
   margin: 0;
+  orphans: 3;
+  widows: 3;
 }
 
 :global(.template-entry-body ul) {
@@ -115,6 +124,8 @@
 
 :global(.template-entry-body li) {
   margin-bottom: var(--bullet-gap, 0.2rem);
+  orphans: 2;
+  widows: 2;
 }
 
 /* Skills specifically */

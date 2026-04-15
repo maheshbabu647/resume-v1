@@ -71,6 +71,28 @@ export const Toolbar = () => {
             <style>
               body { margin: 0; padding: 0; background: white !important; }
               .print-area { transform: none !important; box-shadow: none !important; width: 210mm !important; }
+
+              /* ── Multi-page pagination rules ── */
+              @page { size: A4; margin: 10mm 0; }
+
+              /* Let @page margins handle per-page spacing; remove root top/bottom padding */
+              #resume {
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                min-height: auto !important;
+              }
+
+              /* Sections can span pages — don't push entire sections to next page */
+              .template-section { break-inside: auto !important; }
+
+              /* Section titles must stay with at least one entry */
+              .template-section-title { break-after: avoid; }
+
+              /* Individual entries (jobs, education, etc.) must not split across pages */
+              .template-entry { break-inside: avoid; }
+
+              /* Hide page-break visual indicators */
+              .pageBreakLine { display: none !important; }
             </style>
           </head>
           <body>

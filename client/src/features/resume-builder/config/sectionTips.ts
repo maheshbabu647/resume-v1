@@ -250,5 +250,17 @@ export const SECTION_TIPS: Record<string, SectionTip> = {
     examples: [
       { type: 'good', title: 'Open Source Example', content: 'Maintainer of react-resume-kit — 340+ GitHub Stars' }
     ]
+  },
+  declaration: {
+    purpose: "A formal statement used in Indian resumes confirming that all information provided is true and accurate. Place it at the very end of your resume.",
+    tips: [
+      "Use the standard wording: 'I hereby declare that the information furnished above is true and correct to the best of my knowledge and belief.'",
+      "Include your Place and Date alongside your name — it makes the declaration look official.",
+      "Your typed full name acts as the signature line.",
+      "This section is optional for most corporate roles but expected in government, PSU, and academic applications."
+    ],
+    examples: [
+      { type: 'good', title: 'Standard Declaration', content: 'I hereby declare that all the information stated above is true and correct to the best of my knowledge and belief.\n\nPlace: Bengaluru\nDate: April 2025\nArjun Mehta' }
+    ]
   }
 }

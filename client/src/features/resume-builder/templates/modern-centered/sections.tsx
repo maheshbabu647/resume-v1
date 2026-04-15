@@ -350,6 +350,21 @@ export const SecurityClearanceSection = ({ entries, name }: { entries: any[], na
   </SectionWrapper>
 )
 
+export const DeclarationSection = ({ entries, name }: { entries: any[], name?: string }) => (
+  <SectionWrapper title={name || "Declaration"}>
+    {entries.map((entry, i) => (
+      <div key={i} className="template-entry-body">
+        {entry.statement && <p style={{ marginBottom: '8px' }}>{entry.statement}</p>}
+        <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '2px', fontSize: 'var(--font-size-meta)' }}>
+          {entry.place && <span><strong>Place:</strong> {entry.place}</span>}
+          {entry.date && <span><strong>Date:</strong> {entry.date}</span>}
+          {entry.name && <span style={{ marginTop: '6px', fontStyle: 'italic' }}>{entry.name}</span>}
+        </div>
+      </div>
+    ))}
+  </SectionWrapper>
+)
+
 // Custom is special: each entry is technically its own section visually
 export const CustomSection = ({ entries }: { entries: any[], name?: string }) => (
   <>
@@ -384,4 +399,5 @@ export const SECTION_COMPONENTS: Partial<Record<SectionKey, React.FC<{ entries: 
   securityClearance: SecurityClearanceSection,
   events:            EventsSection,
   internships:       InternshipsSection,
+  declaration:       DeclarationSection,
 }

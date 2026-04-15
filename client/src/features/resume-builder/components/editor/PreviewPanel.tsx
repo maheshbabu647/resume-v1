@@ -5,6 +5,9 @@ import { useResumeStore } from '../../store/useResumeStore'
 import { TEMPLATE_REGISTRY } from '../../templates/registry'
 import styles from './PreviewPanel.module.css'
 
+// A4 dimensions at 96 DPI
+const A4_HEIGHT_PX = 1123 // 297mm ≈ 1123px
+
 export default function PreviewPanel() {
   const showGallery = useEditorUIStore((s) => s.showTemplateGallery)
   const toggleGallery = useEditorUIStore((s) => s.toggleTemplateGallery)
@@ -19,13 +22,14 @@ export default function PreviewPanel() {
   const TemplateComponent = activeTemplateDef?.component
 
   const viewportRef = useRef<HTMLDivElement>(null)
+  const paperRef = useRef<HTMLDivElement>(null)
   const [scale, setScale] = useState(1)
+  const [paperHeight, setPaperHeight] = useState(A4_HEIGHT_PX)
 
+  // Scale based on viewport width
   useEffect(() => {
     const observer = new ResizeObserver((entries) => {
       if (!entries[0]) return
-      // A4 width in pixels is roughly 794px. We add ~64px for padding margins.
-      // Subtract a smaller margin on small screens to maximize size
       const margin = window.innerWidth < 768 ? 20 : 64
       const availableWidth = entries[0].contentRect.width - margin
       const PAPER_WIDTH = 794
@@ -40,6 +44,22 @@ export default function PreviewPanel() {
     if (viewportRef.current) observer.observe(viewportRef.current)
     return () => observer.disconnect()
   }, [])
+
+  // Track the actual paper content height for multi-page support
+  useEffect(() => {
+    const observer = new ResizeObserver((entries) => {
+      if (!entries[0]) return
+      const height = entries[0].borderBoxSize?.[0]?.blockSize ?? entries[0].contentRect.height
+      // Snap to minimum of one A4 page
+      setPaperHeight(Math.max(height, A4_HEIGHT_PX))
+    })
+
+    if (paperRef.current) observer.observe(paperRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  // Calculate the number of pages for the page-break indicators
+  const pageCount = Math.ceil(paperHeight / A4_HEIGHT_PX)
 
   return (
     <div className={`${styles.panel} ${mobileViewMode !== 'preview' ? styles.hiddenOnMobile : ''}`}>
@@ -68,17 +88,18 @@ export default function PreviewPanel() {
         </div>
       </div>
 
-      {/* Resume Paper */}
+      {/* Resume Paper — supports multi-page content */}
       <div className={styles.viewport} ref={viewportRef}>
         <div 
           className={styles.scaleWrapper}
           style={{ 
             transform: `scale(${scale})`, 
             transformOrigin: 'top center',
-            height: scale < 1 ? `calc(297mm * ${scale})` : 'auto'
+            // Use the actual paper height (not a fixed single page) for the scaled container
+            height: scale < 1 ? `${paperHeight * scale}px` : 'auto'
           }}
         >
-          <div className={`${styles.paper} print-area`}>
+          <div className={`${styles.paper} print-area`} ref={paperRef}>
             <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center' }}>Loading template...</div>}>
               {TemplateComponent ? (
                 <TemplateComponent data={data} customization={customization} />
@@ -86,6 +107,17 @@ export default function PreviewPanel() {
                 <div style={{ padding: '2rem', textAlign: 'center' }}>Template not found</div>
               )}
             </Suspense>
+
+            {/* Page-break indicators — visual guides showing where pages end */}
+            {pageCount > 1 && Array.from({ length: pageCount - 1 }, (_, i) => (
+              <div
+                key={i}
+                className={styles.pageBreakLine}
+                style={{ top: `${(i + 1) * A4_HEIGHT_PX}px` }}
+              >
+                <span className={styles.pageBreakLabel}>Page {i + 1} ends · Page {i + 2} begins</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

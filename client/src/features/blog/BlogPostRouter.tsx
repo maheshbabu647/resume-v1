@@ -8,7 +8,9 @@ const POST_COMPONENTS: Record<string, React.LazyExoticComponent<() => React.Reac
   'why-indian-fresher-resumes-are-invisible-to-ats-2026': lazy(
     () => import('./posts/blog-post-1')
   ),
-  // 'ats-master-template-2026': lazy(() => import('./posts/blog-post-2')),
+  'ats-friendly-resume-format-indian-freshers-2026': lazy(
+    () => import('./posts/blog-post-2')
+  ),
 }
 
 const Fallback = () => (

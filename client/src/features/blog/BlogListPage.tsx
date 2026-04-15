@@ -10,6 +10,7 @@ import blogCover from '@/assets/blog-post-1-cover.png'
 // Add a new entry here each time you add a post with a cover image.
 const COVER_IMAGES: Record<string, string> = {
   'why-indian-fresher-resumes-are-invisible-to-ats-2026': blogCover,
+  'ats-friendly-resume-format-indian-freshers-2026': blogCover,
 }
 
 // ── Icons ──────────────────────────────────────────────────────

@@ -84,6 +84,7 @@ const ALL_SECTION_KEYS: SectionKey[] = [
   'securityClearance',
   'internships',
   'events',
+  'declaration',
   'custom'
 ]
 
