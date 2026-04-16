@@ -11,6 +11,7 @@ import blogCover from '@/assets/blog-post-1-cover.png'
 const COVER_IMAGES: Record<string, string> = {
   'why-indian-fresher-resumes-are-invisible-to-ats-2026': blogCover,
   'ats-friendly-resume-format-indian-freshers-2026': blogCover,
+  'how-to-check-your-ats-score-before-applying-india-2026': blogCover,
 }
 
 // ── Icons ──────────────────────────────────────────────────────

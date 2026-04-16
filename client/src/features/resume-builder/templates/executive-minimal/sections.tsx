@@ -152,7 +152,10 @@ const LanguagesSection = ({ entries, name }: { entries: any[], name?: string }) 
   <SectionWrapper title={name || "Languages"}>
     <ul className={styles.languagesRow}>
     {entries.map((e: any, i: number) => (
-      <li key={i}><strong>{e.language}</strong> — {e.proficiency}</li>
+      <li key={i}>
+        <strong>{e.language}</strong>
+        {e.proficiency && ` (${e.proficiency})`}
+      </li>
     ))}
   </ul>
   </SectionWrapper>

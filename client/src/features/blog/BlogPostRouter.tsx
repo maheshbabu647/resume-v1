@@ -11,6 +11,9 @@ const POST_COMPONENTS: Record<string, React.LazyExoticComponent<() => React.Reac
   'ats-friendly-resume-format-indian-freshers-2026': lazy(
     () => import('./posts/blog-post-2')
   ),
+  'how-to-check-your-ats-score-before-applying-india-2026': lazy(
+    () => import('./posts/blog-post-3')
+  ),
 }
 
 const Fallback = () => (

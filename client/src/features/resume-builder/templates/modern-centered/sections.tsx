@@ -199,7 +199,10 @@ export const LanguagesSection = ({ entries, name }: { entries: any[], name?: str
   <SectionWrapper title={name || "Languages"}>
     <ul className={styles.languagesWrap}>
       {entries.map((entry, i) => (
-        <li key={i}>{entry.language} <span style={{ color: '#666' }}>({entry.proficiency})</span></li>
+        <li key={i}>
+          {entry.language}
+          {entry.proficiency && <span style={{ color: '#666' }}> ({entry.proficiency})</span>}
+        </li>
       ))}
     </ul>
   </SectionWrapper>

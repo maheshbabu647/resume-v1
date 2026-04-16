@@ -49,6 +49,19 @@ export const BLOG_POSTS: BlogPost[] = [
     seriesDay: 2,
     excerpt: 'Stop. Before You Open Canva. Most freshers in India start building their resume by picking the template that looks the most impressive. Here\'s why that guarantees rejection—and how to build a resume that passes every Indian ATS.',
   },
+  {
+    slug: 'how-to-check-your-ats-score-before-applying-india-2026',
+    title: 'How to Check Your ATS Score Before Applying for Any Job in India',
+    shortTitle: 'How to Check Your ATS Score',
+    metaDescription: 'Learn how to check your resume\'s ATS score before applying for any job in India. Understand what the score means, what to fix, and how to use it correctly.',
+    ogImage: '/assets/blog-post-1-cover.png', // Fallback to cover 1
+    publishedAt: '2026-04-16',
+    readingTime: 13,
+    tags: ['ATS Score', 'Resume Checker', 'Indian Freshers'],
+    series: '90-Day Career Forge',
+    seriesDay: 3,
+    excerpt: 'You built the resume. You followed the format. Now the question is: will it actually pass? This is how you find out your simulated ATS score before you hit submit.',
+  },
 ]
 
 // Sorted newest-first for the list page
