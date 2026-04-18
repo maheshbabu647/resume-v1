@@ -70,7 +70,7 @@ export const Toolbar = () => {
             ${stylesHtml}
             <style>
               body { margin: 0; padding: 0; background: white !important; }
-              .print-area { transform: none !important; box-shadow: none !important; width: 210mm !important; }
+              .print-area { transform: none !important; box-shadow: none !important; width: 210mm !important; min-height: auto !important; }
 
               /* ── Multi-page pagination rules ── */
               @page { size: A4; margin: 10mm 0; }

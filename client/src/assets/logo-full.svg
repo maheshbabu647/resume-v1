@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="256" viewBox="0 0 1200 256">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#131b2e" />
+      <stop offset="100%" stop-color="#1e2d4a" />
+    </linearGradient>
+  </defs>
+  <!-- Icon Box -->
+  <rect x="25" y="25" width="206" height="206" rx="44" fill="url(#bgGrad)" />
+  <text x="128" y="157" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="95" fill="#6cf8bb" text-anchor="middle" letter-spacing="-2">CF</text>
+  
+  <!-- Text -->
+  <text x="270" y="160" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="800" font-size="120" fill="#131b2e" letter-spacing="-3">CareerForge</text>
+</svg>

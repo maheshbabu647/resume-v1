@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { AuthGuard } from '@/core/auth/AuthGuard'
 import { MainLayout } from '@/shared/layouts/MainLayout'
 
@@ -97,7 +97,12 @@ export const router = createBrowserRouter([
       {
         path: '*',
         element: <Suspense fallback={<Fallback />}><NotFoundPage /></Suspense>,
-      }
+      },
+      { path: 'home', element: <Navigate to="/" replace /> },
+      { path: 'signup', element: <Navigate to="/register" replace /> },
+      { path: 'forgot-password', element: <Navigate to="/login" replace /> },
+      { path: 'cover-letter/generate', element: <Navigate to="/cover-letter" replace /> },
+      { path: 'ats-checker', element: <Navigate to="/" replace /> }
     ]
   }
 ])

@@ -467,20 +467,20 @@ CERTIFICATIONS
       <p><strong>If this article opened your eyes, these will complete the picture:</strong></p>
       <ul>
         <li>
-          <strong>The Complete ATS-Friendly Resume Format for Indian Freshers</strong> — A full template
+          <strong><a href="/blog/ats-friendly-resume-format-indian-freshers-2026">The Complete ATS-Friendly Resume Format for Indian Freshers</a></strong> — A full template
           with every section explained, built specifically for TCS, Infosys, and Wipro applications.
         </li>
         <li>
-          <strong>ATS Keywords for Freshers: How to Find Them and Where to Put Them</strong> — The
+          <strong><a href="/blog/ats-keywords-for-indian-freshers-2026">ATS Keywords for Freshers: How to Find Them and Where to Put Them</a></strong> — The
           step-by-step process of extracting keywords from any job description and placing them correctly
           on your resume.
         </li>
         <li>
-          <strong>How to Check Your ATS Score Before Applying</strong> — Walk through the CareerForge ATS
+          <strong><a href="/blog/how-to-check-your-ats-score-before-applying-india-2026">How to Check Your ATS Score Before Applying</a></strong> — Walk through the CareerForge ATS
           Score tool and learn how to interpret your results.
         </li>
         <li>
-          <strong>10 Resume Formatting Mistakes Indian Freshers Make</strong> — The specific errors that
+          <strong><a href="/blog/10-resume-formatting-mistakes-indian-freshers-2026">10 Resume Formatting Mistakes Indian Freshers Make</a></strong> — The specific errors that
           cause ATS failure, with before/after examples for each one.
         </li>
       </ul>

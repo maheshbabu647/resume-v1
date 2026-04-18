@@ -5,7 +5,12 @@
       "has": [{ "type": "host", "value": "www.careerforge.pro" }],
       "destination": "https://careerforge.pro/$1",
       "permanent": true
-    }
+    },
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/signup", "destination": "/register", "permanent": true },
+    { "source": "/forgot-password", "destination": "/login", "permanent": true },
+    { "source": "/cover-letter/generate", "destination": "/cover-letter", "permanent": true },
+    { "source": "/ats-checker", "destination": "/", "permanent": true }
   ],
   "rewrites": [
     {

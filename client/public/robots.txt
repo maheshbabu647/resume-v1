@@ -8,9 +8,4 @@ Disallow: /admin/
 Disallow: /oauth-return
 Disallow: /auth/callback
 
-# Block alternative indexing/routes as per search console
-Disallow: /login
-Disallow: /signup
-Disallow: /home
-
 Sitemap: https://careerforge.pro/sitemap.xml

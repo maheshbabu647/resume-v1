@@ -12,6 +12,8 @@ const COVER_IMAGES: Record<string, string> = {
   'why-indian-fresher-resumes-are-invisible-to-ats-2026': blogCover,
   'ats-friendly-resume-format-indian-freshers-2026': blogCover,
   'how-to-check-your-ats-score-before-applying-india-2026': blogCover,
+  '10-resume-formatting-mistakes-indian-freshers-2026': blogCover,
+  'ats-keywords-for-indian-freshers-2026': blogCover,
 }
 
 // ── Icons ──────────────────────────────────────────────────────

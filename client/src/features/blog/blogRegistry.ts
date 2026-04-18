@@ -62,6 +62,32 @@ export const BLOG_POSTS: BlogPost[] = [
     seriesDay: 3,
     excerpt: 'You built the resume. You followed the format. Now the question is: will it actually pass? This is how you find out your simulated ATS score before you hit submit.',
   },
+  {
+    slug: '10-resume-formatting-mistakes-indian-freshers-2026',
+    title: '10 Resume Formatting Mistakes Indian Freshers Make (And How to Fix Each One)',
+    shortTitle: '10 Resume Formatting Mistakes',
+    metaDescription: 'The 10 most common resume formatting mistakes Indian freshers make — with specific before/after fixes for each one. Most are quick to correct once you know them.',
+    ogImage: '/assets/blog-post-1-cover.png',
+    publishedAt: '2026-04-17',
+    readingTime: 15,
+    tags: ['Resume Mistakes', 'Formatting', 'Indian Freshers'],
+    series: '90-Day Career Forge',
+    seriesDay: 4,
+    excerpt: 'You\'ve read the theory. You know what ATS is. Now let\'s look at the actual mistakes — the specific, fixable errors that are sitting in most Indian fresher resumes right now.',
+  },
+  {
+    slug: 'ats-keywords-for-indian-freshers-2026',
+    title: 'ATS Keywords for Indian Freshers: How to Find Them and Where to Place Them',
+    shortTitle: 'ATS Keywords for Indian Freshers',
+    metaDescription: 'Learn exactly how to find ATS keywords from any job description and where to place them on your resume — with a worked before/after example for Indian freshers.',
+    ogImage: '/assets/blog-post-1-cover.png',
+    publishedAt: '2026-04-18',
+    readingTime: 14,
+    tags: ['ATS Keywords', 'Indian Freshers', 'Resume Tips'],
+    series: '90-Day Career Forge',
+    seriesDay: 5,
+    excerpt: 'You have the right format. Your resume parses cleanly. But the ATS is still ranking you low. The missing piece is almost always the same thing: keywords.',
+  },
 ]
 
 // Sorted newest-first for the list page

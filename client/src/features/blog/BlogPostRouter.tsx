@@ -14,6 +14,12 @@ const POST_COMPONENTS: Record<string, React.LazyExoticComponent<() => React.Reac
   'how-to-check-your-ats-score-before-applying-india-2026': lazy(
     () => import('./posts/blog-post-3')
   ),
+  '10-resume-formatting-mistakes-indian-freshers-2026': lazy(
+    () => import('./posts/blog-post-4')
+  ),
+  'ats-keywords-for-indian-freshers-2026': lazy(
+    () => import('./posts/blog-post-5')
+  ),
 }
 
 const Fallback = () => (

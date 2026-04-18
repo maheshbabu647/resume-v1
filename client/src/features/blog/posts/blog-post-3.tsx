@@ -305,12 +305,12 @@ CSS HTML JavaScript CGPA Skills Technical`}</pre>
       </p>
 
       <p>
-        → <strong><a href="#">Blog 4: 10 Resume Formatting Mistakes Indian Freshers Make — And How to Fix Each One</a></strong> <em>(Coming next)</em><br />
+        → <strong><a href="/blog/10-resume-formatting-mistakes-indian-freshers-2026">Blog 4: 10 Resume Formatting Mistakes Indian Freshers Make — And How to Fix Each One</a></strong><br />
         <em>The specific errors that cause ATS scores to tank — with before/after examples.</em>
       </p>
 
       <p>
-        → <strong><a href="#">Blog 5: ATS Keywords for Indian Freshers — How to Find Them and Where to Place Them</a></strong><br />
+        → <strong><a href="/blog/ats-keywords-for-indian-freshers-2026">Blog 5: ATS Keywords for Indian Freshers — How to Find Them and Where to Place Them</a></strong><br />
         <em>The keyword extraction process explained step by step, with examples by stream.</em>
       </p>
 

@@ -607,17 +607,17 @@ Place: Hyderabad     Date: [Date]     Signature: ________________
       </p>
 
       <p>
-        → <strong><a href="#">Blog 3: How to Check Your ATS Score Before Applying</a></strong> <em>(Coming next)</em><br />
+        → <strong><a href="/blog/how-to-check-your-ats-score-before-applying-india-2026">Blog 3: How to Check Your ATS Score Before Applying</a></strong><br />
         <em>Your score, explained. What 85 means vs 52. How to go from failing to shortlisted.</em>
       </p>
 
       <p>
-        → <strong><a href="#">Blog 4: 10 Resume Formatting Mistakes Indian Freshers Make</a></strong><br />
+        → <strong><a href="/blog/10-resume-formatting-mistakes-indian-freshers-2026">Blog 4: 10 Resume Formatting Mistakes Indian Freshers Make</a></strong><br />
         <em>The specific errors that kill ATS scores — with before/after examples for each one.</em>
       </p>
 
       <p>
-        → <strong><a href="#">Blog 5: ATS Keywords for Indian Freshers — How to Find Them and Where to Place Them</a></strong><br />
+        → <strong><a href="/blog/ats-keywords-for-indian-freshers-2026">Blog 5: ATS Keywords for Indian Freshers — How to Find Them and Where to Place Them</a></strong><br />
         <em>The step-by-step keyword extraction process. No guessing.</em>
       </p>
 
