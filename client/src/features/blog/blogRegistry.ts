@@ -88,6 +88,19 @@ export const BLOG_POSTS: BlogPost[] = [
     seriesDay: 5,
     excerpt: 'You have the right format. Your resume parses cleanly. But the ATS is still ranking you low. The missing piece is almost always the same thing: keywords.',
   },
+  {
+    slug: 'how-to-write-a-resume-objective-for-freshers-in-india-2026',
+    title: 'How to Write a Resume Objective for Freshers in India (With 20 Ready Examples)',
+    shortTitle: 'Resume Objective for Freshers in India',
+    metaDescription: 'How to write a resume objective that passes ATS and impresses recruiters — with a formula, 20 stream-specific examples for Indian freshers, and 6 things to delete now.',
+    ogImage: '/assets/blog-post-1-cover.png',
+    publishedAt: '2026-04-19',
+    readingTime: 13,
+    tags: ['Resume Objective', 'Indian Freshers', 'Career Advice'],
+    series: '90-Day Career Forge',
+    seriesDay: 6,
+    excerpt: 'It\'s the first thing a recruiter reads after your name. It\'s the first thing an ATS parses for keywords. And it\'s written badly on the majority of Indian fresher resumes. Two sentences. Used right, they can open the door. Used wrong, they confirm that your resume is like every other one in the pile.',
+  },
 ]
 
 // Sorted newest-first for the list page

@@ -14,6 +14,7 @@ const COVER_IMAGES: Record<string, string> = {
   'how-to-check-your-ats-score-before-applying-india-2026': blogCover,
   '10-resume-formatting-mistakes-indian-freshers-2026': blogCover,
   'ats-keywords-for-indian-freshers-2026': blogCover,
+  'how-to-write-a-resume-objective-for-freshers-in-india-2026': blogCover,
 }
 
 // ── Icons ──────────────────────────────────────────────────────

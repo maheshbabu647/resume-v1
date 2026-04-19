@@ -20,6 +20,9 @@ const POST_COMPONENTS: Record<string, React.LazyExoticComponent<() => React.Reac
   'ats-keywords-for-indian-freshers-2026': lazy(
     () => import('./posts/blog-post-5')
   ),
+  'how-to-write-a-resume-objective-for-freshers-in-india-2026': lazy(
+    () => import('./posts/blog-post-6')
+  ),
 }
 
 const Fallback = () => (
