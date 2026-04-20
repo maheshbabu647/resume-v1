@@ -3,11 +3,13 @@ import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { AuthGuard } from '@/core/auth/AuthGuard'
 import { MainLayout } from '@/shared/layouts/MainLayout'
 
-const HomePage       = lazy(() => import('@/features/home/HomePage'))
-const LoginPage      = lazy(() => import('@/features/auth-pages/LoginPage'))
-const RegisterPage   = lazy(() => import('@/features/auth-pages/RegisterPage'))
-const VerifyEmailPage = lazy(() => import('@/features/auth-pages/VerifyEmailPage'))
-const AuthCallback   = lazy(() => import('@/features/auth-pages/AuthCallback'))
+const HomePage        = lazy(() => import('@/features/home/HomePage'))
+const LoginPage       = lazy(() => import('@/features/auth-pages/LoginPage'))
+const RegisterPage    = lazy(() => import('@/features/auth-pages/RegisterPage'))
+const VerifyEmailPage  = lazy(() => import('@/features/auth-pages/VerifyEmailPage'))
+const ForgotPasswordPage = lazy(() => import('@/features/auth-pages/ForgotPasswordPage'))
+const ResetPasswordPage  = lazy(() => import('@/features/auth-pages/ResetPasswordPage'))
+const AuthCallback    = lazy(() => import('@/features/auth-pages/AuthCallback'))
 const TemplatesPage  = lazy(() => import('@/features/templates/TemplatesPage'))
 const PricingPage    = lazy(() => import('@/features/pricing/PricingPage'))
 const Dashboard   = lazy(() => import('@/features/dashboard/Dashboard'))
@@ -58,6 +60,14 @@ export const router = createBrowserRouter([
         element: <Suspense fallback={<Fallback />}><VerifyEmailPage /></Suspense>,
       },
       {
+        path: '/forgot-password',
+        element: <Suspense fallback={<Fallback />}><ForgotPasswordPage /></Suspense>,
+      },
+      {
+        path: '/reset-password',
+        element: <Suspense fallback={<Fallback />}><ResetPasswordPage /></Suspense>,
+      },
+      {
         path: '/auth/callback',
         element: <Suspense fallback={<Fallback />}><AuthCallback /></Suspense>,
       },
@@ -100,7 +110,6 @@ export const router = createBrowserRouter([
       },
       { path: 'home', element: <Navigate to="/" replace /> },
       { path: 'signup', element: <Navigate to="/register" replace /> },
-      { path: 'forgot-password', element: <Navigate to="/login" replace /> },
       { path: 'cover-letter/generate', element: <Navigate to="/cover-letter" replace /> },
       { path: 'ats-checker', element: <Navigate to="/" replace /> }
     ]

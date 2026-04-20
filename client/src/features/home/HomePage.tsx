@@ -256,8 +256,8 @@ export default function HomePage() {
             <Link to="/jd-tailor">
               <Button size="lg">Tailor my resume for a job <ArrowRight size={16} /></Button>
             </Link>
-            <Link to="/scoring">
-              <Button variant="ghost" size="lg">Check my ATS score</Button>
+            <Link to="/templates">
+              <Button variant="ghost" size="lg">Browse resume templates</Button>
             </Link>
           </div>
 
@@ -485,9 +485,9 @@ export default function HomePage() {
             <Link to="/jd-tailor">
               <Button size="lg">Tailor my resume now <ArrowRight size={16} /></Button>
             </Link>
-            <Link to="/scoring">
+            <Link to="/templates">
               <Button variant="ghost" size="lg" style={{ color: 'rgba(255,255,255,0.7)', borderColor: 'rgba(255,255,255,0.2)' }}>
-                Check my ATS score free
+                Browse resume templates
               </Button>
             </Link>
           </div>

@@ -6,6 +6,7 @@ import { Input } from '@/shared/components/Input/Input'
 import { useAuthStore } from '@/core/auth/useAuthStore'
 import { apiClient } from '@/shared/lib/apiClient'
 import { trackLogin, trackLoginFailed, setUserProperties } from '@/shared/lib/analytics'
+import { ForgotPasswordDialog } from './ForgotPasswordDialog'
 import styles from './auth-pages.module.css'
 
 export default function LoginPage() {
@@ -14,6 +15,7 @@ export default function LoginPage() {
   const [showPass, setShowPass] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [forgotOpen, setForgotOpen] = useState(false)
   const { setTokens, setUser } = useAuthStore()
   const navigate = useNavigate()
 
@@ -119,7 +121,7 @@ export default function LoginPage() {
               <label className={styles.checkLabel}>
                 <input type="checkbox" /> Remember me
               </label>
-              <a href="#" className={styles.forgotLink}>Forgot password?</a>
+              <a href="#" className={styles.forgotLink} onClick={(e) => { e.preventDefault(); setForgotOpen(true) }}>Forgot password?</a>
             </div>
             <Button type="submit" loading={loading} style={{ width: '100%' }}>Log in</Button>
           </form>
@@ -129,6 +131,8 @@ export default function LoginPage() {
           </p>
         </div>
       </div>
+
+      <ForgotPasswordDialog isOpen={forgotOpen} onClose={() => setForgotOpen(false)} />
     </div>
   )
 }

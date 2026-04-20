@@ -77,3 +77,17 @@ export const getMe = async (req: Request, res: Response, next: NextFunction) => 
     res.json({ ok: true, data: { user } })
   } catch (err) { next(err) }
 }
+
+export const forgotPassword = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { message } = await authService.forgotPassword(req.body)
+    res.json({ ok: true, data: { message } })
+  } catch (err) { next(err) }
+}
+
+export const resetPassword = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { message } = await authService.resetPassword(req.body)
+    res.json({ ok: true, data: { message } })
+  } catch (err) { next(err) }
+}

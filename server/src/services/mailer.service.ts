@@ -37,3 +37,27 @@ export const sendOtpEmail = async (to: string, otp: string) => {
 
   return transporter.sendMail(mailOptions)
 }
+
+export const sendPasswordResetEmail = async (to: string, resetUrl: string) => {
+  const mailOptions = {
+    from: env.SMTP_FROM || '"CareerForge" <noreply@careerforge.com>',
+    to,
+    subject: 'Reset your CareerForge password',
+    text: `Reset your password by visiting: ${resetUrl}\n\nThis link expires in 1 hour. If you didn't request a reset, ignore this email.`,
+    html: `
+      <div style="font-family: sans-serif; max-width: 500px; margin: 0 auto; color: #1a202c; padding: 20px;">
+        <h2 style="color: #131b2e; margin-bottom: 24px;">Reset your password</h2>
+        <p style="font-size: 16px; line-height: 1.5;">We received a request to reset the password for your CareerForge account. Click the button below to choose a new password:</p>
+        <div style="text-align: center; margin: 40px 0;">
+          <a href="${resetUrl}" style="background: #006c49; color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: 600; display: inline-block;">Reset Password</a>
+        </div>
+        <p style="font-size: 14px; color: #718096; line-height: 1.5;">This link expires in <strong>1 hour</strong>. If you didn't request a password reset, you can safely ignore this email — your password will remain unchanged.</p>
+        <p style="font-size: 13px; color: #a0aec0; word-break: break-all; margin-top: 16px;">Or copy this link: ${resetUrl}</p>
+        <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 32px 0;" />
+        <p style="font-size: 12px; color: #a0aec0; text-align: center;">© 2026 CareerForge. All rights reserved.</p>
+      </div>
+    `,
+  }
+
+  return transporter.sendMail(mailOptions)
+}

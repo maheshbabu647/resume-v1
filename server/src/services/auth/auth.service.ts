@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs'
+import crypto from 'crypto'
 import { OAuth2Client } from 'google-auth-library'
 import { User, type IUser } from '../../models/User.model'
 import { signAccessToken, signRefreshToken, verifyRefreshToken } from '../../lib/jwt'
@@ -7,9 +8,9 @@ import { env } from '../../config/env'
 import { redis } from '../../config/redis'
 import { Guest } from '../../models/Guest.model'
 import { JDHistory } from '../../models/JDHistory.model'
-import { sendOtpEmail } from '../mailer.service'
+import { sendOtpEmail, sendPasswordResetEmail } from '../mailer.service'
 import type { AuthResult, SafeUser } from '../../types/auth.types'
-import type { RegisterBody, LoginBody, VerifyEmailBody, ResendOtpBody } from '../../schemas/auth.schema'
+import type { RegisterBody, LoginBody, VerifyEmailBody, ResendOtpBody, ForgotPasswordBody, ResetPasswordBody } from '../../schemas/auth.schema'
 
 const oauthClient = new OAuth2Client(env.GOOGLE_CLIENT_ID, env.GOOGLE_CLIENT_SECRET, env.GOOGLE_CALLBACK_URL)
 
@@ -193,4 +194,37 @@ export const getMe = async (userId: string): Promise<SafeUser> => {
   const user = await User.findById(userId)
   if (!user) throw new AppError('USER_NOT_FOUND', 404)
   return toSafeUser(user)
+}
+
+// ── Password Reset ─────────────────────────────────────────────────────────
+
+export const forgotPassword = async (body: ForgotPasswordBody): Promise<{ message: string }> => {
+  const user = await User.findOne({ email: body.email }).select('_id email passwordHash').lean()
+  // Always return success to prevent email enumeration
+  if (!user || !user.passwordHash) {
+    return { message: 'If that email is in our system, a reset link has been sent.' }
+  }
+
+  const token = crypto.randomBytes(32).toString('hex')
+  await redis.setex(`pwd-reset:${token}`, 3600, user.email) // 1 hour TTL
+
+  const resetUrl = `${env.CLIENT_URL}/reset-password?token=${token}`
+  await sendPasswordResetEmail(user.email, resetUrl).catch(err =>
+    console.error('Failed to send password reset email:', err)
+  )
+
+  return { message: 'If that email is in our system, a reset link has been sent.' }
+}
+
+export const resetPassword = async (body: ResetPasswordBody): Promise<{ message: string }> => {
+  const email = await redis.get(`pwd-reset:${body.token}`)
+  if (!email) throw new AppError('AUTH_TOKEN_INVALID', 400, 'Reset link is invalid or has expired.')
+
+  const passwordHash = await bcrypt.hash(body.password, 12)
+  const user = await User.findOneAndUpdate({ email }, { passwordHash })
+  if (!user) throw new AppError('USER_NOT_FOUND', 404)
+
+  await redis.del(`pwd-reset:${body.token}`) // One-time use
+
+  return { message: 'Password updated successfully. You can now log in.' }
 }
