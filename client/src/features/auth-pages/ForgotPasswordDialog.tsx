@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { X, Mail, CheckCircle2, ArrowRight, KeyRound } from 'lucide-react'
+import { X, CheckCircle2, ArrowRight, KeyRound } from 'lucide-react'
 import { Button } from '@/shared/components/Button/Button'
 import { Input } from '@/shared/components/Input/Input'
 import { apiClient } from '@/shared/lib/apiClient'
