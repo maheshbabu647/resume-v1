@@ -127,6 +127,19 @@ export const BLOG_POSTS: BlogPost[] = [
     seriesDay: 8,
     excerpt: 'Open any five Indian fresher resumes. Four of them will have "communication skills" and "team player" listed under Skills. Neither of those phrases has ever passed an ATS filter.',
   },
+  {
+    slug: 'how-to-write-the-education-section-on-an-indian-fresher-resume-2026',
+    title: 'How to Write the Education Section on an Indian Fresher Resume (With Examples and CGPA Strategy)',
+    shortTitle: 'How to Write the Education Section',
+    metaDescription: 'How to write the education section on an Indian fresher resume — CGPA strategy, 10th/12th decisions, relevant coursework for ATS, and formatted examples by stream.',
+    ogImage: '/assets/blog-post-1-cover.png',
+    publishedAt: '2026-04-22',
+    readingTime: 12,
+    tags: ['Resume Education', 'Indian Freshers', 'CGPA'],
+    series: '90-Day Career Forge',
+    seriesDay: 9,
+    excerpt: 'For every other section on your resume, you\'re building evidence. For the Education section, the evidence already exists — you just need to present it correctly.',
+  },
 ]
 
 // Sorted newest-first for the list page

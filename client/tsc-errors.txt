@@ -1,0 +1,1 @@
+src/shared/components/ui/avatar.tsx(2,34): error TS2307: Cannot find module '@radix-ui/react-avatar' or its corresponding type declarations.

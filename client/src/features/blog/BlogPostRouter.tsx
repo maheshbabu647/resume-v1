@@ -29,6 +29,9 @@ const POST_COMPONENTS: Record<string, React.LazyExoticComponent<() => React.Reac
   'resume-skills-section-for-indian-freshers-2026': lazy(
     () => import('./posts/blog-post-8')
   ),
+  'how-to-write-the-education-section-on-an-indian-fresher-resume-2026': lazy(
+    () => import('./posts/blog-post-9')
+  ),
 }
 
 const Fallback = () => (

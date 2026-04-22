@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Sparkles, CheckCircle2, TrendingUp, Users, Star, ShieldCheck, Zap } from 'lucide-react'
+import { Sparkles, CheckCircle2, TrendingUp, Star, ShieldCheck } from 'lucide-react'
 import { useTheme } from '@/shared/providers/ThemeProvider'
 import { Sun, Moon } from 'lucide-react'
 import { Button } from '@/shared/components/ui/button'
