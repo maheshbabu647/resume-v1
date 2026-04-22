@@ -35,7 +35,7 @@
 .name {
   font-size: var(--font-size-name, 22pt);
   font-weight: 400;
-  color: #111;
+  color: var(--accent-color, #111);
   margin: 0;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -76,12 +76,12 @@
 }
 
 /* Override shared section styles for this template */
-:global(.template-section) {
+.root :global(.template-section) {
   margin-bottom: var(--section-gap, 1.3rem);
   break-inside: avoid;
 }
 
-:global(.template-section-title) {
+.root :global(.template-section-title) {
   font-size: var(--font-size-section, 11pt);
   font-weight: 600;
   color: var(--accent-color, #333);
@@ -94,7 +94,7 @@
 }
 
 /* Thin accent underline */
-:global(.template-section-title)::after {
+.root :global(.template-section-title)::after {
   content: '';
   display: block;
   width: 40px;
@@ -103,19 +103,19 @@
   margin-top: 4px;
 }
 
-:global(.template-entry) {
+.root :global(.template-entry) {
   margin-bottom: var(--entry-gap, 0.7rem);
   break-inside: avoid;
 }
 
-:global(.template-entry-header) {
+.root :global(.template-entry-header) {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 2px;
 }
 
-:global(.template-entry-title) {
+.root :global(.template-entry-title) {
   font-size: var(--font-size-entry, 11pt);
   font-weight: 600;
   margin: 0;
@@ -123,18 +123,18 @@
   color: #222;
 }
 
-:global(.template-entry-subtitle) {
+.root :global(.template-entry-subtitle) {
   margin: 0;
   display: block;
   color: #666;
   font-style: italic;
 }
 
-:global(.template-entry-subtitle):before {
+.root :global(.template-entry-subtitle):before {
   content: "";
 }
 
-:global(.template-entry-meta-right) {
+.root :global(.template-entry-meta-right) {
   text-align: right;
   white-space: nowrap;
   flex-shrink: 0;
@@ -143,17 +143,17 @@
   color: #888;
 }
 
-:global(.template-entry-body p) {
+.root :global(.template-entry-body p) {
   margin: 0;
 }
 
-:global(.template-entry-body ul) {
+.root :global(.template-entry-body ul) {
   margin: 2px 0 0 0;
   padding-left: 1.4em;
   list-style-type: disc;
 }
 
-:global(.template-entry-body li) {
+.root :global(.template-entry-body li) {
   margin-bottom: var(--bullet-gap, 0.18rem);
 }
 

@@ -30,7 +30,7 @@ const SidebarSkills = ({ entries }: { entries: any[] }) => (
     {entries.map((e: any, i: number) => (
       <div key={i}>
         <div className={styles.sidebarSkillCategory}>{e.category}</div>
-        <div className={styles.sidebarSkillItems}>{e.skills}</div>
+        <div className={styles.sidebarSkillItems}>{e.skillList}</div>
       </div>
     ))}
   </div>

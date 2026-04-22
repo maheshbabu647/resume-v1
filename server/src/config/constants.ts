@@ -84,7 +84,7 @@ export const TOKEN = {
 // ─── Resume ───────────────────────────────────────────────────────────────────
 
 export const RESUME = {
-  VALID_TEMPLATE_IDS: ['modern-centered', 'minimal-left', 'compact-tech'] as const,
+  VALID_TEMPLATE_IDS: ['modern-centered', 'classic-sidebar', 'executive-minimal', 'minimal-left', 'compact-tech'] as const,
   VALID_STATUSES: ['draft', 'complete'] as const,
   TITLE_MAX_LENGTH: 120,
   /** Signed URL lifetime for R2 export links (seconds) */

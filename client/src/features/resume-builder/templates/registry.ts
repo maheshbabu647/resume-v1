@@ -20,7 +20,7 @@ export const TEMPLATE_REGISTRY = {
     id: 'classic-sidebar',
     name: 'Classic Sidebar',
     thumbnail: '/thumbnails/classic-sidebar.png',
-    thumbnailUrl: '',
+    thumbnailUrl: 'https://res.cloudinary.com/draqrqhdg/image/upload/v1776874609/Arjun_Mehta_s_classic_sidebar_irjlvu.jpg',
     isAtsRecommended: true,
     tags: {
       style: 'Classic',
@@ -35,7 +35,7 @@ export const TEMPLATE_REGISTRY = {
     id: 'executive-minimal',
     name: 'Executive Minimal',
     thumbnail: '/thumbnails/executive-minimal.png',
-    thumbnailUrl: '',
+    thumbnailUrl: 'https://res.cloudinary.com/draqrqhdg/image/upload/v1776874634/Arjun_Mehta_executive_page_gbz8u5.jpg',
     isAtsRecommended: true,
     tags: {
       style: 'Minimal',

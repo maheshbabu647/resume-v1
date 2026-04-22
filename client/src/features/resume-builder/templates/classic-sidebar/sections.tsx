@@ -103,17 +103,28 @@ const EducationSection = ({ entries, name }: { entries: any[], name?: string }) 
 
 const ProjectsSection = ({ entries, name }: { entries: any[], name?: string }) => (
   <SectionWrapper title={name || "Projects"}>
-    {entries.map((e: any, i: number) => (
-      <EntryBlock
-        key={i}
-        title={e.projectName}
-        subtitle={e.role}
-        metaRight={e.technologies}
-      >
-        {formatAsList(e.description)}
-        {renderLinks(e.links)}
-      </EntryBlock>
-    ))}
+    {entries.map((entry: any, i: number) => {
+      let subtitle = ''
+      if (entry.role && entry.techStack) subtitle = `${entry.role} | ${entry.techStack}`
+      else if (entry.role) subtitle = entry.role
+      else if (entry.techStack) subtitle = entry.techStack
+
+      return (
+        <EntryBlock 
+          key={i} 
+          title={entry.projectName} 
+          subtitle={subtitle}
+          metaRight={
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '2px' }}>
+              {entry.dates && <div>{entry.dates}</div>}
+              {entry.links && renderLinks(entry.links)}
+            </div>
+          }
+        >
+          {formatAsList(entry.description)}
+        </EntryBlock>
+      )
+    })}
   </SectionWrapper>
 )
 
@@ -121,7 +132,7 @@ const ProjectsSection = ({ entries, name }: { entries: any[], name?: string }) =
 const CertificationsSection = ({ entries, name }: { entries: any[], name?: string }) => (
   <SectionWrapper title={name || "Certifications"}>
     {entries.map((e: any, i: number) => (
-      <EntryBlock key={i} title={e.certificationName} subtitle={e.issuingOrg} metaRight={e.issueDate}>
+      <EntryBlock key={i} title={e.name} subtitle={e.issuer} metaRight={e.date}>
         {e.credentialId && <p>ID: {e.credentialId}</p>}
       </EntryBlock>
     ))}
@@ -132,7 +143,7 @@ const CertificationsSection = ({ entries, name }: { entries: any[], name?: strin
 const AwardsSection = ({ entries, name }: { entries: any[], name?: string }) => (
   <SectionWrapper title={name || "Awards & Honors"}>
     {entries.map((e: any, i: number) => (
-      <EntryBlock key={i} title={e.awardName} subtitle={e.awardedBy} metaRight={e.dateReceived}>
+      <EntryBlock key={i} title={e.awardName} subtitle={e.issuer} metaRight={e.date}>
         {formatAsList(e.description)}
       </EntryBlock>
     ))}
@@ -143,7 +154,7 @@ const AwardsSection = ({ entries, name }: { entries: any[], name?: string }) => 
 const EventsSection = ({ entries, name }: { entries: any[], name?: string }) => (
   <SectionWrapper title={name || "Workshops & Hackathons"}>
     {entries.map((e: any, i: number) => (
-      <EntryBlock key={i} title={e.eventName} subtitle={e.organizer} metaRight={e.eventDate}>
+      <EntryBlock key={i} title={e.eventName} subtitle={e.organizer} metaRight={e.date}>
         {e.achievement && <p><strong>{e.achievement}</strong></p>}
         {formatAsList(e.description)}
       </EntryBlock>
@@ -155,7 +166,7 @@ const EventsSection = ({ entries, name }: { entries: any[], name?: string }) => 
 const PublicationsSection = ({ entries, name }: { entries: any[], name?: string }) => (
   <SectionWrapper title={name || "Publications"}>
     {entries.map((e: any, i: number) => (
-      <EntryBlock key={i} title={e.title} subtitle={e.journal} metaRight={e.publicationDate}>
+      <EntryBlock key={i} title={e.title} subtitle={e.journal} metaRight={e.date}>
         {e.authors && <p><em>{e.authors}</em></p>}
         {formatAsList(e.summary)}
       </EntryBlock>
@@ -178,7 +189,7 @@ const PresentationsSection = ({ entries, name }: { entries: any[], name?: string
 const MembershipsSection = ({ entries, name }: { entries: any[], name?: string }) => (
   <SectionWrapper title={name || "Professional Memberships"}>
     {entries.map((e: any, i: number) => (
-      <EntryBlock key={i} title={e.organizationName} subtitle={e.role} metaRight={e.membershipDates} />
+      <EntryBlock key={i} title={e.organization} subtitle={e.role} metaRight={e.dates} />
     ))}
   </SectionWrapper>
 )
@@ -187,7 +198,7 @@ const MembershipsSection = ({ entries, name }: { entries: any[], name?: string }
 const GrantsSection = ({ entries, name }: { entries: any[], name?: string }) => (
   <SectionWrapper title={name || "Grants & Funding"}>
     {entries.map((e: any, i: number) => (
-      <EntryBlock key={i} title={e.grantTitle} subtitle={e.fundingBody} metaRight={<>{e.grantPeriod}{e.awardAmount ? <><br />{e.awardAmount}</> : ''}</>}>
+      <EntryBlock key={i} title={e.grantTitle} subtitle={e.fundingBody} metaRight={<>{e.dates}{e.amount ? <><br />{e.amount}</> : ''}</>}>
         {e.role && <p><strong>Role:</strong> {e.role}</p>}
         {formatAsList(e.description)}
       </EntryBlock>
@@ -210,7 +221,7 @@ const LicensureSection = ({ entries, name }: { entries: any[], name?: string }) 
 const BarAdmissionsSection = ({ entries, name }: { entries: any[], name?: string }) => (
   <SectionWrapper title={name || "Bar Admissions"}>
     {entries.map((e: any, i: number) => (
-      <EntryBlock key={i} title={e.jurisdiction} metaRight={e.admissionYear}>
+      <EntryBlock key={i} title={e.stateBar} metaRight={e.admissionYear}>
         {e.barNumber && <p>{e.barNumber}</p>}
       </EntryBlock>
     ))}
@@ -234,7 +245,7 @@ const SkillsSection = ({ entries, name }: { entries: any[], name?: string }) => 
   <SectionWrapper title={name || "Skills"}>
     <ul className={styles.skillsList}>
     {entries.map((e: any, i: number) => (
-      <li key={i}><strong>{e.category}:</strong> {e.skills}</li>
+      <li key={i}><strong>{e.category}:</strong> {e.skillList}</li>
     ))}
   </ul>
   </SectionWrapper>

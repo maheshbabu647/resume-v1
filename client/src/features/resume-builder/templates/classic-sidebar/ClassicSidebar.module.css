@@ -14,6 +14,7 @@
   font-size: var(--font-size-base, 10.5pt);
   margin: 0 auto;
   display: flex;
+  align-items: stretch;
   gap: 0;
 }
 
@@ -27,6 +28,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--section-gap, 1.2rem);
+  /* Ensure sidebar background fills full height even on multi-page PDFs */
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 .sidebar a {

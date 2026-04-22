@@ -62,6 +62,71 @@ export const Toolbar = () => {
         }
       })
 
+      // ── Template-aware print overrides ──────────────────────────────────
+      const templateId = useResumeStore.getState().templateId
+      const isClassicSidebar = templateId === 'classic-sidebar'
+
+      let classicSidebarCSS = ''
+      if (isClassicSidebar) {
+        const resumeEl = document.getElementById('resume')
+        // Read the live computed accent color (set as inline CSS variable on #resume)
+        const accentColor = resumeEl
+          ? (getComputedStyle(resumeEl).getPropertyValue('--accent-color').trim() || '#1a2332')
+          : '#1a2332'
+
+        // Round document height up to a multiple of one A4 page.
+        // This forces the flex container (and therefore the aside child via
+        // align-items:stretch) to fill the bottom of the last page.
+        const A4_PX = 1123
+        const contentHeight = (printArea as HTMLElement).scrollHeight
+        const pages = Math.ceil(Math.max(contentHeight, A4_PX) / A4_PX)
+        const minHeightPx = pages * A4_PX
+
+        classicSidebarCSS = `
+          /*
+           * Classic Sidebar print overrides
+           *
+           * PROBLEM: .paper (PreviewPanel) has background:white which was
+           * painting over every sidebar color trick. Fix: clear it.
+           *
+           * SIDEBAR COLOR: body background is a gradient that covers the FULL
+           * document canvas height — including any empty space at the bottom of
+           * the last page. The aside itself keeps its CSS background too, so
+           * page 1 is doubly covered.
+           *
+           * LAST PAGE FILL: min-height rounds #resume up to full page multiples,
+           * so align-items:stretch carries the aside to the page bottom.
+           */
+          body {
+            background: linear-gradient(
+              to right,
+              ${accentColor} 210px,
+              white 210px
+            ) !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          /* Make the resume root transparent so body gradient shows through */
+          #resume {
+            background: transparent !important;
+            min-height: ${minHeightPx}px !important;
+          }
+          /* Keep aside's original background for page-1 content area,
+             but ensure it's transparent enough to let text read on body gradient */
+          #resume aside {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          /* Section padding for breathing room after page-2+ breaks */
+          #resume main > .template-section {
+            padding-top: 20px;
+          }
+          #resume main > .template-section:first-child {
+            padding-top: 0;
+          }
+        `
+      }
+
       const htmlPayload = `
         <!DOCTYPE html>
         <html>
@@ -69,30 +134,46 @@ export const Toolbar = () => {
             <meta charset="utf-8">
             ${stylesHtml}
             <style>
-              body { margin: 0; padding: 0; background: white !important; }
-              .print-area { transform: none !important; box-shadow: none !important; width: 210mm !important; min-height: auto !important; }
+              /* Force ALL backgrounds and colors to print */
+              * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+              }
 
-              /* ── Multi-page pagination rules ── */
-              @page { size: A4; margin: 10mm 0; }
+              html { margin: 0; padding: 0; }
+              body { margin: 0; padding: 0; background: white; }
 
-              /* Let @page margins handle per-page spacing; remove root top/bottom padding */
-              #resume {
-                padding-top: 0 !important;
-                padding-bottom: 0 !important;
+              /* Remove .paper white background so it never blocks sidebar color */
+              .print-area {
+                transform: none !important;
+                box-shadow: none !important;
+                background: transparent !important;
+                width: 210mm !important;
                 min-height: auto !important;
               }
 
-              /* Sections can span pages — don't push entire sections to next page */
-              .template-section { break-inside: auto !important; }
+              /* @page margins: Classic Sidebar uses 0 (full-bleed color reaches edges).
+                 All other templates use 15mm top/bottom so page-2+ content
+                 has breathing room from the top/bottom edge. */
+              @page { size: A4; margin: ${isClassicSidebar ? '0' : '15mm 0'}; }
 
-              /* Section titles must stay with at least one entry */
+              #resume {
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                ${!isClassicSidebar ? 'min-height: auto !important;' : ''}
+              }
+
+              /* Pagination: sections can span pages, entries stay together */
+              .template-section  { break-inside: auto !important; }
+              /* Prevent section title from being orphaned at page bottom:
+                 break-after:avoid on title + break-before:avoid on first entry
+                 forces them to move together to the next page */
               .template-section-title { break-after: avoid; }
+              .template-section-content > .template-entry:first-child { break-before: avoid; }
+              .template-entry    { break-inside: avoid; }
+              .pageBreakLine     { display: none !important; }
 
-              /* Individual entries (jobs, education, etc.) must not split across pages */
-              .template-entry { break-inside: avoid; }
-
-              /* Hide page-break visual indicators */
-              .pageBreakLine { display: none !important; }
+              ${classicSidebarCSS}
             </style>
           </head>
           <body>

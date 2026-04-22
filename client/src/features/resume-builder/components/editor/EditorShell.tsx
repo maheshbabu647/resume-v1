@@ -23,6 +23,7 @@ export default function EditorShell() {
   const resumeId = id === 'new' ? null : id
   
   const loadResume = useResumeStore(s => s.loadResume)
+  const setTemplateId = useResumeStore(s => s.setTemplateId)
   const setDirty = useEditorUIStore(s => s.setDirty)
   
   // For tailored resumes or stashed resumes, skip onboarding
@@ -99,6 +100,8 @@ export default function EditorShell() {
       } else {
         console.log('[EditorShell] Loading blank resume')
         loadResume(null)
+        const t = searchParams.get('template')
+        if (t) setTemplateId(t)
       }
       setTimeout(() => setDirty(false), 50)
     }

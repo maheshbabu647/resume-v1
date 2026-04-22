@@ -20,7 +20,8 @@ import { TEMPLATE_REGISTRY } from '../resume-builder/templates/registry'
 const TEMPLATES_QUICK = Object.values(TEMPLATE_REGISTRY).map(t => ({
   id: t.id,
   name: t.name,
-  color: '#1e2d4a'
+  color: t.id === 'modern-centered' ? '#1e2d4a' : t.id === 'classic-sidebar' ? '#006c49' : '#1a2744',
+  thumbnailUrl: t.thumbnailUrl
 }))
 
 const PLAN_DISPLAY: Record<string, { label: string; color: string; bg: string }> = {
@@ -448,15 +449,19 @@ export default function Dashboard() {
                 <button
                   key={t.id}
                   className={styles.modalCard}
-                  onClick={() => { setShowNewModal(false); navigate('/resume/new') }}
+                  onClick={() => { setShowNewModal(false); navigate(`/resume/new?template=${t.id}`) }}
                 >
-                  <div className={styles.modalThumb} style={{ '--c': t.color } as React.CSSProperties}>
-                    <div className={styles.thumbLines}>
-                      <div className={styles.tl} style={{ width: '60%' }} />
-                      <div className={styles.tl} style={{ width: '40%', height: 3 }} />
-                      {[80, 90, 70].map((w, i) => <div key={i} className={styles.tl} style={{ width: `${w}%`, opacity: 0.3 }} />)}
+                  {t.thumbnailUrl ? (
+                    <img src={t.thumbnailUrl} alt={t.name} className={styles.modalThumbImage} />
+                  ) : (
+                    <div className={styles.modalThumb} style={{ '--c': t.color } as React.CSSProperties}>
+                      <div className={styles.thumbLines}>
+                        <div className={styles.tl} style={{ width: '60%' }} />
+                        <div className={styles.tl} style={{ width: '40%', height: 3 }} />
+                        {[80, 90, 70].map((w, i) => <div key={i} className={styles.tl} style={{ width: `${w}%`, opacity: 0.3 }} />)}
+                      </div>
                     </div>
-                  </div>
+                  )}
                   <span className={styles.modalCardName}>{t.name}</span>
                 </button>
               ))}

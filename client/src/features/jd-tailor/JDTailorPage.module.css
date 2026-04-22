@@ -876,6 +876,13 @@
   background: var(--c, var(--primary-container));
 }
 
+.templateThumbImage {
+  height: 110px;
+  width: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
 .thumbLines {
   width: 55%;
   display: flex;

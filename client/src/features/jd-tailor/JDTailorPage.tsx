@@ -16,12 +16,15 @@ import { preprocessJD, serializeResume } from '@/features/scoring/lib/jdPreproce
 import { trackJDScoreViewed, trackJDTailorRequested } from '@/shared/lib/analytics'
 import styles from './JDTailorPage.module.css'
 
+import { TEMPLATE_REGISTRY } from '../resume-builder/templates/registry'
+
 // ── Template registry ──────────────────────────────────────────────────────────
-const TEMPLATES = [
-  { id: 'modern-centered', name: 'Modern Centered', color: '#1e2d4a' },
-  { id: 'minimal-left',    name: 'Minimal Left',    color: '#1a2744' },
-  { id: 'compact-tech',    name: 'Compact Tech',    color: '#006c49' },
-]
+const TEMPLATES = Object.values(TEMPLATE_REGISTRY).map(t => ({
+  id: t.id,
+  name: t.name,
+  color: t.id === 'modern-centered' ? '#1e2d4a' : t.id === 'classic-sidebar' ? '#006c49' : '#1a2744',
+  thumbnailUrl: t.thumbnailUrl
+}))
 
 type Stage = 'input' | 'analyzing' | 'results' | 'tailoring'
 type ResumeSource = 'paste' | 'upload' | 'existing'
@@ -739,15 +742,19 @@ export default function JDTailorPage() {
                         className={styles.templateCard}
                         onClick={() => handleTailor(t.id)}
                       >
-                        <div className={styles.templateThumb} style={{ '--c': t.color } as React.CSSProperties}>
-                          <div className={styles.thumbLines}>
-                            <div className={styles.tl} style={{ width: '60%' }} />
-                            <div className={styles.tl} style={{ width: '40%', height: 3 }} />
-                            {[80, 90, 70].map((w, i) => (
-                              <div key={i} className={styles.tl} style={{ width: `${w}%`, opacity: 0.3 }} />
-                            ))}
+                        {t.thumbnailUrl ? (
+                          <img src={t.thumbnailUrl} alt={t.name} className={styles.templateThumbImage} />
+                        ) : (
+                          <div className={styles.templateThumb} style={{ '--c': t.color } as React.CSSProperties}>
+                            <div className={styles.thumbLines}>
+                              <div className={styles.tl} style={{ width: '60%' }} />
+                              <div className={styles.tl} style={{ width: '40%', height: 3 }} />
+                              {[80, 90, 70].map((w, i) => (
+                                <div key={i} className={styles.tl} style={{ width: `${w}%`, opacity: 0.3 }} />
+                              ))}
+                            </div>
                           </div>
-                        </div>
+                        )}
                         <span className={styles.templateName}>{t.name}</span>
                       </button>
                     ))}

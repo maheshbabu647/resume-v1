@@ -51,14 +51,14 @@
 }
 
 /* Base template classes applied to generic wrappers */
-:global(.template-section) {
+.root :global(.template-section) {
   margin-bottom: var(--section-gap, 1.2rem);
   /* NO break-inside:avoid here — sections CAN span pages.
      This prevents entire sections from jumping to the next page
      and leaving large empty gaps at the bottom of the previous page. */
 }
 
-:global(.template-section-title) {
+.root :global(.template-section-title) {
   font-size: var(--font-size-section, 13pt);
   font-weight: bold;
   color: var(--accent-color, #000);
@@ -72,37 +72,37 @@
   break-after: avoid;
 }
 
-:global(.template-entry) {
+.root :global(.template-entry) {
   margin-bottom: var(--entry-gap, 0.75rem);
   /* Keep individual entries together — e.g., don't split an education
      entry with institution on one page and degree on the next */
   break-inside: avoid;
 }
 
-:global(.template-entry-header) {
+.root :global(.template-entry-header) {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 4px;
 }
 
-:global(.template-entry-title) {
+.root :global(.template-entry-title) {
   font-size: var(--font-size-entry, 11.5pt);
   font-weight: bold;
   margin: 0;
   display: block;
 }
 
-:global(.template-entry-subtitle) {
+.root :global(.template-entry-subtitle) {
   margin: 0;
   display: block;
   font-weight: 500;
 }
-:global(.template-entry-subtitle):before {
+.root :global(.template-entry-subtitle):before {
   content: "";
 }
 
-:global(.template-entry-meta-right) {
+.root :global(.template-entry-meta-right) {
   text-align: right;
   white-space: nowrap;
   flex-shrink: 0;
@@ -110,19 +110,19 @@
   margin-left: 16px;
 }
 
-:global(.template-entry-body p) {
+.root :global(.template-entry-body p) {
   margin: 0;
   orphans: 3;
   widows: 3;
 }
 
-:global(.template-entry-body ul) {
+.root :global(.template-entry-body ul) {
   margin: 0;
   padding-left: 1.5em;
   list-style-type: disc;
 }
 
-:global(.template-entry-body li) {
+.root :global(.template-entry-body li) {
   margin-bottom: var(--bullet-gap, 0.2rem);
   orphans: 2;
   widows: 2;

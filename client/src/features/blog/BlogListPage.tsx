@@ -15,6 +15,8 @@ const COVER_IMAGES: Record<string, string> = {
   '10-resume-formatting-mistakes-indian-freshers-2026': blogCover,
   'ats-keywords-for-indian-freshers-2026': blogCover,
   'how-to-write-a-resume-objective-for-freshers-in-india-2026': blogCover,
+  'how-to-write-the-projects-section-on-your-resume-2026': blogCover,
+  'resume-skills-section-for-indian-freshers-2026': blogCover,
 }
 
 // ── Icons ──────────────────────────────────────────────────────

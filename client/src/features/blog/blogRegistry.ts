@@ -101,6 +101,32 @@ export const BLOG_POSTS: BlogPost[] = [
     seriesDay: 6,
     excerpt: 'It\'s the first thing a recruiter reads after your name. It\'s the first thing an ATS parses for keywords. And it\'s written badly on the majority of Indian fresher resumes. Two sentences. Used right, they can open the door. Used wrong, they confirm that your resume is like every other one in the pile.',
   },
+  {
+    slug: 'how-to-write-the-projects-section-on-your-resume-2026',
+    title: 'How to Write the Projects Section on Your Resume — The Section That Actually Gets You Shortlisted',
+    shortTitle: 'How to Write the Projects Section',
+    metaDescription: 'Your projects section is your work experience. Learn the exact structure, four before/after examples, and how to get numbers from academic projects — for Indian freshers.',
+    ogImage: '/assets/blog-post-1-cover.png',
+    publishedAt: '2026-04-20',
+    readingTime: 14,
+    tags: ['Resume Projects', 'Indian Freshers', 'Career Advice'],
+    series: '90-Day Career Forge',
+    seriesDay: 7,
+    excerpt: 'Every Indian fresher has the same problem: no work experience. But most of them have built things. The gap between "I built things" and "I have no experience" is entirely a writing problem.',
+  },
+  {
+    slug: 'resume-skills-section-for-indian-freshers-2026',
+    title: 'Resume Skills Section for Indian Freshers: What to Include, What to Skip, and How to Format It',
+    shortTitle: 'Resume Skills Section for Indian Freshers',
+    metaDescription: 'What to include in your skills section as an Indian fresher — stream-specific skill lists, the soft skills trap, ATS formatting rules, and what to delete right now.',
+    ogImage: '/assets/blog-post-1-cover.png',
+    publishedAt: '2026-04-21',
+    readingTime: 13,
+    tags: ['Resume Skills', 'Indian Freshers', 'ATS Formatting'],
+    series: '90-Day Career Forge',
+    seriesDay: 8,
+    excerpt: 'Open any five Indian fresher resumes. Four of them will have "communication skills" and "team player" listed under Skills. Neither of those phrases has ever passed an ATS filter.',
+  },
 ]
 
 // Sorted newest-first for the list page
