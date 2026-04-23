@@ -47,6 +47,9 @@ const envSchema = z.object({
   SMTP_USER: z.string().optional(),
   SMTP_PASS: z.string().optional(),
   SMTP_FROM: z.string().optional(),
+
+  // Sentry
+  SENTRY_DSN: z.string().url().optional(),
 })
 
 const parsed = envSchema.safeParse(process.env)

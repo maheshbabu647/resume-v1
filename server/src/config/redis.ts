@@ -1,5 +1,6 @@
 import Redis from 'ioredis'
 import { env } from './env'
+import { logger } from './logger'
 
 // ─── Singleton client ─────────────────────────────────────────────────────────
 // Import `redis` wherever you need it — never call new Redis() elsewhere.
@@ -9,11 +10,11 @@ export const redis = new Redis(env.REDIS_URL, {
   maxRetriesPerRequest: 3,
   retryStrategy(times) {
     if (times > 10) {
-      console.error('❌  Redis max reconnect attempts reached')
+      logger.error('❌  Redis max reconnect attempts reached')
       return null // stop retrying
     }
     const delay = Math.min(times * 200, 3000)
-    console.warn(`⚠️   Redis reconnecting in ${delay}ms (attempt ${times})...`)
+    logger.warn(`⚠️   Redis reconnecting in ${delay}ms (attempt ${times})...`)
     return delay
   },
   lazyConnect: false,  // connect eagerly at startup so we fail fast
@@ -21,14 +22,14 @@ export const redis = new Redis(env.REDIS_URL, {
 
 // ─── Event listeners ──────────────────────────────────────────────────────────
 
-redis.on('connect', () => console.log('✅  Redis connected'))
-redis.on('error',   (err) => console.error('❌  Redis error:', err))
-redis.on('close',   () => console.warn('⚠️   Redis connection closed'))
+redis.on('connect', () => logger.info('✅  Redis connected'))
+redis.on('error',   (err) => logger.error({ err }, '❌  Redis error'))
+redis.on('close',   () => logger.warn('⚠️   Redis connection closed'))
 
 // ─── Graceful shutdown helper ─────────────────────────────────────────────────
 // Called by server.ts SIGTERM handler alongside disconnectDB()
 
 export const disconnectRedis = async (): Promise<void> => {
   await redis.quit()
-  console.log('🔌  Redis disconnected')
+  logger.info('🔌  Redis disconnected')
 }

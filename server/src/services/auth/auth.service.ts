@@ -8,8 +8,9 @@ import { env } from '../../config/env'
 import { redis } from '../../config/redis'
 import { Guest } from '../../models/Guest.model'
 import { JDHistory } from '../../models/JDHistory.model'
-import { sendOtpEmail, sendPasswordResetEmail } from '../mailer.service'
-import type { AuthResult, SafeUser } from '../../types/auth.types'
+import { emailQueue } from '../../queues/email.queue'
+import { logger } from '../../config/logger'
+import type { AuthResult, SafeUser, TokenPair } from '../../types/auth.types'
 import type { RegisterBody, LoginBody, VerifyEmailBody, ResendOtpBody, ForgotPasswordBody, ResetPasswordBody } from '../../schemas/auth.schema'
 
 const oauthClient = new OAuth2Client(env.GOOGLE_CLIENT_ID, env.GOOGLE_CLIENT_SECRET, env.GOOGLE_CALLBACK_URL)
@@ -21,10 +22,14 @@ const toSafeUser = (user: IUser): SafeUser => ({
   isEmailVerified: user.isEmailVerified,
 })
 
-const buildTokens = (user: IUser) => ({
-  accessToken:  signAccessToken({ _id: user._id.toString(), name: user.name, email: user.email, plan: user.plan }),
-  refreshToken: signRefreshToken(user._id.toString()),
-})
+const buildTokens = async (user: IUser): Promise<{ accessToken: string; refreshToken: string }> => {
+  const accessToken = signAccessToken({ _id: user._id.toString(), name: user.name, email: user.email, plan: user.plan })
+  const { token: refreshToken, jti } = signRefreshToken(user._id.toString())
+  // Store jti in Redis — TTL matches the refresh token expiry (7 days)
+  const refreshTtlSec = 7 * 24 * 60 * 60
+  await redis.setex(`rt:${user._id}:${jti}`, refreshTtlSec, '1')
+  return { accessToken, refreshToken }
+}
 
 const generateOtp = (): string => Math.floor(100000 + Math.random() * 900000).toString()
 const generateReferralCode = (): string => Math.random().toString(36).substring(2, 10).toUpperCase()
@@ -96,7 +101,9 @@ export const register = async (body: RegisterBody, guestId?: string): Promise<{ 
   
   const otp = generateOtp()
   await redis.setex(`otp:${user.email}`, 600, otp) // 10 minutes TTL
-  await sendOtpEmail(user.email, otp).catch(err => console.error('Failed to send OTP email:', err))
+  await emailQueue.add('otp', { type: 'otp', to: user.email, otp }).catch(err =>
+    logger.error({ err, to: user.email }, 'Failed to enqueue OTP email')
+  )
 
   await mergeGuest(user._id.toString(), guestId)
 
@@ -112,7 +119,7 @@ export const login = async (body: LoginBody, guestId?: string): Promise<AuthResu
 
   await mergeGuest(user._id.toString(), guestId)
 
-  return { user: toSafeUser(user), ...buildTokens(user) }
+  return { user: toSafeUser(user), ...(await buildTokens(user)) }
 }
 
 export const verifyEmail = async (body: VerifyEmailBody): Promise<AuthResult> => {
@@ -124,7 +131,7 @@ export const verifyEmail = async (body: VerifyEmailBody): Promise<AuthResult> =>
   if (!user) throw new AppError('USER_NOT_FOUND', 404)
 
   await redis.del(`otp:${email}`)
-  return { user: toSafeUser(user), ...buildTokens(user) }
+  return { user: toSafeUser(user), ...(await buildTokens(user)) }
 }
 
 export const resendOtp = async (body: ResendOtpBody): Promise<{ message: string }> => {
@@ -134,7 +141,9 @@ export const resendOtp = async (body: ResendOtpBody): Promise<{ message: string 
 
   const otp = generateOtp()
   await redis.setex(`otp:${user.email}`, 600, otp) // 10 minutes TTL
-  await sendOtpEmail(user.email, otp).catch(err => console.error('Failed to send OTP email:', err))
+  await emailQueue.add('otp', { type: 'otp', to: user.email, otp }).catch(err =>
+    logger.error({ err, to: user.email }, 'Failed to enqueue OTP email')
+  )
 
   return { message: 'OTP resent to email' }
 }
@@ -178,22 +187,47 @@ export const handleGoogleCallback = async (code: string, state?: string): Promis
   
   await mergeGuest(user!._id.toString(), guestId)
 
-  return { user: toSafeUser(user!), ...buildTokens(user!) }
+  return { user: toSafeUser(user!), ...(await buildTokens(user!)) }
 }
 
-export const refreshAccessToken = async (refreshToken: string): Promise<string> => {
-  let payload: { _id: string }
+export const refreshAccessToken = async (refreshToken: string): Promise<TokenPair> => {
+  let payload: { _id: string; jti: string }
   try { payload = verifyRefreshToken(refreshToken) }
   catch { throw new AppError('AUTH_TOKEN_INVALID', 401, 'Invalid or expired refresh token.') }
+
+  // Check that this jti is still valid (not already rotated / logged out)
+  const redisKey = `rt:${payload._id}:${payload.jti}`
+  const valid = await redis.get(redisKey)
+  if (!valid) throw new AppError('AUTH_TOKEN_INVALID', 401, 'Refresh token has already been used or revoked.')
+
   const user = await User.findById(payload._id).select('name email plan').lean()
   if (!user) throw new AppError('AUTH_TOKEN_INVALID', 401)
-  return signAccessToken({ _id: payload._id, name: user.name, email: user.email, plan: user.plan })
+
+  // Rotate: issue new tokens, delete old jti, store new jti
+  const accessToken = signAccessToken({ _id: payload._id, name: user.name, email: user.email, plan: user.plan })
+  const { token: newRefreshToken, jti: newJti } = signRefreshToken(payload._id)
+  const refreshTtlSec = 7 * 24 * 60 * 60
+  await redis.pipeline()
+    .del(redisKey)
+    .setex(`rt:${payload._id}:${newJti}`, refreshTtlSec, '1')
+    .exec()
+
+  return { accessToken, refreshToken: newRefreshToken }
 }
 
 export const getMe = async (userId: string): Promise<SafeUser> => {
   const user = await User.findById(userId)
   if (!user) throw new AppError('USER_NOT_FOUND', 404)
   return toSafeUser(user)
+}
+
+export const revokeRefreshToken = async (refreshToken: string): Promise<void> => {
+  try {
+    const payload = verifyRefreshToken(refreshToken)
+    await redis.del(`rt:${payload._id}:${payload.jti}`)
+  } catch {
+    // Token already expired or invalid — nothing to revoke
+  }
 }
 
 // ── Password Reset ─────────────────────────────────────────────────────────
@@ -209,8 +243,8 @@ export const forgotPassword = async (body: ForgotPasswordBody): Promise<{ messag
   await redis.setex(`pwd-reset:${token}`, 3600, user.email) // 1 hour TTL
 
   const resetUrl = `${env.CLIENT_URL}/reset-password?token=${token}`
-  await sendPasswordResetEmail(user.email, resetUrl).catch(err =>
-    console.error('Failed to send password reset email:', err)
+  await emailQueue.add('password-reset', { type: 'password-reset', to: user.email, resetUrl }).catch(err =>
+    logger.error({ err, to: user.email }, 'Failed to enqueue password reset email')
   )
 
   return { message: 'If that email is in our system, a reset link has been sent.' }
