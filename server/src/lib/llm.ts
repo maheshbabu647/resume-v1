@@ -2,6 +2,7 @@ import { GoogleGenerativeAI, type GenerationConfig } from '@google/generative-ai
 import { env } from '../config/env'
 import { AI } from '../config/constants'
 import { AppError } from './AppError'
+import { logger } from '../config/logger'
 
 const genAI = new GoogleGenerativeAI(env.GEMINI_API_KEY)
 const model  = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' })
@@ -25,7 +26,7 @@ export const callLLM = async (prompt: string, opts: LLMCallOptions = {}): Promis
     })
     return result.response.text()
   } catch (err: any) {
-    console.error('[LLM] Error:', err?.message)
+    logger.error({ err }, '[LLM] Error')
     throw new AppError('LLM_ERROR', 500, 'AI service temporarily unavailable.')
   }
 }
@@ -37,7 +38,7 @@ export const callLLMJSON = async <T>(prompt: string, opts: Omit<LLMCallOptions, 
     raw = raw.replace(/^```json\n?/, '').replace(/\n?```$/, '').trim()
     return JSON.parse(raw) as T
   } catch {
-    console.error('[LLM] JSON parse failed. Raw:', raw.slice(0, 1000))
+    logger.error({ raw: raw.slice(0, 1000) }, '[LLM] JSON parse failed')
     throw new AppError('LLM_ERROR', 500, 'AI returned an unexpected format.')
   }
 }

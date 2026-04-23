@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import { env } from './env'
+import { logger } from './logger'
 
 // ─── Connect ──────────────────────────────────────────────────────────────────
 
@@ -10,9 +11,9 @@ export const connectDB = async (): Promise<void> => {
       serverSelectionTimeoutMS: 5000,  // fail fast if DB unreachable at boot
       socketTimeoutMS: 45000,
     })
-    console.log(`✅  MongoDB connected: ${mongoose.connection.host}`)
+    logger.info(`✅  MongoDB connected: ${mongoose.connection.host}`)
   } catch (err) {
-    console.error('❌  MongoDB connection failed:', err)
+    logger.error({ err }, '❌  MongoDB connection failed')
     process.exit(1)
   }
 }
@@ -22,15 +23,16 @@ export const connectDB = async (): Promise<void> => {
 
 export const disconnectDB = async (): Promise<void> => {
   await mongoose.disconnect()
-  console.log('🔌  MongoDB disconnected')
+  logger.info('🔌  MongoDB disconnected')
 }
 
 // ─── Connection event listeners ───────────────────────────────────────────────
 
 mongoose.connection.on('disconnected', () => {
-  console.warn('⚠️   MongoDB disconnected — attempting to reconnect...')
+  logger.warn('⚠️   MongoDB disconnected — attempting to reconnect...')
 })
 
 mongoose.connection.on('error', (err) => {
-  console.error('❌  MongoDB error:', err)
+  logger.error({ err }, '❌  MongoDB error')
 })
+

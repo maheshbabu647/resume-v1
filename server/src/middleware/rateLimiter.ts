@@ -1,6 +1,7 @@
 import type { Request, Response, NextFunction } from 'express'
 import { redis } from '../config/redis'
 import { AppError } from '../lib/AppError'
+import { logger } from '../config/logger'
 
 interface RateLimitOptions { windowSec: number; maxRequests: number }
 
@@ -27,7 +28,7 @@ export const rateLimiter =
         }
         next()
       } catch (err) {
-        console.error('[rateLimiter] Redis error, failing open:', err)
+        logger.error({ err }, '[rateLimiter] Redis error, failing open')
         next()
       }
     }
