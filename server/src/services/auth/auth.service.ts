@@ -198,7 +198,7 @@ export const refreshAccessToken = async (refreshToken: string): Promise<TokenPai
   // Check that this jti is still valid (not already rotated / logged out)
   const redisKey = `rt:${payload._id}:${payload.jti}`
   const valid = await redis.get(redisKey)
-  if (!valid) throw new AppError('AUTH_TOKEN_INVALID', 401, 'Refresh token has already been used or revoked.')
+  if (!valid) throw new AppError('AUTH_TOKEN_INVALID', 401, 'Invalid or expired refresh token.')
 
   const user = await User.findById(payload._id).select('name email plan').lean()
   if (!user) throw new AppError('AUTH_TOKEN_INVALID', 401)

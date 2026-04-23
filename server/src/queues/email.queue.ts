@@ -35,11 +35,11 @@ export const startEmailWorker = (): void => {
     async (job: Job<EmailJobData>) => {
       const { type, to, otp, resetUrl } = job.data
       if (type === 'otp') {
-        if (!otp) throw new Error('otp field is required for type=otp')
+        if (!otp) throw new Error('Email job validation failed: otp field is required for type=otp')
         await sendOtpEmail(to, otp)
         logger.info({ jobId: job.id, to }, 'OTP email sent')
       } else if (type === 'password-reset') {
-        if (!resetUrl) throw new Error('resetUrl is required for type=password-reset')
+        if (!resetUrl) throw new Error('Email job validation failed: resetUrl is required for type=password-reset')
         await sendPasswordResetEmail(to, resetUrl)
         logger.info({ jobId: job.id, to }, 'Password reset email sent')
       }

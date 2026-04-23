@@ -1,6 +1,7 @@
 import puppeteer, { type Browser } from 'puppeteer'
 import sanitizeHtml from 'sanitize-html'
 import { AppError } from './AppError'
+import { logger } from '../config/logger'
 
 let browser: Browser | null = null
 
@@ -110,6 +111,7 @@ export const htmlToPDF = async (html: string): Promise<Buffer> => {
     const buf = await page.pdf({ format: 'A4', printBackground: true, margin: { top: '0', right: '0', bottom: '0', left: '0' } })
     return Buffer.from(buf)
   } catch (err) {
+    logger.error({ err }, '[PDF] Error generating PDF')
     throw new AppError('EXPORT_FAILED', 500, 'PDF generation failed.')
   } finally {
     await page.close()
