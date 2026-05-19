@@ -36,10 +36,11 @@ export const useAuthStore = create<AuthStore>()(
           const { apiClient } = await import('@/shared/lib/apiClient')
           const res = await apiClient.get('/auth/me')
           if (res.data.data) {
-            set({ user: res.data.data })
+            const user = res.data.data.user ?? res.data.data
+            set({ user })
             // Re-identify user in GA4 on every session restore
             const { setUserProperties } = await import('@/shared/lib/analytics')
-            setUserProperties(res.data.data._id, res.data.data.plan)
+            setUserProperties(user._id, user.plan)
           }
         } catch (err) {
           console.error('Failed to fetch user:', err)
@@ -50,3 +51,8 @@ export const useAuthStore = create<AuthStore>()(
     { name: 'auth-store' }
   )
 )
+
+// Listen for unauthorized events to clear store without relying on React lifecycle
+window.addEventListener('auth-expired', () => {
+  useAuthStore.getState().logout()
+})

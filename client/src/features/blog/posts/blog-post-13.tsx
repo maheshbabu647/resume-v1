@@ -52,22 +52,8 @@ export default function BlogPost13() {
       tocEntries={TOC}
     >
       <blockquote><p><em>More CSE graduates enter the Indian job market every year than any other engineering stream. That's not a problem. It's a signal that your resume needs to be significantly better than the average — because the average is what you're competing against. This blog tells you exactly how to build it.</em></p></blockquote>
-      <div dangerouslySetInnerHTML={{ __html: `{/* # Resume Format for CSE/IT Freshers in India — 2026 ATS-Ready Template and Complete Guide */}
 
-{/* **By CareerForge.pro** | Resume Advice for Indian Freshers | 15 min read */}
-
-<hr />
-
-<p>&gt; *More CSE graduates enter the Indian job market every year than*</p>
-<p>&gt; *any other engineering stream.*</p>
-<p>&gt;</p>
-<p>&gt; *That's not a problem. It's a signal that your resume needs to be*</p>
-<p>&gt; *significantly better than the average — because the average is what*</p>
-<p>&gt; *you're competing against.*</p>
-<p>&gt;</p>
-<p>&gt; *This blog tells you exactly how to build it.*</p>
-
-<hr />
+      <hr />
 
 <h2 id="why-cse-freshers-need-a-different-approach">Why CSE Freshers Need a Different Approach</h2>
 
@@ -91,16 +77,18 @@ export default function BlogPost13() {
 
 <p>These are the mass recruiters. They hire large numbers of freshers annually, run standardised assessment drives (NQT, InfyTQ, Elite), and use ATS to manage very high application volumes.</p>
 
-<p>**What they are looking for:** Trainable freshers with solid fundamentals. Clean academic record (CGPA 6.0+ at graduation, 10th, and 12th). Good aptitude scores. Basic programming knowledge. The ability to learn quickly and follow structured processes.</p>
+<p><strong>What they are looking for:</strong> Trainable freshers with solid fundamentals. Clean academic record (CGPA 6.0+ at graduation, 10th, and 12th). Good aptitude scores. Basic programming knowledge. The ability to learn quickly and follow structured processes.</p>
 
-<p>**Resume strategy for service companies:**</p>
-<p>- CGPA must be visible immediately — these companies have eligibility cutoffs</p>
-<p>- Fundamental skills dominate: Java, Python, C, SQL, Data Structures, DBMS, OOP</p>
-<p>- Projects are important but treated as training evidence, not product experience</p>
-<p>- Keep it to one page, strictly — multiple reports from campus placement interactions confirm that two-page fresher resumes are deprioritised at high-volume service company drives</p>
-<p>- Declaration section expected for campus drives</p>
+<p><strong>Resume strategy for service companies:</strong></p>
+      <ul>
+        <li>CGPA must be visible immediately — these companies have eligibility cutoffs</li>
+        <li>Fundamental skills dominate: Java, Python, C, SQL, Data Structures, DBMS, OOP</li>
+        <li>Projects are important but treated as training evidence, not product experience</li>
+        <li>Keep it to one page, strictly — multiple reports from campus placement interactions confirm that two-page fresher resumes are deprioritised at high-volume service company drives</li>
+        <li>Declaration section expected for campus drives</li>
+      </ul>
 
-<p>**Keywords these companies' ATS systems scan for:**</p>
+<p><strong>Keywords these companies' ATS systems scan for:</strong></p>
 <p>Java, Python, C, C++, SQL, MySQL, DBMS, Data Structures, Algorithms, OOP, SDLC, Agile, Git, HTML, CSS, JavaScript, REST API</p>
 
 <hr />
@@ -109,17 +97,19 @@ export default function BlogPost13() {
 
 <p>These companies hire far fewer freshers but pay significantly more. Their selection process is harder — typically involving multiple technical rounds focused on Data Structures and Algorithms (DSA), system design basics, and code quality.</p>
 
-<p>**What they are looking for:** Technical depth. Problem-solving ability. Strong project work — not just academic projects, but evidence of building something non-trivial. Competitive programming activity. GitHub presence. Domain-specific expertise (backend, ML, data, etc.)</p>
+<p><strong>What they are looking for:</strong> Technical depth. Problem-solving ability. Strong project work — not just academic projects, but evidence of building something non-trivial. Competitive programming activity. GitHub presence. Domain-specific expertise (backend, ML, data, etc.)</p>
 
-<p>**Resume strategy for product companies:**</p>
-<p>- DSA and competitive programming ratings (LeetCode, Codeforces, HackerRank) belong on the resume — explicitly</p>
-<p>- Projects must demonstrate technical ambition — not just CRUD applications</p>
-<p>- Deployment, scale, and architecture decisions should be mentioned</p>
-<p>- GitHub link is expected and will be reviewed</p>
-<p>- Objective should name the specific role and demonstrate domain focus</p>
-<p>- Declaration can be omitted — product companies do not expect it</p>
+<p><strong>Resume strategy for product companies:</strong></p>
+      <ul>
+        <li>DSA and competitive programming ratings (LeetCode, Codeforces, HackerRank) belong on the resume — explicitly</li>
+        <li>Projects must demonstrate technical ambition — not just CRUD applications</li>
+        <li>Deployment, scale, and architecture decisions should be mentioned</li>
+        <li>GitHub link is expected and will be reviewed</li>
+        <li>Objective should name the specific role and demonstrate domain focus</li>
+        <li>Declaration can be omitted — product companies do not expect it</li>
+      </ul>
 
-<p>**Keywords product companies' systems scan for:**</p>
+<p><strong>Keywords product companies' systems scan for:</strong></p>
 <p>Data Structures, Algorithms, System Design, REST APIs, Microservices, Docker, Kubernetes, React.js, Node.js, Python, Django, Flask, PostgreSQL, MongoDB, Redis, AWS, CI/CD, Git, GitHub, LeetCode, Open Source</p>
 
 <hr />
@@ -128,14 +118,16 @@ export default function BlogPost13() {
 
 <p>Startups want versatile builders. They care about what you've shipped, not just what you've studied. A candidate who built a live project that real people use is far more compelling to a startup recruiter than one with a 9.2 CGPA and no visible work.</p>
 
-<p>**What they are looking for:** Initiative, breadth, speed of learning, ownership. Evidence that you've built things that work — ideally deployed and live.</p>
+<p><strong>What they are looking for:</strong> Initiative, breadth, speed of learning, ownership. Evidence that you've built things that work — ideally deployed and live.</p>
 
-<p>**Resume strategy for startups:**</p>
-<p>- Projects with GitHub and live demo links carry significant weight</p>
-<p>- Language is more conversational, less formal — but still professional</p>
-<p>- Declaration can be omitted</p>
-<p>- Highlight any freelance work, open-source contributions, or personal products</p>
-<p>- Communication ability matters — mention any writing, content, or community work if relevant</p>
+<p><strong>Resume strategy for startups:</strong></p>
+      <ul>
+        <li>Projects with GitHub and live demo links carry significant weight</li>
+        <li>Language is more conversational, less formal — but still professional</li>
+        <li>Declaration can be omitted</li>
+        <li>Highlight any freelance work, open-source contributions, or personal products</li>
+        <li>Communication ability matters — mention any writing, content, or community work if relevant</li>
+      </ul>
 
 <hr />
 
@@ -147,76 +139,68 @@ export default function BlogPost13() {
 
 <h3>For Software Developer / Backend Roles</h3>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>TECHNICAL SKILLS</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>TECHNICAL SKILLS
 
-<p>Programming Languages:    Java, Python, C, C++, SQL</p>
-<p>Frameworks:               Spring Boot, Django, Flask, Express.js</p>
-<p>Web Technologies:         HTML5, CSS3, JavaScript, React.js, Node.js</p>
-<p>Databases:                MySQL, PostgreSQL, MongoDB, SQLite</p>
-<p>Tools & Platforms:        Git, GitHub, VS Code, IntelliJ IDEA, </p>
-<p>                          Postman, Linux (Ubuntu), JIRA</p>
-<p>Cloud (Basics):           AWS (EC2, S3, Lambda — fundamentals)</p>
-<p>Concepts:                 REST API Development, OOP, SDLC,</p>
-<p>                          Data Structures & Algorithms, Agile, MVC</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+Programming Languages:    Java, Python, C, C++, SQL
+Frameworks:               Spring Boot, Django, Flask, Express.js
+Web Technologies:         HTML5, CSS3, JavaScript, React.js, Node.js
+Databases:                MySQL, PostgreSQL, MongoDB, SQLite
+Tools & Platforms:        Git, GitHub, VS Code, IntelliJ IDEA, 
+                          Postman, Linux (Ubuntu), JIRA
+Cloud (Basics):           AWS (EC2, S3, Lambda — fundamentals)
+Concepts:                 REST API Development, OOP, SDLC,
+                          Data Structures & Algorithms, Agile, MVC</code></pre>
 
 <hr />
 
 <h3>For Data Science / Data Analyst Roles</h3>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>TECHNICAL SKILLS</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>TECHNICAL SKILLS
 
-<p>Programming Languages:    Python, R, SQL</p>
-<p>Libraries & Frameworks:   Pandas, NumPy, Scikit-learn, TensorFlow,</p>
-<p>                          Keras, Matplotlib, Seaborn, NLTK, OpenCV</p>
-<p>Databases:                MySQL, PostgreSQL, MongoDB</p>
-<p>BI & Visualisation:       Tableau, Power BI, Google Looker Studio,</p>
-<p>                          MS Excel (Advanced)</p>
-<p>Tools:                    Jupyter Notebook, Google Colab, Git,</p>
-<p>                          VS Code, Anaconda</p>
-<p>Concepts:                 Machine Learning, Deep Learning, NLP,</p>
-<p>                          EDA, Feature Engineering, Statistical Analysis,</p>
-<p>                          Data Cleaning, Model Evaluation</p>
-<p>Cloud (Basics):           AWS SageMaker (basics), Google Colab Pro</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+Programming Languages:    Python, R, SQL
+Libraries & Frameworks:   Pandas, NumPy, Scikit-learn, TensorFlow,
+                          Keras, Matplotlib, Seaborn, NLTK, OpenCV
+Databases:                MySQL, PostgreSQL, MongoDB
+BI & Visualisation:       Tableau, Power BI, Google Looker Studio,
+                          MS Excel (Advanced)
+Tools:                    Jupyter Notebook, Google Colab, Git,
+                          VS Code, Anaconda
+Concepts:                 Machine Learning, Deep Learning, NLP,
+                          EDA, Feature Engineering, Statistical Analysis,
+                          Data Cleaning, Model Evaluation
+Cloud (Basics):           AWS SageMaker (basics), Google Colab Pro</code></pre>
 
 <hr />
 
 <h3>For Full Stack / Web Development Roles</h3>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>TECHNICAL SKILLS</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>TECHNICAL SKILLS
 
-<p>Frontend:                 React.js, Next.js, HTML5, CSS3,</p>
-<p>                          JavaScript (ES6+), TypeScript, Tailwind CSS</p>
-<p>Backend:                  Node.js, Express.js, Django, Flask</p>
-<p>Databases:                MySQL, MongoDB, PostgreSQL, Firebase</p>
-<p>DevOps & Tools:           Git, GitHub, Docker (basics), AWS EC2,</p>
-<p>                          Netlify, Vercel, Postman, VS Code</p>
-<p>Concepts:                 REST APIs, GraphQL (basics), Responsive Design,</p>
-<p>                          Authentication (JWT, OAuth), Web Security basics,</p>
-<p>                          Agile, CI/CD basics</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+Frontend:                 React.js, Next.js, HTML5, CSS3,
+                          JavaScript (ES6+), TypeScript, Tailwind CSS
+Backend:                  Node.js, Express.js, Django, Flask
+Databases:                MySQL, MongoDB, PostgreSQL, Firebase
+DevOps & Tools:           Git, GitHub, Docker (basics), AWS EC2,
+                          Netlify, Vercel, Postman, VS Code
+Concepts:                 REST APIs, GraphQL (basics), Responsive Design,
+                          Authentication (JWT, OAuth), Web Security basics,
+                          Agile, CI/CD basics</code></pre>
 
 <hr />
 
 <h3>For DevOps / Cloud Roles</h3>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>TECHNICAL SKILLS</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>TECHNICAL SKILLS
 
-<p>Cloud Platforms:          AWS (EC2, S3, Lambda, RDS, VPC),</p>
-<p>                          Google Cloud (GCE, GCS — basics)</p>
-<p>DevOps Tools:             Docker, Kubernetes (basics), Jenkins,</p>
-<p>                          GitHub Actions, Terraform (basics)</p>
-<p>Programming:              Python, Bash/Shell Scripting, YAML</p>
-<p>Operating Systems:        Linux (Ubuntu, CentOS), Windows Server</p>
-<p>Monitoring:               Prometheus, Grafana (basics)</p>
-<p>Concepts:                 CI/CD Pipelines, Infrastructure as Code,</p>
-<p>                          Containerisation, Microservices, Git</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+Cloud Platforms:          AWS (EC2, S3, Lambda, RDS, VPC),
+                          Google Cloud (GCE, GCS — basics)
+DevOps Tools:             Docker, Kubernetes (basics), Jenkins,
+                          GitHub Actions, Terraform (basics)
+Programming:              Python, Bash/Shell Scripting, YAML
+Operating Systems:        Linux (Ubuntu, CentOS), Windows Server
+Monitoring:               Prometheus, Grafana (basics)
+Concepts:                 CI/CD Pipelines, Infrastructure as Code,
+                          Containerisation, Microservices, Git</code></pre>
 
 <hr />
 
@@ -230,28 +214,28 @@ export default function BlogPost13() {
 
 <p>Service company recruiters are not looking for a distributed system. They are looking for evidence that you understand the full cycle of building something — requirement, design, code, test, deploy — using standard, recognisable technologies.</p>
 
-<p>**What works:**</p>
-<p>- A functional CRUD application (student management, hospital management, inventory)</p>
-<p>- With a recognisable tech stack (Java + Spring Boot + MySQL, or Python + Flask + MySQL)</p>
-<p>- With at least 2–3 features described specifically</p>
-<p>- With an outcome (simulated load, testing results, faculty review)</p>
+<p><strong>What works:</strong></p>
+      <ul>
+        <li>A functional CRUD application (student management, hospital management, inventory)</li>
+        <li>With a recognisable tech stack (Java + Spring Boot + MySQL, or Python + Flask + MySQL)</li>
+        <li>With at least 2–3 features described specifically</li>
+        <li>With an outcome (simulated load, testing results, faculty review)</li>
+      </ul>
 
-<p>**Strong example for service company applications:**</p>
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>Online Exam Management System | Java, Spring Boot, MySQL, </p>
-<p>Thymeleaf, Bootstrap</p>
-<p>• Built a web-based exam management platform for faculty to </p>
-<p>  create timed MCQ exams and for students to attempt them; </p>
-<p>  supports 200+ concurrent simulated users</p>
-<p>• Implemented role-based access using Spring Security with </p>
-<p>  separate dashboards for admin, faculty, and student users</p>
-<p>• Developed auto-grading logic with instant result generation </p>
-<p>  and PDF export; integrated email notifications using </p>
-<p>  JavaMail API</p>
-<p>• Reduced manual exam setting time by estimated 70% vs </p>
-<p>  paper-based process; zero test failures in 50-session </p>
-<p>  load simulation</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<p><strong>Strong example for service company applications:</strong></p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>Online Exam Management System | Java, Spring Boot, MySQL, 
+Thymeleaf, Bootstrap
+• Built a web-based exam management platform for faculty to 
+  create timed MCQ exams and for students to attempt them; 
+  supports 200+ concurrent simulated users
+• Implemented role-based access using Spring Security with 
+  separate dashboards for admin, faculty, and student users
+• Developed auto-grading logic with instant result generation 
+  and PDF export; integrated email notifications using 
+  JavaMail API
+• Reduced manual exam setting time by estimated 70% vs 
+  paper-based process; zero test failures in 50-session 
+  load simulation</code></pre>
 
 <hr />
 
@@ -259,28 +243,28 @@ export default function BlogPost13() {
 
 <p>Product company interviewers will review your GitHub. They will ask about your architecture decisions. They will ask why you chose one database over another. Your project description needs to demonstrate that you thought about these things — not just that you built something that works.</p>
 
-<p>**What works:**</p>
-<p>- Non-trivial architecture: microservices, real-time features, ML inference, queue-based processing</p>
-<p>- Deployment details: where it runs, how you deployed it, what scale it handles</p>
-<p>- Technical challenges: what was hard, how you solved it</p>
-<p>- Open source contribution or a project with real users outside your college</p>
+<p><strong>What works:</strong></p>
+      <ul>
+        <li>Non-trivial architecture: microservices, real-time features, ML inference, queue-based processing</li>
+        <li>Deployment details: where it runs, how you deployed it, what scale it handles</li>
+        <li>Technical challenges: what was hard, how you solved it</li>
+        <li>Open source contribution or a project with real users outside your college</li>
+      </ul>
 
-<p>**Strong example for product company applications:**</p>
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>Real-Time Collaborative Code Editor | React.js, Node.js, </p>
-<p>WebSocket, Redis, MongoDB, Docker</p>
-<p>• Built a browser-based collaborative code editor supporting </p>
-<p>  simultaneous editing by multiple users with real-time </p>
-<p>  synchronisation — similar to Google Docs for code</p>
-<p>• Implemented Operational Transformation (OT) algorithm in </p>
-<p>  Node.js for conflict resolution; used Redis pub/sub for </p>
-<p>  broadcasting cursor positions and code changes across </p>
-<p>  WebSocket connections</p>
-<p>• Containerised the application with Docker; deployed on </p>
-<p>  AWS EC2 with Nginx reverse proxy; sustained 20 concurrent </p>
-<p>  user sessions in stress testing with p95 latency under 80ms</p>
-<p>• github.com/yourname/collab-editor | 47 GitHub stars</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<p><strong>Strong example for product company applications:</strong></p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>Real-Time Collaborative Code Editor | React.js, Node.js, 
+WebSocket, Redis, MongoDB, Docker
+• Built a browser-based collaborative code editor supporting 
+  simultaneous editing by multiple users with real-time 
+  synchronisation — similar to Google Docs for code
+• Implemented Operational Transformation (OT) algorithm in 
+  Node.js for conflict resolution; used Redis pub/sub for 
+  broadcasting cursor positions and code changes across 
+  WebSocket connections
+• Containerised the application with Docker; deployed on 
+  AWS EC2 with Nginx reverse proxy; sustained 20 concurrent 
+  user sessions in stress testing with p95 latency under 80ms
+• github.com/yourname/collab-editor | 47 GitHub stars</code></pre>
 
 <hr />
 
@@ -288,27 +272,27 @@ export default function BlogPost13() {
 
 <p>Startup recruiters want to see that you ship things. A project with a real deployment URL, real users (even 10 of them), and a described problem it solves says more than a technically impressive project that nobody uses.</p>
 
-<p>**What works:**</p>
-<p>- A live product with a URL</p>
-<p>- A clear problem statement (who uses it, what for)</p>
-<p>- Any real-world metrics (users, traffic, feedback)</p>
-<p>- Evidence of iteration: "launched MVP in 2 weeks, added X after user feedback"</p>
+<p><strong>What works:</strong></p>
+      <ul>
+        <li>A live product with a URL</li>
+        <li>A clear problem statement (who uses it, what for)</li>
+        <li>Any real-world metrics (users, traffic, feedback)</li>
+        <li>Evidence of iteration: "launched MVP in 2 weeks, added X after user feedback"</li>
+      </ul>
 
-<p>**Strong example for startup applications:**</p>
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>ResumeMatch.in — Job-Resume Matching Tool | React.js, </p>
-<p>Python, FastAPI, PostgreSQL, AWS S3</p>
-<p>• Built and launched a web tool that helps freshers identify </p>
-<p>  keyword gaps between their resume and any job description; </p>
-<p>  attracted 200+ users in the first month with zero paid </p>
-<p>  marketing</p>
-<p>• Developed keyword extraction using Python NLP (spaCy) </p>
-<p>  with a scoring algorithm comparing JD term frequency </p>
-<p>  against resume text; frontend in React.js</p>
-<p>• Launched MVP in 11 days; iterated twice based on user </p>
-<p>  feedback (added PDF upload, added score history); </p>
-<p>  currently live at resumematch.in</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<p><strong>Strong example for startup applications:</strong></p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>ResumeMatch.in — Job-Resume Matching Tool | React.js, 
+Python, FastAPI, PostgreSQL, AWS S3
+• Built and launched a web tool that helps freshers identify 
+  keyword gaps between their resume and any job description; 
+  attracted 200+ users in the first month with zero paid 
+  marketing
+• Developed keyword extraction using Python NLP (spaCy) 
+  with a scoring algorithm comparing JD term frequency 
+  against resume text; frontend in React.js
+• Launched MVP in 11 days; iterated twice based on user 
+  feedback (added PDF upload, added score history); 
+  currently live at resumematch.in</code></pre>
 
 <hr />
 
@@ -316,27 +300,23 @@ export default function BlogPost13() {
 
 <p>For product company and DSE-track applications, your competitive programming activity belongs on your resume. Service company ATS systems may not weight this heavily, but product company recruiters and interviewers look for it specifically.</p>
 
-<p>**Where to put it:** Either in the Skills section as a separate "Competitive Programming" line, or in the Extracurriculars section if you have a rank or achievement.</p>
+<p><strong>Where to put it:</strong> Either in the Skills section as a separate "Competitive Programming" line, or in the Extracurriculars section if you have a rank or achievement.</p>
 
-<p>**How to include it:**</p>
+<p><strong>How to include it:</strong></p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>TECHNICAL SKILLS</p>
-<p>...</p>
-<p>Competitive Programming:  LeetCode — 400+ problems solved (Rating: 1,650)</p>
-<p>                          Codeforces — Specialist (Rating: 1,420)</p>
-<p>                          HackerRank — 5-star Python, 4-star Java</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>TECHNICAL SKILLS
+...
+Competitive Programming:  LeetCode — 400+ problems solved (Rating: 1,650)
+                          Codeforces — Specialist (Rating: 1,420)
+                          HackerRank — 5-star Python, 4-star Java</code></pre>
 
 <p>Or in Extracurriculars:</p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>Competitive Programming</p>
-<p>• LeetCode: 400+ problems solved, max rating 1,650 (Knight)</p>
-<p>• Codeforces: Specialist (Rating: 1,420); solved 200+ problems </p>
-<p>  including Dynamic Programming, Graph algorithms, and Segment Trees</p>
-<p>• HackerRank: 5-star badge in Python, 4-star in Java</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>Competitive Programming
+• LeetCode: 400+ problems solved, max rating 1,650 (Knight)
+• Codeforces: Specialist (Rating: 1,420); solved 200+ problems 
+  including Dynamic Programming, Graph algorithms, and Segment Trees
+• HackerRank: 5-star badge in Python, 4-star in Java</code></pre>
 
 <p>Include only honest ratings and problem counts. These are publicly verifiable — the interviewer can and sometimes will check.</p>
 
@@ -350,15 +330,15 @@ export default function BlogPost13() {
 
 <p>Here is what to check before including your GitHub URL:</p>
 
-<p>**Profile basics:** A profile photo, a bio (1–2 lines about your focus), and a location. Recruiters notice when a profile looks abandoned.</p>
+<p><strong>Profile basics:</strong> A profile photo, a bio (1–2 lines about your focus), and a location. Recruiters notice when a profile looks abandoned.</p>
 
-<p>**Pinned repositories:** Pin your 4–6 strongest projects. These are the first thing a technical reviewer sees. Each pinned repo should have: a clear name, a README with description, tech stack, how to run it, and at least one screenshot or demo link.</p>
+<p><strong>Pinned repositories:</strong> Pin your 4–6 strongest projects. These are the first thing a technical reviewer sees. Each pinned repo should have: a clear name, a README with description, tech stack, how to run it, and at least one screenshot or demo link.</p>
 
-<p>**Commit activity:** A consistent green contribution graph signals regular coding activity. If your graph is sparse, start committing regularly — even small updates to existing projects, documentation improvements, or new personal projects. This takes time to build, so start now.</p>
+<p><strong>Commit activity:</strong> A consistent green contribution graph signals regular coding activity. If your graph is sparse, start committing regularly — even small updates to existing projects, documentation improvements, or new personal projects. This takes time to build, so start now.</p>
 
-<p>**README quality:** A well-written README is a writing sample and a technical communication sample simultaneously. Use headers, code blocks, and a clear structure: What it does → Tech stack → How to set it up → Screenshots/demo.</p>
+<p><strong>README quality:</strong> A well-written README is a writing sample and a technical communication sample simultaneously. Use headers, code blocks, and a clear structure: What it does → Tech stack → How to set it up → Screenshots/demo.</p>
 
-<p>**Code quality:** Your code will be read in interviews for project-based companies. Clean variable names, consistent formatting, and comments on complex logic matter.</p>
+<p><strong>Code quality:</strong> Your code will be read in interviews for project-based companies. Clean variable names, consistent formatting, and comments on complex logic matter.</p>
 
 <hr />
 
@@ -366,109 +346,107 @@ export default function BlogPost13() {
 
 <p>Here is a complete one-page resume template for a CSE fresher targeting software developer and data roles. Adapt the content to your own profile.</p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
-<p>ROHAN VERMA</p>
-<p>+91-94001-23456 | rohan.verma@gmail.com | Pune, Maharashtra</p>
-<p>linkedin.com/in/rohanverma | github.com/rohanverma</p>
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ROHAN VERMA
++91-94001-23456 | rohan.verma@gmail.com | Pune, Maharashtra
+linkedin.com/in/rohanverma | github.com/rohanverma
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>OBJECTIVE</p>
-<p>B.Tech Computer Science graduate from ABC Institute of Technology </p>
-<p>with strong foundation in Java, Spring Boot, and MySQL. Built a </p>
-<p>full-stack exam management system handling 200+ concurrent simulated </p>
-<p>users. Seeking a Software Developer role to build backend systems </p>
-<p>and contribute to scalable product development.</p>
+OBJECTIVE
+B.Tech Computer Science graduate from ABC Institute of Technology 
+with strong foundation in Java, Spring Boot, and MySQL. Built a 
+full-stack exam management system handling 200+ concurrent simulated 
+users. Seeking a Software Developer role to build backend systems 
+and contribute to scalable product development.
 
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>EDUCATION</p>
+EDUCATION
 
-<p>B.Tech in Computer Science Engineering</p>
-<p>ABC Institute of Technology, Pune | 2022 – 2026 | CGPA: 8.1 / 10</p>
-<p>Relevant Coursework: Data Structures, DBMS, Operating Systems,</p>
-<p>                     Computer Networks, OOP, Software Engineering</p>
+B.Tech in Computer Science Engineering
+ABC Institute of Technology, Pune | 2022 – 2026 | CGPA: 8.1 / 10
+Relevant Coursework: Data Structures, DBMS, Operating Systems,
+                     Computer Networks, OOP, Software Engineering
 
-<p>Class XII — CBSE | DEF School, Pune | 2022 | 86%</p>
-<p>Class X  — CBSE | DEF School, Pune | 2020 | 90%</p>
+Class XII — CBSE | DEF School, Pune | 2022 | 86%
+Class X  — CBSE | DEF School, Pune | 2020 | 90%
 
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>TECHNICAL SKILLS</p>
+TECHNICAL SKILLS
 
-<p>Languages:      Java, Python, C, SQL, JavaScript</p>
-<p>Frameworks:     Spring Boot, React.js, Node.js, Flask</p>
-<p>Databases:      MySQL, MongoDB, PostgreSQL</p>
-<p>Tools:          Git, GitHub, IntelliJ IDEA, VS Code, Postman,</p>
-<p>                Linux (Ubuntu), Docker (basics)</p>
-<p>Cloud:          AWS (EC2, S3 — fundamentals)</p>
-<p>Concepts:       REST API Development, OOP, SDLC, Agile,</p>
-<p>                Data Structures & Algorithms, MVC</p>
+Languages:      Java, Python, C, SQL, JavaScript
+Frameworks:     Spring Boot, React.js, Node.js, Flask
+Databases:      MySQL, MongoDB, PostgreSQL
+Tools:          Git, GitHub, IntelliJ IDEA, VS Code, Postman,
+                Linux (Ubuntu), Docker (basics)
+Cloud:          AWS (EC2, S3 — fundamentals)
+Concepts:       REST API Development, OOP, SDLC, Agile,
+                Data Structures & Algorithms, MVC
 
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>PROJECTS</p>
+PROJECTS
 
-<p>Online Exam Management System | Java, Spring Boot, MySQL, </p>
-<p>Thymeleaf, Spring Security</p>
-<p>• Built a full-stack exam platform with timed MCQ exams, </p>
-<p>  auto-grading, and role-based access for admin, faculty, </p>
-<p>  and student users; supports 200+ concurrent simulated sessions</p>
-<p>• Implemented Spring Security for authentication, JavaMail </p>
-<p>  API for automated email alerts, and PDF report generation </p>
-<p>  using iText library</p>
-<p>• Reduced manual exam setting time by estimated 70% vs </p>
-<p>  paper-based process; zero failures across 50-session </p>
-<p>  load simulation</p>
-<p>• github.com/rohanverma/exam-management</p>
+Online Exam Management System | Java, Spring Boot, MySQL, 
+Thymeleaf, Spring Security
+• Built a full-stack exam platform with timed MCQ exams, 
+  auto-grading, and role-based access for admin, faculty, 
+  and student users; supports 200+ concurrent simulated sessions
+• Implemented Spring Security for authentication, JavaMail 
+  API for automated email alerts, and PDF report generation 
+  using iText library
+• Reduced manual exam setting time by estimated 70% vs 
+  paper-based process; zero failures across 50-session 
+  load simulation
+• github.com/rohanverma/exam-management
 
-<p>E-Commerce Platform | React.js, Node.js, MongoDB, Express.js, AWS</p>
-<p>• Developed a full-stack e-commerce application with product </p>
-<p>  cataloguing, cart management, user authentication, and </p>
-<p>  Razorpay payment gateway integration</p>
-<p>• Deployed backend on AWS EC2 with MongoDB Atlas; implemented </p>
-<p>  JWT-based authentication and RESTful APIs using Express.js</p>
-<p>• Handled 500+ concurrent test user sessions; page load </p>
-<p>  time optimised from 3.8s to 1.2s through lazy loading and </p>
-<p>  code splitting</p>
+E-Commerce Platform | React.js, Node.js, MongoDB, Express.js, AWS
+• Developed a full-stack e-commerce application with product 
+  cataloguing, cart management, user authentication, and 
+  Razorpay payment gateway integration
+• Deployed backend on AWS EC2 with MongoDB Atlas; implemented 
+  JWT-based authentication and RESTful APIs using Express.js
+• Handled 500+ concurrent test user sessions; page load 
+  time optimised from 3.8s to 1.2s through lazy loading and 
+  code splitting
 
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>CERTIFICATIONS</p>
+CERTIFICATIONS
 
-<p>AWS Certified Cloud Practitioner</p>
-<p>Amazon Web Services | November 2025</p>
+AWS Certified Cloud Practitioner
+Amazon Web Services | November 2025
 
-<p>HackerRank Java (Intermediate) Certificate</p>
-<p>HackerRank | Verified | August 2025</p>
+HackerRank Java (Intermediate) Certificate
+HackerRank | Verified | August 2025
 
-<p>Programming, Data Structures and Algorithms using Python</p>
-<p>NPTEL — IIT Madras | Score: 74% | April 2025</p>
+Programming, Data Structures and Algorithms using Python
+NPTEL — IIT Madras | Score: 74% | April 2025
 
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>EXTRACURRICULAR ACTIVITIES</p>
+EXTRACURRICULAR ACTIVITIES
 
-<p>Technical Club Coordinator | IEEE Student Chapter, ABC Institute</p>
-<p>2024 – 2025</p>
-<p>• Led 14-member team; organised 5 workshops (180+ attendees) </p>
-<p>  on React.js, Spring Boot, and Cloud fundamentals</p>
-<p>• Coordinated intercollegiate hackathon with 12 colleges and </p>
-<p>  300+ registrations</p>
+Technical Club Coordinator | IEEE Student Chapter, ABC Institute
+2024 – 2025
+• Led 14-member team; organised 5 workshops (180+ attendees) 
+  on React.js, Spring Boot, and Cloud fundamentals
+• Coordinated intercollegiate hackathon with 12 colleges and 
+  300+ registrations
 
-<p>Competitive Programming</p>
-<p>• LeetCode: 250+ problems solved (Rating: 1,420)</p>
-<p>• HackerRank: 5-star badge in Java, 4-star in Python</p>
+Competitive Programming
+• LeetCode: 250+ problems solved (Rating: 1,420)
+• HackerRank: 5-star badge in Java, 4-star in Python
 
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>DECLARATION</p>
-<p>I hereby declare that all information provided above is </p>
-<p>true and correct to the best of my knowledge.</p>
+DECLARATION
+I hereby declare that all information provided above is 
+true and correct to the best of my knowledge.
 
-<p>Place: Pune     Date: [Date]     Signature: ____________</p>
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+Place: Pune     Date: [Date]     Signature: ____________
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</code></pre>
 
 <hr />
 
@@ -478,7 +456,7 @@ export default function BlogPost13() {
 
 <p>For product company and startup applications: slightly more flexible. If you have three substantial projects, active competitive programming, an open-source contribution, and relevant certifications — two pages is acceptable. But test whether you genuinely need that space. Most fresher profiles fit in one page if the writing is tight and the content is prioritised.</p>
 
-<p>**The discipline test:** If you can't fit your resume on one page, the first question to ask is not "should I add a page?" — it is "what am I including that doesn't earn its space?"</p>
+<p><strong>The discipline test:</strong> If you can't fit your resume on one page, the first question to ask is not "should I add a page?" — it is "what am I including that doesn't earn its space?"</p>
 
 <hr />
 
@@ -486,16 +464,16 @@ export default function BlogPost13() {
 
 <p>A base CSE resume is the foundation. For each application, a 10-minute tailoring process makes it significantly more relevant.</p>
 
-<p>**For a Java Backend Developer JD:**</p>
+<p><strong>For a Java Backend Developer JD:</strong></p>
 <p>Update objective to mention Java, Spring Boot, and the specific role title. Ensure Spring Boot, MySQL, REST API, Agile, and OOP are visible in the top third of the resume. Lead with the project most relevant to backend work.</p>
 
-<p>**For a Python Data Analyst JD:**</p>
+<p><strong>For a Python Data Analyst JD:</strong></p>
 <p>Update objective to mention Python, SQL, and data analysis. Reorder skills to put Python, Pandas, SQL, and data tools first. Lead with the data project. Ensure Jupyter, Matplotlib, and Scikit-learn appear prominently.</p>
 
-<p>**For a Full Stack Developer JD:**</p>
+<p><strong>For a Full Stack Developer JD:</strong></p>
 <p>Update objective to name the stack (React + Node, or Django + React). Ensure the full-stack project leads. Mention both frontend and backend skills explicitly in the first few skill lines.</p>
 
-<p>**For a DevOps / Cloud Engineer JD:**</p>
+<p><strong>For a DevOps / Cloud Engineer JD:</strong></p>
 <p>Update objective to mention cloud and DevOps. Surface Docker, AWS, Linux, and CI/CD in the skills section. Mention any deployment work in project bullets specifically.</p>
 
 <p>The keyword strategy from Blog 5 applies to every one of these: read the JD, extract the terms, verify they appear in your resume in the right sections.</p>
@@ -504,66 +482,64 @@ export default function BlogPost13() {
 
 <h2 id="the-cse-resume-checklist">The CSE Resume Checklist</h2>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>STRUCTURE</p>
-<p>□ Single column, plain text, one page (for service </p>
-<p>  companies) or max two pages (for product companies </p>
-<p>  with substantial content)</p>
-<p>□ Standard section headings</p>
-<p>□ Notepad test passes cleanly</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>STRUCTURE
+□ Single column, plain text, one page (for service 
+  companies) or max two pages (for product companies 
+  with substantial content)
+□ Standard section headings
+□ Notepad test passes cleanly
 
-<p>OBJECTIVE</p>
-<p>□ Names specific role (matches JD job title)</p>
-<p>□ Includes 2–3 skills from target JD</p>
-<p>□ Includes one proof point (project outcome or certification)</p>
+OBJECTIVE
+□ Names specific role (matches JD job title)
+□ Includes 2–3 skills from target JD
+□ Includes one proof point (project outcome or certification)
 
-<p>EDUCATION</p>
-<p>□ CGPA visible and above company minimum</p>
-<p>□ 10th and 12th included (required for TCS, Infosys, Wipro)</p>
-<p>□ Relevant coursework listed (4–6 courses matching JD)</p>
+EDUCATION
+□ CGPA visible and above company minimum
+□ 10th and 12th included (required for TCS, Infosys, Wipro)
+□ Relevant coursework listed (4–6 courses matching JD)
 
-<p>SKILLS</p>
-<p>□ Categorised and specific (not generic)</p>
-<p>□ Hard technical skills only — no "team player" etc.</p>
-<p>□ Matches target JD terminology precisely</p>
-<p>□ Competitive programming included (for product companies)</p>
+SKILLS
+□ Categorised and specific (not generic)
+□ Hard technical skills only — no "team player" etc.
+□ Matches target JD terminology precisely
+□ Competitive programming included (for product companies)
 
-<p>PROJECTS</p>
-<p>□ 2–3 projects with: Tech Stack + What + How + Outcome</p>
-<p>□ Projects aligned to target role type (service vs product)</p>
-<p>□ GitHub links included and repos are publicly readable</p>
-<p>□ At least one metric per project</p>
+PROJECTS
+□ 2–3 projects with: Tech Stack + What + How + Outcome
+□ Projects aligned to target role type (service vs product)
+□ GitHub links included and repos are publicly readable
+□ At least one metric per project
 
-<p>CERTIFICATIONS</p>
-<p>□ From recognisable issuers</p>
-<p>□ 2–4 entries maximum</p>
+CERTIFICATIONS
+□ From recognisable issuers
+□ 2–4 entries maximum
 
-<p>EXTRACURRICULARS</p>
-<p>□ Written with specifics and action verbs</p>
-<p>□ No generic hobbies</p>
+EXTRACURRICULARS
+□ Written with specifics and action verbs
+□ No generic hobbies
 
-<p>GITHUB</p>
-<p>□ Profile is public and has activity</p>
-<p>□ Strongest projects are pinned with READMEs</p>
-<p>□ URL in header matches linked profile</p>
-<p>□ Code is clean enough to show in an interview</p>
+GITHUB
+□ Profile is public and has activity
+□ Strongest projects are pinned with READMEs
+□ URL in header matches linked profile
+□ Code is clean enough to show in an interview
 
-<p>ATS</p>
-<p>□ JD-specific keyword check completed (Blog 5 process)</p>
-<p>□ Score checked against target JD (Blog 3 tool)</p>
-<p>□ File saved as text-based PDF: Firstname_Lastname_Resume.pdf</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+ATS
+□ JD-specific keyword check completed (Blog 5 process)
+□ Score checked against target JD (Blog 3 tool)
+□ File saved as text-based PDF: Firstname_Lastname_Resume.pdf</code></pre>
 
 <hr />
 
 <h2 id="read-next-in-this-series">Read Next in This Series</h2>
 
-<p>→ **[Blog 1: What is ATS](#)** | **[Blog 2: Resume Format](#)** | **[Blog 3: ATS Score](#)**</p>
-<p>→ **[Blog 4: Formatting Mistakes](#)** | **[Blog 5: Keywords](#)** | **[Blog 6: Objective](#)**</p>
-<p>→ **[Blog 7: Projects Section](#)** | **[Blog 8: Skills Section](#)** | **[Blog 9: Education](#)**</p>
-<p>→ **[Blog 10: Certifications](#)** | **[Blog 11: No Experience Resume](#)** | **[Blog 12: Action Verbs](#)**</p>
+<p>→ <strong><a href="/blog/why-indian-fresher-resumes-are-invisible-to-ats-2026">Blog 1: What is ATS</a></strong> | <strong><a href="/blog/ats-friendly-resume-format-indian-freshers-2026">Blog 2: Resume Format</a></strong> | <strong><a href="/blog/how-to-check-your-ats-score-before-applying-india-2026">Blog 3: ATS Score</a></strong></p>
+<p>→ <strong><a href="/blog/10-resume-formatting-mistakes-indian-freshers-2026">Blog 4: Formatting Mistakes</a></strong> | <strong><a href="/blog/ats-keywords-for-indian-freshers-2026">Blog 5: Keywords</a></strong> | <strong><a href="/blog/how-to-write-a-resume-objective-for-freshers-in-india-2026">Blog 6: Objective</a></strong></p>
+<p>→ <strong><a href="/blog/how-to-write-the-projects-section-on-your-resume-2026">Blog 7: Projects Section</a></strong> | <strong><a href="/blog/resume-skills-section-for-indian-freshers-2026">Blog 8: Skills Section</a></strong> | <strong><a href="/blog/how-to-write-the-education-section-on-an-indian-fresher-resume-2026">Blog 9: Education</a></strong></p>
+<p>→ <strong><a href="/blog/how-to-write-certifications-resume-india-freshers-2026">Blog 10: Certifications</a></strong> | <strong><a href="/blog/how-to-write-a-resume-with-no-experience-india-freshers-2026">Blog 11: No Experience Resume</a></strong> | <strong><a href="/blog/blog-12-resume-action-verbs-india-freshers-2026">Blog 12: Action Verbs</a></strong></p>
 
-<p>→ **[Blog 14: Resume Format for ECE Freshers in India — Core + IT Pivot Guide](#)** *(Coming next)*</p>
+<p>→ <strong><a href="/blog/resume-format-ece-freshers-india-2026">Blog 14: Resume Format for ECE Freshers in India — Core + IT Pivot Guide</a></strong> <em>(Coming next)</em></p>
 
 <hr />
 
@@ -571,35 +547,14 @@ export default function BlogPost13() {
 
 <p>CareerForge.pro's resume builder gives CSE freshers a structured, ATS-compatible template that puts your projects, skills, and education in exactly the right places — whether you're targeting TCS, Infosys, a product company, or a startup.</p>
 
-<p>Use the **JD Score tool** to check your keyword match before every application — and the **AI Bullet Writer** to sharpen your project descriptions until they communicate exactly what you built.</p>
+<p>Use the <strong>JD Score tool</strong> to check your keyword match before every application — and the <strong>AI Bullet Writer</strong> to sharpen your project descriptions until they communicate exactly what you built.</p>
 
-<p>**[Start Building Your CSE Resume on CareerForge.pro →](#)**</p>
-
-<hr />
-
-<p>*Published by CareerForge.pro — India's AI Resume Platform for Freshers.*</p>
-<p>*© 2026 CareerForge.pro. All rights reserved.*</p>
+<p><strong><a href="#">Start Building Your CSE Resume on CareerForge.pro →</a></strong></p>
 
 <hr />
 
-<h3>SEO Metadata</h3>
 
-<p>**Primary Keywords:** resume format for CSE freshers India, resume for computer science freshers India, IT fresher resume format India</p>
 
-<p>**Secondary Keywords:** CSE fresher resume template India, software developer fresher resume India, BTech CSE resume India 2026, resume for TCS Infosys CSE fresher, CSE fresher resume ATS India</p>
-
-<p>**Word Count:** ~3,800 words</p>
-
-<p>**Internal Links:**</p>
-<p>- Blogs 1–12 (all previous in series, referenced throughout)</p>
-<p>- Blog 5 (Keywords — explicitly referenced)</p>
-<p>- Blog 7 (Projects — explicitly referenced)</p>
-<p>- Blog 14 (ECE Resume — upcoming)</p>
-<p>- CareerForge Resume Builder + JD Score + AI Bullet Writer (CTAs)</p>
-
-<p>**Meta Description (159 chars):**</p>
-<p>Complete CSE/IT fresher resume guide for India in 2026 — service vs product vs startup strategy, stream-specific skills, full template, and GitHub checklist.</p>
-` }} />
-    </BlogPostLayout>
+</BlogPostLayout>
   )
 }

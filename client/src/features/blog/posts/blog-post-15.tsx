@@ -60,20 +60,8 @@ export default function BlogPost15() {
       tocEntries={TOC}
     >
       <blockquote><p><em>Mechanical engineering is one of the oldest and most stable engineering streams in India — and one of the most misunderstood when it comes to resume writing. Most mechanical fresher resumes look like CSE resumes with different tool names. That's the problem. A mechanical engineering resume needs to speak a different language. This blog teaches you that language.</em></p></blockquote>
-      <div dangerouslySetInnerHTML={{ __html: `{/* # Resume Format for Mechanical Engineering Freshers in India — Core + Manufacturing + PSU Guide (2026) */}
-
-{/* **By CareerForge.pro** | Resume Advice for Indian Freshers | 15 min read */}
-
 <hr />
 
-<p>&gt; *Mechanical engineering is one of the oldest and most stable*</p>
-<p>&gt; *engineering streams in India — and one of the most misunderstood*</p>
-<p>&gt; *when it comes to resume writing.*</p>
-<p>&gt;</p>
-<p>&gt; *Most mechanical fresher resumes look like CSE resumes*</p>
-<p>&gt; *with different tool names. That's the problem.*</p>
-<p>&gt; *A mechanical engineering resume needs to speak a different language.*</p>
-<p>&gt; *This blog teaches you that language.*</p>
 
 <hr />
 
@@ -87,12 +75,14 @@ export default function BlogPost15() {
 
 <p>The mechanical engineering job market in India is also more fragmented than IT. Unlike CSE freshers who largely target a unified pool of IT services companies, mechanical freshers apply across:</p>
 
-<p>- **Automotive OEMs** (Tata Motors, Mahindra, Maruti, Ashok Leyland)</p>
-<p>- **Manufacturing and heavy engineering** (L&T, BHEL, Godrej, Kirloskar)</p>
-<p>- **MNC engineering firms** (Bosch, Siemens, Honeywell, Cummins)</p>
-<p>- **Engineering R&D services** (Tata Technologies, LTTS, Cyient, KPIT)</p>
-<p>- **PSUs** (BHEL, ONGC, NTPC, IOCL, GAIL — requiring GATE score)</p>
-<p>- **EV and emerging sectors** (Ola Electric, Ather, Tata EV division)</p>
+      <ul>
+        <li><strong>Automotive OEMs</strong> (Tata Motors, Mahindra, Maruti, Ashok Leyland)</li>
+        <li><strong>Manufacturing and heavy engineering</strong> (L&T, BHEL, Godrej, Kirloskar)</li>
+        <li><strong>MNC engineering firms</strong> (Bosch, Siemens, Honeywell, Cummins)</li>
+        <li><strong>Engineering R&D services</strong> (Tata Technologies, LTTS, Cyient, KPIT)</li>
+        <li><strong>PSUs</strong> (BHEL, ONGC, NTPC, IOCL, GAIL — requiring GATE score)</li>
+        <li><strong>EV and emerging sectors</strong> (Ola Electric, Ather, Tata EV division)</li>
+      </ul>
 
 <p>Each of these categories has slightly different expectations. This blog builds one strong foundational resume and then shows you how to adapt it for each target category.</p>
 
@@ -104,7 +94,7 @@ export default function BlogPost15() {
 
 <hr />
 
-<p>**Design Engineering**</p>
+<p><strong>Design Engineering</strong></p>
 <p>Designing components, assemblies, and products using CAD software. Creating engineering drawings, performing stress analysis and simulation, and preparing Bill of Materials.</p>
 
 <p>Key tools: AutoCAD, SolidWorks, CATIA, ANSYS, Creo, GD&T</p>
@@ -113,7 +103,7 @@ export default function BlogPost15() {
 
 <hr />
 
-<p>**Production and Manufacturing Engineering**</p>
+<p><strong>Production and Manufacturing Engineering</strong></p>
 <p>Planning, optimising, and supervising manufacturing processes. CNC programming, tooling, lean manufacturing, quality control, and production scheduling.</p>
 
 <p>Key tools: AutoCAD, Mastercam (CNC), MS Project, SAP basics, Minitab (for quality)</p>
@@ -122,7 +112,7 @@ export default function BlogPost15() {
 
 <hr />
 
-<p>**Quality Engineering**</p>
+<p><strong>Quality Engineering</strong></p>
 <p>Ensuring products meet specifications through inspection, testing, and process improvement. Understanding of quality standards and measurement systems.</p>
 
 <p>Key tools: AutoCAD (for drawing interpretation), Minitab, SPC tools, Vernier callipers, CMM (Coordinate Measuring Machine), MS Excel</p>
@@ -133,7 +123,7 @@ export default function BlogPost15() {
 
 <hr />
 
-<p>**Thermal and Energy Engineering**</p>
+<p><strong>Thermal and Energy Engineering</strong></p>
 <p>Designing and analysing heat transfer systems, power generation equipment, HVAC systems, and energy-efficient systems.</p>
 
 <p>Key tools: ANSYS Fluent (CFD), MATLAB, SolidWorks Flow Simulation, AutoCAD</p>
@@ -142,7 +132,7 @@ export default function BlogPost15() {
 
 <hr />
 
-<p>**Maintenance Engineering**</p>
+<p><strong>Maintenance Engineering</strong></p>
 <p>Keeping industrial equipment operational through planned maintenance, troubleshooting, and reliability engineering.</p>
 
 <p>Key tools: MS Excel, SAP PM module basics, knowledge of hydraulic/pneumatic systems, PLC basics</p>
@@ -151,7 +141,7 @@ export default function BlogPost15() {
 
 <hr />
 
-<p>**EV and Automotive Electronics (Emerging)**</p>
+<p><strong>EV and Automotive Electronics (Emerging)</strong></p>
 <p>Battery systems, thermal management for batteries, motor design support, and integration of mechanical and electrical systems.</p>
 
 <p>Key tools: MATLAB/Simulink, ANSYS, SolidWorks, Python (basics for data analysis)</p>
@@ -170,44 +160,44 @@ export default function BlogPost15() {
 
 <h3>Design Engineering Skills</h3>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>TECHNICAL SKILLS</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+TECHNICAL SKILLS
 
-<p>CAD Software:            SolidWorks, AutoCAD 2D/3D, CATIA V5,</p>
-<p>                         Creo Parametric (basics)</p>
-<p>Simulation & Analysis:   ANSYS Mechanical (FEA), ANSYS Fluent (CFD</p>
-<p>                         basics), SolidWorks Simulation</p>
-<p>Manufacturing Concepts:  GD&T, BOM Preparation, Engineering Drawings,</p>
-<p>                         DFM (Design for Manufacturability) basics,</p>
-<p>                         Material Science</p>
-<p>Standards:               IS Codes (basics), Tolerance and Fits</p>
-<p>Office Tools:            MS Excel, MS Word, MS Project (basics)</p>
-<p>Programming:             MATLAB (for calculations/automation), Python</p>
-<p>                         (basics)</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+CAD Software:            SolidWorks, AutoCAD 2D/3D, CATIA V5,
+                         Creo Parametric (basics)
+Simulation & Analysis:   ANSYS Mechanical (FEA), ANSYS Fluent (CFD
+                         basics), SolidWorks Simulation
+Manufacturing Concepts:  GD&T, BOM Preparation, Engineering Drawings,
+                         DFM (Design for Manufacturability) basics,
+                         Material Science
+Standards:               IS Codes (basics), Tolerance and Fits
+Office Tools:            MS Excel, MS Word, MS Project (basics)
+Programming:             MATLAB (for calculations/automation), Python
+                         (basics)
+</code></pre>
 
 <hr />
 
 <h3>Production / Manufacturing Skills</h3>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>TECHNICAL SKILLS</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+TECHNICAL SKILLS
 
-<p>CAD / CAM:               AutoCAD, SolidWorks (basics), Mastercam</p>
-<p>                         (basics), CATIA (basics)</p>
-<p>Manufacturing Processes: Casting, Forging, Welding, Machining,</p>
-<p>                         CNC (basics), Sheet Metal Fabrication,</p>
-<p>                         Heat Treatment, Surface Finishing</p>
-<p>Quality & Inspection:    GD&T, Vernier Callipers, Micrometer,</p>
-<p>                         CMM basics, ISO 9001, Statistical Process</p>
-<p>                         Control (SPC)</p>
-<p>Lean & Productivity:     Lean Manufacturing, 5S, Kaizen, Poka-Yoke,</p>
-<p>                         Just-In-Time (JIT) — basics</p>
-<p>Planning Tools:          MS Project, MS Excel (production scheduling),</p>
-<p>                         SAP PM (basics)</p>
-<p>Concepts:                FMEA, OEE, Cycle Time Analysis, Capacity</p>
-<p>                         Planning</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+CAD / CAM:               AutoCAD, SolidWorks (basics), Mastercam
+                         (basics), CATIA (basics)
+Manufacturing Processes: Casting, Forging, Welding, Machining,
+                         CNC (basics), Sheet Metal Fabrication,
+                         Heat Treatment, Surface Finishing
+Quality & Inspection:    GD&T, Vernier Callipers, Micrometer,
+                         CMM basics, ISO 9001, Statistical Process
+                         Control (SPC)
+Lean & Productivity:     Lean Manufacturing, 5S, Kaizen, Poka-Yoke,
+                         Just-In-Time (JIT) — basics
+Planning Tools:          MS Project, MS Excel (production scheduling),
+                         SAP PM (basics)
+Concepts:                FMEA, OEE, Cycle Time Analysis, Capacity
+                         Planning
+</code></pre>
 
 <hr />
 
@@ -215,11 +205,13 @@ export default function BlogPost15() {
 
 <p>Do not list these unless you have a specific, explainable reason for including them on a mechanical resume:</p>
 
-<p>- Java, Python, HTML, CSS, JavaScript (unless applying to a software-adjacent role like simulation scripting or data analysis in manufacturing)</p>
-<p>- "MS Office" as a standalone skill — every candidate has this, it adds no value</p>
-<p>- Generic soft skills: "hardworking," "team player," "quick learner" — these take up space without adding credibility</p>
+      <ul>
+        <li>Java, Python, HTML, CSS, JavaScript (unless applying to a software-adjacent role like simulation scripting or data analysis in manufacturing)</li>
+        <li>"MS Office" as a standalone skill — every candidate has this, it adds no value</li>
+        <li>Generic soft skills: "hardworking," "team player," "quick learner" — these take up space without adding credibility</li>
+      </ul>
 
-<p>The only software exception: **MATLAB** is genuinely relevant for mechanical freshers in design, thermal, and simulation roles. List it if you've used it for calculations, simulations, or coursework.</p>
+<p>The only software exception: <strong>MATLAB</strong> is genuinely relevant for mechanical freshers in design, thermal, and simulation roles. List it if you've used it for calculations, simulations, or coursework.</p>
 
 <hr />
 
@@ -229,19 +221,21 @@ export default function BlogPost15() {
 
 <p>This doesn't make it harder to write. It just requires different language.</p>
 
-<p>**The structure is the same as Blog 7:**</p>
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>Project Name | Tools / Software / Materials Used</p>
-<p>• What it is / what problem it solves (1 line)</p>
-<p>• How you designed / built / analysed it (methodology)</p>
-<p>• Result / outcome (simulation data, efficiency gain, </p>
-<p>  test result, award, comparison to baseline)</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<p><strong>The structure is the same as Blog 7:</strong></p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+Project Name | Tools / Software / Materials Used
+• What it is / what problem it solves (1 line)
+• How you designed / built / analysed it (methodology)
+• Result / outcome (simulation data, efficiency gain, 
+  test result, award, comparison to baseline)
+</code></pre>
 
-<p>**What changes:**</p>
-<p>- The tools line names CAD software, simulation tools, and materials — not programming languages</p>
-<p>- The "how" bullet describes engineering decisions: material selection, design choices, analysis method</p>
-<p>- The outcome is expressed in engineering terms: stress values, efficiency percentages, weight reduction, dimensional accuracy, deflection values, thermal performance</p>
+<p><strong>What changes:</strong></p>
+      <ul>
+        <li>The tools line names CAD software, simulation tools, and materials — not programming languages</li>
+        <li>The "how" bullet describes engineering decisions: material selection, design choices, analysis method</li>
+        <li>The outcome is expressed in engineering terms: stress values, efficiency percentages, weight reduction, dimensional accuracy, deflection values, thermal performance</li>
+      </ul>
 
 <hr />
 
@@ -249,73 +243,73 @@ export default function BlogPost15() {
 
 <hr />
 
-<p>**Example 1 — Design Engineering Project (SolidWorks + ANSYS)**</p>
+<p><strong>Example 1 — Design Engineering Project (SolidWorks + ANSYS)</strong></p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>Optimised Bicycle Frame Design | SolidWorks, ANSYS Mechanical,</p>
-<p>Aluminium Alloy 6061-T6</p>
-<p>• Designed a lightweight bicycle frame optimised for </p>
-<p>  structural performance under standard load conditions </p>
-<p>  (rider weight: 100 kg + dynamic loads)</p>
-<p>• Modelled full frame assembly in SolidWorks; performed </p>
-<p>  static structural FEA in ANSYS Mechanical using </p>
-<p>  tetrahedral mesh with 45,000+ elements; applied </p>
-<p>  fixed constraints at dropout points and distributed </p>
-<p>  load at seat post</p>
-<p>• Achieved maximum von Mises stress of 142 MPa against </p>
-<p>  yield strength of 276 MPa (safety factor: 1.94); </p>
-<p>  frame weight 18% lower than reference steel design </p>
-<p>  for equivalent structural performance</p>
-<p>• Engineering drawings and FEA report submitted as </p>
-<p>  final year project; received A+ grade from faculty panel</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
-
-<hr />
-
-<p>**Example 2 — Production / Manufacturing Project**</p>
-
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>Design and Fabrication of Automated Seed Sowing Machine |</p>
-<p>MS Steel, Aluminium, DC Motor, AutoCAD, Workshop Fabrication</p>
-<p>• Designed and fabricated a manually-operated, </p>
-<p>  single-row seed sowing machine for small-scale </p>
-<p>  agricultural use with adjustable seed spacing </p>
-<p>  (5–15 cm) and depth control (2–6 cm)</p>
-<p>• Prepared complete assembly drawings in AutoCAD; </p>
-<p>  selected materials for frame (MS steel), hopper </p>
-<p>  (aluminium sheet), and rotating disc (nylon) </p>
-<p>  based on load, corrosion, and cost criteria</p>
-<p>• Achieved sowing rate of 3.2 kg/hour in field </p>
-<p>  testing with 91% seed placement accuracy; </p>
-<p>  fabrication cost: ₹4,800 (30% below initial </p>
-<p>  budget estimate through material optimisation)</p>
-<p>• Project displayed at National Level Technical Fest; </p>
-<p>  selected for intercollegiate project exhibition</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+Optimised Bicycle Frame Design | SolidWorks, ANSYS Mechanical,
+Aluminium Alloy 6061-T6
+• Designed a lightweight bicycle frame optimised for 
+  structural performance under standard load conditions 
+  (rider weight: 100 kg + dynamic loads)
+• Modelled full frame assembly in SolidWorks; performed 
+  static structural FEA in ANSYS Mechanical using 
+  tetrahedral mesh with 45,000+ elements; applied 
+  fixed constraints at dropout points and distributed 
+  load at seat post
+• Achieved maximum von Mises stress of 142 MPa against 
+  yield strength of 276 MPa (safety factor: 1.94); 
+  frame weight 18% lower than reference steel design 
+  for equivalent structural performance
+• Engineering drawings and FEA report submitted as 
+  final year project; received A+ grade from faculty panel
+</code></pre>
 
 <hr />
 
-<p>**Example 3 — Thermal / CFD Project (ANSYS Fluent)**</p>
+<p><strong>Example 2 — Production / Manufacturing Project</strong></p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>CFD Analysis of Shell-and-Tube Heat Exchanger |</p>
-<p>ANSYS Fluent, SolidWorks (geometry), Thermodynamic Calculations</p>
-<p>• Modelled a single-pass shell-and-tube heat exchanger </p>
-<p>  in SolidWorks (8 tubes, 1m length); imported geometry </p>
-<p>  into ANSYS Fluent for computational fluid dynamics </p>
-<p>  simulation of counter-flow heat transfer</p>
-<p>• Applied k-ε turbulence model; boundary conditions: </p>
-<p>  hot fluid inlet 85°C at 0.5 kg/s, cold fluid inlet </p>
-<p>  25°C at 0.8 kg/s; mesh: 240,000 hexahedral elements </p>
-<p>  with inflation layers at wall boundaries</p>
-<p>• Simulation results: overall heat transfer coefficient </p>
-<p>  of 842 W/m²K; outlet temperatures within 3.2% of </p>
-<p>  LMTD analytical calculations — confirming mesh </p>
-<p>  convergence and model validity</p>
-<p>• Identified 12% potential improvement in heat transfer </p>
-<p>  by increasing baffle cut from 25% to 35% in design </p>
-<p>  iteration; documented parametric study as project report</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+Design and Fabrication of Automated Seed Sowing Machine |
+MS Steel, Aluminium, DC Motor, AutoCAD, Workshop Fabrication
+• Designed and fabricated a manually-operated, 
+  single-row seed sowing machine for small-scale 
+  agricultural use with adjustable seed spacing 
+  (5–15 cm) and depth control (2–6 cm)
+• Prepared complete assembly drawings in AutoCAD; 
+  selected materials for frame (MS steel), hopper 
+  (aluminium sheet), and rotating disc (nylon) 
+  based on load, corrosion, and cost criteria
+• Achieved sowing rate of 3.2 kg/hour in field 
+  testing with 91% seed placement accuracy; 
+  fabrication cost: ₹4,800 (30% below initial 
+  budget estimate through material optimisation)
+• Project displayed at National Level Technical Fest; 
+  selected for intercollegiate project exhibition
+</code></pre>
+
+<hr />
+
+<p><strong>Example 3 — Thermal / CFD Project (ANSYS Fluent)</strong></p>
+
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+CFD Analysis of Shell-and-Tube Heat Exchanger |
+ANSYS Fluent, SolidWorks (geometry), Thermodynamic Calculations
+• Modelled a single-pass shell-and-tube heat exchanger 
+  in SolidWorks (8 tubes, 1m length); imported geometry 
+  into ANSYS Fluent for computational fluid dynamics 
+  simulation of counter-flow heat transfer
+• Applied k-ε turbulence model; boundary conditions: 
+  hot fluid inlet 85°C at 0.5 kg/s, cold fluid inlet 
+  25°C at 0.8 kg/s; mesh: 240,000 hexahedral elements 
+  with inflation layers at wall boundaries
+• Simulation results: overall heat transfer coefficient 
+  of 842 W/m²K; outlet temperatures within 3.2% of 
+  LMTD analytical calculations — confirming mesh 
+  convergence and model validity
+• Identified 12% potential improvement in heat transfer 
+  by increasing baffle cut from 25% to 35% in design 
+  iteration; documented parametric study as project report
+</code></pre>
 
 <hr />
 
@@ -325,23 +319,23 @@ export default function BlogPost15() {
 
 <p>Write it exactly like a work experience entry:</p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>Industrial Training | ABC Manufacturing Pvt. Ltd., Pune</p>
-<p>June – July 2024 (6 weeks)</p>
-<p>• Observed and documented machining operations including </p>
-<p>  turning, milling, drilling, and grinding on CNC and </p>
-<p>  conventional machines across 3 production lines</p>
-<p>• Assisted quality inspection team in dimensional </p>
-<p>  checking of machined components using Vernier </p>
-<p>  callipers, micrometers, and plug gauges; </p>
-<p>  recorded 50+ inspection reports</p>
-<p>• Observed maintenance procedures for CNC machining </p>
-<p>  centres including lubrication schedules, </p>
-<p>  tool replacement, and minor fault diagnosis</p>
-<p>• Prepared a report on production process flow, </p>
-<p>  cycle time analysis, and recommendations for </p>
-<p>  one identified bottleneck operation</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+Industrial Training | ABC Manufacturing Pvt. Ltd., Pune
+June – July 2024 (6 weeks)
+• Observed and documented machining operations including 
+  turning, milling, drilling, and grinding on CNC and 
+  conventional machines across 3 production lines
+• Assisted quality inspection team in dimensional 
+  checking of machined components using Vernier 
+  callipers, micrometers, and plug gauges; 
+  recorded 50+ inspection reports
+• Observed maintenance procedures for CNC machining 
+  centres including lubrication schedules, 
+  tool replacement, and minor fault diagnosis
+• Prepared a report on production process flow, 
+  cycle time analysis, and recommendations for 
+  one identified bottleneck operation
+</code></pre>
 
 <p>Even if the training was observational ("I watched the factory floor") — write it from the perspective of what you learned and documented. "Observed and documented" is an honest action verb. "Assisted" is honest when you contributed. Do not claim you "managed" or "led" something you observed.</p>
 
@@ -351,9 +345,9 @@ export default function BlogPost15() {
 
 <p>Many mechanical freshers confuse these two:</p>
 
-<p>**Industrial Training (mandatory):** Required by the university curriculum. Usually 4–8 weeks. Typically observational — you're a student learning, not a professional contributing. Legitimate to include. Honest framing matters.</p>
+<p><strong>Industrial Training (mandatory):</strong> Required by the university curriculum. Usually 4–8 weeks. Typically observational — you're a student learning, not a professional contributing. Legitimate to include. Honest framing matters.</p>
 
-<p>**Summer Internship (self-arranged):** Arranged independently, often with a small company, where you contribute to actual tasks. Has more weight because it's initiative-driven. Include prominently with outcome-focused bullets.</p>
+<p><strong>Summer Internship (self-arranged):</strong> Arranged independently, often with a small company, where you contribute to actual tasks. Has more weight because it's initiative-driven. Include prominently with outcome-focused bullets.</p>
 
 <p>Both can appear on your resume. The summer internship gets more space and more detailed bullets. The industrial training can be a single, concise entry.</p>
 
@@ -363,41 +357,41 @@ export default function BlogPost15() {
 
 <p>Follow the same formula from Blog 6: Degree + Top Skills + Target Role + Proof Point.</p>
 
-<p>The critical difference from a CSE objective: **name the function** (design, production, quality, maintenance, thermal) — not just "mechanical engineering."</p>
+<p>The critical difference from a CSE objective: <strong>name the function</strong> (design, production, quality, maintenance, thermal) — not just "mechanical engineering."</p>
 
-<p>**For Design Engineering:**</p>
+<p><strong>For Design Engineering:</strong></p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>B.Tech Mechanical Engineering graduate from ABC Institute </p>
-<p>with proficiency in SolidWorks, ANSYS FEA, and AutoCAD 3D. </p>
-<p>Designed an optimised bicycle frame achieving 1.94 safety </p>
-<p>factor with 18% weight reduction over reference design. </p>
-<p>Seeking a Design Engineer role to contribute to product </p>
-<p>development and structural analysis.</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+B.Tech Mechanical Engineering graduate from ABC Institute 
+with proficiency in SolidWorks, ANSYS FEA, and AutoCAD 3D. 
+Designed an optimised bicycle frame achieving 1.94 safety 
+factor with 18% weight reduction over reference design. 
+Seeking a Design Engineer role to contribute to product 
+development and structural analysis.
+</code></pre>
 
-<p>**For Production / Manufacturing:**</p>
+<p><strong>For Production / Manufacturing:</strong></p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>B.Tech Mechanical Engineering graduate with hands-on </p>
-<p>knowledge of CNC machining, GD&T, and quality inspection </p>
-<p>methods. Fabricated and tested an automated seed sowing </p>
-<p>machine (91% seed placement accuracy) during final year </p>
-<p>project. Seeking a Production Engineer or Graduate Engineer </p>
-<p>Trainee role in a manufacturing environment.</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+B.Tech Mechanical Engineering graduate with hands-on 
+knowledge of CNC machining, GD&T, and quality inspection 
+methods. Fabricated and tested an automated seed sowing 
+machine (91% seed placement accuracy) during final year 
+project. Seeking a Production Engineer or Graduate Engineer 
+Trainee role in a manufacturing environment.
+</code></pre>
 
-<p>**For PSU Applications (GATE-qualified):**</p>
+<p><strong>For PSU Applications (GATE-qualified):</strong></p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>B.Tech Mechanical Engineering graduate (CGPA: 8.4/10) </p>
-<p>from XYZ Institute with GATE 2026 qualification </p>
-<p>(Score: 540). Strong foundation in thermodynamics, </p>
-<p>fluid mechanics, and manufacturing engineering. </p>
-<p>Seeking a Graduate Engineer Trainee position at BHEL </p>
-<p>or NTPC to contribute to power generation and </p>
-<p>heavy engineering projects.</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+B.Tech Mechanical Engineering graduate (CGPA: 8.4/10) 
+from XYZ Institute with GATE 2026 qualification 
+(Score: 540). Strong foundation in thermodynamics, 
+fluid mechanics, and manufacturing engineering. 
+Seeking a Graduate Engineer Trainee position at BHEL 
+or NTPC to contribute to power generation and 
+heavy engineering projects.
+</code></pre>
 
 <p>For PSU applications, include your GATE score prominently in the objective — it is the primary screening criterion.</p>
 
@@ -407,17 +401,17 @@ export default function BlogPost15() {
 
 <p>Public Sector Undertakings (BHEL, ONGC, NTPC, IOCL, GAIL, SAIL, NPCIL, HAL, BEL) hire mechanical engineers as Graduate Engineer Trainees (GETs). The selection process and the resume requirements are different from private sector.</p>
 
-<p>**Key differences for PSU applications:**</p>
+<p><strong>Key differences for PSU applications:</strong></p>
 
-<p>**GATE score is central.** Most PSUs recruit through GATE scores. Your GATE score (and rank) should be prominently stated — in the objective, and in the Education section. Without a GATE score, most PSU applications are not competitive.</p>
+<p><strong>GATE score is central.</strong> Most PSUs recruit through GATE scores. Your GATE score (and rank) should be prominently stated — in the objective, and in the Education section. Without a GATE score, most PSU applications are not competitive.</p>
 
-<p>**Academic marks matter more.** PSUs typically have stricter CGPA/percentage cutoffs (often 60-65% across all levels). All three levels — 10th, 12th, degree — must meet the threshold.</p>
+<p><strong>Academic marks matter more.</strong> PSUs typically have stricter CGPA/percentage cutoffs (often 60-65% across all levels). All three levels — 10th, 12th, degree — must meet the threshold.</p>
 
-<p>**Resume is more formal.** Declaration section is expected. Personal details like date of birth may be required for application forms (though not necessarily on the resume itself).</p>
+<p><strong>Resume is more formal.</strong> Declaration section is expected. Personal details like date of birth may be required for application forms (though not necessarily on the resume itself).</p>
 
-<p>**Format stays the same.** Single column, plain text, ATS-compatible — the same formatting principles apply.</p>
+<p><strong>Format stays the same.</strong> Single column, plain text, ATS-compatible — the same formatting principles apply.</p>
 
-<p>**Certifications are less weighted.** PSUs weigh academic performance and GATE score more heavily than certifications. Focus your resume on your degree, CGPA, GATE performance, and core technical projects.</p>
+<p><strong>Certifications are less weighted.</strong> PSUs weigh academic performance and GATE score more heavily than certifications. Focus your resume on your degree, CGPA, GATE performance, and core technical projects.</p>
 
 <hr />
 
@@ -425,36 +419,36 @@ export default function BlogPost15() {
 
 <p>Unlike IT roles, there is no single universally recognised certification pathway for mechanical freshers. The certifications that add value are domain-specific and verifiable.</p>
 
-<p>**High value:**</p>
+<p><strong>High value:</strong></p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>CATIA V5 / SolidWorks Certification — Dassault Systèmes</p>
-<p>(Vendor-certified, high recognition among design employers)</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+CATIA V5 / SolidWorks Certification — Dassault Systèmes
+(Vendor-certified, high recognition among design employers)
 
-<p>ANSYS Academic Training Certificate</p>
-<p>(Recognized by engineering recruiters familiar with FEA/CFD)</p>
+ANSYS Academic Training Certificate
+(Recognized by engineering recruiters familiar with FEA/CFD)
 
-<p>AutoCAD Certified User — Autodesk</p>
-<p>(Recognised credential for design and drafting roles)</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+AutoCAD Certified User — Autodesk
+(Recognised credential for design and drafting roles)
+</code></pre>
 
-<p>**Solid supplementary certifications:**</p>
+<p><strong>Solid supplementary certifications:</strong></p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>NPTEL — Engineering Mechanics (IIT)</p>
-<p>NPTEL — Manufacturing Science (IIT)</p>
-<p>NPTEL — Heat and Mass Transfer (IIT)</p>
-<p>NPTEL — Machine Design (IIT)</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+NPTEL — Engineering Mechanics (IIT)
+NPTEL — Manufacturing Science (IIT)
+NPTEL — Heat and Mass Transfer (IIT)
+NPTEL — Machine Design (IIT)
+</code></pre>
 
 <p>NPTEL courses taught by IIT faculty carry credibility for core engineering roles — especially for freshers from non-IIT institutions. Include score (aim for 60%+).</p>
 
-<p>**Lean and quality certifications (for manufacturing roles):**</p>
+<p><strong>Lean and quality certifications (for manufacturing roles):</strong></p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>Lean Manufacturing / Six Sigma White Belt — Various platforms</p>
-<p>ISO 9001 Awareness Certificate — Various platforms</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+Lean Manufacturing / Six Sigma White Belt — Various platforms
+ISO 9001 Awareness Certificate — Various platforms
+</code></pre>
 
 <p>These are widely available online and signal awareness of manufacturing quality frameworks. They're not deeply weighted but add relevant keywords for production and quality JDs.</p>
 
@@ -462,133 +456,133 @@ export default function BlogPost15() {
 
 <h2 id="the-complete-resume-template-mechanical-engineering-fresher-design-role">The Complete Resume Template: Mechanical Engineering Fresher (Design Role)</h2>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
-<p>KARTHIK SUBRAMANIAM</p>
-<p>+91-97001-34567 | karthik.subramaniam@gmail.com</p>
-<p>Chennai, Tamil Nadu</p>
-<p>linkedin.com/in/karthiksubramaniam</p>
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+KARTHIK SUBRAMANIAM
++91-97001-34567 | karthik.subramaniam@gmail.com
+Chennai, Tamil Nadu
+linkedin.com/in/karthiksubramaniam
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>OBJECTIVE</p>
-<p>B.Tech Mechanical Engineering graduate from ABC Institute </p>
-<p>of Technology with proficiency in SolidWorks, ANSYS FEA, </p>
-<p>and AutoCAD 3D. Designed an optimised bicycle frame with </p>
-<p>1.94 safety factor and 18% weight reduction vs reference </p>
-<p>design. Seeking a Design Engineer role to contribute to </p>
-<p>product development and structural analysis at an </p>
-<p>automotive or industrial manufacturing company.</p>
+OBJECTIVE
+B.Tech Mechanical Engineering graduate from ABC Institute 
+of Technology with proficiency in SolidWorks, ANSYS FEA, 
+and AutoCAD 3D. Designed an optimised bicycle frame with 
+1.94 safety factor and 18% weight reduction vs reference 
+design. Seeking a Design Engineer role to contribute to 
+product development and structural analysis at an 
+automotive or industrial manufacturing company.
 
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>EDUCATION</p>
+EDUCATION
 
-<p>B.Tech in Mechanical Engineering</p>
-<p>ABC Institute of Technology, Chennai | 2022 – 2026 | CGPA: 8.0 / 10</p>
-<p>Relevant Coursework: Machine Design, Thermodynamics, </p>
-<p>                     Manufacturing Technology, CAD/CAM, </p>
-<p>                     Finite Element Analysis, Fluid Mechanics</p>
+B.Tech in Mechanical Engineering
+ABC Institute of Technology, Chennai | 2022 – 2026 | CGPA: 8.0 / 10
+Relevant Coursework: Machine Design, Thermodynamics, 
+                     Manufacturing Technology, CAD/CAM, 
+                     Finite Element Analysis, Fluid Mechanics
 
-<p>Class XII — CBSE | DEF School, Chennai | 2022 | 87%</p>
-<p>Class X  — CBSE | DEF School, Chennai | 2020 | 92%</p>
+Class XII — CBSE | DEF School, Chennai | 2022 | 87%
+Class X  — CBSE | DEF School, Chennai | 2020 | 92%
 
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>TECHNICAL SKILLS</p>
+TECHNICAL SKILLS
 
-<p>CAD Software:            SolidWorks, AutoCAD 2D/3D, CATIA V5 (basics)</p>
-<p>Simulation & Analysis:   ANSYS Mechanical (FEA), ANSYS Fluent (CFD</p>
-<p>                         basics), SolidWorks Simulation</p>
-<p>Manufacturing:           GD&T, Engineering Drawings, BOM Preparation,</p>
-<p>                         DFM basics, Material Selection</p>
-<p>Analysis Tools:          MATLAB (calculations), MS Excel (data analysis)</p>
-<p>Standards & Concepts:    IS Codes (basics), Tolerance and Fits,</p>
-<p>                         Engineering Drawing Standards</p>
+CAD Software:            SolidWorks, AutoCAD 2D/3D, CATIA V5 (basics)
+Simulation & Analysis:   ANSYS Mechanical (FEA), ANSYS Fluent (CFD
+                         basics), SolidWorks Simulation
+Manufacturing:           GD&T, Engineering Drawings, BOM Preparation,
+                         DFM basics, Material Selection
+Analysis Tools:          MATLAB (calculations), MS Excel (data analysis)
+Standards & Concepts:    IS Codes (basics), Tolerance and Fits,
+                         Engineering Drawing Standards
 
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>PROJECTS</p>
+PROJECTS
 
-<p>Structural Optimisation of Bicycle Frame | SolidWorks, </p>
-<p>ANSYS Mechanical, Aluminium Alloy 6061-T6</p>
-<p>• Designed a lightweight bicycle frame for 100 kg rider </p>
-<p>  load conditions; modelled full assembly in SolidWorks </p>
-<p>  with all critical welded joints and tube profiles</p>
-<p>• Performed static structural FEA in ANSYS Mechanical </p>
-<p>  (45,000+ tetrahedral elements); applied fixed support </p>
-<p>  at dropouts, distributed load at seat post and </p>
-<p>  bottom bracket; used von Mises stress criterion</p>
-<p>• Achieved maximum stress of 142 MPa vs yield strength </p>
-<p>  276 MPa (safety factor: 1.94); reduced frame weight </p>
-<p>  18% compared to reference carbon steel design</p>
-<p>• Received A+ grade; project report presented to </p>
-<p>  faculty panel at department final year project review</p>
+Structural Optimisation of Bicycle Frame | SolidWorks, 
+ANSYS Mechanical, Aluminium Alloy 6061-T6
+• Designed a lightweight bicycle frame for 100 kg rider 
+  load conditions; modelled full assembly in SolidWorks 
+  with all critical welded joints and tube profiles
+• Performed static structural FEA in ANSYS Mechanical 
+  (45,000+ tetrahedral elements); applied fixed support 
+  at dropouts, distributed load at seat post and 
+  bottom bracket; used von Mises stress criterion
+• Achieved maximum stress of 142 MPa vs yield strength 
+  276 MPa (safety factor: 1.94); reduced frame weight 
+  18% compared to reference carbon steel design
+• Received A+ grade; project report presented to 
+  faculty panel at department final year project review
 
-<p>CFD Analysis of Shell-and-Tube Heat Exchanger |</p>
-<p>ANSYS Fluent, SolidWorks, MATLAB</p>
-<p>• Modelled single-pass shell-and-tube heat exchanger </p>
-<p>  geometry in SolidWorks; performed counter-flow CFD </p>
-<p>  simulation in ANSYS Fluent with k-ε turbulence model</p>
-<p>• Boundary conditions: hot fluid at 85°C/0.5 kg/s, </p>
-<p>  cold fluid at 25°C/0.8 kg/s; mesh: 240,000 </p>
-<p>  hexahedral elements with inflation at walls</p>
-<p>• Simulation results within 3.2% of LMTD analytical </p>
-<p>  solution; identified 12% improvement potential by </p>
-<p>  adjusting baffle cut from 25% to 35%</p>
+CFD Analysis of Shell-and-Tube Heat Exchanger |
+ANSYS Fluent, SolidWorks, MATLAB
+• Modelled single-pass shell-and-tube heat exchanger 
+  geometry in SolidWorks; performed counter-flow CFD 
+  simulation in ANSYS Fluent with k-ε turbulence model
+• Boundary conditions: hot fluid at 85°C/0.5 kg/s, 
+  cold fluid at 25°C/0.8 kg/s; mesh: 240,000 
+  hexahedral elements with inflation at walls
+• Simulation results within 3.2% of LMTD analytical 
+  solution; identified 12% improvement potential by 
+  adjusting baffle cut from 25% to 35%
 
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>INDUSTRIAL TRAINING</p>
+INDUSTRIAL TRAINING
 
-<p>Mechanical Engineering Trainee | GHI Engineering Pvt. Ltd., Pune</p>
-<p>June – July 2024 (6 weeks)</p>
-<p>• Observed CNC turning and milling operations across </p>
-<p>  3 production lines; documented process parameters </p>
-<p>  and cycle times for 8 machined components</p>
-<p>• Assisted quality inspection in dimensional verification </p>
-<p>  using Vernier callipers, micrometers, and profile </p>
-<p>  gauge; recorded and filed 40+ inspection reports</p>
-<p>• Observed preventive maintenance procedures for CNC </p>
-<p>  machining centres; documented maintenance checklist </p>
-<p>  comparison against ISO PM standards</p>
+Mechanical Engineering Trainee | GHI Engineering Pvt. Ltd., Pune
+June – July 2024 (6 weeks)
+• Observed CNC turning and milling operations across 
+  3 production lines; documented process parameters 
+  and cycle times for 8 machined components
+• Assisted quality inspection in dimensional verification 
+  using Vernier callipers, micrometers, and profile 
+  gauge; recorded and filed 40+ inspection reports
+• Observed preventive maintenance procedures for CNC 
+  machining centres; documented maintenance checklist 
+  comparison against ISO PM standards
 
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>CERTIFICATIONS</p>
+CERTIFICATIONS
 
-<p>NPTEL — Machine Design</p>
-<p>NPTEL — IIT Kharagpur | Score: 72% | November 2025</p>
+NPTEL — Machine Design
+NPTEL — IIT Kharagpur | Score: 72% | November 2025
 
-<p>NPTEL — Manufacturing Technology</p>
-<p>NPTEL — IIT Bombay | Score: 68% | April 2025</p>
+NPTEL — Manufacturing Technology
+NPTEL — IIT Bombay | Score: 68% | April 2025
 
-<p>AutoCAD Certified User</p>
-<p>Autodesk | 2024</p>
+AutoCAD Certified User
+Autodesk | 2024
 
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>EXTRACURRICULAR ACTIVITIES</p>
+EXTRACURRICULAR ACTIVITIES
 
-<p>SAE India Collegiate Member | ABC Institute Chapter</p>
-<p>2023 – 2025</p>
-<p>• Participated in SAE Aero Design challenge; contributed </p>
-<p>  to airframe component design and weight estimation </p>
-<p>  for team aircraft model</p>
+SAE India Collegiate Member | ABC Institute Chapter
+2023 – 2025
+• Participated in SAE Aero Design challenge; contributed 
+  to airframe component design and weight estimation 
+  for team aircraft model
 
-<p>NSS Volunteer | ABC Institute Chapter | 2022 – 2024</p>
-<p>• Contributed 180+ hours across rural health camps </p>
-<p>  and infrastructure maintenance drives in </p>
-<p>  Chengalpattu district, Tamil Nadu</p>
+NSS Volunteer | ABC Institute Chapter | 2022 – 2024
+• Contributed 180+ hours across rural health camps 
+  and infrastructure maintenance drives in 
+  Chengalpattu district, Tamil Nadu
 
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-<p>DECLARATION</p>
-<p>I hereby declare that all information provided above </p>
-<p>is true and correct to the best of my knowledge.</p>
+DECLARATION
+I hereby declare that all information provided above 
+is true and correct to the best of my knowledge.
 
-<p>Place: Chennai     Date: [Date]     Signature: ________</p>
-<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+Place: Chennai     Date: [Date]     Signature: ________
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+</code></pre>
 
 <hr />
 
@@ -597,12 +591,14 @@ export default function BlogPost15() {
 <h3>For Automotive OEMs (Tata Motors, Mahindra, Maruti, Ashok Leyland)</h3>
 
 <p>These companies hire through GET (Graduate Engineer Trainee) programmes. They look for:</p>
-<p>- Solid understanding of manufacturing processes</p>
-<p>- Exposure to automotive-specific design or production work</p>
-<p>- CGPA of 60%+ (Mahindra requires 60% across all academic levels)</p>
-<p>- No active backlogs</p>
+      <ul>
+        <li>Solid understanding of manufacturing processes</li>
+        <li>Exposure to automotive-specific design or production work</li>
+        <li>CGPA of 60%+ (Mahindra requires 60% across all academic levels)</li>
+        <li>No active backlogs</li>
+      </ul>
 
-<p>**Adaptation:** Move manufacturing skills higher in your skills section. If your project involved any automotive-adjacent work (chassis design, powertrain analysis, suspension components), lead with it. Mention any SAE India participation — it signals automotive interest.</p>
+<p><strong>Adaptation:</strong> Move manufacturing skills higher in your skills section. If your project involved any automotive-adjacent work (chassis design, powertrain analysis, suspension components), lead with it. Mention any SAE India participation — it signals automotive interest.</p>
 
 <hr />
 
@@ -610,7 +606,7 @@ export default function BlogPost15() {
 
 <p>These companies value structural and thermal engineering knowledge alongside practical manufacturing exposure.</p>
 
-<p>**Adaptation:** If you have thermal or fluid mechanics projects, lead with them for BHEL or NTPC applications. If your projects are design-focused, emphasise structural analysis and material knowledge. Mention any site visit or industrial training at a relevant facility.</p>
+<p><strong>Adaptation:</strong> If you have thermal or fluid mechanics projects, lead with them for BHEL or NTPC applications. If your projects are design-focused, emphasise structural analysis and material knowledge. Mention any site visit or industrial training at a relevant facility.</p>
 
 <hr />
 
@@ -618,86 +614,88 @@ export default function BlogPost15() {
 
 <p>These companies build products for global clients — often automotive or aerospace. They value strong CAD skills, simulation experience, and some understanding of GD&T and engineering drawing standards.</p>
 
-<p>**Adaptation:** Lead with your strongest CAD and simulation project. Mention if you have experience reading or creating engineering drawings. These companies often use CATIA for automotive clients — if you have any CATIA exposure, make it visible.</p>
+<p><strong>Adaptation:</strong> Lead with your strongest CAD and simulation project. Mention if you have experience reading or creating engineering drawings. These companies often use CATIA for automotive clients — if you have any CATIA exposure, make it visible.</p>
 
 <hr />
 
 <h3>For PSUs (BHEL, ONGC, NTPC, IOCL, GAIL — GATE-based)</h3>
 
-<p>**Adaptation (major):**</p>
-<p>- Add GATE score prominently in objective AND education section</p>
-<p>- Ensure all academic scores are clearly visible — PSU eligibility is score-dependent</p>
-<p>- Include declaration section — expected in most PSU application contexts</p>
-<p>- Remove certifications that aren't academically recognised — focus on NPTEL and degree-level achievements</p>
-<p>- Adjust objective to name the specific PSU and GET role</p>
+<p><strong>Adaptation (major):</strong></p>
+      <ul>
+        <li>Add GATE score prominently in objective AND education section</li>
+        <li>Ensure all academic scores are clearly visible — PSU eligibility is score-dependent</li>
+        <li>Include declaration section — expected in most PSU application contexts</li>
+        <li>Remove certifications that aren't academically recognised — focus on NPTEL and degree-level achievements</li>
+        <li>Adjust objective to name the specific PSU and GET role</li>
+      </ul>
 
 <hr />
 
 <h2 id="the-mechanical-engineering-resume-checklist">The Mechanical Engineering Resume Checklist</h2>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>DIRECTION</p>
-<p>□ I have identified my target domain (design / production </p>
-<p>  / quality / thermal / PSU)</p>
-<p>□ My resume reflects that domain — not a generic mix</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+DIRECTION
+□ I have identified my target domain (design / production 
+  / quality / thermal / PSU)
+□ My resume reflects that domain — not a generic mix
 
-<p>OBJECTIVE</p>
-<p>□ Names specific engineering function (not just </p>
-<p>  "mechanical engineering role")</p>
-<p>□ Includes CAD/simulation tools from target JD</p>
-<p>□ Includes one proof point from a project</p>
+OBJECTIVE
+□ Names specific engineering function (not just 
+  "mechanical engineering role")
+□ Includes CAD/simulation tools from target JD
+□ Includes one proof point from a project
 
-<p>SKILLS</p>
-<p>□ CAD tools listed specifically (SolidWorks, AutoCAD, </p>
-<p>  CATIA — not "CAD software")</p>
-<p>□ Simulation tools listed if used (ANSYS, MATLAB)</p>
-<p>□ Manufacturing processes / quality frameworks </p>
-<p>  included where relevant</p>
-<p>□ No IT skills (Java, Python, HTML) unless specifically </p>
-<p>  relevant to target role</p>
+SKILLS
+□ CAD tools listed specifically (SolidWorks, AutoCAD, 
+  CATIA — not "CAD software")
+□ Simulation tools listed if used (ANSYS, MATLAB)
+□ Manufacturing processes / quality frameworks 
+  included where relevant
+□ No IT skills (Java, Python, HTML) unless specifically 
+  relevant to target role
 
-<p>PROJECTS</p>
-<p>□ 2 strong projects with engineering outcomes</p>
-<p>□ Each uses the format: what it is + methodology </p>
-<p>  + engineering result (with numbers/values)</p>
-<p>□ Tools/software listed in title line</p>
-<p>□ Engineering parameters included (stress values, </p>
-<p>  temperatures, flow rates, dimensions, efficiency %)</p>
+PROJECTS
+□ 2 strong projects with engineering outcomes
+□ Each uses the format: what it is + methodology 
+  + engineering result (with numbers/values)
+□ Tools/software listed in title line
+□ Engineering parameters included (stress values, 
+  temperatures, flow rates, dimensions, efficiency %)
 
-<p>INDUSTRIAL TRAINING</p>
-<p>□ Included with honest, specific action verbs</p>
-<p>□ Describes what was observed/assisted — not claimed </p>
-<p>  as independent engineering work</p>
+INDUSTRIAL TRAINING
+□ Included with honest, specific action verbs
+□ Describes what was observed/assisted — not claimed 
+  as independent engineering work
 
-<p>EDUCATION</p>
-<p>□ CGPA visible and above 6.0 minimum</p>
-<p>□ GATE score included if applicable (PSU applications)</p>
-<p>□ 10th and 12th marks included</p>
-<p>□ Relevant engineering coursework listed</p>
+EDUCATION
+□ CGPA visible and above 6.0 minimum
+□ GATE score included if applicable (PSU applications)
+□ 10th and 12th marks included
+□ Relevant engineering coursework listed
 
-<p>CERTIFICATIONS</p>
-<p>□ Domain-relevant certifications (NPTEL, Autodesk, </p>
-<p>  ANSYS if applicable)</p>
-<p>□ Issuer and score included</p>
+CERTIFICATIONS
+□ Domain-relevant certifications (NPTEL, Autodesk, 
+  ANSYS if applicable)
+□ Issuer and score included
 
-<p>FORMAT</p>
-<p>□ Single column, plain text, one page</p>
-<p>□ No photo, no DOB</p>
-<p>□ Declaration included (for campus / PSU applications)</p>
-<p>□ File: Firstname_Lastname_Resume.pdf</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+FORMAT
+□ Single column, plain text, one page
+□ No photo, no DOB
+□ Declaration included (for campus / PSU applications)
+□ File: Firstname_Lastname_Resume.pdf
+</code></pre>
 
 <hr />
 
 <h2 id="read-next-in-this-series">Read Next in This Series</h2>
 
-<p>→ **[Blog 1: What is ATS](#)** | **[Blog 2: Resume Format](#)** | **[Blog 3: ATS Score](#)**</p>
-<p>→ **[Blog 4: Formatting Mistakes](#)** | **[Blog 5: Keywords](#)** | **[Blog 6: Objective](#)**</p>
-<p>→ **[Blog 7: Projects](#)** | **[Blog 8: Skills](#)** | **[Blog 9: Education](#)**</p>
-<p>→ **[Blog 10: Certifications](#)** | **[Blog 11: No Experience](#)** | **[Blog 12: Action Verbs](#)**</p>
-<p>→ **[Blog 13: CSE/IT Resume](#)** | **[Blog 14: ECE Resume](#)**</p>
+<p>→ <strong><a href="/blog/why-indian-fresher-resumes-are-invisible-to-ats-2026">Blog 1: What is ATS</a></strong> | <strong><a href="/blog/ats-friendly-resume-format-indian-freshers-2026">Blog 2: Resume Format</a></strong> | <strong><a href="/blog/how-to-check-your-ats-score-before-applying-india-2026">Blog 3: ATS Score</a></strong></p>
+<p>→ <strong><a href="/blog/10-resume-formatting-mistakes-indian-freshers-2026">Blog 4: Formatting Mistakes</a></strong> | <strong><a href="/blog/ats-keywords-for-indian-freshers-2026">Blog 5: Keywords</a></strong> | <strong><a href="/blog/how-to-write-a-resume-objective-for-freshers-in-india-2026">Blog 6: Objective</a></strong></p>
+<p>→ <strong><a href="/blog/how-to-write-the-projects-section-on-your-resume-2026">Blog 7: Projects</a></strong> | <strong><a href="/blog/resume-skills-section-for-indian-freshers-2026">Blog 8: Skills</a></strong> | <strong><a href="/blog/how-to-write-the-education-section-on-an-indian-fresher-resume-2026">Blog 9: Education</a></strong></p>
+<p>→ <strong><a href="/blog/how-to-write-certifications-resume-india-freshers-2026">Blog 10: Certifications</a></strong> | <strong><a href="/blog/how-to-write-a-resume-with-no-experience-india-freshers-2026">Blog 11: No Experience</a></strong> | <strong><a href="/blog/blog-12-resume-action-verbs-india-freshers-2026">Blog 12: Action Verbs</a></strong></p>
+<p>→ <strong><a href="/blog/resume-format-cse-it-freshers-india-2026">Blog 13: CSE/IT Resume</a></strong> | <strong><a href="/blog/resume-format-ece-freshers-india-2026">Blog 14: ECE Resume</a></strong></p>
 
-<p>→ **[Blog 16: Resume Format for MBA Freshers in India — Marketing, Finance, and HR Roles](#)** *(Coming next)*</p>
+<p>→ <strong><a href="/blog/mba-fresher-resume-india-2026">Blog 16: Resume Format for MBA Freshers in India — Marketing, Finance, and HR Roles</a></strong> <em>(Coming next)</em></p>
 
 <hr />
 
@@ -705,35 +703,14 @@ export default function BlogPost15() {
 
 <p>CareerForge.pro's resume builder gives mechanical engineering freshers a structured, ATS-compatible format that handles engineering project descriptions, industrial training entries, and the technical skills section correctly — without forcing you into a software-developer template.</p>
 
-<p>Use the **JD Score tool** to verify your keyword alignment before applying to each company and role.</p>
+<p>Use the <strong>JD Score tool</strong> to verify your keyword alignment before applying to each company and role.</p>
 
-<p>**[Build Your Mechanical Engineering Resume on CareerForge.pro →](#)**</p>
-
-<hr />
-
-<p>*Published by CareerForge.pro — India's AI Resume Platform for Freshers.*</p>
-<p>*© 2026 CareerForge.pro. All rights reserved.*</p>
+<p><strong><a href="#">Build Your Mechanical Engineering Resume on CareerForge.pro →</a></strong></p>
 
 <hr />
 
-<h3>SEO Metadata</h3>
 
-<p>**Primary Keywords:** resume format for mechanical engineering freshers India, mechanical fresher resume India, mechanical engineer resume freshers India</p>
 
-<p>**Secondary Keywords:** mechanical engineering resume ATS India, AutoCAD resume fresher India, SolidWorks resume India freshers, production engineering fresher resume India, mechanical fresher resume for L&T Tata Mahindra India</p>
-
-<p>**Word Count:** ~4,000 words</p>
-
-<p>**Internal Links:**</p>
-<p>- Blog 6 (Objective formula — cross-referenced)</p>
-<p>- Blog 7 (Projects structure — cross-referenced)</p>
-<p>- Blogs 1–14 (all previous in series)</p>
-<p>- Blog 16 (MBA Resume — upcoming)</p>
-<p>- CareerForge Resume Builder + JD Score Tool (CTAs)</p>
-
-<p>**Meta Description (159 chars):**</p>
-<p>Complete mechanical engineering fresher resume guide for India in 2026 — design vs production vs PSU strategy, three project examples, full ATS template, and GATE tips.</p>
-` }} />
-    </BlogPostLayout>
+</BlogPostLayout>
   )
 }

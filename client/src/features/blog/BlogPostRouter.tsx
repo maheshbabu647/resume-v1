@@ -32,6 +32,39 @@ const POST_COMPONENTS: Record<string, React.LazyExoticComponent<() => React.Reac
   'how-to-write-the-education-section-on-an-indian-fresher-resume-2026': lazy(
     () => import('./posts/blog-post-9')
   ),
+  'how-to-write-certifications-resume-india-freshers-2026': lazy(
+    () => import('./posts/blog-post-10')
+  ),
+  'how-to-write-a-resume-with-no-experience-india-freshers-2026': lazy(
+    () => import('./posts/blog-post-11')
+  ),
+  'blog-12-resume-action-verbs-india-freshers-2026': lazy(
+    () => import('./posts/blog-post-12')
+  ),
+  'resume-format-cse-it-freshers-india-2026': lazy(
+    () => import('./posts/blog-post-13')
+  ),
+  'resume-format-ece-freshers-india-2026': lazy(
+    () => import('./posts/blog-post-14')
+  ),
+  'resume-format-mechanical-freshers-india-2026': lazy(
+    () => import('./posts/blog-post-15')
+  ),
+  'mba-fresher-resume-india-2026': lazy(
+    () => import('./posts/blog-post-16')
+  ),
+  'biodata-vs-resume-vs-cv-india-2026': lazy(
+    () => import('./posts/blog-post-17')
+  ),
+  'resume-objective-vs-summary-india-freshers-2026': lazy(
+    () => import('./posts/blog-post-18')
+  ),
+  'one-page-vs-two-page-resume-india-2026': lazy(
+    () => import('./posts/blog-post-19')
+  ),
+  'how-to-write-resume-with-low-cgpa-india-2026': lazy(
+    () => import('./posts/blog-post-20')
+  ),
 }
 
 const Fallback = () => (

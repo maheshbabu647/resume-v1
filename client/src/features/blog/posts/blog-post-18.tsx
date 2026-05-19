@@ -56,18 +56,8 @@ export default function BlogPost18() {
       tocEntries={TOC}
     >
       <blockquote><p><em>There is a debate running across every resume advice blog right now: "Objectives are dead. Summaries are the future." That advice is written for experienced professionals in the US and UK. For Indian freshers, the picture is more nuanced — and getting it wrong costs you the first impression on every resume you submit.</em></p></blockquote>
-      <div dangerouslySetInnerHTML={{ __html: `{/* # Resume Objective vs Professional Summary — Which One Should Indian Freshers Use in 2026? */}
-
-{/* **By CareerForge.pro** | Resume Advice for Indian Freshers | 12 min read */}
-
 <hr />
 
-<p>&gt; *There is a debate running across every resume advice blog right now:*</p>
-<p>&gt; *"Objectives are dead. Summaries are the future."*</p>
-<p>&gt;</p>
-<p>&gt; *That advice is written for experienced professionals in the US and UK.*</p>
-<p>&gt; *For Indian freshers, the picture is more nuanced — and getting it wrong*</p>
-<p>&gt; *costs you the first impression on every resume you submit.*</p>
 
 <hr />
 
@@ -85,11 +75,11 @@ export default function BlogPost18() {
 
 <h2 id="what-each-format-is-clearly-defined">What Each Format Is — Clearly Defined</h2>
 
-<p>**Resume Objective:** A 2–3 sentence forward-looking statement at the top of your resume. It tells the recruiter what role you are targeting, what relevant skills or credentials you bring, and what you aim to contribute. It is honest about the fact that you are at the beginning of your career. Best suited for freshers, recent graduates, and career changers.</p>
+<p><strong>Resume Objective:</strong> A 2–3 sentence forward-looking statement at the top of your resume. It tells the recruiter what role you are targeting, what relevant skills or credentials you bring, and what you aim to contribute. It is honest about the fact that you are at the beginning of your career. Best suited for freshers, recent graduates, and career changers.</p>
 
-<p>**Professional Summary:** A 3–5 sentence backward-looking statement that summarises your professional experience, key skills, and notable achievements. It assumes you have experience worth summarising. Best suited for professionals with 2+ years of relevant work history.</p>
+<p><strong>Professional Summary:</strong> A 3–5 sentence backward-looking statement that summarises your professional experience, key skills, and notable achievements. It assumes you have experience worth summarising. Best suited for professionals with 2+ years of relevant work history.</p>
 
-<p>The simplest test: **If you have meaningful professional experience — use a summary. If you don't — use an objective.**</p>
+<p>The simplest test: <strong>If you have meaningful professional experience — use a summary. If you don't — use an objective.</strong></p>
 
 <p>For the majority of Indian freshers reading this blog, the answer is the objective. Not because summaries are bad, but because you cannot write a credible summary when you have no experience to draw from. A summary written without real experience becomes a collection of vague claims ("highly motivated professional with strong communication skills") that every recruiter recognises as filler.</p>
 
@@ -107,12 +97,14 @@ export default function BlogPost18() {
 
 <p>For MBA freshers with a summer internship and live projects: a summary becomes appropriate because you have real professional experience to draw from — even if that experience is only 8–10 weeks of internship work with measurable outcomes.</p>
 
-<p>**The practical guidance for Indian freshers:**</p>
+<p><strong>The practical guidance for Indian freshers:</strong></p>
 
-<p>- No internship, no work experience → Objective</p>
-<p>- Some experience (virtual internship, meaningful freelance, Internshala programme) → Objective that references that experience as a proof point</p>
-<p>- MBA fresher with summer internship + live projects → Summary or a strong objective (either works; summary is increasingly appropriate here)</p>
-<p>- 2+ years of professional experience → Summary</p>
+      <ul>
+        <li>No internship, no work experience → Objective</li>
+        <li>Some experience (virtual internship, meaningful freelance, Internshala programme) → Objective that references that experience as a proof point</li>
+        <li>MBA fresher with summer internship + live projects → Summary or a strong objective (either works; summary is increasingly appropriate here)</li>
+        <li>2+ years of professional experience → Summary</li>
+      </ul>
 
 <hr />
 
@@ -120,29 +112,31 @@ export default function BlogPost18() {
 
 <p>We covered the objective formula in depth in Blog 6. Here is the condensed, accurate version.</p>
 
-<p>**The formula:**</p>
+<p><strong>The formula:</strong></p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>[Degree] graduate in [Branch] from [College] with [Skill 1], </p>
-<p>[Skill 2], and [Skill 3]. Seeking a [Target Role] to [value </p>
-<p>you will contribute]. [One proof point — project outcome, </p>
-<p>certification, or academic achievement].</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+[Degree] graduate in [Branch] from [College] with [Skill 1], 
+[Skill 2], and [Skill 3]. Seeking a [Target Role] to [value 
+you will contribute]. [One proof point — project outcome, 
+certification, or academic achievement].
+</code></pre>
 
-<p>**What every objective must contain:**</p>
+<p><strong>What every objective must contain:</strong></p>
 
 <p>1. Your degree and branch (ATS categorisation + recruiter context)</p>
 <p>2. 2–3 specific, hard skills using exact JD terminology (keyword payload)</p>
 <p>3. The exact job title from the JD (highest-weight ATS keyword)</p>
 <p>4. One concrete proof point (makes your objective yours — not generic)</p>
 
-<p>**What every objective must avoid:**</p>
+<p><strong>What every objective must avoid:</strong></p>
 
-<p>- "Seeking a challenging and rewarding position"</p>
-<p>- "Reputed organisation"</p>
-<p>- "Where I can learn and grow"</p>
-<p>- "Hardworking," "passionate," "motivated," "quick learner"</p>
-<p>- Any sentence that could apply to every candidate in every industry</p>
+      <ul>
+        <li>"Seeking a challenging and rewarding position"</li>
+        <li>"Reputed organisation"</li>
+        <li>"Where I can learn and grow"</li>
+        <li>"Hardworking," "passionate," "motivated," "quick learner"</li>
+        <li>Any sentence that could apply to every candidate in every industry</li>
+      </ul>
 
 <hr />
 
@@ -152,53 +146,43 @@ export default function BlogPost18() {
 
 <hr />
 
-<p>**1. CSE — Backend Developer**</p>
-<p>&gt; B.Tech Computer Science graduate from XYZ Institute with strong foundation in Java, Spring Boot, and MySQL. Built a full-stack exam management system supporting 200+ concurrent simulated users. Seeking a Software Developer role to build scalable backend systems and contribute to API development.</p>
+<p><strong>1. CSE — Backend Developer</strong></p>
 
 <hr />
 
-<p>**2. CSE — Data Analyst**</p>
-<p>&gt; B.Tech Computer Science graduate with hands-on experience in Python, Pandas, and SQL. Analysed a 50,000-record retail dataset to identify seasonal demand patterns and documented findings in a structured Jupyter notebook. Seeking a Data Analyst role to translate data into actionable business insights.</p>
+<p><strong>2. CSE — Data Analyst</strong></p>
 
 <hr />
 
-<p>**3. ECE — IT Pivot**</p>
-<p>&gt; B.Tech Electronics and Communication Engineering graduate with programming foundation in Java, Python, and SQL. Completed Google IT Support Professional Certificate (2025) and built a web-based library management system using Spring Boot. Seeking a Software Developer Trainee role to contribute to scalable application development.</p>
+<p><strong>3. ECE — IT Pivot</strong></p>
 
 <hr />
 
-<p>**4. ECE — Embedded Systems**</p>
-<p>&gt; B.Tech ECE graduate with skills in Embedded C, STM32 microcontrollers, and MQTT protocol. Built a home automation prototype with ESP32 and FreeRTOS achieving sub-120ms relay response across 30+ test cycles. Seeking an Embedded Systems Engineer role to develop firmware for connected devices.</p>
+<p><strong>4. ECE — Embedded Systems</strong></p>
 
 <hr />
 
-<p>**5. Mechanical — Design Engineering**</p>
-<p>&gt; B.Tech Mechanical Engineering graduate proficient in SolidWorks, ANSYS FEA, and AutoCAD. Designed an optimised bicycle frame achieving a 1.94 safety factor with 18% weight reduction over a reference steel design. Seeking a Design Engineer role to contribute to product development and structural analysis.</p>
+<p><strong>5. Mechanical — Design Engineering</strong></p>
 
 <hr />
 
-<p>**6. Mechanical — Production**</p>
-<p>&gt; B.Tech Mechanical Engineering graduate with knowledge of GD&T, CNC machining, and Lean Manufacturing fundamentals. Fabricated an automated seed sowing machine with 91% seed placement accuracy during final year project. Seeking a Production Engineer or Graduate Engineer Trainee role in a manufacturing environment.</p>
+<p><strong>6. Mechanical — Production</strong></p>
 
 <hr />
 
-<p>**7. MBA — Marketing**</p>
-<p>&gt; MBA (Marketing) graduate from XYZ Business School with experience in brand management and primary consumer research. Developed an Excel-based competitive benchmarking dashboard used in pricing decisions for a ₹120 crore portfolio during summer internship. Seeking a Management Trainee or Brand Executive role to contribute to marketing strategy.</p>
+<p><strong>7. MBA — Marketing</strong></p>
 
 <hr />
 
-<p>**8. MBA — Finance**</p>
-<p>&gt; MBA (Finance) graduate with strong foundation in financial modelling, DCF valuation, and financial statement analysis. Built a 3-statement financial model for a retail client during summer internship at ABC Consulting used in funding pitch documentation. Seeking an Analyst or Management Trainee role in corporate finance or investment analysis.</p>
+<p><strong>8. MBA — Finance</strong></p>
 
 <hr />
 
-<p>**9. BCA — Software Developer**</p>
-<p>&gt; BCA graduate with practical skills in Java, PHP, and MySQL. Built a college event management portal serving 300+ students across 5 departments as final year project. Seeking a Junior Developer or Software Trainee role to contribute to web application development.</p>
+<p><strong>9. BCA — Software Developer</strong></p>
 
 <hr />
 
-<p>**10. B.Com — Accounts / Finance**</p>
-<p>&gt; B.Com graduate proficient in Tally ERP 9, MS Excel, and GST compliance. Completed a 3-month internship at a CA firm handling accounts payable, GST returns, and monthly bank reconciliations for 12 client accounts. Seeking an Accounts Executive or Finance Analyst role.</p>
+<p><strong>10. B.Com — Accounts / Finance</strong></p>
 
 <hr />
 
@@ -206,27 +190,29 @@ export default function BlogPost18() {
 
 <p>If you are an MBA fresher with a substantive summer internship, or if you have any meaningful professional experience before applying — a summary may be the stronger choice. Here is how to write one correctly.</p>
 
-<p>**The formula:**</p>
+<p><strong>The formula:</strong></p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>[Role title or degree] with [X weeks/months of experience] in </p>
-<p>[domain/function]. [Achievement 1 with metric]. [Achievement 2 </p>
-<p>or skill demonstration]. Seeking [target role] to [contribution].</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+[Role title or degree] with [X weeks/months of experience] in 
+[domain/function]. [Achievement 1 with metric]. [Achievement 2 
+or skill demonstration]. Seeking [target role] to [contribution].
+</code></pre>
 
-<p>**What every summary must contain:**</p>
+<p><strong>What every summary must contain:</strong></p>
 
 <p>1. A role description or degree — who you are professionally</p>
 <p>2. Evidence of experience — internship duration, programme name, or context</p>
 <p>3. At least one specific, quantified achievement</p>
 <p>4. Target role (matches the JD)</p>
 
-<p>**What makes a summary fail:**</p>
+<p><strong>What makes a summary fail:</strong></p>
 
-<p>- Starting with adjectives: "Highly motivated," "Dynamic," "Results-driven" — these are claims anyone can make</p>
-<p>- Listing soft skills: "Excellent communicator," "Team player," "Quick learner" — unverifiable, meaningless to ATS</p>
-<p>- Being vague: "Experienced in various marketing activities" — says nothing</p>
-<p>- Being too long: More than 4–5 sentences loses the recruiter's attention</p>
+      <ul>
+        <li>Starting with adjectives: "Highly motivated," "Dynamic," "Results-driven" — these are claims anyone can make</li>
+        <li>Listing soft skills: "Excellent communicator," "Team player," "Quick learner" — unverifiable, meaningless to ATS</li>
+        <li>Being vague: "Experienced in various marketing activities" — says nothing</li>
+        <li>Being too long: More than 4–5 sentences loses the recruiter's attention</li>
+      </ul>
 
 <hr />
 
@@ -234,18 +220,15 @@ export default function BlogPost18() {
 
 <hr />
 
-<p>**MBA Marketing Fresher (with summer internship)**</p>
-<p>&gt; MBA (Marketing) graduate with 8 weeks of brand management experience at ABC FMCG Company. Identified 3 underperforming SKUs responsible for 22% of returns through 18-month sales data analysis and delivered recommendations incorporated into Q3 marketing plan. Developed a competitive benchmarking dashboard adopted as a weekly pricing reference by the brand team. Seeking a Management Trainee or Brand Executive role in FMCG or consumer goods.</p>
+<p><strong>MBA Marketing Fresher (with summer internship)</strong></p>
 
 <hr />
 
-<p>**MBA Finance Fresher (with summer internship)**</p>
-<p>&gt; MBA (Finance) graduate with internship experience in corporate finance at ABC Consulting. Built a 3-statement DCF financial model for a retail client used in Series A funding documentation; conducted ratio analysis across 5-year historical financials. Proficient in Excel (advanced modelling), Power BI, and financial statement analysis. Seeking an Analyst or Finance Management Trainee role.</p>
+<p><strong>MBA Finance Fresher (with summer internship)</strong></p>
 
 <hr />
 
-<p>**BCA / B.Sc CS with Internship (2+ months of relevant work)**</p>
-<p>&gt; BCA graduate with 2-month web development internship at XYZ Tech Pvt. Ltd. Developed and deployed a customer feedback module using PHP and MySQL, reducing manual data entry for the client's support team by an estimated 50%. Certified in Google IT Support (2025). Seeking a Junior Web Developer or Software Trainee role.</p>
+<p><strong>BCA / B.Sc CS with Internship (2+ months of relevant work)</strong></p>
 
 <hr />
 
@@ -287,17 +270,21 @@ export default function BlogPost18() {
 
 <h2 id="the-mistakes-that-kill-both-formats">The Mistakes That Kill Both Formats</h2>
 
-<p>**For objectives:**</p>
-<p>- "Seeking a challenging and rewarding position" — delete immediately</p>
-<p>- No specific role named — a generic objective is worse than no objective</p>
-<p>- No proof point — without one specific thing, you are indistinguishable from every other candidate</p>
-<p>- Written identically for every application — signals bulk application, not considered interest</p>
+<p><strong>For objectives:</strong></p>
+      <ul>
+        <li>"Seeking a challenging and rewarding position" — delete immediately</li>
+        <li>No specific role named — a generic objective is worse than no objective</li>
+        <li>No proof point — without one specific thing, you are indistinguishable from every other candidate</li>
+        <li>Written identically for every application — signals bulk application, not considered interest</li>
+      </ul>
 
-<p>**For summaries:**</p>
-<p>- Starting with adjectives: "Highly motivated," "Dynamic professional," "Results-driven" — these phrases are on millions of resumes, they register as noise</p>
-<p>- Fabricating experience: Writing a summary as if you have years of experience when you have only 8 weeks of internship — recruiters can tell the difference and it damages credibility</p>
-<p>- Vague achievements: "Helped the team improve performance" — not a result, not verifiable, not useful</p>
-<p>- Too long: A 7-sentence summary that requires scrolling to read is a summary no recruiter will finish</p>
+<p><strong>For summaries:</strong></p>
+      <ul>
+        <li>Starting with adjectives: "Highly motivated," "Dynamic professional," "Results-driven" — these phrases are on millions of resumes, they register as noise</li>
+        <li>Fabricating experience: Writing a summary as if you have years of experience when you have only 8 weeks of internship — recruiters can tell the difference and it damages credibility</li>
+        <li>Vague achievements: "Helped the team improve performance" — not a result, not verifiable, not useful</li>
+        <li>Too long: A 7-sentence summary that requires scrolling to read is a summary no recruiter will finish</li>
+      </ul>
 
 <hr />
 
@@ -305,49 +292,49 @@ export default function BlogPost18() {
 
 <p>Use this to decide which format is right for your current resume:</p>
 
-<pre style={{ background: 'var(--surface-container-high)', padding: 'var(--space-6)', borderRadius: 'var(--radius-lg)', overflowX: 'auto' }}><code>
-<p>Do you have 2+ years of professional work experience </p>
-<p>in a role directly relevant to what you're applying for?</p>
+<pre style={{ background: 'var(--surface-container-high)', borderRadius: 'var(--radius-lg)', padding: 'var(--space-6)', fontSize: '13px', lineHeight: 1.7, overflowX: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word', color: 'var(--on-surface)', fontFamily: 'var(--font-mono)', border: '1px solid var(--outline-variant)' }}><code>
+Do you have 2+ years of professional work experience 
+in a role directly relevant to what you're applying for?
 
-<p>YES → Professional Summary</p>
-<p>NO  → Continue below</p>
+YES → Professional Summary
+NO  → Continue below
 
-<p>Do you have a substantive MBA summer internship </p>
-<p>(8+ weeks) with measurable outcomes you can describe?</p>
+Do you have a substantive MBA summer internship 
+(8+ weeks) with measurable outcomes you can describe?
 
-<p>YES → Summary or Objective (either works; summary </p>
-<p>      is increasingly appropriate)</p>
-<p>NO  → Continue below</p>
+YES → Summary or Objective (either works; summary 
+      is increasingly appropriate)
+NO  → Continue below
 
-<p>Do you have any meaningful work exposure — a virtual </p>
-<p>internship, a Forage programme, a freelance assignment, </p>
-<p>a formal part-time role?</p>
+Do you have any meaningful work exposure — a virtual 
+internship, a Forage programme, a freelance assignment, 
+a formal part-time role?
 
-<p>YES → Objective that references this as your proof point</p>
-<p>NO  → Continue below</p>
+YES → Objective that references this as your proof point
+NO  → Continue below
 
-<p>Do you have strong academic projects, certifications </p>
-<p>from recognised issuers, or notable academic achievements?</p>
+Do you have strong academic projects, certifications 
+from recognised issuers, or notable academic achievements?
 
-<p>YES → Objective with project or certification as proof point</p>
-<p>NO  → Build one more proof point before applying. </p>
-<p>      A weekend project or a free Google/HackerRank </p>
-<p>      certification takes less time than the applications </p>
-<p>      you will send without a strong proof point.</p>
-<p>&lt;/code&gt;&lt;/pre&gt;</p>
+YES → Objective with project or certification as proof point
+NO  → Build one more proof point before applying. 
+      A weekend project or a free Google/HackerRank 
+      certification takes less time than the applications 
+      you will send without a strong proof point.
+</code></pre>
 
 <hr />
 
 <h2 id="read-next-in-this-series">Read Next in This Series</h2>
 
-<p>→ **[Blog 1: What is ATS](#)** | **[Blog 2: Resume Format](#)** | **[Blog 3: ATS Score](#)**</p>
-<p>→ **[Blog 4: Formatting Mistakes](#)** | **[Blog 5: Keywords](#)** | **[Blog 6: Objective (20 Examples)](#)**</p>
-<p>→ **[Blog 7: Projects](#)** | **[Blog 8: Skills](#)** | **[Blog 9: Education](#)**</p>
-<p>→ **[Blog 10: Certifications](#)** | **[Blog 11: No Experience](#)** | **[Blog 12: Action Verbs](#)**</p>
-<p>→ **[Blog 13: CSE/IT Resume](#)** | **[Blog 14: ECE Resume](#)** | **[Blog 15: Mechanical Resume](#)**</p>
-<p>→ **[Blog 16: MBA Resume](#)** | **[Blog 17: Biodata vs Resume vs CV](#)**</p>
+<p>→ <strong><a href="/blog/why-indian-fresher-resumes-are-invisible-to-ats-2026">Blog 1: What is ATS</a></strong> | <strong><a href="/blog/ats-friendly-resume-format-indian-freshers-2026">Blog 2: Resume Format</a></strong> | <strong><a href="/blog/how-to-check-your-ats-score-before-applying-india-2026">Blog 3: ATS Score</a></strong></p>
+<p>→ <strong><a href="/blog/10-resume-formatting-mistakes-indian-freshers-2026">Blog 4: Formatting Mistakes</a></strong> | <strong><a href="/blog/ats-keywords-for-indian-freshers-2026">Blog 5: Keywords</a></strong> | <strong><a href="/blog/how-to-write-a-resume-objective-for-freshers-in-india-2026">Blog 6: Objective (20 Examples)</a></strong></p>
+<p>→ <strong><a href="/blog/how-to-write-the-projects-section-on-your-resume-2026">Blog 7: Projects</a></strong> | <strong><a href="/blog/resume-skills-section-for-indian-freshers-2026">Blog 8: Skills</a></strong> | <strong><a href="/blog/how-to-write-the-education-section-on-an-indian-fresher-resume-2026">Blog 9: Education</a></strong></p>
+<p>→ <strong><a href="/blog/how-to-write-certifications-resume-india-freshers-2026">Blog 10: Certifications</a></strong> | <strong><a href="/blog/how-to-write-a-resume-with-no-experience-india-freshers-2026">Blog 11: No Experience</a></strong> | <strong><a href="/blog/blog-12-resume-action-verbs-india-freshers-2026">Blog 12: Action Verbs</a></strong></p>
+<p>→ <strong><a href="/blog/resume-format-cse-it-freshers-india-2026">Blog 13: CSE/IT Resume</a></strong> | <strong><a href="/blog/resume-format-ece-freshers-india-2026">Blog 14: ECE Resume</a></strong> | <strong><a href="/blog/resume-format-mechanical-freshers-india-2026">Blog 15: Mechanical Resume</a></strong></p>
+<p>→ <strong><a href="/blog/mba-fresher-resume-india-2026">Blog 16: MBA Resume</a></strong> | <strong><a href="/blog/biodata-vs-resume-vs-cv-india-2026">Blog 17: Biodata vs Resume vs CV</a></strong></p>
 
-<p>→ **[Blog 19: One Page vs Two Page Resume — What Indian Freshers Should Follow](#)** *(Coming next)*</p>
+<p>→ <strong><a href="/blog/one-page-vs-two-page-resume-india-2026">Blog 19: One Page vs Two Page Resume — What Indian Freshers Should Follow</a></strong> <em>(Coming next)</em></p>
 
 <hr />
 
@@ -355,34 +342,12 @@ export default function BlogPost18() {
 
 <p>CareerForge.pro's resume builder prompts you through building a strong objective or summary — with the formula, the structure, and the keyword-matching feedback from the JD Score tool to confirm your opening statement is aligned with the role you're applying for.</p>
 
-<p>**[Build Your Resume on CareerForge.pro → Free to Start](#)**</p>
+<p><strong><a href="#">Build Your Resume on CareerForge.pro → Free to Start</a></strong></p>
 
 <hr />
 
-<p>*Published by CareerForge.pro — India's AI Resume Platform for Freshers.*</p>
-<p>*© 2026 CareerForge.pro. All rights reserved.*</p>
 
-<hr />
 
-<h3>SEO Metadata</h3>
-
-<p>**Primary Keywords:** resume objective vs summary India freshers, career objective vs professional summary India, resume objective or summary India 2026</p>
-
-<p>**Secondary Keywords:** resume objective for freshers India, professional summary fresher India, resume opening statement India, objective vs summary ATS India, which is better objective or summary freshers India</p>
-
-<p>**Word Count:** ~2,800 words</p>
-
-<p>**Internal Links:**</p>
-<p>- Blog 6 (Resume Objective — 20 Examples — explicitly cross-referenced)</p>
-<p>- Blog 11 (No Experience — cross-referenced)</p>
-<p>- Blog 16 (MBA Resume — cross-referenced for summary context)</p>
-<p>- Blogs 1–17 (all previous in series)</p>
-<p>- Blog 19 (One Page vs Two Page — upcoming)</p>
-<p>- CareerForge Resume Builder + JD Score Tool (CTAs)</p>
-
-<p>**Meta Description (159 chars):**</p>
-<p>Resume objective or professional summary — which should Indian freshers use in 2026? Honest guidance, 10 objective examples, 3 summary examples, and a decision framework.</p>
-` }} />
-    </BlogPostLayout>
+</BlogPostLayout>
   )
 }

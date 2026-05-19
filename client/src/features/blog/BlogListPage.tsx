@@ -18,6 +18,17 @@ const COVER_IMAGES: Record<string, string> = {
   'how-to-write-the-projects-section-on-your-resume-2026': blogCover,
   'resume-skills-section-for-indian-freshers-2026': blogCover,
   'how-to-write-the-education-section-on-an-indian-fresher-resume-2026': blogCover,
+  'how-to-write-certifications-resume-india-freshers-2026': blogCover,
+  'how-to-write-a-resume-with-no-experience-india-freshers-2026': blogCover,
+  'blog-12-resume-action-verbs-india-freshers-2026': blogCover,
+  'resume-format-cse-it-freshers-india-2026': blogCover,
+  'resume-format-ece-freshers-india-2026': blogCover,
+  'resume-format-mechanical-freshers-india-2026': blogCover,
+  'mba-fresher-resume-india-2026': blogCover,
+  'biodata-vs-resume-vs-cv-india-2026': blogCover,
+  'resume-objective-vs-summary-india-freshers-2026': blogCover,
+  'one-page-vs-two-page-resume-india-2026': blogCover,
+  'how-to-write-resume-with-low-cgpa-india-2026': blogCover,
 }
 
 // ── Icons ──────────────────────────────────────────────────────
