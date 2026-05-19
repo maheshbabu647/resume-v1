@@ -4,6 +4,7 @@ import { Schema, model, Document, Types } from 'mongoose'
 
 export interface IPersonalInfo {
   fullName: string
+  title?: string
   email: string
   phone?: string
   location?: string
@@ -12,6 +13,7 @@ export interface IPersonalInfo {
   website?: string
   summary?: string
   summaryLabel?: string
+  contactLinks?: { text: string; url: string }[]
 }
 
 /** Generic entry — each section type (experience, projects, etc.) stores its
@@ -59,6 +61,7 @@ export interface IResume extends Document {
 const PersonalInfoSchema = new Schema<IPersonalInfo>(
   {
     fullName:  { type: String, default: '' },
+    title:     { type: String },
     email:     { type: String, default: '' },
     phone:     { type: String },
     location:  { type: String },
@@ -67,6 +70,7 @@ const PersonalInfoSchema = new Schema<IPersonalInfo>(
     website:   { type: String },
     summary:   { type: String },
     summaryLabel: { type: String },
+    contactLinks: { type: Schema.Types.Mixed, default: [] },
   },
   { _id: false }
 )
