@@ -65,6 +65,12 @@ const POST_COMPONENTS: Record<string, React.LazyExoticComponent<() => React.Reac
   'how-to-write-resume-with-low-cgpa-india-2026': lazy(
     () => import('./posts/blog-post-20')
   ),
+  'career-gap-resume-india-freshers-2026': lazy(
+    () => import('./posts/blog-post-21')
+  ),
+  'how-to-tailor-resume-for-job-description-india-2026': lazy(
+    () => import('./posts/blog-post-22')
+  ),
 }
 
 const Fallback = () => (

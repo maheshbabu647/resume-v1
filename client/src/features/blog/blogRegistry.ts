@@ -282,6 +282,32 @@ export const BLOG_POSTS: BlogPost[] = [
     series: '90-Day Career Forge',
     seriesDay: 20,
     excerpt: 'A low CGPA closes some doors. It does not close all of them. And the ones it closes are not always the ones worth walking through. This blog is about what you do with the doors that are still open.'
+  },
+  {
+    slug: 'career-gap-resume-india-freshers-2026',
+    title: 'Career Gap After Graduation — How to Explain It on Your Resume and in Interviews',
+    shortTitle: 'Career Gap After Graduation',
+    metaDescription: 'Career gap after graduation in India — how to handle it on your resume, how to explain it in interviews, and the most productive things to do if you\'re still in one.',
+    ogImage: '/assets/blog-post-1-cover.png',
+    publishedAt: '2026-05-04',
+    readingTime: 13,
+    tags: ['Career Gap', 'Resume Tips', 'Indian Freshers'],
+    series: '90-Day Career Forge',
+    seriesDay: 21,
+    excerpt: 'You graduated in May 2024. It\'s now mid-2026. You\'ve been applying, preparing, dealing with life. Now you\'re looking at your resume and wondering: how do I explain where I\'ve been? This blog gives you the honest answer — for your resume and for the interview room.'
+  },
+  {
+    slug: 'how-to-tailor-resume-for-job-description-india-2026',
+    title: 'Why You Must Tailor Your Resume for Every Job Description — And How to Do It in 10 Minutes',
+    shortTitle: 'How to Tailor Your Resume for Every Job Description',
+    metaDescription: 'How to tailor your resume for every job description in India — an 8-step 10-minute system, a worked before/after example, and the three highest-impact changes to make first.',
+    ogImage: '/assets/blog-post-1-cover.png',
+    publishedAt: '2026-05-05',
+    readingTime: 13,
+    tags: ['Tailor Resume', 'Indian Freshers', 'ATS Formatting'],
+    series: '90-Day Career Forge',
+    seriesDay: 22,
+    excerpt: 'Most freshers send the same resume to 50 companies. Then wonder why they hear back from 2. That\'s not a mystery. That\'s math. A resume written for nobody in particular is compelling to nobody in particular.'
   }
 ]
 

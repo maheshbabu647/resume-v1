@@ -29,6 +29,8 @@ const COVER_IMAGES: Record<string, string> = {
   'resume-objective-vs-summary-india-freshers-2026': blogCover,
   'one-page-vs-two-page-resume-india-2026': blogCover,
   'how-to-write-resume-with-low-cgpa-india-2026': blogCover,
+  'career-gap-resume-india-freshers-2026': blogCover,
+  'how-to-tailor-resume-for-job-description-india-2026': blogCover,
 }
 
 // ── Icons ──────────────────────────────────────────────────────
