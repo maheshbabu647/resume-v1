@@ -8,22 +8,19 @@ export function preprocessJD(rawText: string, rawTitle?: string): string {
   let text = rawText
   
   // 1. Strip Boilerplate (case-insensitive)
+  // NOTE: We only strip paragraphs that are clearly standalone boilerplate.
+  // Phrases like 'about us' are intentionally excluded because many JDs use
+  // "About the Role" / "About the Team" sections to describe actual job content.
   const removePhrases = [
     'equal opportunity employer',
     'we celebrate diversity',
     'reasonable accommodation',
     'background check',
-    'authorized to work',
     'sponsorship',
     'benefits include',
     'salary range',
-    'compensation',
-    'dental',
-    'vision',
     '401k',
-    'pto',
     'join our team',
-    'about us',
   ]
 
   // Split into paragraphs to evaluate text block by text block
@@ -31,6 +28,11 @@ export function preprocessJD(rawText: string, rawTitle?: string): string {
   
   const cleanedParagraphs = paragraphs.filter(para => {
     const lower = para.toLowerCase()
+    const trimmed = para.trim()
+    
+    // Only filter SHORT paragraphs that match boilerplate (< 300 chars)
+    // Long paragraphs likely contain mixed content (job duties + one boilerplate line)
+    if (trimmed.length > 300) return true
     
     // Check for exact matching phrases
     if (removePhrases.some(phrase => lower.includes(phrase))) return false
@@ -41,10 +43,15 @@ export function preprocessJD(rawText: string, rawTitle?: string): string {
     return true
   })
 
-  text = cleanedParagraphs.join('\n\n')
+  let result = cleanedParagraphs.join('\n\n')
+
+  // Safety fallback: if stripping removed too much content, use the raw text
+  if (result.trim().length < 100 && rawText.trim().length >= 100) {
+    result = rawText
+  }
 
   // 2. Normalize
-  text = text
+  result = result
     .replace(/<[^>]+>/g, '') // Strip HTML
     .replace(/^[•*\-–]\s*/gm, '') // Remove leading bullet chars
     .replace(/[\u2018\u2019]/g, "'") // Smart quotes
@@ -52,12 +59,12 @@ export function preprocessJD(rawText: string, rawTitle?: string): string {
     .trim()
 
   // 3. Truncate if massively long (> 12,000 characters)
-  if (text.length > 12000) {
-    text = text.substring(0, 12000) + '...(truncated)'
+  if (result.length > 12000) {
+    result = result.substring(0, 12000)
   }
 
-  if (!rawTitle) return text
-  return `ROLE: ${rawTitle}\n\n${text}`
+  if (!rawTitle) return result
+  return `ROLE: ${rawTitle}\n\n${result}`
 }
 
 /**

@@ -237,7 +237,11 @@ export default function JDTailorPage() {
       return
     }
     setStage('analyzing')
-    const preprocessedJD = preprocessJD(currentJd)
+    let preprocessedJD = preprocessJD(currentJd)
+    // Safety fallback: if preprocessing stripped too much content, use the normalized raw JD
+    if (preprocessedJD.trim().length < 50) {
+      preprocessedJD = currentJd.trim().slice(0, 12000)
+    }
     const serializedResume = text.length > 6000 ? text.slice(0, 6000) : text
     analyzeMutation.mutate({ serializedResume, preprocessedJD })
   }
