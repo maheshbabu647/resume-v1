@@ -1,0 +1,249 @@
+/* Shared styles for the editor's live ATS + Strength reports and JD input. */
+
+.report {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 4px 2px 24px;
+}
+
+/* ── Score ring ── */
+.ringWrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ring {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 5px solid var(--outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 800;
+  flex-shrink: 0;
+  letter-spacing: -0.5px;
+  font-family: var(--font-sans);
+}
+
+.ringMeta { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+
+.ringLabel {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--on-surface);
+  letter-spacing: -0.2px;
+}
+
+.ringSub {
+  font-size: 12px;
+  color: var(--on-surface-variant);
+  line-height: 1.4;
+}
+
+.ringSub strong { color: var(--on-surface); font-weight: 600; text-transform: capitalize; }
+
+/* ── Section ── */
+.section { display: flex; flex-direction: column; gap: 10px; }
+
+.sectionTitle {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--on-surface-variant);
+  margin: 0;
+}
+
+/* ── Component / dimension bars ── */
+.bars { display: flex; flex-direction: column; gap: 11px; }
+
+.barRow { display: grid; grid-template-columns: 96px 1fr 44px; align-items: center; gap: 10px; }
+
+.barLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--on-surface);
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.barTrack {
+  height: 7px;
+  border-radius: 4px;
+  background: var(--surface-container-high);
+  overflow: hidden;
+}
+
+.barFill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
+
+.barVal { font-size: 11px; font-weight: 600; color: var(--on-surface-variant); text-align: right; }
+
+/* ── Chips ── */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.chipOk { background: rgba(22,163,74,0.1); color: #16a34a; border-color: rgba(22,163,74,0.2); }
+.chipMiss { background: rgba(239,68,68,0.08); color: #dc2626; border-color: rgba(239,68,68,0.2); }
+.chipWeight { opacity: 0.6; font-size: 10px; }
+
+.mutedNote { font-size: 13px; color: var(--on-surface-variant); margin: 0; }
+
+/* ── Check cards ── */
+.checks { display: flex; flex-direction: column; gap: 10px; }
+
+.checkCard {
+  border: 1px solid var(--outline-variant);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: var(--surface-container-lowest);
+}
+
+.checkHead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+
+.checkDim {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--on-surface-variant);
+}
+
+.checkPts { font-size: 11px; font-weight: 700; color: #dc2626; }
+
+.checkMsg { font-size: 13px; color: var(--on-surface); line-height: 1.5; }
+
+.affected { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+.affectedLabel { font-size: 11px; font-weight: 600; color: var(--on-surface-variant); }
+.affectedItem {
+  display: flex; align-items: flex-start; gap: 6px;
+  font-size: 12px; color: var(--on-surface-variant); line-height: 1.4;
+}
+
+.perfect {
+  padding: 16px;
+  border-radius: 10px;
+  background: rgba(22,163,74,0.08);
+  border: 1px solid rgba(22,163,74,0.2);
+  color: #16a34a;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ── Empty / loading states ── */
+.empty {
+  text-align: center;
+  padding: 28px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.emptyIcon {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(99,102,241,0.1); color: var(--secondary);
+  margin-bottom: 6px;
+}
+
+.emptyTitle { font-size: 15px; font-weight: 700; color: var(--on-surface); }
+.emptyText { font-size: 13px; color: var(--on-surface-variant); line-height: 1.5; max-width: 280px; }
+
+.loading {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 40px 16px; color: var(--on-surface-variant); font-size: 13px;
+}
+
+/* ── JD input ── */
+.jdInputWrap { display: flex; flex-direction: column; gap: 14px; }
+.jdInputHead { display: flex; flex-direction: column; gap: 4px; }
+.jdInputTitle { font-size: 15px; font-weight: 700; color: var(--on-surface); letter-spacing: -0.2px; }
+.jdInputSub { font-size: 12.5px; color: var(--on-surface-variant); line-height: 1.5; }
+
+.jdTabs { display: inline-flex; gap: 4px; background: var(--surface-container-high); padding: 3px; border-radius: 8px; width: fit-content; }
+.jdTab {
+  display: inline-flex; align-items: center; gap: 5px;
+  border: none; background: transparent; cursor: pointer;
+  padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600;
+  color: var(--on-surface-variant); font-family: var(--font-sans);
+}
+.jdTabActive { background: var(--surface); color: var(--on-surface); box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+
+.jdTextarea {
+  width: 100%; min-height: 160px; resize: vertical; box-sizing: border-box;
+  padding: 12px 14px; border-radius: 10px;
+  border: 1.5px solid var(--outline-variant); background: var(--surface-container-lowest);
+  color: var(--on-surface); font-size: 13px; line-height: 1.55; font-family: var(--font-sans);
+}
+.jdTextarea:focus { outline: none; border-color: var(--secondary); }
+
+.dropzone {
+  border: 1.5px dashed var(--outline-variant); border-radius: 10px;
+  padding: 24px; text-align: center; cursor: pointer; transition: all 0.2s;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.dropzone:hover, .dropzoneActive { border-color: var(--secondary); background: rgba(99,102,241,0.05); }
+.dropIcon { color: var(--on-surface-variant); }
+.dropTitle { font-size: 13px; font-weight: 600; color: var(--on-surface); }
+.dropSub { font-size: 11px; color: var(--on-surface-variant); }
+
+.fileRow {
+  display: flex; align-items: center; gap: 8px; padding: 10px 12px;
+  border-radius: 8px; background: var(--surface-container-high); border: 1px solid var(--outline-variant);
+}
+.fileName { flex: 1; font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--on-surface); }
+.fileX { all: unset; cursor: pointer; display: flex; color: var(--on-surface-variant); }
+
+.charHint { font-size: 11px; color: var(--on-surface-variant); }
+
+/* ── Buttons ── */
+.primaryBtn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 11px 16px; border: none; border-radius: 10px; cursor: pointer;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff;
+  font-size: 13.5px; font-weight: 700; font-family: var(--font-sans);
+  transition: opacity 0.2s;
+}
+.primaryBtn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.ghostBtn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 9px 14px; border-radius: 9px; cursor: pointer;
+  border: 1.5px solid var(--outline-variant); background: var(--surface);
+  color: var(--on-surface); font-size: 12.5px; font-weight: 600; font-family: var(--font-sans);
+  transition: all 0.15s;
+}
+.ghostBtn:hover { border-color: var(--secondary); color: var(--secondary); }
+
+.changeRow { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.jdSummary { font-size: 12px; color: var(--on-surface-variant); display: flex; align-items: center; gap: 6px; min-width: 0; }
+.jdSummary strong { color: var(--on-surface); font-weight: 600; }
+
+.errorBox {
+  padding: 10px 12px; border-radius: 8px; font-size: 12.5px;
+  background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #dc2626;
+}
+
+.tailorCard {
+  margin-top: 4px; padding: 14px; border-radius: 12px;
+  background: var(--surface-container-low); border: 1px solid var(--outline-variant);
+}
+.tailorTitle { margin: 0 0 4px; font-size: 13.5px; font-weight: 700; color: var(--on-surface); }
+.tailorSub { margin: 0 0 12px; font-size: 12px; color: var(--on-surface-variant); line-height: 1.5; }

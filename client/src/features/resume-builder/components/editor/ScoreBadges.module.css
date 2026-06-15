@@ -1,0 +1,53 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid var(--outline-variant);
+  background: var(--surface);
+  font-family: var(--font-sans);
+  transition: all 0.15s;
+}
+
+.badge:hover {
+  border-color: var(--secondary);
+  background: var(--surface-container-low);
+}
+
+.icon { color: var(--on-surface-variant); flex-shrink: 0; }
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+}
+
+.num {
+  font-size: 13px;
+  font-weight: 800;
+  min-width: 16px;
+  text-align: center;
+  letter-spacing: -0.3px;
+}
+
+.add {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+/* On smaller screens the scores live in the right panel's Insights view instead. */
+@media (max-width: 900px) {
+  .wrap { display: none; }
+}

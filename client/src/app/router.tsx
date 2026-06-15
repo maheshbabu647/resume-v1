@@ -1,7 +1,8 @@
 import { lazy, Suspense } from 'react'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
-import { AuthGuard } from '@/core/auth/AuthGuard'
+import { AdminGuard } from '@/core/auth/AdminGuard'
 import { MainLayout } from '@/shared/layouts/MainLayout'
+import { AppShellLayout } from '@/shared/layouts/AppShellLayout'
 
 const HomePage        = lazy(() => import('@/features/home/HomePage'))
 const LoginPage       = lazy(() => import('@/features/auth-pages/LoginPage'))
@@ -11,11 +12,11 @@ const ForgotPasswordPage = lazy(() => import('@/features/auth-pages/ForgotPasswo
 const ResetPasswordPage  = lazy(() => import('@/features/auth-pages/ResetPasswordPage'))
 const AuthCallback    = lazy(() => import('@/features/auth-pages/AuthCallback'))
 const TemplatesPage  = lazy(() => import('@/features/templates/TemplatesPage'))
-const PricingPage    = lazy(() => import('@/features/pricing/PricingPage'))
 const Dashboard   = lazy(() => import('@/features/dashboard/Dashboard'))
 const EditorShell = lazy(() => import('@/features/resume-builder/components/editor/EditorShell'))
 const JDTailorPage     = lazy(() => import('@/features/jd-tailor/JDTailorPage'))
-const CoverLetterPage  = lazy(() => import('@/features/cover-letter/CoverLetterPage'))
+const CoverLetterPage     = lazy(() => import('@/features/cover-letter/CoverLetterPage'))
+const CoverLetterEditPage = lazy(() => import('@/features/cover-letter/CoverLetterEditPage'))
 
 // Legal & Support
 const PrivacyPage      = lazy(() => import('@/features/legal-support/PrivacyPage'))
@@ -27,6 +28,10 @@ const ContactPage      = lazy(() => import('@/features/legal-support/ContactPage
 // Blog
 const BlogListPage     = lazy(() => import('@/features/blog/BlogListPage'))
 const BlogPostRouter   = lazy(() => import('@/features/blog/BlogPostRouter'))
+
+// Admin
+const AdminInsightsListPage = lazy(() => import('@/features/admin-insights/AdminInsightsListPage'))
+const InsightsEditorPage    = lazy(() => import('@/features/admin-insights/InsightsEditorPage'))
 
 import { GlobalErrorBoundary } from '@/shared/components/ErrorBoundary/GlobalErrorBoundary'
 
@@ -72,26 +77,31 @@ export const router = createBrowserRouter([
         element: <Suspense fallback={<Fallback />}><AuthCallback /></Suspense>,
       },
       {
+        element: <AppShellLayout />,
+        children: [
+          {
+            path: 'templates',
+            element: <Suspense fallback={<Fallback />}><TemplatesPage /></Suspense>
+          },
+          { path: 'dashboard',     element: <Suspense fallback={<Fallback />}><Dashboard /></Suspense> },
+          { path: 'cover-letter',  element: <Suspense fallback={<Fallback />}><CoverLetterPage /></Suspense> },
+          { path: 'cover-letter/:id', element: <Suspense fallback={<Fallback />}><CoverLetterEditPage /></Suspense> },
+        ],
+      },
+      {
+        // ATS Score & Tailor: full-screen flow, no sidebar/topbar
+        path: 'jd-tailor',
+        element: <Suspense fallback={<Fallback />}><JDTailorPage /></Suspense>,
+      },
+      {
         element: <MainLayout />,
         children: [
-          { 
-            path: 'templates', 
-            element: <Suspense fallback={<Fallback />}><TemplatesPage /></Suspense> 
-          },
           {
             path: 'pricing',
-            element: <Suspense fallback={<Fallback />}><PricingPage /></Suspense>
+            element: <Navigate to="/" replace />
           },
-          {
-            element: <AuthGuard />,
-            children: [
-              { path: 'dashboard',     element: <Suspense fallback={<Fallback />}><Dashboard /></Suspense> },
-            ],
-          },
-          { path: 'cover-letter',  element: <Suspense fallback={<Fallback />}><CoverLetterPage /></Suspense> },
-          { path: 'jd-tailor',     element: <Suspense fallback={<Fallback />}><JDTailorPage /></Suspense> },
           { path: 'resume/:id',    element: <Suspense fallback={<Fallback />}><EditorShell /></Suspense> },
-          
+
           // Legal & Support routes
           { path: 'privacy',       element: <Suspense fallback={<Fallback />}><PrivacyPage /></Suspense> },
           { path: 'terms',         element: <Suspense fallback={<Fallback />}><TermsPage /></Suspense> },
@@ -102,6 +112,21 @@ export const router = createBrowserRouter([
           // Blog routes
           { path: 'blog',          element: <Suspense fallback={<Fallback />}><BlogListPage /></Suspense> },
           { path: 'blog/:slug',    element: <Suspense fallback={<Fallback />}><BlogPostRouter /></Suspense> },
+
+          // Admin (inside MainLayout: list page keeps the navbar)
+          {
+            element: <AdminGuard />,
+            children: [
+              { path: 'admin/insights', element: <Suspense fallback={<Fallback />}><AdminInsightsListPage /></Suspense> },
+            ],
+          },
+        ],
+      },
+      {
+        // Admin editor: full-screen writing surface, no navbar/footer
+        element: <AdminGuard />,
+        children: [
+          { path: 'admin/insights/:id', element: <Suspense fallback={<Fallback />}><InsightsEditorPage /></Suspense> },
         ],
       },
       {

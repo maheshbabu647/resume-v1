@@ -5,12 +5,21 @@ interface AuthUser {
   _id: string
   email: string
   name: string
-  plan: 'seeker' | 'hustler' | 'closer'
+  role?: 'user' | 'admin'
+  plan: 'free' | 'seeker' | 'hustler' | 'closer'
   avatarUrl?: string
   referralCode?: string
   isEmailVerified: boolean
   createdAt: string
   resumeCount: number
+  onboarding?: {
+    status: 'pending' | 'completed' | 'skipped'
+    lastStepId?: string
+    entryMethod?: 'upload' | 'scratch' | 'guided'
+    completedAt?: string
+    skippedAt?: string
+  }
+  lastActiveResumeId?: string
 }
 
 interface AuthStore {

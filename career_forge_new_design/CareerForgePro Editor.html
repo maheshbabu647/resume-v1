@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CareerForgePro — Resume Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="cfp-editor.jsx"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+    body { background: #F5F4FB; font-family: 'Plus Jakarta Sans', sans-serif; color: #0F0E2A; }
+    * { -webkit-font-smoothing: antialiased; }
+    ::selection { background: #5046E4; color: #fff; }
+    button, input, textarea { font-family: inherit; }
+    input:focus, textarea:focus { outline: none; }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #D8D5EA; border-radius: 5px; border: 2px solid transparent; background-clip: padding-box; }
+    ::-webkit-scrollbar-thumb:hover { background: #B5B0D5; background-clip: padding-box; border: 2px solid transparent; }
+    @keyframes pulse-dot { 0%,100% { opacity: 1;} 50% { opacity: 0.3;} }
+    @keyframes shimmer { 0% { background-position: -200% 0;} 100% { background-position: 200% 0;} }
+    @keyframes slide-in-right { from { transform: translateX(20px); opacity: 0;} to { transform: translateX(0); opacity: 1;} }
+  </style>
+  <template id="__bundler_thumbnail" data-bg-color="#F5F4FB">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#F5F4FB"/>
+      <rect x="360" y="180" width="480" height="440" rx="14" fill="#FFFFFF" stroke="#E8E6F4" stroke-width="2"/>
+      <rect x="400" y="220" width="220" height="22" rx="4" fill="#0F0E2A"/>
+      <rect x="400" y="252" width="140" height="10" rx="3" fill="#B5B5C8"/>
+      <rect x="400" y="290" width="400" height="2" fill="#E8E6F4"/>
+      <rect x="400" y="310" width="90" height="12" rx="3" fill="#5046E4"/>
+      <rect x="400" y="334" width="360" height="8" rx="3" fill="#E8E6F4"/>
+      <rect x="400" y="350" width="320" height="8" rx="3" fill="#E8E6F4"/>
+      <rect x="400" y="366" width="280" height="8" rx="3" fill="#E8E6F4"/>
+      <rect x="400" y="400" width="90" height="12" rx="3" fill="#5046E4"/>
+      <rect x="400" y="424" width="380" height="8" rx="3" fill="#E8E6F4"/>
+      <rect x="400" y="440" width="340" height="8" rx="3" fill="#E8E6F4"/>
+      <rect x="400" y="456" width="300" height="8" rx="3" fill="#E8E6F4"/>
+      <circle cx="900" cy="240" r="34" fill="#FF5C35"/>
+      <path d="M888 240 l8 8 l16 -16" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </template>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "rightPanel": "style",
+      "template": "classic",
+      "showAiPanel": false,
+      "showTailorDialog": false,
+      "view": "login",
+      "currentRoute": "ats-score",
+      "userState": "pro",
+      "brandColor": "#5046e4"
+    }/*EDITMODE-END*/;
+
+    function App() {
+      const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+      return (
+        <div>
+          <EditorShell tweaks={tweaks} setTweak={setTweak} />
+          <TweaksPanel>
+            <TweakSection title="Editor state">
+              <TweakRadio label="Right panel" value={tweaks.rightPanel} onChange={v => setTweak('rightPanel', v)}
+                options={[{value:'edit',label:'Edit'},{value:'style',label:'Style'},{value:'score',label:'Score'}]} />
+              <TweakSelect label="Template" value={tweaks.template} onChange={v => setTweak('template', v)}
+                options={[{value:'modern',label:'Modern'},{value:'classic',label:'Classic'},{value:'minimal',label:'Minimal'}]} />
+              <TweakToggle label="Show AI Assist popup" value={tweaks.showAiPanel} onChange={v => setTweak('showAiPanel', v)} />
+              <TweakToggle label="Show JD Tailor dialog" value={tweaks.showTailorDialog} onChange={v => setTweak('showTailorDialog', v)} />
+            </TweakSection>
+          </TweaksPanel>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

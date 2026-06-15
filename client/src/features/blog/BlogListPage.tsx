@@ -1,164 +1,57 @@
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useMemo, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
+import { Sparkles, Search, Clock, ArrowRight, Quote } from 'lucide-react'
 import { SORTED_POSTS } from './blogRegistry'
-import type { BlogPost } from './blogRegistry'
+import { usePublishedArticles } from './articlesApi'
+import { CATEGORIES, CATEGORY_COLOR, categoryFor } from './blogCategories'
+import type { PostCardData } from './blogCategories'
+import { ArticleCard } from './ArticleCard'
+import { Newsletter } from './Newsletter'
 import styles from './BlogListPage.module.css'
-import blogCover from '@/assets/blog-post-1-cover.png'
 
-// Map slugs to their imported cover assets.
-// Add a new entry here each time you add a post with a cover image.
-const COVER_IMAGES: Record<string, string> = {
-  'why-indian-fresher-resumes-are-invisible-to-ats-2026': blogCover,
-  'ats-friendly-resume-format-indian-freshers-2026': blogCover,
-  'how-to-check-your-ats-score-before-applying-india-2026': blogCover,
-  '10-resume-formatting-mistakes-indian-freshers-2026': blogCover,
-  'ats-keywords-for-indian-freshers-2026': blogCover,
-  'how-to-write-a-resume-objective-for-freshers-in-india-2026': blogCover,
-  'how-to-write-the-projects-section-on-your-resume-2026': blogCover,
-  'resume-skills-section-for-indian-freshers-2026': blogCover,
-  'how-to-write-the-education-section-on-an-indian-fresher-resume-2026': blogCover,
-  'how-to-write-certifications-resume-india-freshers-2026': blogCover,
-  'how-to-write-a-resume-with-no-experience-india-freshers-2026': blogCover,
-  'blog-12-resume-action-verbs-india-freshers-2026': blogCover,
-  'resume-format-cse-it-freshers-india-2026': blogCover,
-  'resume-format-ece-freshers-india-2026': blogCover,
-  'resume-format-mechanical-freshers-india-2026': blogCover,
-  'mba-fresher-resume-india-2026': blogCover,
-  'biodata-vs-resume-vs-cv-india-2026': blogCover,
-  'resume-objective-vs-summary-india-freshers-2026': blogCover,
-  'one-page-vs-two-page-resume-india-2026': blogCover,
-  'how-to-write-resume-with-low-cgpa-india-2026': blogCover,
-  'career-gap-resume-india-freshers-2026': blogCover,
-  'how-to-tailor-resume-for-job-description-india-2026': blogCover,
-}
-
-// ── Icons ──────────────────────────────────────────────────────
-const IconClock = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-  </svg>
-)
-const IconCalendar = () => (
-  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-  </svg>
-)
-const IconArrowRight = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-  </svg>
-)
-const IconPen = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
-  </svg>
-)
-
-// ── Featured Post Card ──────────────────────────────────────────
-function FeaturedCard({ post }: { post: BlogPost }) {
-  const cover = COVER_IMAGES[post.slug]
-  const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-IN', {
-    year: 'numeric', month: 'long', day: 'numeric',
-  })
+// ── Featured card ────────────────────────────────────────────────
+function FeaturedCard({ post }: { post: PostCardData }) {
+  const navigate = useNavigate()
+  const cat = categoryFor(post)
+  const col = CATEGORY_COLOR[cat]
+  const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-IN', { month: 'short', day: 'numeric' })
 
   return (
-    <Link
-      to={`/blog/${post.slug}`}
-      className={styles.featuredCard}
-      id={`blog-featured-${post.slug}`}
-      aria-label={`Read: ${post.title}`}
-    >
-      {/* Image panel */}
-      <div className={styles.featuredImage}>
-        {cover && (
-          <div
-            className={styles.featuredImageBg}
-            style={{ backgroundImage: `url(${cover})` }}
-            role="img"
-            aria-label={`Cover image for ${post.title}`}
-          />
-        )}
-        <div className={styles.featuredImageOverlay} aria-hidden="true" />
-        {post.series && post.seriesDay && (
-          <span className={styles.featuredBadge}>
-            {post.series} · Day {post.seriesDay}
-          </span>
-        )}
+    <div className={styles.featuredCard} onClick={() => navigate(`/blog/${post.slug}`)} role="link" tabIndex={0}>
+      <div className={styles.featuredVisual}>
+        <div className={styles.featuredDotgrid} aria-hidden="true" />
+        <div className={styles.featuredGlow} aria-hidden="true" />
+        <div className={styles.featuredKicker}>
+          <Sparkles size={12} color="#FF5C35" />
+          Featured this week
+        </div>
+        <div className={styles.featuredQuoteBlock}>
+          <Quote size={56} className={styles.featuredQuoteIcon} />
+          <p className={styles.featuredQuote}>&ldquo;{post.excerpt}&rdquo;</p>
+        </div>
+        <div className={styles.featuredAuthor}>
+          <div className={styles.featuredAvatar}>C</div>
+          <div>
+            <div className={styles.featuredAuthorName}>CareerForgePro Team</div>
+            <div className={styles.featuredAuthorRole}>Editorial Team</div>
+          </div>
+        </div>
       </div>
-
-      {/* Content panel */}
-      <div className={styles.featuredContent}>
-        {post.series && <p className={styles.postSeries}>{post.series}</p>}
-        <h2 className={styles.featuredTitle}>{post.title}</h2>
+      <div className={styles.featuredText}>
+        <div className={styles.featuredCategory} style={{ background: `${col}15`, color: col }}>{cat}</div>
+        <h3 className={styles.featuredTitle}>{post.title}</h3>
         <p className={styles.featuredExcerpt}>{post.excerpt}</p>
-
-        <div className={styles.postMeta}>
-          <span className={styles.postMetaItem}><IconCalendar />{formattedDate}</span>
-          <span className={styles.postMetaItem}><IconClock />{post.readingTime} min read</span>
+        <div className={styles.featuredMeta}>
+          <span>{formattedDate}</span>
+          <span className={styles.metaDot} />
+          <span className={styles.featuredMetaRead}><Clock size={12} /> {post.readingTime} min read</span>
         </div>
-
-        <div className={styles.tagRow}>
-          {post.tags.slice(0, 3).map((t) => (
-            <span key={t} className={styles.tag}>{t}</span>
-          ))}
-        </div>
-
-        <span className={styles.readMore}>
-          Read full article <IconArrowRight />
-        </span>
+        <Link to={`/blog/${post.slug}`} className={styles.featuredCta}>
+          Read article <ArrowRight size={14} />
+        </Link>
       </div>
-    </Link>
-  )
-}
-
-// ── Regular Post Card ───────────────────────────────────────────
-function PostCard({ post }: { post: BlogPost }) {
-  const cover = COVER_IMAGES[post.slug]
-  const formattedDate = new Date(post.publishedAt).toLocaleDateString('en-IN', {
-    year: 'numeric', month: 'short', day: 'numeric',
-  })
-
-  return (
-    <Link
-      to={`/blog/${post.slug}`}
-      className={styles.postCard}
-      id={`blog-card-${post.slug}`}
-      aria-label={`Read: ${post.title}`}
-    >
-      <div className={styles.postCardImageWrap}>
-        {cover && (
-          <div
-            className={styles.postCardImageBg}
-            style={{ backgroundImage: `url(${cover})` }}
-            role="img"
-            aria-label={`Cover image for ${post.title}`}
-          />
-        )}
-        <div className={styles.postCardImageOverlay} aria-hidden="true" />
-        {post.series && post.seriesDay && (
-          <span className={styles.postCardSeriesBadge}>
-            {post.series} · Day {post.seriesDay}
-          </span>
-        )}
-      </div>
-
-      <div className={styles.postCardBody}>
-        <h2 className={styles.postCardTitle}>{post.title}</h2>
-        <p className={styles.postCardExcerpt}>{post.excerpt}</p>
-
-        <div className={styles.postMeta}>
-          <span className={styles.postMetaItem}><IconCalendar />{formattedDate}</span>
-          <span className={styles.postMetaItem}><IconClock />{post.readingTime} min read</span>
-        </div>
-
-        <div className={styles.tagRow}>
-          {post.tags.slice(0, 2).map((t) => (
-            <span key={t} className={styles.tag}>{t}</span>
-          ))}
-        </div>
-      </div>
-    </Link>
+    </div>
   )
 }
 
@@ -166,7 +59,44 @@ function PostCard({ post }: { post: BlogPost }) {
 export default function BlogListPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
-  const [featured, ...rest] = SORTED_POSTS
+  const { data } = usePublishedArticles({ limit: 50 })
+  const [search, setSearch] = useState('')
+  const [category, setCategory] = useState('All')
+
+  // DB articles when available; static registry until the migration is run
+  const posts: PostCardData[] = useMemo(() => {
+    if (data && data.articles.length > 0) {
+      return data.articles.map((a) => ({
+        slug: a.slug,
+        title: a.title,
+        shortTitle: a.shortTitle,
+        metaDescription: a.metaDescription,
+        ogImage: a.ogImage ?? '',
+        publishedAt: a.publishedAt ?? a.createdAt,
+        updatedAt: a.updatedAt,
+        readingTime: a.readingTime ?? 5,
+        tags: a.tags,
+        series: a.series,
+        seriesDay: a.seriesDay,
+        excerpt: a.excerpt,
+        coverImage: a.coverImage,
+      }))
+    }
+    return SORTED_POSTS
+  }, [data])
+
+  const featured = useMemo(() => posts.find((p) => p.tags?.includes('Featured')) ?? posts[0], [posts])
+  const showFeatured = Boolean(featured) && category === 'All' && !search
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase()
+    return posts.filter((post) => {
+      if (post.slug === featured?.slug) return false
+      const matchCat = category === 'All' || categoryFor(post) === category
+      const matchSearch = !q || post.title.toLowerCase().includes(q) || post.excerpt.toLowerCase().includes(q)
+      return matchCat && matchSearch
+    })
+  }, [posts, search, category, featured])
 
   return (
     <div className={styles.page}>
@@ -185,77 +115,87 @@ export default function BlogListPage() {
 
       {/* ── Hero ── */}
       <header className={styles.hero}>
-        <div className={styles.heroGlow} aria-hidden="true" />
-        <div className={styles.heroGlow2} aria-hidden="true" />
         <div className={styles.heroInner}>
-          <div className={styles.heroEyebrow}>
-            <span className={styles.heroEyebrowDot} />
-            The CareerForge Blog
+          <div className={styles.heroBadge}>
+            <Sparkles size={12} color="#FF5C35" />
+            Updated weekly · Free for everyone
           </div>
           <h1 className={styles.heroTitle}>
-            Career intelligence for the{' '}
-            <span className={styles.accent}>ambitious Indian fresher</span>
+            Land the job.<br />Skip the trial-and-error.
           </h1>
           <p className={styles.heroSubtitle}>
-            ATS strategies, resume templates, and job market insights — published daily during
-            the 90-Day Career Forge series.
+            Resume tactics, ATS hacks, interview playbooks and real career stories — written for ambitious job seekers, completely free.
           </p>
-          <div className={styles.heroStats}>
-            <div className={styles.heroStat}>
-              <span className={styles.heroStatNumber}>{SORTED_POSTS.length}</span>
-              <span className={styles.heroStatLabel}>Articles published</span>
+
+          <div className={styles.searchFilters}>
+            <div className={styles.searchBox}>
+              <Search size={16} color="#8888A5" />
+              <input
+                className={styles.searchInput}
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search articles…"
+              />
+              <button className={styles.searchBtn} type="button">Search</button>
             </div>
-            <div className={styles.heroStat}>
-              <span className={styles.heroStatNumber}>Daily</span>
-              <span className={styles.heroStatLabel}>Publishing frequency</span>
-            </div>
-            <div className={styles.heroStat}>
-              <span className={styles.heroStatNumber}>Free</span>
-              <span className={styles.heroStatLabel}>Always</span>
+            <div className={styles.categoryPills}>
+              {CATEGORIES.map((c) => {
+                const active = category === c.label
+                return (
+                  <button
+                    key={c.label}
+                    className={styles.categoryPill}
+                    onClick={() => setCategory(c.label)}
+                    style={active ? { background: c.col, borderColor: c.col, color: '#fff' } : undefined}
+                  >
+                    {c.label}
+                  </button>
+                )
+              })}
             </div>
           </div>
         </div>
       </header>
 
-      {/* ── Body ── */}
-      <main className={styles.body} id="blog-list">
-        {SORTED_POSTS.length === 0 ? (
-          <div className={styles.emptyState}>
-            <p style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--weight-semibold)' }}>
-              First post coming soon.
-            </p>
-          </div>
-        ) : (
-          <>
-            {/* Featured */}
-            {featured && (
-              <>
-                <div className={styles.featuredLabel}>
-                  <IconPen />
-                  Latest Post
-                  <span className={styles.featuredLabelLine} />
-                </div>
-                <FeaturedCard post={featured} />
-              </>
-            )}
+      {posts.length === 0 ? (
+        <div className={styles.emptyState}>
+          <p style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--weight-semibold)' }}>
+            First post coming soon.
+          </p>
+        </div>
+      ) : (
+        <>
+          {/* ── Featured ── */}
+          {showFeatured && (
+            <div className={styles.featuredSection}>
+              <FeaturedCard post={featured} />
+            </div>
+          )}
 
-            {/* Grid of remaining posts */}
-            {rest.length > 0 && (
-              <>
-                <div className={styles.gridLabel}>
-                  All Articles
-                  <span style={{ flex: 1, height: 1, background: 'var(--outline-variant)' }} />
-                </div>
-                <div className={styles.grid}>
-                  {rest.map((post) => (
-                    <PostCard key={post.slug} post={post} />
-                  ))}
-                </div>
-              </>
+          {/* ── Grid ── */}
+          <div className={styles.gridSection}>
+            <div className={styles.gridHeader}>
+              <h2 className={styles.gridTitle}>{category === 'All' ? 'Latest articles' : category}</h2>
+              <span className={styles.gridCount}>{filtered.length} article{filtered.length !== 1 ? 's' : ''}</span>
+            </div>
+            {filtered.length === 0 ? (
+              <div className={styles.emptyState}>
+                <p>No articles match your search yet.</p>
+              </div>
+            ) : (
+              <div className={styles.grid}>
+                {filtered.map((post) => (
+                  <ArticleCard key={post.slug} post={post} />
+                ))}
+              </div>
             )}
-          </>
-        )}
-      </main>
+          </div>
+        </>
+      )}
+
+      {/* ── Newsletter ── */}
+      <Newsletter />
     </div>
   )
 }

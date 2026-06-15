@@ -1,9 +1,10 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import {
   FileText, Upload, List, X, Check, Loader2,
-  FileSignature, BookOpen, Copy, Download, Zap,
-  Sparkles, RotateCcw
+  Copy, Download, Zap,
+  Sparkles, RotateCcw, Save, Target
 } from 'lucide-react'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { apiClient } from '@/shared/lib/apiClient'
@@ -27,6 +28,7 @@ interface CoverLetterResult {
   roleName: string
   body: string
   wordCount: number
+  keywordsUsed?: string[]
 }
 
 interface ExistingResume {
@@ -39,35 +41,52 @@ interface ExistingResume {
 
 // ── Tone config ────────────────────────────────────────────────────────────────
 const TONES: { id: Tone; name: string; desc: string; emoji: string }[] = [
-  { id: 'professional', name: 'Professional', desc: 'Formal & polished',    emoji: '💼' },
+  { id: 'professional', name: 'Professional', desc: 'Formal & polished',      emoji: '💼' },
   { id: 'enthusiastic', name: 'Enthusiastic', desc: 'Energetic & passionate', emoji: '🚀' },
-  { id: 'concise',      name: 'Concise',      desc: 'Direct & to the point', emoji: '⚡' },
+  { id: 'concise',      name: 'Concise',      desc: 'Direct & to the point',  emoji: '⚡' },
   { id: 'creative',     name: 'Creative',     desc: 'Distinctive & memorable', emoji: '✨' },
 ]
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
+interface CoverLetterNavState {
+  resumeText?: string
+  jdText?: string
+  resumeId?: string
+}
+
 export default function CoverLetterPage() {
   const { remaining, isGuest, isAtLimit } = useUsage()
   const isAuthenticated = useAuthStore(s => s.isAuthenticated)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const navState = (location.state as CoverLetterNavState | null) ?? null
 
   // Input state
-  const [resumeSource, setResumeSource] = useState<ResumeSource>('paste')
+  const [resumeSource, setResumeSource] = useState<ResumeSource>(navState?.resumeId ? 'existing' : 'paste')
   const [jdSource, setJdSource]         = useState<JdSource>('paste')
-  const [resumeText, setResumeText]     = useState('')
-  const [jdText, setJdText]             = useState('')
+  const [resumeText, setResumeText]     = useState(navState?.resumeText ?? '')
+  const [jdText, setJdText]             = useState(navState?.jdText ?? '')
   const [selectedTone, setSelectedTone] = useState<Tone>('professional')
-  const [selectedResumeId, setSelectedResumeId] = useState<string | null>(null)
+  const [selectedResumeId, setSelectedResumeId] = useState<string | null>(navState?.resumeId ?? null)
   const [isDragging, setIsDragging]     = useState(false)
   const [isDraggingJd, setIsDraggingJd] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
   const [uploadedJdFile, setUploadedJdFile] = useState<File | null>(null)
-  const [result, setResult]             = useState<CoverLetterResult | null>(null)
+  const [variants, setVariants]         = useState<CoverLetterResult[]>([])
+  const [activeVariant, setActiveVariant] = useState(0)
+  const result = variants[activeVariant] ?? null
   const [copied, setCopied]             = useState(false)
   const [showUpgradeModal, setShowUpgradeModal] = useState(false)
   const [showAuthModal, setShowAuthModal]       = useState(false)
 
   const fileInputRef   = useRef<HTMLInputElement>(null)
   const jdFileInputRef = useRef<HTMLInputElement>(null)
+
+  // Clear the navigation state once consumed so it doesn't re-apply on back/refresh
+  useEffect(() => {
+    if (navState) navigate(location.pathname, { replace: true })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // ── Fetch existing resumes ─────────────────────────────────────────────────
   const { data: resumes = [] } = useQuery<ExistingResume[]>({
@@ -114,12 +133,21 @@ export default function CoverLetterPage() {
 
   // ── Generate cover letter ─────────────────────────────────────────────────
   const generateMutation = useMutation({
-    mutationFn: async (payload: { resumeText: string; jdText: string; tone: Tone }) => {
-      const res = await apiClient.post('/ai/cover-letter', payload)
-      return res.data.data as CoverLetterResult
+    mutationFn: async (payload: { resumeText: string; jdText: string; tone: Tone; isAlternate?: boolean }) => {
+      const res = await apiClient.post('/ai/cover-letter', { resumeText: payload.resumeText, jdText: payload.jdText, tone: payload.tone })
+      return { data: res.data.data as CoverLetterResult, isAlternate: !!payload.isAlternate }
     },
-    onSuccess: (data) => {
-      setResult(data)
+    onSuccess: ({ data, isAlternate }) => {
+      if (isAlternate) {
+        setVariants(v => {
+          const next = [...v, data]
+          setActiveVariant(next.length - 1)
+          return next
+        })
+      } else {
+        setVariants([data])
+        setActiveVariant(0)
+      }
       trackCoverLetterGenerated()
     },
     onError: (err: any) => {
@@ -131,6 +159,37 @@ export default function CoverLetterPage() {
       }
     }
   })
+
+  // ── Save cover letter ──────────────────────────────────────────────────────
+  const saveMutation = useMutation({
+    mutationFn: async () => {
+      if (!result) throw new Error('No result to save')
+      const res = await apiClient.post('/cover-letters', {
+        title: `${result.roleName || 'Cover Letter'}${result.companyName ? ` — ${result.companyName}` : ''}`,
+        subject: result.subject,
+        recipientName: result.recipientName,
+        companyName: result.companyName,
+        roleName: result.roleName,
+        body: result.body,
+        tone: selectedTone,
+        wordCount: result.wordCount,
+        keywordsUsed: result.keywordsUsed ?? [],
+      })
+      return res.data.data
+    },
+    onSuccess: (data) => {
+      navigate(`/cover-letter/${data._id}`)
+    }
+  })
+
+  const handleSave = () => {
+    if (!result) return
+    if (!isAuthenticated) {
+      setShowAuthModal(true)
+      return
+    }
+    saveMutation.mutate()
+  }
 
   // ── Get resume text ────────────────────────────────────────────────────────
   const getResumeText = (): string => {
@@ -167,6 +226,16 @@ export default function CoverLetterPage() {
     generateMutation.mutate({ resumeText: rt, jdText, tone: selectedTone })
   }
 
+  const handleGenerateAlternate = () => {
+    const rt = getResumeText()
+    if (!rt.trim() || !jdText.trim()) return
+    if (isGuest && isAtLimit('coverLetter')) {
+      window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: { feature: 'coverLetter' } }))
+      return
+    }
+    generateMutation.mutate({ resumeText: rt, jdText, tone: selectedTone, isAlternate: true })
+  }
+
   const handleCopy = async () => {
     if (!result) return
     if (!isAuthenticated) {
@@ -195,7 +264,8 @@ export default function CoverLetterPage() {
   }
 
   const handleReset = () => {
-    setResult(null)
+    setVariants([])
+    setActiveVariant(0)
     generateMutation.reset()
   }
 
@@ -231,46 +301,51 @@ export default function CoverLetterPage() {
   })()
   const jdReady     = jdText.trim().length >= 50
   const canGenerate = resumeReady && jdReady && !generateMutation.isPending
+  const creditsLeft = remaining('coverLetter' as any)
 
-  // ── Render: Resume panel ───────────────────────────────────────────────────
-  const renderResumePanel = () => (
-    <div className={styles.card}>
-      <div className={styles.cardHeader}>
-        <div className={styles.cardIcon}><FileSignature size={16} /></div>
-        <div>
-          <h3 className={styles.cardTitle}>Your Resume</h3>
-          <p className={styles.cardSub}>We use this to personalise your letter</p>
+  // ── Render: Step 01 — Resume ───────────────────────────────────────────────
+  const renderResumeStep = () => (
+    <div className={styles.stepBlock}>
+      <div className={styles.stepBlockHead}>
+        <span className={styles.stepNumber}>01</span>
+        <div className={styles.stepHeadText}>
+          <h2 className={styles.stepTitle}>Your resume</h2>
+          <p className={styles.stepSub}>We use this to personalise your letter</p>
         </div>
       </div>
 
-      <div className={styles.sourceTabs}>
-        {(['paste', 'upload', 'existing'] as ResumeSource[]).map(s => (
-          <button
-            key={s}
-            className={`${styles.sourceTab} ${resumeSource === s ? styles.sourceTabActive : ''}`}
-            onClick={() => setResumeSource(s)}
-          >
-            {s === 'paste' ? <FileText size={12} /> : s === 'upload' ? <Upload size={12} /> : <List size={12} />}
-            {s === 'paste' ? 'Paste' : s === 'upload' ? 'Upload' : 'My Resumes'}
-          </button>
-        ))}
-      </div>
+      <div className={styles.stepBody}>
+        <div className={styles.sourceTabs}>
+          {(['paste', 'upload', 'existing'] as ResumeSource[]).map(s => (
+            <button
+              key={s}
+              className={`${styles.sourceTab} ${resumeSource === s ? styles.sourceTabActive : ''}`}
+              onClick={() => setResumeSource(s)}
+            >
+              {s === 'paste' ? <FileText size={12} /> : s === 'upload' ? <Upload size={12} /> : <List size={12} />}
+              {s === 'paste' ? 'Paste' : s === 'upload' ? 'Upload' : 'My Resumes'}
+            </button>
+          ))}
+        </div>
 
-      {resumeSource === 'paste' && (
-        <>
-          <textarea
-            className={styles.textarea}
-            placeholder="Paste your resume here — name, experience, skills, education..."
-            value={resumeText}
-            onChange={e => setResumeText(e.target.value)}
-          />
-          <span className={styles.charCount}>{resumeText.length} chars (min 50)</span>
-        </>
-      )}
+        {resumeSource === 'paste' && (
+          <div className={styles.textareaCard}>
+            <textarea
+              className={styles.textarea}
+              placeholder="Paste your resume here — name, experience, skills, education..."
+              value={resumeText}
+              onChange={e => setResumeText(e.target.value)}
+            />
+            <div className={styles.textareaFooter}>
+              <span className={resumeText.trim().length >= 50 ? styles.textareaFooterOk : ''}>
+                {resumeText.length} characters {resumeText.trim().length >= 50 ? '· looks good' : '(min 50)'}
+              </span>
+            </div>
+          </div>
+        )}
 
-      {resumeSource === 'upload' && (
-        <>
-          {!uploadedFile ? (
+        {resumeSource === 'upload' && (
+          !uploadedFile ? (
             <div
               className={`${styles.uploadZone} ${isDragging ? styles.isDragging : ''}`}
               onDragOver={e => { e.preventDefault(); setIsDragging(true) }}
@@ -279,49 +354,38 @@ export default function CoverLetterPage() {
               onClick={() => fileInputRef.current?.click()}
             >
               <div className={styles.uploadIcon}><Upload size={18} /></div>
-              <span className={styles.uploadLabel}>Drop your resume here</span>
-              <span className={styles.uploadSub}>PDF or DOCX, up to 5MB</span>
+              <div className={styles.uploadLabel}>Drop your resume here</div>
+              <div className={styles.uploadSub}>or click to browse — PDF or DOCX, up to 5MB</div>
               <input ref={fileInputRef} type="file" accept=".pdf,.doc,.docx" style={{ display: 'none' }}
                 onChange={e => { if (e.target.files?.[0]) processFile(e.target.files[0]) }} />
             </div>
           ) : (
-            <div className={styles.uploadedFile}>
-              <FileText size={16} color="#22c55e" />
-              <span className={styles.uploadedFileName}>{uploadedFile.name}</span>
-              {parseFileMutation.isPending && <Loader2 size={14} className={styles.spin} />}
-              {parseFileMutation.isSuccess && <Check size={14} color="#22c55e" />}
-              <button className={styles.clearFileBtn} onClick={() => { setUploadedFile(null); setResumeText('') }}>
-                <X size={14} />
+            <div className={`${styles.uploadZone} ${styles.uploadDone}`}>
+              <div className={styles.uploadIcon}>
+                {parseFileMutation.isPending ? <Loader2 size={18} className={styles.spin} /> : <Check size={18} />}
+              </div>
+              <div className={styles.uploadLabel}>{uploadedFile.name}</div>
+              <div className={`${styles.uploadSub} ${styles.uploadSubDone}`}>
+                {parseFileMutation.isPending ? 'Extracting text…' : `Extracted ${resumeText.length} characters`}
+              </div>
+              <button className={styles.clearFileBtn} onClick={(e) => { e.stopPropagation(); setUploadedFile(null); setResumeText('') }}>
+                <X size={12} /> Remove file
               </button>
             </div>
-          )}
-          {parseFileMutation.isSuccess && (
-            <span className={styles.charCount} style={{ color: '#22c55e' }}>
-              ✓ Extracted — {resumeText.length} chars
-            </span>
-          )}
-        </>
-      )}
+          )
+        )}
 
-      {resumeSource === 'existing' && (
-        <>
-          {!isAuthenticated ? (
-            <div style={{ textAlign: 'center', padding: '2.5rem 1.5rem' }}>
-              <div style={{ background: 'rgba(99,102,241,0.1)', width: 48, height: 48, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.25rem', color: '#6366f1' }}>
-                <Zap size={20} />
-              </div>
-              <p style={{ color: 'var(--on-surface)', fontWeight: 600, fontSize: '0.95rem', marginBottom: '0.5rem' }}>Unlock your saved resumes</p>
-              <p style={{ color: 'var(--on-surface-variant)', fontSize: '0.85rem', marginBottom: '1.5rem', lineHeight: 1.5 }}>Sign in to use your professional resumes and track your application history.</p>
-              <button 
-                style={{ all: 'unset', background: '#6366f1', color: 'white', padding: '10px 20px', borderRadius: 'var(--radius-lg)', fontSize: 'var(--text-xs)', fontWeight: 600, cursor: 'pointer' }}
-                onClick={() => setShowAuthModal(true)}
-              >
-                Sign In Now
-              </button>
+        {resumeSource === 'existing' && (
+          !isAuthenticated ? (
+            <div className={styles.authGate}>
+              <div className={styles.authGateIcon}><Zap size={20} /></div>
+              <p className={styles.authGateTitle}>Unlock your saved resumes</p>
+              <p className={styles.authGateSub}>Sign in to use your professional resumes and track your application history.</p>
+              <button className={styles.authGateBtn} onClick={() => setShowAuthModal(true)}>Sign In Now</button>
             </div>
           ) : resumes.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '1.5rem', color: 'var(--on-surface-variant)', fontSize: 'var(--text-sm)' }}>
-              No resumes found. <a href="/resume/new" style={{ color: 'var(--secondary)' }}>Create one first</a>.
+            <div className={styles.emptyResumes}>
+              No resumes found. <a href="/resume/new">Create one first</a>.
             </div>
           ) : (
             <div className={styles.resumeList}>
@@ -341,53 +405,55 @@ export default function CoverLetterPage() {
                 </button>
               ))}
             </div>
-          )}
-        </>
-      )}
+          )
+        )}
+      </div>
     </div>
   )
 
-  // ── Render: JD panel ───────────────────────────────────────────────────────
-  const renderJDPanel = () => (
-    <div className={styles.card}>
-      <div className={styles.cardHeader}>
-        <div className={styles.cardIcon} style={{ background: 'rgba(245,158,11,0.12)', color: '#f59e0b' }}>
-          <BookOpen size={16} />
-        </div>
-        <div>
-          <h3 className={styles.cardTitle}>Job Description</h3>
-          <p className={styles.cardSub}>Paste or upload the full JD</p>
+  // ── Render: Step 02 — Job description ──────────────────────────────────────
+  const renderJDStep = () => (
+    <div className={styles.stepBlock}>
+      <div className={styles.stepBlockHead}>
+        <span className={styles.stepNumber}>02</span>
+        <div className={styles.stepHeadText}>
+          <h2 className={styles.stepTitle}>Job description</h2>
+          <p className={styles.stepSub}>Paste or upload the full JD for this role</p>
         </div>
       </div>
 
-      <div className={styles.sourceTabs}>
-        {(['paste', 'upload'] as JdSource[]).map(s => (
-          <button
-            key={s}
-            className={`${styles.sourceTab} ${jdSource === s ? styles.sourceTabActive : ''}`}
-            onClick={() => setJdSource(s)}
-          >
-            {s === 'paste' ? <FileText size={12} /> : <Upload size={12} />}
-            {s === 'paste' ? 'Paste Text' : 'Upload File'}
-          </button>
-        ))}
-      </div>
+      <div className={styles.stepBody}>
+        <div className={styles.sourceTabs}>
+          {(['paste', 'upload'] as JdSource[]).map(s => (
+            <button
+              key={s}
+              className={`${styles.sourceTab} ${jdSource === s ? styles.sourceTabActive : ''}`}
+              onClick={() => setJdSource(s)}
+            >
+              {s === 'paste' ? <FileText size={12} /> : <Upload size={12} />}
+              {s === 'paste' ? 'Paste Text' : 'Upload File'}
+            </button>
+          ))}
+        </div>
 
-      {jdSource === 'paste' && (
-        <>
-          <textarea
-            className={styles.textarea}
-            placeholder="Paste the full job description — role, requirements, company..."
-            value={jdText}
-            onChange={e => setJdText(e.target.value)}
-          />
-          <span className={styles.charCount}>{jdText.length} chars (min 50)</span>
-        </>
-      )}
+        {jdSource === 'paste' && (
+          <div className={styles.textareaCard}>
+            <textarea
+              className={styles.textarea}
+              placeholder="Paste the full job description — role, requirements, company..."
+              value={jdText}
+              onChange={e => setJdText(e.target.value)}
+            />
+            <div className={styles.textareaFooter}>
+              <span className={jdText.trim().length >= 50 ? styles.textareaFooterOk : ''}>
+                {jdText.length} characters {jdText.trim().length >= 50 ? '· looks good' : '(min 50)'}
+              </span>
+            </div>
+          </div>
+        )}
 
-      {jdSource === 'upload' && (
-        <>
-          {!uploadedJdFile ? (
+        {jdSource === 'upload' && (
+          !uploadedJdFile ? (
             <div
               className={`${styles.uploadZone} ${isDraggingJd ? styles.isDragging : ''}`}
               onDragOver={e => { e.preventDefault(); setIsDraggingJd(true) }}
@@ -396,47 +462,42 @@ export default function CoverLetterPage() {
               onClick={() => jdFileInputRef.current?.click()}
             >
               <div className={styles.uploadIcon}><Upload size={18} /></div>
-              <span className={styles.uploadLabel}>Drop JD file here</span>
-              <span className={styles.uploadSub}>PDF or DOCX, up to 5MB</span>
+              <div className={styles.uploadLabel}>Drop JD file here</div>
+              <div className={styles.uploadSub}>or click to browse — PDF or DOCX, up to 5MB</div>
               <input ref={jdFileInputRef} type="file" accept=".pdf,.doc,.docx" style={{ display: 'none' }}
                 onChange={e => { if (e.target.files?.[0]) processJdFile(e.target.files[0]) }} />
             </div>
           ) : (
-            <div className={styles.uploadedFile}>
-              <FileText size={16} color="#f59e0b" />
-              <span className={styles.uploadedFileName}>{uploadedJdFile.name}</span>
-              {extractJdMutation.isPending && <Loader2 size={14} className={styles.spin} />}
-              {extractJdMutation.isSuccess && <Check size={14} color="#f59e0b" />}
-              <button className={styles.clearFileBtn} onClick={() => { setUploadedJdFile(null); setJdText('') }}>
-                <X size={14} />
+            <div className={`${styles.uploadZone} ${styles.uploadDone}`}>
+              <div className={styles.uploadIcon}>
+                {extractJdMutation.isPending ? <Loader2 size={18} className={styles.spin} /> : <Check size={18} />}
+              </div>
+              <div className={styles.uploadLabel}>{uploadedJdFile.name}</div>
+              <div className={`${styles.uploadSub} ${styles.uploadSubDone}`}>
+                {extractJdMutation.isPending ? 'Extracting text…' : `Extracted ${jdText.length} characters`}
+              </div>
+              <button className={styles.clearFileBtn} onClick={(e) => { e.stopPropagation(); setUploadedJdFile(null); setJdText('') }}>
+                <X size={12} /> Remove file
               </button>
             </div>
-          )}
-          {extractJdMutation.isSuccess && (
-            <span className={styles.charCount} style={{ color: '#f59e0b' }}>
-              ✓ Extracted — {jdText.length} chars
-            </span>
-          )}
-        </>
-      )}
+          )
+        )}
+      </div>
     </div>
   )
 
-  // ── Render: Tone + CTA ────────────────────────────────────────────────────
-  const renderControls = () => (
-    <>
-      {/* Tone card */}
-      <div className={styles.card}>
-        <div className={styles.cardHeader}>
-          <div className={styles.cardIcon} style={{ background: 'rgba(168,85,247,0.12)', color: '#a855f7' }}>
-            <Sparkles size={16} />
-          </div>
-          <div>
-            <h3 className={styles.cardTitle}>Writing Tone</h3>
-            <p className={styles.cardSub}>Choose the voice for your letter</p>
-          </div>
+  // ── Render: Step 03 — Tone ──────────────────────────────────────────────────
+  const renderToneStep = () => (
+    <div className={styles.stepBlock}>
+      <div className={styles.stepBlockHead}>
+        <span className={styles.stepNumber}>03</span>
+        <div className={styles.stepHeadText}>
+          <h2 className={styles.stepTitle}>Writing tone</h2>
+          <p className={styles.stepSub}>Choose the voice for your letter</p>
         </div>
+      </div>
 
+      <div className={styles.stepBody}>
         <div className={styles.toneGrid}>
           {TONES.map(t => (
             <button
@@ -450,49 +511,7 @@ export default function CoverLetterPage() {
           ))}
         </div>
       </div>
-
-      {/* CTA bar */}
-      <div className={styles.ctaBar}>
-        <div className={styles.ctaMeta}>
-          <div className={styles.ctaIconBox}><FileSignature size={18} /></div>
-          <div className={styles.ctaMetaText}>
-            <span className={styles.ctaLabel}>Generate your cover letter</span>
-            <span className={styles.ctaSub}>
-              Uses 1 Cover Letter credit ·{' '}
-              {remaining('coverLetter' as any) === 'Unlimited' ? 'Unlimited' : `${remaining('coverLetter' as any)} left`}
-            </span>
-          </div>
-        </div>
-
-        <button
-          style={{
-            all: 'unset',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-            minWidth: 180,
-            padding: '0.75rem 2rem',
-            borderRadius: 'var(--radius-xl)',
-            background: canGenerate ? 'linear-gradient(135deg, #6366f1, #8b5cf6)' : 'var(--surface-container-high)',
-            color: canGenerate ? 'white' : 'var(--on-surface-variant)',
-            fontWeight: 700,
-            fontSize: 'var(--text-sm)',
-            cursor: canGenerate ? 'pointer' : 'not-allowed',
-            justifyContent: 'center',
-            fontFamily: 'var(--font-sans)',
-            transition: 'opacity 0.2s',
-            boxSizing: 'border-box',
-          }}
-          onClick={handleGenerate}
-          disabled={!canGenerate}
-        >
-          {generateMutation.isPending
-            ? <><Loader2 size={16} className={styles.spin} /> Generating…</>
-            : <><Sparkles size={16} /> Generate Letter</>
-          }
-        </button>
-      </div>
-    </>
+    </div>
   )
 
   // ── Render: Results ────────────────────────────────────────────────────────
@@ -519,11 +538,34 @@ export default function CoverLetterPage() {
             <button className={styles.actionBtn} onClick={handleDownload}>
               <Download size={14} /> Download .txt
             </button>
-            <button className={`${styles.actionBtn} ${styles.actionBtnPrimary}`} onClick={handleReset}>
+            <button className={`${styles.actionBtn} ${styles.actionBtnPrimary}`} onClick={handleSave} disabled={saveMutation.isPending}>
+              {saveMutation.isPending ? <Loader2 size={14} className={styles.spin} /> : <Save size={14} />}
+              {saveMutation.isPending ? 'Saving…' : 'Save'}
+            </button>
+            <button className={styles.actionBtn} onClick={handleGenerateAlternate} disabled={generateMutation.isPending}>
+              {generateMutation.isPending ? <Loader2 size={14} className={styles.spin} /> : <Sparkles size={14} />}
+              {generateMutation.isPending ? 'Generating…' : 'Generate another version'}
+            </button>
+            <button className={styles.actionBtn} onClick={handleReset}>
               <RotateCcw size={14} /> New Letter
             </button>
           </div>
         </div>
+
+        {/* Variant tabs — switch between generated versions */}
+        {variants.length > 1 && (
+          <div className={styles.variantTabs}>
+            {variants.map((_, i) => (
+              <button
+                key={i}
+                className={`${styles.variantTab} ${activeVariant === i ? styles.variantTabActive : ''}`}
+                onClick={() => setActiveVariant(i)}
+              >
+                Version {i + 1}
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Letter card */}
         <div className={styles.letterCard}>
@@ -545,50 +587,99 @@ export default function CoverLetterPage() {
             Tone: <strong style={{ marginLeft: 4 }}>{selectedTone}</strong>
           </div>
         </div>
+
+        {/* Quality panel — JD keyword coverage */}
+        {!!result.keywordsUsed?.length && (
+          <div className={styles.qualityCard}>
+            <div className={styles.qualityHeader}>
+              <div className={styles.qualityIcon}><Target size={16} /></div>
+              <div>
+                <h3 className={styles.qualityTitle}>JD Match Quality</h3>
+                <p className={styles.qualitySub}>Keywords from the job description woven into your letter</p>
+              </div>
+            </div>
+            <div className={styles.letterMetaTags}>
+              {result.keywordsUsed.map((kw, i) => (
+                <span key={i} className={styles.keywordTag}>
+                  <Check size={11} style={{ marginRight: 4, verticalAlign: '-1px' }} />{kw}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     )
   }
 
   // ── Main render ────────────────────────────────────────────────────────────
+  const isGenerating = generateMutation.isPending && variants.length === 0
+
   return (
     <div className={styles.page}>
       <Helmet>
         <link rel="canonical" href="https://careerforge.pro/cover-letter" />
       </Helmet>
 
-      {/* Hero */}
-      <div className={styles.hero}>
-        <div className={styles.heroBadge}><Zap size={10} /> AI-Powered</div>
-        <h1 className={styles.heroTitle}>Cover Letter Generator</h1>
-        <p className={styles.heroSub}>
-          Drop your resume and any job description. Our AI writes a tailored, ATS-friendly cover letter in seconds.
-        </p>
-      </div>
+      {!isGenerating && !result && (
+        <div className={styles.heroSection}>
+          <div className={styles.eyebrow}>AI Cover Letter</div>
+          <h1 className={styles.heroTitle}>
+            Write a <span className={styles.heroAccent}>tailored cover letter</span> in seconds
+          </h1>
+          <p className={styles.heroSub}>
+            Drop your resume and the job description — our AI crafts a personalised, ATS-friendly letter matched to the role.
+          </p>
+        </div>
+      )}
 
-      <div className={styles.main}>
-        {generateMutation.isPending ? (
-          /* Generating state */
-          <div className={styles.generatingWrap}>
-            <Loader2 size={44} className={styles.spin} color="#818cf8" />
-            <p className={styles.generatingTitle}>Writing your cover letter…</p>
+      {isGenerating ? (
+        <div className={styles.generatingWrap}>
+          <div className={styles.generatingInner}>
+            <div className={styles.generatingOrb}><Sparkles size={26} color="#fff" /></div>
+            <h2 className={styles.generatingTitle}>Writing your cover letter…</h2>
             <p className={styles.generatingSubText}>
               Personalising your application for this role, injecting the right keywords, and crafting a compelling narrative. Takes about 15 seconds.
             </p>
           </div>
-        ) : result ? (
-          /* Results */
-          renderResults()
-        ) : (
-          /* Input stage */
-          <>
-            <div className={styles.inputGrid}>
-              {renderResumePanel()}
-              {renderJDPanel()}
+        </div>
+      ) : result ? (
+        renderResults()
+      ) : (
+        <>
+          {renderResumeStep()}
+          {renderJDStep()}
+          {renderToneStep()}
+
+          <div className={styles.ctaBarWrap}>
+            <div className={styles.ctaBar}>
+              <div className={styles.readiness}>
+                <div className={styles.readinessItem}>
+                  <div className={`${styles.readinessDot} ${resumeReady ? styles.readinessDotOk : ''}`}>
+                    {resumeReady && <Check size={11} />}
+                  </div>
+                  <span className={`${styles.readinessLabel} ${resumeReady ? styles.readinessLabelOk : ''}`}>Resume</span>
+                </div>
+                <div className={styles.readinessItem}>
+                  <div className={`${styles.readinessDot} ${jdReady ? styles.readinessDotOk : ''}`}>
+                    {jdReady && <Check size={11} />}
+                  </div>
+                  <span className={`${styles.readinessLabel} ${jdReady ? styles.readinessLabelOk : ''}`}>Job description</span>
+                </div>
+                <span className={styles.ctaSub}>
+                  {creditsLeft === 'Unlimited' ? 'Unlimited generations' : `${creditsLeft} left this month`}
+                </span>
+              </div>
+
+              <button className={styles.generateBtn} onClick={handleGenerate} disabled={!canGenerate}>
+                {generateMutation.isPending
+                  ? <><Loader2 size={16} className={styles.spin} /> Generating…</>
+                  : <><Sparkles size={16} /> Generate letter</>
+                }
+              </button>
             </div>
-            {renderControls()}
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
 
       <UpgradeModal
         isOpen={showUpgradeModal}

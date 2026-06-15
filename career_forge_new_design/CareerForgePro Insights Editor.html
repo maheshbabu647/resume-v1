@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CareerForgePro — Write an Insight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="cfp-insights-editor.jsx"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body { background: #FBFAFE; font-family: 'Plus Jakarta Sans', sans-serif; color: #0F0E2A; }
+    * { -webkit-font-smoothing: antialiased; }
+    ::selection { background: #5046E4; color: #fff; }
+    button, input, textarea { font-family: inherit; }
+    input:focus, textarea:focus { outline: none; }
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #D8D5EA; border-radius: 5px; border: 2px solid transparent; background-clip: padding-box; }
+    ::-webkit-scrollbar-thumb:hover { background: #B5B0D5; background-clip: padding-box; border: 2px solid transparent; }
+
+    @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+    @keyframes menu-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* contentEditable body styling */
+    .ie-body p { margin: 0 0 22px; }
+    .ie-body h2 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 30px; letter-spacing: -0.8px; color: #0F0E2A; margin: 38px 0 16px; line-height: 1.15; }
+    .ie-body blockquote { border-left: 4px solid #5046E4; background: #F4F2FF; border-radius: 0 12px 12px 0; padding: 18px 24px; margin: 32px 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px; line-height: 1.4; letter-spacing: -0.5px; color: #0F0E2A; font-style: normal; }
+    .ie-body blockquote[data-pull] { border-left-color: #FF5C35; background: #FFF1ED; }
+    .ie-body ul, .ie-body ol { margin: 0 0 22px; padding-left: 26px; }
+    .ie-body li { margin-bottom: 8px; }
+    .ie-body a { color: #5046E4; text-decoration: underline; text-underline-offset: 2px; }
+    .ie-body hr { border: none; border-top: 1px solid #E8E6F4; margin: 36px 0; }
+    .ie-body div[data-cta] {
+      margin: 32px 0; padding: 20px 24px;
+      background: linear-gradient(135deg, #F4F2FF 0%, #FFF1ED 100%);
+      border: 1px solid rgba(80,70,228,0.18); border-radius: 14px;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 600; color: #0F0E2A;
+    }
+    /* Numbered steps block */
+    .ie-body div[data-steps] { margin: 32px 0; display: flex; flex-direction: column; gap: 24px; }
+    .ie-body .ie-step { display: flex; gap: 20px; }
+    .ie-body .ie-step-n { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 36px; color: #FF5C35; line-height: 1; letter-spacing: -1px; min-width: 50px; }
+    .ie-body .ie-step-b { flex: 1; }
+    .ie-body .ie-step-b h4 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px; color: #0F0E2A; margin: 0 0 8px; letter-spacing: -0.4px; }
+    .ie-body .ie-step-b p { margin: 0; }
+    /* Image / figure block */
+    .ie-body figure[data-img] { margin: 32px 0; }
+    .ie-body figure[data-img] img { width: 100%; border-radius: 14px; display: block; }
+    .ie-body figure[data-img] figcaption { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: #8888A5; text-align: center; margin-top: 10px; }
+    .ie-body .ie-imgph { height: 220px; border-radius: 14px; border: 1.5px dashed #E8E6F4; background: #F7F6FF; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 600; color: #B5B5C8; }
+    .ie-body:focus { outline: none; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    function App() {
+      return <InsightsEditor />;
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

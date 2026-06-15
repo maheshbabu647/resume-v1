@@ -1,16 +1,27 @@
 import { Schema, model, Document } from 'mongoose'
+import { UsageSchema, defaultUsage, type IUsage } from './shared/Usage.schema'
 
-export type Plan = 'seeker' | 'hustler' | 'closer'
+export type { IUsage }
 
-export interface IUsage {
-  month: string               // "YYYY-MM" — auto-resets each month
-  pdfDownloads: number
-  jdScore: number
-  aiBullets: number
-  jdTailoring: number
-  coverLetter: number
-  bonusTailoring: number      // Lifetime bonus pool for tailoring
-  bonusPdfDownloads: number   // Lifetime bonus pool for PDF downloads
+/** Active plan — CareerForge is fully free; legacy paid values remain until migration. */
+export type Plan = 'free'
+export type LegacyPlan = 'seeker' | 'hustler' | 'closer'
+export type StoredPlan = Plan | LegacyPlan
+
+export type UserRole = 'user' | 'admin'
+
+export type OnboardingStatus = 'pending' | 'completed' | 'skipped'
+export type OnboardingEntryMethod = 'upload' | 'scratch' | 'guided'
+
+/** Tracks first-run onboarding — used by frontend to decide when to show the flow. */
+export interface IOnboardingState {
+  status: OnboardingStatus
+  completedAt?: Date
+  skippedAt?: Date
+  /** Last step reached if the user exits mid-flow (e.g. 'education', 'skills'). */
+  lastStepId?: string
+  /** How the user chose to create their first resume. */
+  entryMethod?: OnboardingEntryMethod
 }
 
 export interface IUser extends Document {
@@ -20,9 +31,13 @@ export interface IUser extends Document {
   passwordHash?: string          // undefined for OAuth-only users
   googleId?: string              // undefined for email/password users
   avatarUrl?: string
-  plan: Plan
+  role: UserRole
+  plan: StoredPlan
   resumeCount: number            // denormalised counter — avoids COUNT queries
   usage: IUsage
+  onboarding: IOnboardingState
+  /** Most recently opened resume — quick return from dashboard. */
+  lastActiveResumeId?: Schema.Types.ObjectId
   referralCode: string           // unique invite code, e.g. "ABC12345"
   referredBy?: Schema.Types.ObjectId  // who referred this user
   totalReferrals: number         // lifetime count of successful referrals
@@ -30,16 +45,20 @@ export interface IUser extends Document {
   updatedAt: Date
 }
 
-const UsageSchema = new Schema<IUsage>(
+const OnboardingSchema = new Schema<IOnboardingState>(
   {
-    month:             { type: String, default: () => new Date().toISOString().slice(0, 7) },
-    pdfDownloads:      { type: Number, default: 0, min: 0 },
-    jdScore:           { type: Number, default: 0, min: 0 },
-    aiBullets:         { type: Number, default: 0, min: 0 },
-    jdTailoring:       { type: Number, default: 0, min: 0 },
-    coverLetter:       { type: Number, default: 0, min: 0 },
-    bonusTailoring:    { type: Number, default: 0, min: 0 },
-    bonusPdfDownloads: { type: Number, default: 0, min: 0 },
+    status: {
+      type: String,
+      enum: ['pending', 'completed', 'skipped'],
+      default: 'pending',
+    },
+    completedAt: { type: Date },
+    skippedAt: { type: Date },
+    lastStepId: { type: String },
+    entryMethod: {
+      type: String,
+      enum: ['upload', 'scratch', 'guided'],
+    },
   },
   { _id: false }
 )
@@ -52,20 +71,27 @@ const UserSchema = new Schema<IUser>(
     passwordHash: { type: String },          // bcrypt hash — absent for Google users
     googleId:     { type: String, sparse: true, unique: true }, // sparse: allows multiple nulls
     avatarUrl:    { type: String },
-    plan:         { type: String, enum: ['seeker', 'hustler', 'closer'], default: 'seeker' },
+    role: {
+      type: String,
+      enum: ['user', 'admin'],
+      default: 'user',
+      index: true,
+    },
+    plan: {
+      type: String,
+      enum: ['free', 'seeker', 'hustler', 'closer'],
+      default: 'free',
+    },
     resumeCount:  { type: Number, default: 0, min: 0 },
     usage: {
       type: UsageSchema,
-      default: () => ({
-        month: new Date().toISOString().slice(0, 7),
-        pdfDownloads: 0,
-        jdScore: 0,
-        aiBullets: 0,
-        jdTailoring: 0,
-        bonusTailoring: 0,
-        bonusPdfDownloads: 0,
-      }),
+      default: defaultUsage,
     },
+    onboarding: {
+      type: OnboardingSchema,
+      default: () => ({ status: 'pending' }),
+    },
+    lastActiveResumeId: { type: Schema.Types.ObjectId, ref: 'Resume' },
     referralCode:   { type: String, unique: true, sparse: true },
     referredBy:     { type: Schema.Types.ObjectId, ref: 'User' },
     totalReferrals: { type: Number, default: 0, min: 0 },

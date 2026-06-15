@@ -34,6 +34,18 @@ apiClient.interceptors.request.use((config) => {
   return config
 })
 
+// Public auth endpoints: a 401 here means "invalid credentials", not "session expired" —
+// let the page handle the error itself instead of redirecting to /login.
+const PUBLIC_AUTH_ENDPOINTS = [
+  '/auth/login',
+  '/auth/register',
+  '/auth/verify-email',
+  '/auth/resend-otp',
+  '/auth/forgot-password',
+  '/auth/reset-password',
+  '/auth/google',
+]
+
 let isRefreshing = false
 let failedQueue: Array<{ resolve: (value: string) => void; reject: (reason?: any) => void }> = []
 
@@ -53,6 +65,10 @@ apiClient.interceptors.response.use(
   (res) => res,
   async (error) => {
     const originalRequest = error.config
+
+    if (PUBLIC_AUTH_ENDPOINTS.some((endpoint) => originalRequest?.url?.startsWith(endpoint))) {
+      return Promise.reject(error)
+    }
 
     if (error.response?.data?.code === 'GUEST_LIMIT_HIT') {
       window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: error.response.data.data }))

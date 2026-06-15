@@ -327,3 +327,8 @@ export function getPrevNextPosts(slug: string): { prev: BlogPost | null; next: B
     next: idx > 0 ? SORTED_POSTS[idx - 1] : null,
   }
 }
+
+/** Up to `count` other posts for the "Keep reading" grid, newest-first. */
+export function getRelatedPosts(slug: string, count = 3): BlogPost[] {
+  return SORTED_POSTS.filter((p) => p.slug !== slug).slice(0, count)
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CareerForgePro — App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="cfp-shell.jsx"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body { background: #F7F6FF; overflow: hidden; font-family: 'Plus Jakarta Sans', sans-serif; }
+    * { -webkit-font-smoothing: antialiased; }
+    ::selection { background: #5046E4; color: #fff; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #E8E6F4; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #C8C4E0; }
+    button { font-family: inherit; }
+    input, textarea { font-family: inherit; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "userState": "free",
+      "currentRoute": "cover-letters",
+      "screen": "opening",
+      "rightPanel": "score",
+      "showAiPanel": false,
+      "showTailorDialog": false
+    }/*EDITMODE-END*/;
+
+    function App() {
+      const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+      return (
+        <div>
+          <AppShell userState={tweaks.userState} currentRoute={tweaks.currentRoute} setRoute={r => setTweak('currentRoute', r)} />
+
+          <TweaksPanel>
+            <TweakSection title="User state">
+              <TweakRadio label="Logged in as" value={tweaks.userState} onChange={v => setTweak('userState', v)}
+                options={[
+                  {value: 'anonymous', label: 'Anonymous'},
+                  {value: 'free', label: 'Free'},
+                  {value: 'pro', label: 'Pro'},
+                ]} />
+            </TweakSection>
+            <TweakSection title="Page">
+              <TweakSelect label="Current page" value={tweaks.currentRoute} onChange={v => setTweak('currentRoute', v)}
+                options={[
+                  {value: 'dashboard', label: 'Dashboard'},
+                  {value: 'resumes', label: 'Resumes'},
+                  {value: 'cover-letters', label: 'Cover Letters'},
+                  {value: 'ats-score', label: 'ATS Score'},
+                  {value: 'templates', label: 'Templates'},
+                ]} />
+            </TweakSection>
+          </TweaksPanel>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

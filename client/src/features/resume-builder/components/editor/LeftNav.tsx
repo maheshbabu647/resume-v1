@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react'
 import {
-  Plus, Trash2, GripVertical, CheckCircle2, MinusCircle, ArrowUpDown, X, FileText
+  Plus, Trash2, GripVertical, CheckCircle2, MinusCircle, ArrowUpDown, X, FileText, ChevronsLeft, ChevronsRight
 } from 'lucide-react'
 import { useEditorUIStore } from '../../store/useEditorUIStore'
 import { useResumeStore } from '../../store/useResumeStore'
@@ -18,6 +18,8 @@ export default function LeftNav() {
   const setActiveSection = useEditorUIStore((s) => s.setActiveSection)
   const mobileNavOpen = useEditorUIStore((s) => s.mobileNavOpen)
   const closeMobileNav = useEditorUIStore((s) => s.closeMobileNav)
+  const leftNavCollapsed = useEditorUIStore((s) => s.leftNavCollapsed)
+  const toggleLeftNavCollapsed = useEditorUIStore((s) => s.toggleLeftNavCollapsed)
 
   const sections = useResumeStore((s) => s.data.sections)
   const setSectionVisibility = useResumeStore((s) => s.toggleSectionVisibility)
@@ -149,20 +151,23 @@ export default function LeftNav() {
         onClick={closeMobileNav}
       />
       
-      <nav className={`${styles.nav} ${mobileNavOpen ? styles.navOpen : ''}`}>
+      <nav className={`${styles.nav} ${mobileNavOpen ? styles.navOpen : ''} ${leftNavCollapsed ? styles.navCollapsed : ''}`}>
         <div className={styles.navHead}>
           <div className={styles.navHeadTitle}>
             <FileText size={18} className={styles.logoIcon} />
-            <span>Customize Resume</span>
+            {!leftNavCollapsed && <span>Customize Resume</span>}
           </div>
+          <button className={styles.collapseToggle} onClick={toggleLeftNavCollapsed} title={leftNavCollapsed ? 'Expand sections' : 'Collapse sections'}>
+            {leftNavCollapsed ? <ChevronsRight size={16} /> : <ChevronsLeft size={16} />}
+          </button>
           <button className={styles.mobileCloseBtn} onClick={closeMobileNav}>
             <X size={20} />
           </button>
         </div>
-        
-        <div className={styles.mobileHint}>Click on a section to edit its content.</div>
 
-      
+        {!leftNavCollapsed && <div className={styles.mobileHint}>Click on a section to edit its content.</div>}
+
+
       <div className={styles.navList}>
         {staticSections.map((sec) => (
           <div

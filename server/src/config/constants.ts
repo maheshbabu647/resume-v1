@@ -1,7 +1,9 @@
 // ─── Plan limits ─────────────────────────────────────────────────────────────
 // Single source of truth — used by quota middleware and all feature guards.
+// CareerForge v2 is fully free: all authenticated users get unlimited access.
+// Usage counters are retained for analytics; limits are set to -1 (unlimited).
 
-export type PlanName = 'seeker' | 'hustler' | 'closer'
+export type PlanName = 'free' | 'seeker' | 'hustler' | 'closer'
 
 export interface PlanLimits {
   pdfDownloads: number       // per month (-1 = unlimited)
@@ -15,52 +17,39 @@ export interface PlanLimits {
   aiAccess: boolean
 }
 
-export const PLAN_LIMITS: Record<PlanName, PlanLimits> = {
-  seeker: {
-    pdfDownloads: 5,
-    jdScore: 3,
-    aiBullets: 5,
-    jdTailoring: 2,
-    coverLetter: 3,
-    resumeVersions: 0,
-    referralBonusCap: 5,
-    referralBonusPerReferral: 1,
-    aiAccess: true,
-  },
-  hustler: {
-    pdfDownloads: 10,
-    jdScore: 20,
-    aiBullets: 25,
-    jdTailoring: 12,
-    coverLetter: 15,
-    resumeVersions: 5,
-    referralBonusCap: 99,
-    referralBonusPerReferral: 2,
-    aiAccess: true,
-  },
-  closer: {
-    pdfDownloads: -1,
-    jdScore: -1,
-    aiBullets: -1,
-    jdTailoring: -1,
-    coverLetter: -1,
-    resumeVersions: -1,
-    referralBonusCap: 99,
-    referralBonusPerReferral: 3,
-    aiAccess: true,
-  },
-} as const
-
-export const GUEST_LIMITS: Omit<PlanLimits, 'resumeVersions' | 'referralBonusCap' | 'referralBonusPerReferral' | 'aiAccess'> = {
-  pdfDownloads: 0,
-  jdScore: 2,
-  aiBullets: 4,
-  jdTailoring: 1,
-  coverLetter: 1,
+const UNLIMITED: PlanLimits = {
+  pdfDownloads: -1,
+  jdScore: -1,
+  aiBullets: -1,
+  jdTailoring: -1,
+  coverLetter: -1,
+  resumeVersions: -1,
+  referralBonusCap: 0,
+  referralBonusPerReferral: 0,
+  aiAccess: true,
 }
 
-// ─── Razorpay plan IDs ────────────────────────────────────────────────────────
-// Set these to your actual Razorpay plan IDs once created in the dashboard.
+/** All plans map to unlimited — legacy plan names kept for backward compat during migration. */
+export const PLAN_LIMITS: Record<PlanName, PlanLimits> = {
+  free: UNLIMITED,
+  seeker: UNLIMITED,
+  hustler: UNLIMITED,
+  closer: UNLIMITED,
+} as const
+
+/** Guests get the same unlimited access once authenticated features are used. */
+export const GUEST_LIMITS: Omit<PlanLimits, 'resumeVersions' | 'referralBonusCap' | 'referralBonusPerReferral' | 'aiAccess'> = {
+  pdfDownloads: -1,
+  jdScore: -1,
+  aiBullets: -1,
+  jdTailoring: -1,
+  coverLetter: -1,
+}
+
+// ─── Razorpay (deprecated — pricing removed in v2) ───────────────────────────
+// Kept so existing webhook/subscription code compiles until payment routes are removed.
+
+/** @deprecated Pricing removed — do not use for new features. */
 export const RAZORPAY_PLAN_IDS: Record<'hustler' | 'closer', string> = {
   hustler: process.env.RAZORPAY_PLAN_ID_HUSTLER || 'plan_hustler_placeholder',
   closer: process.env.RAZORPAY_PLAN_ID_CLOSER || 'plan_closer_placeholder',
@@ -91,6 +80,14 @@ export const RESUME = {
   EXPORT_URL_TTL_SEC: 7 * 24 * 60 * 60,  // 7 days
 } as const
 
+// ─── Cover Letters ────────────────────────────────────────────────────────────
+
+export const COVER_LETTER = {
+  VALID_TONES: ['professional', 'enthusiastic', 'concise', 'creative'] as const,
+  TITLE_MAX_LENGTH: 120,
+  BODY_MAX_LENGTH: 12000,
+} as const
+
 // ─── AI ───────────────────────────────────────────────────────────────────────
 
 export const AI = {
@@ -102,6 +99,17 @@ export const AI = {
   MAX_OUTPUT_TOKENS: 8192,
   /** Redis TTL for cached AI responses (seconds) */
   CACHE_TTL_SEC: 60 * 60, // 1 hour
+} as const
+
+// ─── Articles / Insights CMS ──────────────────────────────────────────────────
+
+export const ARTICLE = {
+  SLUG_MAX_LENGTH: 120,
+  TITLE_MAX_LENGTH: 200,
+  EXCERPT_MAX_LENGTH: 500,
+  META_DESCRIPTION_MAX_LENGTH: 320,
+  TAG_MAX_LENGTH: 40,
+  MAX_TAGS: 12,
 } as const
 
 // ─── Pagination ───────────────────────────────────────────────────────────────

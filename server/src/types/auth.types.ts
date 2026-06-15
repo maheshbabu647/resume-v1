@@ -1,4 +1,4 @@
-import type { IUser } from '../models/User.model'
+import type { IUser, StoredPlan, UserRole, IOnboardingState } from '../models/User.model'
 
 export interface TokenPair { accessToken: string; refreshToken: string }
 
@@ -8,8 +8,11 @@ export interface SafeUser {
   email: string
   isEmailVerified: boolean
   avatarUrl?: string
-  plan: IUser['plan']
+  role: UserRole
+  plan: StoredPlan
   resumeCount: number
+  onboarding: IOnboardingState
+  lastActiveResumeId?: string
   referralCode?: string
   createdAt: Date
 }
@@ -19,3 +22,5 @@ export interface AuthResult {
   accessToken: string
   refreshToken: string
 }
+
+export type { IUser }

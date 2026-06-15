@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { CfpLogo } from '@/shared/components/CfpLogo/CfpLogo'
 import styles from './Footer.module.css'
 
 const InstagramIcon = ({ size = 18 }: { size?: number }) => (
@@ -13,70 +14,51 @@ const LinkedinIcon = ({ size = 18 }: { size?: number }) => (
   </svg>
 )
 
-export const Footer = () => {
-  return (
-    <footer className={styles.footer}>
-      <div className={styles.footerContent}>
-        <div className={styles.footerBrand}>
-          <div className={styles.brand}>
-            <div className={styles.brandLogo}>CF</div>
-            <span className={styles.brandName}>CareerForge</span>
-          </div>
-          <p className={styles.footerTagline}>AI resume tailoring, JD scorer & cover letter generator.</p>
-          <p className={styles.footerTagline} style={{ marginTop: 4 }}>careerforge.pro</p>
+export const Footer = () => (
+  <footer className={styles.footer}>
+    <div className={styles.footerContent}>
+      <div className={styles.footerBrand}>
+        <CfpLogo />
+        <p className={styles.footerTagline}>AI resume builder, ATS scoring, JD tailor & cover letters — free for everyone.</p>
+        <p className={styles.footerDomain}>careerforge.pro</p>
+      </div>
+      <div className={styles.footerLinks}>
+        <div className={styles.footerCol}>
+          <span className={styles.footerColTitle}>Product</span>
+          <Link to="/templates" className={styles.footerLink}>Templates</Link>
+          <Link to="/jd-tailor" className={styles.footerLink}>JD Tailor</Link>
+          <Link to="/cover-letter" className={styles.footerLink}>Cover Letter</Link>
+          <Link to="/blog" className={styles.footerLink}>Insights</Link>
         </div>
-        <div className={styles.footerLinks}>
-          <div className={styles.footerCol}>
-            <span className={styles.footerColTitle}>Product</span>
-            <Link to="/templates" className={styles.footerLink}>Templates</Link>
-            <Link to="/jd-tailor" className={styles.footerLink}>JD Fit Score</Link>
-            <Link to="/cover-letter" className={styles.footerLink}>Cover Letter</Link>
-            <Link to="/pricing" className={styles.footerLink}>Pricing</Link>
-            <Link to="/blog" className={styles.footerLink}>Insights</Link>
-          </div>
-          <div className={styles.footerCol}>
-            <span className={styles.footerColTitle}>Legal</span>
-            <Link to="/privacy" className={styles.footerLink}>Privacy Policy</Link>
-            <Link to="/terms" className={styles.footerLink}>Terms of Service</Link>
-            <Link to="/cookies" className={styles.footerLink}>Cookie Policy</Link>
-            <Link to="/refund-policy" className={styles.footerLink}>Refund Policy</Link>
-          </div>
-          <div className={styles.footerCol}>
-            <span className={styles.footerColTitle}>Support</span>
-            <Link to="/contact" className={styles.footerLink}>Contact Us</Link>
-            <Link to="/login" className={styles.footerLink}>Log in</Link>
-            <Link to="/register" className={styles.footerLink}>Get started free</Link>
-          </div>
-          <div className={styles.footerCol}>
-            <span className={styles.footerColTitle}>Follow us</span>
-            <p className={styles.footerText}>Stay connected for updates, career resources, and new product announcements.</p>
-            <div className={styles.socialRow}>
-              <a
-                href="https://www.instagram.com/careerforgepro/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialLink}
-                aria-label="CareerForge Instagram"
-              >
-                <InstagramIcon />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/109617317/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialLink}
-                aria-label="CareerForge LinkedIn"
-              >
-                <LinkedinIcon />
-              </a>
-            </div>
-            <p className={styles.followText}>Follow us on Instagram and LinkedIn.</p>
+        <div className={styles.footerCol}>
+          <span className={styles.footerColTitle}>Legal</span>
+          <Link to="/privacy" className={styles.footerLink}>Privacy Policy</Link>
+          <Link to="/terms" className={styles.footerLink}>Terms of Service</Link>
+          <Link to="/cookies" className={styles.footerLink}>Cookie Policy</Link>
+          <Link to="/refund-policy" className={styles.footerLink}>Refund Policy</Link>
+        </div>
+        <div className={styles.footerCol}>
+          <span className={styles.footerColTitle}>Support</span>
+          <Link to="/contact" className={styles.footerLink}>Contact Us</Link>
+          <Link to="/login" className={styles.footerLink}>Sign in</Link>
+          <Link to="/register" className={styles.footerLink}>Get started free</Link>
+        </div>
+        <div className={styles.footerCol}>
+          <span className={styles.footerColTitle}>Follow us</span>
+          <p className={styles.footerText}>Career tips, product updates, and hiring insights.</p>
+          <div className={styles.socialRow}>
+            <a href="https://www.instagram.com/careerforgepro/" target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label="CareerForge Instagram">
+              <InstagramIcon />
+            </a>
+            <a href="https://www.linkedin.com/company/109617317/" target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label="CareerForge LinkedIn">
+              <LinkedinIcon />
+            </a>
           </div>
         </div>
       </div>
-      <div className={styles.footerBottom}>
-        <span>© 2026 CareerForge. All rights reserved. · Made with ❤️ in India · careerforge.pro</span>
-      </div>
-    </footer>
-  )
-}
+    </div>
+    <div className={styles.footerBottom}>
+      <span>© 2026 CareerForge. All rights reserved. · Made in India · careerforge.pro</span>
+    </div>
+  </footer>
+)

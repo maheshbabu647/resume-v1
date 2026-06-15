@@ -1,42 +1,38 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import { LayoutDashboard, FileText, LogOut, User as UserIcon, Menu, X, Target, FileSignature, CreditCard, BookOpen } from 'lucide-react'
+import { LayoutDashboard, FileText, LogOut, User as UserIcon, Menu, X, Target, FileSignature, BookOpen, Sparkles } from 'lucide-react'
 import { useAuthStore } from '@/core/auth/useAuthStore'
-import { useUsage } from '@/core/hooks/useUsage'
+import { CfpLogo } from '@/shared/components/CfpLogo/CfpLogo'
 import { Button } from '@/shared/components/Button/Button'
 import styles from './Navbar.module.css'
 
 export const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuthStore()
-  const { plan } = useUsage()
-
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const handleLogout = () => {
     logout()
     setIsMenuOpen(false)
-    // Full page reload ensures all React Query caches are cleared
     window.location.href = '/login'
   }
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
   const closeMenu = () => setIsMenuOpen(false)
 
   return (
-    <header className={styles.topbar}>
-      <Link to="/" className={styles.brandLink} onClick={closeMenu}>
-        <div className={styles.brand}>
-          <div className={styles.logo}>CF</div>
-          <span className={styles.brandName}>CareerForge</span>
-        </div>
-      </Link>
+    <header className={`${styles.topbar} ${scrolled ? styles.scrolled : ''}`}>
+      <CfpLogo onClick={closeMenu} />
 
-      {/* Mobile Toggle */}
-      <button className={styles.menuToggle} onClick={toggleMenu}>
-        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+      <button className={styles.menuToggle} onClick={() => setIsMenuOpen((v) => !v)} aria-label="Toggle menu">
+        {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
       </button>
 
-      {/* Desktop & Mobile Nav */}
       <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
         <NavLink to="/templates" onClick={closeMenu} className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
           <FileText size={15} />
@@ -50,51 +46,46 @@ export const Navbar = () => {
         )}
         <NavLink to="/jd-tailor" onClick={closeMenu} className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
           <Target size={15} />
-          JD Tailor
+          ATS Score &amp; Tailor
         </NavLink>
         <NavLink to="/cover-letter" onClick={closeMenu} className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
           <FileSignature size={15} />
           Cover Letter
         </NavLink>
-        <NavLink to="/pricing" onClick={closeMenu} className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
-          <CreditCard size={15} />
-          Pricing
-        </NavLink>
         <NavLink to="/blog" onClick={closeMenu} className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}>
           <BookOpen size={15} />
           Insights
         </NavLink>
-        {/* Mobile Auth/Info (Bottom) */}
+        {user?.role === 'admin' && (
+          <NavLink to="/admin/insights" onClick={closeMenu} className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`} title="Admin: write an article">
+            <Sparkles size={15} />
+            Write
+          </NavLink>
+        )}
+
         <div className={styles.mobileAuth}>
           {isAuthenticated && user ? (
-            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', padding: 'var(--space-2) 0' }}>
-                <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--on-secondary)', fontWeight: 'bold' }}>
-                  {user.name?.charAt(0)?.toUpperCase() || 'U'}
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <span style={{ fontSize: 'var(--text-sm)', fontWeight: 'var(--weight-bold)', color: 'var(--on-surface)' }}>{user.name}</span>
-                  <span style={{ fontSize: 'var(--text-xs)', color: 'var(--on-surface-variant)' }}>{user.email}</span>
+            <div className={styles.mobileUserBlock}>
+              <div className={styles.mobileUserRow}>
+                <div className={styles.avatar}>{user.name?.charAt(0)?.toUpperCase() || 'U'}</div>
+                <div>
+                  <span className={styles.userName}>{user.name}</span>
+                  <span className={styles.userEmail}>{user.email}</span>
                 </div>
               </div>
-              <Button variant="ghost" fullWidth onClick={handleLogout} style={{ justifyContent: 'flex-start', color: 'var(--error)' }}>
+              <Button variant="ghost" fullWidth onClick={handleLogout} className={styles.logoutMobile}>
                 <LogOut size={16} /> Sign out
               </Button>
             </div>
           ) : (
             <>
-              <Link to="/login" onClick={closeMenu}>
-                <Button variant="ghost" fullWidth>Log in</Button>
-              </Link>
-              <Link to="/register" onClick={closeMenu}>
-                <Button fullWidth>Get started free</Button>
-              </Link>
+              <Link to="/login" onClick={closeMenu} className={styles.signInLink}>Sign in</Link>
+              <Link to="/register" onClick={closeMenu} className={styles.ctaBtn}>Get started free</Link>
             </>
           )}
         </div>
       </nav>
 
-      {/* Desktop User Area */}
       <div className={styles.userArea}>
         {isAuthenticated && user ? (
           <>
@@ -103,27 +94,20 @@ export const Navbar = () => {
             </div>
             <div className={styles.userInfo}>
               <span className={styles.userName}>{user.name}</span>
-              <span className={styles.userPlan}>
-                {plan === 'closer' ? 'Closer' : plan === 'hustler' ? 'Hustler' : 'Seeker'}
-              </span>
+              <span className={styles.userEmail}>{user.email}</span>
             </div>
-            <button className={styles.logoutBtn} onClick={handleLogout} title="Logout">
+            <button className={styles.logoutBtn} onClick={handleLogout} title="Sign out">
               <LogOut size={16} />
             </button>
           </>
         ) : (
           <div className={styles.authButtons}>
-            <Link to="/login">
-              <Button variant="ghost" size="sm">Log in</Button>
-            </Link>
-            <Link to="/register">
-              <Button size="sm">Get started free</Button>
-            </Link>
+            <Link to="/login" className={styles.signInLink}>Sign in</Link>
+            <Link to="/register" className={styles.ctaBtn}>Get started free</Link>
           </div>
         )}
       </div>
 
-      {/* Backdrop for Mobile Menu */}
       {isMenuOpen && <div className={styles.backdrop} onClick={closeMenu} />}
     </header>
   )

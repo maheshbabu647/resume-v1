@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { Search, CheckCircle2, ArrowRight } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Eye, Sparkles } from 'lucide-react'
 import { Button } from '@/shared/components/Button/Button'
 import { useAuthStore } from '@/core/auth/useAuthStore'
 import { Modal } from '@/shared/components/Modal/Modal'
@@ -9,31 +9,22 @@ import styles from './TemplatesPage.module.css'
 
 import { TEMPLATE_REGISTRY } from '../resume-builder/templates/registry'
 
-const FILTERS = ['All', 'Minimal', 'Professional', 'Creative', 'Technical'] as const
-type Filter = typeof FILTERS[number]
+const ACCENTS = ['brand', 'coral', 'green'] as const
 
-const TEMPLATES = Object.values(TEMPLATE_REGISTRY).map(t => ({
+const TEMPLATES = Object.values(TEMPLATE_REGISTRY).map((t, i) => ({
   id: t.id,
-  name: t.name, // Will be "Modern Centered" instead of "MODERN CENTERED"
+  name: t.name,
   imageUrl: t.thumbnailUrl,
-  tag: t.tags?.style || 'Modern',
-  industries: t.tags?.industry || [],
-  ats: 96,
-  desc: t.isAtsRecommended ? 'ATS-Optimized layout for professional roles.' : 'Modern creative layout.'
+  style: t.tags?.style || 'Modern',
+  accent: ACCENTS[i % ACCENTS.length],
+  desc: t.isAtsRecommended
+    ? 'A clean, ATS-optimized layout built to clear recruiter screens.'
+    : 'A modern, creative layout that still parses cleanly.',
 }))
 
 export default function TemplatesPage() {
-  const [activeFilter, setActiveFilter] = useState<Filter>('All')
+  const [previewTemplate, setPreviewTemplate] = useState<typeof TEMPLATES[number] | null>(null)
   const { isAuthenticated } = useAuthStore()
-  const [search, setSearch] = useState('')
-  const [hoveredId, setHoveredId] = useState<string | null>(null)
-  const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null)
-
-  const filtered = TEMPLATES.filter((t) => {
-    const matchFilter = activeFilter === 'All' || t.industries.includes(activeFilter as any)
-    const matchSearch = t.name.toLowerCase().includes(search.toLowerCase()) || t.desc.toLowerCase().includes(search.toLowerCase())
-    return matchFilter && matchSearch
-  })
 
   return (
     <div className={styles.page}>
@@ -43,106 +34,82 @@ export default function TemplatesPage() {
 
       {/* Hero */}
       <section className={styles.hero}>
-        <div className={styles.heroBadge}>{TEMPLATES.length} premium templates</div>
-        <h1 className={styles.heroTitle}>The Executive Library</h1>
-        <p className={styles.heroSub}>Choose a high-end editorial layout designed to pass ATS checks and impress recruiters.</p>
-        <div className={styles.searchBar}>
-          <Search size={15} className={styles.searchIcon} />
-          <input
-            className={styles.searchInput}
-            placeholder="Search our collection..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </div>
-        <div className={styles.filterBar}>
-          {FILTERS.map((f) => (
-            <button
-              key={f}
-              className={`${styles.filterBtn} ${activeFilter === f ? styles.filterActive : ''}`}
-              onClick={() => setActiveFilter(f)}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
+        <span className={styles.eyebrow}>
+          <Sparkles size={12} /> {TEMPLATES.length} templates &middot; ATS-tested
+        </span>
+        <h1 className={styles.heroTitle}>Pick a layout. Make it yours.</h1>
+        <p className={styles.heroSub}>
+          Every template here is built to clear ATS screening and look sharp to a human reviewer.
+          Choose one to start &mdash; you can switch templates anytime without losing your content.
+        </p>
       </section>
 
       {/* Grid */}
       <section className={styles.grid}>
-        {filtered.map((t) => (
-          <div
-            key={t.id}
-            className={styles.card}
-            onMouseEnter={() => setHoveredId(t.id)}
-            onMouseLeave={() => setHoveredId(null)}
-          >
+        {TEMPLATES.map((t) => (
+          <div key={t.id} className={styles.card} data-accent={t.accent}>
             <div className={styles.thumb}>
               {t.imageUrl ? (
                 <img src={t.imageUrl} alt={t.name} className={styles.thumbImage} />
               ) : (
                 <div className={styles.thumbPlaceholder}>
-                  <div className={styles.placeholderLogo} />
                   <div className={styles.placeholderLines}>
+                    <div style={{ width: '50%' }} />
+                    <div style={{ width: '85%' }} />
+                    <div style={{ width: '65%' }} />
                     <div style={{ width: '40%' }} />
-                    <div style={{ width: '80%' }} />
-                    <div style={{ width: '60%' }} />
                   </div>
                 </div>
               )}
-              
-              <div className={`${styles.thumbOverlay} ${hoveredId === t.id ? styles.overlayVisible : ''}`}>
-                <div className={styles.overlayActions}>
-                  <Link to={`/resume/new?template=${t.id}`}>
-                    <Button variant="primary">Use Template <ArrowRight size={14} /></Button>
-                  </Link>
-                  <button 
-                    className={styles.previewBtn}
-                    onClick={(e) => { e.stopPropagation(); setPreviewImageUrl(t.imageUrl || null); }}
-                  >
-                    View Preview
-                  </button>
-                </div>
-              </div>
-              
-              <div className={styles.thumbBadge}>
-                <CheckCircle2 size={10} />
-                <span>ATS {t.ats}%</span>
-              </div>
+
+              <span className={styles.atsBadge}>
+                <CheckCircle2 size={11} /> ATS-ready
+              </span>
+
+              <button className={styles.previewBtn} onClick={() => setPreviewTemplate(t)}>
+                <Eye size={13} /> Preview
+              </button>
             </div>
 
             <div className={styles.cardInfo}>
-              <h3 className={styles.cardName}>{t.name}</h3>
-              <p className={styles.customLabel}>Fully Customizable</p>
+              <div className={styles.cardHead}>
+                <h3 className={styles.cardName}>{t.name}</h3>
+                <span className={styles.cardTag}>{t.style}</span>
+              </div>
+              <p className={styles.cardDesc}>{t.desc}</p>
+              <Link to={`/resume/new?template=${t.id}`} className={styles.useBtn}>
+                Use this template <ArrowRight size={14} />
+              </Link>
             </div>
           </div>
         ))}
-        {filtered.length === 0 && (
-          <div className={styles.empty}>
-            <Search size={32} color="var(--outline)" />
-            <p>No templates match "{search}"</p>
-          </div>
-        )}
       </section>
 
       {/* CTA */}
       <section className={styles.cta}>
-        <h2 className={styles.ctaTitle}>Ready to build?</h2>
-        <p className={styles.ctaSub}>Pick any template and start editing in our AI-powered editor.</p>
-        {isAuthenticated ? (
-          <Link to="/resume/new"><Button variant="primary" size="lg">Start Building <ArrowRight size={16} /></Button></Link>
-        ) : (
-          <Link to="/resume/new"><Button variant="primary" size="lg">Start for free <ArrowRight size={16} /></Button></Link>
-        )}
+        <div className={styles.ctaText}>
+          <span className={styles.ctaEyebrow}>Not sure which one?</span>
+          <h2 className={styles.ctaTitle}>Start with any template &mdash; switch anytime.</h2>
+          <p className={styles.ctaSub}>
+            Your content stays put. Swap layouts right inside the editor until one feels right.
+          </p>
+        </div>
+        <Link to="/resume/new">
+          <Button variant="primary" size="lg">
+            {isAuthenticated ? 'Start building' : 'Start for free'} <ArrowRight size={16} />
+          </Button>
+        </Link>
       </section>
 
-      <Modal 
-        isOpen={!!previewImageUrl} 
-        onClose={() => setPreviewImageUrl(null)} 
-        title="Template Preview"
+      <Modal
+        isOpen={!!previewTemplate}
+        onClose={() => setPreviewTemplate(null)}
+        title={previewTemplate?.name || 'Template Preview'}
       >
         <div className={styles.previewModalBody}>
-          <img src={previewImageUrl || ''} alt="Template Preview" className={styles.previewFullImage} />
+          {previewTemplate?.imageUrl && (
+            <img src={previewTemplate.imageUrl} alt={previewTemplate.name} className={styles.previewFullImage} />
+          )}
         </div>
       </Modal>
     </div>

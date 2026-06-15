@@ -1,0 +1,144 @@
+.panel {
+  width: var(--right-panel-w);
+  flex-shrink: 0;
+  background: var(--surface-container-lowest);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width var(--transition-base);
+}
+
+.panel.collapsed {
+  width: var(--right-panel-collapsed-w);
+}
+
+.tabBar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: var(--space-3) var(--space-3) 0;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  padding: 11px 8px;
+  margin-bottom: -1px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--muted);
+  font-family: var(--font-sans);
+  transition: all var(--transition-fast);
+}
+
+.tab.tabActive {
+  color: var(--dark);
+  font-weight: var(--weight-bold);
+  border-bottom-color: var(--brand);
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Collapse toggle (shown in tab bar when expanded, and at top of rail when collapsed) */
+.collapseToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--muted);
+  cursor: pointer;
+  margin-bottom: -1px;
+  transition: all var(--transition-fast);
+}
+.collapseToggle:hover {
+  background: var(--surface-container-low);
+  color: var(--dark);
+}
+
+/* Collapsed icon rail */
+.collapsedRail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  height: 100%;
+}
+
+.railBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.railBtn:hover {
+  background: var(--surface-container-low);
+  border-color: var(--border);
+  color: var(--dark);
+}
+
+.railScoreBadge {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 4px;
+  border-radius: var(--radius-md);
+  background: var(--brand-light);
+  color: var(--brand);
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+  font-family: var(--font-mono);
+  width: 40px;
+}
+
+/* Mobile Overrides */
+@media (max-width: 1024px) {
+  .panel,
+  .panel.collapsed {
+    width: 100%;
+    flex: 1;
+    border-left: none;
+  }
+
+  .hiddenOnMobile {
+    display: none !important;
+  }
+
+  .content {
+    overflow-y: auto;
+  }
+
+  .collapseToggle {
+    display: none;
+  }
+}

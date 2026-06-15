@@ -12,6 +12,10 @@ export const analyzeJDMatch = async (req: Request, res: Response, next: NextFunc
   try { res.json({ ok: true, data: await aiService.analyzeJDMatch(req.body) }) }
   catch (err) { next(err) }
 }
+export const extractJdSpec = async (req: Request, res: Response, next: NextFunction) => {
+  try { res.json({ ok: true, data: await aiService.extractJdSpec(req.body) }) }
+  catch (err) { next(err) }
+}
 export const suggest = async (req: Request, res: Response, next: NextFunction) => {
   try { res.json({ ok: true, data: await aiService.suggest(req.body) }) }
   catch (err) { next(err) }
@@ -32,6 +36,11 @@ export const tailorNew = async (req: Request, res: Response, next: NextFunction)
 
 export const generateCoverLetter = async (req: Request, res: Response, next: NextFunction) => {
   try { res.json({ ok: true, data: await aiService.generateCoverLetter(req.body) }) }
+  catch (err) { next(err) }
+}
+
+export const rewriteCoverLetterParagraph = async (req: Request, res: Response, next: NextFunction) => {
+  try { res.json({ ok: true, data: await aiService.rewriteCoverLetterParagraph(req.body) }) }
   catch (err) { next(err) }
 }
 

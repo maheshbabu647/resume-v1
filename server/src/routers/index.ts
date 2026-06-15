@@ -8,10 +8,14 @@ import authRouter    from './auth/index'
 import userRouter    from './user/index'
 import webhookRouter from './webhook/index'
 import paymentRouter from './payment/payment.router'
+import articleRouter from './article/article.router'
+import adminArticleRouter from './article/admin.router'
 
-import resumeRouter from './resume/resume.router'
-import aiRouter     from './resume/ai.router'
-import exportRouter from './resume/export.router'
+import resumeRouter      from './resume/resume.router'
+import aiRouter          from './resume/ai.router'
+import exportRouter      from './resume/export.router'
+import coverLetterRouter from './resume/coverLetter.router'
+import { adminGuard } from '../middleware/adminGuard'
 
 // Import parse-resume controller directly for free-tier access
 import { uploadMiddleware, parseResume } from '../controllers/resume/ai.controller'
@@ -25,11 +29,18 @@ router.use('/auth',     authRouter)
 router.use('/webhooks', webhookRouter)
 router.use('/user',     authenticate, userRouter)
 
+// ─── Articles / Insights ─────────────────────────────────────────────────────
+router.use('/articles', articleRouter)
+router.use('/admin/articles', authenticate, adminGuard, adminArticleRouter)
+
 // ─── Payment ──────────────────────────────────────────────────────────────────
 router.use('/payment',  optionalAuthenticate, paymentRouter)
 
 // ─── Resumes ──────────────────────────────────────────────────────────────────
 router.use('/resumes',  authenticate, resumeRouter)
+
+// ─── Cover Letters ────────────────────────────────────────────────────────────
+router.use('/cover-letters', authenticate, coverLetterRouter)
 
 // ─── AI features ─────────────────────────────────────────────────────────────
 // Parse resume — free for all users (onboarding feature)

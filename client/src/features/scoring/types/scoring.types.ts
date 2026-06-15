@@ -58,3 +58,97 @@ export interface Suggestion {
   suggestion: string;                 // Specific. Max 2 sentences.
   impact: "high" | "medium" | "low";
 }
+
+// ─── JD-Spec (mirrors server POST /ai/jd-spec) ────────────────────────────────
+// The weighted, resume-independent spec extracted by the LLM ONCE per JD. The
+// deterministic client formula (atsMatchEngine) scores a resume against it live.
+
+export type SkillType = "hard" | "soft";
+export type Seniority = "intern" | "junior" | "mid" | "senior" | "lead" | "executive";
+
+export interface JdSpecSkill {
+  term: string;
+  aliases: string[];
+  weight: number;                     // integer 1..3
+  type: SkillType;
+}
+
+export interface JdSpecResponsibility {
+  phrase: string;
+  keywords: string[];
+}
+
+export interface JDSpec {
+  jobTitle: string;
+  titleTerms: string[];
+  seniority: Seniority;
+  minYears: number | null;
+  requiredSkills: JdSpecSkill[];
+  preferredSkills: JdSpecSkill[];
+  domainKeywords: JdSpecSkill[];
+  responsibilities: JdSpecResponsibility[];
+  certifications: string[];
+  inputHash: string;
+  cachedAt?: number;
+}
+
+// ─── Live ATS Match result (computed client-side from JDSpec + resume) ─────────
+
+export type MatchZone = "skills" | "experience" | "other";
+
+export interface AtsSkillMatch {
+  term: string;
+  weight: number;
+  type: SkillType;
+  matched: boolean;
+  matchValue: number;                 // 0..1 incl. placement modifier
+  foundIn: MatchZone[];
+}
+
+export interface AtsComponents {
+  required: number;                   // each 0..1
+  preferred: number;
+  title: number;
+  context: number;
+}
+
+export type AtsLabel =
+  | "Weak match" | "Partial match" | "Decent match" | "Strong match" | "Excellent match";
+
+export interface AtsMatchResult {
+  score: number;                      // 0..100
+  label: AtsLabel;
+  components: AtsComponents;
+  titleMatched: boolean;
+  requiredSkills: AtsSkillMatch[];
+  preferredSkills: AtsSkillMatch[];
+  domainKeywords: AtsSkillMatch[];
+  missing: AtsSkillMatch[];           // unmatched required+preferred, weight desc
+  matchedCount: number;               // over required+preferred
+  totalCount: number;
+  seniority: Seniority;
+  jobTitle: string;
+  responsibilities: JdSpecResponsibility[];
+}
+
+// ─── Advanced Resume Strength (content-only, no template credit) ───────────────
+
+export type StrengthDimension =
+  | "impact" | "language" | "specificity" | "density" | "substance";
+
+export interface StrengthCheck {
+  checkId: string;
+  dimension: StrengthDimension;
+  message: string;
+  pointsLost: number;
+  affectedItems?: string[];
+}
+
+export interface ResumeStrengthScore {
+  totalScore: number;                 // 0..100
+  label: "Needs Work" | "Fair" | "Good" | "Strong" | "Excellent";
+  dimensionScores: Record<StrengthDimension, number>;
+  dimensionMax: Record<StrengthDimension, number>;
+  failedChecks: StrengthCheck[];
+  passedChecks: string[];
+}

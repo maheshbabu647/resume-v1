@@ -1,6 +1,11 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy, Suspense, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { getPostBySlug } from './blogRegistry'
+import { useArticle, usePublishedArticles } from './articlesApi'
+import type { ArticleDetail, ArticleListItem } from './articlesApi'
+import { BlogPostLayout } from './BlogPostLayout'
+import type { PostCardData } from './blogCategories'
+import { ArticleMarkdown, extractToc } from './ArticleMarkdown'
 
 // ── Lazy-load each post component ──────────────────────────────
 // Add a new entry here for every new post you write.
@@ -118,19 +123,85 @@ const NotFound = () => (
   </div>
 )
 
+// ── DB-backed article rendering ─────────────────────────────────
+function DbArticle({ article, list }: { article: ArticleDetail; list?: ArticleListItem[] }) {
+  const tocEntries = useMemo(
+    () => extractToc(article.content, article.contentFormat),
+    [article.content, article.contentFormat]
+  )
+
+  const related: PostCardData[] = useMemo(() => {
+    if (!list || list.length === 0) return []
+    return list
+      .filter((a) => a.slug !== article.slug)
+      .slice(0, 3)
+      .map((a) => ({
+        slug: a.slug,
+        title: a.title,
+        shortTitle: a.shortTitle,
+        metaDescription: a.metaDescription,
+        ogImage: a.ogImage ?? '',
+        publishedAt: a.publishedAt ?? a.createdAt,
+        updatedAt: a.updatedAt,
+        readingTime: a.readingTime ?? 5,
+        tags: a.tags,
+        series: a.series,
+        seriesDay: a.seriesDay,
+        excerpt: a.excerpt,
+        coverImage: a.coverImage,
+      }))
+  }, [list, article.slug])
+
+  return (
+    <BlogPostLayout
+      slug={article.slug}
+      post={{
+        title: article.title,
+        shortTitle: article.shortTitle,
+        metaDescription: article.metaDescription,
+        ogImage: article.ogImage,
+        publishedAt: article.publishedAt,
+        updatedAt: article.updatedAt,
+        readingTime: article.readingTime,
+        tags: article.tags,
+        series: article.series,
+        seriesDay: article.seriesDay,
+        excerpt: article.excerpt,
+      }}
+      related={related}
+      heroImagePath={article.coverImage}
+      tocEntries={tocEntries}
+    >
+      <ArticleMarkdown content={article.content} contentFormat={article.contentFormat} />
+    </BlogPostLayout>
+  )
+}
+
 export default function BlogPostRouter() {
   const { slug } = useParams<{ slug: string }>()
+  const { data: article, isLoading, isError } = useArticle(slug)
+  const { data: listData } = usePublishedArticles({ limit: 50 })
 
   if (!slug) return <NotFound />
 
-  const post = getPostBySlug(slug)
-  const PostComponent = POST_COMPONENTS[slug]
+  // 1. DB article found → render it
+  if (article) return <DbArticle article={article} list={listData?.articles} />
 
-  if (!post || !PostComponent) return <NotFound />
+  // 2. Still loading from the API → spinner
+  if (isLoading) return <Fallback />
 
-  return (
-    <Suspense fallback={<Fallback />}>
-      <PostComponent />
-    </Suspense>
-  )
+  // 3. API errored or 404 → fall back to the static TSX post (pre-migration safety net)
+  if (isError) {
+    const post = getPostBySlug(slug)
+    const PostComponent = POST_COMPONENTS[slug]
+    if (post && PostComponent) {
+      return (
+        <Suspense fallback={<Fallback />}>
+          <PostComponent />
+        </Suspense>
+      )
+    }
+  }
+
+  return <NotFound />
 }

@@ -15,14 +15,28 @@ import type { RegisterBody, LoginBody, VerifyEmailBody, ResendOtpBody, ForgotPas
 const oauthClient = new OAuth2Client(env.GOOGLE_CLIENT_ID, env.GOOGLE_CLIENT_SECRET, env.GOOGLE_CALLBACK_URL)
 
 const toSafeUser = (user: IUser): SafeUser => ({
-  _id: user._id.toString(), name: user.name, email: user.email,
-  avatarUrl: user.avatarUrl, plan: user.plan, resumeCount: user.resumeCount,
-  referralCode: user.referralCode, createdAt: user.createdAt,
+  _id: user._id.toString(),
+  name: user.name,
+  email: user.email,
+  avatarUrl: user.avatarUrl,
+  role: user.role ?? 'user',
+  plan: user.plan,
+  resumeCount: user.resumeCount,
+  onboarding: user.onboarding ?? { status: 'pending' },
+  lastActiveResumeId: user.lastActiveResumeId?.toString(),
+  referralCode: user.referralCode,
+  createdAt: user.createdAt,
   isEmailVerified: user.isEmailVerified,
 })
 
 const buildTokens = (user: IUser) => ({
-  accessToken:  signAccessToken({ _id: user._id.toString(), name: user.name, email: user.email, plan: user.plan }),
+  accessToken:  signAccessToken({
+    _id: user._id.toString(),
+    name: user.name,
+    email: user.email,
+    plan: user.plan,
+    role: user.role ?? 'user',
+  }),
   refreshToken: signRefreshToken(user._id.toString()),
 })
 
@@ -105,8 +119,8 @@ export const register = async (body: RegisterBody, guestId?: string): Promise<{ 
 
 export const login = async (body: LoginBody, guestId?: string): Promise<AuthResult> => {
   const user = await User.findOne({ email: body.email })
-  if (!user || !user.passwordHash) throw new AppError('AUTH_CREDENTIALS_BAD', 401)
-  if (!await bcrypt.compare(body.password, user.passwordHash)) throw new AppError('AUTH_CREDENTIALS_BAD', 401)
+  if (!user || !user.passwordHash) throw new AppError('AUTH_CREDENTIALS_BAD', 401, 'Invalid email or password.')
+  if (!await bcrypt.compare(body.password, user.passwordHash)) throw new AppError('AUTH_CREDENTIALS_BAD', 401, 'Invalid email or password.')
   
   if (!user.isEmailVerified) throw new AppError('AUTH_UNVERIFIED', 403, 'Email not verified')
 

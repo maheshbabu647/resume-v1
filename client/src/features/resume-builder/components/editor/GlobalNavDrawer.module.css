@@ -36,13 +36,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(197, 198, 207, 0.3);
+  border-bottom: 1px solid var(--border-soft);
 }
 
 .title {
+  font-family: var(--font-display);
   font-size: var(--text-lg);
-  font-weight: var(--weight-bold);
-  color: var(--primary-container);
+  font-weight: var(--weight-extrabold);
+  color: var(--dark);
+  letter-spacing: var(--tracking-snug);
 }
 
 .closeBtn {
@@ -74,8 +76,8 @@
 }
 
 .navLink:hover {
-  background: var(--surface-container-low);
-  color: var(--primary-container);
+  background: var(--brand-light);
+  color: var(--brand);
 }
 
 .spacer {

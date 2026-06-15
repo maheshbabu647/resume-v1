@@ -1,8 +1,9 @@
 .panel {
-  width: var(--form-panel-w);
+  width: var(--edit-panel-w);
   flex-shrink: 0;
+  min-height: 0;
   background: var(--surface-container-lowest);
-  border-right: 1px solid rgba(197, 198, 207, 0.35);
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -11,24 +12,30 @@
 
 .panelHead {
   padding: var(--space-5) var(--space-6) var(--space-4);
-  border-bottom: 1px solid rgba(197, 198, 207, 0.3);
+  border-bottom: 1px solid var(--border-soft);
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .headLeft { display: flex; align-items: center; gap: var(--space-3); }
-.panelTitle { font-size: var(--text-xl); font-weight: var(--weight-bold); color: var(--primary-container); letter-spacing: var(--tracking-snug); }
-.panelTitleInput {
+.panelTitle {
+  font-family: var(--font-display);
   font-size: var(--text-xl);
-  font-weight: var(--weight-bold);
-  color: var(--primary-container);
+  font-weight: var(--weight-extrabold);
+  color: var(--dark);
+  letter-spacing: var(--tracking-snug);
+}
+.panelTitleInput {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-extrabold);
+  color: var(--dark);
   letter-spacing: var(--tracking-snug);
   background: transparent;
   border: none;
   border-bottom: 2px dashed transparent;
   outline: none;
-  font-family: var(--font-sans);
   width: 100%;
   max-width: 240px;
   padding: 0;
@@ -37,19 +44,19 @@
 }
 .panelTitleInput:hover,
 .panelTitleInput:focus {
-  border-bottom-color: rgba(197, 198, 207, 0.8);
+  border-bottom-color: var(--muted-2);
 }
 
 
 .examplesBtn {
   display: flex; align-items: center; gap: 4px;
   font-size: 11px; font-weight: var(--weight-bold);
-  color: var(--secondary); background: var(--success-container);
+  color: var(--brand); background: var(--brand-light);
   padding: 4px 10px; border-radius: var(--radius-full);
   border: none; cursor: pointer; letter-spacing: 0.04em; text-transform: uppercase;
   font-family: var(--font-sans); transition: all var(--transition-fast);
 }
-.examplesBtn:hover { background: #c4f5e1; }
+.examplesBtn:hover { background: color-mix(in srgb, var(--brand) 14%, var(--brand-light)); }
 
 .panelBody { flex: 1; overflow-y: auto; padding: var(--space-6); }
 
@@ -85,14 +92,14 @@
   background: transparent; cursor: pointer;
   transition: all var(--transition-fast); font-family: var(--font-sans);
 }
-.addBtn:hover { border-color: var(--secondary); color: var(--secondary); background: var(--success-container); }
+.addBtn:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-light); }
 
 .emptyForm { padding: var(--space-8); text-align: center; color: var(--on-surface-variant); font-size: var(--text-sm); }
 
 /* Footer */
 .panelFooter {
   padding: var(--space-4) var(--space-6);
-  border-top: 1px solid rgba(197, 198, 207, 0.3);
+  border-top: 1px solid var(--border-soft);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -115,10 +122,10 @@
   display: flex; align-items: center; justify-content: space-between;
   padding: var(--space-5) var(--space-6);
   background: var(--surface-container-low);
-  border-bottom: 1px solid rgba(197, 198, 207, 0.3);
+  border-bottom: 1px solid var(--border-soft);
   flex-shrink: 0;
 }
-.examplesTitle { display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-base); font-weight: var(--weight-bold); color: var(--on-surface); }
+.examplesTitle { display: flex; align-items: center; gap: var(--space-2); font-family: var(--font-display); font-size: var(--text-base); font-weight: var(--weight-extrabold); color: var(--dark); }
 .examplesClose { background: none; border: none; color: var(--on-surface-variant); cursor: pointer; display: flex; align-items: center; padding: 4px; border-radius: var(--radius-sm); }
 .examplesClose:hover { background: var(--surface-container); }
 
@@ -136,15 +143,15 @@
 }
 .tipCard strong { display: block; color: var(--on-surface); font-weight: var(--weight-semibold); margin-bottom: var(--space-2); }
 .tipCard:hover { background: var(--surface-container-lowest); box-shadow: var(--shadow-sm); }
-.tipCard.good { border-left: 3px solid var(--success); }
+.tipCard.good { border-left: 3px solid var(--green); }
 .tipCard.bad { border-left: 3px solid var(--error); }
-.tipCard.formula { border-left: 3px solid var(--secondary); background: var(--secondary-container); color: var(--on-secondary-container); }
-.tipCard.formula strong { color: var(--on-secondary-container); }
+.tipCard.formula { border-left: 3px solid var(--brand); background: var(--brand-light); color: var(--dark); }
+.tipCard.formula strong { color: var(--dark); }
 
 .tipPurpose { font-size: var(--text-sm); font-style: italic; color: var(--on-surface-variant); margin-bottom: var(--space-4); opacity: 0.8; }
 .tipsList { list-style: disc; padding-left: var(--space-5); margin-bottom: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
 .tipsList li { font-size: var(--text-sm); color: var(--on-surface); line-height: var(--leading-relaxed); }
-.sectionLabelTag { font-size: 10px; font-weight: var(--weight-bold); text-transform: uppercase; color: var(--secondary); margin-bottom: 4px; display: block; }
+.sectionLabelTag { font-size: 10px; font-weight: var(--weight-bold); text-transform: uppercase; letter-spacing: var(--tracking-wider); color: var(--muted); margin-bottom: 4px; display: block; }
 
 /* Group Fields (Nested) */
 .groupField {
@@ -226,7 +233,7 @@
 .formNavigation {
   margin-top: var(--space-10);
   padding-top: var(--space-6);
-  border-top: 1px solid rgba(197, 198, 207, 0.2);
+  border-top: 1px solid var(--border-soft);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -239,7 +246,7 @@
   width: 44px;
   height: 44px;
   background: var(--surface-container-low);
-  border: 1px solid var(--outline-variant);
+  border: 1px solid var(--border);
   border-radius: var(--radius-md);
   color: var(--on-surface-variant);
   cursor: pointer;
@@ -247,9 +254,9 @@
 }
 
 .navBtn:hover {
-  background: var(--surface-container-highest);
-  color: var(--primary);
-  border-color: var(--primary);
+  background: var(--brand-light);
+  color: var(--brand);
+  border-color: var(--brand);
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
 }
@@ -266,7 +273,8 @@
   .panel {
     width: 100%;
     /* Flex is handled by parent, we just want it to grow or shrink as needed */
-    flex: 1; 
+    flex: 1;
+    border-right: none;
   }
 
   .hiddenOnMobile {
@@ -308,7 +316,7 @@
     align-items: center;
     gap: var(--space-2);
     padding: 6px 14px;
-    background: var(--surface-container-highest);
+    background: var(--border-soft);
     border: 1.5px solid transparent;
     border-radius: var(--radius-full);
     color: var(--on-surface-variant);
@@ -320,10 +328,10 @@
   }
 
   .pillActive {
-    background: var(--primary-container);
+    background: var(--brand);
     color: white;
-    border-color: var(--primary-container);
-    box-shadow: 0 4px 12px rgba(13, 18, 28, 0.2);
+    border-color: var(--brand);
+    box-shadow: var(--shadow-brand);
   }
 
   .sectionPill svg {
@@ -374,7 +382,7 @@
   .groupItem {
     align-items: flex-start;
     padding-bottom: var(--space-2);
-    border-bottom: 1px solid rgba(197, 198, 207, 0.2);
+    border-bottom: 1px solid var(--border-soft);
   }
 
   .removeSubBtn {

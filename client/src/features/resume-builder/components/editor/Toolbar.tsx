@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ChevronLeft, Download, Save, LayoutTemplate, Loader2, Edit2, Eye, PenLine, Menu, List } from 'lucide-react'
+import { ChevronLeft, Download, Save, LayoutTemplate, Loader2, Edit2, Eye, PenLine, Menu, List, RotateCcw, RotateCw, SlidersHorizontal } from 'lucide-react'
 import { useQueryClient } from '@tanstack/react-query'
 import { Button } from '@/shared/components/Button/Button'
 import { apiClient } from '@/shared/lib/apiClient'
@@ -10,6 +10,7 @@ import { useEditorUIStore } from '../../store/useEditorUIStore'
 import { useResumeStore } from '../../store/useResumeStore'
 import { useAuthStore } from '@/core/auth/useAuthStore'
 import { AuthRequireModal } from '@/shared/components/AuthRequireModal/AuthRequireModal'
+import { ScoreBadges } from './ScoreBadges'
 import styles from './Toolbar.module.css'
 
 export const Toolbar = () => {
@@ -28,6 +29,10 @@ export const Toolbar = () => {
   const setMobileViewMode = useEditorUIStore((s) => s.setMobileViewMode)
   const toggleMobileNav = useEditorUIStore((s) => s.toggleMobileNav)
   const toggleGlobalNav = useEditorUIStore((s) => s.toggleGlobalNav)
+  const undo = useResumeStore((s) => s.undo)
+  const redo = useResumeStore((s) => s.redo)
+  const historyLen = useResumeStore((s) => s.history.length)
+  const futureLen = useResumeStore((s) => s.future.length)
   const [authModalArgs, setAuthModalArgs] = useState<{ isOpen: boolean; pendingAction?: 'save' | 'export' }>({ isOpen: false })
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -150,6 +155,11 @@ export const Toolbar = () => {
                 background: transparent !important;
                 width: 210mm !important;
                 min-height: auto !important;
+                /* The live-preview hides this element off-canvas; make it visible for export */
+                position: static !important;
+                visibility: visible !important;
+                pointer-events: auto !important;
+                z-index: auto !important;
               }
 
               /* @page margins: Classic Sidebar uses 0 (full-bleed color reaches edges).
@@ -316,6 +326,29 @@ export const Toolbar = () => {
         </div>
 
         <div className={styles.right}>
+          {/* Live score pills — ATS match + resume strength */}
+          <ScoreBadges />
+
+          {/* History (Undo/Redo) */}
+          <div className={styles.historyCluster}>
+            <button
+              className={styles.historyBtn}
+              onClick={undo}
+              disabled={historyLen === 0}
+              title="Undo (Ctrl+Z)"
+            >
+              <RotateCcw size={14} />
+            </button>
+            <button
+              className={styles.historyBtn}
+              onClick={redo}
+              disabled={futureLen === 0}
+              title="Redo (Ctrl+Y)"
+            >
+              <RotateCw size={14} />
+            </button>
+          </div>
+
           {/* Desktop Actions */}
           <div className={styles.desktopActions}>
             <Button variant="ghost" size="sm" onClick={() => { trackTemplateGalleryOpened(); toggleGallery() }}>
@@ -361,11 +394,17 @@ export const Toolbar = () => {
             >
               <PenLine size={12} /> <span>Edit</span>
             </button>
-            <button 
+            <button
               className={`${styles.toggleBtn} ${mobileViewMode === 'preview' ? styles.toggleActive : ''}`}
               onClick={() => setMobileViewMode('preview')}
             >
               <Eye size={12} /> <span>Preview</span>
+            </button>
+            <button
+              className={`${styles.toggleBtn} ${mobileViewMode === 'insights' ? styles.toggleActive : ''}`}
+              onClick={() => setMobileViewMode('insights')}
+            >
+              <SlidersHorizontal size={12} /> <span>Insights</span>
             </button>
           </div>
         </div>

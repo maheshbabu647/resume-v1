@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { CheckCircle2, KeyRound, ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Mail, Check } from 'lucide-react'
 import { Button } from '@/shared/components/Button/Button'
 import { Input } from '@/shared/components/Input/Input'
+import { CfpLogo } from '@/shared/components/CfpLogo/CfpLogo'
 import { apiClient } from '@/shared/lib/apiClient'
+import { AuthBrandPanel } from './AuthBrandPanel'
+import { AuthHeading } from './AuthFormKit'
 import styles from './auth-pages.module.css'
-import fpStyles from './ForgotPasswordPage.module.css'
+import kit from './AuthFormKit.module.css'
 
 type Step = 'email' | 'sent'
 
@@ -54,104 +57,100 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className={styles.page}>
-      {/* ── Left branding panel ── */}
-      <div className={styles.leftPanel}>
-        <div className={styles.leftContent}>
-          <Link to="/" className={styles.brand}>
-            <div className={styles.brandLogo}>CF</div>
-            <span className={styles.brandName}>CareerForge</span>
-          </Link>
-          <h2 className={styles.leftTitle}>Back in control in under a minute.</h2>
-          <ul className={styles.leftPoints}>
-            {[
-              'Link sent instantly to your inbox',
-              'Secure, one-time reset token',
-              'Expires after 1 hour',
-              'Your data stays safe and private',
-            ].map((p) => (
-              <li key={p} className={styles.leftPoint}>
-                <CheckCircle2 size={16} color="var(--secondary-container)" />
-                {p}
-              </li>
-            ))}
-          </ul>
+      <div className={styles.formColumn}>
+        <div className={styles.logo}>
+          <CfpLogo />
         </div>
-        <div className={styles.leftDecor} />
-      </div>
 
-      {/* ── Right form panel ── */}
-      <div className={styles.rightPanel}>
-        <div className={styles.formCard}>
+        <div className={styles.formCenter}>
           {step === 'email' && (
             <>
-              <div className={fpStyles.iconWrap}>
-                <KeyRound size={24} strokeWidth={1.8} />
-              </div>
-              <h1 className={styles.formTitle}>Forgot password?</h1>
-              <p className={styles.formSub}>
-                Enter your account email and we'll send you a reset link.
-              </p>
+              <Link to="/login" className={kit.backLink}>
+                <ArrowLeft size={14} /> Back to log in
+              </Link>
+
+              <AuthHeading
+                title="Forgot password?"
+                sub="No worries. Enter the email tied to your account and we'll send you a reset link."
+              />
 
               {error && <div className={styles.errorBanner}>{error}</div>}
 
               <form className={styles.form} onSubmit={handleSubmit}>
                 <Input
-                  label="Email address"
+                  label="Email"
                   type="email"
                   placeholder="you@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  leftIcon={<Mail size={16} />}
+                  autoFocus
                   required
                 />
-                <Button type="submit" loading={loading} style={{ width: '100%' }}>
-                  Send Reset Link <ArrowRight size={16} />
+
+                <Button type="submit" variant="primary" size="lg" fullWidth loading={loading} className={kit.primaryBtn}>
+                  Send reset link <ArrowRight size={14} />
                 </Button>
               </form>
 
-              <p className={styles.switchPrompt}>
-                <Link to="/login" className={fpStyles.backLink}>
-                  <ArrowLeft size={14} /> Back to login
-                </Link>
+              <p className={kit.switchPrompt}>
+                Remembered it? <Link to="/login" className={kit.switchLink}>Log in</Link>
               </p>
             </>
           )}
 
           {step === 'sent' && (
-            <div className={fpStyles.sentWrap}>
-              <div className={fpStyles.sentIcon}>
-                <CheckCircle2 size={36} strokeWidth={1.6} />
+            <>
+              <div className={`${kit.iconBox} ${kit.iconBoxGreen}`}>
+                <Check size={24} strokeWidth={2.5} />
               </div>
-              <h1 className={styles.formTitle}>Check your inbox</h1>
-              <p className={styles.formSub}>
-                We've sent a reset link to <strong>{email}</strong>. It expires in 1 hour.
-              </p>
+
+              <AuthHeading
+                title="Check your inbox"
+                sub={<>We sent a password reset link to <strong style={{ color: 'var(--dark)' }}>{email}</strong>. The link expires in 30 minutes.</>}
+              />
 
               {error && <div className={styles.errorBanner}>{error}</div>}
 
-              <div className={fpStyles.resendRow}>
-                <span className={fpStyles.resendNote}>Didn't receive it?</span>
-                <button
-                  className={fpStyles.resendBtn}
-                  onClick={handleResend}
-                  disabled={resendCooldown > 0 || loading}
-                >
-                  {loading
-                    ? 'Sending…'
-                    : resendCooldown > 0
-                      ? `Resend in ${resendCooldown}s`
-                      : 'Resend email'}
-                </button>
+              <div className={kit.noteBox}>
+                <div className={kit.noteBoxTitle}>Didn't receive it?</div>
+                <ul className={kit.noteBoxList}>
+                  <li>Check your spam or promotions folder</li>
+                  <li>Make sure you typed the right email</li>
+                  <li>Wait 60 seconds — sometimes mail is delayed</li>
+                </ul>
               </div>
 
-              <p className={styles.switchPrompt}>
-                <Link to="/login" className={fpStyles.backLink}>
-                  <ArrowLeft size={14} /> Back to login
-                </Link>
+              <Button
+                variant="ghost"
+                size="lg"
+                fullWidth
+                loading={loading}
+                disabled={resendCooldown > 0}
+                onClick={handleResend}
+                className={kit.primaryBtn}
+              >
+                {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : 'Resend reset link'}
+              </Button>
+
+              <p className={kit.switchPrompt}>
+                <Link to="/login" className={kit.switchLink}>← Back to log in</Link>
               </p>
-            </div>
+            </>
           )}
         </div>
+
+        <div className={styles.footerRow}>
+          <span>© 2026 CareerForgePro</span>
+          <div className={styles.footerLinks}>
+            <Link to="/terms">Terms</Link>
+            <Link to="/privacy">Privacy</Link>
+            <Link to="/contact">Help</Link>
+          </div>
+        </div>
       </div>
+
+      <AuthBrandPanel view="forgot" />
     </div>
   )
 }

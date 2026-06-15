@@ -3,12 +3,14 @@ import { FileUp, FileText, PenLine, ChevronRight, ArrowLeft, Check, AlertCircle,
 import { apiClient } from '@/shared/lib/apiClient'
 import { trackResumeStartedFresh, trackResumeImported } from '@/shared/lib/analytics'
 import { useResumeStore } from '../../store/useResumeStore'
+import OnboardingFlow, { type OnboardingData, formatGrade } from './OnboardingFlow'
 import styles from './ResumeOnboarding.module.css'
 
-type Step = 'choice' | 'upload' | 'processing' | 'error'
+type Step = 'choice' | 'upload' | 'processing' | 'error' | 'flow'
 
 interface ResumeOnboardingProps {
   onComplete: () => void
+  initialStep?: 'choice' | 'upload' | 'flow'
 }
 
 const PROCESSING_STEPS = [
@@ -18,8 +20,8 @@ const PROCESSING_STEPS = [
   { id: 'prefill', label: 'Prefilling your resume editor' },
 ]
 
-export default function ResumeOnboarding({ onComplete }: ResumeOnboardingProps) {
-  const [step, setStep] = useState<Step>('choice')
+export default function ResumeOnboarding({ onComplete, initialStep }: ResumeOnboardingProps) {
+  const [step, setStep] = useState<Step>(initialStep ?? 'choice')
   const [isDragOver, setIsDragOver] = useState(false)
   const [processingStep, setProcessingStep] = useState(0)
   const [errorMsg, setErrorMsg] = useState('')
@@ -27,6 +29,52 @@ export default function ResumeOnboarding({ onComplete }: ResumeOnboardingProps) 
   const loadResume = useResumeStore(s => s.loadResume)
 
   const handleStartFresh = () => {
+    setStep('flow')
+  }
+
+  const handleFlowComplete = (data: OnboardingData) => {
+    const contactLinks = [
+      { text: 'LinkedIn', url: data.linkedin },
+      { text: 'GitHub', url: data.github },
+      { text: 'Portfolio', url: data.portfolio },
+    ].filter(l => l.url.trim())
+
+    const educationEntries = data.education.map(e => ({
+      qualification: [e.degree, e.field].filter(Boolean).join(' in '),
+      institution: e.school,
+      honorsOrMinor: '',
+      dates: [e.startYear, e.endYear].filter(Boolean).join(' – '),
+      gpa: formatGrade(e),
+      description: '',
+    }))
+
+    loadResume({
+      _id: null,
+      title: data.name ? `${data.name}'s Resume` : 'New Resume',
+      templateId: useResumeStore.getState().templateId,
+      personalInfo: {
+        fullName: data.name,
+        title: data.headline,
+        summary: data.objective,
+        email: data.email,
+        phone: data.phone,
+        location: data.location,
+        contactLinks,
+      },
+      sections: [
+        { key: 'summary', visible: true, order: 0, entries: [] },
+        { key: 'experience', visible: true, order: 1, entries: [{ jobTitle: '', company: '', employmentType: '', location: '', dates: '', description: '' }] },
+        {
+          key: 'education', visible: true, order: 2,
+          entries: educationEntries.length > 0
+            ? educationEntries
+            : [{ qualification: '', institution: '', honorsOrMinor: '', dates: '', gpa: '', description: '' }]
+        },
+        { key: 'skills', visible: true, order: 3, entries: [{ category: '', skillList: data.skills.join(', ') }] },
+      ],
+      customization: null,
+    })
+
     trackResumeStartedFresh()
     onComplete()
   }
@@ -99,6 +147,10 @@ export default function ResumeOnboarding({ onComplete }: ResumeOnboardingProps) 
     setIsDragOver(false)
     const file = e.dataTransfer.files?.[0]
     if (file) processFile(file)
+  }
+
+  if (step === 'flow') {
+    return <OnboardingFlow onComplete={handleFlowComplete} onExit={onComplete} />
   }
 
   return (

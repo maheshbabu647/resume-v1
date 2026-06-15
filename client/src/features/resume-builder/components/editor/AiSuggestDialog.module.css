@@ -167,10 +167,10 @@
   font-size: 10px;
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wider);
-  color: rgba(0, 108, 73, 0.9); /* secondary */
+  color: #818cf8;
   text-transform: uppercase;
-  background: rgba(0, 108, 73, 0.12);
-  border: 1px solid rgba(0, 108, 73, 0.2);
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.2);
   padding: 3px 10px;
   border-radius: var(--radius-full);
   white-space: nowrap;
@@ -238,7 +238,7 @@
   gap: 6px;
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-full);
-  background: linear-gradient(135deg, #006c49, #00a36c); /* emerald — secondary */
+  background: linear-gradient(135deg, var(--brand-dark), var(--brand));
   border: none;
   color: #ffffff;
   font-size: var(--text-xs);
@@ -252,7 +252,7 @@
 .useBtn:hover {
   filter: brightness(1.1);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 108, 73, 0.35);
+  box-shadow: var(--shadow-brand);
 }
 
 .useBtn:active {

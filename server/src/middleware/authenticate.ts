@@ -7,7 +7,8 @@ export interface RequestUser {
   _id: string
   name: string
   email: string
-  plan: 'seeker' | 'hustler' | 'closer'
+  plan: 'free' | 'seeker' | 'hustler' | 'closer'
+  role?: 'user' | 'admin'
 }
 
 declare global {

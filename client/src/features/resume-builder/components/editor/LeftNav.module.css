@@ -2,28 +2,68 @@
   width: var(--leftnav-w);
   flex-shrink: 0;
   background: var(--surface-container-lowest);
-  border-right: 1px solid rgba(197, 198, 207, 0.35);
+  border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  transition: width var(--transition-base);
+}
+
+.navCollapsed {
+  width: var(--leftnav-collapsed-w);
+  overflow: hidden;
 }
 
 .navHead {
-  padding: var(--space-6) var(--space-4) var(--space-4);
+  padding: var(--space-4) var(--space-4) var(--space-3);
   background: var(--surface-container-low);
-  border-bottom: 1px solid rgba(197, 198, 207, 0.4);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.navCollapsed .navHead {
+  padding: var(--space-4) 0;
+  justify-content: center;
 }
 
 .navHeadTitle {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  font-size: var(--text-lg);
-  font-weight: var(--weight-bold);
-  color: var(--primary-container);
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: var(--weight-extrabold);
+  letter-spacing: var(--tracking-snug);
+  color: var(--dark);
 }
 
-.logoIcon { color: var(--secondary); }
+.navCollapsed .navHeadTitle {
+  display: none;
+}
+
+.logoIcon { color: var(--brand); }
+
+.collapseToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.collapseToggle:hover {
+  background: var(--surface-container-lowest);
+  color: var(--dark);
+}
 
 .mobileHint {
   display: none;
@@ -33,16 +73,17 @@
   display: none;
 }
 
-.navList { display: flex; flex-direction: column; }
+.navList { display: flex; flex-direction: column; padding: var(--space-2); gap: 1px; }
 
 .navItem {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: 10px var(--space-4);
+  gap: 10px;
+  padding: 9px 10px;
   cursor: pointer;
-  font-size: var(--text-sm);
-  color: var(--on-surface-variant);
+  font-size: 13.5px;
+  color: var(--body);
+  border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   position: relative;
   user-select: none;
@@ -50,26 +91,33 @@
 
 .navItem:hover { background: var(--surface-container-low); color: var(--on-surface); }
 
+.navCollapsed .navItem {
+  justify-content: center;
+  padding: 10px 0;
+}
+.navCollapsed .navLabel,
+.navCollapsed .checkIcon,
+.navCollapsed .lockedIcon,
+.navCollapsed .deleteBtn,
+.navCollapsed .dragHandleAlways {
+  display: none;
+}
+.navCollapsed .manageActions .actionBtn span,
+.navCollapsed .manageActions {
+  display: none;
+}
+
 .navItem.active {
-  background: rgba(19, 27, 46, 0.07);
-  color: var(--primary-container);
+  background: var(--brand-light);
+  color: var(--brand);
   font-weight: var(--weight-semibold);
 }
-.navItem.active .navIcon { color: var(--primary-container); }
+.navItem.active .navIcon { color: var(--brand); }
 
-.navItem.active::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 4px; bottom: 4px;
-  width: 3px;
-  background: var(--primary-container);
-  border-radius: 0 3px 3px 0;
-}
+.navItem.done .checkIcon { color: var(--green); opacity: 1; }
 
-.navItem.done .checkIcon { color: var(--secondary); opacity: 1; }
-
-.navIcon { display: flex; align-items: center; color: var(--outline); flex-shrink: 0; }
-.navItem.active .navIcon { color: var(--primary-container); }
+.navIcon { display: flex; align-items: center; color: var(--muted); flex-shrink: 0; }
+.navItem.active .navIcon { color: var(--brand); }
 
 .navLabel { flex: 1; }
 
@@ -84,8 +132,8 @@
 .rearrangeActive:active { cursor: grabbing !important; }
 
 .dragOver {
-  border-top: 2px solid var(--secondary);
-  background: rgba(0, 108, 73, 0.06);
+  border-top: 2px solid var(--brand);
+  background: var(--brand-light);
 }
 
 .dragHandleAlways {
@@ -119,7 +167,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  border-top: 1px solid rgba(197, 198, 207, 0.2);
+  border-top: 1px solid var(--border-soft);
   background: var(--surface-container-lowest);
   position: sticky;
   bottom: 0;
@@ -136,7 +184,7 @@
   font-weight: var(--weight-medium);
   color: var(--on-surface-variant);
   background: var(--surface-container-low);
-  border: 1px solid rgba(197, 198, 207, 0.4);
+  border: 1px solid var(--border);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -202,14 +250,14 @@
   transition: all var(--transition-fast);
 }
 .modalAddBtn:hover {
-  background: var(--success-container);
-  border-color: var(--secondary);
-  color: var(--secondary);
+  background: var(--brand-light);
+  border-color: var(--brand);
+  color: var(--brand);
   transform: translateY(-2px);
 }
 .modalAddIcon {
-  color: var(--secondary);
-  background: rgba(0, 108, 73, 0.1);
+  color: var(--brand);
+  background: var(--brand-light);
   padding: 12px;
   border-radius: 50%;
 }
@@ -220,7 +268,8 @@
 
 /* Mobile Overrides - Sliding Drawer */
 @media (max-width: 1024px) {
-  .nav {
+  .nav,
+  .navCollapsed {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -233,8 +282,9 @@
     background: var(--surface-container-lowest);
     display: flex; /* Ensure it is visible when open */
     padding-top: 0;
+    overflow-y: auto;
   }
-  
+
   .navOpen {
     transform: translateX(0);
   }
@@ -247,8 +297,34 @@
     background: var(--surface-container-low);
   }
 
+  .navCollapsed .navHeadTitle {
+    display: flex;
+  }
+
   .navHeadTitle {
     font-size: var(--text-base);
+  }
+
+  .collapseToggle {
+    display: none;
+  }
+
+  .navCollapsed .navItem {
+    justify-content: flex-start;
+    padding: 9px 10px;
+  }
+  .navCollapsed .navLabel,
+  .navCollapsed .checkIcon,
+  .navCollapsed .lockedIcon,
+  .navCollapsed .deleteBtn,
+  .navCollapsed .dragHandleAlways {
+    display: revert;
+  }
+  .navCollapsed .manageActions {
+    display: flex;
+  }
+  .navCollapsed .manageActions .actionBtn span {
+    display: inline;
   }
 
   .mobileCloseBtn {

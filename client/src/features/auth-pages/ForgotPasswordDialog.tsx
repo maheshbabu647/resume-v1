@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import { X, CheckCircle2, ArrowRight, KeyRound } from 'lucide-react'
+import { X, Check, ArrowRight, KeyRound, Mail } from 'lucide-react'
 import { Button } from '@/shared/components/Button/Button'
 import { Input } from '@/shared/components/Input/Input'
 import { apiClient } from '@/shared/lib/apiClient'
 import styles from './ForgotPasswordDialog.module.css'
+import kit from './AuthFormKit.module.css'
 
 interface ForgotPasswordDialogProps {
   isOpen: boolean
@@ -102,15 +103,17 @@ export function ForgotPasswordDialog({ isOpen, onClose }: ForgotPasswordDialogPr
 
             <form onSubmit={handleSubmit} className={styles.form}>
               <Input
-                label="Email address"
+                label="Email"
                 type="email"
                 placeholder="you@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                leftIcon={<Mail size={16} />}
+                autoFocus
                 required
               />
-              <Button type="submit" loading={loading} style={{ width: '100%' }}>
-                Send Reset Link <ArrowRight size={16} />
+              <Button type="submit" variant="primary" size="lg" fullWidth loading={loading} className={kit.primaryBtn}>
+                Send reset link <ArrowRight size={14} />
               </Button>
             </form>
 
@@ -123,7 +126,7 @@ export function ForgotPasswordDialog({ isOpen, onClose }: ForgotPasswordDialogPr
         {step === 'sent' && (
           <div className={styles.sentWrap}>
             <div className={styles.sentIcon}>
-              <CheckCircle2 size={32} strokeWidth={1.8} />
+              <Check size={32} strokeWidth={2.5} />
             </div>
             <h2 className={styles.title}>Check your inbox</h2>
             <p className={styles.sub}>

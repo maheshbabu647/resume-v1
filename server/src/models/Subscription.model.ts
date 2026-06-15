@@ -1,3 +1,7 @@
+/**
+ * @deprecated Pricing removed in CareerForge v2 — collection retained for historical
+ * Razorpay records. Do not create new subscriptions. Remove once payment routes are deleted.
+ */
 import { Schema, model, Document, Types } from 'mongoose'
 
 export type SubscriptionStatus = 'created' | 'active' | 'past_due' | 'cancelled' | 'completed'

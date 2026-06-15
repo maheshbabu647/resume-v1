@@ -1,50 +1,79 @@
 /* ============================================================
-   tokens.css — CareerForge Design System
-   "Digital Executive Ledger" — Midnight Navy + Emerald Growth
+   tokens.css — CareerForgePro Design System
+   Indigo + Coral — Bricolage Grotesque + Plus Jakarta Sans
+   Source: career_forge_new_design/design.md
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,600&display=swap');
 
 :root {
-  /* ── Brand Colors ── */
-  --primary:              #000000;
-  --primary-container:    #131b2e;
-  --primary-fixed:        #1e2d4a;
-  --on-primary:           #ffffff;
-  --on-primary-fixed:     #e8edf5;
+  /* ── Brand ── */
+  --brand:              #5046E4;
+  --brand-dark:         #3730D0;
+  --brand-light:        #EEEDFF;
+  --brand-soft:         #F4F2FF;
 
-  --secondary:            #006c49;
-  --secondary-container:  #6cf8bb;
-  --secondary-fixed:      #00a36c;
-  --on-secondary:         #ffffff;
-  --on-secondary-container: #002114;
+  --coral:              #FF5C35;
+  --coral-light:        #FFF1ED;
 
-  /* ── Surface Tiers (Light → Bright = deeper) ── */
-  --surface:                  #f7f9fb;
-  --surface-container-low:    #f2f4f6;
-  --surface-container:        #eceef0;
-  --surface-container-high:   #e4e6e9;
-  --surface-container-lowest: #ffffff;
+  /* ── Neutrals ── */
+  --dark:               #0F0E2A;
+  --body:               #44445A;
+  --muted:              #8888A5;
+  --muted-2:            #B5B5C8;
 
-  --on-surface:           #191c1e;
-  --on-surface-variant:   #45464d;
-  --outline:              #757780;
-  --outline-variant:      #c5c6cf;
+  --border:             #E8E6F4;
+  --border-soft:        #F0EEF9;
 
-  /* ── Status ── */
-  --error:                #ba1a1a;
-  --error-container:      #ffdad6;
-  --on-error:             #ffffff;
-  --on-error-container:   #410002;
+  --bg:                 #FFFFFF;
+  --bg-soft:            #F7F6FF;
+  --bg-warm:            #FFFAF8;
 
-  --success:              #006c49;
-  --success-container:    #d4f7e7;
+  /* ── Feedback ── */
+  --green:              #16A34A;
+  --green-light:        #F0FDF4;
+  --amber:              #F59E0B;
+  --amber-light:        #FEF3C7;
+  --red:                #DC2626;
+  --red-light:          #FEE2E2;
 
-  --warning:              #7a5900;
-  --warning-container:    #ffdea4;
+  /* ── Semantic aliases (used across existing components) ── */
+  --primary:            var(--brand);
+  --primary-container:  var(--brand-dark);
+  --primary-fixed:      var(--brand);
+  --on-primary:         #ffffff;
+
+  --secondary:          var(--coral);
+  --secondary-container: var(--coral-light);
+  --secondary-fixed:    var(--brand);
+  --on-secondary:       #ffffff;
+  --on-secondary-container: var(--dark);
+
+  --surface:            var(--bg-soft);
+  --surface-container-lowest: var(--bg);
+  --surface-container-low: var(--bg-soft);
+  --surface-container:  var(--brand-soft);
+  --surface-container-high: var(--brand-light);
+  --on-surface:         var(--dark);
+  --on-surface-variant: var(--body);
+  --outline:            var(--muted);
+  --outline-variant:    var(--border);
+
+  --error:              var(--red);
+  --error-container:    var(--red-light);
+  --on-error:           #ffffff;
+  --on-error-container: var(--red);
+
+  --success:            var(--green);
+  --success-container:  var(--green-light);
+
+  --warning:            var(--amber);
+  --warning-container:  var(--amber-light);
 
   /* ── Typography ── */
-  --font-sans:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Bricolage Grotesque', Georgia, serif;
+  --font-sans:    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif:   'Newsreader', Georgia, serif;
   --font-mono:    'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
 
   --text-xs:    11px;
@@ -59,24 +88,24 @@
   --text-5xl:   48px;
   --text-6xl:   60px;
 
-  --weight-light:   300;
-  --weight-regular: 400;
-  --weight-medium:  500;
-  --weight-semibold:600;
-  --weight-bold:    700;
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
   --weight-extrabold:800;
-  --weight-black:   900;
+  --weight-black:    900;
 
-  --leading-tight:  1.2;
-  --leading-snug:   1.35;
-  --leading-normal: 1.5;
-  --leading-relaxed:1.65;
+  --leading-tight:   1.05;
+  --leading-snug:    1.15;
+  --leading-normal:  1.55;
+  --leading-relaxed: 1.65;
 
-  --tracking-tight: -0.03em;
-  --tracking-snug:  -0.02em;
+  --tracking-tight:  -0.03em;
+  --tracking-snug:   -0.02em;
   --tracking-normal: 0;
-  --tracking-wide:  0.04em;
-  --tracking-wider: 0.08em;
+  --tracking-wide:   0.04em;
+  --tracking-wider:  0.08em;
 
   /* ── Spacing ── */
   --space-1:  4px;
@@ -96,19 +125,20 @@
 
   /* ── Radius ── */
   --radius-xs:  2px;
-  --radius-sm:  4px;
-  --radius-md:  6px;
+  --radius-sm:  6px;
+  --radius-md:  8px;
   --radius-lg:  10px;
   --radius-xl:  14px;
   --radius-2xl: 20px;
   --radius-full: 9999px;
 
-  /* ── Elevation / Shadows (Soft Studio Light) ── */
-  --shadow-sm:  0 1px 4px rgba(15, 23, 42, 0.06);
-  --shadow-md:  0 4px 16px rgba(15, 23, 42, 0.08);
-  --shadow-lg:  0 8px 24px rgba(15, 23, 42, 0.10);
-  --shadow-xl:  0 16px 40px rgba(15, 23, 42, 0.12);
-  --shadow-ambient: 0 8px 24px rgba(15, 23, 42, 0.08);
+  /* ── Shadows ── */
+  --shadow-sm:  0 1px 4px rgba(15, 14, 42, 0.06);
+  --shadow-md:  0 4px 16px rgba(15, 14, 42, 0.08);
+  --shadow-lg:  0 8px 24px rgba(15, 14, 42, 0.10);
+  --shadow-xl:  0 16px 40px rgba(15, 14, 42, 0.12);
+  --shadow-brand: 0 4px 12px rgba(80, 70, 228, 0.22);
+  --shadow-coral: 0 4px 14px rgba(255, 92, 53, 0.28);
 
   /* ── Z-index ── */
   --z-base:    0;
@@ -126,9 +156,11 @@
   --transition-base:  200ms var(--ease-out);
   --transition-slow:  350ms var(--ease-out);
 
-  /* ── Editor Layout ── */
-  --header-h:    56px;
-  --leftnav-w:   244px;
-  --form-panel-w:460px;
-  --util-sidebar-w: 64px;
+  /* ── Layout ── */
+  --header-h:    68px;
+  --leftnav-w:   248px;
+  --leftnav-collapsed-w: 60px;
+  --edit-panel-w: 420px;
+  --right-panel-w: 360px;
+  --right-panel-collapsed-w: 60px;
 }

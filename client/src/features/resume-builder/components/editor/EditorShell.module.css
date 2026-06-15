@@ -12,9 +12,3 @@
   overflow: hidden;
   position: relative;
 }
-
-@media (max-width: 1024px) {
-  .body {
-    padding-bottom: 60px; /* Accounts for bottom-fixed util sidebar */
-  }
-}

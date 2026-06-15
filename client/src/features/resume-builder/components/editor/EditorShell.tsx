@@ -1,16 +1,17 @@
 import { useEffect, useState, useRef } from 'react'
-import { useParams, useNavigate, useSearchParams } from 'react-router-dom'
+import { useParams, useNavigate, useSearchParams, useLocation } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { Loader2 } from 'lucide-react'
 import { apiClient } from '@/shared/lib/apiClient'
 import { useResumeStore } from '../../store/useResumeStore'
 import { useEditorUIStore } from '../../store/useEditorUIStore'
+import { useJdMatchStore } from '../../../scoring/store/useJdMatchStore'
 
 import LeftNav from './LeftNav'
 import FormPanel from './FormPanel'
 import PreviewPanel from './PreviewPanel'
+import RightPanel from './RightPanel'
 import { Toolbar } from './Toolbar'
-import { RightSidebarUtils } from './RightSidebarUtils'
 import { GlobalNavDrawer } from './GlobalNavDrawer'
 import ResumeOnboarding from '../onboarding/ResumeOnboarding'
 import styles from './EditorShell.module.css'
@@ -18,16 +19,18 @@ import styles from './EditorShell.module.css'
 export default function EditorShell() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const location = useLocation()
   const [searchParams] = useSearchParams()
   const isTailored = id === 'new' && searchParams.get('tailored') === 'true'
   const resumeId = id === 'new' ? null : id
-  
+
   const loadResume = useResumeStore(s => s.loadResume)
   const setTemplateId = useResumeStore(s => s.setTemplateId)
   const setDirty = useEditorUIStore(s => s.setDirty)
-  
+
   // For tailored resumes or stashed resumes, skip onboarding
   const [showOnboarding, setShowOnboarding] = useState(id === 'new' && !isTailored && !localStorage.getItem('careerforge_unsaved_resume'))
+  const onboardingStep = (location.state as { onboardingStep?: 'choice' | 'upload' | 'flow' } | null)?.onboardingStep
 
   // Fetch resume if loading an existing one
   const { data: remoteResume, isLoading, isError } = useQuery({
@@ -42,6 +45,11 @@ export default function EditorShell() {
   })
 
   const hasInitialized = useRef(false)
+
+  // Load any saved JD-Spec for this resume so the live ATS score persists across reloads.
+  useEffect(() => {
+    useJdMatchStore.getState().hydrate(resumeId ?? 'new')
+  }, [resumeId])
 
   // Synchronize fetched data into the central store and reset dirty state
   useEffect(() => {
@@ -132,11 +140,11 @@ export default function EditorShell() {
         <LeftNav />
         <FormPanel />
         <PreviewPanel />
-        <RightSidebarUtils />
+        <RightPanel />
       </div>
       {/* Onboarding overlay — shown for new resumes, dismissed after user chooses */}
       {showOnboarding && (
-        <ResumeOnboarding onComplete={() => setShowOnboarding(false)} />
+        <ResumeOnboarding onComplete={() => setShowOnboarding(false)} initialStep={onboardingStep} />
       )}
       <GlobalNavDrawer />
     </div>

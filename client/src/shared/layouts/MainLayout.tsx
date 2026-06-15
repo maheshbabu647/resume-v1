@@ -13,18 +13,9 @@ export const MainLayout = () => {
   const [authSubtitle, setAuthSubtitle] = useState('Land the role you\'ve been working toward.')
 
   useEffect(() => {
-    const handleHit = (e: any) => {
-      const feature = e.detail?.feature
-      const featureNames: Record<string, string> = {
-        jdScore: 'JD Match Scoring',
-        jdTailoring: 'JD Resume Tailoring',
-        aiBullets: 'AI Bullet Suggestions',
-        coverLetter: 'Cover Letter Generation',
-        pdfDownloads: 'PDF Downloads',
-      }
-      const featureName = featureNames[feature] || 'our AI tools'
-      setAuthTitle("You've Discovered the Magic ✨")
-      setAuthSubtitle(`You've used your free trial of ${featureName}. Create a free account to unlock more credits and keep going!`)
+    const handleHit = () => {
+      setAuthTitle('Sign in to continue')
+      setAuthSubtitle('Create a free account to save your work and use all CareerForge tools.')
       setAuthModalOpen(true)
     }
     window.addEventListener('guest-limit-hit', handleHit)
