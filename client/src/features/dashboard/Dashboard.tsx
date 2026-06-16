@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import {
   Plus, FileText, MoreHorizontal, Edit3, Copy, Trash2,
-  Clock, X, CheckCircle2,
+  Clock, X, CheckCircle2, Lock,
   ArrowRight, Sparkles, Mail, Gauge, FileSignature,
 } from 'lucide-react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
@@ -195,7 +195,7 @@ function AuthedDashboard() {
         <div className={styles.actionsGrid}>
           {ACTIONS.map((a) => {
             const Icon = a.icon
-            const handleClick = a.action === 'modal'
+            const handleClick = 'action' in a && a.action === 'modal'
               ? () => setShowNewModal(true)
               : () => navigate((a as any).to)
             return (

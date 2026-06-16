@@ -83,7 +83,7 @@ export default function AtsReport() {
   })
 
   // Returns true if allowed to proceed now; otherwise stashes the action and opens the auth modal.
-  const requireAuthThen = (action: { type: 'calc' } | { type: 'file'; file: File }): boolean => {
+  const requireAuthThen = (action: { type: 'calc' } | { type: 'file'; file: File } | { type: 'startChange' }): boolean => {
     if (isAuthenticated) return true
     pendingRef.current = action
     setAuthOpen(true)
