@@ -1138,3 +1138,34 @@ textarea.textInput { resize: vertical; }
   margin-top: 10px;
   border: 1px solid var(--border);
 }
+
+/* ── Responsive ── */
+
+/* ≤ 768px — tablet */
+@media (max-width: 768px) {
+  .canvas { padding: 28px 20px 120px; }
+  .breadcrumbCurrent { max-width: 180px; }
+  .settingsPanel { width: 320px; }
+  .canvasScrollShifted { margin-right: 320px; }
+}
+
+/* ≤ 560px — phone */
+@media (max-width: 560px) {
+  .canvas { padding: 24px 16px 100px; }
+  /* Settings panel covers full width as an overlay on phones */
+  .settingsPanel { width: 100%; }
+  .canvasScrollShifted { margin-right: 0; }
+  /* Toolbar scrolls horizontally */
+  .toolbar { overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; box-sizing: border-box; }
+  .breadcrumbCurrent { max-width: 100px; }
+  .wordCount { display: none; }
+  .ieBody { font-size: 17px; line-height: 1.7; }
+  .bodyPlaceholder { font-size: 17px; }
+}
+
+/* ≤ 390px — small phone */
+@media (max-width: 390px) {
+  .canvas { padding: 20px 12px 100px; }
+  .breadcrumbRoot { display: none; }
+  .vDivider { display: none; }
+}

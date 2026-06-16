@@ -232,23 +232,26 @@ export default function LeftNav() {
       <div className={styles.spacer} />
 
       <div className={styles.manageActions}>
-        <button 
-          className={styles.actionBtn} 
+        <button
+          className={styles.actionBtn}
           onClick={() => { setAddModalOpen(true); setRemoveMode(false); setRearrangeMode(false); }}
+          title="Add Section"
         >
-          <Plus size={14} /> Add Section
+          <Plus size={14} /> <span>Add Section</span>
         </button>
-        <button 
-          className={`${styles.actionBtn} ${isRemoveMode ? styles.actionBtnActiveRed : ''}`} 
+        <button
+          className={`${styles.actionBtn} ${isRemoveMode ? styles.actionBtnActiveRed : ''}`}
           onClick={() => { setRemoveMode(!isRemoveMode); setRearrangeMode(false); }}
+          title={isRemoveMode ? 'Done Removing' : 'Remove Section'}
         >
-          <MinusCircle size={14} /> {isRemoveMode ? 'Done Removing' : 'Remove Section'}
+          <MinusCircle size={14} /> <span>{isRemoveMode ? 'Done Removing' : 'Remove Section'}</span>
         </button>
-        <button 
-          className={`${styles.actionBtn} ${isRearrangeMode ? styles.actionBtnActive : ''}`} 
+        <button
+          className={`${styles.actionBtn} ${isRearrangeMode ? styles.actionBtnActive : ''}`}
           onClick={() => { setRearrangeMode(!isRearrangeMode); setRemoveMode(false); }}
+          title={isRearrangeMode ? 'Done Reordering' : 'Shuffle Layout'}
         >
-          <ArrowUpDown size={14} /> {isRearrangeMode ? 'Done Reordering' : 'Shuffle Layout'}
+          <ArrowUpDown size={14} /> <span>{isRearrangeMode ? 'Done Reordering' : 'Shuffle Layout'}</span>
         </button>
       </div>
 

@@ -102,9 +102,40 @@
 .navCollapsed .dragHandleAlways {
   display: none;
 }
-.navCollapsed .manageActions .actionBtn span,
-.navCollapsed .manageActions {
+.navCollapsed .manageActions .actionBtn span {
   display: none;
+}
+
+.navCollapsed .manageActions {
+  padding: var(--space-2) 0;
+  gap: 2px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.navCollapsed .manageActions .actionBtn {
+  border: none;
+  background: transparent;
+  padding: 10px 0;
+  color: var(--muted);
+  width: 100%;
+  justify-content: center;
+  border-radius: var(--radius-md);
+}
+
+.navCollapsed .manageActions .actionBtn:hover {
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+  border-color: transparent;
+}
+
+.navCollapsed .manageActions .actionBtnActive {
+  background: var(--primary-container);
+  color: white;
+}
+
+.navCollapsed .manageActions .actionBtnActiveRed {
+  background: var(--error);
+  color: white;
 }
 
 .navItem.active {

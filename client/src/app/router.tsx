@@ -83,15 +83,11 @@ export const router = createBrowserRouter([
             path: 'templates',
             element: <Suspense fallback={<Fallback />}><TemplatesPage /></Suspense>
           },
-          { path: 'dashboard',     element: <Suspense fallback={<Fallback />}><Dashboard /></Suspense> },
-          { path: 'cover-letter',  element: <Suspense fallback={<Fallback />}><CoverLetterPage /></Suspense> },
+          { path: 'dashboard',        element: <Suspense fallback={<Fallback />}><Dashboard /></Suspense> },
+          { path: 'cover-letter',     element: <Suspense fallback={<Fallback />}><CoverLetterPage /></Suspense> },
           { path: 'cover-letter/:id', element: <Suspense fallback={<Fallback />}><CoverLetterEditPage /></Suspense> },
+          { path: 'jd-tailor',        element: <Suspense fallback={<Fallback />}><JDTailorPage /></Suspense> },
         ],
-      },
-      {
-        // ATS Score & Tailor: full-screen flow, no sidebar/topbar
-        path: 'jd-tailor',
-        element: <Suspense fallback={<Fallback />}><JDTailorPage /></Suspense>,
       },
       {
         element: <MainLayout />,

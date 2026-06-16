@@ -16,10 +16,7 @@ import { useAtsMatch } from '../hooks/useAtsMatch'
 import { useFetchJdSpec } from '../hooks/useFetchJdSpec'
 import { getScoreColor } from '../lib/scoreColor'
 import { serializeResume } from '../lib/jdPreprocessor'
-import { TailorDiffDialog } from './TailorDiffDialog'
 import SmartTailorStudio from './SmartTailorStudio'
-import { buildFieldDiffs, applyAcceptedDiffs } from './tailorDiffUtils'
-import type { FieldDiffStep } from './tailorDiffUtils'
 import type { AtsSkillMatch, SmartTailorBuckets } from '../types/scoring.types'
 import styles from './ScoreReports.module.css'
 
@@ -68,9 +65,6 @@ export default function AtsReport() {
   }, [draft, jdSpec, DRAFT_KEY])
 
   // Tailor flow
-  const [diffOpen, setDiffOpen] = useState(false)
-  const [diffSteps, setDiffSteps] = useState<FieldDiffStep[]>([])
-  const [pendingTailor, setPendingTailor] = useState<any>(null)
   const [smartOpen, setSmartOpen] = useState(false)
 
   const showInput = !jdSpec || editing
@@ -152,13 +146,9 @@ export default function AtsReport() {
       return res.data.data
     },
     onSuccess: (data) => {
-      const steps = buildFieldDiffs({
-        originalSections: resume.data.sections,
-        rewrittenSections: data.rewrittenSections || [],
-        originalPersonalInfo: resume.data.personalInfo,
-        rewrittenPersonalInfo: data.rewrittenPersonalInfo || null,
-      })
-      setPendingTailor(data); setDiffSteps(steps); setDiffOpen(true)
+      // Apply the rewrite in full — no accept/reject popup. Undo reverts it.
+      useResumeStore.getState().applyTailored(data.rewrittenPersonalInfo, data.rewrittenSections || [])
+      queryClient.invalidateQueries({ queryKey: ['usage'] })
     },
     onError: (err: any) => {
       const code = err?.response?.data?.error?.code ?? err?.response?.data?.code
@@ -193,21 +183,7 @@ export default function AtsReport() {
     tailorMutation.mutate({ resumeId: currentResumeId!, jdText, personalInfo: resume.data.personalInfo, sections: resume.data.sections })
   }
 
-  const handleDiffComplete = (acceptedIds: Set<string>) => {
-    if (!pendingTailor) return
-    applyAcceptedDiffs({
-      acceptedIds, allSteps: diffSteps,
-      originalSections: resume.data.sections,
-      rewrittenSections: pendingTailor.rewrittenSections || [],
-      originalPersonalInfo: resume.data.personalInfo,
-      rewrittenPersonalInfo: pendingTailor.rewrittenPersonalInfo || null,
-      updateSectionEntries: useResumeStore.getState().updateSectionEntries as (key: string, entries: any[]) => void,
-      setPersonalField: useResumeStore.getState().setPersonalField,
-    })
-    queryClient.invalidateQueries({ queryKey: ['usage'] })
-  }
-
-  /* ── Smart Tailor (editor): triage skills → honest rewrite → reuse the diff review ── */
+  /* ── Smart Tailor (editor): triage skills → honest rewrite → apply in full ── */
   const tailorSmartMutation = useMutation({
     mutationFn: async (buckets: SmartTailorBuckets) => {
       const res = await apiClient.post('/ai/tailor-smart', {
@@ -218,21 +194,10 @@ export default function AtsReport() {
       return res.data.data
     },
     onSuccess: (data) => {
-      const steps = buildFieldDiffs({
-        originalSections: resume.data.sections,
-        rewrittenSections: data.sections || [],
-        originalPersonalInfo: resume.data.personalInfo,
-        rewrittenPersonalInfo: data.personalInfo || null,
-      })
-      setPendingTailor({
-        rewrittenSections: data.sections,
-        rewrittenPersonalInfo: data.personalInfo,
-        jdCompanyName: data.jdCompanyName,
-        jdRoleName: data.jdRoleName,
-      })
-      setDiffSteps(steps)
+      // Apply the full tailored resume directly (incl. new skills/sections). No popup.
+      useResumeStore.getState().applyTailored(data.personalInfo, data.sections || [])
       setSmartOpen(false)
-      setDiffOpen(true)
+      queryClient.invalidateQueries({ queryKey: ['usage'] })
     },
     onError: (err: any) => {
       const code = err?.response?.data?.error?.code ?? err?.response?.data?.code
@@ -416,7 +381,7 @@ export default function AtsReport() {
 
       <div className={styles.tailorCard}>
         <p className={styles.tailorTitle}>Tailor my resume to this JD</p>
-        <p className={styles.tailorSub}>Smart Tailor lets you triage each skill and keeps every line honest. Quick tailor just adds the keywords for you. You review every change before it's applied.</p>
+        <p className={styles.tailorSub}>Smart Tailor lets you triage each skill and keeps every line honest. Quick tailor just adds the keywords for you. Changes apply straight to your resume — Undo reverts them.</p>
         <button className={styles.primaryBtn} onClick={openSmart} disabled={tailorSmartMutation.isPending}>
           <Sparkles size={15} /> Smart Tailor
         </button>
@@ -434,16 +399,6 @@ export default function AtsReport() {
         title="Sign in to change the JD"
         subtitle="Your current job description and score stay right here — sign in to swap in a new one."
       />
-      <TailorDiffDialog
-        isOpen={diffOpen}
-        isPending={tailorMutation.isPending}
-        steps={diffSteps}
-        jdCompanyName={pendingTailor?.jdCompanyName}
-        jdRoleName={pendingTailor?.jdRoleName}
-        onComplete={handleDiffComplete}
-        onClose={() => setDiffOpen(false)}
-      />
-
       {smartOpen && jdSpec && (
         <div className={styles.smartOverlay}>
           <div className={styles.smartOverlayBar}>
@@ -454,9 +409,7 @@ export default function AtsReport() {
           </div>
           <div className={styles.smartOverlayBody}>
             <SmartTailorStudio
-              spec={jdSpec}
-              resumeText={serializeResume(resume.data)}
-              baselineScore={ats?.score ?? null}
+              baseline={ats}
               generating={tailorSmartMutation.isPending}
               ctaLabel="Generate changes"
               onGenerate={handleSmartGenerate}

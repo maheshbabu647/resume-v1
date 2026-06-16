@@ -159,7 +159,7 @@
 /* ── Hero mockup ── */
 .mockupWrap {
   max-width: 1100px;
-  margin: 36px auto 0;
+  margin: 64px auto 0;
   padding: 0 clamp(16px, 4vw, 48px);
 }
 
@@ -501,7 +501,7 @@
 ══════════════════════════════════════════════ */
 .section {
   background: var(--bg);
-  padding: 100px clamp(20px, 5vw, 80px);
+  padding: 76px clamp(20px, 5vw, 80px);
 }
 
 .sectionSoft {
@@ -515,7 +515,7 @@
 
 .sectionHead {
   text-align: center;
-  margin-bottom: 56px;
+  margin-bottom: 44px;
 }
 
 .kicker {
@@ -1213,7 +1213,12 @@
 /* ══════════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════════ */
+
+/* ── Tablet landscape ≤ 900px ── */
 @media (max-width: 900px) {
+  .section {
+    padding: 56px clamp(20px, 5vw, 60px);
+  }
   .mockupGrid {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -1224,56 +1229,288 @@
   }
   .tabContent {
     grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .bentoGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .bentoWide {
-    grid-column: span 2;
+    gap: 36px;
   }
   .quoteGrid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
-  .section {
-    padding: 64px clamp(20px, 5vw, 80px);
+  .roadmapGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* ── Tablet portrait ≤ 720px ── */
+@media (max-width: 720px) {
+  .section {
+    padding: 52px 28px;
+  }
+  .sectionHead {
+    margin-bottom: 36px;
+  }
+  .sectionTitle {
+    font-size: clamp(26px, 5.5vw, 38px);
+    letter-spacing: -1px;
+  }
+  .sectionSub {
+    font-size: 15.5px;
+    margin-top: 12px;
+  }
+  .tabBtn {
+    padding: 0 22px 16px;
+    font-size: 14px;
+  }
+  .tabHeadline {
+    font-size: clamp(22px, 4.5vw, 30px);
+  }
+  .tabSub {
+    font-size: 15px;
+  }
+  .faqQ {
+    padding: 18px 20px;
+  }
+  .faqA {
+    padding: 0 20px 18px;
+  }
+  .faqQText {
+    font-size: 15px;
+  }
+  .roadmapGrid {
+    grid-template-columns: 1fr;
+  }
+  .ctaSection {
+    padding: 56px 24px;
+  }
+  .ctaBox {
+    padding: 48px 32px;
+    border-radius: 22px;
+  }
+  .ctaTitle {
+    font-size: clamp(30px, 5vw, 44px);
+  }
+  .ctaBtn {
+    padding: 15px 32px;
+    font-size: 16px;
+  }
+}
+
+/* ── Phone ≤ 560px ── */
 @media (max-width: 560px) {
+  /* Hero */
   .hero {
-    padding-top: 32px;
+    padding-top: 36px;
+    padding-bottom: 40px;
+  }
+  .heroBadge {
+    padding: 5px 13px;
+    margin-bottom: 18px;
+  }
+  .heroBadgeText {
+    font-size: 12px;
   }
   .heroTitle {
-    font-size: 28px;
+    font-size: clamp(26px, 7.5vw, 32px);
+    letter-spacing: -1.2px;
+    margin-bottom: 14px;
   }
   .heroSub {
-    font-size: 15px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    margin-bottom: 24px;
   }
   .heroCta {
-    padding: 15px 28px;
+    padding: 14px 28px;
     font-size: 15px;
+  }
+  .riskNote {
+    font-size: 12px;
+    margin-bottom: 14px;
   }
   .trustRow {
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .trustNum {
+    font-size: 15px;
+  }
+  .trustLabel {
+    font-size: 12.5px;
   }
   .secondaryLink {
     margin-top: 0;
+    font-size: 13px;
   }
-  .bentoGrid {
-    grid-template-columns: 1fr;
+
+  /* Hide mockup on phone */
+  .mockupWrap {
+    display: none;
   }
-  .bentoWide {
-    grid-column: span 1;
+  .mockupLeft,
+  .mockupRight {
+    padding: 20px 16px;
+  }
+  .jdBox {
+    min-height: 120px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  .jdText {
+    font-size: 12.5px;
+    line-height: 1.65;
+  }
+  .kwChips {
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .kwChip {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+  .resumeName {
+    font-size: 14px;
+  }
+  .resumeRole {
+    font-size: 10.5px;
+  }
+
+  /* Sections */
+  .section {
+    padding: 48px 20px;
+  }
+  .sectionHead {
+    margin-bottom: 28px;
   }
   .sectionTitle {
-    font-size: 28px;
+    font-size: clamp(24px, 7vw, 30px);
+    letter-spacing: -0.8px;
   }
-  .ctaTitle {
-    font-size: 32px;
+  .kicker {
+    font-size: 11.5px;
+    margin-bottom: 8px;
+  }
+
+  /* Feature tabs */
+  .tabBar {
+    margin-bottom: 28px;
+    gap: 0;
+  }
+  .tabBtn {
+    padding: 0 16px 14px;
+    font-size: 13px;
+  }
+  .tabNum {
+    display: none;
+  }
+  .tabContent {
+    gap: 24px;
+  }
+  .tabHeadline {
+    font-size: clamp(20px, 5.5vw, 26px);
+    margin-bottom: 10px;
+  }
+  .tabSub {
+    font-size: 14.5px;
+    margin-bottom: 18px;
+  }
+  .tabPointText {
+    font-size: 13.5px;
+  }
+
+  /* Testimonials */
+  .quoteCard {
+    padding: 20px 16px;
+  }
+  .quoteMark {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  .quoteText {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  .quoteName {
+    font-size: 13px;
+  }
+  .quoteRole {
+    font-size: 11.5px;
+  }
+
+  /* Roadmap */
+  .roadmapCard {
+    padding: 18px 16px;
+  }
+  .roadmapIcon {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .roadmapTitle {
+    font-size: 15px;
+  }
+  .roadmapBody {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* FAQ */
+  .faqQ {
+    padding: 16px 18px;
+  }
+  .faqA {
+    padding: 0 18px 16px;
+  }
+  .faqQText {
+    font-size: 14.5px;
+  }
+  .faqAText {
+    font-size: 13.5px;
+  }
+
+  /* Final CTA */
+  .ctaSection {
+    padding: 44px 16px;
   }
   .ctaBox {
-    padding: 40px 24px;
+    padding: 36px 20px;
+    border-radius: 18px;
+  }
+  .ctaTitle {
+    font-size: clamp(26px, 7vw, 32px);
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+  .ctaSub {
+    font-size: 14.5px;
+    margin-bottom: 24px;
+  }
+  .ctaBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 16px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+}
+
+/* ── Small phone ≤ 390px ── */
+@media (max-width: 390px) {
+  .section {
+    padding: 44px 16px;
+  }
+  .heroTitle {
+    font-size: 24px;
+  }
+  .sectionTitle {
+    font-size: 22px;
+  }
+  .ctaTitle {
+    font-size: 26px;
+  }
+  .tabBtn {
+    padding: 0 12px 14px;
+    font-size: 12.5px;
+  }
+  .ctaBox {
+    padding: 36px 20px;
   }
 }

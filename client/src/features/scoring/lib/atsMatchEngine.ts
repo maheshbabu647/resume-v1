@@ -230,50 +230,61 @@ export function calculateAtsMatch(resume: ResumeData, spec: JDSpec): AtsMatchRes
 
 // ── Smart Tailor helpers ─────────────────────────────────────────────────────────
 
-/**
- * Which required/preferred spec terms already appear in a blob of resume text.
- * Used to pre-classify the Smart Tailor screen (matched → default "Have it"). Works for
- * both raw pasted resumes and serialized structured resumes — a single flat zone is fine
- * for a default the user can override.
- */
-export function matchedTermsInText(spec: JDSpec, text: string): Set<string> {
-  const zone = makeZone([text])
-  const out = new Set<string>()
-  const check = (s: JdSpecSkill) => {
-    if (matchLevelInZone([s.term, ...(s.aliases ?? [])], zone) > 0) out.add(s.term)
-  }
-  ;(spec.requiredSkills ?? []).forEach(check)
-  ;(spec.preferredSkills ?? []).forEach(check)
-  return out
-}
+// Realistic match value for a skill the user adds via tailoring (placed in skills, maybe
+// woven into experience). NOT 1.0 — a freshly-added keyword never scores a perfect match.
+const ADDED_MATCH = 0.9
 
 /**
- * Projected ATS score for the Smart Tailor screen, 0..100.
- *
- * Models the resume AFTER tailoring: every included skill (the user marked it "have" or
- * "mention" — both end up in the resume) counts as fully present; "leave out" counts as
- * absent. Title and context are credited as full because tailoring targets the title and
- * weaves the responsibilities/domain keywords in. So the score moves purely with the
- * user's skill decisions — exactly the trade-off the screen is meant to surface.
+ * Runs the SAME deterministic engine against a raw resume-text blob (for the /jd-tailor
+ * flow, where the resume isn't structured yet). The text is treated as experience content,
+ * so the baseline mirrors what the editor will compute once the resume is loaded.
  */
-export function projectAtsScore(spec: JDSpec, includedTerms: Set<string>): { score: number; label: AtsLabel } {
-  const cov = (list: JdSpecSkill[]): number => {
+export function atsMatchFromText(spec: JDSpec, text: string): AtsMatchResult {
+  const fakeResume = {
+    personalInfo: { title: '', summary: '' },
+    sections: [{ key: 'experience', visible: true, entries: [{ description: text }] }],
+  } as unknown as ResumeData
+  return calculateAtsMatch(fakeResume, spec)
+}
+
+// Realistic post-tailor floors: tailoring sets the targeted job title and weaves the JD's
+// responsibilities/domain keywords into the bullets, so these components rise regardless of
+// the skill triage. We floor them (never below the resume's current value) so the projection
+// reflects what tailoring actually delivers — and matches the editor's post-tailor score.
+const TITLE_FLOOR = 0.92
+const CONTEXT_FLOOR = 0.8
+
+/**
+ * Projected ATS score for the Smart Tailor screen, 0..100 — built on the SAME engine and
+ * baseline as the editor, so the numbers agree (no impossible free 100, no misleading low cap).
+ *
+ * Required/preferred coverage follows the user's skill decisions:
+ *   • included + already in resume → keep its real match value (placement-aware)
+ *   • included + currently missing  → ADDED_MATCH (it will be added by tailoring)
+ *   • left out                      → 0
+ * Title and context model the POST-tailor state (floored), because tailoring targets the
+ * title and weaves the responsibilities in no matter which skills you keep.
+ */
+export function projectAtsScore(baseline: AtsMatchResult, includedTerms: Set<string>): { score: number; label: AtsLabel } {
+  const cov = (list: AtsSkillMatch[]): number => {
     if (!list.length) return 1
     let num = 0, den = 0
-    for (const s of list) {
-      const w = s.weight * (s.type === 'soft' ? SOFT_MULTIPLIER : 1)
+    for (const m of list) {
+      const w = m.weight * (m.type === 'soft' ? SOFT_MULTIPLIER : 1)
       den += w
-      if (includedTerms.has(s.term)) num += w
+      if (includedTerms.has(m.term)) num += w * (m.matched ? m.matchValue : ADDED_MATCH)
     }
     return den === 0 ? 1 : num / den
   }
-  const required = cov(spec.requiredSkills ?? [])
-  const preferred = cov(spec.preferredSkills ?? [])
+  const required = cov(baseline.requiredSkills)
+  const preferred = cov(baseline.preferredSkills)
+  const title = Math.max(baseline.components.title, TITLE_FLOOR)
+  const context = Math.max(baseline.components.context, CONTEXT_FLOOR)
   const raw = 100 * (
     WEIGHTS.required * required +
     WEIGHTS.preferred * preferred +
-    WEIGHTS.title * 1 +
-    WEIGHTS.context * 1
+    WEIGHTS.title * title +
+    WEIGHTS.context * context
   )
   const score = Math.max(0, Math.min(100, Math.round(raw)))
   return { score, label: labelFor(score) }

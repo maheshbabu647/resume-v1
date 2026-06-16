@@ -387,3 +387,27 @@
     padding: var(--space-6);
   }
 }
+
+/* ≤ 560px — phone */
+@media (max-width: 560px) {
+  .heroTitle { font-size: 30px; letter-spacing: -1.2px; }
+  .heroSubtitle { font-size: 15px; }
+  .searchFilters { margin-top: var(--space-6); }
+  .searchBox { max-width: 100%; }
+  .featuredSection { padding-top: var(--space-10); }
+  .featuredTitle { font-size: 22px; letter-spacing: -0.8px; }
+  .featuredExcerpt { font-size: 14px; }
+  .featuredVisual { min-height: 200px; }
+  .featuredQuote { font-size: 22px; }
+  .gridSection { padding-bottom: var(--space-12); }
+}
+
+/* ≤ 390px — small phone */
+@media (max-width: 390px) {
+  .hero { padding: var(--space-10) var(--space-3) var(--space-8); }
+  .featuredSection,
+  .gridSection { padding-left: var(--space-3); padding-right: var(--space-3); }
+  .heroTitle { font-size: 26px; letter-spacing: -1px; }
+  .heroSubtitle { font-size: 14px; }
+  .featuredTitle { font-size: 20px; }
+}

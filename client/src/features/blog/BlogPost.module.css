@@ -550,3 +550,24 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ≤ 560px — phone */
+@media (max-width: 560px) {
+  .title { font-size: 28px; letter-spacing: -1px; }
+  .subtitle { font-size: 17px; }
+  .header { padding-bottom: var(--space-12); }
+  .relatedSection { padding-top: var(--space-12); }
+  .backLinkWrap { padding-top: var(--space-6); }
+}
+
+/* ≤ 390px — small phone */
+@media (max-width: 390px) {
+  .backLinkWrap,
+  .header { padding-left: var(--space-3); padding-right: var(--space-3); }
+  .relatedSection { padding-left: var(--space-3); padding-right: var(--space-3); }
+  .title { font-size: 26px; letter-spacing: -0.8px; }
+  .subtitle { font-size: 16px; }
+  .article { font-size: 16px; }
+  .article h2 { font-size: 22px; }
+  .article > p:first-of-type::first-letter { font-size: 42px; }
+}

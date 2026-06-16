@@ -248,3 +248,26 @@
 .pageBtn:disabled { opacity: 0.4; cursor: default; }
 
 .pageInfo { font-size: 13px; color: var(--muted); }
+
+/* ── Responsive ── */
+
+/* ≤ 768px — tablet */
+@media (max-width: 768px) {
+  .page { padding: 32px 20px 60px; }
+  .title { font-size: 28px; }
+}
+
+/* ≤ 560px — phone */
+@media (max-width: 560px) {
+  .page { padding: 24px 16px 48px; }
+  .header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .title { font-size: 24px; letter-spacing: -0.8px; }
+  .row { flex-wrap: wrap; gap: 8px; padding: 14px 14px; }
+  .actions { flex-shrink: 0; }
+}
+
+/* ≤ 390px — small phone */
+@media (max-width: 390px) {
+  .page { padding: 20px 12px 48px; }
+  .title { font-size: 22px; }
+}

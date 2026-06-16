@@ -26,6 +26,7 @@ interface ResumeState {
   setCustomization: (config: Partial<CustomizationConfig>) => void
   updateSectionName: (sectionKey: SectionKey, name: string) => void
   updateSectionEntries: (sectionKey: SectionKey, entries: any[]) => void
+  applyTailored: (personalInfo: any, sections: any[]) => void
   addSectionEntry: (sectionKey: SectionKey, entry: any) => void
   removeSectionEntry: (sectionKey: SectionKey, index: number) => void
   reorderSections: (newOrder: SectionKey[]) => void
@@ -243,11 +244,34 @@ export const useResumeStore = create<ResumeState>((set, _get) => {
     updateSectionEntries: (sectionKey, entries) => withSnapshot((state) => ({
       data: {
         ...state.data,
-        sections: state.data.sections.map(s => 
+        sections: state.data.sections.map(s =>
           s.key === sectionKey ? { ...s, entries } : s
         )
       }
     })),
+
+    // Apply an AI-tailored resume IN FULL: merge personalInfo, and merge sections by key —
+    // replacing entries for existing sections and ADDING any new sections/entries the AI
+    // produced (e.g. a "Familiar With" skills line). Snapshotted, so Undo reverts it.
+    applyTailored: (personalInfo, sections) => withSnapshot((state) => {
+      const byKey = new Map<string, any>(state.data.sections.map((s: any) => [s.key, s]))
+      for (const rw of (sections || [])) {
+        if (!rw?.key) continue
+        const existing = byKey.get(rw.key)
+        const entries = Array.isArray(rw.entries) ? rw.entries : existing?.entries ?? []
+        byKey.set(rw.key, existing
+          ? { ...existing, visible: true, entries, ...(rw.name ? { name: rw.name } : {}) }
+          : { key: rw.key, visible: true, order: state.data.sections.length, entries, ...(rw.name ? { name: rw.name } : {}) }
+        )
+      }
+      const merged = Array.from(byKey.values())
+      const pi = { ...state.data.personalInfo, ...(personalInfo || {}) }
+      if (pi.summary) {
+        const sIdx = merged.findIndex((s: any) => s.key === 'summary')
+        if (sIdx >= 0) merged[sIdx] = { ...merged[sIdx], visible: true }
+      }
+      return { data: { personalInfo: pi, sections: merged } }
+    }),
 
     addSectionEntry: (sectionKey, entry) => withSnapshot((state) => ({
       data: {

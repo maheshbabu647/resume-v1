@@ -37,10 +37,15 @@
   color: var(--brand);
 }
 
+/* ── Section wrapper ── */
+.section {
+  margin-bottom: 48px;
+}
+
 /* ── Section header ── */
 .sectionHeader {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   margin-bottom: var(--space-4);
 }
@@ -52,6 +57,106 @@
   letter-spacing: -0.2px;
   color: var(--dark);
   margin: 0;
+}
+
+/* Trailing action link in section header (e.g. "+ New resume") */
+.sectionLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color var(--transition-fast);
+}
+.sectionLink:hover { color: var(--brand); }
+
+/* ── Pick up where you left off ── */
+.recentsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.recentCard {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 20px 20px 18px;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  min-height: 128px;
+  min-width: 0;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  color: var(--dark);
+  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+.recentCard:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--dark) 20%, var(--border));
+  box-shadow: 0 16px 36px color-mix(in srgb, var(--dark) 6%, transparent);
+}
+
+.recentCardTop {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.recentTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-size: 10.5px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.recentTagBrand {
+  background: var(--brand-light);
+  color: var(--brand);
+}
+
+.recentTagCoral {
+  background: color-mix(in srgb, var(--coral) 12%, transparent);
+  color: var(--coral);
+}
+
+.recentCardTitle {
+  font-size: 15px;
+  font-weight: var(--weight-bold);
+  color: var(--dark);
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+  margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recentCardMeta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: auto;
+  overflow: hidden;
+}
+
+.recentDot {
+  color: var(--muted-2);
+  flex-shrink: 0;
 }
 
 /* ── Three core actions ── */
@@ -341,6 +446,107 @@
   color: var(--muted);
 }
 
+/* ── Cover letter list ── */
+.letterList {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.letterRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  position: relative;
+}
+.letterRow + .letterRow {
+  border-top: 1px solid var(--border-soft);
+}
+.letterRow:hover { background: var(--bg-soft); }
+
+.letterRowIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--coral) 12%, transparent);
+  color: var(--coral);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.letterRowBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.letterRowTitle {
+  font-size: 14px;
+  font-weight: var(--weight-semibold);
+  color: var(--dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.35;
+  margin-bottom: 2px;
+}
+
+.letterRowMeta {
+  font-size: 12.5px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.letterRowTime {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.letterRowActions {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.letterMenuBtn {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--muted);
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity var(--transition-fast), background var(--transition-fast);
+}
+.letterMenuBtn:hover { opacity: 1; background: var(--bg-soft); }
+.letterRow:hover .letterMenuBtn { opacity: 0.7; }
+
+.letterMenu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  z-index: var(--z-raised);
+  min-width: 140px;
+}
+
 /* ── Mobile Bottom Nav ── */
 .bottomNav {
   display: none;
@@ -357,7 +563,8 @@
 
 .bottomNavInner {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 80px;
   align-items: center;
   height: 100%;
 }
@@ -373,58 +580,11 @@
   cursor: pointer;
   font-family: var(--font-sans);
 }
-.bottomNavItem.active { color: var(--brand); }
+.bottomNavItem:active { color: var(--brand); }
 
 .bottomNavLabel {
   font-size: 10px;
   font-weight: var(--weight-semibold);
-}
-
-/* ── More Drawer ── */
-.drawerBackdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(15, 14, 42, 0.35);
-  z-index: var(--z-modal);
-  backdrop-filter: blur(2px);
-}
-
-.moreDrawer {
-  position: fixed;
-  bottom: 56px;
-  left: 0;
-  right: 0;
-  background: var(--bg);
-  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
-  z-index: calc(var(--z-modal) + 1);
-  padding: var(--space-6);
-  animation: slideUp 0.25s var(--ease-out);
-  box-shadow: var(--shadow-xl);
-}
-
-@keyframes slideUp {
-  from { transform: translateY(100%); }
-  to   { transform: translateY(0); }
-}
-
-.drawerGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-5);
-}
-
-.drawerItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--body);
-  font-size: var(--text-xs);
-  font-weight: var(--weight-semibold);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: var(--font-sans);
 }
 
 /* ── Modal ── */
@@ -670,48 +830,80 @@
 /* ==========================================================
    Responsive
    ========================================================== */
+
+/* ── Tablet ≤ 900px ── */
 @media (max-width: 900px) {
-  .actionsGrid {
-    grid-template-columns: 1fr;
-  }
+  .recentsGrid { grid-template-columns: 1fr 1fr; }
+  .actionsGrid { grid-template-columns: 1fr; }
+  .greetingBlock { margin-bottom: 32px; }
+  .section { margin-bottom: 36px; }
 }
 
+/* ── Large phone ≤ 720px ── */
+@media (max-width: 720px) {
+  .recentsGrid { grid-template-columns: 1fr 1fr; }
+  .greetingTitle { font-size: 30px; letter-spacing: -1.1px; }
+  .actionCard { min-height: 160px; padding: 18px; }
+  .actionIcon { width: 36px; height: 36px; margin-bottom: 12px; }
+  .actionTitle { font-size: 15.5px; }
+  .actionDesc { font-size: 13px; }
+}
+
+/* ── Phone ≤ 640px ── */
 @media (max-width: 640px) {
-  .page { padding-bottom: 88px; }
+  /* Layout */
+  .page { padding: 24px 16px 88px; }
   .bottomNav { display: block; }
+  .greetingBlock { margin-bottom: 20px; }
+  .section { margin-bottom: 24px; }
 
-  .greetingTitle { font-size: 28px; }
+  /* Greeting */
+  .greetingTitle { font-size: 26px; letter-spacing: -1px; }
+  .dateLabel { font-size: 10px; margin-bottom: 6px; }
 
-  .actionsGrid {
-    margin-bottom: var(--space-8);
-  }
+  /* Recents */
+  .recentsGrid { grid-template-columns: 1fr; gap: 10px; }
+  .recentCard { min-height: 100px; padding: 16px; }
 
-  .grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-  }
+  /* Action cards — compact column */
+  .actionsGrid { gap: 10px; margin-bottom: var(--space-6); }
+  .actionCard { min-height: 0; padding: 16px; }
+  .actionIcon { width: 32px; height: 32px; margin-bottom: 10px; }
+  .actionTitle { font-size: 14.5px; }
+  .actionDesc { font-size: 12.5px; margin-bottom: 10px; }
 
-  .newCard {
-    min-height: 160px;
-    padding: var(--space-6);
-  }
+  /* Resume grid */
+  .grid { grid-template-columns: 1fr; gap: var(--space-3); }
+  .cardThumb { height: 130px; }
 
-  .cardThumb { height: 140px; }
+  /* Section labels */
+  .sectionLabel { font-size: 15px; }
 
-  .modalOverlay { padding: var(--space-4); }
+  /* Letter rows */
+  .letterRow { padding: 12px 14px; gap: 10px; }
+  .letterRowTitle { font-size: 13.5px; }
+  .letterRowTime { font-size: 11px; }
+
+  /* Modal */
+  .modalOverlay { padding: var(--space-4); align-items: flex-end; }
   .modal {
     padding: var(--space-6);
-    border-radius: var(--radius-2xl);
-    max-height: 80vh;
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    max-height: 85vh;
     overflow-y: auto;
   }
-  .modalGrid { grid-template-columns: 1fr; }
-  .modalThumb { height: 140px; }
+  .modalGrid { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+  .modalThumb { height: 120px; }
+  .modalThumbImage { height: 120px; }
 }
 
-@media (max-width: 440px) {
-  .modal { padding: var(--space-5); }
-  .modalThumb { height: 120px; }
+/* ── Small phone ≤ 390px ── */
+@media (max-width: 390px) {
+  .page { padding: 20px 12px 88px; }
+  .greetingTitle { font-size: 23px; }
+  .actionCard { padding: 14px; }
+  .modalGrid { grid-template-columns: 1fr; }
+  .letterRow { padding: 11px 12px; }
 }
 
 /* ==========================================================
@@ -962,22 +1154,25 @@
 }
 
 @media (max-width: 720px) {
-  .tryGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .pasteActions {
-    flex-wrap: wrap;
-  }
-
+  .tryGrid { grid-template-columns: 1fr; }
+  .pasteActions { flex-wrap: wrap; }
   .saveBanner {
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
   }
+  .saveBannerCta { align-self: stretch; justify-content: center; }
+}
 
-  .saveBannerCta {
-    align-self: stretch;
-    justify-content: center;
-  }
+@media (max-width: 640px) {
+  .anonPage { padding: 24px 16px 88px; }
+  .anonHero { margin-bottom: var(--space-8); }
+  .anonTitle { font-size: 28px; letter-spacing: -1px; }
+  .anonSub { font-size: 14px; }
+  .pasteBox { padding: var(--space-5); }
+}
+
+@media (max-width: 390px) {
+  .anonPage { padding: 20px 12px 88px; }
+  .anonTitle { font-size: 24px; }
 }

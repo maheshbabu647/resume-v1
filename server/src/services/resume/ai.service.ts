@@ -106,8 +106,43 @@ const cleanStrList = (v: unknown, lower: boolean): string[] => {
   return out
 }
 
+// Verbs that signal a JD duty/responsibility phrase rather than a resume-listable skill.
+// Only unambiguous responsibility verbs (excludes double-duty nouns like "lead"/"design").
+const RESPONSIBILITY_VERBS = new Set([
+  'improve', 'build', 'understand', 'learn', 'develop', 'ensure', 'provide', 'demonstrate',
+  'maintain', 'manage', 'handle', 'assist', 'collaborate', 'perform', 'deliver', 'identify',
+  'troubleshoot', 'resolve', 'respond', 'configure', 'monitor', 'document', 'communicate',
+  'gain', 'expand', 'strengthen', 'contribute', 'participate', 'conduct', 'execute', 'coordinate',
+  'facilitate', 'oversee', 'supervise', 'train', 'mentor', 'optimize', 'enhance', 'achieve',
+  'apply', 'utilize', 'leverage', 'help', 'adhere', 'comply',
+])
+// Trailing filler nouns to strip: "communication skills" -> "communication".
+const FLUFF_TAIL = new Set([
+  'skills', 'skill', 'abilities', 'ability', 'knowledge', 'fundamentals',
+  'concepts', 'basics', 'mindset', 'expertise', 'proficiency',
+])
+
+/**
+ * Deterministic safety net: turns a raw LLM "skill" into a clean atomic term, or rejects it
+ * when it's actually a responsibility/sentence. Guards the engine + resume against LLM jitter
+ * even if the prompt is ignored (e.g. "improve communication skills", "build technical knowledge").
+ */
+const sanitizeSkillTerm = (raw: string): string | null => {
+  const words = raw.replace(/[.,;:]+$/g, '').trim().split(/\s+/).filter(Boolean)
+  if (words.length === 0) return null
+  // Strip trailing fluff nouns ("X skills" -> "X"), but keep at least one word.
+  while (words.length > 1 && FLUFF_TAIL.has(words[words.length - 1])) words.pop()
+  // A verb-led multi-word phrase is a duty, not a skill.
+  if (words.length >= 2 && RESPONSIBILITY_VERBS.has(words[0])) return null
+  // Too long to be an atomic skill — almost certainly a sentence fragment.
+  if (words.length > 5) return null
+  const term = words.join(' ')
+  if (!term || FLUFF_TAIL.has(term)) return null
+  return term
+}
+
 const normalizeSkill = (raw: any): JdSpecSkill | null => {
-  const term = cleanLower(raw?.term)
+  const term = sanitizeSkillTerm(cleanLower(raw?.term))
   if (!term) return null
   let weight = Math.round(Number(raw?.weight))
   if (!Number.isFinite(weight)) weight = 2

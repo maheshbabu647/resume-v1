@@ -2,15 +2,13 @@ import { useMemo, useState } from 'react'
 import {
   Sparkles, Check, ArrowRight, ArrowLeft, Loader2, ShieldCheck, Info,
 } from 'lucide-react'
-import { matchedTermsInText, projectAtsScore } from '../lib/atsMatchEngine'
+import { projectAtsScore } from '../lib/atsMatchEngine'
 import { getScoreColor } from '../lib/scoreColor'
-import type { JDSpec, SmartTailorSkill, SmartTailorDecision, SmartTailorBuckets } from '../types/scoring.types'
+import type { AtsMatchResult, SmartTailorSkill, SmartTailorDecision, SmartTailorBuckets } from '../types/scoring.types'
 import styles from './SmartTailorStudio.module.css'
 
 interface Props {
-  spec: JDSpec
-  resumeText: string
-  baselineScore?: number | null
+  baseline: AtsMatchResult
   generating?: boolean
   ctaLabel?: string
   onGenerate: (buckets: SmartTailorBuckets, decisions: SmartTailorSkill[]) => void
@@ -23,31 +21,29 @@ const DECISIONS: { value: SmartTailorDecision; label: string; hint: string }[] =
   { value: 'omit', label: 'Leave out', hint: 'Excluded from the resume — lowers your score' },
 ]
 
-const buildDecisions = (spec: JDSpec, resumeText: string): SmartTailorSkill[] => {
-  const matched = matchedTermsInText(spec, resumeText)
-  const make = (bucket: 'required' | 'preferred') => (s: JDSpec['requiredSkills'][number]): SmartTailorSkill => {
-    const isMatched = matched.has(s.term)
-    return {
-      term: s.term,
-      weight: s.weight,
-      type: s.type,
-      bucket,
-      matched: isMatched,
-      // Matched → keep as a real skill. Missing → default to the honest "Mention" path
-      // (keyword stays for ATS without overclaiming) — the recommended middle ground.
-      decision: isMatched ? 'have' : 'mention',
-    }
-  }
+// Derive decisions from the real ATS baseline so the screen's "in your resume" flags and
+// the live projection use the exact same source of truth as the editor score.
+const buildDecisions = (baseline: AtsMatchResult): SmartTailorSkill[] => {
+  const make = (bucket: 'required' | 'preferred') => (m: AtsMatchResult['requiredSkills'][number]): SmartTailorSkill => ({
+    term: m.term,
+    weight: m.weight,
+    type: m.type,
+    bucket,
+    matched: m.matched,
+    // Matched → keep as a real skill. Missing → default to the honest "Mention" path
+    // (keyword stays for ATS without overclaiming) — the recommended middle ground.
+    decision: m.matched ? 'have' : 'mention',
+  })
   return [
-    ...(spec.requiredSkills ?? []).map(make('required')),
-    ...(spec.preferredSkills ?? []).map(make('preferred')),
+    ...baseline.requiredSkills.map(make('required')),
+    ...baseline.preferredSkills.map(make('preferred')),
   ]
 }
 
 export default function SmartTailorStudio({
-  spec, resumeText, baselineScore, generating, ctaLabel = 'Continue', onGenerate, onBack,
+  baseline, generating, ctaLabel = 'Continue', onGenerate, onBack,
 }: Props) {
-  const [decisions, setDecisions] = useState<SmartTailorSkill[]>(() => buildDecisions(spec, resumeText))
+  const [decisions, setDecisions] = useState<SmartTailorSkill[]>(() => buildDecisions(baseline))
 
   const setDecision = (term: string, decision: SmartTailorDecision) =>
     setDecisions(prev => prev.map(d => (d.term === term ? { ...d, decision } : d)))
@@ -56,12 +52,13 @@ export default function SmartTailorStudio({
     () => new Set(decisions.filter(d => d.decision !== 'omit').map(d => d.term)),
     [decisions],
   )
-  const projected = useMemo(() => projectAtsScore(spec, includedTerms), [spec, includedTerms])
+  const projected = useMemo(() => projectAtsScore(baseline, includedTerms), [baseline, includedTerms])
 
   const omittedCount = decisions.length - includedTerms.size
   const mentionCount = decisions.filter(d => d.decision === 'mention').length
   const color = getScoreColor(projected.score)
-  const delta = typeof baselineScore === 'number' ? projected.score - baselineScore : null
+  const baselineScore = baseline.score
+  const delta = projected.score - baselineScore
 
   const required = decisions.filter(d => d.bucket === 'required')
   const preferred = decisions.filter(d => d.bucket === 'preferred')
@@ -203,7 +200,7 @@ export default function SmartTailorStudio({
             <ArrowLeft size={14} /> Back
           </button>
 
-          <p className={styles.railHint}><Info size={12} /> You'll review every change before it's applied.</p>
+          <p className={styles.railHint}><Info size={12} /> Changes apply straight to your resume — Undo reverts them.</p>
         </div>
       </aside>
     </div>

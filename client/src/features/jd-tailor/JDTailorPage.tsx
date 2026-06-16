@@ -2,10 +2,10 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import {
-  Zap, FileText, Upload, List, X, Check, AlertTriangle,
+  Zap, FileText, Upload, List, X, Check,
   Loader2, Lightbulb,
-  Sparkles, ArrowRight, CheckCircle2, ArrowLeft,
-  Clock, Mail
+  Sparkles, ArrowRight, CheckCircle2,
+  Clock, Mail, ChevronLeft
 } from 'lucide-react'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { apiClient } from '@/shared/lib/apiClient'
@@ -14,11 +14,10 @@ import { AuthRequireModal } from '@/shared/components/AuthRequireModal/AuthRequi
 import { useAuthStore } from '@/core/auth/useAuthStore'
 import { useUsage } from '@/core/hooks/useUsage'
 import { preprocessJD, serializeResume } from '@/features/scoring/lib/jdPreprocessor'
-import { projectAtsScore, matchedTermsInText } from '@/features/scoring/lib/atsMatchEngine'
+import { atsMatchFromText, projectAtsScore } from '@/features/scoring/lib/atsMatchEngine'
 import SmartTailorStudio from '@/features/scoring/components/SmartTailorStudio'
 import type { JDSpec, SmartTailorBuckets } from '@/features/scoring/types/scoring.types'
 import { trackJDScoreViewed, trackJDTailorRequested } from '@/shared/lib/analytics'
-import { CfpLogo } from '@/shared/components/CfpLogo/CfpLogo'
 import styles from './JDTailorPage.module.css'
 
 import { TEMPLATE_REGISTRY } from '../resume-builder/templates/registry'
@@ -33,17 +32,6 @@ const TEMPLATES = Object.values(TEMPLATE_REGISTRY).map(t => ({
 
 type Stage = 'input' | 'analyzing' | 'results' | 'smart' | 'tailoring'
 type ResumeSource = 'paste' | 'upload' | 'existing'
-
-interface JDFitResult {
-  fitScore: number
-  label: string
-  seniorityLevel: string
-  semanticOverlapScore: number
-  requiredSkills: { skill: string; presentInResume: boolean }[]
-  preferredSkills: { skill: string; presentInResume: boolean }[]
-  missingKeywords: { keyword: string; importance: string; context: string }[]
-  improvementSuggestions: { rank: number; suggestion: string; impact: 'high' | 'medium' | 'low' }[]
-}
 
 interface ExistingResume {
   _id: string
@@ -137,7 +125,6 @@ export default function JDTailorPage() {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
   const [uploadedJdFile, setUploadedJdFile] = useState<File | null>(null)
   const [selectedResumeId, setSelectedResumeId] = useState<string | null>(null)
-  const [fitResult, setFitResult] = useState<JDFitResult | null>(null)
   const [showTemplatePicker, setShowTemplatePicker] = useState(false)
   const [showUpgradeModal, setShowUpgradeModal] = useState(false)
   const [showAuthModal, setShowAuthModal] = useState(false)
@@ -171,11 +158,11 @@ export default function JDTailorPage() {
   // Only move to the report once every phase has finished animating AND the
   // analysis result is ready — whichever takes longer.
   useEffect(() => {
-    if (stage !== 'analyzing' || !fitResult) return
+    if (stage !== 'analyzing' || !jdSpec) return
     if (analyzingPhase < ANALYZING_PHASES.length) return
     const timeout = setTimeout(() => setStage('results'), 450)
     return () => clearTimeout(timeout)
-  }, [stage, fitResult, analyzingPhase])
+  }, [stage, jdSpec, analyzingPhase])
 
   // Fetch existing resumes
   const { data: resumes = [] } = useQuery<ExistingResume[]>({
@@ -227,27 +214,6 @@ export default function JDTailorPage() {
     }
   })
 
-  // Analyze JD match
-  const analyzeMutation = useMutation({
-    mutationFn: async (payload: { serializedResume: string; preprocessedJD: string }) => {
-      const res = await apiClient.post('/ai/analyze-jd', payload)
-      return res.data.data as JDFitResult
-    },
-    onSuccess: (data) => {
-      setFitResult(data)
-      trackJDScoreViewed()
-    },
-    onError: (err: any) => {
-      const code = err?.response?.data?.error?.code ?? err?.response?.data?.code
-      if (code === 'GUEST_LIMIT_HIT') {
-        window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: err?.response?.data?.data ?? { feature: 'jdScore' } }))
-      } else if (code === 'QUOTA_EXCEEDED') {
-        setUpgradeFeature('jdScore'); setShowUpgradeModal(true)
-      }
-      setStage('input')
-    }
-  })
-
   // Tailor new resume
   const tailorMutation = useMutation({
     mutationFn: async (payload: { resumeText: string; jdText: string; templateId: string }) => {
@@ -283,13 +249,14 @@ export default function JDTailorPage() {
     }
   })
 
-  // Fetch the deterministic JD-Spec, then open the Smart Tailor screen.
+  // The single JD-Spec fetch (one LLM call) that powers the whole flow: the report below,
+  // the Smart Tailor projection, and the editor's live score. No second extraction anywhere.
   const jdSpecMutation = useMutation({
     mutationFn: async (text: string) => {
       const res = await apiClient.post('/ai/jd-spec', { jdText: preprocessJD(text) })
       return res.data.data as JDSpec
     },
-    onSuccess: (spec) => { setJdSpec(spec); setStage('smart') },
+    onSuccess: (spec) => { setJdSpec(spec); trackJDScoreViewed() },  // effect advances analyzing → results
     onError: (err: any) => {
       const code = err?.response?.data?.error?.code ?? err?.response?.data?.code
       if (code === 'GUEST_LIMIT_HIT') {
@@ -297,6 +264,7 @@ export default function JDTailorPage() {
       } else if (code === 'QUOTA_EXCEEDED') {
         setUpgradeFeature('jdScore'); setShowUpgradeModal(true)
       }
+      setStage('input')
     },
   })
 
@@ -367,14 +335,10 @@ export default function JDTailorPage() {
       window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: { feature: 'jdScore' } }))
       return
     }
+    setJdSpec(null)
     setStage('analyzing')
-    let preprocessedJD = preprocessJD(currentJd)
-    // Safety fallback: if preprocessing stripped too much content, use the normalized raw JD
-    if (preprocessedJD.trim().length < 50) {
-      preprocessedJD = currentJd.trim().slice(0, 12000)
-    }
-    const serializedResume = text.length > 6000 ? text.slice(0, 6000) : text
-    analyzeMutation.mutate({ serializedResume, preprocessedJD })
+    // One deterministic extraction — the report scores the resume against this spec.
+    jdSpecMutation.mutate(currentJd)
   }
 
   // ── Tailor handler ───────────────────────────────────────────────────────────
@@ -389,12 +353,12 @@ export default function JDTailorPage() {
 
   // ── Smart Tailor handlers ────────────────────────────────────────────────────
   const handleSmartTailorClick = () => {
+    if (!jdSpec) return    // the report already holds the spec by the time this is reachable
     if (isGuest && isAtLimit('jdTailoring')) {
       window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: { feature: 'jdTailoring' } }))
       return
     }
-    if (jdSpec) { setStage('smart'); return }    // already have the spec — go straight in
-    jdSpecMutation.mutate(jdText)                 // otherwise fetch it first, then enter
+    setStage('smart')
   }
 
   const handleSmartContinue = (buckets: SmartTailorBuckets) => {
@@ -547,18 +511,13 @@ export default function JDTailorPage() {
                     className={`${styles.savedResumeCard} ${selectedResumeId === r._id ? styles.savedResumeCardActive : ''}`}
                     onClick={() => setSelectedResumeId(r._id)}
                   >
-                    {selectedResumeId === r._id && (
-                      <span className={styles.savedResumeCheck}><Check size={12} /></span>
-                    )}
-                    <div className={styles.savedResumeTop}>
-                      <div className={styles.savedResumeThumb}>
-                        <span /><span /><span /><span />
-                      </div>
+                    <div className={styles.savedResumeCheck}>
+                      {selectedResumeId === r._id && <Check size={11} />}
                     </div>
-                    <div className={styles.savedResumeTitle}>{r.title}</div>
-                    <div className={styles.savedResumeMeta}>
-                      Updated {new Date(r.updatedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
-                    </div>
+                    <span className={styles.savedResumeTitle}>{r.title}</span>
+                    <span className={styles.savedResumeMeta}>
+                      {new Date(r.updatedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                    </span>
                   </button>
                 ))}
               </div>
@@ -673,27 +632,29 @@ export default function JDTailorPage() {
 
   // ── Results / report screen ─────────────────────────────────────────────────
   const renderResults = () => {
-    if (!fitResult) return null
-    const tone = scoreTone(fitResult.fitScore)
+    if (!jdSpec) return null
+    // Single source of truth: the deterministic engine, scored against the resume text.
+    // The same number powers this report, the Smart Tailor projection, and the editor.
+    const ats = atsMatchFromText(jdSpec, getResumeText())
+    const tone = scoreTone(ats.score)
 
-    const requiredTotal = fitResult.requiredSkills.length
-    const requiredMatched = fitResult.requiredSkills.filter(s => s.presentInResume).length
-    const preferredTotal = fitResult.preferredSkills.length
-    const preferredMatched = fitResult.preferredSkills.filter(s => s.presentInResume).length
+    const requiredTotal = ats.requiredSkills.length
+    const requiredMatched = ats.requiredSkills.filter(s => s.matched).length
+    const preferredTotal = ats.preferredSkills.length
+    const preferredMatched = ats.preferredSkills.filter(s => s.matched).length
 
-    const requiredMissing = fitResult.requiredSkills.filter(s => !s.presentInResume)
-    const preferredMissing = fitResult.preferredSkills.filter(s => !s.presentInResume)
-    const criticalKeywords = fitResult.missingKeywords.filter(k => k.importance === 'required')
+    const requiredMissing = ats.requiredSkills.filter(s => !s.matched)
+    const preferredMissing = ats.preferredSkills.filter(s => !s.matched)
 
     const strengths = [
-      ...fitResult.requiredSkills.filter(s => s.presentInResume).map(s => ({ skill: s.skill, type: 'Required skill' })),
-      ...fitResult.preferredSkills.filter(s => s.presentInResume).map(s => ({ skill: s.skill, type: 'Preferred skill' })),
+      ...ats.requiredSkills.filter(s => s.matched).map(s => ({ skill: s.term, type: 'Required skill' })),
+      ...ats.preferredSkills.filter(s => s.matched).map(s => ({ skill: s.term, type: 'Preferred skill' })),
     ].slice(0, 6)
 
-    // Projected score if the missing required/preferred skills were addressed.
-    const projected = Math.min(100, fitResult.fitScore + requiredMissing.length * 6 + preferredMissing.length * 3)
-    const scoreGap = Math.max(0, projected - fitResult.fitScore)
-    const smartProjected = Math.max(fitResult.fitScore, projected - 3)
+    // Projected score if every required/preferred skill were included — the deterministic max.
+    const allTerms = new Set([...ats.requiredSkills, ...ats.preferredSkills].map(s => s.term))
+    const projected = projectAtsScore(ats, allTerms).score
+    const scoreGap = Math.max(0, projected - ats.score)
     const matchedTotal = requiredMatched + preferredMatched
     const skillsTotal = requiredTotal + preferredTotal
 
@@ -702,24 +663,37 @@ export default function JDTailorPage() {
         key: 'required',
         label: 'Required skills',
         weight: 'Core requirement',
-        score: requiredTotal > 0 ? Math.round((requiredMatched / requiredTotal) * 100) : 100,
+        score: Math.round(ats.components.required * 100),
         hint: requiredTotal > 0 ? `${requiredMatched} of ${requiredTotal} matched` : 'None listed in this JD',
       },
       {
         key: 'preferred',
         label: 'Preferred skills',
         weight: 'Nice to have',
-        score: preferredTotal > 0 ? Math.round((preferredMatched / preferredTotal) * 100) : 100,
+        score: Math.round(ats.components.preferred * 100),
         hint: preferredTotal > 0 ? `${preferredMatched} of ${preferredTotal} matched` : 'None listed in this JD',
       },
       {
-        key: 'semantic',
-        label: 'Semantic overlap',
-        weight: 'Content similarity',
-        score: fitResult.semanticOverlapScore,
-        hint: 'Resume ↔ JD content match',
+        key: 'context',
+        label: 'Responsibilities',
+        weight: 'Content match',
+        score: Math.round(ats.components.context * 100),
+        hint: 'Resume ↔ JD responsibilities & keywords',
       },
     ]
+
+    // Deterministic, ranked improvements from the biggest weighted gaps.
+    const improvementSuggestions = [
+      ...requiredMissing.map(s => ({ s, bucket: 'required' as const })),
+      ...preferredMissing.map(s => ({ s, bucket: 'preferred' as const })),
+    ]
+      .sort((a, b) => b.s.weight - a.s.weight)
+      .slice(0, 3)
+      .map((x, i) => ({
+        rank: i + 1,
+        suggestion: `Add “${x.s.term}” to your resume — a ${x.bucket} skill this role calls for.`,
+        impact: (x.s.weight >= 3 ? 'high' : x.s.weight === 2 ? 'medium' : 'low') as 'high' | 'medium' | 'low',
+      }))
 
     const handleTailorClick = () => {
       if (isGuest && isAtLimit('jdTailoring')) {
@@ -735,9 +709,19 @@ export default function JDTailorPage() {
     return (
       <div className={styles.report}>
 
+        {/* Back / breadcrumb bar */}
+        <div className={styles.reportTopBar}>
+          <button
+            className={styles.reportBackBtn}
+            onClick={() => { setStage('input'); setJdSpec(null) }}
+          >
+            <ChevronLeft size={15} /> Edit inputs
+          </button>
+        </div>
+
         {/* Score hero */}
         <div className={styles.scoreHero}>
-          <ScoreHeroRing score={fitResult.fitScore} projected={projected} />
+          <ScoreHeroRing score={ats.score} projected={projected} />
           <div>
             <span className={styles.scoreBadge} style={{ background: tone.bg, color: tone.fg }}>
               <span className={styles.scoreBadgeDot} style={{ background: tone.fg }} />
@@ -749,7 +733,7 @@ export default function JDTailorPage() {
               </h1>
             ) : (
               <h1 className={styles.scoreHeading}>
-                Your resume is a <span className={styles.scoreHeadingAccent}>{fitResult.label}</span> for this role.
+                Your resume is a <span className={styles.scoreHeadingAccent}>{ats.label}</span> for this role.
               </h1>
             )}
             <p className={styles.scoreDesc}>
@@ -761,7 +745,7 @@ export default function JDTailorPage() {
             <div className={styles.scoreMetaTiles}>
               <div className={styles.metaTile}>
                 <div className={styles.metaTileLabel}>Seniority expected</div>
-                <div className={styles.metaTileValue}>{fitResult.seniorityLevel}</div>
+                <div className={styles.metaTileValue} style={{ textTransform: 'capitalize' }}>{ats.seniority}</div>
               </div>
               <div className={styles.metaTileDivider} />
               <div className={styles.metaTile}>
@@ -836,7 +820,7 @@ export default function JDTailorPage() {
                   ) : (
                     <div className={styles.gapsChips}>
                       {requiredMissing.map((s, i) => (
-                        <span key={i} className={`${styles.gapChip} ${styles.gapChipRequired}`}>{s.skill}</span>
+                        <span key={i} className={`${styles.gapChip} ${styles.gapChipRequired}`}>{s.term}</span>
                       ))}
                     </div>
                   )}
@@ -856,29 +840,10 @@ export default function JDTailorPage() {
                       ) : (
                         <div className={styles.gapsChips}>
                           {preferredMissing.map((s, i) => (
-                            <span key={i} className={`${styles.gapChip} ${styles.gapChipPreferred}`}>{s.skill}</span>
+                            <span key={i} className={`${styles.gapChip} ${styles.gapChipPreferred}`}>{s.term}</span>
                           ))}
                         </div>
                       )}
-                    </div>
-                  </>
-                )}
-
-                {criticalKeywords.length > 0 && (
-                  <>
-                    <div className={styles.gapsDivider} />
-                    <div className={styles.gapsGroup}>
-                      <div className={styles.gapsGroupHead}>
-                        <span className={styles.gapsDot} style={{ background: 'var(--coral)' }} />
-                        <span className={styles.gapsGroupTitle}>Critical missing keywords</span>
-                      </div>
-                      <div className={styles.gapsChips}>
-                        {criticalKeywords.map((k, i) => (
-                          <span key={i} className={`${styles.gapChip} ${styles.gapChipRequired}`} title={k.context}>
-                            <AlertTriangle size={11} /> {k.keyword}
-                          </span>
-                        ))}
-                      </div>
                     </div>
                   </>
                 )}
@@ -888,14 +853,14 @@ export default function JDTailorPage() {
         </div>
 
         {/* Improvement suggestions */}
-        {fitResult.improvementSuggestions.length > 0 && (
+        {improvementSuggestions.length > 0 && (
           <div className={styles.sectionBlock}>
             <div className={styles.sectionEyebrow}>
               <Lightbulb size={12} style={{ verticalAlign: '-2px', marginRight: 6 }} />
               Actionable improvements
             </div>
             <div className={styles.suggestionsCard}>
-              {fitResult.improvementSuggestions.map((s, i) => (
+              {improvementSuggestions.map((s, i) => (
                 <div key={i} className={styles.suggestionRow}>
                   <span className={`${styles.suggestionRank} ${s.impact === 'high' ? styles.rankHigh : s.impact === 'medium' ? styles.rankMedium : styles.rankLow}`}>
                     {s.rank}
@@ -917,7 +882,7 @@ export default function JDTailorPage() {
           <div className={styles.sectionEyebrow}>Close the gap</div>
           <h2 className={styles.decisionHeading}>How should we tailor your resume?</h2>
           <p className={styles.decisionDesc}>
-            Both options open the editor with all changes prefilled — every edit is highlighted and you can accept or reject any of them. The right pick depends on how much time you have and how honestly you want to frame your gaps.
+            Both options open the editor with your tailored resume ready to go. The right pick depends on how much time you have and how honestly you want to frame your gaps.
           </p>
           <div className={styles.decisionGrid}>
             <button
@@ -944,7 +909,7 @@ export default function JDTailorPage() {
               <div className={styles.decisionFooter}>
                 <div>
                   <div className={styles.decisionProjectedLabel}>Projected score</div>
-                  <div className={styles.decisionProjectedValue}>{fitResult.fitScore} → {projected}</div>
+                  <div className={styles.decisionProjectedValue}>{ats.score} → {projected}</div>
                 </div>
                 <span className={styles.decisionCta}>
                   Quick Tailor <ArrowRight size={14} />
@@ -977,7 +942,7 @@ export default function JDTailorPage() {
               <div className={styles.decisionFooter}>
                 <div>
                   <div className={styles.decisionProjectedLabel}>Projected score</div>
-                  <div className={styles.decisionProjectedValue}>{fitResult.fitScore} → {smartProjected}</div>
+                  <div className={styles.decisionProjectedValue}>{ats.score} → up to {projected}</div>
                 </div>
                 <span className={styles.decisionCta}>
                   {jdSpecMutation.isPending
@@ -1039,29 +1004,6 @@ export default function JDTailorPage() {
 
   const isTailoring = tailorMutation.isPending || tailorSmartMutation.isPending
 
-  const handleBack = () => {
-    if (stage === 'smart') {
-      setStage('results')
-      return
-    }
-    if (stage === 'results') {
-      setStage('input')
-      setFitResult(null)
-      return
-    }
-    if (window.history.state && window.history.state.idx > 0) {
-      navigate(-1)
-    } else {
-      navigate(isAuthenticated ? '/dashboard' : '/')
-    }
-  }
-
-  const stageLabel = stage === 'input' ? 'Set up'
-    : stage === 'analyzing' ? 'Analyzing'
-    : stage === 'results' ? 'Report'
-    : stage === 'smart' ? 'Smart Tailor'
-    : 'Tailoring'
-
   const readinessOk = (ok: boolean, label: string) => (
     <div className={styles.readinessItem}>
       <span className={`${styles.readinessDot} ${ok ? styles.readinessDotOk : ''}`}>
@@ -1076,17 +1018,6 @@ export default function JDTailorPage() {
       <Helmet>
         <link rel="canonical" href="https://careerforge.pro/jd-tailor" />
       </Helmet>
-
-      {/* Header */}
-      <header className={styles.tailorHeader}>
-        <CfpLogo className={styles.tailorHeaderLogo} />
-        <span className={styles.tailorHeaderCrumb}>
-          ATS Score &amp; Tailor <span className={styles.tailorHeaderSep}>/</span> <strong>{stageLabel}</strong>
-        </span>
-        <button className={styles.backBtn} onClick={handleBack}>
-          <ArrowLeft size={15} /> {stage === 'results' ? 'Edit inputs' : 'Back'}
-        </button>
-      </header>
 
       {/* Input stage */}
       {stage === 'input' && (
@@ -1128,9 +1059,7 @@ export default function JDTailorPage() {
       {stage === 'smart' && jdSpec && (
         <div className={styles.smartScreen}>
           <SmartTailorStudio
-            spec={jdSpec}
-            resumeText={getResumeText()}
-            baselineScore={projectAtsScore(jdSpec, matchedTermsInText(jdSpec, getResumeText())).score}
+            baseline={atsMatchFromText(jdSpec, getResumeText())}
             generating={tailorSmartMutation.isPending}
             ctaLabel="Continue"
             onGenerate={handleSmartContinue}

@@ -72,11 +72,11 @@ function Hero() {
         </h1>
 
         <p className={styles.heroSub}>
-          Paste a job description. AI rewrites your resume — keywords matched, ATS score 90+, in under 3 minutes.
+          Paste a job description. AI rewrites your resume — keywords matched, ATS score 85+, in under 3 minutes.
         </p>
 
         <div className={styles.heroCtaWrap}>
-          <Link to="/jd-tailor" className={styles.heroCta}>
+          <Link to="/dashboard" className={styles.heroCta}>
             Build My ATS Resume — Free
           </Link>
         </div>
@@ -291,7 +291,7 @@ const FEATURE_TABS = [
     num: '01', label: 'Resume Builder',
     headline: 'Generate a resume that beats the bots.',
     sub: 'Paste a job description. Get a resume tailored to it — keywords matched, structure ATS-ready, exported as a recruiter-friendly PDF.',
-    points: ['Increase ATS score to 90+ on every job', 'Save 2 hours per application', 'Match keywords recruiters scan for', 'Export a clean PDF in one click'],
+    points: ['Increase ATS score to 85+ on every job', 'Save 2 hours per application', 'Match keywords recruiters scan for', 'Export a clean PDF in one click'],
     visual: <ResumeBuilderVisual />,
   },
   {
@@ -361,41 +361,6 @@ function FeatureTabs() {
   )
 }
 
-// ── Bento grid ────────────────────────────────────────────────────────────
-const BENTO_CARDS = [
-  { bg: 'var(--brand-light)', color: 'var(--brand)', prompt: 'Generate a tailored resume for this job', result: 'ATS-ready in 2 min 47 sec', icon: '⚡', wide: true },
-  { bg: 'var(--coral-light)', color: 'var(--coral)', prompt: 'Increase your ATS score from 23 → 91', result: 'Now passes most ATS scanners', icon: '🎯', wide: false },
-  { bg: 'var(--green-light)', color: 'var(--green)', prompt: 'Write a personalised cover letter', result: 'No generic phrases. 60 seconds.', icon: '✉️', wide: false },
-  { bg: '#FFF8E8', color: '#D97706', prompt: "Find the keywords you're missing", result: '14/18 matched. Add 4 more.', icon: '🔍', wide: false },
-]
-
-function BentoGrid() {
-  return (
-    <section className={`${styles.section} ${styles.sectionSoft}`}>
-      <div className={styles.sectionInner}>
-        <Reveal className={styles.sectionHead}>
-          <div className={styles.kicker}>Real outcomes</div>
-          <h2 className={styles.sectionTitle}>What you get back,<br />every time you apply.</h2>
-        </Reveal>
-        <div className={styles.bentoGrid}>
-          {BENTO_CARDS.map((card, i) => (
-            <Reveal key={card.prompt} delay={i * 60} className={card.wide ? styles.bentoWide : ''}>
-              <div className={styles.bentoCard} style={{ background: card.bg, borderColor: `color-mix(in srgb, ${card.color} 25%, transparent)` }}>
-                <div className={styles.bentoIcon}>{card.icon}</div>
-                <div className={styles.bentoPrompt}>"{card.prompt}"</div>
-                <div className={styles.bentoResultRow}>
-                  <span className={styles.bentoResultDot} style={{ background: card.color }} />
-                  <span className={styles.bentoResultText} style={{ color: card.color }}>{card.result}</span>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 // ── Testimonials ──────────────────────────────────────────────────────────
 const TESTIMONIALS = [
   { text: 'I was applying to 15 jobs with the same resume for 2 months. Used this once, scored 91 on ATS, got a call from Infosys in a week.', name: 'Priya S.', role: 'B.Tech CSE · Pune', col: 'var(--brand)' },
@@ -408,6 +373,7 @@ function Testimonials() {
     <section className={`${styles.section} ${styles.sectionSoft}`}>
       <div className={styles.sectionInner}>
         <Reveal className={styles.sectionHead}>
+          <div className={styles.kicker}>What users say</div>
           <h2 className={styles.sectionTitle}>Real freshers. Real callbacks.</h2>
         </Reveal>
         <div className={styles.quoteGrid}>
@@ -516,7 +482,7 @@ function CTAFinal() {
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>Your next interview is<br />one resume away.</h2>
             <p className={styles.ctaSub}>Start free. No credit card. 3 minutes.</p>
-            <Link to="/jd-tailor" className={styles.ctaBtn}>
+            <Link to="/dashboard" className={styles.ctaBtn}>
               Build My ATS Resume — Free <ArrowRight size={18} />
             </Link>
           </div>
@@ -529,7 +495,7 @@ function CTAFinal() {
 // ── Page ─────────────────────────────────────────────────────────────────
 export default function HomePage() {
   return (
-    <div className={styles.page}>
+    <div className={styles.page} data-page="home">
       <Helmet>
         <title>CareerForge | AI Resume Tailoring — Match Any Job Description</title>
         <meta name="description" content="CareerForge tailors your resume to any job description in minutes. Get a real-time ATS match score, fix skill gaps, and generate a cover letter — all in one flow, completely free." />
@@ -543,9 +509,8 @@ export default function HomePage() {
       <Hero />
       <LogoStrip />
       <FeatureTabs />
-      <BentoGrid />
-      <Roadmap />
       <Testimonials />
+      <Roadmap />
       <FAQ />
       <CTAFinal />
       <Footer />

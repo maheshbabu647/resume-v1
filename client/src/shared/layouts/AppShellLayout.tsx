@@ -183,7 +183,10 @@ export const AppShellLayout = () => {
             ) : (
               <>
                 <Link to="/login" className={styles.signInLink}>Log in</Link>
-                <Link to="/register" className={styles.saveBtn}>Sign up &mdash; Save your work</Link>
+                <Link to="/register" className={styles.saveBtn}>
+                  <span className={styles.saveBtnFull}>Sign up &mdash; Save your work</span>
+                  <span className={styles.saveBtnShort}>Sign up</span>
+                </Link>
               </>
             )}
           </div>
