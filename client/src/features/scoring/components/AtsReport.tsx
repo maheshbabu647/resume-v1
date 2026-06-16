@@ -1,22 +1,26 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import {
   Target, Upload, FileText, X, Check, AlertTriangle, Loader2,
-  RefreshCw, Wand2, CheckCircle2,
+  RefreshCw, Wand2, CheckCircle2, Sparkles,
 } from 'lucide-react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { apiClient } from '@/shared/lib/apiClient'
 import { useUsage } from '@/core/hooks/useUsage'
+import { useAuthStore } from '@/core/auth/useAuthStore'
 import { UpgradeModal } from '@/shared/components/UpgradeModal/UpgradeModal'
+import { AuthRequireModal } from '@/shared/components/AuthRequireModal/AuthRequireModal'
 import { trackJDTailorRequested } from '@/shared/lib/analytics'
 import { useResumeStore } from '../../resume-builder/store/useResumeStore'
 import { useJdMatchStore } from '../store/useJdMatchStore'
 import { useAtsMatch } from '../hooks/useAtsMatch'
 import { useFetchJdSpec } from '../hooks/useFetchJdSpec'
 import { getScoreColor } from '../lib/scoreColor'
+import { serializeResume } from '../lib/jdPreprocessor'
 import { TailorDiffDialog } from './TailorDiffDialog'
+import SmartTailorStudio from './SmartTailorStudio'
 import { buildFieldDiffs, applyAcceptedDiffs } from './tailorDiffUtils'
 import type { FieldDiffStep } from './tailorDiffUtils'
-import type { AtsSkillMatch } from '../types/scoring.types'
+import type { AtsSkillMatch, SmartTailorBuckets } from '../types/scoring.types'
 import styles from './ScoreReports.module.css'
 
 const COMPONENT_LABELS: { key: 'required' | 'preferred' | 'title' | 'context'; label: string }[] = [
@@ -29,15 +33,21 @@ const COMPONENT_LABELS: { key: 'required' | 'preferred' | 'title' | 'context'; l
 export default function AtsReport() {
   const queryClient = useQueryClient()
   const { jdText, jdSpec } = useJdMatchStore()
+  const resumeKey = useJdMatchStore((s) => s.resumeKey) ?? 'new'
   const ats = useAtsMatch()
   const fetchSpec = useFetchJdSpec()
   const { isGuest, isAtLimit } = useUsage()
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
   const resume = useResumeStore()
+
+  // Guests can see scores + reports, but updating the JD (one server call) needs auth.
+  // Their typed JD draft is persisted so it survives login (incl. an OAuth reload).
+  const DRAFT_KEY = `cf_jddraft_${resumeKey}`
 
   // JD input UI
   const [editing, setEditing] = useState(false)
   const [jdSource, setJdSource] = useState<'paste' | 'upload'>('paste')
-  const [draft, setDraft] = useState('')
+  const [draft, setDraft] = useState(() => { try { return localStorage.getItem(`cf_jddraft_${resumeKey}`) || '' } catch { return '' } })
   const [file, setFile] = useState<File | null>(null)
   const [dragging, setDragging] = useState(false)
   const fileRef = useRef<HTMLInputElement>(null)
@@ -45,10 +55,23 @@ export default function AtsReport() {
   const [showUpgrade, setShowUpgrade] = useState(false)
   const [upgradeFeature, setUpgradeFeature] = useState<'jdScore' | 'jdTailoring'>('jdScore')
 
+  // Auth gate for JD updates — remember what the user was trying to do, resume it after login.
+  const [authOpen, setAuthOpen] = useState(false)
+  const pendingRef = useRef<{ type: 'calc' } | { type: 'file'; file: File } | { type: 'startChange' } | null>(null)
+
+  // Persist the in-progress JD draft (guest, no spec yet) so login never loses it.
+  useEffect(() => {
+    try {
+      if (!jdSpec && draft) localStorage.setItem(DRAFT_KEY, draft)
+      else if (!draft) localStorage.removeItem(DRAFT_KEY)
+    } catch { /* ignore */ }
+  }, [draft, jdSpec, DRAFT_KEY])
+
   // Tailor flow
   const [diffOpen, setDiffOpen] = useState(false)
   const [diffSteps, setDiffSteps] = useState<FieldDiffStep[]>([])
   const [pendingTailor, setPendingTailor] = useState<any>(null)
+  const [smartOpen, setSmartOpen] = useState(false)
 
   const showInput = !jdSpec || editing
   const fetchError = useJdMatchStore((s) => s.error)
@@ -65,26 +88,62 @@ export default function AtsReport() {
     onSuccess: (text) => setDraft(text),
   })
 
-  const processFile = (f: File) => { setFile(f); setDraft(''); extractJd.mutate(f) }
+  // Returns true if allowed to proceed now; otherwise stashes the action and opens the auth modal.
+  const requireAuthThen = (action: { type: 'calc' } | { type: 'file'; file: File }): boolean => {
+    if (isAuthenticated) return true
+    pendingRef.current = action
+    setAuthOpen(true)
+    return false
+  }
+
+  const doExtract = (f: File) => { setFile(f); setDraft(''); extractJd.mutate(f) }
+
+  const processFile = (f: File) => {
+    if (!requireAuthThen({ type: 'file', file: f })) return
+    doExtract(f)
+  }
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault(); setDragging(false)
     const f = e.dataTransfer.files[0]; if (f) processFile(f)
-  }, [])
+  }, [isAuthenticated])
 
   /* ── Calculate (fetch JD-Spec once) ── */
-  const handleCalculate = async () => {
+  // Runs the actual call WITHOUT re-checking auth (avoids a stale-closure re-prompt right after login).
+  const runCalc = async (text: string) => {
+    if (text.trim().length < 50) return
+    try {
+      await fetchSpec.mutateAsync(text)
+      setEditing(false); setFile(null)
+      try { localStorage.removeItem(DRAFT_KEY) } catch { /* ignore */ }
+    } catch { /* error surfaced via store */ }
+  }
+
+  const handleCalculate = () => {
     if (draft.trim().length < 50) return
+    if (!requireAuthThen({ type: 'calc' })) return
     if (isGuest && isAtLimit('jdScore')) {
       window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: { feature: 'jdScore' } }))
       return
     }
-    try {
-      await fetchSpec.mutateAsync(draft)
-      setEditing(false); setFile(null)
-    } catch { /* error surfaced via store */ }
+    runCalc(draft)
   }
 
-  const startChange = () => { setDraft(jdText); setJdSource('paste'); setFile(null); setEditing(true) }
+  // After login: the draft is intact (state preserved, or rehydrated after OAuth) — resume the action.
+  const handleAuthSuccess = () => {
+    setAuthOpen(false)
+    const pending = pendingRef.current
+    pendingRef.current = null
+    if (pending?.type === 'file') doExtract(pending.file)
+    else if (pending?.type === 'calc') runCalc(draft)
+    else if (pending?.type === 'startChange') {
+      setDraft(jdText); setJdSource('paste'); setFile(null); setEditing(true)
+    }
+  }
+
+  const startChange = () => {
+    if (!requireAuthThen({ type: 'startChange' })) return
+    setDraft(jdText); setJdSource('paste'); setFile(null); setEditing(true)
+  }
 
   /* ── Tailor ── */
   const tailorMutation = useMutation({
@@ -146,6 +205,55 @@ export default function AtsReport() {
       setPersonalField: useResumeStore.getState().setPersonalField,
     })
     queryClient.invalidateQueries({ queryKey: ['usage'] })
+  }
+
+  /* ── Smart Tailor (editor): triage skills → honest rewrite → reuse the diff review ── */
+  const tailorSmartMutation = useMutation({
+    mutationFn: async (buckets: SmartTailorBuckets) => {
+      const res = await apiClient.post('/ai/tailor-smart', {
+        resumeText: serializeResume(resume.data),
+        jdText,
+        ...buckets,
+      })
+      return res.data.data
+    },
+    onSuccess: (data) => {
+      const steps = buildFieldDiffs({
+        originalSections: resume.data.sections,
+        rewrittenSections: data.sections || [],
+        originalPersonalInfo: resume.data.personalInfo,
+        rewrittenPersonalInfo: data.personalInfo || null,
+      })
+      setPendingTailor({
+        rewrittenSections: data.sections,
+        rewrittenPersonalInfo: data.personalInfo,
+        jdCompanyName: data.jdCompanyName,
+        jdRoleName: data.jdRoleName,
+      })
+      setDiffSteps(steps)
+      setSmartOpen(false)
+      setDiffOpen(true)
+    },
+    onError: (err: any) => {
+      const code = err?.response?.data?.error?.code ?? err?.response?.data?.code
+      if (code === 'GUEST_LIMIT_HIT') {
+        window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: err?.response?.data?.data ?? { feature: 'jdTailoring' } }))
+      } else if (code === 'QUOTA_EXCEEDED') {
+        setUpgradeFeature('jdTailoring'); setShowUpgrade(true)
+      }
+    },
+  })
+
+  const openSmart = () => {
+    if (isGuest && isAtLimit('jdTailoring')) {
+      window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: { feature: 'jdTailoring' } }))
+      return
+    }
+    setSmartOpen(true)
+  }
+
+  const handleSmartGenerate = (buckets: SmartTailorBuckets) => {
+    tailorSmartMutation.mutate(buckets)
   }
 
   /* ── Render: chips ── */
@@ -233,6 +341,13 @@ export default function AtsReport() {
         </div>
 
         <UpgradeModal isOpen={showUpgrade} onClose={() => setShowUpgrade(false)} trigger={upgradeFeature} />
+        <AuthRequireModal
+          isOpen={authOpen}
+          onClose={() => { setAuthOpen(false); pendingRef.current = null }}
+          onSuccess={handleAuthSuccess}
+          title="Sign in to score against a JD"
+          subtitle="Your job description stays right here — sign in and we'll calculate your ATS score instantly."
+        />
       </div>
     )
   }
@@ -301,14 +416,24 @@ export default function AtsReport() {
 
       <div className={styles.tailorCard}>
         <p className={styles.tailorTitle}>Tailor my resume to this JD</p>
-        <p className={styles.tailorSub}>Let AI rewrite your sections to align with this role. You review every change before it's applied.</p>
-        <button className={styles.primaryBtn} onClick={handleTailor} disabled={tailorMutation.isPending}>
-          {tailorMutation.isPending ? <><Loader2 size={15} className="spin" /> Generating changes…</> : <><Wand2 size={15} /> Tailor to this JD</>}
+        <p className={styles.tailorSub}>Smart Tailor lets you triage each skill and keeps every line honest. Quick tailor just adds the keywords for you. You review every change before it's applied.</p>
+        <button className={styles.primaryBtn} onClick={openSmart} disabled={tailorSmartMutation.isPending}>
+          <Sparkles size={15} /> Smart Tailor
+        </button>
+        <button className={styles.secondaryBtn} onClick={handleTailor} disabled={tailorMutation.isPending} style={{ marginTop: 8 }}>
+          {tailorMutation.isPending ? <><Loader2 size={15} className="spin" /> Generating…</> : <><Wand2 size={15} /> Quick tailor</>}
         </button>
         {tailorMutation.isError && <div className={styles.errorBox} style={{ marginTop: 8 }}>Failed to tailor. Please try again.</div>}
       </div>
 
       <UpgradeModal isOpen={showUpgrade} onClose={() => setShowUpgrade(false)} trigger={upgradeFeature} />
+      <AuthRequireModal
+        isOpen={authOpen}
+        onClose={() => { setAuthOpen(false); pendingRef.current = null }}
+        onSuccess={handleAuthSuccess}
+        title="Sign in to change the JD"
+        subtitle="Your current job description and score stay right here — sign in to swap in a new one."
+      />
       <TailorDiffDialog
         isOpen={diffOpen}
         isPending={tailorMutation.isPending}
@@ -318,6 +443,28 @@ export default function AtsReport() {
         onComplete={handleDiffComplete}
         onClose={() => setDiffOpen(false)}
       />
+
+      {smartOpen && jdSpec && (
+        <div className={styles.smartOverlay}>
+          <div className={styles.smartOverlayBar}>
+            <span className={styles.smartOverlayTitle}><Sparkles size={15} /> Smart Tailor</span>
+            <button className={styles.smartOverlayClose} onClick={() => setSmartOpen(false)} disabled={tailorSmartMutation.isPending}>
+              <X size={18} />
+            </button>
+          </div>
+          <div className={styles.smartOverlayBody}>
+            <SmartTailorStudio
+              spec={jdSpec}
+              resumeText={serializeResume(resume.data)}
+              baselineScore={ats?.score ?? null}
+              generating={tailorSmartMutation.isPending}
+              ctaLabel="Generate changes"
+              onGenerate={handleSmartGenerate}
+              onBack={() => setSmartOpen(false)}
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -10,8 +10,9 @@ import { buildResumeParsePrompt } from './prompts/resumeParse.prompt'
 import { buildJDMatchPrompt } from './prompts/jdMatch.prompt'
 import { buildJdSpecPrompt } from './prompts/jdSpec.prompt'
 import { buildTailorNewPrompt } from './prompts/tailorNew.prompt'
+import { buildTailorSmartPrompt } from './prompts/tailorSmart.prompt'
 import { buildCoverLetterPrompt, buildRewriteParagraphPrompt } from './prompts/coverLetter.prompt'
-import type { JdTailorBody, SuggestBody, AnalyzeJdBody, TailorNewBody, CoverLetterBody, RewriteParagraphBody, JdSpecBody } from '../../schemas/ai.schema'
+import type { JdTailorBody, SuggestBody, AnalyzeJdBody, TailorNewBody, TailorSmartBody, CoverLetterBody, RewriteParagraphBody, JdSpecBody } from '../../schemas/ai.schema'
 import type { ISection } from '../../models/Resume.model'
 
 /**
@@ -296,6 +297,23 @@ export const tailorNew = async (body: TailorNewBody): Promise<TailorNewResult> =
   const result = await callLLMJSON<TailorNewResult>(prompt, { maxOutputTokens: 8192, temperature: 0.2 })
   if (!result.personalInfo || !Array.isArray(result.sections)) {
     throw new AppError('LLM_ERROR', 500, 'AI returned an unexpected structure for tailored resume.')
+  }
+  return result
+}
+
+// ─── Tailor Smart ───────────────────────────────────────────────────────────────
+// Like tailorNew, but honors the user's per-skill decisions: `have` claimed normally,
+// `mention` woven in WITHOUT claiming proficiency (keyword present for ATS only), `omit`
+// left out. Returns the same full structured resume shape.
+
+export const tailorSmart = async (body: TailorSmartBody): Promise<TailorNewResult> => {
+  const { resumeText, jdText, skillsHave, skillsMention, skillsOmit } = body
+  const prompt = buildTailorSmartPrompt(resumeText.slice(0, 12000), jdText, {
+    skillsHave, skillsMention, skillsOmit,
+  })
+  const result = await callLLMJSON<TailorNewResult>(prompt, { maxOutputTokens: 8192, temperature: 0.2 })
+  if (!result.personalInfo || !Array.isArray(result.sections)) {
+    throw new AppError('LLM_ERROR', 500, 'AI returned an unexpected structure for the tailored resume.')
   }
   return result
 }

@@ -1,18 +1,14 @@
-import { useState } from 'react'
 import { useEditorUIStore } from '../../store/useEditorUIStore'
 import StrengthReport from '../../../scoring/components/StrengthReport'
 import AtsReport from '../../../scoring/components/AtsReport'
-import { useAuthStore } from '@/core/auth/useAuthStore'
-import { AuthRequireModal } from '@/shared/components/AuthRequireModal/AuthRequireModal'
 import styles from './ScorePanelContent.module.css'
 
 export default function ScorePanelContent() {
   const scoreSubTab = useEditorUIStore((s) => s.scoreSubTab)
   const setScoreSubTab = useEditorUIStore((s) => s.setScoreSubTab)
-  const [authModalOpen, setAuthModalOpen] = useState(!useAuthStore.getState().isAuthenticated)
 
-  const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
-
+  // Scores + reports are visible to everyone. Only updating the JD (one server call)
+  // requires auth — that gate lives inside AtsReport.
   return (
     <div className={styles.panel}>
       <div className={styles.tabBar}>
@@ -30,23 +26,9 @@ export default function ScorePanelContent() {
         </button>
       </div>
 
-      {isAuthenticated ? (
-        <div className={styles.content}>
-          {scoreSubTab === 'strength' ? <StrengthReport /> : <AtsReport />}
-        </div>
-      ) : (
-        <div className={styles.lockedContent}>
-          <p className={styles.lockedText}>Log in to see your resume strength and ATS match scores.</p>
-        </div>
-      )}
-
-      <AuthRequireModal
-        isOpen={authModalOpen && !isAuthenticated}
-        onClose={() => setAuthModalOpen(false)}
-        onSuccess={() => setAuthModalOpen(false)}
-        title="Authentication Required"
-        subtitle="Please log in to use AI scoring and JD matchmaking."
-      />
+      <div className={styles.content}>
+        {scoreSubTab === 'strength' ? <StrengthReport /> : <AtsReport />}
+      </div>
     </div>
   )
 }

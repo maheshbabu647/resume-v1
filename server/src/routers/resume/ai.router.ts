@@ -3,7 +3,7 @@ import * as aiController from '../../controllers/resume/ai.controller'
 import { validate }       from '../../middleware/validate'
 import { aiRateLimiter }  from '../../middleware/rateLimiter'
 import { quotaGuard }     from '../../middleware/quotaGuard'
-import { jdTailorSchema, suggestSchema, analyzeJdSchema, tailorNewSchema, coverLetterSchema, rewriteParagraphSchema, jdSpecSchema } from '../../schemas/ai.schema'
+import { jdTailorSchema, suggestSchema, analyzeJdSchema, tailorNewSchema, tailorSmartSchema, coverLetterSchema, rewriteParagraphSchema, jdSpecSchema } from '../../schemas/ai.schema'
 
 const router = Router()
 router.use(aiRateLimiter)
@@ -11,6 +11,8 @@ router.use(aiRateLimiter)
 // Each route is quota-gated per the plan limits in constants.ts
 router.post('/jd-tailor',                    quotaGuard('jdTailoring'), validate('body', jdTailorSchema),  aiController.jdTailor)
 router.post('/tailor-new',                   quotaGuard('jdTailoring'), validate('body', tailorNewSchema), aiController.tailorNew)
+// Smart Tailor — full structured resume honoring the user's per-skill have/mention/omit buckets.
+router.post('/tailor-smart',                 quotaGuard('jdTailoring'), validate('body', tailorSmartSchema), aiController.tailorSmart)
 // /jd-spec is the single source of truth for ATS scoring: one LLM call extracts the
 // weighted JD-Spec (cached per-JD); the deterministic client formula scores both the
 // initial report and the live updates from it. Used by the ATS-Score&Tailor flow AND

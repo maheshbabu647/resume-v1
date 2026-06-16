@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Sparkles } from 'lucide-react'
 import { apiClient } from '@/shared/lib/apiClient'
 import { AiSuggestDialog } from './AiSuggestDialog'
@@ -27,6 +27,17 @@ export const AiTextarea = ({
   const [loading, setLoading] = useState(false)
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [error, setError] = useState('')
+  const taRef = useRef<HTMLTextAreaElement>(null)
+
+  // Auto-grow so all content stays visible as you type (capped by CSS max-height, then scrolls).
+  const autoGrow = () => {
+    const el = taRef.current
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = `${el.scrollHeight}px`
+  }
+
+  useEffect(() => { autoGrow() }, [currentValue])
 
   const fetchSuggestions = async () => {
     setLoading(true)
@@ -81,10 +92,11 @@ export const AiTextarea = ({
       </div>
 
       <textarea
+        ref={taRef}
         className={styles.textarea}
         value={currentValue}
-        onChange={(e) => onValueChange(e.target.value)}
-        rows={5}
+        onChange={(e) => { onValueChange(e.target.value); autoGrow() }}
+        rows={2}
         {...rest}
       />
 

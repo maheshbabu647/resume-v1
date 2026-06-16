@@ -14,6 +14,18 @@ export const tailorNewSchema = z.object({
   templateId: z.string().min(1),
 })
 
+// Smart Tailor: the user has triaged each JD skill into one of three buckets. The LLM
+// honors them — claims `have` normally, weaves `mention` in WITHOUT claiming mastery,
+// and leaves out `omit` entirely. Returns a full structured resume like tailorNew.
+const skillTermList = z.array(z.string().min(1).max(80)).max(60).default([])
+export const tailorSmartSchema = z.object({
+  resumeText:    z.string().min(50, 'Resume text too short').max(12000, 'Resume text too long'),
+  jdText:        z.string().min(50, 'JD too short').max(AI.JD_TEXT_MAX_CHARS, 'JD too long'),
+  skillsHave:    skillTermList,
+  skillsMention: skillTermList,
+  skillsOmit:    skillTermList,
+})
+
 export const suggestSchema = z.object({
   resumeId:      z.string().length(24, 'Invalid resume ID').optional(), // optional for unsaved resumes
   sectionKey:    z.string().min(1),
@@ -50,6 +62,7 @@ export type JdTailorBody         = z.infer<typeof jdTailorSchema>
 export type SuggestBody          = z.infer<typeof suggestSchema>
 export type AnalyzeJdBody        = z.infer<typeof analyzeJdSchema>
 export type TailorNewBody        = z.infer<typeof tailorNewSchema>
+export type TailorSmartBody      = z.infer<typeof tailorSmartSchema>
 export type CoverLetterBody      = z.infer<typeof coverLetterSchema>
 export type RewriteParagraphBody = z.infer<typeof rewriteParagraphSchema>
 export type JdSpecBody           = z.infer<typeof jdSpecSchema>

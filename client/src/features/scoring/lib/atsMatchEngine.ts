@@ -161,7 +161,7 @@ const coverage = (matches: AtsSkillMatch[]): number => {
   return den === 0 ? 1 : num / den
 }
 
-const labelFor = (score: number): AtsLabel => {
+export const labelFor = (score: number): AtsLabel => {
   if (score < 50) return 'Weak match'
   if (score < 65) return 'Partial match'
   if (score < 75) return 'Decent match'
@@ -226,4 +226,55 @@ export function calculateAtsMatch(resume: ResumeData, spec: JDSpec): AtsMatchRes
     jobTitle: spec.jobTitle,
     responsibilities: spec.responsibilities ?? [],
   }
+}
+
+// ── Smart Tailor helpers ─────────────────────────────────────────────────────────
+
+/**
+ * Which required/preferred spec terms already appear in a blob of resume text.
+ * Used to pre-classify the Smart Tailor screen (matched → default "Have it"). Works for
+ * both raw pasted resumes and serialized structured resumes — a single flat zone is fine
+ * for a default the user can override.
+ */
+export function matchedTermsInText(spec: JDSpec, text: string): Set<string> {
+  const zone = makeZone([text])
+  const out = new Set<string>()
+  const check = (s: JdSpecSkill) => {
+    if (matchLevelInZone([s.term, ...(s.aliases ?? [])], zone) > 0) out.add(s.term)
+  }
+  ;(spec.requiredSkills ?? []).forEach(check)
+  ;(spec.preferredSkills ?? []).forEach(check)
+  return out
+}
+
+/**
+ * Projected ATS score for the Smart Tailor screen, 0..100.
+ *
+ * Models the resume AFTER tailoring: every included skill (the user marked it "have" or
+ * "mention" — both end up in the resume) counts as fully present; "leave out" counts as
+ * absent. Title and context are credited as full because tailoring targets the title and
+ * weaves the responsibilities/domain keywords in. So the score moves purely with the
+ * user's skill decisions — exactly the trade-off the screen is meant to surface.
+ */
+export function projectAtsScore(spec: JDSpec, includedTerms: Set<string>): { score: number; label: AtsLabel } {
+  const cov = (list: JdSpecSkill[]): number => {
+    if (!list.length) return 1
+    let num = 0, den = 0
+    for (const s of list) {
+      const w = s.weight * (s.type === 'soft' ? SOFT_MULTIPLIER : 1)
+      den += w
+      if (includedTerms.has(s.term)) num += w
+    }
+    return den === 0 ? 1 : num / den
+  }
+  const required = cov(spec.requiredSkills ?? [])
+  const preferred = cov(spec.preferredSkills ?? [])
+  const raw = 100 * (
+    WEIGHTS.required * required +
+    WEIGHTS.preferred * preferred +
+    WEIGHTS.title * 1 +
+    WEIGHTS.context * 1
+  )
+  const score = Math.max(0, Math.min(100, Math.round(raw)))
+  return { score, label: labelFor(score) }
 }

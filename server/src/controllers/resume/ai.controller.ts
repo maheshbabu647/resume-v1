@@ -34,6 +34,11 @@ export const tailorNew = async (req: Request, res: Response, next: NextFunction)
   catch (err) { next(err) }
 }
 
+export const tailorSmart = async (req: Request, res: Response, next: NextFunction) => {
+  try { res.json({ ok: true, data: await aiService.tailorSmart(req.body) }) }
+  catch (err) { next(err) }
+}
+
 export const generateCoverLetter = async (req: Request, res: Response, next: NextFunction) => {
   try { res.json({ ok: true, data: await aiService.generateCoverLetter(req.body) }) }
   catch (err) { next(err) }

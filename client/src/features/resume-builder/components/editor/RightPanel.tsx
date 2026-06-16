@@ -1,8 +1,5 @@
-import { Palette, Target, ChevronLeft, ChevronRight, TrendingUp } from 'lucide-react'
+import { Palette, Target, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useEditorUIStore } from '../../store/useEditorUIStore'
-import { useResumeStrengthScore } from '../../../scoring/hooks/useResumeStrengthScore'
-import { useAtsMatch } from '../../../scoring/hooks/useAtsMatch'
-import { getScoreColor } from '../../../scoring/lib/scoreColor'
 import StylePanelContent from './StylePanelContent'
 import ScorePanelContent from './ScorePanelContent'
 import styles from './RightPanel.module.css'
@@ -18,10 +15,6 @@ export default function RightPanel() {
   const mobileViewMode = useEditorUIStore((s) => s.mobileViewMode)
   const rightPanelCollapsed = useEditorUIStore((s) => s.rightPanelCollapsed)
   const toggleRightPanelCollapsed = useEditorUIStore((s) => s.toggleRightPanelCollapsed)
-  const setScoreSubTab = useEditorUIStore((s) => s.setScoreSubTab)
-
-  const strength = useResumeStrengthScore()
-  const ats = useAtsMatch()
 
   const openTab = (id: 'style' | 'score') => {
     if (rightPanelCollapsed) toggleRightPanelCollapsed()
@@ -43,20 +36,6 @@ export default function RightPanel() {
               </button>
             )
           })}
-          {ats && (
-            <div className={styles.railScoreBadge} title={`ATS Match: ${ats.score}/100`}
-              style={{ color: getScoreColor(ats.score) }} onClick={() => { setScoreSubTab('fit'); openTab('score') }}>
-              <Target size={12} />
-              <span>{ats.score}</span>
-            </div>
-          )}
-          {strength && (
-            <div className={styles.railScoreBadge} title={`Resume Strength: ${strength.totalScore}/100`}
-              style={{ color: getScoreColor(strength.totalScore) }} onClick={() => { setScoreSubTab('strength'); openTab('score') }}>
-              <TrendingUp size={12} />
-              <span>{strength.totalScore}</span>
-            </div>
-          )}
         </div>
       ) : (
         <>

@@ -2,29 +2,26 @@ import { Target, TrendingUp, Plus, Loader2 } from 'lucide-react'
 import { useResumeStrengthScore } from '../../../scoring/hooks/useResumeStrengthScore'
 import { useAtsMatch } from '../../../scoring/hooks/useAtsMatch'
 import { useJdMatchStore } from '../../../scoring/store/useJdMatchStore'
-import { useAuthStore } from '@/core/auth/useAuthStore'
 import { getScoreColor } from '../../../scoring/lib/scoreColor'
 import { useEditorUIStore } from '../../store/useEditorUIStore'
 import styles from './ScoreBadges.module.css'
 
 /**
  * Two always-visible score pills in the toolbar: live ATS match + resume strength.
- * Clicking either opens the right-panel Score tab on the matching sub-report.
- * When no JD is loaded the ATS pill shows an "+ JD" affordance instead of a misleading 0.
+ * Shown to everyone (incl. guests) — clicking either opens the right-panel Score tab on
+ * the matching sub-report. When no JD is loaded the ATS pill shows an "+ JD" affordance
+ * instead of a misleading 0.
  */
 export function ScoreBadges() {
   const strength = useResumeStrengthScore()
   const ats = useAtsMatch()
   const jdStatus = useJdMatchStore((s) => s.status)
-  const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
 
   const setRightPanelTab = useEditorUIStore((s) => s.setRightPanelTab)
   const setScoreSubTab = useEditorUIStore((s) => s.setScoreSubTab)
   const rightPanelCollapsed = useEditorUIStore((s) => s.rightPanelCollapsed)
   const toggleRightPanelCollapsed = useEditorUIStore((s) => s.toggleRightPanelCollapsed)
   const setMobileViewMode = useEditorUIStore((s) => s.setMobileViewMode)
-
-  if (!isAuthenticated) return null
 
   const open = (sub: 'strength' | 'fit') => {
     setScoreSubTab(sub)

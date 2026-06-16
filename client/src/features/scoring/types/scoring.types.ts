@@ -131,6 +131,29 @@ export interface AtsMatchResult {
   responsibilities: JdSpecResponsibility[];
 }
 
+// ─── Smart Tailor (per-skill triage → honest, ATS-aware rewrite) ───────────────
+
+// have    = candidate genuinely has it → claim normally
+// mention = candidate lacks it, but keep the keyword for ATS WITHOUT claiming mastery
+// omit    = leave out of the resume entirely
+export type SmartTailorDecision = "have" | "mention" | "omit";
+
+export interface SmartTailorSkill {
+  term: string;
+  weight: number;                     // 1..3, from the JD-Spec
+  type: SkillType;
+  bucket: "required" | "preferred";
+  matched: boolean;                   // already present in the resume (default → "have")
+  decision: SmartTailorDecision;
+}
+
+// Three flat term lists sent to POST /ai/tailor-smart.
+export interface SmartTailorBuckets {
+  skillsHave: string[];
+  skillsMention: string[];
+  skillsOmit: string[];
+}
+
 // ─── Advanced Resume Strength (content-only, no template credit) ───────────────
 
 export type StrengthDimension =

@@ -1,37 +1,10 @@
 // tailorNew.prompt.ts — generates a full structured resume from raw text + JD
-// ALIGNED WITH client/src/features/resume-builder/config/fieldDefinitions.ts 
+// ALIGNED WITH client/src/features/resume-builder/config/fieldDefinitions.ts
 // & server/src/services/resume/prompts/resumeParse.prompt.ts
 
-export const buildTailorNewPrompt = (resumeText: string, jdText: string): string => `
-You are an elite resume writer and ATS optimization specialist. Your task is to transform a candidate's existing resume into a fully tailored, ATS-optimized version for a specific job description.
-
-## Job Description
-${jdText}
-
-## Candidate's Resume (plain text)
-${resumeText}
-
-## Your Task
-1. Parse the candidate's existing resume to extract all their actual experience, education, skills, and achievements
-2. Rewrite and restructure the content to be maximally aligned with the job description
-3. Naturally incorporate keywords and phrases from the JD without fabricating experience
-4. Strengthen descriptions to be achievement-oriented and quantifiable where possible
-5. Return a complete, properly structured JSON resume following the STRICT Output Schema below
-6. ONLY include sections that have actual data from the resume. If a section is empty, EXCLUDE it from the sections array.
-7. Only set "visible": true for sections that have actual content.
-
-## CRITICAL RULES
-- NEVER invent experience, companies, titles, dates, or achievements that aren't in the original resume
-- DO reword and reframe real experience to better match the JD
-- DO add missing keywords from JD to Skills sections if the candidate plausibly has them
-- DO improve phrasing and add metrics where the original is vague (e.g. "improved performance" → "improved API response time by ~30%")
-- Preserve all real dates, company names, job titles, and school names exactly
-- For singular 'dates' fields, combine start and end dates (e.g. "Jan 2020 – Present" or "2018 - 2022"). Do NOT output separate startDate and endDate.
-- For skills, group them into logical categories if they appear grouped, else use "Technical Skills" as default category.
-
-## Output JSON Schema
-
-{
+// Shared structured-resume output schema, reused by tailorNew AND tailorSmart so both
+// emit the exact same shape the editor store expects. Single source of truth.
+export const RESUME_OUTPUT_SCHEMA = `{
   "jdCompanyName": "string",
   "jdRoleName": "string",
   "personalInfo": {
@@ -274,12 +247,46 @@ ${resumeText}
       }]
     }
   ]
-}
+}`
 
-## Final Constraints
+// Shared final constraints, reused by both prompts.
+export const RESUME_FINAL_CONSTRAINTS = `## Final Constraints
 - Respond with ONLY valid JSON — no markdown, no explanation, no code fences
 - Preserve bullet point text in "description" fields with newline characters
 - Pay special attention to exact property names! For example, output "skillList" not "skills", "qualification" not "degree", "dates" not "startDate".
 - **Categorization Rule**: Put all Hackathons, Workshops, and Tech Competitions in the "events" section. Use "awards" ONLY for honors, rewards, and formal recognitions. Do NOT mix them.
-- **Section Visibility**: The "sections" array must ONLY include sections with at least one entry. Do NOT return empty sections. Set "visible": true for every section you include.
+- **Section Visibility**: The "sections" array must ONLY include sections with at least one entry. Do NOT return empty sections. Set "visible": true for every section you include.`
+
+export const buildTailorNewPrompt = (resumeText: string, jdText: string): string => `
+You are an elite resume writer and ATS optimization specialist. Your task is to transform a candidate's existing resume into a fully tailored, ATS-optimized version for a specific job description.
+
+## Job Description
+${jdText}
+
+## Candidate's Resume (plain text)
+${resumeText}
+
+## Your Task
+1. Parse the candidate's existing resume to extract all their actual experience, education, skills, and achievements
+2. Rewrite and restructure the content to be maximally aligned with the job description
+3. Naturally incorporate keywords and phrases from the JD without fabricating experience
+4. Strengthen descriptions to be achievement-oriented and quantifiable where possible
+5. Return a complete, properly structured JSON resume following the STRICT Output Schema below
+6. ONLY include sections that have actual data from the resume. If a section is empty, EXCLUDE it from the sections array.
+7. Only set "visible": true for sections that have actual content.
+
+## CRITICAL RULES
+- NEVER invent experience, companies, titles, dates, or achievements that aren't in the original resume
+- DO reword and reframe real experience to better match the JD
+- DO add missing keywords from JD to Skills sections if the candidate plausibly has them
+- DO improve phrasing and add metrics where the original is vague (e.g. "improved performance" → "improved API response time by ~30%")
+- Preserve all real dates, company names, job titles, and school names exactly
+- For singular 'dates' fields, combine start and end dates (e.g. "Jan 2020 – Present" or "2018 - 2022"). Do NOT output separate startDate and endDate.
+- For skills, group them into logical categories if they appear grouped, else use "Technical Skills" as default category.
+
+## Output JSON Schema
+
+${RESUME_OUTPUT_SCHEMA}
+
+${RESUME_FINAL_CONSTRAINTS}
 `.trim()
