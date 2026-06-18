@@ -13,6 +13,7 @@ import { User } from '../../models/User.model'
 import { Guest } from '../../models/Guest.model'
 import { AppError } from '../../lib/AppError'
 import { GUEST_LIMITS } from '../../config/constants'
+import { logger } from '../../config/logger'
 
 // ─── Razorpay client ─────────────────────────────────────────────────────────
 
@@ -50,7 +51,7 @@ const syncSubscriptionWithRazorpay = async (userId: string, subscriptionId: stri
       }
     }
   } catch (err) {
-    console.error(`[Sync] Failed to fetch subscription ${subscriptionId}:`, err)
+    logger.error({ err, subscriptionId }, '[Sync] Failed to fetch subscription')
   }
   return false
 }

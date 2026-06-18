@@ -41,12 +41,19 @@ export const refresh = async (req: Request, res: Response, next: NextFunction) =
   try {
     const token = req.cookies[TOKEN.REFRESH_COOKIE]
     if (!token) return res.status(401).json({ ok: false, error: { code: 'AUTH_TOKEN_MISSING' } })
-    const accessToken = await authService.refreshAccessToken(token)
+    const { accessToken, refreshToken } = await authService.refreshAccessToken(token)
+    res.cookie(TOKEN.REFRESH_COOKIE, refreshToken, TOKEN.COOKIE_OPTIONS)
     res.json({ ok: true, data: { accessToken } })
   } catch (err) { next(err) }
 }
 
-export const logout = (_req: Request, res: Response) => {
+export const logout = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const token = req.cookies[TOKEN.REFRESH_COOKIE]
+    if (token) await authService.revokeRefreshToken(token)
+  } catch {
+    // Best-effort revocation — don't block logout on Redis errors
+  }
   res.clearCookie(TOKEN.REFRESH_COOKIE, { httpOnly: true, sameSite: 'lax' })
   res.status(204).send()
 }

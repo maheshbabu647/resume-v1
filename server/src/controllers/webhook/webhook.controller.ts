@@ -3,6 +3,7 @@ import type { Request, Response, NextFunction } from 'express'
 import { Subscription } from '../../models/Subscription.model'
 import { User }         from '../../models/User.model'
 import { env }          from '../../config/env'
+import { logger }       from '../../config/logger'
 
 const verifySignature = (rawBody: string, signature: string): boolean => {
   const secret = env.RAZORPAY_WEBHOOK_SECRET || ''
@@ -61,7 +62,7 @@ export const handleRazorpay = async (req: Request, res: Response, next: NextFunc
           if (!sub.currentPeriodEnd || now >= sub.currentPeriodEnd) {
              await User.findByIdAndUpdate(sub.userId, { plan: 'seeker' })
           } else {
-             console.log(`[Webhook] Sub cancelled but paid period active until ${sub.currentPeriodEnd}`)
+             logger.info({ until: sub.currentPeriodEnd }, '[Webhook] Sub cancelled but paid period still active')
           }
         }
         break
@@ -80,10 +81,10 @@ export const handleRazorpay = async (req: Request, res: Response, next: NextFunc
         break
       }
       case 'payment.failed':
-        console.log(`[Webhook] Payment failed for sub ${razorpayId}. Razorpay retries automatically.`)
+        logger.info({ razorpayId }, '[Webhook] Payment failed, Razorpay retries automatically')
         break
       default:
-        console.log(`[Webhook] Unhandled event: ${event}`)
+        logger.warn({ event }, '[Webhook] Unhandled event')
     }
     res.json({ ok: true })
   } catch (err) { next(err) }

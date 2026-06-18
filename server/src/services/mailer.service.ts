@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer'
 import { env } from '../config/env'
+import { logger } from '../config/logger'
 
 const transporter = nodemailer.createTransport({
   host: env.SMTP_HOST || 'smtp.ethereal.email',
@@ -12,7 +13,7 @@ const transporter = nodemailer.createTransport({
 })
 
 if (env.NODE_ENV !== 'test') {
-  transporter.verify().then(() => console.log('✅  SMTP Connected')).catch(err => console.warn('⚠️   SMTP Not Configured:', err.message))
+  transporter.verify().then(() => logger.info('✅  SMTP Connected')).catch(err => logger.warn({ err }, '⚠️   SMTP Not Configured'))
 }
 
 export const sendOtpEmail = async (to: string, otp: string) => {
