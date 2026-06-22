@@ -181,6 +181,9 @@ export function calculateAtsMatch(resume: ResumeData, spec: JDSpec): AtsMatchRes
   const respSkills: AtsSkillMatch[] = (spec.responsibilities ?? []).flatMap(r =>
     (r.keywords ?? []).map(kw => evaluateSkill({ term: kw, aliases: [], weight: 1, type: 'hard' }, z)),
   )
+  // De-duplicated view for the UI — scoring above intentionally uses the raw (possibly
+  // repeated) list so each responsibility's weight is counted once per occurrence.
+  const respSkillsDisplay = Array.from(new Map(respSkills.map(s => [s.term, s])).values())
   const contextMatches = [...domainKeywords, ...respSkills]
 
   // Title match — across all zones.
@@ -219,11 +222,13 @@ export function calculateAtsMatch(resume: ResumeData, spec: JDSpec): AtsMatchRes
     requiredSkills,
     preferredSkills,
     domainKeywords,
+    responsibilityKeywords: respSkillsDisplay,
     missing,
     matchedCount,
     totalCount: evaluated.length,
     seniority: spec.seniority,
     jobTitle: spec.jobTitle,
+    titleTerms: titleVariants,
     responsibilities: spec.responsibilities ?? [],
   }
 }
@@ -265,6 +270,36 @@ const CONTEXT_FLOOR = 0.8
  * Title and context model the POST-tailor state (floored), because tailoring targets the
  * title and weaves the responsibilities in no matter which skills you keep.
  */
+// ── Smart Tailor request payload ─────────────────────────────────────────────────
+
+export interface SmartTailorAux {
+  domainKeywords: { matched: string[]; missing: string[] }
+  responsibilityKeywords: { matched: string[]; missing: string[] }
+  titleTarget?: { eligible: boolean; targetTitle: string }
+  allowGrowthLine: boolean
+}
+
+/**
+ * Builds the auto-determined (non-triaged) part of the /ai/tailor-smart request from the
+ * same baseline AtsMatchResult the report/projection already use — domain keywords,
+ * responsibility keywords, and title-targeting are never something the user triages like a
+ * skill; they're derived straight from what the deterministic engine already found true.
+ */
+export function buildSmartTailorAux(baseline: AtsMatchResult): SmartTailorAux {
+  const split = (matches: AtsSkillMatch[]) => ({
+    matched: matches.filter(m => m.matched).map(m => m.term),
+    missing: matches.filter(m => !m.matched).map(m => m.term),
+  })
+  const domainKeywords = split(baseline.domainKeywords)
+  const responsibilityKeywords = split(baseline.responsibilityKeywords)
+  const titleTarget = baseline.jobTitle
+    ? { eligible: baseline.titleMatched, targetTitle: baseline.jobTitle }
+    : undefined
+  const allowGrowthLine = (domainKeywords.missing.length + responsibilityKeywords.missing.length) > 0
+
+  return { domainKeywords, responsibilityKeywords, titleTarget, allowGrowthLine }
+}
+
 export function projectAtsScore(baseline: AtsMatchResult, includedTerms: Set<string>): { score: number; label: AtsLabel } {
   const cov = (list: AtsSkillMatch[]): number => {
     if (!list.length) return 1

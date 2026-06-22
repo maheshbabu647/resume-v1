@@ -77,6 +77,12 @@ export function serializeResume(resume: ResumeData): string {
 
   parts.push(`Name: ${personalInfo.fullName}`)
   if (personalInfo.title) parts.push(`Title: ${personalInfo.title}`)
+  if (personalInfo.email) parts.push(`Email: ${personalInfo.email}`)
+  if (personalInfo.phone) parts.push(`Phone: ${personalInfo.phone}`)
+  if (personalInfo.location) parts.push(`Location: ${personalInfo.location}`)
+  if (personalInfo.contactLinks?.length) {
+    personalInfo.contactLinks.forEach(link => parts.push(`${link.text}: ${link.url}`))
+  }
   if (personalInfo.summary) parts.push(`Summary: ${personalInfo.summary}`)
   parts.push('')
 

@@ -1029,6 +1029,12 @@
   border-color: #DDD9F8;
 }
 
+.gapChipContext {
+  background: var(--amber-light);
+  color: var(--amber-dark, var(--amber));
+  border-color: var(--amber-light);
+}
+
 .gapsEmpty {
   font-size: 13px;
   color: var(--muted);
@@ -1158,6 +1164,24 @@
 .decisionCardDisabled {
   opacity: 0.65;
   cursor: default;
+}
+
+.decisionCardComingSoon {
+  cursor: default;
+}
+
+.decisionCardComingSoon .decisionIconBox {
+  filter: saturate(0.7);
+}
+
+.decisionCardComingSoon .decisionCardDesc {
+  opacity: 0.85;
+}
+
+.decisionBadgeComingSoon {
+  background: var(--muted);
+  color: #fff;
+  box-shadow: none;
 }
 
 .decisionBadge {

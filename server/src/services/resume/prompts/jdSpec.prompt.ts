@@ -60,6 +60,16 @@ CRITICAL RULES:
 12. certifications: explicit certifications/licenses named in the JD. Empty array if none.
 13. Be selective: prefer ~8–18 high-quality required+preferred skills over a long noisy list. Order each list by weight (3 first). Hard caps: 20 requiredSkills, 20 preferredSkills, 25 domainKeywords.
 14. Be deterministic: for the same job description, always produce the same terms, buckets, weights, and types.
+15. NEVER MISS A HEADLINE SKILL. A concrete hard skill MUST appear in the spec (almost always in requiredSkills, weight 3) if it is ANY of these:
+    - named in the job title;
+    - listed in a "required" / "must have" / "you have" / "qualifications" block;
+    - repeated 2+ times across the JD;
+    - the central technology the whole role is built around (e.g. "salesforce" for a Salesforce Admin role).
+    Selectivity applies to minor/filler terms — it must NEVER cause you to drop one of these core skills. When unsure whether a term is important enough, KEEP it if it is a concrete hard skill named in the title or a requirements block.
+
+## FINAL SELF-CHECK (do this before returning JSON)
+- Re-read the JOB TITLE and the FIRST requirements/must-have block. Every concrete hard skill mentioned there MUST be present in your output. If one is missing, add it now.
+- Confirm the single most important technology/competency of the role is in requiredSkills with weight 3.
 
 EXPECTED JSON SCHEMA:
 {

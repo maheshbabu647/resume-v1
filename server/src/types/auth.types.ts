@@ -1,7 +1,5 @@
 import type { IUser, StoredPlan, UserRole, IOnboardingState } from '../models/User.model'
 
-export interface TokenPair { accessToken: string; refreshToken: string }
-
 export interface SafeUser {
   _id: string
   name: string

@@ -30,8 +30,3 @@ export const getSignedUrl = async (filename: string): Promise<{ url: string; exp
     throw new AppError('EXPORT_FAILED', 500, 'Failed to generate download link.')
   }
 }
-
-export const deleteFile = async (filename: string): Promise<void> => {
-  try { await bucket.file(`exports/${filename}.pdf`).delete({ ignoreNotFound: true }) }
-  catch (err) { console.error('[Storage] Delete error:', err) }
-}

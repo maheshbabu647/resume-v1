@@ -45,6 +45,37 @@ export const Toolbar = () => {
     }
   }
 
+  // Shared by the Save button and by export — persists the current editor
+  // state to the DB and returns the resume's _id (creating it on first save).
+  const saveResume = async (): Promise<string> => {
+    const { title, data, customization, resumeId, setResumeId, templateId } = useResumeStore.getState()
+    const { setSaving, setDirty } = useEditorUIStore.getState()
+
+    setSaving(true)
+    try {
+      const payload = {
+        title: title.trim() || 'Untitled Resume',
+        templateId: templateId || 'modern-centered',
+        personalInfo: data.personalInfo,
+        sections: data.sections,
+        customization
+      }
+
+      if (resumeId) {
+        await apiClient.patch(`/resumes/${resumeId}`, payload)
+        setDirty(false)
+        return resumeId
+      }
+      const res = await apiClient.post('/resumes', payload)
+      const newId = res.data.data._id
+      setResumeId(newId)
+      setDirty(false)
+      return newId
+    } finally {
+      setSaving(false)
+    }
+  }
+
   const handleExportPDF = async () => {
     if (!useAuthStore.getState().isAuthenticated) {
       setAuthModalArgs({ isOpen: true, pendingAction: 'export' })
@@ -57,6 +88,15 @@ export const Toolbar = () => {
     setIsExporting(true)
 
     try {
+      // Persist to the DB first so every downloaded resume has a saved record.
+      let resumeId: string
+      try {
+        resumeId = await saveResume()
+      } catch (err) {
+        console.error('Failed to save resume before export:', err)
+        alert('Failed to save your resume. Please try again before exporting.')
+        return
+      }
       let stylesHtml = ''
       document.head.querySelectorAll('style, link[rel="stylesheet"]').forEach(el => {
         if (el.tagName === 'LINK') {
@@ -192,7 +232,6 @@ export const Toolbar = () => {
         </html>
       `
 
-      const resumeId = useResumeStore.getState().resumeId
       const filename = title.trim() || 'resume'
 
       const response = await apiClient.post(
@@ -247,31 +286,11 @@ export const Toolbar = () => {
       return
     }
 
-    const { title, data, customization, resumeId, setResumeId, templateId } = useResumeStore.getState()
-    const { setSaving, setDirty } = useEditorUIStore.getState()
-    
-    setSaving(true)
     try {
-      const payload = {
-        title: title.trim() || 'Untitled Resume',
-        templateId: templateId || 'modern-centered',
-        personalInfo: data.personalInfo,
-        sections: data.sections,
-        customization
-      }
-
-      if (resumeId) {
-        await apiClient.patch(`/resumes/${resumeId}`, payload)
-      } else {
-        const res = await apiClient.post('/resumes', payload)
-        setResumeId(res.data.data._id)
-      }
-      setDirty(false)
+      await saveResume()
     } catch (err) {
       console.error('Failed to save resume:', err)
       alert('Failed to save resume. Please try again.')
-    } finally {
-      setSaving(false)
     }
   }
 

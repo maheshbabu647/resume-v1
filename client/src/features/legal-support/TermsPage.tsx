@@ -2,9 +2,10 @@ import { LegalPageLayout } from './LegalPageLayout'
 
 export default function TermsPage() {
   return (
-    <LegalPageLayout 
-      title="Terms of Service" 
+    <LegalPageLayout
+      title="Terms of Service"
       lastUpdated="April 13, 2026"
+      intro="The ground rules for using CareerForge — what we provide, what we expect from you, and where each of us stands."
       metaDescription="Read the CareerForge Terms of Service to understand your rights and responsibilities when using our platform."
     >
       <p>CareerForge ("we", "us", "our") is a SaaS platform operated by G Mahesh Babu and P Ganapathi Ramu, based in Andhra Pradesh, India. By accessing or using careerforge.pro ("the Platform"), you agree to the following terms.</p>

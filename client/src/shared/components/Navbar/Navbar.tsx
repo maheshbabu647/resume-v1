@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import { LayoutDashboard, FileText, LogOut, User as UserIcon, Menu, X, Target, FileSignature, BookOpen, Sparkles } from 'lucide-react'
+import { LayoutDashboard, FileText, LogOut, Menu, X, Target, FileSignature, BookOpen, Sparkles, ChevronDown, HelpCircle } from 'lucide-react'
 import { useAuthStore } from '@/core/auth/useAuthStore'
 import { CfpLogo } from '@/shared/components/CfpLogo/CfpLogo'
 import { Button } from '@/shared/components/Button/Button'
@@ -10,6 +10,8 @@ export const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuthStore()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const userMenuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -17,13 +19,28 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    if (!userMenuOpen) return
+    const onClick = (e: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', onClick)
+    return () => document.removeEventListener('mousedown', onClick)
+  }, [userMenuOpen])
+
   const handleLogout = () => {
     logout()
     setIsMenuOpen(false)
+    setUserMenuOpen(false)
     window.location.href = '/login'
   }
 
-  const closeMenu = () => setIsMenuOpen(false)
+  const closeMenu = () => {
+    setIsMenuOpen(false)
+    setUserMenuOpen(false)
+  }
 
   return (
     <header className={`${styles.topbar} ${scrolled ? styles.scrolled : ''}`}>
@@ -88,18 +105,39 @@ export const Navbar = () => {
 
       <div className={styles.userArea}>
         {isAuthenticated && user ? (
-          <>
-            <div className={styles.avatar}>
-              {user.name?.charAt(0)?.toUpperCase() || <UserIcon size={16} />}
-            </div>
-            <div className={styles.userInfo}>
+          <div className={styles.userMenuWrap} ref={userMenuRef}>
+            <button
+              className={styles.userMenuBtn}
+              onClick={() => setUserMenuOpen((v) => !v)}
+              aria-expanded={userMenuOpen}
+            >
+              <div className={styles.avatar}>{user.name?.charAt(0)?.toUpperCase() || 'U'}</div>
               <span className={styles.userName}>{user.name}</span>
-              <span className={styles.userEmail}>{user.email}</span>
-            </div>
-            <button className={styles.logoutBtn} onClick={handleLogout} title="Sign out">
-              <LogOut size={16} />
+              <ChevronDown size={14} className={`${styles.chevron} ${userMenuOpen ? styles.chevronOpen : ''}`} />
             </button>
-          </>
+
+            {userMenuOpen && (
+              <div className={styles.userDropdown}>
+                <div className={styles.userDropdownHead}>
+                  <div className={styles.avatar}>{user.name?.charAt(0)?.toUpperCase() || 'U'}</div>
+                  <div>
+                    <div className={styles.dropdownName}>{user.name}</div>
+                    <div className={styles.dropdownEmail}>{user.email}</div>
+                  </div>
+                </div>
+                <Link to="/dashboard" className={styles.dropdownItem} onClick={() => setUserMenuOpen(false)}>
+                  <LayoutDashboard size={15} /> Dashboard
+                </Link>
+                <Link to="/contact" className={styles.dropdownItem} onClick={() => setUserMenuOpen(false)}>
+                  <HelpCircle size={15} /> Help &amp; support
+                </Link>
+                <div className={styles.dropdownDivider} />
+                <button className={styles.dropdownItemDanger} onClick={handleLogout}>
+                  <LogOut size={15} /> Sign out
+                </button>
+              </div>
+            )}
+          </div>
         ) : (
           <div className={styles.authButtons}>
             <Link to="/login" className={styles.signInLink}>Sign in</Link>

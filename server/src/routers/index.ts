@@ -1,6 +1,5 @@
 import { Router } from 'express'
 import { authenticate, optionalAuthenticate } from '../middleware/authenticate'
-import { planGuard }    from '../middleware/planGuard'
 import { quotaGuard }   from '../middleware/quotaGuard'
 import { aiRateLimiter, parseRateLimiter } from '../middleware/rateLimiter'
 

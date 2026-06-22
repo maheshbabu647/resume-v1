@@ -1,16 +1,25 @@
 import type { ISection } from '../../../models/Resume.model'
+import {
+  RESUME_WRITING_CRAFT,
+  KEYWORD_INTEGRATION_RULES,
+  RESUME_COVERAGE_SELF_CHECK,
+} from './resumeCraft.prompt'
 
 interface JdTailorPromptInput { personalInfo: any; sections: ISection[]; jdText: string }
 
 export const buildJdTailorPrompt = ({ personalInfo, sections, jdText }: JdTailorPromptInput): string => `
-You are an expert resume writer and career coach. Tailor the candidate's resume to match the job description.
+You are an elite resume writer and ATS optimization specialist. Tailor the candidate's existing resume to the job description — rewriting to the professional standard below, never a keyword dump.
 
 ## Instructions
-- Rewrite bullets to highlight relevant skills, tools, and achievements
-- Rewrite the professional summary and targeted title to align with the JD
-- Use keywords from the JD naturally — do NOT invent experience
-- Keep the same section structure and entry format
-- Extract company name and role name from the JD
+- Rewrite the bullets in each entry's "description" to the writing craft below; preserve newline separation between bullets.
+- Rewrite the professional summary and the targeted title to align with the JD.
+- Keep the SAME section structure, keys, order, and entry field names as the input — only improve the text content.
+- Do NOT invent experience; only reframe what is already there.
+- Extract the company name and role name from the JD.
+
+${RESUME_WRITING_CRAFT}
+
+${KEYWORD_INTEGRATION_RULES}
 
 ## Job Description
 ${jdText}
@@ -20,6 +29,8 @@ ${jdText}
   "personalInfo": ${JSON.stringify(personalInfo, null, 2)},
   "sections": ${JSON.stringify(sections, null, 2)}
 }
+
+${RESUME_COVERAGE_SELF_CHECK}
 
 ## Output Format
 Respond with ONLY valid JSON:

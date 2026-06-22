@@ -72,6 +72,7 @@ function EIcon({ name, size = 18, color = 'currentColor', sw = 1.7 }: { name: st
     clock: <><circle cx="12" cy="12" r="9" /><polyline points="12 7 12 12 15 14" /></>,
     cta: <><rect x="3" y="6" width="18" height="12" rx="2" /><path d="M8 12h8" /><path d="M13 9l3 3-3 3" /></>,
     steps: <><line x1="10" y1="6" x2="21" y2="6" /><line x1="10" y1="12" x2="21" y2="12" /><line x1="10" y1="18" x2="21" y2="18" /><path d="M4 6h1v4M4 10h2M6 18H4l2-2.5a1 1 0 00-2-1.2" /></>,
+    info: <><circle cx="12" cy="12" r="9" /><line x1="12" y1="11" x2="12" y2="16" /><circle cx="12" cy="8" r="0.5" fill="currentColor" /></>,
   }
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
@@ -107,11 +108,24 @@ function TextareaAuto({ value, onChange, placeholder, className }: {
   )
 }
 
+// ── Info tooltip (hover/focus reveals best-practice guidance) ────
+function InfoTip({ text }: { text: string }) {
+  return (
+    <span className={styles.infoTip} tabIndex={0}>
+      <EIcon name="info" size={13} color="var(--muted-2)" sw={2} />
+      <span className={styles.infoTipBubble}>{text}</span>
+    </span>
+  )
+}
+
 // ── Settings group ──────────────────────────────────────────────
-function Group({ label, sub, children }: { label: string; sub?: string; children: React.ReactNode }) {
+function Group({ label, sub, tip, children }: { label: string; sub?: string; tip?: string; children: React.ReactNode }) {
   return (
     <div>
-      <div className={`${styles.groupLabel} ${sub ? styles.groupLabelTight : ''}`}>{label}</div>
+      <div className={`${styles.groupLabel} ${sub ? styles.groupLabelTight : ''}`}>
+        {label}
+        {tip && <InfoTip text={tip} />}
+      </div>
       {sub && <div className={styles.groupSub}>{sub}</div>}
       {children}
     </div>
@@ -536,8 +550,10 @@ export default function InsightsEditorPage() {
         <Link to="/admin/insights" title="Back to Insights" className={styles.backLink}>
           <EIcon name="arrowL" size={15} />
           <div className={styles.logoMark}>
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
-              <path d="M2 11L5 6L7.5 8.5L10 4L12.5 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
+              <path d="M42,21 A13,13 0 1 0 42,43" stroke="white" strokeWidth="6" strokeLinecap="round" />
+              <line x1="42" y1="21" x2="48" y2="21" stroke="white" strokeWidth="6" strokeLinecap="round" />
+              <line x1="42" y1="32" x2="47" y2="32" stroke="white" strokeWidth="6" strokeLinecap="round" />
             </svg>
           </div>
         </Link>
@@ -804,7 +820,10 @@ export default function InsightsEditorPage() {
                 <EIcon name="star" size={15} color={featured ? '#fff' : 'var(--muted)'} />
               </div>
               <div style={{ flex: 1 }}>
-                <div className={styles.featuredTitle}>Feature this article</div>
+                <div className={styles.featuredTitle}>
+                  Feature this article
+                  <InfoTip text="Pins this article to the hero spot at the top of the Insights page. Use it sparingly — for your single best or most timely piece, not every post — since featuring everything defeats the point." />
+                </div>
                 <div className={styles.featuredSub}>Pin to the top of Insights</div>
               </div>
               <button
@@ -818,7 +837,11 @@ export default function InsightsEditorPage() {
             </div>
 
             {/* SEO */}
-            <Group label="SEO" sub="How this article will appear in Google search results">
+            <Group
+              label="SEO"
+              sub="How this article will appear in Google search results"
+              tip="This is a live preview, not an input — it pulls from your title, slug, and meta description below. Use it to sanity-check the result doesn't look cut off or generic before you publish."
+            >
               <div className={styles.serpPreview}>
                 <div className={styles.serpUrl}>careerforge.pro › blog › {effectiveSlug}</div>
                 <div className={styles.serpTitle}>{title.trim() || 'Article title'}</div>
@@ -830,7 +853,11 @@ export default function InsightsEditorPage() {
             </Group>
 
             {/* Focus keyword */}
-            <Group label="Focus keyword" sub="The main phrase this article should rank for">
+            <Group
+              label="Focus keyword"
+              sub="The main phrase this article should rank for"
+              tip="Pick the exact phrase a real person would type into Google to find this article (e.g. 'ats resume format india', not just 'resume'). Be specific — specific phrases have less competition and convert better. This isn't saved anywhere; it only drives the 4 checks below, so write naturally and let it appear where it fits — don't force it in."
+            >
               <input
                 className={styles.textInput}
                 value={focusKeyword}
@@ -850,7 +877,10 @@ export default function InsightsEditorPage() {
             </Group>
 
             {/* SEO health checklist */}
-            <Group label="SEO health">
+            <Group
+              label="SEO health"
+              tip="General best-practice checks, independent of any keyword: title 40–60 characters, meta description 120–155 characters, at least one H2 subheading for skimmability and SEO structure, and a cover image set. Aim for all green, but 3 of 4 is fine — these are guardrails, not hard rules."
+            >
               <div className={styles.seoChecklist}>
                 {healthChecks.map((c) => (
                   <div key={c.label} className={styles.seoCheckItem}>
@@ -862,7 +892,11 @@ export default function InsightsEditorPage() {
             </Group>
 
             {/* Cover image */}
-            <Group label="Cover image" sub="Used for social shares (Open Graph) and the article cover">
+            <Group
+              label="Cover image"
+              sub="Used for social shares (Open Graph) and the article cover"
+              tip="Paste a direct image URL (ending in .jpg/.png/.webp). Use a landscape image, roughly 1200×630px, so it crops cleanly as the blog-list thumbnail and the preview shown when the link is shared on WhatsApp/LinkedIn/X. Pick something on-topic and readable even when small — avoid busy or text-heavy images."
+            >
               <input
                 className={styles.textInput}
                 value={coverImageUrl}
@@ -875,7 +909,10 @@ export default function InsightsEditorPage() {
             </Group>
 
             {/* Category */}
-            <Group label="Category">
+            <Group
+              label="Category"
+              tip="Pick the single best-fit topic — this is the main grouping/filter on the Insights page and shows as a colored pill on the article. Choose one, even if the article could arguably fit two; use Extra tags below for secondary topics."
+            >
               <div className={styles.categoryChips}>
                 {INSIGHT_CATEGORIES.map((c) => {
                   const active = categoryId === c.id
@@ -895,7 +932,11 @@ export default function InsightsEditorPage() {
             </Group>
 
             {/* Tags */}
-            <Group label="Extra tags" sub="Comma-separated, shown on cards">
+            <Group
+              label="Extra tags"
+              sub="Comma-separated, shown on cards"
+              tip="Optional secondary topics, e.g. 'Fresher, Indian Job Market'. Keep it to 2–4 short tags — they're for extra context on the card, not a keyword dump. Skip this if Category already covers it well."
+            >
               <input
                 className={styles.textInput}
                 value={extraTags}
@@ -905,7 +946,10 @@ export default function InsightsEditorPage() {
             </Group>
 
             {/* URL slug */}
-            <Group label="URL slug">
+            <Group
+              label="URL slug"
+              tip="The web address after /blog/. Auto-generated from your title — only override it to make it shorter or to match your focus keyword exactly (e.g. ats-resume-format-india). Keep it lowercase, hyphenated, and short. Important: avoid changing it after publishing, since it breaks any links people already saved or shared."
+            >
               <div className={styles.slugBox}>
                 <span className={styles.slugPrefix}>/blog/</span>
                 <input
@@ -917,7 +961,11 @@ export default function InsightsEditorPage() {
             </Group>
 
             {/* Short title */}
-            <Group label="Short title" sub="Used in prev/next navigation cards">
+            <Group
+              label="Short title"
+              sub="Used in prev/next navigation cards"
+              tip="A shortened version of the title for the tight prev/next navigation cards at the bottom of an article. Optional — leave blank and it just reuses the full title. Only fill this in if your title is long and would get awkwardly truncated there."
+            >
               <input
                 className={styles.textInput}
                 value={shortTitle}
@@ -927,7 +975,11 @@ export default function InsightsEditorPage() {
             </Group>
 
             {/* Meta description */}
-            <Group label="Meta description" sub="Shown in Google results (max 155 chars)">
+            <Group
+              label="Meta description"
+              sub="Shown in Google results (max 155 chars)"
+              tip="The gray text under your blue link in Google, and what shows when the link is shared. Write it like a one-sentence pitch that makes someone want to click — not a summary of the article. Aim for 120–155 characters; shorter gets truncated less but wastes the chance to entice. Leave blank to fall back to the subtitle."
+            >
               <textarea
                 className={styles.textInput}
                 value={metaDescription}
@@ -941,7 +993,11 @@ export default function InsightsEditorPage() {
             </Group>
 
             {/* Series */}
-            <Group label="Series" sub="Optional — e.g. 90-Day Career Forge">
+            <Group
+              label="Series"
+              sub="Optional — e.g. 90-Day Career Forge"
+              tip="Only fill this in if the article is part of a numbered sequence you publish over time (e.g. a 90-day program, day 3). It shows as 'Day 3 of 90-Day Career Forge' on the article. Leave both fields blank for a standalone article — most posts won't use this."
+            >
               <div className={styles.fieldRow}>
                 <input
                   className={styles.textInput}

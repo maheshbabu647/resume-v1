@@ -98,9 +98,22 @@ export default function CoverLetterEditPage() {
     setTimeout(() => setCopied(false), 2500)
   }
 
+  // Persists the current title/body before a download so the DB record
+  // never goes stale relative to what the user just downloaded.
+  const ensureSaved = async () => {
+    if (isDirty) {
+      await saveMutation.mutateAsync()
+    }
+  }
+
   // ── Download .txt ─────────────────────────────────────────────────────────
-  const handleDownloadTxt = () => {
+  const handleDownloadTxt = async () => {
     if (!data) return
+    try {
+      await ensureSaved()
+    } catch (err) {
+      console.error('Failed to save cover letter before download:', err)
+    }
     const content = `Subject: ${data.subject}\n\nDear ${data.recipientName || 'Hiring Manager'},\n\n${body}`
     const blob = new Blob([content], { type: 'text/plain' })
     const url = URL.createObjectURL(blob)
@@ -117,6 +130,13 @@ export default function CoverLetterEditPage() {
     if (!isAuthenticated) { setShowAuthModal(true); return }
     setPdfLoading(true)
     try {
+      try {
+        await ensureSaved()
+      } catch (err) {
+        console.error('Failed to save cover letter before export:', err)
+        alert('Failed to save your cover letter. Please try again before downloading.')
+        return
+      }
       const today = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
       const paragraphsHtml = body
         .split(/\n\n+/)

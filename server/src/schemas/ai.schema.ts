@@ -17,13 +17,33 @@ export const tailorNewSchema = z.object({
 // Smart Tailor: the user has triaged each JD skill into one of three buckets. The LLM
 // honors them — claims `have` normally, weaves `mention` in WITHOUT claiming mastery,
 // and leaves out `omit` entirely. Returns a full structured resume like tailorNew.
+//
+// Domain keywords, responsibility keywords, and title-targeting are NOT user-triaged —
+// they're auto-determined by the deterministic ats engine client-side (matched vs. missing,
+// and whether the resume's real background is a close functional title match) and passed
+// through as-is so the LLM only ever sees decisions the engine has already made truthfully.
 const skillTermList = z.array(z.string().min(1).max(80)).max(60).default([])
+const keywordSplit = z.object({
+  matched: skillTermList,
+  missing: skillTermList,
+}).default({ matched: [], missing: [] })
+
 export const tailorSmartSchema = z.object({
   resumeText:    z.string().min(50, 'Resume text too short').max(12000, 'Resume text too long'),
   jdText:        z.string().min(50, 'JD too short').max(AI.JD_TEXT_MAX_CHARS, 'JD too long'),
   skillsHave:    skillTermList,
   skillsMention: skillTermList,
   skillsOmit:    skillTermList,
+  // SOFT skills/traits with no honest "Mention" framing — eligible for honest weaving only
+  // if something already in the resume plausibly demonstrates the trait, never a forced claim.
+  softSkillsAttempt: skillTermList,
+  domainKeywords:         keywordSplit,
+  responsibilityKeywords: keywordSplit,
+  titleTarget: z.object({
+    eligible:    z.boolean(),
+    targetTitle: z.string().min(1).max(120),
+  }).optional(),
+  allowGrowthLine: z.boolean().default(false),
 })
 
 export const suggestSchema = z.object({

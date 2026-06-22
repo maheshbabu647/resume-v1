@@ -2,9 +2,10 @@ import { LegalPageLayout } from './LegalPageLayout'
 
 export default function CookiePage() {
   return (
-    <LegalPageLayout 
-      title="Cookie Policy" 
+    <LegalPageLayout
+      title="Cookie Policy"
       lastUpdated="April 13, 2026"
+      intro="A plain-language look at the small bits of data we store in your browser, and why."
       metaDescription="Learn how CareerForge uses cookies to improve your experience and analyze platform usage."
     >
       <p>This Cookie Policy explains how CareerForge ("we", "us", "our") uses cookies and similar technologies when you visit our platform.</p>

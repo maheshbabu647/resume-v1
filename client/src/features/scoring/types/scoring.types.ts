@@ -123,11 +123,13 @@ export interface AtsMatchResult {
   requiredSkills: AtsSkillMatch[];
   preferredSkills: AtsSkillMatch[];
   domainKeywords: AtsSkillMatch[];
+  responsibilityKeywords: AtsSkillMatch[]; // keywords pulled from JD responsibilities
   missing: AtsSkillMatch[];           // unmatched required+preferred, weight desc
   matchedCount: number;               // over required+preferred
   totalCount: number;
   seniority: Seniority;
   jobTitle: string;
+  titleTerms: string[];
   responsibilities: JdSpecResponsibility[];
 }
 
@@ -135,8 +137,12 @@ export interface AtsMatchResult {
 
 // have    = candidate genuinely has it → claim normally
 // mention = candidate lacks it, but keep the keyword for ATS WITHOUT claiming mastery
-// omit    = leave out of the resume entirely
-export type SmartTailorDecision = "have" | "mention" | "omit";
+//           (HARD skills only — there's no honest "exposure to" framing for a trait)
+// attempt = SOFT skills/traits only: weave it in ONLY if something already in the resume
+//           plausibly demonstrates it (e.g. a hackathon bullet honestly supports "teamwork"),
+//           otherwise leave it as a gap — never an outright ban, never a forced claim
+// omit    = leave out of the resume entirely (hard ban) — only when explicitly chosen
+export type SmartTailorDecision = "have" | "mention" | "attempt" | "omit";
 
 export interface SmartTailorSkill {
   term: string;
@@ -147,11 +153,15 @@ export interface SmartTailorSkill {
   decision: SmartTailorDecision;
 }
 
-// Three flat term lists sent to POST /ai/tailor-smart.
+// Flat term lists sent to POST /ai/tailor-smart.
 export interface SmartTailorBuckets {
   skillsHave: string[];
   skillsMention: string[];
   skillsOmit: string[];
+  // Soft skills/traits the engine found no textual match for, where the user hasn't opted
+  // to hard-omit them — eligible for honest weaving if (and only if) something in the
+  // resume already plausibly demonstrates the trait.
+  softSkillsAttempt: string[];
 }
 
 // ─── Advanced Resume Strength (content-only, no template credit) ───────────────

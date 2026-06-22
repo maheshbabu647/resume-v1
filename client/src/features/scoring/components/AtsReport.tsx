@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import {
   Target, Upload, FileText, X, Check, AlertTriangle, Loader2,
-  RefreshCw, Wand2, CheckCircle2, Sparkles,
+  RefreshCw, CheckCircle2, Sparkles,
 } from 'lucide-react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { apiClient } from '@/shared/lib/apiClient'
@@ -15,16 +15,18 @@ import { useJdMatchStore } from '../store/useJdMatchStore'
 import { useAtsMatch } from '../hooks/useAtsMatch'
 import { useFetchJdSpec } from '../hooks/useFetchJdSpec'
 import { getScoreColor } from '../lib/scoreColor'
+import { buildSmartTailorAux } from '../lib/atsMatchEngine'
 import { serializeResume } from '../lib/jdPreprocessor'
 import SmartTailorStudio from './SmartTailorStudio'
-import type { AtsSkillMatch, SmartTailorBuckets } from '../types/scoring.types'
+import type { AtsSkillMatch, SmartTailorBuckets, SmartTailorSkill } from '../types/scoring.types'
+import type { SmartTailorExtras } from './SmartTailorStudio'
 import styles from './ScoreReports.module.css'
 
 const COMPONENT_LABELS: { key: 'required' | 'preferred' | 'title' | 'context'; label: string }[] = [
   { key: 'required',  label: 'Required skills' },
   { key: 'preferred', label: 'Preferred skills' },
   { key: 'title',     label: 'Title match' },
-  { key: 'context',   label: 'Responsibilities' },
+  { key: 'context',   label: 'Domain & responsibilities' },
 ]
 
 export default function AtsReport() {
@@ -139,57 +141,34 @@ export default function AtsReport() {
     setDraft(jdText); setJdSource('paste'); setFile(null); setEditing(true)
   }
 
-  /* ── Tailor ── */
-  const tailorMutation = useMutation({
-    mutationFn: async (payload: { resumeId: string; jdText: string; personalInfo: any; sections: any[] }) => {
-      const res = await apiClient.post('/ai/jd-tailor', payload)
-      return res.data.data
-    },
-    onSuccess: (data) => {
-      // Apply the rewrite in full — no accept/reject popup. Undo reverts it.
-      useResumeStore.getState().applyTailored(data.rewrittenPersonalInfo, data.rewrittenSections || [])
-      queryClient.invalidateQueries({ queryKey: ['usage'] })
-    },
-    onError: (err: any) => {
-      const code = err?.response?.data?.error?.code ?? err?.response?.data?.code
-      if (code === 'GUEST_LIMIT_HIT') {
-        window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: err?.response?.data?.data ?? { feature: 'jdTailoring' } }))
-      } else if (code === 'QUOTA_EXCEEDED') {
-        setUpgradeFeature('jdTailoring'); setShowUpgrade(true)
-      }
-    },
-  })
-
-  const handleTailor = async () => {
+  /* ── Tailor (editor): one flow, opens straight into the triage studio — Smart Tailor's
+     default state already mirrors what the old "Quick Tailor" did (every missing skill
+     starts as an honest "Mention"), so there's no separate fast path to maintain. ── */
+  const openTailor = () => {
     if (isGuest && isAtLimit('jdTailoring')) {
       window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: { feature: 'jdTailoring' } }))
       return
     }
     trackJDTailorRequested()
-    let currentResumeId = resume.resumeId
-    if (!currentResumeId) {
-      try {
-        const res = await apiClient.post('/resumes', {
-          title: resume.title.trim() || 'Untitled Resume',
-          templateId: resume.templateId || 'modern-centered',
-          personalInfo: resume.data.personalInfo,
-          sections: resume.data.sections,
-          customization: resume.customization,
-        })
-        currentResumeId = res.data.data._id
-        useResumeStore.getState().setResumeId(currentResumeId!)
-      } catch { alert('Please save your resume first.'); return }
-    }
-    tailorMutation.mutate({ resumeId: currentResumeId!, jdText, personalInfo: resume.data.personalInfo, sections: resume.data.sections })
+    setSmartOpen(true)
   }
 
-  /* ── Smart Tailor (editor): triage skills → honest rewrite → apply in full ── */
   const tailorSmartMutation = useMutation({
-    mutationFn: async (buckets: SmartTailorBuckets) => {
+    mutationFn: async ({ buckets, extras }: { buckets: SmartTailorBuckets; extras: SmartTailorExtras }) => {
+      if (!ats) throw new Error('No ATS baseline available')
+      const aux = buildSmartTailorAux(ats)
       const res = await apiClient.post('/ai/tailor-smart', {
         resumeText: serializeResume(resume.data),
         jdText,
         ...buckets,
+        domainKeywords: aux.domainKeywords,
+        responsibilityKeywords: aux.responsibilityKeywords,
+        // The engine determines eligibility/availability; the user's toggle is the final gate —
+        // both must agree before either optional addition is sent to the LLM.
+        allowGrowthLine: aux.allowGrowthLine && extras.allowGrowthLine,
+        titleTarget: aux.titleTarget
+          ? { ...aux.titleTarget, eligible: aux.titleTarget.eligible && extras.includeTitleTarget }
+          : undefined,
       })
       return res.data.data
     },
@@ -209,16 +188,8 @@ export default function AtsReport() {
     },
   })
 
-  const openSmart = () => {
-    if (isGuest && isAtLimit('jdTailoring')) {
-      window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: { feature: 'jdTailoring' } }))
-      return
-    }
-    setSmartOpen(true)
-  }
-
-  const handleSmartGenerate = (buckets: SmartTailorBuckets) => {
-    tailorSmartMutation.mutate(buckets)
+  const handleSmartGenerate = (buckets: SmartTailorBuckets, _decisions: SmartTailorSkill[], extras: SmartTailorExtras) => {
+    tailorSmartMutation.mutate({ buckets, extras })
   }
 
   /* ── Render: chips ── */
@@ -379,16 +350,43 @@ export default function AtsReport() {
         </div>
       )}
 
+      {ats.domainKeywords.length > 0 && (
+        <div className={styles.section}>
+          <h4 className={styles.sectionTitle}>Domain & industry keywords</h4>
+          {renderChips(ats.domainKeywords)}
+        </div>
+      )}
+
+      {ats.responsibilityKeywords.length > 0 && (
+        <div className={styles.section}>
+          <h4 className={styles.sectionTitle}>Responsibility keywords</h4>
+          {renderChips(ats.responsibilityKeywords)}
+        </div>
+      )}
+
+      <div className={styles.section}>
+        <h4 className={styles.sectionTitle}>Job title match</h4>
+        {ats.titleMatched ? (
+          <div className={styles.perfect}>
+            <CheckCircle2 size={14} style={{ verticalAlign: '-2px', marginRight: 6 }} />
+            Your title matches "{ats.jobTitle}"
+          </div>
+        ) : (
+          <div className={styles.chips}>
+            <span className={`${styles.chip} ${styles.chipMiss}`} title="Your resume title doesn't match any of the JD's title variants">
+              <AlertTriangle size={11} />
+              Target title: {ats.jobTitle}
+            </span>
+          </div>
+        )}
+      </div>
+
       <div className={styles.tailorCard}>
         <p className={styles.tailorTitle}>Tailor my resume to this JD</p>
-        <p className={styles.tailorSub}>Smart Tailor lets you triage each skill and keeps every line honest. Quick tailor just adds the keywords for you. Changes apply straight to your resume — Undo reverts them.</p>
-        <button className={styles.primaryBtn} onClick={openSmart} disabled={tailorSmartMutation.isPending}>
-          <Sparkles size={15} /> Smart Tailor
+        <p className={styles.tailorSub}>Decide how to handle each skill — keep the ones you have, honestly "mention" the ones you don't, drop the rest. Changes apply straight to your resume — Undo reverts them.</p>
+        <button className={styles.primaryBtn} onClick={openTailor}>
+          <Sparkles size={15} /> Tailor my resume
         </button>
-        <button className={styles.secondaryBtn} onClick={handleTailor} disabled={tailorMutation.isPending} style={{ marginTop: 8 }}>
-          {tailorMutation.isPending ? <><Loader2 size={15} className="spin" /> Generating…</> : <><Wand2 size={15} /> Quick tailor</>}
-        </button>
-        {tailorMutation.isError && <div className={styles.errorBox} style={{ marginTop: 8 }}>Failed to tailor. Please try again.</div>}
       </div>
 
       <UpgradeModal isOpen={showUpgrade} onClose={() => setShowUpgrade(false)} trigger={upgradeFeature} />

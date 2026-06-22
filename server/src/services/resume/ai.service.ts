@@ -11,6 +11,9 @@ import { buildJDMatchPrompt } from './prompts/jdMatch.prompt'
 import { buildJdSpecPrompt } from './prompts/jdSpec.prompt'
 import { buildTailorNewPrompt } from './prompts/tailorNew.prompt'
 import { buildTailorSmartPrompt } from './prompts/tailorSmart.prompt'
+import type { TailorSmartContext } from './prompts/tailorSmart.prompt'
+import { validateAndFixTailorSmart } from './tailorSmartValidator'
+import type { TailorSmartResult } from './tailorSmartValidator'
 import { buildCoverLetterPrompt, buildRewriteParagraphPrompt } from './prompts/coverLetter.prompt'
 import type { JdTailorBody, SuggestBody, AnalyzeJdBody, TailorNewBody, TailorSmartBody, CoverLetterBody, RewriteParagraphBody, JdSpecBody } from '../../schemas/ai.schema'
 import type { ISection } from '../../models/Resume.model'
@@ -342,15 +345,40 @@ export const tailorNew = async (body: TailorNewBody): Promise<TailorNewResult> =
 // left out. Returns the same full structured resume shape.
 
 export const tailorSmart = async (body: TailorSmartBody): Promise<TailorNewResult> => {
-  const { resumeText, jdText, skillsHave, skillsMention, skillsOmit } = body
-  const prompt = buildTailorSmartPrompt(resumeText.slice(0, 12000), jdText, {
-    skillsHave, skillsMention, skillsOmit,
-  })
+  const {
+    resumeText, jdText, skillsHave, skillsMention, skillsOmit, softSkillsAttempt,
+    domainKeywords, responsibilityKeywords, titleTarget, allowGrowthLine,
+  } = body
+  const context: TailorSmartContext = {
+    resumeText: resumeText.slice(0, 12000),
+    jdText,
+    buckets: { skillsHave, skillsMention, skillsOmit },
+    softSkillsAttempt,
+    domainKeywords,
+    responsibilityKeywords,
+    titleTarget,
+    allowGrowthLine,
+  }
+  console.log('[TailorSmart][DEBUG] request context:', JSON.stringify(context, null, 2))
+
+  const prompt = buildTailorSmartPrompt(context)
   const result = await callLLMJSON<TailorNewResult>(prompt, { maxOutputTokens: 8192, temperature: 0.2 })
   if (!result.personalInfo || !Array.isArray(result.sections)) {
     throw new AppError('LLM_ERROR', 500, 'AI returned an unexpected structure for the tailored resume.')
   }
-  return result
+
+  console.log('[TailorSmart][DEBUG] raw LLM result:', JSON.stringify(result, null, 2))
+
+  const { result: fixedResult, warnings } = validateAndFixTailorSmart(result as TailorSmartResult, context)
+  if (warnings.length > 0) {
+    console.warn(`[TailorSmart][DEBUG] ${warnings.length} validation warning(s):`)
+    warnings.forEach(w => console.warn('  -', w))
+  } else {
+    console.log('[TailorSmart][DEBUG] no validation warnings — output matched all placement rules.')
+  }
+  console.log('[TailorSmart][DEBUG] result after auto-fix:', JSON.stringify(fixedResult, null, 2))
+
+  return fixedResult as TailorNewResult
 }
 
 // ─── Cover Letter ──────────────────────────────────────────────────────────────

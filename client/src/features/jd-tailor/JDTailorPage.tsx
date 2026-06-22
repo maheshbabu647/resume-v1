@@ -14,9 +14,11 @@ import { AuthRequireModal } from '@/shared/components/AuthRequireModal/AuthRequi
 import { useAuthStore } from '@/core/auth/useAuthStore'
 import { useUsage } from '@/core/hooks/useUsage'
 import { preprocessJD, serializeResume } from '@/features/scoring/lib/jdPreprocessor'
-import { atsMatchFromText, projectAtsScore } from '@/features/scoring/lib/atsMatchEngine'
+import { atsMatchFromText, projectAtsScore, buildSmartTailorAux } from '@/features/scoring/lib/atsMatchEngine'
+import type { SmartTailorAux } from '@/features/scoring/lib/atsMatchEngine'
 import SmartTailorStudio from '@/features/scoring/components/SmartTailorStudio'
-import type { JDSpec, SmartTailorBuckets } from '@/features/scoring/types/scoring.types'
+import type { SmartTailorExtras } from '@/features/scoring/components/SmartTailorStudio'
+import type { JDSpec, SmartTailorBuckets, SmartTailorSkill } from '@/features/scoring/types/scoring.types'
 import { trackJDScoreViewed, trackJDTailorRequested } from '@/shared/lib/analytics'
 import styles from './JDTailorPage.module.css'
 
@@ -133,17 +135,9 @@ export default function JDTailorPage() {
   // Smart Tailor: the deterministic JD-Spec drives the skill triage + live projection.
   const [jdSpec, setJdSpec] = useState<JDSpec | null>(null)
   const [smartBuckets, setSmartBuckets] = useState<SmartTailorBuckets | null>(null)
-  const [tailorMode, setTailorMode] = useState<'quick' | 'smart'>('quick')
+  const [smartExtras, setSmartExtras] = useState<SmartTailorExtras | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const jdFileInputRef = useRef<HTMLInputElement>(null)
-  // Holds the in-flight JD-Spec fetch fired alongside tailoring, so the editor opens
-  // with a ready live ATS score instead of falling back to the "+ JD" empty state.
-  const jdSpecCarryRef = useRef<Promise<JDSpec | null> | null>(null)
-
-  const fetchJdSpecForCarry = (text: string): Promise<JDSpec | null> =>
-    apiClient.post('/ai/jd-spec', { jdText: preprocessJD(text) })
-      .then(res => res.data.data as JDSpec)
-      .catch(() => null)
 
   // Animate the analyzing phases — steps through each phase, then holds on
   // the final one until the analysis result has arrived.
@@ -214,41 +208,6 @@ export default function JDTailorPage() {
     }
   })
 
-  // Tailor new resume
-  const tailorMutation = useMutation({
-    mutationFn: async (payload: { resumeText: string; jdText: string; templateId: string }) => {
-      const res = await apiClient.post('/ai/tailor-new', payload)
-      return res.data.data
-    },
-    onSuccess: async (data) => {
-      sessionStorage.setItem('careerforge_tailored_resume', JSON.stringify(data))
-      // Carry the JD-Spec into the editor so the live ATS score shows immediately.
-      // The fetch was fired in parallel when tailoring started; await it now.
-      try {
-        const spec = jdSpecCarryRef.current ? await jdSpecCarryRef.current : null
-        if (spec) {
-          localStorage.setItem('cf_jdmatch_new', JSON.stringify({ jdText, jdSpec: spec }))
-          localStorage.removeItem('cf_jddraft_new')
-        } else {
-          // Fallback: no spec — seed the draft so the editor opens with the JD pre-filled.
-          localStorage.removeItem('cf_jdmatch_new')
-          localStorage.setItem('cf_jddraft_new', jdText)
-        }
-      } catch { /* ignore */ }
-      navigate(`/resume/new?tailored=true&template=${tailorMutation.variables?.templateId ?? 'modern-centered'}`)
-    },
-    onError: (err: any) => {
-      const code = err?.response?.data?.error?.code ?? err?.response?.data?.code
-      if (code === 'GUEST_LIMIT_HIT') {
-        window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: err?.response?.data?.data ?? { feature: 'jdTailoring' } }))
-      } else if (code === 'QUOTA_EXCEEDED') {
-        setUpgradeFeature('jdTailoring'); setShowUpgradeModal(true)
-      }
-      setShowTemplatePicker(false)
-      setStage('results')
-    }
-  })
-
   // The single JD-Spec fetch (one LLM call) that powers the whole flow: the report below,
   // the Smart Tailor projection, and the editor's live score. No second extraction anywhere.
   const jdSpecMutation = useMutation({
@@ -270,7 +229,7 @@ export default function JDTailorPage() {
 
   // Smart Tailor — full structured resume honoring the user's per-skill buckets.
   const tailorSmartMutation = useMutation({
-    mutationFn: async (payload: { resumeText: string; jdText: string; templateId: string } & SmartTailorBuckets) => {
+    mutationFn: async (payload: { resumeText: string; jdText: string; templateId: string } & SmartTailorBuckets & SmartTailorAux) => {
       const res = await apiClient.post('/ai/tailor-smart', payload)
       return res.data.data
     },
@@ -341,36 +300,31 @@ export default function JDTailorPage() {
     jdSpecMutation.mutate(currentJd)
   }
 
-  // ── Tailor handler ───────────────────────────────────────────────────────────
-  const handleTailor = (templateId: string) => {
-    const text = getResumeText()
-    trackJDTailorRequested()
-    // Fire the JD-Spec fetch in parallel with tailoring so it's ready to carry into the editor.
-    jdSpecCarryRef.current = fetchJdSpecForCarry(jdText)
-    tailorMutation.mutate({ resumeText: text, jdText, templateId })
-    setStage('tailoring')
-  }
 
-  // ── Smart Tailor handlers ────────────────────────────────────────────────────
-  const handleSmartTailorClick = () => {
-    if (!jdSpec) return    // the report already holds the spec by the time this is reachable
-    if (isGuest && isAtLimit('jdTailoring')) {
-      window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: { feature: 'jdTailoring' } }))
-      return
-    }
-    setStage('smart')
-  }
-
-  const handleSmartContinue = (buckets: SmartTailorBuckets) => {
+  // ── Smart Tailor handler ──────────────────────────────────────────────────────
+  const handleSmartContinue = (buckets: SmartTailorBuckets, _decisions: SmartTailorSkill[], extras: SmartTailorExtras) => {
     setSmartBuckets(buckets)
-    setTailorMode('smart')
+    setSmartExtras(extras)
     setShowTemplatePicker(true)
   }
 
   const handleSmartTailor = (templateId: string) => {
-    if (!smartBuckets) return
+    if (!smartBuckets || !smartExtras || !jdSpec) return
     trackJDTailorRequested()
-    tailorSmartMutation.mutate({ resumeText: getResumeText(), jdText, templateId, ...smartBuckets })
+    const ats = atsMatchFromText(jdSpec, getResumeText())
+    const aux = buildSmartTailorAux(ats)
+    tailorSmartMutation.mutate({
+      resumeText: getResumeText(),
+      jdText,
+      templateId,
+      ...smartBuckets,
+      domainKeywords: aux.domainKeywords,
+      responsibilityKeywords: aux.responsibilityKeywords,
+      allowGrowthLine: aux.allowGrowthLine && smartExtras.allowGrowthLine,
+      titleTarget: aux.titleTarget
+        ? { ...aux.titleTarget, eligible: aux.titleTarget.eligible && smartExtras.includeTitleTarget }
+        : undefined,
+    })
     setStage('tailoring')
   }
 
@@ -645,10 +599,14 @@ export default function JDTailorPage() {
 
     const requiredMissing = ats.requiredSkills.filter(s => !s.matched)
     const preferredMissing = ats.preferredSkills.filter(s => !s.matched)
+    const domainMissing = ats.domainKeywords.filter(s => !s.matched)
+    const responsibilityMissing = ats.responsibilityKeywords.filter(s => !s.matched)
 
     const strengths = [
       ...ats.requiredSkills.filter(s => s.matched).map(s => ({ skill: s.term, type: 'Required skill' })),
       ...ats.preferredSkills.filter(s => s.matched).map(s => ({ skill: s.term, type: 'Preferred skill' })),
+      ...ats.domainKeywords.filter(s => s.matched).map(s => ({ skill: s.term, type: 'Domain keyword' })),
+      ...ats.responsibilityKeywords.filter(s => s.matched).map(s => ({ skill: s.term, type: 'Responsibility keyword' })),
     ].slice(0, 6)
 
     // Projected score if every required/preferred skill were included — the deterministic max.
@@ -675,10 +633,17 @@ export default function JDTailorPage() {
       },
       {
         key: 'context',
-        label: 'Responsibilities',
+        label: 'Domain & responsibilities',
         weight: 'Content match',
         score: Math.round(ats.components.context * 100),
-        hint: 'Resume ↔ JD responsibilities & keywords',
+        hint: 'Resume ↔ JD domain keywords & responsibilities',
+      },
+      {
+        key: 'title',
+        label: 'Title match',
+        weight: 'Job title',
+        score: Math.round(ats.components.title * 100),
+        hint: ats.titleMatched ? `Matches "${ats.jobTitle}"` : `Target: "${ats.jobTitle}"`,
       },
     ]
 
@@ -695,13 +660,15 @@ export default function JDTailorPage() {
         impact: (x.s.weight >= 3 ? 'high' : x.s.weight === 2 ? 'medium' : 'low') as 'high' | 'medium' | 'low',
       }))
 
+    // One flow, not two — Smart Tailor's default state (every missing skill starts as an
+    // honest "Mention") already covers what the old separate "Quick Tailor" path did, so
+    // there's nothing left for a fast-path button to do that this doesn't already do.
     const handleTailorClick = () => {
       if (isGuest && isAtLimit('jdTailoring')) {
         window.dispatchEvent(new CustomEvent('guest-limit-hit', { detail: { feature: 'jdTailoring' } }))
         return
       }
-      setTailorMode('quick')
-      setShowTemplatePicker(true)
+      setStage('smart')
     }
 
     const tailoringBlocked = !isGuest && isAtLimit('jdTailoring')
@@ -847,6 +814,24 @@ export default function JDTailorPage() {
                     </div>
                   </>
                 )}
+
+                {(domainMissing.length + responsibilityMissing.length) > 0 && (
+                  <>
+                    <div className={styles.gapsDivider} />
+                    <div className={styles.gapsGroup}>
+                      <div className={styles.gapsGroupHead}>
+                        <span className={styles.gapsDot} style={{ background: 'var(--amber)' }} />
+                        <span className={styles.gapsGroupTitle}>Domain & responsibilities</span>
+                        <span className={styles.gapsGroupHint}>{domainMissing.length + responsibilityMissing.length} missing</span>
+                      </div>
+                      <div className={styles.gapsChips}>
+                        {[...domainMissing, ...responsibilityMissing].map((s, i) => (
+                          <span key={i} className={`${styles.gapChip} ${styles.gapChipContext}`}>{s.term}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -880,64 +865,31 @@ export default function JDTailorPage() {
         {/* Decision moment */}
         <div className={styles.decisionSection}>
           <div className={styles.sectionEyebrow}>Close the gap</div>
-          <h2 className={styles.decisionHeading}>How should we tailor your resume?</h2>
+          <h2 className={styles.decisionHeading}>Let's tailor your resume</h2>
           <p className={styles.decisionDesc}>
-            Both options open the editor with your tailored resume ready to go. The right pick depends on how much time you have and how honestly you want to frame your gaps.
+            You'll decide how to handle each missing skill — keep the ones you have, honestly "mention" the ones you don't, drop the rest. Nothing is added automatically without your say.
           </p>
           <div className={styles.decisionGrid}>
             <button
               className={`${styles.decisionCard} ${tailoringBlocked ? styles.decisionCardDisabled : ''}`}
               style={{
-                '--accent': 'var(--coral)',
-                '--accent-light': 'var(--coral-light)',
-                '--accent-shadow': 'rgba(255, 92, 53, 0.18)',
-                '--accent-shadow-hover': 'rgba(255, 92, 53, 0.35)',
-                '--accent-ring': 'rgba(255, 92, 53, 0.08)',
+                '--accent': 'var(--brand)',
+                '--accent-light': 'var(--brand-light)',
+                '--accent-shadow': 'rgba(99, 102, 241, 0.18)',
+                '--accent-shadow-hover': 'rgba(99, 102, 241, 0.35)',
+                '--accent-ring': 'rgba(99, 102, 241, 0.08)',
               } as React.CSSProperties}
               onClick={handleTailorClick}
               disabled={tailoringBlocked}
             >
               <div className={styles.decisionTopRow}>
-                <div className={styles.decisionIconBox}><Zap size={22} /></div>
-                <span className={styles.decisionTime}><Clock size={12} /> ~5 seconds</span>
-              </div>
-              <span className={styles.decisionEyebrow}>The fast way</span>
-              <h3 className={styles.decisionCardTitle}>Quick Tailor</h3>
-              <p className={styles.decisionCardDesc}>
-                We add every missing keyword to your skills section automatically. Good when you just need "good enough", fast.
-              </p>
-              <div className={styles.decisionFooter}>
-                <div>
-                  <div className={styles.decisionProjectedLabel}>Projected score</div>
-                  <div className={styles.decisionProjectedValue}>{ats.score} → {projected}</div>
-                </div>
-                <span className={styles.decisionCta}>
-                  Quick Tailor <ArrowRight size={14} />
-                </span>
-              </div>
-            </button>
-
-            <button
-              className={`${styles.decisionCard} ${tailoringBlocked ? styles.decisionCardDisabled : ''}`}
-              style={{
-                '--accent': 'var(--brand)',
-                '--accent-light': 'var(--brand-light)',
-                '--accent-shadow': 'rgba(80, 70, 228, 0.18)',
-                '--accent-shadow-hover': 'rgba(80, 70, 228, 0.35)',
-                '--accent-ring': 'rgba(80, 70, 228, 0.08)',
-              } as React.CSSProperties}
-              onClick={handleSmartTailorClick}
-              disabled={tailoringBlocked || jdSpecMutation.isPending}
-            >
-              <span className={styles.decisionBadge}>Recommended</span>
-              <div className={styles.decisionTopRow}>
                 <div className={styles.decisionIconBox}><Sparkles size={22} /></div>
                 <span className={styles.decisionTime}><Clock size={12} /> ~1 minute</span>
               </div>
-              <span className={styles.decisionEyebrow}>The honest way</span>
-              <h3 className={styles.decisionCardTitle}>Smart Tailor</h3>
+              <span className={styles.decisionEyebrow}>Honest, your call</span>
+              <h3 className={styles.decisionCardTitle}>Tailor my resume</h3>
               <p className={styles.decisionCardDesc}>
-                Triage each skill yourself — keep the ones you have, honestly "mention" the ones you don't, drop the rest. Watch your ATS score update as you decide.
+                Triage each skill yourself and watch your ATS score update live as you decide. Skip the ones you don't want to deal with — every missing skill defaults to a safe "Mention" so you can also just hit Generate right away.
               </p>
               <div className={styles.decisionFooter}>
                 <div>
@@ -945,9 +897,7 @@ export default function JDTailorPage() {
                   <div className={styles.decisionProjectedValue}>{ats.score} → up to {projected}</div>
                 </div>
                 <span className={styles.decisionCta}>
-                  {jdSpecMutation.isPending
-                    ? <><Loader2 size={14} className={styles.spin} /> Preparing…</>
-                    : <>Smart Tailor <ArrowRight size={14} /></>}
+                  Tailor my resume <ArrowRight size={14} />
                 </span>
               </div>
             </button>
@@ -1002,7 +952,7 @@ export default function JDTailorPage() {
     )
   }
 
-  const isTailoring = tailorMutation.isPending || tailorSmartMutation.isPending
+  const isTailoring = tailorSmartMutation.isPending
 
   const readinessOk = (ok: boolean, label: string) => (
     <div className={styles.readinessItem}>
@@ -1100,7 +1050,7 @@ export default function JDTailorPage() {
                       <button
                         key={t.id}
                         className={styles.templateCard}
-                        onClick={() => (tailorMode === 'smart' ? handleSmartTailor(t.id) : handleTailor(t.id))}
+                        onClick={() => handleSmartTailor(t.id)}
                       >
                         {t.thumbnailUrl ? (
                           <img src={t.thumbnailUrl} alt={t.name} className={styles.templateThumbImage} />

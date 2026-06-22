@@ -6,10 +6,11 @@ export default function ContactPage() {
   return (
     <LegalPageLayout
       title="Contact Us"
+      eyebrow="We're here to help"
+      intro="Have a question, found a bug, or want to partner with us? Reach out — a real person reads every message."
       metaDescription="Get in touch with the CareerForge team for support, feedback, or general enquiries."
     >
       <div className={styles.contactIntro}>
-        <p>Need help with your account, want to share feedback, or have a quick question? Our team is here to support you with fast, friendly, and reliable service.</p>
         <div className={styles.contactActions}>
           <a href="mailto:support@careerforge.pro" className={styles.ctaButton}>
             <Mail size={18} /> Email support@careerforge.pro
@@ -22,7 +23,7 @@ export default function ContactPage() {
           <h3><Mail size={20} /> Customer support</h3>
           <p>Questions about your subscription, login, resume exports, or technical issues.</p>
           <p><strong><a href="mailto:support@careerforge.pro">support@careerforge.pro</a></strong></p>
-          <p style={{ fontSize: 'var(--text-sm)', color: 'var(--outline)' }}>Response time: typically within one business day.</p>
+          <p style={{ fontSize: 'var(--text-sm)', color: 'var(--muted)' }}>Response time: typically within one business day.</p>
         </div>
 
         <div className={styles.contactCard}>
@@ -34,7 +35,7 @@ export default function ContactPage() {
         <div className={styles.contactCard}>
           <h3><Globe size={20} /> Global access</h3>
           <p>CareerForge is based in Andhra Pradesh, India and serves customers worldwide.</p>
-          <p style={{ fontSize: 'var(--text-sm)', color: 'var(--outline)' }}>Built for freshers, students, and early-career professionals everywhere.</p>
+          <p style={{ fontSize: 'var(--text-sm)', color: 'var(--muted)' }}>Built for freshers, students, and early-career professionals everywhere.</p>
         </div>
       </div>
 

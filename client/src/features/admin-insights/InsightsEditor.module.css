@@ -928,7 +928,7 @@
   border: none;
 }
 
-.featuredTitle { font-size: 13.5px; font-weight: 700; color: var(--dark); }
+.featuredTitle { display: flex; align-items: center; gap: 5px; font-size: 13.5px; font-weight: 700; color: var(--dark); }
 .featuredSub { font-size: 11.5px; color: var(--muted); }
 
 .toggle {
@@ -961,12 +961,72 @@
 .toggleOn .toggleKnob { left: 21px; }
 
 .groupLabel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.4px;
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 10px;
+}
+
+.infoTip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: help;
+  color: var(--muted-2);
+  flex-shrink: 0;
+}
+
+.infoTip:hover,
+.infoTip:focus-visible {
+  color: var(--brand);
+  outline: none;
+}
+
+.infoTipBubble {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 9px);
+  transform: translateX(-50%) translateY(4px);
+  width: 260px;
+  max-width: min(260px, 80vw);
+  background: var(--dark);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s var(--ease-out), transform 0.15s var(--ease-out);
+  z-index: var(--z-overlay);
+}
+
+.infoTipBubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--dark);
+}
+
+.infoTip:hover .infoTipBubble,
+.infoTip:focus-visible .infoTipBubble {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 .groupLabelTight { margin-bottom: 3px; }

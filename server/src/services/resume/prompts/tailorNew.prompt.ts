@@ -2,17 +2,23 @@
 // ALIGNED WITH client/src/features/resume-builder/config/fieldDefinitions.ts
 // & server/src/services/resume/prompts/resumeParse.prompt.ts
 
+import {
+  RESUME_WRITING_CRAFT,
+  KEYWORD_INTEGRATION_RULES,
+  RESUME_COVERAGE_SELF_CHECK,
+} from './resumeCraft.prompt'
+
 // Shared structured-resume output schema, reused by tailorNew AND tailorSmart so both
 // emit the exact same shape the editor store expects. Single source of truth.
 export const RESUME_OUTPUT_SCHEMA = `{
   "jdCompanyName": "string",
   "jdRoleName": "string",
   "personalInfo": {
-    "fullName": "string",
+    "fullName": "string — the person's NAME ONLY, copied from the resume. Do NOT append location/title/email.",
     "title": "string (targeted professional title)",
-    "email": "string",
-    "phone": "string",
-    "location": "string (City, State/Country)",
+    "email": "string — REQUIRED: copy the email from the resume verbatim. Never leave empty if one exists.",
+    "phone": "string — REQUIRED: copy the phone number from the resume verbatim. Never leave empty if one exists.",
+    "location": "string (City, State/Country) — REQUIRED: copy from the resume. Never leave empty if one exists.",
     "summary": "string (professional summary paragraph, 2-3 sentences)",
     "contactLinks": [{ "text": "string (e.g. 'LinkedIn')", "url": "string" }]
   },
@@ -258,7 +264,7 @@ export const RESUME_FINAL_CONSTRAINTS = `## Final Constraints
 - **Section Visibility**: The "sections" array must ONLY include sections with at least one entry. Do NOT return empty sections. Set "visible": true for every section you include.`
 
 export const buildTailorNewPrompt = (resumeText: string, jdText: string): string => `
-You are an elite resume writer and ATS optimization specialist. Your task is to transform a candidate's existing resume into a fully tailored, ATS-optimized version for a specific job description.
+You are an elite resume writer and ATS optimization specialist. Transform the candidate's existing resume into a fully tailored, ATS-optimized version for the specific job description — written to the professional standard described below, not a keyword dump.
 
 ## Job Description
 ${jdText}
@@ -267,26 +273,29 @@ ${jdText}
 ${resumeText}
 
 ## Your Task
-1. Parse the candidate's existing resume to extract all their actual experience, education, skills, and achievements
-2. Rewrite and restructure the content to be maximally aligned with the job description
-3. Naturally incorporate keywords and phrases from the JD without fabricating experience
-4. Strengthen descriptions to be achievement-oriented and quantifiable where possible
-5. Return a complete, properly structured JSON resume following the STRICT Output Schema below
-6. ONLY include sections that have actual data from the resume. If a section is empty, EXCLUDE it from the sections array.
-7. Only set "visible": true for sections that have actual content.
+1. Parse the candidate's existing resume to extract all their actual experience, education, skills, and achievements.
+2. Rewrite and restructure the content to be maximally aligned with the job description, following the writing craft and keyword rules below.
+3. Return a complete, properly structured JSON resume following the STRICT Output Schema below.
+4. ONLY include sections that have actual data from the resume. Do NOT return empty sections.
+5. Only set "visible": true for sections that have actual content.
 
-## CRITICAL RULES
-- NEVER invent experience, companies, titles, dates, or achievements that aren't in the original resume
-- DO reword and reframe real experience to better match the JD
-- DO add missing keywords from JD to Skills sections if the candidate plausibly has them
-- DO improve phrasing and add metrics where the original is vague (e.g. "improved performance" → "improved API response time by ~30%")
-- Preserve all real dates, company names, job titles, and school names exactly
+${RESUME_WRITING_CRAFT}
+
+${KEYWORD_INTEGRATION_RULES}
+
+## Honesty Rules (non-negotiable)
+- NEVER invent experience, companies, titles, dates, or achievements that aren't in the original resume.
+- DO reword and reframe REAL experience to better match the JD.
+- DO add a JD keyword to the Skills section if the candidate plausibly has it from their real background; if they clearly don't, leave it out.
+- DO improve vague phrasing and add metrics ONLY where the original supports it (e.g. "improved performance" → "improved API response time ~30%"); never fabricate a number.
+- Preserve all real dates, company names, job titles, and school names exactly.
 - For singular 'dates' fields, combine start and end dates (e.g. "Jan 2020 – Present" or "2018 - 2022"). Do NOT output separate startDate and endDate.
-- For skills, group them into logical categories if they appear grouped, else use "Technical Skills" as default category.
 
 ## Output JSON Schema
 
 ${RESUME_OUTPUT_SCHEMA}
 
 ${RESUME_FINAL_CONSTRAINTS}
+
+${RESUME_COVERAGE_SELF_CHECK}
 `.trim()

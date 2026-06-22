@@ -8,9 +8,18 @@ interface LegalPageLayoutProps {
   lastUpdated?: string
   children: ReactNode
   metaDescription: string
+  intro?: ReactNode
+  eyebrow?: string
 }
 
-export const LegalPageLayout = ({ title, lastUpdated, children, metaDescription }: LegalPageLayoutProps) => {
+export const LegalPageLayout = ({
+  title,
+  lastUpdated,
+  children,
+  metaDescription,
+  intro = 'This page explains how CareerForge protects your information, governs your use, and supports your experience on the platform.',
+  eyebrow = 'Legal & support',
+}: LegalPageLayoutProps) => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -24,10 +33,10 @@ export const LegalPageLayout = ({ title, lastUpdated, children, metaDescription 
 
       <div className={styles.container}>
         <header className={styles.header}>
-          <span className={styles.label}>Legal & support</span>
+          <span className={styles.label}><span className={styles.labelDot} />{eyebrow}</span>
           <h1 className={styles.title}>{title}</h1>
-          {lastUpdated && <p className={styles.lastUpdated}>Last Updated: {lastUpdated}</p>}
-          <p className={styles.intro}>This page explains how CareerForge protects your information, governs your use, and supports your experience on the platform.</p>
+          {lastUpdated && <p className={styles.lastUpdated}>Last updated: {lastUpdated}</p>}
+          <p className={styles.intro}>{intro}</p>
         </header>
 
         <main className={styles.content}>
