@@ -1,5 +1,8 @@
-# Use Puppeteer's official image with Chromium and dependencies pre-installed
-FROM ghcr.io/puppeteer/puppeteer:latest
+# Use Puppeteer's official image with Chromium and dependencies pre-installed.
+# Pinned to match the "puppeteer" npm version in package.json — the npm package
+# looks for a specific bundled Chrome build, and ":latest" drifts to whatever
+# Chrome version is current, causing "Could not find Chrome (ver. X)" at runtime.
+FROM ghcr.io/puppeteer/puppeteer:22.15.0
 
 # Create app directory inside container
 WORKDIR /app

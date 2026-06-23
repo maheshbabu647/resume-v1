@@ -158,7 +158,7 @@ function OnboardingHeader({ visibleSteps, visibleIdx, onExit }: { visibleSteps: 
             <line x1="42" y1="32" x2="47" y2="32" stroke="white" strokeWidth="6" strokeLinecap="round" />
           </svg>
         </div>
-        <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 16, color: 'var(--dark)', letterSpacing: '-0.3px' }}>CareerForgePro</span>
+        <span style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: 16, color: 'var(--dark)', letterSpacing: '-0.3px' }}>CareerForge</span>
       </div>
 
       <div className={styles.headerProgress}>

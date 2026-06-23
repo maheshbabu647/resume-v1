@@ -108,12 +108,12 @@ export default function LoginPage() {
           </form>
 
           <p className={kit.switchPrompt}>
-            New to CareerForgePro? <Link to="/register" className={kit.switchLink}>Create an account</Link>
+            New to CareerForge? <Link to="/register" className={kit.switchLink}>Create an account</Link>
           </p>
         </div>
 
         <div className={styles.footerRow}>
-          <span>© 2026 CareerForgePro</span>
+          <span>© 2026 CareerForge</span>
           <div className={styles.footerLinks}>
             <Link to="/terms">Terms</Link>
             <Link to="/privacy">Privacy</Link>

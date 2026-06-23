@@ -156,10 +156,39 @@ export const resendOtp = async (body: ResendOtpBody): Promise<{ message: string 
 export const getGoogleAuthUrl = (state?: string): string =>
   oauthClient.generateAuthUrl({ access_type: 'offline', scope: ['openid', 'email', 'profile'], prompt: 'consent', ...(state ? { state } : {}) })
 
+interface GoogleTokenResponse {
+  access_token: string
+  id_token: string
+  expires_in: number
+  refresh_token?: string
+  scope: string
+  token_type: string
+}
+
+// google-auth-library's own getToken() goes through gaxios/node-fetch@2, whose gzip
+// stream handling can throw ERR_STREAM_PREMATURE_CLOSE on Cloud Run's network sandbox.
+// We exchange the code ourselves with Node's native fetch (undici) to sidestep that
+// dependency entirely, then hand the tokens to oauthClient for ID-token verification.
+const exchangeGoogleCode = async (code: string): Promise<GoogleTokenResponse> => {
+  const res = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      client_id: env.GOOGLE_CLIENT_ID,
+      client_secret: env.GOOGLE_CLIENT_SECRET,
+      code,
+      grant_type: 'authorization_code',
+      redirect_uri: env.GOOGLE_CALLBACK_URL,
+    }).toString(),
+  })
+  if (!res.ok) throw new AppError('AUTH_TOKEN_INVALID', 401, 'Google login failed.')
+  return res.json() as Promise<GoogleTokenResponse>
+}
+
 export const handleGoogleCallback = async (code: string, state?: string): Promise<AuthResult> => {
-  const { tokens } = await oauthClient.getToken(code)
-  oauthClient.setCredentials(tokens)
-  const ticket  = await oauthClient.verifyIdToken({ idToken: tokens.id_token!, audience: env.GOOGLE_CLIENT_ID })
+  const tokenResponse = await exchangeGoogleCode(code)
+  oauthClient.setCredentials({ ...tokenResponse, expiry_date: Date.now() + tokenResponse.expires_in * 1000 })
+  const ticket  = await oauthClient.verifyIdToken({ idToken: tokenResponse.id_token, audience: env.GOOGLE_CLIENT_ID })
   const payload = ticket.getPayload()
   if (!payload?.email) throw new AppError('AUTH_TOKEN_INVALID', 401, 'Google login failed.')
 

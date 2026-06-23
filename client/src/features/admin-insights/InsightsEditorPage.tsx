@@ -73,6 +73,8 @@ function EIcon({ name, size = 18, color = 'currentColor', sw = 1.7 }: { name: st
     cta: <><rect x="3" y="6" width="18" height="12" rx="2" /><path d="M8 12h8" /><path d="M13 9l3 3-3 3" /></>,
     steps: <><line x1="10" y1="6" x2="21" y2="6" /><line x1="10" y1="12" x2="21" y2="12" /><line x1="10" y1="18" x2="21" y2="18" /><path d="M4 6h1v4M4 10h2M6 18H4l2-2.5a1 1 0 00-2-1.2" /></>,
     info: <><circle cx="12" cy="12" r="9" /><line x1="12" y1="11" x2="12" y2="16" /><circle cx="12" cy="8" r="0.5" fill="currentColor" /></>,
+    table: <><rect x="3" y="4" width="18" height="16" rx="1.5" /><line x1="3" y1="10" x2="21" y2="10" /><line x1="3" y1="16" x2="21" y2="16" /><line x1="9.5" y1="4" x2="9.5" y2="20" /><line x1="15" y1="4" x2="15" y2="20" /></>,
+    code: <><polyline points="8 6 3 12 8 18" /><polyline points="16 6 21 12 16 18" /></>,
   }
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
@@ -495,6 +497,19 @@ export default function InsightsEditorPage() {
     { icon: 'image', label: 'Image', fn: insertImage },
     { icon: 'divider', label: 'Divider', fn: () => insertHTML('<hr/><p><br/></p>') },
     { icon: 'cta', label: 'Inline CTA', fn: () => insertHTML('<div data-cta="1">Build your ATS-friendly resume free on CareerForge — see your score in 60 seconds.</div><p><br/></p>') },
+    {
+      icon: 'table', label: 'Table', fn: () => insertHTML(
+        '<table><thead><tr><th>Column A</th><th>Column B</th><th>Column C</th></tr></thead><tbody>'
+        + '<tr><td>Row 1</td><td>Row 1</td><td>Row 1</td></tr>'
+        + '<tr><td>Row 2</td><td>Row 2</td><td>Row 2</td></tr>'
+        + '</tbody></table><p><br/></p>'
+      ),
+    },
+    {
+      icon: 'code', label: 'Code / resume layout', fn: () => insertHTML(
+        '<pre><code>PRIYA SHARMA\n+91-98765-43210  |  priya.sharma@gmail.com  |  Hyderabad, Telangana\nlinkedin.com/in/priyasharma  |  github.com/priyasharma</code></pre><p><br/></p>'
+      ),
+    },
   ]
 
   const canSave = useMemo(() => buildPayload() !== null, [buildPayload])

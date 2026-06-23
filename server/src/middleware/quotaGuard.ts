@@ -56,6 +56,11 @@ export const quotaGuard =
         }
 
         const limit = GUEST_LIMITS[feature]
+
+        // -1 = unlimited. Without this, `used < limit` (e.g. 0 < -1) is always false,
+        // so every guest would fall through to the 403 below on their very first request.
+        if (limit === -1) return next()
+
         const used = guest.usage?.[feature] ?? 0
 
         if (used < limit) {

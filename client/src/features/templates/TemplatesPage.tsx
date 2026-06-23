@@ -1,10 +1,8 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { ArrowRight, CheckCircle2, Eye, Sparkles } from 'lucide-react'
+import { ArrowRight, CheckCircle2, Sparkles } from 'lucide-react'
 import { Button } from '@/shared/components/Button/Button'
 import { useAuthStore } from '@/core/auth/useAuthStore'
-import { Modal } from '@/shared/components/Modal/Modal'
 import styles from './TemplatesPage.module.css'
 
 import { TEMPLATE_REGISTRY } from '../resume-builder/templates/registry'
@@ -23,8 +21,8 @@ const TEMPLATES = Object.values(TEMPLATE_REGISTRY).map((t, i) => ({
 }))
 
 export default function TemplatesPage() {
-  const [previewTemplate, setPreviewTemplate] = useState<typeof TEMPLATES[number] | null>(null)
   const { isAuthenticated } = useAuthStore()
+  const navigate = useNavigate()
 
   return (
     <div className={styles.page}>
@@ -47,7 +45,15 @@ export default function TemplatesPage() {
       {/* Grid */}
       <section className={styles.grid}>
         {TEMPLATES.map((t) => (
-          <div key={t.id} className={styles.card} data-accent={t.accent}>
+          <div
+            key={t.id}
+            className={styles.card}
+            data-accent={t.accent}
+            role="button"
+            tabIndex={0}
+            onClick={() => navigate(`/resume/new?template=${t.id}`)}
+            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigate(`/resume/new?template=${t.id}`) }}
+          >
             <div className={styles.thumb}>
               {t.imageUrl ? (
                 <img src={t.imageUrl} alt={t.name} className={styles.thumbImage} />
@@ -65,10 +71,6 @@ export default function TemplatesPage() {
               <span className={styles.atsBadge}>
                 <CheckCircle2 size={11} /> ATS-ready
               </span>
-
-              <button className={styles.previewBtn} onClick={() => setPreviewTemplate(t)}>
-                <Eye size={13} /> Preview
-              </button>
             </div>
 
             <div className={styles.cardInfo}>
@@ -77,7 +79,11 @@ export default function TemplatesPage() {
                 <span className={styles.cardTag}>{t.style}</span>
               </div>
               <p className={styles.cardDesc}>{t.desc}</p>
-              <Link to={`/resume/new?template=${t.id}`} className={styles.useBtn}>
+              <Link
+                to={`/resume/new?template=${t.id}`}
+                className={styles.useBtn}
+                onClick={(e) => e.stopPropagation()}
+              >
                 Use this template <ArrowRight size={14} />
               </Link>
             </div>
@@ -100,18 +106,6 @@ export default function TemplatesPage() {
           </Button>
         </Link>
       </section>
-
-      <Modal
-        isOpen={!!previewTemplate}
-        onClose={() => setPreviewTemplate(null)}
-        title={previewTemplate?.name || 'Template Preview'}
-      >
-        <div className={styles.previewModalBody}>
-          {previewTemplate?.imageUrl && (
-            <img src={previewTemplate.imageUrl} alt={previewTemplate.name} className={styles.previewFullImage} />
-          )}
-        </div>
-      </Modal>
     </div>
   )
 }

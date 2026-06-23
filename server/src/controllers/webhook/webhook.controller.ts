@@ -6,8 +6,14 @@ import { env }          from '../../config/env'
 
 const verifySignature = (rawBody: string, signature: string): boolean => {
   const secret = env.RAZORPAY_WEBHOOK_SECRET || ''
+  if (!secret) return false
   const expected = crypto.createHmac('sha256', secret).update(rawBody).digest('hex')
-  return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature))
+  const expectedBuf = Buffer.from(expected)
+  const signatureBuf = Buffer.from(signature)
+  // timingSafeEqual throws on length mismatch — an attacker-controlled header
+  // of a different length would otherwise crash the request instead of failing closed.
+  if (expectedBuf.length !== signatureBuf.length) return false
+  return crypto.timingSafeEqual(expectedBuf, signatureBuf)
 }
 
 export const handleRazorpay = async (req: Request, res: Response, next: NextFunction) => {
